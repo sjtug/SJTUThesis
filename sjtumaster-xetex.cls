@@ -10,8 +10,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtumaster-xetex}
-  [2009/12/25 v0.2a sjtumaster-xetex
-   document class]
+  [2009/12/25 v0.2a sjtumaster-xetex document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
 \newif\ifCAST@dvips \CAST@dvipsfalse
@@ -22,8 +21,10 @@
 \ProcessOptions
 \LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
 
-
+%% 导入 sjtumaster-xetex.cfg 文件
 \AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
+
+%% 页边距设置
 \oddsidemargin 1.5 true cm
 \if@twoside
   \evensidemargin 0 true cm
@@ -34,15 +35,54 @@
 \textwidth 14.5 true cm
 \headheight 15pt
 \parskip 0.5ex plus 0.25ex minus 0.25ex
+
+%% Command -- Clear Double Page
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \thispagestyle{empty}%
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
+%% 选择编译
+\usepackage{ifthen}
+
+%% fancyhdr 页眉页脚控制
+\usepackage{fancyhdr}
+
+%% 复杂表格
+\usepackage{threeparttable}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{booktabs}
+\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+%% 并列子图
+\usepackage{subfigure}
 
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
 %% math packages
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
+
+% 直立希腊字母字体
+\usepackage{upgreek}
+
+%% 定义几个常用的数学常量符号
+\newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\mj}{\mathrm{j}}
+\newcommand{\dif}{\mathrm{d}}
+
+
+% 可伸长的数学符号
+% \makeatletter
+\def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
+\def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
+\def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
+% \makeatother
+
+\newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
+\newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
+\newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
+\newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
 %% Times Fonts
 \RequirePackage{times}
@@ -78,6 +118,47 @@
 
 % 颜色宏包
 \RequirePackage{xcolor}
+
+
+%% 一些有趣的符号图案
+\usepackage{marvosym}
+
+% 中文破折号
+\newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
+
+% listings 源代码显示宏包
+\usepackage{listings}
+\lstset{tabsize=4, %
+  frame=shadowbox, %把代码用带有阴影的框圈起来
+  commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
+  rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+  keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+  showstringspaces=false,%不显示代码字符串中间的空格标记
+  stringstyle=\ttfamily, % 代码字符串的特殊格式
+  keepspaces=true, %
+  breakindent=22pt, %
+  numbers=left,%左侧显示行号
+  stepnumber=1,%
+  numberstyle=\tiny, %行号字体用小号
+  basicstyle=\footnotesize, %
+  showspaces=false, %
+  flexiblecolumns=true, %
+  breaklines=true, %对过长的代码自动换行
+  breakautoindent=true,%
+  breakindent=4em, %
+  % escapebegin=\begin{CJK*}{GBK}{kai},escapeend=\end{CJK*},
+  aboveskip=1em, %代码块边框
+  %% added by http://bbs.ctex.org/viewthread.php?tid=53451
+  fontadjust,
+  captionpos=t,
+  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
+  xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
+  texcl=true,
+  % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
+  extendedchars=false,columns=flexible,mathescape=true
+  % numbersep=-1em
+}
+\renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
 
 
 %% ==================================================
@@ -283,20 +364,13 @@
 %_ 页眉页脚
 \pagestyle{fancy}
 \fancyhf{}
-% \fancyhead[CE]{\small \CAST@value@titlemark}
-\fancyhead[LE]{\small {\it \CAST@value@headschoolname}}  % 偶数页左页眉
-\fancyhead[RE]{\small \CAST@value@titlemark}       % 偶数页右页眉
-% \fancyhead[OE]{}       % 偶数页中页眉
-\fancyhead[LO]{\small {\it \CAST@value@headschoolname}}  % 奇数页左页眉
-% \fancyhead[RO]{\small \rightmark}
+\fancyhead[LO, RE]{\small {\it \CAST@label@headschoolname}}  % 奇数页左页眉
 \fancyhead[RO]{\small \leftmark}                   % 奇数页左页眉
-% \fancyhead[OE]{}       % 奇数页中页眉
-% \fancyfoot[OL]{\bfseries \small ~---~\thepage~---~}
+\fancyhead[LE]{\small \CAST@value@titlemark}  % 偶数页左页眉
 \fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
-% \fancyfoot[LE,RO]{\bfseries \small ~--~\thepage~--~}
 
 
-\fancypagestyle{plain}{% 设置开章页页眉页脚风格
+\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
   \fancyhf{}%
   % \fancyfoot[C]{\bfseries \small ~第~\thepage~页~}
  \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %%首页页脚格式
