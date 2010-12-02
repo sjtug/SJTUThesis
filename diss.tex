@@ -2,126 +2,42 @@
 %% diss.tex for SJTU Master Thesis
 %% modified by wei.jianwen@gmail.com
 %% version: 0.2a
-%% last update: Dec 25th, 2009
+%% Encoding: UTF-8
+%% last update: Dec 2nd, 2009
 %%==================================================
 
 % 字号选项: c5size 五号(默认)
 % 字号选项: cs4size 小四
-\documentclass[a4paper, cs4size, twoside]{sjtumaster-xetex} 
+% 双面打印 还需要调整fancy页眉页脚设置
+\documentclass[cs4size, a4paper, cs4size, twoside]{sjtumaster-xetex} 
 % 单面打印
-% \documentclass[a4paer, cs4size, oneside, openany]{sjtumaster} 
+% \documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtumaster-xetex} 
 
 %% 当前模板的版本
 \newcommand{\version}{v0.2a}
 
-\usepackage{overpic}
-\usepackage{fancyhdr}
 % \usepackage[sectionbib]{chapterbib}%每章都用参考文献
-
-% \usepackage{bbm}%印刷体数字
-
-% \usepackage{feynmf}
-\usepackage{ifthen}%选择编译
 
 \newboolean{DOIT}
 \setboolean{DOIT}{false}%编译某些只想自己看的内容，编译true，否则false
 
-% 取消链接的颜色
-% \hypersetup{colorlinks=false}
-
-% 是否使用Yap的开关
-\def\useyap{true}%{false}%
-
+%% 上边距(？？)
 \addtolength{\voffset}{-0.5cm}
 
+%% 行距缩放因子(x字号)
 \renewcommand{\baselinestretch}{1.3}
 
-% 使用非eps格式图片，首先对图片用ebb命令生成边界文件.bb，
-% 由于ebb计算的JPG/PNG边界不准确，需要手动修改.bb文件；对PDF计算的边界是准确的；
-% 使用图片时.bb文件也要放在图片所在的目录；
-% 
-% \DeclareGraphicsRule{.jpg}{eps}{.bb}{}
-% \DeclareGraphicsRule{.png}{eps}{.bb}{}
-
-% 中文破折号
-\newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
+%% 中文破折号
+% \cndash
 
 % 设置图形文件的搜索路径
 \graphicspath{{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
 
-%% 一些有趣的符号图案
-\usepackage{marvosym}
-
-%% 复杂表格
-\usepackage{threeparttable}
-\usepackage{dcolumn}
-\usepackage{multirow}
-\usepackage{booktabs}
-\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
-
-%% 并列子图
-\usepackage{subfigure}
-
-%% 定义几个常用的数学常量符号
-\newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
-\newcommand{\mi}{\mathrm{i}}
-\newcommand{\mj}{\mathrm{j}}
-\newcommand{\dif}{\mathrm{d}}
-
-% 直立希腊字母字体
-\usepackage{upgreek}
-
-% 可伸长的数学符号
-\makeatletter
-\def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
-\def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
-\def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
-\makeatother
-
-\newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
-\newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
-\newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
-\newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
-
-
-% listings 源代码显示宏包
-\usepackage{listings}
-\lstset{tabsize=4, %
-  frame=shadowbox, %把代码用带有阴影的框圈起来
-  commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
-  rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
-  keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
-  showstringspaces=false,%不显示代码字符串中间的空格标记
-  stringstyle=\ttfamily, % 代码字符串的特殊格式
-  keepspaces=true, %
-  breakindent=22pt, %
-  numbers=left,%左侧显示行号
-  stepnumber=1,%
-  numberstyle=\tiny, %行号字体用小号
-  basicstyle=\footnotesize, %
-  showspaces=false, %
-  flexiblecolumns=true, %
-  breaklines=true, %对过长的代码自动换行
-  breakautoindent=true,%
-  breakindent=4em, %
-  % escapebegin=\begin{CJK*}{GBK}{kai},escapeend=\end{CJK*},
-  aboveskip=1em, %代码块边框
-  %% added by http://bbs.ctex.org/viewthread.php?tid=53451
-  fontadjust,
-  captionpos=t,
-  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
-  xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
-  texcl=true,
-  % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
-  extendedchars=false,columns=flexible,mathescape=true
-  % numbersep=-1em
-}
-\renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
 
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 封面部分
+%% 封面
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 % 中文封面内容(关注内容而不是形式)
@@ -141,7 +57,7 @@
 \englishadvisor{Prof. \textsc{San Zhang}}
 \englishschool{Shanghai Jiao Tong University}
 \englishinstitute{\textsc{Depart of XXX, School of XXX} \\
-  \textsc{Shanghai Jiao Tong University}\\
+  \textsc{Shanghai Jiao Tong University} \\
   \textsc{Shanghai, P.R.China}}
 \englishdegree{Master}
 \englishmajor{Physics}
@@ -158,7 +74,7 @@
 \makeDeclareAuthorization
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 前言部分
+%% 前言
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \frontmatter
 
@@ -176,21 +92,20 @@
 \addcontentsline{toc}{chapter}{\listtablename}  %将图索引加入全文目录
 
 % 主要符号对照表
-\include{body/symbol}
+% \include{body/symbol}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 正文部分
+%% 正文
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \mainmatter
 
-
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格
   \fancyhf{}%
-  \fancyhead[LE]{\small {\it 上海交通大学硕士学位论文}}  % 偶数页左页眉
-  \fancyhead[RE]{\small \CAST@value@titlemark}       % 偶数页右页眉
-  \fancyhead[LO]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
+  \fancyhead[LO,RE]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
   \fancyhead[RO]{\small \leftmark}                   % 奇数页左页眉
-  \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %%首页页脚格式
+  \fancyhead[LE]{\small \CAST@value@titlemark} 	 % 偶数页左页眉
+  \fancyhead[RE]{\small {\it 上海交通大学硕士学位论文}}       % 偶数页右页眉
+  \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
 }
 
 
@@ -201,47 +116,39 @@
 \include{body/conclusion} %% 全文总结
 
 
-%% 
-%%  % 附录
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%% 附录(章节编号重新计算，使用字母进行编号)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\appendix
 
 % 附录中编号形式是"A-1"的样子
 \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}
 \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 
-\appendix
-%% 
 \include{body/app1} % 更新记录
 \include{body/app2} % 麦克斯韦方程
 % \include{body/app3}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 附件部分
+%% 文后(无章节编号)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \backmatter
 
 % 参考文献
-
 % 使用 BibTeX
-
-% 若要每章都有参考文献，使用\usepackage[sectionbib]{chapterbib}
-% 每个include的文件都要写上 \bibliographystyle and \bibliography
-% 编译方法latex [主文件].tex    bibtex  [每一章].aux    latex [主文件].tex    dvipdfmx  [主文件].tex
-% 具体见cite/chapterbib.sty文件中的说明
-
 % 包含参考文献文件.bib
 \bibliography{reference/chap1,reference/chap2}
 
-% 个人简历(硕士学位论文没有个人建立部分)
-\include{body/resume}
+%% 个人简历(硕士学位论文没有个人简历要求)
+% \include{body/resume}
 
 % 致谢
 \include{body/thanks}
 
 % 发表文章目录
-% \include{body/pub}
+\include{body/pub}
 
 
 \end{document}
