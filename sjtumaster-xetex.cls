@@ -2,11 +2,9 @@
 %% sjtumaster-xetex.cls for SJTU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% modified by wei.jianwen@gmail.com
+%% Encoding: UTF-8
 %% version: 0.2a
-%% last update: Dec 25th, 2009
-%% --------------------------------------------------
-% !!! This template is intended to be processed by "latex->dvipdfmx" only !!!
-% !!! source files .tex should be encoded in GBK
+%% last update: Dec 2nd, 2010
 %% ==================================================
 
 
@@ -23,6 +21,22 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
+
+
+\AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
+\oddsidemargin 1.5 true cm
+\if@twoside
+  \evensidemargin 0 true cm
+\else
+  \evensidemargin 1.5 true cm
+\fi
+\textheight 21 true cm
+\textwidth 14.5 true cm
+\headheight 15pt
+\parskip 0.5ex plus 0.25ex minus 0.25ex
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \thispagestyle{empty}%
+  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
 %% check pdfTeX mode
@@ -97,22 +111,6 @@
 \usepackage[dvipdfmx,unicode]{hyperref}
 \fi
 \fi
-
-
-\AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
-\oddsidemargin 1.5 true cm
-\if@twoside
-  \evensidemargin 0 true cm
-\else
-  \evensidemargin 1.5 true cm
-\fi
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-  \thispagestyle{empty}%
-  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 %_  参考文献风格 added by wei.jianwen@gmail.com
 \bibliographystyle{GBT7714-2005NLang}
@@ -286,10 +284,10 @@
 \pagestyle{fancy}
 \fancyhf{}
 % \fancyhead[CE]{\small \CAST@value@titlemark}
-\fancyhead[LE]{\small {\it 上海交通大学硕士学位论文}}  % 偶数页左页眉
+\fancyhead[LE]{\small {\it \CAST@value@headschoolname}}  % 偶数页左页眉
 \fancyhead[RE]{\small \CAST@value@titlemark}       % 偶数页右页眉
 % \fancyhead[OE]{}       % 偶数页中页眉
-\fancyhead[LO]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
+\fancyhead[LO]{\small {\it \CAST@value@headschoolname}}  % 奇数页左页眉
 % \fancyhead[RO]{\small \rightmark}
 \fancyhead[RO]{\small \leftmark}                   % 奇数页左页眉
 % \fancyhead[OE]{}       % 奇数页中页眉
