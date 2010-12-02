@@ -1,0 +1,14 @@
+* UTF-8编码转换
+$ iconv -f gb18030 -t utf8 FILENAME
+
+需要转换的文件：
+** tex源文件
+diss.tex
+** 模板配置文件(包含“有效中文”字符——下一步应该做分离，把所有中文字符内容全部定义为宏常量)
+sjtumaster.cfg
+sjtumaster.cls
+** BibTeX数据库文件
+*.bib
+** BibTeX风格文件
+GBT7714-2005NLang.bst
+
