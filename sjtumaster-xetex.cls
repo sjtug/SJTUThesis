@@ -42,20 +42,24 @@
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 %% 选择编译
-\usepackage{ifthen}
+\RequirePackage{ifthen}
 
 %% fancyhdr 页眉页脚控制
-\usepackage{fancyhdr}
+\RequirePackage{fancyhdr}
 
 %% 复杂表格
-\usepackage{threeparttable}
-\usepackage{dcolumn}
-\usepackage{multirow}
-\usepackage{booktabs}
+\RequirePackage{threeparttable}
+\RequirePackage{dcolumn}
+\RequirePackage{multirow}
+\RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
 %% 并列子图
-\usepackage{subfigure}
+\RequirePackage{subfigure}
+
+%% 英文字体使用 Times New Roman
+\RequirePackage{fontspec}
+\setmainfont{Times New Roman}
 
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
@@ -63,7 +67,7 @@
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
 
 % 直立希腊字母字体
-\usepackage{upgreek}
+\RequirePackage{upgreek}
 
 %% 定义几个常用的数学常量符号
 \newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
@@ -85,7 +89,7 @@
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
 %% Times Fonts
-\RequirePackage{times}
+% \RequirePackage{times}
 
 %_ added by wei.jianwen@gmail.com
 \RequirePackage{ccaption}
@@ -121,13 +125,13 @@
 
 
 %% 一些有趣的符号图案
-\usepackage{marvosym}
+\RequirePackage{marvosym}
 
 % 中文破折号
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
 
 % listings 源代码显示宏包
-\usepackage{listings}
+\RequirePackage{listings}
 \lstset{tabsize=4, %
   frame=shadowbox, %把代码用带有阴影的框圈起来
   commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
@@ -184,12 +188,12 @@
 % }
 
 \ifxetex  % xelatex
-\usepackage[xetex]{hyperref}
+\RequirePackage[xetex]{hyperref}
 \else
 \ifpdf    % pdflatex
-\usepackage[pdftex,unicode]{hyperref}
+\RequirePackage[pdftex,unicode]{hyperref}
 \else     % dvipdfmx or dvips
-\usepackage[dvipdfmx,unicode]{hyperref}
+\RequirePackage[dvipdfmx,unicode]{hyperref}
 \fi
 \fi
 
