@@ -57,9 +57,17 @@
 %% 并列子图
 \RequirePackage{subfigure}
 
+%% Ref: http://bbs.ctex.org/viewthread.php?tid=60079&page=2&fromuid=56635#pid390199
+% Step 1. Import fontspec
+% Step 2. Import old font package
+% Step 3. Use fontenc to set encoding to T1
 %% 英文字体使用 Times New Roman
 \RequirePackage{fontspec}
-\setmainfont{Times New Roman}
+%% Times Fonts
+\RequirePackage{times}
+%% Set Old Fonts Encoding
+\usepackage[T1]{fontenc}
+
 
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
@@ -87,9 +95,6 @@
 \newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
 \newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
-
-%% Times Fonts
-% \RequirePackage{times}
 
 %_ added by wei.jianwen@gmail.com
 \RequirePackage{ccaption}
