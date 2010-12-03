@@ -1,6 +1,11 @@
 %% Minimun Test File
 %% Encoding: UTF-8
 %% xelatex test.tex
+%% 正确的PDF编译结果：
+% 显示"中文测试"和英文内容
+% 嵌入AdobeSongStd和NimbusRomNo9字体
+% 英文字符正确连字(ligature)
+% textsc正确工作
 \documentclass[12pt,a4paper,UTF8,adobefonts]{ctexbook}
 \usepackage{fontspec}
 \usepackage{times}
@@ -8,6 +13,7 @@
 
 \begin{document}
 
-中文测试 Hello World! ff fi fl ffi \textsc{PostScript} % 检查连字
+中文测试\\
+Times Fonts Here ff fi fl ffi \textsc{PostScript} % 检查连字
 
 \end{document}
