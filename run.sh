@@ -2,7 +2,7 @@
 
 BASE=diss
 
-rm *.pdf
+rm ${BASE}.pdf
 xelatex -no-pdf --interaction=nonstopmode ${BASE}
 bibtex ${BASE}
 xelatex -no-pdf --interaction=nonstopmode ${BASE}
