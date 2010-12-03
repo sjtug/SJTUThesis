@@ -1,4 +1,4 @@
-%%==================================================
+%==================================================
 %% sjtumaster-xetex.cls for SJTU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% modified by wei.jianwen@gmail.com
@@ -179,21 +179,19 @@
 % \DeclareGraphicsRule{.pdf}{eps}{.bb}{}
 %% ==================================================
 
-%% hyperref
-% \RequirePackage[dvipdfm]{hyperref}
-% \AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
-% configuration of hyperref package
-% \hypersetup{CJKbookmarks,%
-%   bookmarksnumbered,%
-%   colorlinks,%
-%   linkcolor=blue,%
-%   citecolor=blue,%
-%   plainpages=false,%
-%   pdfstartview=FitH
-% }
+
+%% hyperref package
 
 \ifxetex  % xelatex
 \RequirePackage[xetex]{hyperref}
+\hypersetup{
+  bookmarksnumbered,%
+  colorlinks,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  plainpages=false,%
+  pdfstartview=FitH
+}
 \else
 \ifpdf    % pdflatex
 \RequirePackage[pdftex,unicode]{hyperref}
@@ -201,6 +199,8 @@
 \RequirePackage[dvipdfmx,unicode]{hyperref}
 \fi
 \fi
+
+
 
 %_  参考文献风格 added by wei.jianwen@gmail.com
 \bibliographystyle{GBT7714-2005NLang}
@@ -374,8 +374,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LO, RE]{\small {\it \CAST@label@headschoolname}}  % 奇数页左页眉
-\fancyhead[RO]{\small \leftmark}                   % 奇数页左页眉
-\fancyhead[LE]{\small \CAST@value@titlemark}  % 偶数页左页眉
+\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
+\fancyhead[LE]{\small {\it \CAST@value@titlemark}}  % 偶数页左页眉
 \fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
 
 

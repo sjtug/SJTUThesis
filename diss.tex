@@ -8,7 +8,7 @@
 
 % 字号选项: c5size 五号(默认)
 % 字号选项: cs4size 小四
-% 双面打印 还需要调整fancy页眉页脚设置
+% 双面打印
 \documentclass[cs4size, a4paper, cs4size, twoside]{sjtumaster-xetex} 
 % 单面打印
 % \documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtumaster-xetex} 
@@ -101,8 +101,8 @@
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格
   \fancyhf{}%
   \fancyhead[LO,RE]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
-  \fancyhead[RO]{\small \leftmark}                   % 奇数页左页眉
-  \fancyhead[LE]{\small \CAST@value@titlemark} 	 % 偶数页左页眉
+  \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
+  \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
   \fancyhead[RE]{\small {\it 上海交通大学硕士学位论文}}       % 偶数页右页眉
   \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
 }
