@@ -7,6 +7,10 @@
 %% last update: Dec 2nd, 2010
 %% ==================================================
 
+%% math packages -- conflict with xunicode
+\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+% 直立希腊字母字体
+\RequirePackage{upgreek}
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtumaster-xetex}
@@ -57,10 +61,6 @@
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
-%% math packages -- conflict with xunicode
-\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
-% 直立希腊字母字体
-\RequirePackage{upgreek}
 %% 定义几个常用的数学常量符号
 \newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
 \newcommand{\mi}{\mathrm{i}}
