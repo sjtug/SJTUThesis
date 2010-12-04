@@ -105,8 +105,8 @@
 % ccaption -- bicaption
 \RequirePackage{ccaption}
 \captiondelim{\ }
-\captionnamefont{\kaishu\zihao{5}}
-\captiontitlefont{\kaishu\zihao{5}}
+\captionnamefont{\kaishu\small}
+\captiontitlefont{\kaishu\small}
 
 
 %% sort and compress citations
