@@ -28,6 +28,9 @@
 %% 导入 sjtumaster-xetex.cfg 文件
 \AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
 
+%% 当前模板的版本
+\newcommand{\version}{\CAST@value@templateversion}
+
 %% 页边距设置
 \oddsidemargin 1.5 true cm
 \if@twoside
@@ -81,11 +84,12 @@
 
 
 %% Ref: http://bbs.ctex.org/viewthread.php?tid=60079&page=2&fromuid=56635#pid390199
-% Step 1. Import fontspec
+% Step 1. Import fontspec and xltxtra
 % Step 2. Import old font package
 % Step 3. Use fontenc to set encoding to T1
 %% 英文字体使用 Times New Roman
 \RequirePackage{fontspec}
+\RequirePackage{xltxtra}
 %% Times Fonts
 \RequirePackage{times}
 %% Set Old Fonts Encoding
@@ -134,6 +138,8 @@
 
 %% 一些有趣的符号图案
 \RequirePackage{marvosym}
+\RequirePackage{wasysym}
+
 
 % 中文破折号
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -158,7 +164,6 @@
   breaklines=true, %对过长的代码自动换行
   breakautoindent=true,%
   breakindent=4em, %
-  % escapebegin=\begin{CJK*}{GBK}{kai},escapeend=\end{CJK*},
   aboveskip=1em, %代码块边框
   %% added by http://bbs.ctex.org/viewthread.php?tid=53451
   fontadjust,
@@ -168,7 +173,7 @@
   texcl=true,
   % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
   extendedchars=false,columns=flexible,mathescape=true
-  % numbersep=-1em
+  numbersep=-1em
 }
 \renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
 
@@ -193,7 +198,12 @@
 \fi
 \fi
 
-
+%% enumerate 列表环境间距调节
+% Ref: http://bbs.ctex.org/viewthread.php?tid=52331&page=1
+\usepackage{enumitem}
+% \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+% \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+% \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
 
 %_  参考文献风格 added by wei.jianwen@gmail.com
 \bibliographystyle{GBT7714-2005NLang}
