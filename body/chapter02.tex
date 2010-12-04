@@ -1,4 +1,5 @@
-%\bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
+% Encoding: UTF-8
+% \bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
 
 \chapter{一些~\LaTeX~排版的例子}
 \label{chap:example}
@@ -134,8 +135,9 @@ JPG或者PNG格式的图片，必须先用命令{\textbf{ebb file.jpg}}确定边
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[scale=0.4]{chap2/fig1.jpg}
-  \includegraphics[scale=0.4]{chap2/fig2.jpg}
+  \includegraphics[width=0.3\textwidth]{chap2/testpng}
+  \hspace{1cm}
+  \includegraphics[width=0.3\textwidth]{chap2/testjpg}
   \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
 \end{figure}
 
