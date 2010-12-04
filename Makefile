@@ -31,6 +31,7 @@ clean:
 	find ./ -iname '*.blg' | xargs rm
 	find ./ -iname '*.bbl' | xargs rm
 	find ./ -iname '*.lof' | xargs rm
+	find ./ -iname '*.xdv' | xargs rm
 	rm ${BASE}.xdv ${BASE}.pdf
 # cleantex
 # if [ -e ${BASE}.xdv ]; then rm ${BASE}.xdv; fi
