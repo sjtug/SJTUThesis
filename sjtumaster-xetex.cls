@@ -44,6 +44,9 @@
 %% 选择编译
 \RequirePackage{ifthen}
 
+%% check pdfTeX mode
+\RequirePackage{ifpdf}
+
 %% fancyhdr 页眉页脚控制
 \RequirePackage{fancyhdr}
 
@@ -54,35 +57,15 @@
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
-%% 并列子图
-\RequirePackage{subfigure}
-
-%% Ref: http://bbs.ctex.org/viewthread.php?tid=60079&page=2&fromuid=56635#pid390199
-% Step 1. Import fontspec
-% Step 2. Import old font package
-% Step 3. Use fontenc to set encoding to T1
-%% 英文字体使用 Times New Roman
-\RequirePackage{fontspec}
-%% Times Fonts
-\RequirePackage{times}
-%% Set Old Fonts Encoding
-\usepackage[T1]{fontenc}
-
-
-%% check pdfTeX mode
-\RequirePackage{ifpdf}
-%% math packages
+%% math packages -- conflict with xunicode
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
-
 % 直立希腊字母字体
 \RequirePackage{upgreek}
-
 %% 定义几个常用的数学常量符号
 \newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\mathrm{d}}
-
 
 % 可伸长的数学符号
 % \makeatletter
@@ -96,15 +79,35 @@
 \newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
-%_ added by wei.jianwen@gmail.com
+
+%% Ref: http://bbs.ctex.org/viewthread.php?tid=60079&page=2&fromuid=56635#pid390199
+% Step 1. Import fontspec
+% Step 2. Import old font package
+% Step 3. Use fontenc to set encoding to T1
+%% 英文字体使用 Times New Roman
+\RequirePackage{fontspec}
+%% Times Fonts
+\RequirePackage{times}
+%% Set Old Fonts Encoding
+\usepackage[T1]{fontenc}
+
+% 重定义\nobreakspace命令 -- xetex与T1字体包一起使用时出现的问题
+% Ref: http://bbs.ctex.org/viewthread.php?tid=60547&extra=page%3D1&page=2
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+
+
+%% graphics packages
+\RequirePackage{graphicx}
+%% 并列子图
+\RequirePackage{subfigure}
+%% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
+% ccaption -- bicaption
 \RequirePackage{ccaption}
 \captiondelim{\ }
 \captionnamefont{\kaishu\zihao{5}}
 \captiontitlefont{\kaishu\zihao{5}}
 
-%% graphics packages
-\RequirePackage[dvips]{graphicx}
-% \RequirePackage{graphicx}
 
 %% sort and compress citations
 \RequirePackage[sort&compress,numbers]{natbib}
@@ -168,16 +171,6 @@
   % numbersep=-1em
 }
 \renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
-
-
-%% ==================================================
-%% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
-% \DeclareGraphicsExtensions{.eps,.pdf,.jpg,.png}
-%% 让 latex 从 .bb 中读取 Bounding Box 信息
-% \DeclareGraphicsRule{.jpg}{eps}{.bb}{}
-% \DeclareGraphicsRule{.png}{eps}{.bb}{}
-% \DeclareGraphicsRule{.pdf}{eps}{.bb}{}
-%% ==================================================
 
 
 %% hyperref package
