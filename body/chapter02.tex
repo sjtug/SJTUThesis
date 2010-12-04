@@ -1,4 +1,12 @@
-% Encoding: UTF-8
+%%==================================================
+%% chapter02.tex for SJTU Master Thesis
+%% based on CASthesis
+%% modified by wei.jianwen@gmail.com
+%% version: 0.3a
+%% Encoding: UTF-8
+%% last update: Dec 5th, 2010
+%%==================================================
+
 % \bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
 
 \chapter{一些~\LaTeX~排版的例子}
@@ -25,7 +33,7 @@
 \subsubsection{一个四级标题}
 \label{sec:depth4}
 
-这是全文唯一的一个四级标题。在这部分中将演示可伸长符号（箭头、等号的例子）的例子，以及如何在可伸长的符号上标注。在《CTeX常见问题集》中也由类似的介绍。
+这是全文唯一的一个四级标题。在这部分中将演示可伸长符号（箭头、等号的例子）的例子，以及如何在可伸长的符号上标注。在\href{http://zhou63.ahut.edu.cn/latex/ctexfaq.pdf}{《CTeX常见问题集》}中也由类似的介绍。
 首先需要在~diss.tex~导言区引入如下的内容：
 
 \begin{lstlisting}[language={TeX}, caption={插入导言区的内容}]
@@ -128,8 +136,8 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 \subsection{支持的图片格式}
 \label{sec:imageformat}
 
-JPG或者PNG格式的图片，必须先用命令{\textbf{ebb file.jpg}}确定边框——生成.bb (Bounding Box) 文件供~latex~使用，然后才可以插入。
-需要注意的是，ebb生成的.bb文件中，边界不准确，需要自己用记事本打开.bb文件填入正确的文件边界，请参考模板附带的.bb文件。
+\XeTeX~可以很方便地插入~PDF、EPS、PNG、JPG~格式的图片。
+
 插入PNG/JPG的例子如\ref{fig:SRR}所示。
 这两个水平并列放置的图共享一个``图标题''(table caption)，没有各自的小标题。
 
@@ -141,11 +149,7 @@ JPG或者PNG格式的图片，必须先用命令{\textbf{ebb file.jpg}}确定边
   \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
 \end{figure}
 
-这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。
-pdf图像同样需要命令{\textbf{ebb file.pdf}}确定边框，然后再插入。
-由于ebb能力有限，只能处理v1.3版本的PDF，所以生成PDF的时候应该注意兼容性问题。
-下面插入一个EPS和PDF格式的图片，并且作为并列子图插入，每个子图有自己的小标题。
-并列子图的功能是使用subfigure宏包实现的。
+这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用~subfigure~宏包提供的。
 
 \begin{figure}
   \centering
@@ -159,7 +163,6 @@ pdf图像同样需要命令{\textbf{ebb file.pdf}}确定边框，然后再插入
   \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
 \end{figure}
 
-效果以最后生成的pdf文件为准，dvi预览时，通常只能显示“边框”而不能显示图像内容。
 更多关于~\LaTeX~插图的例子可以参考\href{http://www.cs.duke.edu/~junhu/Graphics3.pdf}{《~\LaTeX~插图指南》}。
 
 \subsection{长标题的换行}
@@ -232,7 +235,7 @@ pdf图像同样需要命令{\textbf{ebb file.pdf}}确定边框，然后再插入
 
 \section{参考文献管理}
 
-\emph{参考文献的管理是这个学位论文模板又一个出彩的地方。}
+参考文献的管理是这个学位论文模板又一个好玩的地方。
 
 \subsection{将参考文献的内容与表现分离}
 
@@ -255,11 +258,11 @@ BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文
 各大数据库\footnote{应该说是国际知名数据库，譬如~SCOPUS, IEEE, OSA等，国内数据库在搜索、导出方面一直是差得一塌糊涂。}也支持将参考文献信息导出为.bib，
 省时省力。
 以Google学术搜索为例：进入\url{http://scholar.google.cn}，在``学术搜索设置''中，将``文献管理软件''设为``显示导入BibTeX''的连接，保存退出。
-然后学术搜索找到文献下会有``导出到BibTeX''连接，点击后Firefox会打开新的标签页，出现类似下面的内容
+然后学术搜索找到文献下会有``导出到BibTeX''连接，点击后Firefox会打开新的标签页，出现类似代码\ref{googlescholar}所示的内容
 \footnote{展示这些.bib条目使用了listings宏包，因为listings宏包协调中文的能力很糟糕，所以读者在查看模板的这部分源代码时会看到一些非常麻烦的东西。并且，直接将源代码的这部分内容复制到.bib中可能还会出错。我的建议是：这部分内容留意PDF就足够了。}。
 请注意，这个条目离``规范''还有一些距离。
 
-  \begin{lstlisting}[caption={从Google Scholar找到的，但并不规范的.bib条目}, escapeinside="", numbers=none]
+  \begin{lstlisting}[caption={从Google Scholar找到的，但并不规范的.bib条目}, label=googlescholar, float, escapeinside="", numbers=none]
     @phdthesis{"白2008信用风险传染模型和信用衍生品的定价",
       title={{"信用风险传染模型和信用衍生品的定价"}},
       author={"白云芬"},
@@ -268,13 +271,13 @@ BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文
     } 
   \end{lstlisting}
 
-  上面的.bib条目的``名字''——``白2008信用风险传染模型和信用衍生品的定价''，包含~ASCII~以外的字符，BibTeX无法处理；
+  上面的.bib条目的``名字''\cndash{}``白2008信用风险传染模型和信用衍生品的定价''，包含~ASCII~以外的字符，BibTeX无法处理；
   条目还缺少了address域，这样编译出来的结果会出现``地址不详''；
   并且，条目还缺少language域，BibTeX需要language域来判断是否是中文参考文献。
   将上面的条目修正(改英文名、增加address和language域)，复制到本地的.bib文件中就可以了。
   显然，这里描述的是参考文献的内容，而不是表现形式。
 
-    \begin{lstlisting}[caption={一个符合规范的.bib条目}, escapeinside="", numbers=none]
+  \begin{lstlisting}[caption={一个符合规范的.bib条目}, label=itemok, float, escapeinside="", numbers=none]
     @phdthesis{bai2008,
       title={{"信用风险传染模型和信用衍生品的定价"}},
       author={"白云芬"},
@@ -324,7 +327,7 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的``language''�
 最后总结一些注意事项：
 \begin{itemize}
 \item 参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
-\item 参考文献``数据库文件''.bib是纯文本文集，请使用GBK编码，不要使用UTF-8编码，这个模板无法处理UTF-8编码的中文字符；
+\item 参考文献``数据库文件''.bib是纯文本文件，请使用~UTF-8~编码，不要使用~GBK~编码；
 \item 参考文献条目中通过~language~域是否为空判断是否是中文文献；
 \item 参考文献条目同样有“内容”和“表现形式”之分，这种可控性是BibTeX带来的。
 \end{itemize}
@@ -332,11 +335,12 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的``language''�
 
 \subsection{参考文献管理器}
 
-参考文献数据库.bib虽然是纯文本的，可以用任意的文本编辑器查看，但总有人喜欢一个找一个``条目化''地查看每一条参考文献。
+参考文献数据库.bib虽然是纯文本的，可以用任意的文本编辑器查看，但总有人喜欢一个找一个``可视化''地查看每一条参考文献。
 我想\href{http://jabref.sourceforge.net/}{JabRef}应该是个很不错的选择。
-这是一个Java写的程序，需要JRE才能运行。
+这是一个~Java~写的程序，需要~JRE~才能运行。
 就我测试的情况上看，很幸运，JabRef可以顺利打开GBK编码的.bib文件。
 但是，打开UTF--8编码的.bib源文件过程中总会崩溃，原因不得而知。
+由于我们的~.bib~文件使用的是~UTF-8~编码，所以~JabRef~暂时不可用。
 
 提到参考文献管理器，不得不提到另一个广被使用的软件——\href{http://www.endnote.com/}{EndNote}。
 在图书馆的宣讲会上，EndNote被吹得神乎其神，但我发现他对.bib的管理很不友好。
