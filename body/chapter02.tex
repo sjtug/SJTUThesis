@@ -1,4 +1,12 @@
-% Encoding: UTF-8
+%%==================================================
+%% chapter02.tex for SJTU Master Thesis
+%% based on CASthesis
+%% modified by wei.jianwen@gmail.com
+%% version: 0.3a
+%% Encoding: UTF-8
+%% last update: Dec 5th, 2010
+%%==================================================
+
 % \bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
 
 \chapter{一些~\LaTeX~排版的例子}
@@ -155,7 +163,6 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
   \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
 \end{figure}
 
-效果以最后生成的pdf文件为准，dvi预览时，通常只能显示“边框”而不能显示图像内容。
 更多关于~\LaTeX~插图的例子可以参考\href{http://www.cs.duke.edu/~junhu/Graphics3.pdf}{《~\LaTeX~插图指南》}。
 
 \subsection{长标题的换行}
@@ -328,11 +335,12 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的``language''�
 
 \subsection{参考文献管理器}
 
-参考文献数据库.bib虽然是纯文本的，可以用任意的文本编辑器查看，但总有人喜欢一个找一个``条目化''地查看每一条参考文献。
+参考文献数据库.bib虽然是纯文本的，可以用任意的文本编辑器查看，但总有人喜欢一个找一个``可视化''地查看每一条参考文献。
 我想\href{http://jabref.sourceforge.net/}{JabRef}应该是个很不错的选择。
-这是一个Java写的程序，需要JRE才能运行。
+这是一个~Java~写的程序，需要~JRE~才能运行。
 就我测试的情况上看，很幸运，JabRef可以顺利打开GBK编码的.bib文件。
 但是，打开UTF--8编码的.bib源文件过程中总会崩溃，原因不得而知。
+由于我们的~.bib~文件使用的是~UTF-8~编码，所以~JabRef~暂时不可用。
 
 提到参考文献管理器，不得不提到另一个广被使用的软件——\href{http://www.endnote.com/}{EndNote}。
 在图书馆的宣讲会上，EndNote被吹得神乎其神，但我发现他对.bib的管理很不友好。
