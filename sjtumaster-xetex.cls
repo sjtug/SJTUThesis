@@ -42,6 +42,9 @@
 \textwidth 14.5 true cm
 \headheight 15pt
 \parskip 0.5ex plus 0.25ex minus 0.25ex
+%% 上边距(？？)
+\addtolength{\voffset}{-0.5cm}
+
 
 %% Command -- Clear Double Page
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
@@ -89,7 +92,7 @@
 % Step 3. Use fontenc to set encoding to T1
 %% 英文字体使用 Times New Roman
 \RequirePackage{fontspec}
-\RequirePackage{xltxtra}
+\RequirePackage{xltxtra} % \XeTeX Logo
 %% Times Fonts
 \RequirePackage{times}
 %% Set Old Fonts Encoding

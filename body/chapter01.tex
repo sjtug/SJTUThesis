@@ -1,14 +1,23 @@
+%%==================================================
+%% chapter01.tex for SJTU Master Thesis
+%% based on CASthesis
+%% modified by wei.jianwen@gmail.com
+%% version: 0.3a
+%% Encoding: UTF-8
+%% last update: Dec 5th, 2010
+%%==================================================
+
 %\bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
 \chapter{这是什么}
 \label{chap:what}
 
 这是上海交通大学硕士学位学位论文~\LaTeX~模板，当前版本是~\version。
-这不是上海交大官方出品的的~\LaTeX~硕士论文模板，是大家根据研究生院学位论文格式要求制作出的模板。
+这是上海交大非官方出品的的~\LaTeX~硕士论文模板，是大家根据研究生院学位论文格式要求制作出的模板。
 
 \section{模板的来历}
 
 笔者不才，占了水源~TeX\_LaTeX~版版二的位置
-\footnote{笔者11月初去北京参加IETF79，沾了沾仙气，接过错过了版上述职时间，目前被撤职。等缓过来后仍会卷土重来。}
+\footnote{笔者11月初去北京参加IETF79，沾了沾仙气，结果错过了版上述职时间，目前被撤职。等缓过来后仍会卷土重来。}
 。因自己对~\TeX/\LaTeX~了解有限，一直没能做出一个使用“文档类”(documentclass)的学位论文模板。
 正当我为这个事情发愁的时候，事情出现了重大转机：
 一位交大物理系的热心同学在~CASthesis~文档类的基础上制作了交大博士学位论文~\LaTeX~模板。
@@ -18,14 +27,13 @@
 最近，又有同学提出希望能制作出交大硕士学位论文模板。
 我参考了教务处对研究生学位论文格式的要求，在``博士学位论文~\LaTeX~模板''的基础上，制作了这个``硕士学位论文~\LaTeX~模板''。
 
-欢迎大家测试使用交大硕士学位论文~\LaTeX~模板，有任何问题或者建议欢迎到水源~TeX\_LaTeX~版发贴（推荐方式），
-也可以通过邮件向我反映模板中与学校要求不相符的地方，或者其他可能是~Bugs~的问题，邮件主题中请加``latex''前缀
-\footnote{笔者的联系方式是：\href{mailto:wei.jianwen@gmail.com}{wei.jianwen@gmail.com}。最初那位制作模板的同学——也就是那位热心的物理系同学，留下的联系方式是\href{mailto:yang_tao@sjtu.edu.cn}{yang\_tao@sjtu.edu.cn}，不过似乎联系不上。笔者目前负责修正模板中与学校格式要求不符的地方，以及模板的Bug。一般的~\LaTeX~问题，仍推荐到版上讨论。}
-。
+但是，大家也反映，使用~CJK--\LaTeX~仍存在不便之处。在~Linux~下使用~CJK~模板的同学，都有过搭建~CJK~环境的``恐怖经历''，并且因此放弃使用模板的也有。鉴于~\XeTeX~日渐成熟，它处理~UTF-8~编码文字的功夫令笔者惊叹，所以决定把模板移植到~\XeTeX~上。这里面很大一部分工作是~William Wang~完成的，在此向他表示感谢。
 
-但是，大家也反映，使用~CJK--\LaTeX~仍存在不便之处。在~Linux~下使用~CJK~模板的同学，都有过搭建~CJK~环境的``恐怖经历''，并且因此放弃使用模板的也有。鉴于~\XeTeX~日渐成熟，它处理~UTF-8~编码文字的功夫令笔者惊叹，所以决定把模板移植到~\XeTeX~上。这就是这个模板所要处理的问题。
+欢迎大家使用交大硕士学位论文~\LaTeX~模板，有任何问题或者建议请到~TeX\_LaTeX~版发贴讨论。
+由于时间关系，我无法通过邮件提供~\LaTeX~支持，但是你可以通过邮件向我报告模板中的~Bugs，邮件主题中请加``latex''
+\footnote{笔者的联系方式是：\href{mailto:wei.jianwen@gmail.com}{wei.jianwen@gmail.com}。最初那位制作模板的同学——也就是那位热心的物理系同学，留下的联系方式是\href{mailto:yang_tao@sjtu.edu.cn}{yang\_tao@sjtu.edu.cn}，不过似乎联系不上。笔者目前负责修正模板中与学校格式要求不符的地方，以及模板的Bug。一般的~\LaTeX~问题，仍推荐到版上讨论。}。
 
-再次感谢那位物理系的热心同学！
+再次感谢那位物理系的热心同学和~William Wang~的无私帮助！
 
 \section{模板说明}
 \label{sec:fastguide}
@@ -173,12 +181,12 @@ reference~文件夹放置的是各章``可能''会被引用的参考文献文件
 \item[] xelatex -no-pdf -{}-interaction=nonstopmode diss
 \item[] bibtex diss 
 \item[] xelatex -no-pdf -{}-interaction=nonstopmode diss 
-\item[] xelatex --interaction=nonstopmode diss 
+\item[] xelatex -{}-interaction=nonstopmode diss 
 \end{enumerate}
 
 运行bibtex的时候会提示一些错误，猜测是~{{\sc Bib}\TeX}~对UTF-8支持不充分，一般不影响最终结果。留意因为拼写错误导致的``找不到文献错误''即可。
 
-加入~\verb|--interaction=nonstopmode|~参数是不然错误打断编译过程。\XeTeX~仍存在一些宏包兼容性问题，所以会产生一些莫名其妙的错误(通常是重定义错误)，而这些错误通常不会影响最终的编译结果\footnote{xunicode宏包就很蛋痛地重定义了几个数学符号，还有诸如$\backslash$nobreakspace命令}。
+加入~\verb|--interaction=nonstopmode|~参数是不让错误打断编译过程。\XeTeX~仍存在一些宏包兼容性问题，所以会产生一些莫名其妙的错误(通常是重定义错误)，而这些错误通常不会影响最终的编译结果\footnote{xunicode宏包就很蛋痛地重定义了几个数学符号，还有诸如$\backslash$nobreakspace命令}。
 为方便使用，我把处理过程写到了run.sh(for Linux)和run.bat(for Windows)批处理文件中。更规范的应该是使用Makefile，可惜笔者功力不够，希望哪位高人把好用的Makefile补上。
 
 基本处理流程就是这样，一些~\LaTeX~排版的小例子可以参考第二章。
