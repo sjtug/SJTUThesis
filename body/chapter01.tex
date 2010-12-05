@@ -64,10 +64,10 @@
 要使用这个模板协助你完成研究生学位论文的创作，下面的条件必须满足：
 
 \begin{itemize}
-\item 操作系统字体目录中有~AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd~四款中文字体，它们可以从Adobe Reader的安装目录中拿到；
+\item 操作系统字体目录中有~TeX Gyre Termes~西文的：Regular, Italic, Bold, Bold Italic~四种~OTF~字体\footnote{TeX Gyre Termes~字体可以从\href{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}下载。我也附带了一份~TeX.Gyre.Termes.Fonts.zip~在模板中，解压缩到字体目录后用~fc-cache -fv~刷新即可，用~fc-list~应该能看到。}；
+\item 操作系统字体目录中有~AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd~四款中文字体\footnote{Adobe~这四款中文~OTF~字体可以从~Adobe Reader~安装目录拿到。}；
 \item \TeX~系统有~\XeTeX~引擎；
 \item \TeX~系统有~ctex~宏包；
-\item \TeX~系统的fontspec宏包(fontspec.sty)足够新；
 \item 你有使用~\LaTeX~的经验。
 \end{itemize}
 
@@ -77,9 +77,9 @@
 xelatex test.tex
 \end{verbatim}
 
-如果编译出的~test.pdf~中能够：显示中英文内容、显示4幅图像、正确嵌入AdobeSongStd和NimbusRomNo9字体（通过PDF阅读器的“属性”查看）、并且看到了英文字符的连字(ligature)和\textsc{SmallCapital}特性，那么恭喜你，你的~\TeX~系统应该能够编译这个学位论文模板。
+如果编译出的~test.pdf~中能够：显示中英文内容、显示4幅图像、正确嵌入~AdobeSongStd~和~TeXGyreTermes~字体（通过PDF阅读器的“属性”查看）、并且看到了英文字符的连字(ligature)和\textsc{SmallCapital}特性，那么恭喜你，你的~\TeX~系统应该能够编译这个学位论文模板。
 
-目前，我在手头的几个~\TeX~环境上都做过测试，TeXLive 2010和C\TeX 2.9都能够顺利编译，而TeXLive 2008和C\TeX 2.8.0.125则很很不幸地没能正确编译模板。所以，在你到版上抱怨模板不能工作前，请确定你的~\TeX~系统能够编译前面的~test.tex~文件。欢迎大家把编译的情况直接\href{mailto:wei.jianwen@gmail.com}{反馈}给我(但我并不能保证能解决问题)。来信的内就写你是否顺利编译模板、错误提示、操作系统版本、\TeX~系统版本、xunicode.sty~版本和fontspec.sty版本。
+目前，我在手头的几个~\TeX~环境上都做过测试，TeXLive 2010和C\TeX 2.9、C\TeX 2.8都能够顺利编译。在你到版上抱怨模板不能工作前，请确定你的~\TeX~系统能够编译前面的~test.tex~文件。欢迎大家把编译的情况直接\href{mailto:wei.jianwen@gmail.com}{反馈}给我(但我并不能保证能解决问题)。来信的内就写你是否顺利编译模板、错误提示、操作系统版本、\TeX~系统版本、xunicode.sty~版本和fontspec.sty版本。
  
 \subsection{模板文件布局}
 \label{sec:layout}

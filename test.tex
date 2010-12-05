@@ -14,8 +14,10 @@
 \documentclass[12pt,a4paper,UTF8,adobefonts]{ctexbook}
 % Font Setting
 \usepackage{fontspec}
-\usepackage{times}
-\usepackage[T1]{fontenc}
+\RequirePackage{xltxtra} % \XeTeX Logo
+\setmainfont{TeX Gyre Termes} % an SC-capable OTF font that looks like Times
+\renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
+
 % Graph
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -29,8 +31,7 @@
 
 \begin{document}
 
-中文测试\\
-Times Fonts Here ff fi fl ffi \textsc{PostScript} % 检查连字
+中文测试 TeX Gyre Termes ff fi fl ffi \textsc{PostScript} % 检查连字
 
 \begin{figure}
   \centering
@@ -52,5 +53,9 @@ Times Fonts Here ff fi fl ffi \textsc{PostScript} % 检查连字
   \bicaption[fig:demo]{插入图像}{插入图像的例子}{Fig}{A demo}
 \end{figure}
 
+\begin{itemize}
+\item Hello
+\item World
+\end{itemize}
 
 \end{document}
