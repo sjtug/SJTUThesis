@@ -94,9 +94,13 @@
 \RequirePackage{fontspec}
 \RequirePackage{xltxtra} % \XeTeX Logo
 %% Times Fonts
-\RequirePackage{times}
+% \RequirePackage{times}
 %% Set Old Fonts Encoding
-\usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
+\setmainfont{TeX Gyre Termes}
+%% bullets in the item
+\renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
+
 
 % 重定义\nobreakspace命令 -- xetex与T1字体包一起使用时出现的问题
 % Ref: http://bbs.ctex.org/viewthread.php?tid=60547&extra=page%3D1&page=2
@@ -178,7 +182,7 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
-\renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
+\renewcommand{\lstlistingname}{\CAST@value@listingname} %% 重命名Listings标题头
 
 
 %% hyperref package
