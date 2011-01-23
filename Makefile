@@ -32,10 +32,14 @@ clean:
 	find ./ -iname '*.bbl' | xargs rm
 	find ./ -iname '*.lof' | xargs rm
 	find ./ -iname '*.xdv' | xargs rm
+	mv ${BASE}.pdf mythesis.pdf
 	rm ${BASE}.xdv ${BASE}.pdf
 # cleantex
 # if [ -e ${BASE}.xdv ]; then rm ${BASE}.xdv; fi
 # cd body && cleantex && cd ..
+
+test:
+	xelatex --no-pdf diss
 
 distclean: clean
 	if [ -e ${BASE}.pdf ]; then rm ${BASE}.pdf; fi
