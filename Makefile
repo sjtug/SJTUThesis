@@ -23,6 +23,7 @@ tar: ${BASE}.pdf
 #      tar jcf ${BASE}.tar.bz2 ${TARSOURCE}
 
 clean:
+	cp diss.pdf README.pdf
 	find ./ -iname '*.aux' | xargs rm
 	find ./ -iname '*.log' | xargs rm
 	find ./ -iname '*.lot' | xargs rm
