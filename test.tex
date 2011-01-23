@@ -12,6 +12,10 @@
 
 
 \documentclass[12pt,a4paper,UTF8,adobefonts]{ctexbook}
+
+% AMS math
+\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+
 % Font Setting
 \usepackage{fontspec}
 \RequirePackage{xltxtra} % \XeTeX Logo
@@ -32,6 +36,10 @@
 \begin{document}
 
 中文测试 TeX Gyre Termes ff fi fl ffi \textsc{PostScript} % 检查连字
+
+\begin{displaymath}
+  E=mc^2 \quad \mathscr{ABCDE abcde 1234} \quad \mathfrak{ABCDE abcde 1234} \quad \mathbb{ABCDE abcde 1234}
+\end{displaymath}
 
 \begin{figure}
   \centering
