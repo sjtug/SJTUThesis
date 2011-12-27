@@ -6,4 +6,6 @@
 *.blg
 *.bbl
 *.lof
-
+*.swp
+*.xdv
+*~
