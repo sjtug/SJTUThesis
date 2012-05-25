@@ -9,3 +9,4 @@
 *.swp
 *.xdv
 *~
+*.fdb_latexmk
