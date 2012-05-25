@@ -10,9 +10,9 @@
 % 字号选项: c5size 五号(默认)
 % 字号选项: cs4size 小四
 % 双面打印（注意字号设置）
-\documentclass[cs4size, a4paper, cs4size, twoside]{sjtumaster-xetex} 
+% \documentclass[cs4size, a4paper, twoside]{sjtumaster-xetex} 
 % 单面打印（注意字号设置）
-% \documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtumaster-xetex} 
+\documentclass[cs4size, a4paer, oneside, openany]{sjtumaster-xetex} 
 
 
 % \usepackage[sectionbib]{chapterbib}%每章都用参考文献
@@ -55,7 +55,7 @@
 \title{上海交通大学硕士学位论文~\XeTeX/\LaTeX~模板~\version}
 \author{李\quad{}四}
 \advisor{张三教授}
-\degree{硕士}
+\degree{学士}
 \defenddate{2010年1月16日}
 \school{上海交通大学}
 \institute{物理系}
@@ -70,7 +70,7 @@
 \englishinstitute{\textsc{Depart of XXX, School of XXX} \\
   \textsc{Shanghai Jiao Tong University} \\
   \textsc{Shanghai, P.R.China}}
-\englishdegree{Master}
+\englishdegree{Bachelor}
 \englishmajor{Physics}
 \englishdate{Jan. 16th, 2010}
 
@@ -112,10 +112,10 @@
 
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格
   \fancyhf{}%
-  \fancyhead[LO,RE]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
+  \fancyhead[LO,RE]{\small {\it 上海交通大学学士学位论文}}  % 奇数页左页眉
   \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
   \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
-  \fancyhead[RE]{\small {\it 上海交通大学硕士学位论文}}       % 偶数页右页眉
+  \fancyhead[RE]{\small {\it 上海交通大学学士学位论文}}       % 偶数页右页眉
   \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
 }
 
