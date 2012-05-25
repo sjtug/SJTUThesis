@@ -9,7 +9,6 @@
 
 %% math packages -- conflict with xunicode
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs} 
-% 直立希腊字母字体
 \RequirePackage{upgreek}
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
@@ -57,9 +56,6 @@
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
 
-%% fancyhdr 页眉页脚控制
-\RequirePackage{fancyhdr}
-
 %% 复杂表格
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
@@ -86,10 +82,6 @@
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
 
-%% Ref: http://bbs.ctex.org/viewthread.php?tid=60079&page=2&fromuid=56635#pid390199
-% Step 1. Import fontspec and xltxtra
-% Step 2. Import old font package
-% Step 3. Use fontenc to set encoding to T1
 %% 英文字体使用 Times New Roman
 \RequirePackage{fontspec}
 \RequirePackage{xltxtra} % \XeTeX Logo
@@ -125,8 +117,6 @@
 % 上标引用
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
-
-%_ added by wei.jianwen@gmail.com
 % 将浮动参数设为较宽松的值
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
@@ -214,10 +204,6 @@
 
 %_  参考文献风格 added by wei.jianwen@gmail.com
 \bibliographystyle{GBT7714-2005NLang}
-% \bibliographystyle{thubib}
-% \newcommand\thudot{\unskip.}
-% \newcommand\thumasterbib{[Master Thesis]}
-% \newcommand\thuphdbib{[Doctor Thesis]}
 
 %_ CASTspace
 \newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
