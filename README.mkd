@@ -1,4 +1,4 @@
-= What's this? =
+= What's this? 
 
 This is (Xe)LaTeX template for thesis of Shanghai Jiaotong University. Currently, only the Master and Ph.D thesis formats are fully supported. Support for bachelor thesis is under development, and the release day is not yet determined. 
 
@@ -12,22 +12,22 @@ I used this template to finish my master thesis, and decided to make the templat
 
 But, I think the template is still in a *primitive* state, far from a *generally-nice* work. As my understanding about TeX, Git, document preparing grows, I think it's time to refresh the template. GitHub is a place full of all kinds of geniuses, thus I host my project here in hope for receiving all kinds of refinement or feedback. 
 
-= TODO List =
+= TODO List
 * Add XeTeX/XeLaTeX template for bachelor thesis
 * Clean the template files
 * Rewrite the templates with [Pandoc](http://johnmacfarlane.net/pandoc/)
 * Refine the ```Makefile```.
 * Refine the extremely complicated ```bst``` file.
 
-= How to use it? =
+= How to use it? 
 
-== Prerequisites ==
+== Prerequisites
 
 * A usable XeTeX/XeLaTeX instance. The latest [CTeX], [TeXLive] and [MacTeX] are OK.
 * [TeX Gyre Font] collection which are used as main ASCII fonts.
 * Some available Chinese fonts. 
 
-== Compile the sample document ==
+== Compile the sample document
 
 Type the following commands and a file named ```diss.pdf``` will be generated.
 
@@ -44,7 +44,7 @@ For simplicity, you can use the prepared scripts.
 
 A [README.pdf] is shipped with the project, which explains the usage further.
 
-= How to contribute? =
+= How to contribute? 
 
 **Contributions** toward this project include, but not limited to the following work. 
 
@@ -53,7 +53,7 @@ A [README.pdf] is shipped with the project, which explains the usage further.
 * Fork and refine the template according to the tasks listed in *TODO*.
 * Tell other guys the ```SJTU-XeLaTeX-Template``` is hosted here on github. 
 
-= FAQs and not-so-FAQs =
+= FAQs and not-so-FAQs 
 
 Q: Is this template "official"?
 A: No. SJTU has not yet released its official TeX template for composing thesis. We make this template according to the officially-stated layout requirements and add some refinements because of aesthetic consideration.
@@ -64,7 +64,7 @@ A: Absolutely yes. ```PDF``` is portable file format, and your PDF documents wil
 Q: @farseerfc hosts a project named [sjtu-thesis-xelatex] on github. Is this the same thing?
 A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapted to bachelor-thesis format. I really appreciate his contributions and hope to merge his changes into my repo if possible (not now but in the future). However, due to strong personality, I keep in mind that the git repo for SJTU-XeTeX-template should be in 100% control of mine and progresses exactly in the pace I set. Therefore, I create this repo along with the tasks listed in TODO. These tasks should differentiate my repo from other similar projects.
 
-= Update History =
+= Update History 
 
 * May 25, 2012. Reopen this project. Add README.
 * Jan 23, 2011. Finish my master thesis. Code freeze.
