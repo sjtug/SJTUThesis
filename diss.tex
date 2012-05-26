@@ -1,4 +1,4 @@
-%%==================================================
+ %==================================================
 %% diss.tex for SJTU Master Thesis
 %% based on CASthesis
 %% modified by wei.jianwen@gmail.com
@@ -7,8 +7,7 @@
 %% last update: Dec 5th, 2010
 %%==================================================
 
-% 字号选项: c5size 五号(默认)
-% 字号选项: cs4size 小四
+% 字号选项: c5size 五号(默认) cs4size 小四
 % 双面打印（注意字号设置）
 % \documentclass[cs4size, a4paper, twoside]{sjtumaster-xetex} 
 % 单面打印（注意字号设置）
@@ -52,7 +51,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 % 中文封面内容(关注内容而不是形式)
-\title{上海交通大学硕士学位论文~\XeTeX/\LaTeX~模板~\version}
+\title{上海交通大学学士学位论文~\XeTeX/\LaTeX~模板~\version}
 \author{李\quad{}四}
 \advisor{张三教授}
 \degree{学士}
@@ -63,7 +62,7 @@
 \major{专业名称}
 
 % 英文封面内容(关注内容而不是表现形式)
-\englishtitle{\XeTeX/\LaTeX\, Template for SJTU Mater Degree Thesis \version}
+\englishtitle{\XeTeX/\LaTeX\, Template for SJTU Bachelor Degree Thesis \version}
 \englishauthor{\textsc{Si Li}}
 \englishadvisor{Prof. \textsc{San Zhang}}
 \englishschool{Shanghai Jiao Tong University}
@@ -110,15 +109,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \mainmatter
 
-\fancypagestyle{plain}{% 设置开章页页眉页脚风格
-  \fancyhf{}%
-  \fancyhead[LO,RE]{\small {\it 上海交通大学学士学位论文}}  % 奇数页左页眉
-  \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
-  \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
-  \fancyhead[RE]{\small {\it 上海交通大学学士学位论文}}       % 偶数页右页眉
-  \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
-}
-
 
 %% 各章正文内容
 \include{body/chapter01}
@@ -153,7 +143,7 @@
 % 包含参考文献文件.bib
 \bibliography{reference/chap1,reference/chap2}
 
-%% 个人简历(硕士学位论文没有个人简历要求)
+%% 个人简历(学士学位论文没有个人简历要求)
 % \include{body/resume}
 
 % 致谢
