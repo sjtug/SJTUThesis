@@ -132,6 +132,8 @@
 % 颜色宏包
 \RequirePackage{xcolor}
 
+% LastPage
+\RequirePackage{lastpage}
 
 %% 一些有趣的符号图案
 \RequirePackage{marvosym}
@@ -365,50 +367,35 @@
   \fi
 }
 
-
-\fancypagestyle{frontmatter}{
-  \fancyhf{}%
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{logo}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \CAST@value@titlemark}}                   % 奇数页左页眉
-  \fancyfoot[C]{\small ~}      % 页脚
-  %\renewcommand{\headrulewidth}{0pt}%
-  %\renewcommand{\footrulewidth}{0pt}%
-}
-
-\pagestyle{fancy}{
-	\fancyhf{}
-	\fancyhead[LO, RE]{\small {\it \CAST@label@headschoolname}}  % 奇数页左页眉
-	\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
-	\fancyhead[LE]{\small {\it \CAST@value@titlemark}}  % 偶数页左页眉
-	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
-}
-
-% \fancypagestyle{plain} {
-% 	\fancyhf{}%
-% 	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %%首页页脚格式
-% 	\renewcommand{\headrulewidth}{0pt}%
-% 	\renewcommand{\footrulewidth}{0pt}%
-% }
-
-\fancypagestyle{plain} { % 设置开章页页眉页脚风格
-  \fancyhf{}
-  \fancyhead[LO,RE]{\small {\it 上海交通大学学士学位论文}}  % 奇数页左页眉
-  \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
-  \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
-  \fancyhead[RE]{\small {\it 上海交通大学学士学位论文}}       % 偶数页右页眉
-  \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
-}
-
-% 每一章的首页也使用fancyhdr的页眉页脚设置
-% \makeatletter
-% \let\ps@plain\relax
-% \let\ps@plain=\ps@fancy
-% \makeatother
  
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
+\fancyhead[R]{\small {\it \CAST@value@titlemark}}                   % 奇数页右页眉
+\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
+
+
+\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+  \fancyhf{}%
+  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
+  \fancyhead[R]{\small {\it \CAST@value@titlemark}}                   % 奇数页右页眉
+  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
+}
+
+\fancypagestyle{frontmatter}{ % "frontmatter" page style
+  \fancyhf{}%
+  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
+  \fancyhead[R]{\small {\it \CAST@value@titlemark}}                   % 奇数页左页眉
+  \fancyfoot[C]{--- {\bf\thepage} ---}      % 页脚
+}
+
 
  %_ 中文摘要
  \newenvironment{abstract}
- {\chapter[\heiti 摘要]{\CAST@value@title\vskip 20pt\CAST@label@abstract}}
+ {
+	 \chapter*{\CAST@value@title\vskip 20pt\CAST@label@abstract}
+  	 % \thispagestyle{frontmatter}
+ }
  {}
 
  %_ 中文关键词
@@ -417,7 +404,10 @@
 
  %_ 英文摘要
  \newenvironment{englishabstract}
- {\chapter[\heiti ABSTRACT]{\CAST@value@englishtitle\vskip 20pt\bfseries \CAST@label@englishabstract}}
+ {
+	 \chapter*{\CAST@value@englishtitle\vskip 20pt\bfseries \CAST@label@englishabstract}
+  	 % \thispagestyle{frontmatter}
+ }
  {}
 
  % _英文摘要
@@ -432,10 +422,11 @@
   \else
   \@restonecolfalse
   \fi
-  \chapter{\contentsname}%目录里显示“目录”，否则\chapter*
+  \chapter*{\contentsname}%目录里显示“目录”，否则\chapter*
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \@starttoc{toc}%
   \if@restonecol\twocolumn\fi
+  % \thispagestyle{frontmatter}
 }
 
 
@@ -530,7 +521,7 @@
   {}
   
 \newenvironment{symbolnote}
-  {\chapter{\CAST@label@symbolnote}}
+  {\chapter*{\CAST@label@symbolnote}}
   {} 
 
 
