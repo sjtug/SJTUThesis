@@ -85,18 +85,9 @@
 %% 英文字体使用 Times New Roman
 \RequirePackage{fontspec}
 \RequirePackage{xltxtra} % \XeTeX Logo
-%% Times Fonts
-% \RequirePackage{times}
-%% Set Old Fonts Encoding
-% \usepackage[T1]{fontenc}
 \setmainfont{TeX Gyre Termes}
 %% bullets in the item
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
-
-
-% 重定义\nobreakspace命令 -- xetex与T1字体包一起使用时出现的问题
-% Ref: http://bbs.ctex.org/viewthread.php?tid=60547&extra=page%3D1&page=2
-\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
 
 
 %% graphics packages
@@ -197,7 +188,7 @@
 
 %% enumerate 列表环境间距调节
 % Ref: http://bbs.ctex.org/viewthread.php?tid=52331&page=1
-\usepackage{enumitem}
+\RequirePackage{enumitem}
 % \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 % \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 % \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
@@ -242,7 +233,7 @@
 \newcommand\chairman[1]{\def\CAST@value@chairman{#1}}
 
 
-%_ “绘制”SJTU中文标题页
+% “绘制”SJTU中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -343,7 +334,7 @@
 }
 
 
-%_ 授权声明
+% 授权声明
 \newcommand\makeDeclareAuthorization{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -365,48 +356,24 @@
   \fi
 }
 
-
-\fancypagestyle{frontmatter}{
-  \fancyhf{}%
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{logo}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \CAST@value@titlemark}}                   % 奇数页左页眉
-  \fancyfoot[C]{\small ~}      % 页脚
-  %\renewcommand{\headrulewidth}{0pt}%
-  %\renewcommand{\footrulewidth}{0pt}%
-}
-
-\pagestyle{fancy}{
+\pagestyle{fancy} {
 	\fancyhf{}
 	\fancyhead[LO, RE]{\small {\it \CAST@label@headschoolname}}  % 奇数页左页眉
-	\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
+	\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
 	\fancyhead[LE]{\small {\it \CAST@value@titlemark}}  % 偶数页左页眉
 	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
 }
 
-% \fancypagestyle{plain} {
-% 	\fancyhf{}%
-% 	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %%首页页脚格式
-% 	\renewcommand{\headrulewidth}{0pt}%
-% 	\renewcommand{\footrulewidth}{0pt}%
-% }
-
 \fancypagestyle{plain} { % 设置开章页页眉页脚风格
   \fancyhf{}
   \fancyhead[LO,RE]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
-  \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页左页眉
+  \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
   \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
   \fancyhead[RE]{\small {\it 上海交通大学硕士学位论文}}       % 偶数页右页眉
   \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
 }
 
-% 每一章的首页也使用fancyhdr的页眉页脚设置
-% \makeatletter
-% \let\ps@plain\relax
-% \let\ps@plain=\ps@fancy
-% \makeatother
- 
-
- %_ 中文摘要
+ % 中文摘要
  \newenvironment{abstract}
  {\chapter[\heiti 摘要]{\CAST@value@title\vskip 20pt\CAST@label@abstract}}
  {}
@@ -425,7 +392,7 @@
   \vspace{2ex}\noindent{\bf\large \CAST@label@englishkeywords} #1}
 
 
-%_ 目录
+% 目录
 \renewcommand\tableofcontents{%
   \if@twocolumn
   \@restonecoltrue\onecolumn
@@ -548,6 +515,7 @@
   {\newline}% Space after thm head: \newline = linebreak
   {}%         Thm head spec
 \endinput
+
 %%
 %% End of file `sjtumaster-xetex.cls'.
 
