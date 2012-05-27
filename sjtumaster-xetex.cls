@@ -358,7 +358,7 @@
 
 \pagestyle{fancy} {
 	\fancyhf{}
-	\fancyhead[LO, RE]{\small {\it \CAST@label@headschoolname}}  % 奇数页左页眉
+	\fancyhead[LO, RE]{\small {\it \CAST@value@school\CAST@value@degree\CAST@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
 	\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
 	\fancyhead[LE]{\small {\it \CAST@value@titlemark}}  % 偶数页左页眉
 	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
@@ -366,10 +366,9 @@
 
 \fancypagestyle{plain} { % 设置开章页页眉页脚风格
   \fancyhf{}
-  \fancyhead[LO,RE]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
+  \fancyhead[LO,RE]{\small {\it \CAST@value@school\CAST@value@degree\CAST@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
   \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
   \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
-  \fancyhead[RE]{\small {\it 上海交通大学硕士学位论文}}       % 偶数页右页眉
   \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
 }
 
