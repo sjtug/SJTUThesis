@@ -85,18 +85,9 @@
 %% 英文字体使用 Times New Roman
 \RequirePackage{fontspec}
 \RequirePackage{xltxtra} % \XeTeX Logo
-%% Times Fonts
-% \RequirePackage{times}
-%% Set Old Fonts Encoding
-% \usepackage[T1]{fontenc}
 \setmainfont{TeX Gyre Termes}
 %% bullets in the item
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
-
-
-% 重定义\nobreakspace命令 -- xetex与T1字体包一起使用时出现的问题
-% Ref: http://bbs.ctex.org/viewthread.php?tid=60547&extra=page%3D1&page=2
-\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
 
 
 %% graphics packages
@@ -199,7 +190,7 @@
 
 %% enumerate 列表环境间距调节
 % Ref: http://bbs.ctex.org/viewthread.php?tid=52331&page=1
-\usepackage{enumitem}
+\RequirePackage{enumitem}
 % \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 % \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 % \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
@@ -244,7 +235,7 @@
 \newcommand\chairman[1]{\def\CAST@value@chairman{#1}}
 
 
-%_ “绘制”SJTU中文标题页
+% “绘制”SJTU中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -345,7 +336,7 @@
 }
 
 
-%_ 授权声明
+% 授权声明
 \newcommand\makeDeclareAuthorization{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -367,7 +358,6 @@
   \fi
 }
 
- 
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
@@ -415,7 +405,7 @@
   \vspace{2ex}\noindent{\bf\large \CAST@label@englishkeywords} #1}
 
 
-%_ 目录
+% 目录
 \renewcommand\tableofcontents{%
   \if@twocolumn
   \@restonecoltrue\onecolumn
@@ -539,6 +529,7 @@
   {\newline}% Space after thm head: \newline = linebreak
   {}%         Thm head spec
 \endinput
+
 %%
 %% End of file `sjtumaster-xetex.cls'.
 
