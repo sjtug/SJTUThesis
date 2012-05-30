@@ -3,8 +3,8 @@
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% modified by wei.jianwen@gmail.com
 %% Encoding: UTF-8
-%% version: 0.2a
-%% last update: Dec 2nd, 2010
+%% version: 0.4
+%% last update: May 30, 2012
 %% ==================================================
 
 %% math packages -- conflict with xunicode
@@ -13,7 +13,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtumaster-xetex}
-  [2009/12/25 v0.2a sjtumaster-xetex document class]
+  [2012/05/30 v0.4 sjtumaster-xetex document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
 \newif\ifCAST@dvips \CAST@dvipsfalse
@@ -41,7 +41,7 @@
 \textwidth 14.5 true cm
 \headheight 15pt
 \parskip 0.5ex plus 0.25ex minus 0.25ex
-%% 上边距(？？)
+%% 上边距
 \addtolength{\voffset}{-0.5cm}
 
 
