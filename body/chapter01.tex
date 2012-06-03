@@ -1,4 +1,4 @@
-%%==================================================
+›==========================
 %% chapter01.tex for SJTU Master Thesis
 %% based on CASthesis
 %% modified by wei.jianwen@gmail.com
@@ -77,13 +77,13 @@
 
 你可以试着编译模板文件夹中自带的~test.tex~文件，看看你的~\TeX~系统是否满足上面的要求：
 
-\begin{verbatim}
+\begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译测试文件test.tex}, numbers=none]
 xelatex test.tex
-\end{verbatim}
+\end{lstlisting}
 
 如果编译出的~test.pdf~中能够：显示中英文内容、显示4幅图像、正确嵌入~AdobeSongStd~和~TeXGyreTermes~字体（通过PDF阅读器的“属性”查看）、并且看到了英文字符的连字(ligature)和\textsc{SmallCapital}特性，那么恭喜你，你的~\TeX~系统应该能够编译这个学位论文模板。
 
-目前，我在手头的几个~\TeX~环境上都做过测试，TeXLive 2010和C\TeX 2.9、C\TeX 2.8都能够顺利编译。在你到版上抱怨模板不能工作前，请确定你的~\TeX~系统能够编译前面的~test.tex~文件。欢迎大家把编译的情况直接\href{mailto:wei.jianwen@gmail.com}{反馈}给我(但我并不能保证能解决问题)。来信的内就写你是否顺利编译模板、错误提示、操作系统版本、\TeX~系统版本、xunicode.sty~版本和fontspec.sty版本。
+目前，我在手头的几个~\TeX~环境上都做过测试，MacTeX 2011, TeXLive 2011和C\TeX 2.9都能够顺利编译。在你到版上抱怨模板不能工作前，请确定你的~\TeX~系统能够编译前面的~test.tex~文件。欢迎大家把编译的情况直接\href{mailto:wei.jianwen@gmail.com}{反馈}给我(但我并不能保证能解决问题)。来信的内就写你是否顺利编译模板、错误提示、操作系统版本、\TeX~系统版本、xunicode.sty~版本和fontspec.sty版本。
  
 \subsection{模板文件布局}
 \label{sec:layout}
@@ -132,7 +132,7 @@ sjtumaster-xetex.cfg, sjtumaster-xetex.cls~和~GBT7714-2005NLang.bst。
 
 一般用户最好``忽略''格式控制文件的存在，不要去碰它们。
 有其他格式需要，欢迎到板上发贴。
-对于因为擅自更改格式控制文件出现的问题，我一概不负责。{\large\smiley}
+对于因为擅自更改格式控制文件出现的问题，我不一定能够解决。
 
 \subsubsection{主控文件~diss.tex}
 \label{sec:disstex}
@@ -158,7 +158,7 @@ sjtumaster-xetex.cfg, sjtumaster-xetex.cls~和~GBT7714-2005NLang.bst。
 正文前部分(frontmatter)：中英文摘要(abstract.tex)。其他部分，诸如中英文封面、授权信息等，都是根据~diss.tex~所填的信息``画''好了，
 不单独弄成文件。
 
-正文部分(mainmatter)：自然就是各章内容~chapter\emph{xxx}.tex~了，这部分无法自动生成{\LARGE\Smiley}
+正文部分(mainmatter)：自然就是各章内容~chapter\emph{xxx}.tex~了。
 
 正文后的部分(backmatter)：附录(app\emph{xx}.tex)；致谢(thuanks.tex)；攻读学位论文期间发表的学术论文目录(pub.tex)；个人简历(resume.tex)。
 参考文献列表是``生成''的，也不作为一个单独的文件。另外，学校的硕士研究生学位论文模板中，也没有要求加入个人建立，所以我没有在~diss.tex~中引入resume.tex。
@@ -177,25 +177,42 @@ reference~文件夹放置的是各章``可能''会被引用的参考文献文件
 将参考文献按章划分的一个好处是，可以在各章后生成独立的参考文献，不过，现在看来没有这个必要。
 关于参考文献的管理，可以进一步参考第\ref{chap:example}章中的例子。
 
-\subsection{如何使用}
+\subsection{如何使用模板}
 \label{sec:process}
 
-模板使用~\XeTeX~引擎提供的~xelatex~的命令处理，作用于“主控文档”diss.tex。并且，可以省略扩展名。完整的处理流程是：
-\begin{enumerate}
-\item[] xelatex -no-pdf -{}-interaction=nonstopmode diss
-\item[] bibtex diss 
-\item[] xelatex -no-pdf -{}-interaction=nonstopmode diss 
-\item[] xelatex -{}-interaction=nonstopmode diss 
-\end{enumerate}
+模板的\LaTeX{}源文件需要用\XeTeX{}编译产生PDF文件。
+我在此给出三种命令行下的编译方式：逐行手工执行、使用脚本、使用latexmk，大家可以根据自己的喜好，选择\emph{其中一种}完成工作。
+
+\subsubsection{逐行手工执行}
+
+模板使用~\XeTeX~引擎提供的~xelatex~的命令处理，作用于“主控文档”diss.tex。并且，可以省略扩展名。
+在命令提示符下逐行敲入如下命令完成编译。
+
+\begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动执行编译过程}, numbers=none]
+xelatex -no-pdf --interaction=nonstopmode diss
+bibtex diss 
+xelatex -no-pdf --interaction=nonstopmode diss 
+xelatex --interaction=nonstopmode diss 
+\end{lstlisting}
 
 运行bibtex的时候会提示一些错误，猜测是~{{\sc Bib}\TeX}~对UTF-8支持不充分，一般不影响最终结果。留意因为拼写错误导致的``找不到文献错误''即可。
 
-加入~\verb|--interaction=nonstopmode|~参数是不让错误打断编译过程。\XeTeX~仍存在一些宏包兼容性问题，所以会产生一些莫名其妙的错误(通常是重定义错误)，而这些错误通常不会影响最终的编译结果\footnote{xunicode宏包就很蛋痛地重定义了几个数学符号，还有诸如$\backslash$nobreakspace命令}。
-为方便使用，我把处理过程写到了run.sh(for Linux)和run.bat(for Windows)批处理文件中。更规范的应该是使用Makefile，可惜笔者功力不够，希望哪位高人把好用的Makefile补上。
-
 基本处理流程就是这样，一些~\LaTeX~排版的小例子可以参考第二章。
 
-\section{从~CJK-\LaTeX~迁移到~\XeTeX/\LaTeX}
+\subsubsection{使用脚本}
+
+为方便使用，我把上面几条命令放到了两个脚本文件中。
+Linux用户可以使用run.sh脚本，Windows用户可以使用run.bat。
+
+\subsubsection{使用latexmk自动编译}
+
+latexmk是一个类似于make的自动化工具，主要处理latex编译过程。它能够在编译过程中自动编译多次解决引用问题、解决与外部工具(如bibtex)的依赖关系、检查文件状态决定是否重新编译。模板自带了latexmk所需的RC文件``latexmkrc''，可通过如下的命令调用latexmk完成模板的编译。
+
+\begin{lstlisting}[basicstyle=\small\ttfamily, caption={使用latemkx编译}, numbers=none]
+latexmk -pv -pdf diss
+\end{lstlisting}
+
+\section{从CJK-\LaTeX{}转向\XeTeX}
 \label{sec:whydvipdfm}
 
 我习惯把v0.2a使用dvipdfmx编译的硕士学位论文模板称为``CJK-\LaTeX{}模板''，而这个使用\XeTeX{}引擎(xelatex程序)处理的模板则被称为``\XeTeX/\LaTeX{}模板''。
@@ -211,7 +228,7 @@ reference~文件夹放置的是各章``可能''会被引用的参考文献文件
 
 \begin{enumerate}
 \item[\large\frownie] 必须把你“古老的”~\TeX~系统更新为较新的版本。TeXLive 2010~和~CTeX 2.9~能够编译这份模板，而~TeXLive 2009~和~CTeX 2.8~对此则无能为力；
-\item[\large\frownie] 需要一点点时间把你的~CJK-LaTeX~源文件转换为~XeTeX~源文件；
+\item[\large\frownie] 需要花一些时间把你在老模板上的工作迁移到新模板上。
 \end{enumerate}
 
 第一条就看你如何取舍了，新系统通常意味着更好的兼容性，值得升级。而转换模板也不是什么特别困难的事情，可以这样完成：
@@ -276,17 +293,5 @@ reference~文件夹放置的是各章``可能''会被引用的参考文献文件
 如果``新的格式控制文件''产生的效果对你很有吸引力，那么不妨尝试一下。
 应用新的格式控制文件是一件非常简单的事情：
 你只要把原来的~sjtumaster-xetex.cls, sjtumaster-xetex.cfg, GBxxx.bst~覆盖(建议备份或者使用版本控制系统)，重新编译一遍，应该就OK了。
-
-
-\section{获取帮助和意见反馈}
-\label{sec:replay}
-
-如果你对这个模板有任何问题或建议(前提是你认真读完这份文档后发现确实没有能帮助你的地方)，欢迎到水源TeX\_LaTeX版上发贴反馈。你的反馈将是我完善模板的动力！
-
-如果你是~\TeX/\LaTeX~方面的专家，也可以直接给我发\href{mailto:wei.jianwen@gmail.com}{邮件}，一起讨论改善模板的方法。
-邮件的主题请加上``latex''字样。此外，模板中的其他纰缪，也欢迎直接来信抱怨。
-那份最早交大学位论文模板是在CASthesis文档类基础上修改的。
-这个模板中文解决方案是~\XeTeX/\LaTeX~。
-目前，
 
 
