@@ -11,49 +11,53 @@
 \chapter{这是什么}
 \label{chap:what}
 
-这是上海交通大学硕士学位学位论文~\LaTeX~模板，当前版本是~\version。
-这是上海交大非官方出品的的~\LaTeX~硕士论文模板，是大家根据研究生院学位论文格式要求制作出的模板。
+这是上海交通大学(非官方)硕士学位学位论文~\LaTeX~模板，当前版本是~\version。
 
 \section{模板的来历}
 
-笔者不才，占了水源~TeX\_LaTeX~版版二的位置
-% \footnote{笔者11月初去北京参加IETF79，沾了沾仙气，结果错过了版上述职时间，目前被撤职。等缓过来后仍会卷土重来。}
-。因自己对~\TeX/\LaTeX~了解有限，一直没能做出一个使用“文档类”(documentclass)的学位论文模板。
-正当我为这个事情发愁的时候，事情出现了重大转机：
-一位交大物理系的热心同学在~CASthesis~文档类的基础上制作了交大博士学位论文~\LaTeX~模板。
-借此东风，将该模板稍作修整后，我把它发在版上，供大家使用。
-目前，交大博士论文~\LaTeX~模板工作良好，希望能使更多同学受益。
+最早的一版交大学位论文\LaTeX{}模板是一位热心的物理系同学制作的。
+那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的CJK--\LaTeX{}方案。
+我根据交大研究生院对学位论文的要求进行了调整，完成了一份基本可用的交大\LaTeX{}学位论文模板。
 
-最近，又有同学提出希望能制作出交大硕士学位论文模板。
-我参考了教务处对研究生学位论文格式的要求，在``博士学位论文~\LaTeX~模板''的基础上，制作了这个``硕士学位论文~\LaTeX~模板''。
+但是，搭建一个CJK--\LaTeX{}环境并不简单，在Linux下配置环境和调用中文字体的流程，对我而言犹如梦魇一般。
+在William Wang的建议下，我开始着手把模板移植到\XeTeX{}上。
+他完成了最初的移植，谢谢他的出色工作，使得后续的工作比我预想中的顺利。
 
-但是，大家也反映，使用~CJK--\LaTeX~仍存在不便之处。在~Linux~下使用~CJK~模板的同学，都有过搭建~CJK~环境的``恐怖经历''，并且因此放弃使用模板的也有。鉴于~\XeTeX~日渐成熟，它处理~UTF-8~编码文字的功夫令笔者惊叹，所以决定把模板移植到~\XeTeX~上。这里面很大一部分工作是~William Wang~完成的，在此向他表示感谢。
+这个学位论文模板从我用它来完成学位学位论文以后，就没有更新过。
+过了快两年，随着知识水平的提高，我又想断断续续再做一些完善模板的工作，因此对原有的硕士论文模板做了修改，并在此基础上做了交大学士和博士学位论文\LaTeX{}模板。
 
-欢迎大家使用交大硕士学位论文~\LaTeX~模板，有任何问题或者建议请到~TeX\_LaTeX~版发贴讨论。
-由于时间关系，我无法通过邮件提供~\LaTeX~支持，但是你可以通过邮件向我报告模板中的~Bugs，邮件主题中请加``latex''
-% \footnote{笔者的联系方式是：\href{mailto:wei.jianwen@gmail.com}{wei.jianwen@gmail.com}。最初那位制作模板的同学——也就是那位热心的物理系同学，留下的联系方式是\href{mailto:yang_tao@sjtu.edu.cn}{yang\_tao@sjtu.edu.cn}，不过似乎联系不上。笔者目前负责修正模板中与学校格式要求不符的地方，以及模板的Bug。一般的~\LaTeX~问题，仍推荐到版上讨论。}。
+现在，交大学位论文\LaTeX{}模板的代码在github上维护，地址是：
 
-再次感谢那位物理系的热心同学和~William Wang~的无私帮助！
+	\url{https://github.com/weijianwen/sjtu-thesis-template-latex/}
+
+学士学位论文、硕士学位论文、博士学位论文分别在bachelor-thesis，master-thesis和phd-thesis分支中维护。
+从下面的链接中可分别获得做新交大学士、硕士、博士模板zip压缩包。
+
+\begin{itemize}
+	\item 交大学士学位论文模板 \url{https://nodeload.github.com/weijianwen/sjtu-thesis-template-latex/zipball/bachelor-thesis}
+	\item 交大硕士学位论文模板 \url{https://nodeload.github.com/weijianwen/sjtu-thesis-template-latex/zipball/master-thesis}
+	\item 交大博士学位论文模板 \url{https://nodeload.github.com/weijianwen/sjtu-thesis-template-latex/zipball/phd-thesis}
+\end{itemize}
+
+欢迎大家使用交大学位论文模板！你可以通过如下的途径反馈模板使用过程中遇到的问题：\href{https://github.com/weijianwen/sjtu-thesis-template-latex/issues}{开issue}
+、\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖，或者是给\href{mailto:weijianwen@gmail.com}{我}发送邮件---你可能需要好几天才能收到我的邮件回复。
 
 \section{模板说明}
-\label{sec:fastguide}
-
 \subsection{模板特性}
 \label{sec:features}
 
-这个模板基于~CASthesis--0.1j~文档类，中文解决方案是~\XeTeX/\LaTeX~。
-参考文献建议使用~BibTeX~管理，可以生成符合国标~GBT7714~风格的参考文献列表。
-模板在~Windows~和~Linux~下测试通过，更详细的系统要求请参考\ref{sec:requirements}。
+这个模板使用的中文解决方案是~\XeTeX/\LaTeX~。
+参考文献使用~BibTeX~处理，可以生成符合国标~GBT7714~风格的参考文献列表。
+模板在Windows，Linux和Mac OS X下测试通过，更详细的系统要求请参考\ref{sec:requirements}。
 
 模板的外观表现和功能都放在~sjtumaster-xetex.cls~和~sjtumaster-xetex.cfg~中，在对外观进行细微调整时，只需要更新这两个文件，不需要对.tex源文件做修改。
-这也给模板更新带来了极大方便。
 
 最后，给出一个列表，罗列一下这个模板的功能要点：
 
 \begin{itemize}
 \item 使用~\XeTeX~引擎处理中文；
 \item 包含中文字符的源文件(.tex, .bib, .cfg)，编码都使用UTF-8；
-\item 使用~BibTeX~管理参考文献。参考文献表现形式(格式)受~.bst~控制，方便在不同风格间切换，目前生成的列表符合国标GBT7714要求；
+\item 使用~BibTeX~处理参考文献。参考文献表现形式(格式)受~.bst~控制，方便在不同风格间切换，目前生成的列表符合国标GBT7714要求；
 \item 可以直接插入EPS/PDF/JPG/PNG格式的图像，并且\emph{不需要}~bounding box~文件(.bb)。
 \item 模板的格式受~sjtumater-xetex.cls~和~sjtumaster-xetex.cfg~控制，方便模板更新和模板修改。
 \end{itemize}
@@ -281,3 +285,8 @@ reference~文件夹放置的是各章``可能''会被引用的参考文献文件
 
 如果你是~\TeX/\LaTeX~方面的专家，也可以直接给我发\href{mailto:wei.jianwen@gmail.com}{邮件}，一起讨论改善模板的方法。
 邮件的主题请加上``latex''字样。此外，模板中的其他纰缪，也欢迎直接来信抱怨。
+那份最早交大学位论文模板是在CASthesis文档类基础上修改的。
+这个模板中文解决方案是~\XeTeX/\LaTeX~。
+目前，
+
+
