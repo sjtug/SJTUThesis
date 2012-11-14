@@ -374,7 +374,7 @@
 
  % 中文摘要
  \newenvironment{abstract}
- {\chapter[\heiti 摘要]{\CAST@value@title\vskip 20pt\CAST@label@abstract}}
+ {\chapter[摘要]{\CAST@value@title\vskip 20pt\CAST@label@abstract}}
  {}
 
  %_ 中文关键词
@@ -383,7 +383,7 @@
 
  %_ 英文摘要
  \newenvironment{englishabstract}
- {\chapter[\heiti ABSTRACT]{\CAST@value@englishtitle\vskip 20pt\bfseries \CAST@label@englishabstract}}
+ {\chapter[ABSTRACT]{\CAST@value@englishtitle\vskip 20pt\bfseries \CAST@label@englishabstract}}
  {}
 
  % _英文摘要
