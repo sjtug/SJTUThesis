@@ -8,7 +8,7 @@
 %% ==================================================
 
 %% math packages -- conflict with xunicode
-\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
 \RequirePackage{upgreek}
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
