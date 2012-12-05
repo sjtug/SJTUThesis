@@ -7,10 +7,6 @@
 %% last update: May 30, 2012
 %% ==================================================
 
-%% math packages -- conflict with xunicode
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
-\RequirePackage{upgreek}
-
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtumaster-xetex}
   [2009/12/25 v0.2a sjtumaster-xetex document class]
@@ -30,6 +26,11 @@
 %% 当前模板的版本
 \newcommand{\version}{\CAST@value@templateversion}
 
+% XeTeX Fonts
+\RequirePackage{fontspec}
+\RequirePackage{metalogo} % Some Logo
+\setmainfont{TeX Gyre Termes}
+
 %% 页边距设置
 \oddsidemargin 1.5 true cm
 \if@twoside
@@ -43,7 +44,6 @@
 \parskip 0.5ex plus 0.25ex minus 0.25ex
 %% 上边距
 \addtolength{\voffset}{-0.5cm}
-
 
 %% Command -- Clear Double Page
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
@@ -63,6 +63,10 @@
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
+%% Math Tools
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+\RequirePackage{upgreek}
+
 %% 定义几个常用的数学常量符号
 \newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
 \newcommand{\mi}{\mathrm{i}}
@@ -70,25 +74,17 @@
 \newcommand{\dif}{\mathrm{d}}
 
 % 可伸长的数学符号
-% \makeatletter
 \def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
 \def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
 \def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
-% \makeatother
 
 \newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
 \newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
-
-%% 英文字体使用 Times New Roman
-\RequirePackage{fontspec}
-\RequirePackage{xltxtra} % \XeTeX Logo
-\setmainfont{TeX Gyre Termes}
-%% bullets in the item
+% bullets in the item
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
-
 
 %% graphics packages
 \RequirePackage{graphicx}
