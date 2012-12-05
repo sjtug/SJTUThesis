@@ -17,7 +17,7 @@ I used this template to finish my master thesis, and decided to make the templat
 But, I think the template is still in a *primitive* state, far from a *generally-nice* work. As my understanding about TeX, Git, document preparing grows, I think it's time to refresh the template. GitHub is a place full of all kinds of geniuses, thus I host my project here in hope for receiving all kinds of refinement or feedback. 
 
 # TODO List
-* Add XeTeX/XeLaTeX template for bachelor thesis
+* Insert version number of the template in various files.
 * Clean the template files
 * Rewrite the templates with [Pandoc](http://johnmacfarlane.net/pandoc/)
 * Refine the ```Makefile```.
