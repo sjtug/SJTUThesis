@@ -12,13 +12,13 @@ all: pdf
 
 pdf: ${THESISMAIN}.pdf
 
-${THESISMAIN}.pdf: ${THESISMAIN}.tex
+${THESISMAIN}.pdf: ${THESISMAIN}.tex body/*.tex *.cls *.cfg
 	xelatex -no-pdf --interaction=nonstopmode ${THESISMAIN}
 	-bibtex ${THESISMAIN}
 	xelatex -no-pdf --interaction=nonstopmode ${THESISMAIN}
 	xelatex --interaction=nonstopmode ${THESISMAIN}
 
-view: ${THESISMAIN}.pdf
+view: ${THESISMAIN}.pdf 
 	${VIEWER} ${THESISMAIN}.pdf &
 
 clean:
@@ -48,7 +48,7 @@ clean:
 		body/*.aux
 
 distclean: clean
-	-@rm -f ${THESISMAIN}.pdf ${TESTFILE}.pdf
+	-@rm -f ${THESISMAIN}.pdf
 
 test: ${TESTFILE}.tex
 	xelatex ${TESTFILE}
