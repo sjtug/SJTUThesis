@@ -1,47 +1,59 @@
-BASE = diss
-PDFREADER = evince
+# Makefile for sjtu-thesis-template-latex
+
+# Basename of thesis
+THESISMAIN=diss
+# Test file
+TESTFILE=test
+# pdf viewer: evince/open
+VIEWER=open
+
 
 all: pdf
 
-pdf: ${BASE}.pdf
+pdf: ${THESISMAIN}.pdf
 
-${BASE}.pdf: ${BASE}.tex
-	# xelatex -no-pdf --interaction=nonstopmode ${BASE}
-	# bibtex ${BASE}
-	# xelatex -no-pdf --interaction=nonstopmode ${BASE}
-	# xelatex --interaction=nonstopmode ${BASE}
+${THESISMAIN}.pdf: ${THESISMAIN}.tex
+	xelatex -no-pdf --interaction=nonstopmode ${THESISMAIN}
+	-bibtex ${THESISMAIN}
+	xelatex -no-pdf --interaction=nonstopmode ${THESISMAIN}
+	xelatex --interaction=nonstopmode ${THESISMAIN}
 
-view: ${BASE}.pdf
-	$PDFREADER ${BASE}.pdf&
-
-tar: ${BASE}.pdf
-
-# TARSOURCE = *.tex *.pdf *.bst *.cfg *.cls Makefile body
-# figures reference
-
-# ${BASE}.tar: ${TARSOURCE}
-#      tar jcf ${BASE}.tar.bz2 ${TARSOURCE}
+view: ${THESISMAIN}.pdf
+	${VIEWER} ${THESISMAIN}.pdf &
 
 clean:
-	cp diss.pdf README.pdf
-	find ./ -iname '*.aux' | xargs rm
-	find ./ -iname '*.log' | xargs rm
-	find ./ -iname '*.lot' | xargs rm
-	find ./ -iname '*.out' | xargs rm
-	find ./ -iname '*.toc' | xargs rm
-	find ./ -iname '*.blg' | xargs rm
-	find ./ -iname '*.bbl' | xargs rm
-	find ./ -iname '*.lof' | xargs rm
-	find ./ -iname '*.xdv' | xargs rm
-	mv ${BASE}.pdf mythesis.pdf
-	rm ${BASE}.xdv ${BASE}.pdf
-# cleantex
-# if [ -e ${BASE}.xdv ]; then rm ${BASE}.xdv; fi
-# cd body && cleantex && cd ..
-
-test:
-	xelatex --no-pdf diss
+	-@rm -f \
+		*~ \
+		*.aux \
+		*.bak \
+		*.bbl \
+		*.blg \
+		*.dvi \
+		*.xdv \
+		*.glo \
+		*.gls \
+		*.idx \
+		*.ilg \
+		*.ind \
+		*.ist \
+		*.log \
+		*.out \
+		*.ps \
+		*.thm \
+		*.toc \
+		*.lof \
+		*.lot \
+		*.loe \
+		*_latexmk \
+		body/*.aux
 
 distclean: clean
-	if [ -e ${BASE}.pdf ]; then rm ${BASE}.pdf; fi
+	-@rm -f ${THESISMAIN}.pdf ${TESTFILE}.pdf
+
+test: ${TESTFILE}.tex
+	xelatex ${TESTFILE}
+	${VIEWER} ${TESTFILE}.pdf
+
+cp: ${THESISMAIN}.pdf
+	-@cp ${THESISMAIN}.pdf README.pdf
 
