@@ -1,15 +1,13 @@
 %==================================================
 %% sjtumaster-xetex.cls for SJTU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
-%% modified by wei.jianwen@gmail.com
+%% Hosted on https://github.com/weijianwen/sjtu-thesis-template-latex
+%% SJTU LaTeX Forum https://bbs.sjtu.edu.cn/bbsdoc,board,TeX_LaTeX.html
 %% Encoding: UTF-8
-%% version: 0.4
-%% last update: May 30, 2012
 %% ==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtumaster-xetex}
-  [2012/05/30 v0.4 sjtumaster-xetex document class]
+\ProvidesClass{sjtumaster-xetex}[2012/12/05 v0.5 sjtumaster-xetex document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
 \newif\ifCAST@dvips \CAST@dvipsfalse
