@@ -1,23 +1,41 @@
 %%==================================================
 %% chapter03.tex for SJTU Master Thesis
-%% based on CASthesis
-%% modified by wei.jianwen@gmail.com
-%% version: 0.3a
 %% Encoding: UTF-8
-%% last update: Dec 5th, 2010
 %%==================================================
 
-% \bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
+\chapter{常见问题与故障排除}
+\label{chap:faq}
 
-\chapter{已知问题}
-\label{chap:needsomehelp}
+\subsubsection*{我是否能够自由使用这份模板}
+是的，你可以自由使用这份模板。但将模板用于商业用于以前，请征得我的同意。
 
-自谦一下，由于时间非常仓促，这个模板肯定存在不少问题，所以我需要大家帮助一起解决这些问题。下面是我自认为模板需要改进的地方。
+\subsubsection*{我的论文是Word排版的，学校图书馆是不是只收\LaTeX排版的论文}
+当然不是，Word版肯定收。
 
-\subsubsection*{这模板有点丑}
-我自己也觉得这个模板的版面设计有点不和谐，离一个“工整严谨”的科技论文模板还有一段距离，但是不知道是什么地方出了问题。我工科男一个，宅男一枚，欢迎来信指正版面设计事宜。
+\subsubsection*{我的论文是\LaTeX排版的，学校图书馆是不是只收Word排版的论文}
+当然不是，PDF版的电子论文是可以上交的。是否要交Word版就看你导师的喜好了。
 
-\subsubsection*{你的~Makefile~不管用啊}
-是的，因为BibTeX编译出现错误，make~时总是退出，我也不知道咋办。希望大家帮帮忙。
+\subsubsection*{为什么左右页边距不一样}
+模板默认是双面打印，迎面页和背面页的页边距是要交换的，多出来的那一部分是留作装订的。
 
+\subsubsection*{为什么在参考文献中会有``//''符号}
+那就是国标GBT7714参考文献风格规定的。
 
+\subsubsection*{为什么参考文献中会有[s.n.],[S.l], [EB/OL]等符号}
+那也是国标GBT7714参考文献风格定义的。[s.n.]表示出版者不祥，[S.l]表示出版地不祥，[EB/OL]表示引用的参考文献类型为在线电子文档。
+
+\subsubsection*{如何获得帮助和反馈意见}
+你可以通过如下的途径反馈模板使用过程中遇到的问题：\href{https://github.com/weijianwen/sjtu-thesis-template-latex/issues}{开issue}
+、\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖，或者是给\href{mailto:weijianwen@gmail.com}{我}发送邮件---你可能需要好几天才能收到我的邮件回复。
+
+\subsubsection*{使用文本编辑器查看tex文件时遇到乱码}
+请确保你的文本编辑器使用UTF-8编码打开了tex源文件。
+
+\subsubsection*{在CTeX编译模板遇到``rsfs10.tfm already exists''的错误提示}
+请删除\verb+X:\CTEX\UserData\fonts\tfm\public\rsfs+下的文件再重新编译。问题讨论见\href{https://bbs.sjtu.edu.cn/bbstcon,board,TeX_LaTeX,reid,1352982719.html}{水源2023号帖}。
+
+\subsubsection*{升级了TeXLive 2012，编译后的文档出现``minus''等字样}
+这是xltxtra和fontspec宏包导致的问题。学位论文模板从0.5起使用metatlog宏包代替xltxtra生成\XeTeX标志，解决了这个问题。
+
+\subsubsection*{如何向你表示感谢}
+请在项目的\href{https://github.com/weijianwen/sjtu-thesis-template-latex}{github主页}点击``Star''，我想粗略统计一下使用学位论文模板的人数，谢谢。
