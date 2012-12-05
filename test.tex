@@ -10,17 +10,16 @@
 % textsc正确工作
 %========================================
 
-
 \documentclass[12pt,a4paper,UTF8,adobefonts]{ctexbook}
-
-% AMS math
-\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs} 
 
 % Font Setting
 \usepackage{fontspec}
-\RequirePackage{xltxtra} % \XeTeX Logo
+\RequirePackage{metalogo}
 \setmainfont{TeX Gyre Termes} % an SC-capable OTF font that looks like Times
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
+
+% Math Tools
+\RequirePackage{mathtools, amsfonts, mathrsfs} 
 
 % Graph
 \usepackage{graphicx}
