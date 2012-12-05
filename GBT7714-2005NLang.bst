@@ -67,13 +67,25 @@ ENTRY
   { label extra.label sort.label short.list }
 
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
-FUNCTION {format.url}
-{ url empty$
-    { "" }
-    { new.block 
-    "\url{" url * "}" * }
+
+FUNCTION {not}
+{   { #0 }
+    { #1 }
   if$
 }
+
+FUNCTION {and}
+{   'skip$
+    { pop$ #0 }
+  if$
+}
+
+FUNCTION {or}
+{   { pop$ #1 }
+    'skip$
+  if$
+}
+
 FUNCTION {init.state.consts}
 { #0 'before.all :=
   #1 'mid.sentence :=
@@ -142,6 +154,21 @@ FUNCTION {coutput}                                           %wk
   if$
 }
 
+STRINGS {z}
+FUNCTION {remove.dots}
+{ 'z :=
+  ""
+  { z empty$ not}
+  { z #1 #1 substring$
+    z #2 global.max$ substring$ 'z :=
+    duplicate$ "." = 'pop$
+      { * }
+    if$
+  }
+  while$
+  %z
+}
+
 FUNCTION {output.check}
 { 't :=
   duplicate$ empty$
@@ -189,6 +216,7 @@ FUNCTION {output.cyear.month.check}                            %wk
     }
   if$
 }
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -378,24 +406,6 @@ FUNCTION {new.sentence}
         { after.sentence 'output.state := }
       if$
     }
-  if$
-}
-
-FUNCTION {not}
-{   { #0 }
-    { #1 }
-  if$
-}
-
-FUNCTION {and}
-{   'skip$
-    { pop$ #0 }
-  if$
-}
-
-FUNCTION {or}
-{   { pop$ #1 }
-    'skip$
   if$
 }
 
@@ -1119,6 +1129,18 @@ FUNCTION {format.numberinseries}
   if$
 }
 
+FUNCTION {format.pages}
+{ pages empty$
+    { "" }
+    { pages multi.page.check
+        { ":" pages n.dashify tie.or.space.connect * }
+        { ":" pages tie.or.space.connect  * }
+      if$
+    }
+  if$
+}
+
+
 FUNCTION {format.cnumberinseries}                           %wk
 { number empty$
     { "" }
@@ -1290,6 +1312,13 @@ FUNCTION {format.edition}
 if$
 }
 
+FUNCTION {format.url}
+{ url empty$
+    { "" }
+    { new.block 
+    "\url{" url * "}" * }
+  if$
+}
 
 FUNCTION {format.cedition}                                  %wk  完全改写
 { edition empty$
@@ -1319,17 +1348,6 @@ FUNCTION {format.ctranslator}                                  %wk  完全改写
     if$
 }
     
-FUNCTION {format.pages}
-{ pages empty$
-    { "" }
-    { pages multi.page.check
-        { ":" pages n.dashify tie.or.space.connect * }
-        { ":" pages tie.or.space.connect  * }
-      if$
-    }
-  if$
-}
-
 FUNCTION {format.pagesinbook}                               %  By the time the
 { pages empty$                                              %  reader has read
     { "" }                                                  %  address, pub'r,
@@ -1926,7 +1944,7 @@ FUNCTION {format.cmisc.addr.pub}
 
 FUNCTION {format.addr.pub.org}                              %  If there's an
 { address empty$                                            %  an organization
-  { "[S.l.]:" *publisher * ", for " * organization * }                 %  and a publisher
+  { "[S.l.]:" * publisher * ", for " * organization * }                 %  and a publisher
   { address ": " * publisher * ", for " * organization * }  %  too.
   if$
 }
@@ -1935,7 +1953,7 @@ FUNCTION {format.addr.inst}
 { address empty$
   { institution empty$
     { "[S.l.]" }
-    { "[S.l.]" * institution *　*}
+    { "[S.l.]" * institution * }
     if$
   }
   { institution empty$
@@ -1983,6 +2001,40 @@ FUNCTION {format.book.crossref}
 FUNCTION {format.incoll.inproc.crossref}
 { "In "
   " \cite{" * crossref * "}" *
+}
+
+FUNCTION {format.address.publisher}
+{ address empty$
+    { publisher empty$
+    { "" }
+    { "there's a publisher but no address in " cite$ * warning$
+      publisher
+    }
+      if$
+    }
+    { publisher empty$
+    'address
+    { address ": " * publisher * }
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.address.school}
+{ address empty$
+    { school empty$
+    { "" }
+    { "there's a school but no address in " cite$ * warning$
+      school
+    }
+      if$
+    }
+    { school empty$
+    'address
+    { address ": " * school * }
+      if$
+    }
+  if$
 }
 
 
@@ -2061,11 +2113,11 @@ FUNCTION {book}
   crossref missing$
     { format.edition output
       new.block
-      format.book.continue.vol.num ouput
+      format.book.continue.vol.num output
       booklike.series.volume.number output
       new.block
       format.addr.pub "publisher" output.check
-      output.continue.year.check  ouput   
+      output.continue.year.check  output   
       format.date.modifydate.citedate output
       format.pages output
     }
@@ -2099,10 +2151,10 @@ FUNCTION {book}
     {
      format.cedition output                                 %wk   edition->cedition
       new.block
-      format.cbook.continue.vol.num ouput
+      format.cbook.continue.vol.num output
       new.block
       format.caddr.pub "publisher" output.check
-      output.continue.cyear.check  ouput                                     %wk
+      output.continue.cyear.check  output                                     %wk
       cbooklike.series.volume.number.pages output
       format.date.modifydate.citedate output
      }
@@ -2604,6 +2656,11 @@ if$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+FUNCTION {format.conference.title}
+{
+	% empty shit
+}
+
 FUNCTION {proceedings}            %改自book类型
 {language empty$   
 { output.bibitem
@@ -2654,7 +2711,7 @@ FUNCTION {proceedings}            %改自book类型
     }
   if$
   new.block
-  format.cconference.title output                       %wk
+  format.conference.title output                       %wk
   new.block
   crossref missing$
     {
