@@ -7,9 +7,7 @@
 %% last update: Dec 5th, 2010
 %%==================================================
 
-% \bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
-
-\chapter{一些~\LaTeX~排版的例子}
+\chapter{一些\LaTeX排版的例子}
 \label{chap:example}
 
 \section{数学排版的例子}
@@ -18,8 +16,7 @@
 \subsection{公式排版}
 \label{sec:eqformat}
 
-这里有举一个长公式排版的例子，来自\href{http://www.tex.ac.uk/tex-archive/info/math/voss/mathmode/Mathmode.pdf}{《Math mode》}
-\footnote{《Math mode》中的例子实在太丰富了，而且每一个都很精彩实用。我本想抄几个例子上来做个``山寨版''，实在没有必要，大家还是去看``原著''吧。}：
+这里有举一个长公式排版的例子，来自\href{http://www.tex.ac.uk/tex-archive/info/math/voss/mathmode/Mathmode.pdf}{《Math mode》}：
 
 \begin {multline}
   \frac {1}{2}\Delta (f_{ij}f^{ij})=
@@ -34,7 +31,7 @@
 \label{sec:depth4}
 
 这是全文唯一的一个四级标题。在这部分中将演示可伸长符号（箭头、等号的例子）的例子，以及如何在可伸长的符号上标注。在\href{http://zhou63.ahut.edu.cn/latex/ctexfaq.pdf}{《CTeX常见问题集》}中也由类似的介绍。
-首先需要在~diss.tex~导言区引入如下的内容：
+首先需要在diss.tex导言区引入如下的内容：
 
 \begin{lstlisting}[language={TeX}, caption={插入导言区的内容}]
   \makeatletter
@@ -83,7 +80,7 @@
 
 \subsection{定理环境}
 
-在~CASthesis.cfg~中定义了丰富的定理环境
+模板中定义了丰富的定理环境
 algo(算法)，thm(定理)，lem(引理)，prop(命题)，cor(推论)，defn(定义)，conj(猜想)，exmp(例)，rem(注)，case(情形)，
 bthm(断言定理)，blem(断言引理)，bprop(断言命题)，bcor(断言推论)。
 amsmath还提供了一个proof(证明)的环境。
@@ -136,7 +133,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 \subsection{支持的图片格式}
 \label{sec:imageformat}
 
-\XeTeX~可以很方便地插入~PDF、EPS、PNG、JPG~格式的图片。
+\XeTeX可以很方便地插入PDF、EPS、PNG、JPG格式的图片。
 
 插入PNG/JPG的例子如\ref{fig:SRR}所示。
 这两个水平并列放置的图共享一个``图标题''(table caption)，没有各自的小标题。
@@ -149,7 +146,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
   \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
 \end{figure}
 
-这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用~subfigure~宏包提供的。
+这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
 
 \begin{figure}
   \centering
@@ -163,7 +160,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
   \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
 \end{figure}
 
-更多关于~\LaTeX~插图的例子可以参考\href{http://www.cs.duke.edu/~junhu/Graphics3.pdf}{《~\LaTeX~插图指南》}。
+更多关于\LaTeX插图的例子可以参考\href{http://www.cs.duke.edu/junhu/Graphics3.pdf}{《\LaTeX插图指南》}。
 
 \subsection{长标题的换行}
 \label{sec:longcaption}
@@ -174,7 +171,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 \begin{figure}[!htp]
  \centering
  \includegraphics[angle=-90,origin=br,width=4cm]{chap2/testpdf.pdf}
- \bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Joomla! is one of the most powerful Open Source Content Management Systems on the planet.}
+ \bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
 \end{figure}
 
 
@@ -184,7 +181,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
       \captionstyle{\centering}
       \centering
       \includegraphics[angle=-90,origin=br,width=4cm]{chap2/testpdf.pdf}
-      \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Joomla! is one of the most powerful Open Source Content Management Systems on the planet.}
+      \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
     \end{minipage}     
   \end{figure}
 
@@ -255,9 +252,9 @@ BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文
 你会发现，.bbl的格式和你自己手动写item很相似，它已经被赋予了一定的``表现形式''。
 
 .bib数据库中的参考文献条目可以手动编写，也可以在google的学术搜索中找到。
-各大数据库\footnote{应该说是国际知名数据库，譬如~SCOPUS, IEEE, OSA等，国内数据库在搜索、导出方面一直是差得一塌糊涂。}也支持将参考文献信息导出为.bib，
+各大数据库\footnote{应该说是国际知名数据库，譬如SCOPUS, IEEE, OSA等，国内数据库在搜索、导出方面一直是差得一塌糊涂。}也支持将参考文献信息导出为.bib，
 省时省力。
-以Google学术搜索为例：进入\url{http://scholar.google.cn}，在``学术搜索设置''中，将``文献管理软件''设为``显示导入BibTeX''的连接，保存退出。
+以Google学术搜索为例：进入\url{http://scholar.google.com}，在``学术搜索设置''中，将``文献管理软件''设为``显示导入BibTeX''的连接，保存退出。
 然后学术搜索找到文献下会有``导出到BibTeX''连接，点击后Firefox会打开新的标签页，出现类似代码\ref{googlescholar}所示的内容
 \footnote{展示这些.bib条目使用了listings宏包，因为listings宏包协调中文的能力很糟糕，所以读者在查看模板的这部分源代码时会看到一些非常麻烦的东西。并且，直接将源代码的这部分内容复制到.bib中可能还会出错。我的建议是：这部分内容留意PDF就足够了。}。
 请注意，这个条目离``规范''还有一些距离。
@@ -271,7 +268,7 @@ BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文
     } 
   \end{lstlisting}
 
-  上面的.bib条目的``名字''\cndash{}``白2008信用风险传染模型和信用衍生品的定价''，包含~ASCII~以外的字符，BibTeX无法处理；
+  上面的.bib条目的``名字''\cndash{}``白2008信用风险传染模型和信用衍生品的定价''，包含ASCII以外的字符，BibTeX无法处理；
   条目还缺少了address域，这样编译出来的结果会出现``地址不详''；
   并且，条目还缺少language域，BibTeX需要language域来判断是否是中文参考文献。
   将上面的条目修正(改英文名、增加address和language域)，复制到本地的.bib文件中就可以了。
@@ -305,7 +302,7 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的``language''�
 \end{lstlisting}
 
 再罗嗦两句，
-.bst文件书写起来非常繁杂\footnote{可以参考《Tame The BeaST》。}，书写符合GBT7714标准的.bst文件更是一项浩大的工程。
+.bst文件书写起来非常繁杂\footnote{可以参考\href{http://ftp.ctex.org/mirrors/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}{《Tame The BeaST》}。}，书写符合GBT7714标准的.bst文件更是一项浩大的工程。
 因此，当大家为漂亮、标准的参考文献列表感到满意时，应该对GBT7714-2005NLang.bst的作者充满谢意。
 作者在CTeX BBS发的帖子，请看
 \href{http://bbs.ctex.org/viewthread.php?tid=33571&highlight=\%B2\%CE\%BF\%BC\%CE\%C4\%CF\%D7\%2BGB}{文后参考文献著录规则 GB/T 7714-2005}。
@@ -327,8 +324,8 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的``language''�
 最后总结一些注意事项：
 \begin{itemize}
 \item 参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
-\item 参考文献``数据库文件''.bib是纯文本文件，请使用~UTF-8~编码，不要使用~GBK~编码；
-\item 参考文献条目中通过~language~域是否为空判断是否是中文文献；
+\item 参考文献``数据库文件''.bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
+\item 参考文献条目中通过language域是否为空判断是否是中文文献；
 \item 参考文献条目同样有“内容”和“表现形式”之分，这种可控性是BibTeX带来的。
 \end{itemize}
 
@@ -337,10 +334,10 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的``language''�
 
 参考文献数据库.bib虽然是纯文本的，可以用任意的文本编辑器查看，但总有人喜欢一个找一个``可视化''地查看每一条参考文献。
 我想\href{http://jabref.sourceforge.net/}{JabRef}应该是个很不错的选择。
-这是一个~Java~写的程序，需要~JRE~才能运行。
+这是一个Java写的程序，需要JRE才能运行。
 就我测试的情况上看，很幸运，JabRef可以顺利打开GBK编码的.bib文件。
 但是，打开UTF--8编码的.bib源文件过程中总会崩溃，原因不得而知。
-由于我们的~.bib~文件使用的是~UTF-8~编码，所以~JabRef~暂时不可用。
+由于我们的.bib文件使用的是UTF-8编码，所以JabRef暂时不可用。
 
 提到参考文献管理器，不得不提到另一个广被使用的软件——\href{http://www.endnote.com/}{EndNote}。
 在图书馆的宣讲会上，EndNote被吹得神乎其神，但我发现他对.bib的管理很不友好。
@@ -350,11 +347,11 @@ EndNote可以导入.bib文件，却不能导出.bib，只能导出.bbl——被�
 看来，EndNote和Word配合得更好一些。
 
 
-\section{用~listings~插入源代码}
+\section{用listings插入源代码}
 
-原先~ctexbook~文档类和~listings~宏包配合使用时，代码在换页时会出现莫名其妙的错误，后来经高人指点，顺利解决了。
+原先ctexbook文档类和listings宏包配合使用时，代码在换页时会出现莫名其妙的错误，后来经高人指点，顺利解决了。
 感兴趣的话，可以看看\href{http://bbs.ctex.org/viewthread.php?tid=53451}{这里}。
-这里给使用~listings~宏包插入源代码的例子，这里是一段C代码。
+这里给使用listings宏包插入源代码的例子，这里是一段C代码。
 另外，listings宏包真可谓博大精深，可以实现各种复杂、漂亮的效果，想要进一步学习的同学，可以参考
 \href{http://mirror.ctan.org/macros/latex/contrib/listings/listings.pdf}{listings宏包手册}。
 
@@ -387,7 +384,7 @@ int main() {
 }
 \end{lstlisting}
 
-再给一个插入MATLAB代码的例子，感谢~daisying~站友提供的代码。
+再给一个插入MATLAB代码的例子，感谢daisying站友提供的代码。
 
 \begin{lstlisting}[language={matlab}, caption={一段MATLAB源代码}]
 function paper1
