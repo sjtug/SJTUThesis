@@ -10,10 +10,6 @@
 \ProvidesClass{sjtumaster-xetex}[2012/12/05 v0.5 sjtumaster-xetex document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
-\newif\ifCAST@dvips \CAST@dvipsfalse
-\DeclareOption{dvips}{\CAST@dvipstrue}
-\DeclareOption{dvipdfm}{\CAST@dvipsfalse}
-\DeclareOption{pdftex}{\CAST@dvipsfalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
@@ -172,12 +168,6 @@
   plainpages=false,%
   pdfstartview=FitH
 }
-\else
-\ifpdf    % pdflatex
-\RequirePackage[pdftex,unicode]{hyperref}
-\else     % dvipdfmx or dvips
-\RequirePackage[dvipdfmx,unicode]{hyperref}
-\fi
 \fi
 
 %% enumerate 列表环境间距调节
