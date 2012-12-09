@@ -1,5 +1,5 @@
 %==================================================
-%% sjtumaster-xetex.cls for SJTU Master Thesis
+%% sjtuthesis.cls for SJTU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% Hosted on https://github.com/weijianwen/sjtu-thesis-template-latex
 %% SJTU LaTeX Forum https://bbs.sjtu.edu.cn/bbsdoc,board,TeX_LaTeX.html
@@ -7,15 +7,15 @@
 %% ==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtumaster-xetex}[2012/12/05 v0.5 sjtumaster-xetex document class]
+\ProvidesClass{sjtuthesis.cls}[2012/12/05 v0.5 sjtuthesis document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
 
-%% 导入 sjtumaster-xetex.cfg 文件
-\AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
+%% 导入 sjtuthesis.cfg 文件
+\AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
 
 %% 当前模板的版本
 \newcommand{\version}{\CAST@value@templateversion}
@@ -186,10 +186,10 @@
   \def\CASTfiledate{#1}%
   \def\CASTfileversion{#2}%
   \def\CASTfileinfo{#3}}%
-\expandafter\ifx\csname ver@sjtumaster-xetex.cls\endcsname\relax
-  \edef\reserved@a{\csname ver@ctextemp_sjtumaster-xetex.cls\endcsname}
+\expandafter\ifx\csname ver@sjtuthesis.cls\endcsname\relax
+  \edef\reserved@a{\csname ver@ctextemp_sjtuthesis.cls\endcsname}
 \else
-  \edef\reserved@a{\csname ver@sjtumaster-xetex.cls\endcsname}
+  \edef\reserved@a{\csname ver@sjtuthesis.cls\endcsname}
 \fi
 \expandafter\CAST@getfileinfo\reserved@a\relax? ? \relax\relax
 \def\CAST@underline[#1]#2{%
@@ -500,6 +500,6 @@
 \endinput
 
 %%
-%% End of file `sjtumaster-xetex.cls'.
+%% End of file `sjtuthesis.cls'.
 
 
