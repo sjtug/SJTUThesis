@@ -45,7 +45,8 @@ clean:
 		*.lot \
 		*.loe \
 		*_latexmk \
-		body/*.aux
+		body/*.aux \
+		body/x.log 
 
 distclean: clean
 	-@rm -f ${THESISMAIN}.pdf
