@@ -50,7 +50,7 @@
 参考文献使用BibTeX处理，可以生成符合国标GBT7714风格的参考文献列表。
 模板在Windows，Linux和Mac OS X下测试通过，更详细的系统要求请参考\ref{sec:requirements}。
 
-模板的外观表现和功能都放在sjtumaster-xetex.cls和sjtumaster-xetex.cfg中，在对外观进行细微调整时，只需要更新这两个文件，不需要对.tex源文件做修改。
+模板的外观表现和功能都放在sjtuthesis.cls和sjtuthesis.cfg中，在对外观进行细微调整时，只需要更新这两个文件，不需要对.tex源文件做修改。
 
 最后，给出一个列表，罗列一下这个模板的功能要点：
 
@@ -59,7 +59,7 @@
 \item 包含中文字符的源文件(.tex, .bib, .cfg)，编码都使用UTF-8；
 \item 使用BibTeX处理参考文献。参考文献表现形式(格式)受.bst控制，方便在不同风格间切换，目前生成的列表符合国标GBT7714要求；
 \item 可以直接插入EPS/PDF/JPG/PNG格式的图像，并且\emph{不需要}bounding box文件(.bb)。
-\item 模板的格式受sjtumater-xetex.cls和sjtumaster-xetex.cfg控制，方便模板更新和模板修改。
+\item 模板的格式受sjtumater-xetex.cls和sjtuthesis.cfg控制，方便模板更新和模板修改。
 \end{itemize}
 
 \subsection{系统要求}
@@ -91,8 +91,8 @@ xelatex test.tex
 \begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
   |-- diss.tex
   |-- README.pdf
-  |-- sjtumaster-xetex.cfg
-  |-- sjtumaster-xetex.cls
+  |-- sjtuthesis.cfg
+  |-- sjtuthesis.cls
   |-- body
   |   |-- abstract.tex
   |   |-- app1.tex
@@ -125,7 +125,7 @@ xelatex test.tex
 \label{sec:format}
 
 格式控制文件控制着论文的表现形式，包括以下几个文件：
-sjtumaster-xetex.cfg, sjtumaster-xetex.cls和GBT7714-2005NLang.bst。
+sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
 其中，``.cfg''和``.cls''控制论文主体格式，``.bst''控制参考文献条目的格式，
 
 一般用户最好``忽略''格式控制文件的存在，不要去碰它们。
@@ -257,7 +257,7 @@ make && make view
 你可以将diss.tex中设定文档类的语句改为：
 
 \begin{quote}
-  {\scriptsize\verb+\documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtumaster-xetex}+}
+  {\scriptsize\verb+\documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtuthesis}+}
 \end{quote}
 
 这样，就变成了适合“单面打印”的论文，新的一章可以从偶数页开始。
@@ -277,7 +277,7 @@ make && make view
 不管怎么说，模板更新应该是一件好事。
 如果``新的格式控制文件''产生的效果对你很有吸引力，那么不妨尝试一下。
 应用新的格式控制文件是一件非常简单的事情：
-你只要把原来的sjtumaster-xetex.cls, sjtumaster-xetex.cfg, GBxxx.bst覆盖(建议备份或者使用版本控制系统)，重新编译一遍，应该就OK了。
+你只要把原来的sjtuthesis.cls, sjtuthesis.cfg, GBxxx.bst覆盖(建议备份或者使用版本控制系统)，重新编译一遍，应该就OK了。
 
 我大力推荐大家使用\href{http://git-scm.com}{git}\cndash{}一个优秀的代码控制系统\cndash{}管理整个学位论文的协作过程。使用git合并(merge)最新版本的模板，是一件非常安全且无痛的工作。
 
