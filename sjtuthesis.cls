@@ -80,6 +80,9 @@
 % bullets in the item
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
 
+% CJK-LaTeX Logo \CJKLaTeX
+\newcommand{\CJKLaTeX}{CJK--\LaTeX} 
+
 %% graphics packages
 \RequirePackage{graphicx}
 %% 并列子图
@@ -357,23 +360,16 @@
 }
 
  % 中文摘要
- \newenvironment{abstract}
- {\chapter[摘要]{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}
- {}
+ \newenvironment{abstract}{\chapter[摘要]{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
 
  % 中文关键词
- \newcommand\keywords[1]{%
-   \vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
+ \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
 
  %_ 英文摘要
- \newenvironment{englishabstract}
- {\chapter[ABSTRACT]{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}
- {}
+ \newenvironment{englishabstract}{\chapter[ABSTRACT]{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
 
  % _英文摘要
- \newcommand\englishkeywords[1]{%
-  \vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
-
+ \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
 % 目录
 \renewcommand\tableofcontents{%
