@@ -1,5 +1,5 @@
 %==================================================
-%% sjtumaster-xetex.cls for SJTU Master Thesis
+%% sjtuthesis.cls for SJTU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% Hosted on https://github.com/weijianwen/sjtu-thesis-template-latex
 %% SJTU LaTeX Forum https://bbs.sjtu.edu.cn/bbsdoc,board,TeX_LaTeX.html
@@ -7,22 +7,18 @@
 %% ==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtumaster-xetex}[2012/12/05 v0.5 sjtumaster-xetex document class]
-\newif\ifCAST@typeinfo \CAST@typeinfotrue
-\DeclareOption{notypeinfo}{\CAST@typeinfofalse}
-\newif\ifCAST@dvips \CAST@dvipsfalse
-\DeclareOption{dvips}{\CAST@dvipstrue}
-\DeclareOption{dvipdfm}{\CAST@dvipsfalse}
-\DeclareOption{pdftex}{\CAST@dvipsfalse}
+\ProvidesClass{sjtuthesis.cls}[2012/12/05 v0.5 sjtuthesis document class]
+\newif\ifsjtu@typeinfo \sjtu@typeinfotrue
+\DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
 
-%% 导入 sjtumaster-xetex.cfg 文件
-\AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
+%% 导入 sjtuthesis.cfg 文件
+\AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
 
 %% 当前模板的版本
-\newcommand{\version}{\CAST@value@templateversion}
+\newcommand{\version}{\sjtu@value@templateversion}
 
 % XeTeX Fonts
 \RequirePackage{fontspec}
@@ -83,6 +79,9 @@
 
 % bullets in the item
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
+
+% CJK-LaTeX Logo \CJKLaTeX
+\newcommand{\CJKLaTeX}{CJK--\LaTeX} 
 
 %% graphics packages
 \RequirePackage{graphicx}
@@ -157,7 +156,7 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
-\renewcommand{\lstlistingname}{\CAST@value@listingname} %% 重命名Listings标题头
+\renewcommand{\lstlistingname}{\sjtu@value@listingname} %% 重命名Listings标题头
 
 
 %% hyperref package
@@ -172,12 +171,6 @@
   plainpages=false,%
   pdfstartview=FitH
 }
-\else
-\ifpdf    % pdflatex
-\RequirePackage[pdftex,unicode]{hyperref}
-\else     % dvipdfmx or dvips
-\RequirePackage[dvipdfmx,unicode]{hyperref}
-\fi
 \fi
 
 %% enumerate 列表环境间距调节
@@ -187,44 +180,44 @@
 % \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 % \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
 
-%_  参考文献风格 added by wei.jianwen@gmail.com
+%  参考文献风格 GBT7714-2005
 \bibliographystyle{GBT7714-2005NLang}
 
-%_ CASTspace
-\newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
-\def\CAST@getfileinfo#1 #2 #3\relax#4\relax{%
-  \def\CASTfiledate{#1}%
-  \def\CASTfileversion{#2}%
-  \def\CASTfileinfo{#3}}%
-\expandafter\ifx\csname ver@sjtumaster-xetex.cls\endcsname\relax
-  \edef\reserved@a{\csname ver@ctextemp_sjtumaster-xetex.cls\endcsname}
+% sjtuspace
+\newcommand\sjtuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
+\def\sjtu@getfileinfo#1 #2 #3\relax#4\relax{%
+  \def\sjtufiledate{#1}%
+  \def\sjtufileversion{#2}%
+  \def\sjtufileinfo{#3}}%
+\expandafter\ifx\csname ver@sjtuthesis.cls\endcsname\relax
+  \edef\reserved@a{\csname ver@ctextemp_sjtuthesis.cls\endcsname}
 \else
-  \edef\reserved@a{\csname ver@sjtumaster-xetex.cls\endcsname}
+  \edef\reserved@a{\csname ver@sjtuthesis.cls\endcsname}
 \fi
-\expandafter\CAST@getfileinfo\reserved@a\relax? ? \relax\relax
-\def\CAST@underline[#1]#2{%
+\expandafter\sjtu@getfileinfo\reserved@a\relax? ? \relax\relax
+\def\sjtu@underline[#1]#2{%
   \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
-\def\CASTunderline{\@ifnextchar[\CAST@underline\CTEXunderline}
+\def\sjtuunderline{\@ifnextchar[\sjtu@underline\CTEXunderline}
 
 
-\newcommand\classification[1]{\def\CAST@value@classification{#1}}
-\newcommand\studentnumber[1]{\def\CAST@value@studentnumber{#1}}
-\newcommand\confidential[1]{\def\CAST@value@confidential{#1}}
-\newcommand\UDC[1]{\def\CAST@value@UDC{#1}}
-\newcommand\serialnumber[1]{\def\CAST@value@serialnumber{#1}}
-\newcommand\school[1]{\def\CAST@value@school{#1}}
-\newcommand\degree[1]{\def\CAST@value@degree{#1}}
-\renewcommand\title[2][\CAST@value@title]{%
-  \def\CAST@value@title{#2}
-  \def\CAST@value@titlemark{\MakeUppercase{#1}}}
-\renewcommand\author[1]{\def\CAST@value@author{#1}}
-\newcommand\advisor[1]{\def\CAST@value@advisor{#1}}
-\newcommand\advisorinstitute[1]{\def\CAST@value@advisorinstitute{#1}}
-\newcommand\major[1]{\def\CAST@value@major{#1}}
-\newcommand\submitdate[1]{\def\CAST@value@submitdate{#1}}
-\newcommand\defenddate[1]{\def\CAST@value@defenddate{#1}}
-\newcommand\institute[1]{\def\CAST@value@institute{#1}}
-\newcommand\chairman[1]{\def\CAST@value@chairman{#1}}
+\newcommand\classification[1]{\def\sjtu@value@classification{#1}}
+\newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
+\newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
+\newcommand\UDC[1]{\def\sjtu@value@UDC{#1}}
+\newcommand\serialnumber[1]{\def\sjtu@value@serialnumber{#1}}
+\newcommand\school[1]{\def\sjtu@value@school{#1}}
+\newcommand\degree[1]{\def\sjtu@value@degree{#1}}
+\renewcommand\title[2][\sjtu@value@title]{%
+  \def\sjtu@value@title{#2}
+  \def\sjtu@value@titlemark{\MakeUppercase{#1}}}
+\renewcommand\author[1]{\def\sjtu@value@author{#1}}
+\newcommand\advisor[1]{\def\sjtu@value@advisor{#1}}
+\newcommand\advisorinstitute[1]{\def\sjtu@value@advisorinstitute{#1}}
+\newcommand\major[1]{\def\sjtu@value@major{#1}}
+\newcommand\submitdate[1]{\def\sjtu@value@submitdate{#1}}
+\newcommand\defenddate[1]{\def\sjtu@value@defenddate{#1}}
+\newcommand\institute[1]{\def\sjtu@value@institute{#1}}
+\newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
 
 
 % “绘制”SJTU中文标题页
@@ -233,36 +226,36 @@
   \thispagestyle{empty}
   \begin{center}
       
-\songti\zihao{-3}\CAST@label@statement
+\songti\zihao{-3}\sjtu@label@statement
 
     \vskip \stretch{1}
-       {\heiti\zihao{3} \CAST@value@title}
+       {\heiti\zihao{3} \sjtu@value@title}
     \vskip \stretch{1}
     {\fangsong\zihao{4}}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
     \begin{tabular}{lc}
-      \heiti\CAST@label@author &\songti
-      \CASTunderline[150pt]{\CAST@value@author}
+      \heiti\sjtu@label@author &\songti
+      \sjtuunderline[150pt]{\sjtu@value@author}
     \\
-      \heiti\CAST@label@studentnumber &\songti
-      \CASTunderline[150pt]{\CAST@value@studentnumber}
+      \heiti\sjtu@label@studentnumber &\songti
+      \sjtuunderline[150pt]{\sjtu@value@studentnumber}
     \\
-      \heiti\CAST@label@advisor &\songti
-      \CASTunderline[150pt]{\CAST@value@advisor}
+      \heiti\sjtu@label@advisor &\songti
+      \sjtuunderline[150pt]{\sjtu@value@advisor}
     \\  
-      \heiti\CAST@label@major &\songti
-      \CASTunderline[150pt]{\CAST@value@major}
+      \heiti\sjtu@label@major &\songti
+      \sjtuunderline[150pt]{\sjtu@value@major}
     \\  
-      \heiti\CAST@label@defenddate &\songti
-      \CASTunderline[150pt]{\CAST@value@defenddate}
+      \heiti\sjtu@label@defenddate &\songti
+      \sjtuunderline[150pt]{\sjtu@value@defenddate}
     \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
   \clearpage
   \if@twoside
     \thispagestyle{empty}
-    \ifCAST@typeinfo
+    \ifsjtu@typeinfo
     \fi
     \cleardoublepage
   \fi
@@ -270,33 +263,33 @@
 
 
 % English Title Page
-\newcommand\englishtitle[1]{\def\CAST@value@englishtitle{#1}}
-\newcommand\englishauthor[1]{\def\CAST@value@englishauthor{#1}}
-\newcommand\englishadvisor[1]{\def\CAST@value@englishadvisor{#1}}
-\newcommand\englishschool[1]{\def\CAST@value@englishschool{#1}}
-\newcommand\englishinstitute[1]{\def\CAST@value@englishinstitute{#1}}
-\newcommand\englishdate[1]{\def\CAST@value@englishdate{#1}}
-\newcommand\englishdegree[1]{\def\CAST@value@englishdegree{#1}}
-\newcommand\englishmajor[1]{\def\CAST@value@englishmajor{#1}}
+\newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
+\newcommand\englishauthor[1]{\def\sjtu@value@englishauthor{#1}}
+\newcommand\englishadvisor[1]{\def\sjtu@value@englishadvisor{#1}}
+\newcommand\englishschool[1]{\def\sjtu@value@englishschool{#1}}
+\newcommand\englishinstitute[1]{\def\sjtu@value@englishinstitute{#1}}
+\newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
+\newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
+\newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
 % "绘制"英文标题页
 \newcommand\makeenglishtitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\normalfont\zihao{4} \CAST@label@englishstatement}
+    {\normalfont\zihao{4} \sjtu@label@englishstatement}
     \vspace*{20pt}
     \vskip\stretch{1}
-     {\zihao{-1} \CAST@value@englishtitle}
+     {\zihao{-1} \sjtu@value@englishtitle}
     \vskip \stretch{1}
-      {\normalfont\zihao{4} \CAST@value@englishauthor}
+      {\normalfont\zihao{4} \sjtu@value@englishauthor}
     \vskip \stretch{1}
-      {\normalfont\zihao{4} \CAST@label@englishadvisor}
+      {\normalfont\zihao{4} \sjtu@label@englishadvisor}
     \vskip 3pt
-      {\normalfont\zihao{4} \CAST@value@englishadvisor}
+      {\normalfont\zihao{4} \sjtu@value@englishadvisor}
     \vskip \stretch{2}
-      \normalfont\normalsize \CAST@value@englishinstitute
+      \normalfont\normalsize \sjtu@value@englishinstitute
     \vskip 30pt
-      \normalfont\normalsize \CAST@value@englishdate
+      \normalfont\normalsize \sjtu@value@englishdate
     \vskip 20pt
   \end{center}
   \clearpage
@@ -311,15 +304,15 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \CAST@value@school}\\
-  {\bf\zihao{3} \CAST@label@original}
+  {\bf\zihao{3} \sjtu@value@school}\\
+  {\bf\zihao{3} \sjtu@label@original}
   \end{center}
   \vskip 10pt
-  {\zihao{-4}\CAST@label@originalcontent}
+  {\zihao{-4}\sjtu@label@originalcontent}
   \vskip 60pt
-  \hspace{13em}\CAST@label@authorsign\hrulefill\hspace{1.5em}
+  \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
-  \hspace{16em}\CAST@label@originalDate\hspace{1em}
+  \hspace{16em}\sjtu@label@originalDate\hspace{1em}
   \clearpage
   \if@twoside
     \thispagestyle{empty}
@@ -333,16 +326,16 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \CAST@value@school}\\
-  {\bf\zihao{3} \CAST@label@authorization}
+  {\bf\zihao{3} \sjtu@value@school}\\
+  {\bf\zihao{3} \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
-  {\zihao{-4} \CAST@label@authorizationcontent}
+  {\zihao{-4} \sjtu@label@authorizationcontent}
   \vskip 60pt
   
-  \CAST@label@authorsign\hrulefill\hspace{3em}\CAST@label@Supervisorsign\hrulefill
+  \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
-  \CAST@label@originalDate\hfill\hspace{3em}\CAST@label@originalDate
+  \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
   \clearpage
   \if@twoside
     \thispagestyle{empty}
@@ -352,38 +345,31 @@
 
 \pagestyle{fancy} {
 	\fancyhf{}
-	\fancyhead[LO, RE]{\small {\it \CAST@value@school\CAST@value@degree\CAST@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
+	\fancyhead[LO, RE]{\small {\it \sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
 	\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
-	\fancyhead[LE]{\small {\it \CAST@value@titlemark}}  % 偶数页左页眉
+	\fancyhead[LE]{\small {\it \sjtu@value@titlemark}}  % 偶数页左页眉
 	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
 }
 
 \fancypagestyle{plain} { % 设置开章页页眉页脚风格
   \fancyhf{}
-  \fancyhead[LO,RE]{\small {\it \CAST@value@school\CAST@value@degree\CAST@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
+  \fancyhead[LO,RE]{\small {\it \sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
   \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
-  \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
+  \fancyhead[LE]{\small {\it \sjtu@value@titlemark}} 	 % 偶数页左页眉
   \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
 }
 
  % 中文摘要
- \newenvironment{abstract}
- {\chapter[摘要]{\CAST@value@title\vskip 20pt\CAST@label@abstract}}
- {}
+ \newenvironment{abstract}{\chapter[摘要]{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
 
- %_ 中文关键词
- \newcommand\keywords[1]{%
-   \vspace{2ex}\noindent{\bf\large \CAST@label@keywords} #1}
+ % 中文关键词
+ \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
 
  %_ 英文摘要
- \newenvironment{englishabstract}
- {\chapter[ABSTRACT]{\CAST@value@englishtitle\vskip 20pt\bfseries \CAST@label@englishabstract}}
- {}
+ \newenvironment{englishabstract}{\chapter[ABSTRACT]{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
 
  % _英文摘要
- \newcommand\englishkeywords[1]{%
-  \vspace{2ex}\noindent{\bf\large \CAST@label@englishkeywords} #1}
-
+ \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
 % 目录
 \renewcommand\tableofcontents{%
@@ -424,9 +410,9 @@
 
     
 \newenvironment{publications}[1]
-     {\chapter{\CAST@label@publications}%
-      \@mkboth{\MakeUppercase\CAST@label@publications}
-              {\MakeUppercase\CAST@label@publications}%
+     {\chapter{\sjtu@label@publications}%
+      \@mkboth{\MakeUppercase\sjtu@label@publications}
+              {\MakeUppercase\sjtu@label@publications}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
@@ -445,9 +431,9 @@
       \endlist}
 
 \newenvironment{projects}[1]
-     {\chapter{\CAST@label@projects}%
-      \@mkboth{\MakeUppercase\CAST@label@projects}
-              {\MakeUppercase\CAST@label@projects}%
+     {\chapter{\sjtu@label@projects}%
+      \@mkboth{\MakeUppercase\sjtu@label@projects}
+              {\MakeUppercase\sjtu@label@projects}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
@@ -466,7 +452,7 @@
       \endlist}
     
     \newenvironment{resume}
-  {\chapter{\CAST@label@resume}}
+  {\chapter{\sjtu@label@resume}}
   {}
   
 \newenvironment{resumesection}[1]
@@ -486,11 +472,11 @@
    {\endlist}
    
 \renewenvironment{thanks}
-  {\chapter{\CAST@label@thanks}}
+  {\chapter{\sjtu@label@thanks}}
   {}
   
 \newenvironment{symbolnote}
-  {\chapter{\CAST@label@symbolnote}}
+  {\chapter{\sjtu@label@symbolnote}}
   {} 
 
 
@@ -510,6 +496,6 @@
 \endinput
 
 %%
-%% End of file `sjtumaster-xetex.cls'.
+%% End of file `sjtuthesis.cls'.
 
 
