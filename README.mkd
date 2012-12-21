@@ -71,8 +71,8 @@ A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapte
 
 
 # Update History 
-
-* May 25, 2012. Reopen this project. Add README.
+* Dec 5, 2012. v0.5 is released. Add Makefile; refine the manual (README.pdf); replace xltxtra pacakge with metalog; replace amsmath package with mathtools.
+* May 30, 2012. v0.4 is released. Reopen this project. Add README.
 * Jan 23, 2011. Finish my master thesis. Code freeze.
 
 [README.pdf]: https://raw.github.com/weijianwen/sjtu-thesis-template-latex/master/README.pdf
