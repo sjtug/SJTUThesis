@@ -2,9 +2,9 @@
 
 This is (Xe)LaTeX template for thesis of Shanghai Jiaotong University. Currently, templates for bachelor, master, and Ph.D thesis are released in three different branches separately. You can download the zip packages from the following links. 
 
-* [SJTU Bachelor Thesis Template Download](https://github.com/weijianwen/sjtu-thesis-template-latex/archive/bachelor-thesis.zip)
-* [SJTU Master Thesis Template Download](https://github.com/weijianwen/sjtu-thesis-template-latex/archive/master-thesis.zip) 
-* [SJTU Ph.D Thesis Template Download](https://github.com/weijianwen/sjtu-thesis-template-latex/archive/phd-thesis.zip) 
+* [SJTU Bachelor Thesis Template Download](https://nodeload.github.com/weijianwen/sjtu-thesis-template-latex/zipball/bachelor-thesis)
+* [SJTU Master Thesis Template Download](https://nodeload.github.com/weijianwen/sjtu-thesis-template-latex/zipball/master-thesis) 
+* [SJTU Ph.D Thesis Template Download](https://nodeload.github.com/weijianwen/sjtu-thesis-template-latex/zipball/phd-thesis) 
 
 The original version of this template dated back about two years ago, when CJK-latex was still the most prevalent solution for TeX/LaTeX to handle CJK (Chinese, Japanese, Korean) characters. A nice guy at the school of physics, SJTU, made a LaTeX template for Ph.D thesis and posted on SJTU's [BBS](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX). I followed his steps, added some refinement and documentations, and made the template more accessible for general people.
 
@@ -16,11 +16,9 @@ I used this template to finish my master thesis, and decided to make the templat
 
 But, I think the template is still in a *primitive* state, far from a *generally-nice* work. As my understanding about TeX, Git, document preparing grows, I think it's time to refresh the template. GitHub is a place full of all kinds of geniuses, thus I host my project here in hope for receiving all kinds of refinement or feedback. 
 
-# TODO List
-* Add XeTeX/XeLaTeX template for bachelor thesis
+# Roadmap
 * Clean the template files
 * Rewrite the templates with [Pandoc](http://johnmacfarlane.net/pandoc/)
-* Refine the ```Makefile```.
 * Refine the extremely complicated ```bst``` file.
 
 # How to use it? 
