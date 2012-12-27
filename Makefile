@@ -61,7 +61,7 @@ cp: $(THESISMAIN).pdf
 	-@cp $(THESISMAIN).pdf README.pdf
 
 release: diss.tex body/*.tex  # make version=0.5.1 release
-	$(SED) -i "s/templateversion{v.*)/templateversion{v$(version))/g" sjtuthesis.cfg	
+	$(SED) -i "s/templateversion{v.*}/templateversion{v$(version)}/g" sjtuthesis.cfg	
 	$(SED) -i "s/bachelor-.*zip/bachelor-$(version).zip/g" body/chapter01.tex
 	$(SED) -i "s/master-.*zip/master-$(version).zip/g" body/chapter01.tex
 	$(SED) -i "s/phd-.*zip/phd-$(version).zip/g" body/chapter01.tex
