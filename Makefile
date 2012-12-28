@@ -14,7 +14,7 @@ all: pdf
 
 pdf: $(THESISMAIN).pdf
 
-$(THESISMAIN).pdf: $(THESISMAIN).tex body/*.tex *.cls *.cfg
+$(THESISMAIN).pdf: $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
 	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)
 	-bibtex $(THESISMAIN)
 	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)
