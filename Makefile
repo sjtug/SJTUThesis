@@ -1,24 +1,22 @@
 # Makefile for sjtu-thesis-template-latex
 
 # SED tool
-SED := gsed
+SED = gsed
 # Basename of thesis
-THESISMAIN := diss
+THESISMAIN = diss
 # Test file
-TESTFILE := test
+TESTFILE = temptest
 # pdf viewer: evince/open
-VIEWER := open
+VIEWER = open
 
 
-all: pdf
+all: $(THESISMAIN)
 
-pdf: $(THESISMAIN).pdf
-
-$(THESISMAIN).pdf: $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)
-	-bibtex $(THESISMAIN)
-	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)
-	xelatex --interaction=nonstopmode $(THESISMAIN)
+$(THESISMAIN): $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
+	xelatex -no-pdf --interaction=nonstopmode $@ > /dev/null
+	-bibtex $@ > /dev/null
+	xelatex -no-pdf --interaction=nonstopmode $@ > /dev/null
+	xelatex --interaction=nonstopmode $@
 
 view: $(THESISMAIN).pdf 
 	$(VIEWER) $(THESISMAIN).pdf &
@@ -53,9 +51,11 @@ clean:
 distclean: clean
 	-@rm -f $(THESISMAIN).pdf
 
-test: $(TESTFILE).tex
-	xelatex $(TESTFILE)
-	$(VIEWER) $(TESTFILE).pdf
+test: $(TESTFILE)
+
+$(TESTFILE): $(TESTFILE).tex
+	xelatex $@ > /dev/null
+	$(VIEWER) $@.pdf
 
 cp: $(THESISMAIN).pdf
 	-@cp $(THESISMAIN).pdf README.pdf
