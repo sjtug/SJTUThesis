@@ -8,18 +8,20 @@ THESISMAIN = diss
 TESTFILE = temptest
 # pdf viewer: evince/open
 VIEWER = open
+# version number, which can be specified when calling make like
+# make VERSION="0.5.2"
+VERSION = 0.5.2
 
+all: $(THESISMAIN).pdf
 
-all: $(THESISMAIN)
-
-$(THESISMAIN): $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	xelatex -no-pdf --interaction=nonstopmode $@ > /dev/null
-	-bibtex $@ > /dev/null
-	xelatex -no-pdf --interaction=nonstopmode $@ > /dev/null
-	xelatex --interaction=nonstopmode $@
+$(THESISMAIN).pdf: $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
+	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)  &> /dev/null 
+	-bibtex $(THESISMAIN) &> /dev/null
+	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN) &> /dev/null
+	xelatex --interaction=nonstopmode $(THESISMAIN) &> /dev/null
 
 view: $(THESISMAIN).pdf 
-	$(VIEWER) $(THESISMAIN).pdf &
+	$(VIEWER) $< &
 
 clean:
 	-@rm -f \
@@ -51,19 +53,23 @@ clean:
 distclean: clean
 	-@rm -f $(THESISMAIN).pdf
 
-test: $(TESTFILE)
+test: $(TESTFILE).pdf
 
-$(TESTFILE): $(TESTFILE).tex
-	xelatex $@ > /dev/null
-	$(VIEWER) $@.pdf
+$(TESTFILE).pdf: $(TESTFILE).tex
+	xelatex $(TESTFILE) > /dev/null
+	$(VIEWER) $@
+
+cleantest:
+	-@rm $(TESTFILE).pdf
 
 cp: $(THESISMAIN).pdf
-	-@cp $(THESISMAIN).pdf README.pdf
+	-@cp -f $< README.pdf
 
-release: diss.tex body/*.tex  # make version=0.5.1 release
-	$(SED) -i "s/templateversion{v.*}/templateversion{v$(version)}/g" sjtuthesis.cfg	
-	$(SED) -i "s/bachelor-.*zip/bachelor-$(version).zip/g" body/chapter01.tex
-	$(SED) -i "s/master-.*zip/master-$(version).zip/g" body/chapter01.tex
-	$(SED) -i "s/phd-.*zip/phd-$(version).zip/g" body/chapter01.tex
+version: diss.tex body/*.tex  
+	$(SED) -i "s/templateversion{v.*}/templateversion{v$(VERSION)}/g" sjtuthesis.cfg	
+	$(SED) -i "s/bachelor-.*zip/bachelor-$(VERSION).zip/g" body/chapter01.tex
+	$(SED) -i "s/master-.*zip/master-$(VERSION).zip/g" body/chapter01.tex
+	$(SED) -i "s/phd-.*zip/phd-$(VERSION).zip/g" body/chapter01.tex
 
-
+release: clean version all cp
+	@echo "OK. Release version $(VERSION)."
