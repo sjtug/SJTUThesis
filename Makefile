@@ -14,16 +14,18 @@ VERSION = 0.5.2
 
 all: $(THESISMAIN).pdf
 
-$(THESISMAIN).pdf: $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
+.PHONY : all clean version distclean cleantest release
+
+$(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
 	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)  &> /dev/null 
 	-bibtex $(THESISMAIN) &> /dev/null
 	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN) &> /dev/null
 	xelatex --interaction=nonstopmode $(THESISMAIN) &> /dev/null
 
-view: $(THESISMAIN).pdf 
+view : $(THESISMAIN).pdf 
 	$(VIEWER) $< &
 
-clean:
+clean :
 	-@rm -f \
 		*~ \
 		*.aux \
@@ -50,26 +52,26 @@ clean:
 		body/*.aux \
 		body/x.log 
 
-distclean: clean
+distclean : clean
 	-@rm -f $(THESISMAIN).pdf
 
-test: $(TESTFILE).pdf
+test : $(TESTFILE).pdf
 
-$(TESTFILE).pdf: $(TESTFILE).tex
+$(TESTFILE).pdf : $(TESTFILE).tex
 	xelatex $(TESTFILE) > /dev/null
 	$(VIEWER) $@
 
-cleantest:
+cleantest :
 	-@rm $(TESTFILE).pdf
 
-cp: $(THESISMAIN).pdf
+cp : $(THESISMAIN).pdf
 	-@cp -f $< README.pdf
 
-version: diss.tex body/*.tex  
+version :
 	$(SED) -i "s/templateversion{v.*}/templateversion{v$(VERSION)}/g" sjtuthesis.cfg	
 	$(SED) -i "s/bachelor-.*zip/bachelor-$(VERSION).zip/g" body/chapter01.tex
 	$(SED) -i "s/master-.*zip/master-$(VERSION).zip/g" body/chapter01.tex
 	$(SED) -i "s/phd-.*zip/phd-$(VERSION).zip/g" body/chapter01.tex
 
-release: clean version all cp
+release : clean version all cp
 	@echo "OK. Release version $(VERSION)."
