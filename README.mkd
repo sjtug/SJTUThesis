@@ -16,11 +16,9 @@ I used this template to finish my master thesis, and decided to make the templat
 
 But, I think the template is still in a *primitive* state, far from a *generally-nice* work. As my understanding about TeX, Git, document preparing grows, I think it's time to refresh the template. GitHub is a place full of all kinds of geniuses, thus I host my project here in hope for receiving all kinds of refinement or feedback. 
 
-# TODO List
-* Insert version number of the template in various files.
+# Roadmap
 * Clean the template files
 * Rewrite the templates with [Pandoc](http://johnmacfarlane.net/pandoc/)
-* Refine the ```Makefile```.
 * Refine the extremely complicated ```bst``` file.
 
 # How to use it? 
@@ -61,18 +59,21 @@ A [README.pdf] is shipped with the project, which explains the usage further.
 # FAQs and not-so-FAQs 
 
 Q: Is this template "official"?
+
 A: No. SJTU has not yet released its official TeX template for composing thesis. We make this template according to the officially-stated layout requirements and add some refinements because of aesthetic consideration.
 
 Q: Is thesis in ```PDF``` formats suitable for submitting?
+
 A: Absolutely yes. ```PDF``` is portable file format, and your PDF documents will look exactly the same as the hard-copy ones no matter what applications are used for viewing. It is totally unreasonable not accepting a PDF-formated thesis. The fact, as far as I know, is that, the SJTU library happily accepts all PDF thesis.
 
 Q: @farseerfc hosts a project named [sjtu-thesis-xelatex] on github. Is this the same thing?
+
 A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapted to bachelor-thesis format. I really appreciate his contributions and hope to merge his changes into my repo if possible (not now but in the future). However, due to strong personality, I keep in mind that the git repo for SJTU-XeTeX-template should be in 100% control of mine and progresses exactly in the pace I set. Therefore, I create this repo along with the tasks listed in TODO. These tasks should differentiate my repo from other similar projects.
 
 
 # Update History 
-
-* May 25, 2012. Reopen this project. Add README.
+* Dec 5, 2012. v0.5 is released. Add Makefile; refine the manual (README.pdf); replace xltxtra pacakge with metalog; replace amsmath package with mathtools.
+* May 30, 2012. v0.4 is released. Reopen this project. Add README.
 * Jan 23, 2011. Finish my master thesis. Code freeze.
 
 [README.pdf]: https://raw.github.com/weijianwen/sjtu-thesis-template-latex/master/README.pdf
