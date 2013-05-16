@@ -1,4 +1,5 @@
 *.bak
+*.fls
 *.aux
 *.log
 *.lot
@@ -13,3 +14,4 @@
 *~
 *.fdb_latexmk
 diss.pdf
+temptest.pdf

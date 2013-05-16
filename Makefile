@@ -17,40 +17,13 @@ all: $(THESISMAIN).pdf
 .PHONY : all clean version distclean cleantest release
 
 $(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)  &> /dev/null 
-	-bibtex $(THESISMAIN) &> /dev/null
-	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN) &> /dev/null
-	xelatex --interaction=nonstopmode $(THESISMAIN) &> /dev/null
-
+	latexmk -pdf $(THESISMAIN)
+	
 view : $(THESISMAIN).pdf 
 	$(VIEWER) $< &
 
 clean :
-	-@rm -f \
-		*~ \
-		*.aux \
-		*.bak \
-		*.bbl \
-		*.blg \
-		*.dvi \
-		*.xdv \
-		*.glo \
-		*.gls \
-		*.idx \
-		*.ilg \
-		*.ind \
-		*.ist \
-		*.log \
-		*.out \
-		*.ps \
-		*.thm \
-		*.toc \
-		*.lof \
-		*.lot \
-		*.loe \
-		*_latexmk \
-		body/*.aux \
-		body/x.log 
+	latexmk -C
 
 distclean : clean
 	-@rm -f $(THESISMAIN).pdf
@@ -58,7 +31,7 @@ distclean : clean
 test : $(TESTFILE).pdf
 
 $(TESTFILE).pdf : $(TESTFILE).tex
-	xelatex $(TESTFILE) > /dev/null
+	latexmk -pdf $(TESTFILE) > /dev/null
 	$(VIEWER) $@
 
 cleantest :
