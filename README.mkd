@@ -39,10 +39,9 @@ Type the following commands and a file named ```diss.pdf``` will be generated.
 	$ xelatex -no-pdf --interaction=nonstopmode diss
 	$ xelatex --interaction=nonstopmode diss
  
-For simplicity, you can use the prepared scripts.
+Or, you can use the GNUMake tool.
 
-* For Microsoft Windows, use ```run.bat```.
-* For *NIX, use ```run.sh```.
+	$ make; make view
 
 A [README.pdf] is shipped with the project, which explains the usage further.
 
@@ -72,15 +71,17 @@ A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapte
 
 
 # Update History 
+* Last update: May 17, 2013
+* Dec 27, 2012. v0.5.2 is released. Fix typos.
 * Dec 5, 2012. v0.5 is released. Add Makefile; refine the manual (README.pdf); replace xltxtra pacakge with metalog; replace amsmath package with mathtools.
 * May 30, 2012. v0.4 is released. Reopen this project. Add README.
 * Jan 23, 2011. Finish my master thesis. Code freeze.
 
+# See more
 [README.pdf]: https://raw.github.com/weijianwen/sjtu-thesis-template-latex/master/README.pdf
-[CTeX]: http://www.ctex.org/HomePage
+[CTeX]: http://www.ctex.org/
 [TeXLive]: http://www.tug.org/texlive/
-[MacTeX]: http://www.tug.org/mactex/2011/
+[MacTeX]: http://tug.org/mactex/
 [TeX Gyre Font]: http://www.gust.org.pl/projects/e-foundry/tex-gyre/
-[issue]: https://github.com/weijianwen/sjtu-thesis-template-latex/issues 
-[sjtu-thesis-xelatex]: https://github.com/farseerfc/sjtu-thesis-xelatex
-
+[LATEX Notes]: http://math.nju.edu.cn/~meijq/tex/lnotes.pdf
+[XeTeX/中文排版之胡言乱语]: http://goo.gl/oRNcW
