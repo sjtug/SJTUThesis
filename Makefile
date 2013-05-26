@@ -10,14 +10,14 @@ TESTFILE = temptest
 VIEWER = open
 # version number, which can be specified when calling make like
 # make VERSION="0.5.2"
-VERSION = 0.5.2
+VERSION = 0.5.3
 
 all: $(THESISMAIN).pdf
 
 .PHONY : all clean version distclean cleantest release
 
 $(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	latexmk -pdf $(THESISMAIN)
+	-latexmk -silent -f -pdf $(THESISMAIN)
 	
 view : $(THESISMAIN).pdf 
 	$(VIEWER) $< &
@@ -31,7 +31,7 @@ distclean : clean
 test : $(TESTFILE).pdf
 
 $(TESTFILE).pdf : $(TESTFILE).tex
-	latexmk -pdf $(TESTFILE) > /dev/null
+	latexmk -silent -pdf $(TESTFILE) > /dev/null
 	$(VIEWER) $@
 
 cleantest :
