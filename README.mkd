@@ -41,7 +41,7 @@ Type the following commands and a file named ```diss.pdf``` will be generated.
  
 Or, you can use the GNUMake tool.
 
-	$ make; make view
+	$ make && make view
 
 A [README.pdf] is shipped with the project, which explains the usage further.
 
@@ -71,7 +71,7 @@ A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapte
 
 
 # Update History 
-* Last update: May 17, 2013
+* Last update: May 26, 2013
 * Dec 27, 2012. v0.5.2 is released. Fix typos.
 * Dec 5, 2012. v0.5 is released. Add Makefile; refine the manual (README.pdf); replace xltxtra pacakge with metalog; replace amsmath package with mathtools.
 * May 30, 2012. v0.4 is released. Reopen this project. Add README.
