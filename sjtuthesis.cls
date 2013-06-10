@@ -92,8 +92,8 @@
 % ccaption -- bicaption
 \RequirePackage{ccaption}
 \captiondelim{\ }
-\captionnamefont{\kaishu\small}
-\captiontitlefont{\kaishu\small}
+\captionnamefont{\zihao{-5}\bf\songti}
+\captiontitlefont{\zihao{-5}\bf\songti}
 
 
 %% sort and compress citations
@@ -348,21 +348,21 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-\fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
+\fancyhead[R]{\small {\bf\zihao{-5}\sjtu@value@titlemark}}                   % 奇数页右页眉
 \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
 
 
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
   \fancyhf{}%
   \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
+  \fancyhead[R]{\small {\bf\zihao{-5}\sjtu@value@titlemark}}                   % 奇数页右页眉
   \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
 }
 
 \fancypagestyle{frontmatter}{ % "frontmatter" page style
   \fancyhf{}%
   \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页左页眉
+  \fancyhead[R]{\small {\bf\zihao{-5}\sjtu@value@titlemark}}                   % 奇数页左页眉
   \fancyfoot[C]{--- {\bf\thepage} ---}      % 页脚
 }
 
