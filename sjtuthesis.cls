@@ -92,8 +92,8 @@
 % ccaption -- bicaption
 \RequirePackage{ccaption}
 \captiondelim{\ }
-\captionnamefont{\small\bf\songti}
-\captiontitlefont{\small\bf\songti}
+\captionnamefont{\zihao{-5}\bf\songti}
+\captiontitlefont{\zihao{-5}\bf\songti}
 
 
 %% sort and compress citations
