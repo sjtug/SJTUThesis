@@ -2,10 +2,11 @@
 %%% ====================================================================
 %%%  Copyright (C) 2006 Wu Kai
 %%%  @BibTeX-style-file{
-%%%     author          = "吴凯",
-%%%     version         = "1 Beta 2 测试版",
+%%%     author          = "吴凯", "盛万章"
+%%%     version         = "1.2.1",
 %%%     date            = "2006/5/25 21:17"
-%%%     filename        = "GBT7714-2005N.bst",
+%%%     updated         = "2013/6/14 09:50"
+%%%     filename        = "GBT7714-2005-1.2.1.bst",
 %%%     address         = "上海财经大学，公共经济与管理学院，200433",
 %%%     email           = "solomonkwu@gmail.com",
 %%%     docstring       = "本文件改编自Sake J. Hogeveen的authordate1.bst文件。
@@ -14,10 +15,10 @@
 %%%                        使用方法:
 %%%                        \usepackage[numbers,sort&compress]{natbib}
 %%%                        \usepackage{hypernat}
-%%%                        \bibliographystyle{GBT7714-2005N}"
-%%%      copyright      = "使用前请核对最新的版本。您可以免费使用和传播本文件（GBT7714-2005N.bst）。
+%%%                        \bibliographystyle{GBT7714-2005-1.2.1}"
+%%%      copyright      = "使用前请核对最新的版本。您可以免费使用和传播本文件（GBT7714-2005-1.2.1.bst）。
 %%%                        作者保留修改的权利，以保证不同版本GBT7714-2005N.bst的一致性。
-%%%                        如您需要对本文件进行修改，请另存为其他名字。"
+%%%                        如您需要对本文件进行修改，请提升版本号，并对应的修改文件名。"
 %%% ====================================================================
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -444,7 +445,7 @@ FUNCTION {boldface}
 Function{upcase}
 { duplicate$ empty$
     { pop$ "" }
-    { "u" change.case$ } % Should just upcase without textsc
+    { "u" change.case$ }
   if$
 }
 FUNCTION {bib.name.font}

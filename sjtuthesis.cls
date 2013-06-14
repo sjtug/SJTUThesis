@@ -183,7 +183,7 @@
 % \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 
 %  参考文献风格 GBT7714-2005
-\bibliographystyle{GBT7714-2005NLang}
+\bibliographystyle{GBT7714-2005-1.2.1}
 
 % sjtuspace
 \newcommand\sjtuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
