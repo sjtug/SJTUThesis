@@ -58,7 +58,7 @@
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
 %% Math Tools
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs}
 \RequirePackage{upgreek}
 
 %% 定义几个常用的数学常量符号
@@ -81,7 +81,7 @@
 \renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
 
 % CJK-LaTeX Logo \CJKLaTeX
-\newcommand{\CJKLaTeX}{CJK--\LaTeX} 
+\newcommand{\CJKLaTeX}{CJK--\LaTeX}
 
 %% graphics packages
 \RequirePackage{graphicx}
@@ -180,10 +180,10 @@
 \RequirePackage{enumitem}
 % \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 % \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
-% \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
+% \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 
 %  参考文献风格 GBT7714-2005
-\bibliographystyle{GBT7714-2005NLang}
+\bibliographystyle{GBT7714-2005-1.2.1}
 
 % sjtuspace
 \newcommand\sjtuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
@@ -227,7 +227,7 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      
+
 \songti\zihao{-3}\sjtu@label@statement
 
     \vskip \stretch{1}
@@ -245,10 +245,10 @@
     \\
       \heiti\sjtu@label@advisor &\songti
       \sjtuunderline[150pt]{\sjtu@value@advisor}
-    \\  
+    \\
       \heiti\sjtu@label@major &\songti
       \sjtuunderline[150pt]{\sjtu@value@major}
-    \\  
+    \\
       \heiti\sjtu@label@defenddate &\songti
       \sjtuunderline[150pt]{\sjtu@value@defenddate}
     \end{tabular}
@@ -334,7 +334,7 @@
   \vskip 10pt
   {\zihao{-4} \sjtu@label@authorizationcontent}
   \vskip 60pt
-  
+
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
@@ -417,7 +417,7 @@
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
 
-    
+
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
       \@mkboth{\MakeUppercase\sjtu@label@publications}
@@ -459,18 +459,18 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `projects' environment}}%
       \endlist}
-    
+
     \newenvironment{resume}
   {\chapter{\sjtu@label@resume}}
   {}
-  
+
 \newenvironment{resumesection}[1]
   {{\noindent\normalfont\bfseries #1}
    \list{}{\labelwidth\z@
            \leftmargin 2\ccwd}
    \item\relax}
    {\endlist}
-   
+
 \newenvironment{resumelist}[1]
   {{\noindent\normalfont\bfseries #1}
    \list{}{\labelwidth\z@
@@ -479,16 +479,16 @@
            \listparindent\itemindent}
    \item\relax}
    {\endlist}
-   
+
 \renewenvironment{thanks}
   {\chapter{\sjtu@label@thanks}}
   {}
-  
-\newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
+
+\newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{}
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-    
+
 \newtheoremstyle{break}% name
   {}%      Space above, empty = `usual value'
   {}%      Space below
