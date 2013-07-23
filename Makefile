@@ -2,6 +2,8 @@
 
 # SED tool
 SED = gsed
+# Option for latexmk
+LATEX_OPT = -xelatex -silent -f
 # Basename of thesis
 THESISMAIN = diss
 # Test file
@@ -17,7 +19,7 @@ all: $(THESISMAIN).pdf
 .PHONY : all clean version distclean cleantest release
 
 $(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	-latexmk -silent -f -pdf $(THESISMAIN)
+	-latexmk $(LATEX_OPT) $(THESISMAIN)
 	
 view : $(THESISMAIN).pdf 
 	$(VIEWER) $< &
@@ -31,7 +33,7 @@ distclean : clean
 test : $(TESTFILE).pdf
 
 $(TESTFILE).pdf : $(TESTFILE).tex
-	latexmk -silent -pdf $(TESTFILE) > /dev/null
+	latexmk $(LATEX_OPT) $(TESTFILE) > /dev/null
 	$(VIEWER) $@
 
 cleantest :
