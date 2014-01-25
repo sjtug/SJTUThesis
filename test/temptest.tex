@@ -25,7 +25,7 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{ccaption}
-% 设置图形文件的搜索路径
+% 设置图形文件的额外搜索路径
 \graphicspath{{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
 % 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
@@ -44,19 +44,19 @@
   \centering
   \subfigure[EPS Figure]{
     \label{fig:demo:a} %% label for first subfigure
-    \includegraphics[width=0.3\textwidth]{chap2/testeps}}
+    \includegraphics[width=0.3\textwidth]{testeps}}
   \hspace{1in}
   \subfigure[PDF Figure]{
     \label{fig:demo:b} %% label for second subfigure
-    \includegraphics[angle=-90,origin=br,width=0.3\textwidth]{chap2/testpdf}}
+    \includegraphics[angle=-90,origin=br,width=0.3\textwidth]{testpdf}}
   \\ % newline
   \subfigure[PNG Figure]{
     \label{fig:demo:c} %% label for third subfigure
-    \includegraphics[width=0.3\textwidth]{chap2/testpng}}
+    \includegraphics[width=0.3\textwidth]{testpng}}
   \hspace{1in}
   \subfigure[JPG Figure]{
     \label{fig:demo:d} %% label for fourth subfigure
-    \includegraphics[width=0.3\textwidth]{chap2/testjpg}}
+    \includegraphics[width=0.3\textwidth]{testjpg}}
   \bicaption[fig:demo]{插入图像}{插入图像的例子}{Fig}{A demo}
 \end{figure}
 

@@ -23,7 +23,7 @@
 \renewcommand{\baselinestretch}{1.3}
 
 % 设置图形文件的搜索路径
-\graphicspath{{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
+\graphicspath{{fig/}{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
 
 %%========================================
 %% 在sjtuthesis.cls中定义的有用命令
@@ -89,7 +89,7 @@
 \frontmatter
 
 % 摘要
-\include{body/abstract}
+\include{tex/abstract}
 
 % 目录
 \tableofcontents
@@ -101,7 +101,7 @@
 \addcontentsline{toc}{chapter}{\listtablename}  %将表格索引加入全文目录
 
 % 主要符号、缩略词对照表
-\include{body/symbol}
+\include{tex/symbol}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% 正文
@@ -110,10 +110,10 @@
 
 
 %% 各章正文内容
-\include{body/chapter01}
-\include{body/chapter02}
-\include{body/chapter03}
-\include{body/conclusion} %% 全文总结
+\include{tex/chapter01}
+\include{tex/chapter02}
+\include{tex/chapter03}
+\include{tex/conclusion} %% 全文总结
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -126,9 +126,9 @@
 \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 
-\include{body/app1} % 更新记录
-\include{body/app2} % 麦克斯韦方程
-% \include{body/app3}
+\include{tex/app1} % 更新记录
+\include{tex/app2} % 麦克斯韦方程
+% \include{tex/app3}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -139,18 +139,18 @@
 % 参考文献
 % 使用 BibTeX
 % 包含参考文献文件.bib
-\bibliography{reference/chap1,reference/chap2}
+\bibliography{bib/chap1,bib/chap2}
 
 %% 个人简历(硕士学位论文没有个人简历要求)
-% \include{body/resume}
+% \include{tex/resume}
 
 % 致谢
-\include{body/ack}
+\include{tex/ack}
 
 % 发表文章目录
-\include{body/pub}
+\include{tex/pub}
 
 % 参与项目列表
-\include{body/projects}
+\include{tex/projects}
 
 \end{document}
