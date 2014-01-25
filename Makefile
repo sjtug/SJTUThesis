@@ -1,52 +1,49 @@
-# Makefile for sjtu-thesis-template-latex
+include config.mk
 
-# SED tool
-SED = gsed
-# Option for latexmk
-LATEX_OPT = -xelatex -silent -f
+vpath test
+
 # Basename of thesis
-THESISMAIN = diss
+THESISMAIN = thesis
 # Test file
 TESTFILE = temptest
-# pdf viewer: evince/open
-VIEWER = open
-# version number, which can be specified when calling make like
-# make VERSION="0.5.2"
-VERSION = 0.5.3
+# TEX, BIB, TEST dir
+TEX_DIR = tex
+BIB_DIR = bib
+TEST_DIR = test
+
+# Option for latexmk
+LATEXMK_OPT = -xelatex -silent -f
 
 all: $(THESISMAIN).pdf
 
-.PHONY : all clean version distclean cleantest release
+.PHONY : all clean version cleantest release cleanall
 
-$(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	-latexmk $(LATEX_OPT) $(THESISMAIN)
+$(THESISMAIN).pdf : $(THESISMAIN).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib *.cls *.cfg Makefile
+	-latexmk $(LATEXMK_OPT) $(THESISMAIN)
 	
 view : $(THESISMAIN).pdf 
 	$(VIEWER) $< &
 
 clean :
 	latexmk -C
+	rm *.xdv *.bbl
 
-distclean : clean
-	-@rm -f $(THESISMAIN).pdf
+cleanall : clean
+	rm -f $(THESISMAIN).pdf
 
 test : $(TESTFILE).pdf
 
-$(TESTFILE).pdf : $(TESTFILE).tex
-	latexmk $(LATEX_OPT) $(TESTFILE) > /dev/null
-	$(VIEWER) $@
+$(TESTFILE).pdf : test/$(TESTFILE).tex Makefile
+	cd $(TEST_DIR) && latexmk $(LATEXMK_OPT) $(TESTFILE)
 
 cleantest :
-	-@rm $(TESTFILE).pdf
+	cd $(TEST_DIR) && latexmk -C
 
-cp : $(THESISMAIN).pdf
-	-@cp -f $< README.pdf
+release :
+	@$(SED) -i "s/templateversion{v.*}/templateversion{v$(VERSION)}/g" sjtuthesis.cfg	
+	@$(SED) -i "s/bachelor-.*zip/bachelor-$(VERSION).zip/g" $(TEX_DIR)/chapter01.tex
+	@$(SED) -i "s/master-.*zip/master-$(VERSION).zip/g" $(TEX_DIR)/chapter01.tex
+	@$(SED) -i "s/phd-.*zip/phd-$(VERSION).zip/g" $(TEX_DIR)/chapter01.tex
+	cp $(THESISMAIN).pdf HOWTO.pdf
+	@echo "Release $(VERSION)"
 
-version :
-	$(SED) -i "s/templateversion{v.*}/templateversion{v$(VERSION)}/g" sjtuthesis.cfg	
-	$(SED) -i "s/bachelor-.*zip/bachelor-$(VERSION).zip/g" body/chapter01.tex
-	$(SED) -i "s/master-.*zip/master-$(VERSION).zip/g" body/chapter01.tex
-	$(SED) -i "s/phd-.*zip/phd-$(VERSION).zip/g" body/chapter01.tex
-
-release : clean version all cp
-	@echo "OK. Release version $(VERSION)."

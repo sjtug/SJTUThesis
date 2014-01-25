@@ -1,0 +1,6 @@
+# Version
+VERSION := 0.5.3
+
+# Tool
+SED := sed
+VIEWER := evince
