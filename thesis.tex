@@ -1,9 +1,6 @@
 %%==================================================
 %% diss.tex for SJTU Master Thesis
-%% based on CASthesis
-%% modified by wei.jianwen@gmail.com
 %% version: 0.3a
-%% Encoding: UTF-8
 %% last update: Dec 5th, 2010
 %%==================================================
 
@@ -14,64 +11,13 @@
 % \documentclass[cs4size, a4paper, oneside, openany]{sjtuthesis} 
 
 
-% \usepackage[sectionbib]{chapterbib}%每章都用参考文献
-
-\newboolean{DOIT}
-\setboolean{DOIT}{false}%编译某些只想自己看的内容，编译true，否则false
-
-%% 行距缩放因子(x倍字号)
-\renewcommand{\baselinestretch}{1.3}
-
-% 设置图形文件的搜索路径
-\graphicspath{{fig/}{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
-
-%%========================================
-%% 在sjtuthesis.cls中定义的有用命令
-%%========================================
-% \cndash 中文破折号
-% 数学常量
-% \me 对数常数e
-% \mi 虚数单位i
-% \mj 虚数单位j
-% \dif 直立的微分算符d为直立体。
-% 可伸长的数学箭头、等号
-% \myRightarrow{}{}
-% \myLeftarrow{}{}
-% \myBioarrow{}{}
-% \myLongEqual{}{}
-% 参考文献
-% \upcite{} 上标引用
-%%========================================
-
-
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% 封面
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-% 中文封面内容(关注内容而不是形式)
-\title{上海交通大学硕士学位论文~\XeTeX/\LaTeX~模板~\version}
-\author{李\quad{}四}
-\advisor{张三教授}
-\degree{硕士}
-\defenddate{2010年1月16日}
-\school{上海交通大学}
-\institute{物理系}
-\studentnumber{0010900990}
-\major{专业名称}
-
-% 英文封面内容(关注内容而不是表现形式)
-\englishtitle{\XeTeX/\LaTeX\, Template for SJTU Master Degree Thesis \version}
-\englishauthor{\textsc{Si Li}}
-\englishadvisor{Prof. \textsc{San Zhang}}
-\englishschool{Shanghai Jiao Tong University}
-\englishinstitute{\textsc{Depart of XXX, School of XXX} \\
-  \textsc{Shanghai Jiao Tong University} \\
-  \textsc{Shanghai, P.R.China}}
-\englishdegree{Master}
-\englishmajor{Physics}
-\englishdate{Jan. 16th, 2010}
+\include{tex/id}
 
 % 封面
 \maketitle
@@ -100,21 +46,18 @@
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}  %将表格索引加入全文目录
 
-% 主要符号、缩略词对照表
-\include{tex/symbol}
+\include{tex/symbol} % 主要符号、缩略词对照表
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% 正文
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \mainmatter
 
-
 %% 各章正文内容
 \include{tex/chapter01}
 \include{tex/chapter02}
 \include{tex/chapter03}
 \include{tex/conclusion} %% 全文总结
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% 附录(章节编号重新计算，使用字母进行编号)
@@ -136,21 +79,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \backmatter
 
-% 参考文献
-% 使用 BibTeX
-% 包含参考文献文件.bib
-\bibliography{bib/chap1,bib/chap2}
-
-%% 个人简历(硕士学位论文没有个人简历要求)
+\bibliography{bib/chap1,bib/chap2} % 参考文献
 % \include{tex/resume}
-
-% 致谢
-\include{tex/ack}
-
-% 发表文章目录
-\include{tex/pub}
-
-% 参与项目列表
-\include{tex/projects}
+\include{tex/ack} 	%% 致谢
+\include{tex/pub}	%% 发表论文
+\include{tex/projects}  %% 参与的项目
 
 \end{document}
