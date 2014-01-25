@@ -26,10 +26,10 @@ view : $(THESISMAIN).pdf
 
 clean :
 	latexmk -C
-	rm *.xdv *.bbl
+	-rm *.xdv *.bbl $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls
 
 cleanall : clean
-	rm -f $(THESISMAIN).pdf
+	-rm -f $(THESISMAIN).pdf
 
 test : $(TESTFILE).pdf
 

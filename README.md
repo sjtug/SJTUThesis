@@ -23,7 +23,14 @@ But, I think the template is still in a *primitive* state, far from a *generally
 TODO
 ------
 * Merge the bachelor, master and Ph.D thesis into one.
+* The layout units look ugly.
 * 用中文重写这份README.
+* 使用良好的"LaTeX代码风格"改写文档源代码
+	* 使用 \command{body} 形式调用命令；
+	* 避免在模板中使用 plain TeX 代码；
+* Add a ```sjtuthesiscmd.cfg```?
+* Move natbib's configuration to other part. \RequirePackage[sort&compress,numbers]{natbib}
+* Figure out which parts can be configured in ```sjtuthesis.cfg```
 
 How to use it?
 ------
