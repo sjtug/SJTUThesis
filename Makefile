@@ -47,3 +47,7 @@ release :
 	cp $(THESISMAIN).pdf HOWTO.pdf
 	@echo "Release $(VERSION)"
 
+git :
+	git push gitlab
+	git push github
+
