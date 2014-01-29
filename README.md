@@ -26,8 +26,9 @@ TODO
 * The layout units look ugly.
 * 用中文重写这份README.
 * 使用良好的"LaTeX代码风格"改写文档源代码
-	* 使用 \command{body} 形式调用命令；
+	* 使用 \command{body} 形式调用命令，避免无括号、等号指定；
 	* 避免在模板中使用 plain TeX 代码；
+* 模板和模板讲解分开——模板使用说明放在idx中，模板文件留几个空壳就可以，方便大家填入内容，也能保持模板核心内容简洁。
 * Add a ```sjtuthesiscmd.cfg```?
 * Move natbib's configuration to other part. \RequirePackage[sort&compress,numbers]{natbib}
 * Figure out which parts can be configured in ```sjtuthesis.cfg```
