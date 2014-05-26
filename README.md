@@ -22,8 +22,8 @@ But, I think the template is still in a *primitive* state, far from a *generally
 
 TODO
 ------
+* Replace bibtex with biblatex. 
 * Merge the bachelor, master and Ph.D thesis into one.
-* The layout units look ugly.
 * 用中文重写这份README.
 * 使用良好的"LaTeX代码风格"改写文档源代码
 	* 使用 \command{body} 形式调用命令，避免无括号、等号指定；
