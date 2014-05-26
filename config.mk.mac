@@ -1,6 +1,0 @@
-# Version
-VERSION := 0.5.3
-
-# Tool
-SED := gsed
-VIEWER := open

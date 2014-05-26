@@ -184,7 +184,7 @@
 }
 
 %  参考文献风格 GBT7714-2005
-\bibliographystyle{GBT7714-2005NLang}
+\bibliographystyle{bst/GBT7714-2005NLang}
 
 %==========
 % Segment 4. Draw the sjtuthesis
