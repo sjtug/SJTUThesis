@@ -22,7 +22,7 @@ But, I think the template is still in a *primitive* state, far from a *generally
 
 TODO
 ------
-* Replace bibtex with biblatex. 
+* Replace bibtex with biber. 
 * Merge the bachelor, master and Ph.D thesis into one.
 * 用中文重写这份README.
 * 使用良好的"LaTeX代码风格"改写文档源代码
@@ -89,6 +89,7 @@ A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapte
 [TeX Gyre Font]: http://www.gust.org.pl/projects/e-foundry/tex-gyre/
 [LATEX Notes]: http://math.nju.edu.cn/~meijq/tex/lnotes.pdf
 [XeTeX/中文排版之胡言乱语]: http://goo.gl/oRNcW
+[Biber: A BibTeX replacement for users of BibLaTeX]: http://biblatex-biber.sourceforge.net/
 
 # Update History 
 * Last update: May 26, 2013
