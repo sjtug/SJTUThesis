@@ -9,9 +9,14 @@
 
 % 字号选项: c5size 五号(默认) cs4size 小四
 % 双面打印（注意字号设置）
-\documentclass[cs4size, a4paper, twoside]{sjtuthesis} 
+%\documentclass[cs4size, a4paper, twoside]{sjtuthesis} 
 % 单面打印（注意字号设置）
-% \documentclass[cs4size, a4paper, oneside, openany]{sjtuthesis} 
+\documentclass[c5size, a4paer, oneside, openany]{sjtuthesis}
+ 
+\usepackage{geometry}
+\geometry{paperwidth=21cm,paperheight=29.7cm}
+\geometry{left=3.18cm,right=3.18cm, top=33.5mm,bottom=2.54cm}
+\geometry{headheight=1.9cm,headsep=5pt,footskip=12.5mm}
 
 
 % \usepackage[sectionbib]{chapterbib}%每章都用参考文献
@@ -20,7 +25,7 @@
 \setboolean{DOIT}{false}%编译某些只想自己看的内容，编译true，否则false
 
 %% 行距缩放因子(x倍字号)
-\renewcommand{\baselinestretch}{1.3}
+%\renewcommand{\baselinestretch}{1.3}
 
 % 设置图形文件的搜索路径
 \graphicspath{{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
