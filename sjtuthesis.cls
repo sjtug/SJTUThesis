@@ -21,9 +21,11 @@
 \newcommand{\version}{\sjtu@value@templateversion}
 
 % XeTeX Fonts
-\RequirePackage{fontspec}
+%\RequirePackage{fontspec}
 \RequirePackage{metalogo} % Some Logo
 \setmainfont{TeX Gyre Termes}
+
+\newfontfamily\arial{Arial}
 
 %% 页边距设置
 \oddsidemargin 1.5 true cm
@@ -46,6 +48,10 @@
 
 %% 选择编译
 \RequirePackage{ifthen}
+
+%页眉页脚控制
+\RequirePackage{fancyhdr}
+\RequirePackage{titletoc}
 
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
@@ -92,8 +98,8 @@
 % ccaption -- bicaption
 \RequirePackage{ccaption}
 \captiondelim{\ }
-\captionnamefont{\kaishu\small}
-\captiontitlefont{\kaishu\small}
+\captionnamefont{\zihao{5}\bf\songti}
+\captiontitlefont{\zihao{5}\bf\songti}
 
 
 %% sort and compress citations
@@ -168,8 +174,8 @@
 \hypersetup{
   bookmarksnumbered,%
   colorlinks,%
-  linkcolor=blue,%
-  citecolor=blue,%
+  linkcolor=black,%
+  citecolor=black,%
   plainpages=false,%
   pdfstartview=FitH
 }
@@ -178,9 +184,10 @@
 %% enumerate 列表环境间距调节
 % Ref: http://bbs.ctex.org/viewthread.php?tid=52331&page=1
 \RequirePackage{enumitem}
-% \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-% \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
-% \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
+\setenumerate[(1)]{itemsep=0pt,partopsep=0pt,parsep=0pt,topsep=0pt,itemindent=1.4em,labelsep=0.7em}
+\setitemize[(1)]{itemsep=0pt,partopsep=0pt,parsep=0pt,topsep=0pt,itemindent=1.4em,labelsep=0.7em}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=0pt,topsep=0pt,itemindent=1.4em,labelsep=0.7em}  
+\renewcommand{\labelenumi}{(\arabic{enumi})}
 
 %  参考文献风格 GBT7714-2005
 \bibliographystyle{GBT7714-2005NLang}
@@ -227,30 +234,40 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      
-\songti\zihao{-3}\sjtu@label@statement
-
-    \vskip \stretch{1}
-       {\heiti\zihao{3} \sjtu@value@title}
-    \vskip \stretch{1}
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[angle=0,origin=br,width=13cm]{sjtu.jpg}
+\end{figure}
+\heiti\zihao{-2}\sjtu@label@sjtu
+\vskip 15pt
+\kaishu\zihao{1}\sjtu@label@statement
+\vskip 5pt
+\heiti\zihao{-2}\sjtu@label@bacheloreng
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[angle=0,origin=br,width=4cm]{sjtubadge.png}
+\end{figure}
+    \vskip 20pt
+	{\heiti\zihao{3} \sjtu@value@title}
+    \vskip 5pt
     {\fangsong\zihao{4}}
     \def\tabcolsep{1pt}
-    \def\arraystretch{1.5}
+    \def\arraystretch{1}
     \begin{tabular}{lc}
-      \heiti\sjtu@label@author &\songti
+      \kaishu\sjtu@label@author &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@author}
     \\
-      \heiti\sjtu@label@studentnumber &\songti
+      \kaishu\sjtu@label@studentnumber &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@studentnumber}
-    \\
-      \heiti\sjtu@label@advisor &\songti
+    \\  
+      \kaishu\sjtu@label@major &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@major}
+	\\
+      \kaishu\sjtu@label@advisor &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@advisor}
     \\  
-      \heiti\sjtu@label@major &\songti
-      \sjtuunderline[150pt]{\sjtu@value@major}
-    \\  
-      \heiti\sjtu@label@defenddate &\songti
-      \sjtuunderline[150pt]{\sjtu@value@defenddate}
+      \kaishu\sjtu@label@institute &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@institute}
     \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
@@ -306,14 +323,17 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \sjtu@value@school}\\
-  {\bf\zihao{3} \sjtu@label@original}
+  {\bf\zihao{2} \sjtu@value@school}\\
+  \vskip 10pt
+  {\bf\zihao{2} \sjtu@label@original}
   \end{center}
   \vskip 10pt
-  {\zihao{-4}\sjtu@label@originalcontent}
-  \vskip 60pt
+  \begin{spacing}{2}
+  \noindent\zihao{4}\sjtu@label@originalcontent
+  \end{spacing}
+  \vskip 120pt
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
-  \vskip 15pt
+  \vskip 50pt
   \hspace{16em}\sjtu@label@originalDate\hspace{1em}
   \clearpage
   \if@twoside
@@ -328,13 +348,15 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \sjtu@value@school}\\
-  {\bf\zihao{3} \sjtu@label@authorization}
+  {\bf\zihao{2} \sjtu@value@school}\\
+  \vskip 10pt
+  {\bf\zihao{2} \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
-  {\zihao{-4} \sjtu@label@authorizationcontent}
-  \vskip 60pt
-  
+  \begin{spacing}{1.5}
+  \noindent\zihao{4} \sjtu@label@authorizationcontent
+  \end{spacing}
+  \vskip 60pt  
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
@@ -349,14 +371,14 @@
 \fancyhf{}
 \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
 \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
+\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{lastpage}}~页~}      % 页脚
 
 
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
   \fancyhf{}%
   \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
   \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
+  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{lastpage}}~页~}      % 页脚
 }
 
 \fancypagestyle{frontmatter}{ % "frontmatter" page style
@@ -374,11 +396,19 @@
  \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
 
  % 英文摘要
- \newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
+ \newenvironment{englishabstract}{\chapter*{~\\{}\MakeUppercase\sjtu@value@englishtitle\vskip 20pt\textbf{\sjtu@label@englishabstract}}}{}
 
  % 英文摘要
  \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
+ \titlecontents{chapter}[0pt]{\normalfont\zihao{5}\vspace{.3\baselineskip}}
+    {\thecontentslabel}{}
+    {\hspace{0.5em}\titlerule*[8pt]{$.$}\contentspage}
+ \titlecontents{chapter*}[0pt]{\normalfont\zihao{5}\vspace{.3\baselineskip}}
+    {\thecontentslabel}{}
+    {\hspace{0.5em}\titlerule*[8pt]{$.$}\contentspage}
+
+ 
 % 目录
 \renewcommand\tableofcontents{%
   \if@twocolumn
@@ -386,7 +416,7 @@
   \else
   \@restonecolfalse
   \fi
-  \chapter*{\contentsname}%目录里显示“目录”，否则\chapter*
+  \chapter*{\normalfont\zihao{3}\heiti{目\quad{}录}}%目录里显示“目录”，否则\chapter*
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \@starttoc{toc}%
   \if@restonecol\twocolumn\fi
@@ -398,7 +428,7 @@
 
 %_ 参考文献环境
 \renewenvironment{thebibliography}[1]
-     {\chapter{\bibname}%
+     {\chapter[\bibname]{\normalfont\zihao{3}\heiti\bibname\vspace{0.5em}}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -416,7 +446,6 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
-
     
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
@@ -460,31 +489,64 @@
        {\@latex@warning{Empty `projects' environment}}%
       \endlist}
     
-    \newenvironment{resume}
-  {\chapter{\sjtu@label@resume}}
-  {}
+%    \newenvironment{resume}
+%  {\chapter{\sjtu@label@resume}}
+%  {}
   
-\newenvironment{resumesection}[1]
-  {{\noindent\normalfont\bfseries #1}
-   \list{}{\labelwidth\z@
-           \leftmargin 2\ccwd}
-   \item\relax}
-   {\endlist}
+%\newenvironment{resumesection}[1]
+%  {{\noindent\normalfont\bfseries #1}
+%   \list{}{\labelwidth\z@
+%           \leftmargin 2\ccwd}
+%   \item\relax}
+%   {\endlist}
    
-\newenvironment{resumelist}[1]
-  {{\noindent\normalfont\bfseries #1}
-   \list{}{\labelwidth\z@
-           \leftmargin 4\ccwd
-           \itemindent -2\ccwd
-           \listparindent\itemindent}
-   \item\relax}
-   {\endlist}
+%\newenvironment{resumelist}[1]
+%  {{\noindent\normalfont\bfseries #1}
+%   \list{}{\labelwidth\z@
+%           \leftmargin 4\ccwd
+%           \itemindent -2\ccwd
+%           \listparindent\itemindent}
+%   \item\relax}
+%   {\endlist}
    
 \renewenvironment{thanks}
-  {\chapter{\sjtu@label@thanks}}
+  {
+  \chapter[\sjtu@label@thanks]{\normalfont\heiti\sjtu@label@thanks}
+   \label{lastpage}
+  }
   {}
   
-\newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
+\newenvironment{symbolnote}
+  {
+   \chapter{\sjtu@label@symbolnote}
+   }
+   {} 
+
+\newenvironment{bigabstract}
+  {
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}} % 奇数页左页眉
+  \fancyhead[R]{\small {\it \sjtu@value@englishtitle}} % 奇数页左页眉
+  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\pageref{bigabstractlast}}~页~} % 页脚
+%%  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~} % 页脚
+
+
+  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+    \fancyhf{}
+    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}} % 奇数页左页眉
+    \fancyhead[R]{\small {\it \sjtu@value@englishtitle}} % 奇数页左页眉
+    \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\pageref{bigabstractlast}}~页~} % 页脚
+%%    \fancyfoot[C]{\small ~第~{\bf\thepage}~页~} % 页脚
+    %\renewcommand{\headrulewidth}{0pt}%
+    %\renewcommand{\footrulewidth}{0pt}%
+    }
+
+
+  \chapter*{\normalfont\zihao{3}\bf\textsc\sjtu@value@englishtitle\vskip 20pt}
+  \setcounter{page}{1}
+  }
+  {\label{bigabstractlast}}
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
