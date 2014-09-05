@@ -370,25 +370,33 @@
   \fi
 }
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-\fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{lastpage}}~页~}      % 页脚
+
+\newcommand{\stylenormal}{
+	\fancyhf{}
+	\fancyhead[L]{\small {\it \includegraphics[width=43.6mm]{sjtubanner}}}  % 奇数页左页眉
+	\fancyhead[R]{\small {\normalfont\heiti\zihao{-5} \sjtu@value@titlemark}}                   % 奇数页右页眉
+	\fancyfoot[C]{\small ~第~{\thepage}~页~共~{\pageref{lastpage}}~页~}      % 页脚
 
 
-\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
-  \fancyhf{}%
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{lastpage}}~页~}      % 页脚
+	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+		\fancyhf{}%
+		\fancyhead[L]{\small {\it \includegraphics[width=43.6mm]{sjtubanner}}}  % 奇数页左页眉
+		\fancyhead[R]{\small {\normalfont\heiti\zihao{-5} \sjtu@value@titlemark}}                   % 奇数页右页眉
+		\fancyfoot[C]{\small ~第~{\thepage}~页~共~{\pageref{lastpage}}~页~}      % 页脚
+	}
 }
+\pagestyle{fancy}
+\stylenormal
 
-\fancypagestyle{frontmatter}{ % "frontmatter" page style
-  \fancyhf{}%
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页左页眉
-  \fancyfoot[C]{--- {\bf\thepage} ---}      % 页脚
+\newcommand{\stylefrontmatter}{
+	\fancyhf{}%
+	\fancyhead[L]{\small {\it \includegraphics[width=43.6mm]{sjtubanner}}}  % 奇数页左页眉
+	\fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页左页眉
+	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+		\fancyhf{}%
+		\fancyhead[L]{\small {\it \includegraphics[width=43.6mm]{sjtubanner}}}  % 奇数页左页眉
+		\fancyhead[R]{\small {\normalfont\heiti\zihao{-5} \sjtu@value@titlemark}}                   % 奇数页右页眉
+	}
 }
 
 
@@ -527,29 +535,24 @@
 
 \newenvironment{bigabstract}
   {
-  \pagestyle{fancy}
-  \fancyhf{}
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}} % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@englishtitle}} % 奇数页左页眉
-  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\pageref{bigabstractlast}}~页~} % 页脚
-%%  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~} % 页脚
-
-
-  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
-    \fancyhf{}
-    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}} % 奇数页左页眉
-    \fancyhead[R]{\small {\it \sjtu@value@englishtitle}} % 奇数页左页眉
-    \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\pageref{bigabstractlast}}~页~} % 页脚
-%%    \fancyfoot[C]{\small ~第~{\bf\thepage}~页~} % 页脚
-    %\renewcommand{\headrulewidth}{0pt}%
-    %\renewcommand{\footrulewidth}{0pt}%
-    }
-
-
-  \chapter*{\normalfont\zihao{3}\bf\textsc\sjtu@value@englishtitle\vskip 20pt}
-  \setcounter{page}{1}
+	  \chapter*{\normalfont\zihao{3}\bf\textsc\sjtu@value@englishtitle\vskip 20pt}
+	  \setcounter{page}{1}
   }
   {\label{bigabstractlast}}
+
+\newcommand{\stylebigabstract}{
+	\fancyhf{}
+	\fancyhead[L]{\small {\it \includegraphics[width=43.6mm]{sjtubanner}}}  % 奇数页左页眉
+	\fancyhead[R]{\normalfont\heiti\zihao{-5}\sjtu@value@englishtitle}
+	\fancyfoot[C]{\zihao{-5} ~第~{\thepage}~页~共~\pageref{page:bigabstract}~页~} % 页脚
+
+	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+		\fancyhf{}
+		\fancyhead[L]{\small {\it \includegraphics[width=43.6mm]{sjtubanner}}}  % 奇数页左页眉
+		\fancyhead[R]{\normalfont\heiti\zihao{-5}\sjtu@value@englishtitle}
+		\fancyfoot[C]{\zihao{-5} ~第~{\thepage}~页~共~\pageref{page:bigabstract}~页~} % 页脚
+	}
+}
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
