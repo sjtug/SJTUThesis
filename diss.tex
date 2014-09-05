@@ -92,6 +92,7 @@
 %% 前言
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \frontmatter
+\stylefrontmatter
 
 % 摘要
 \include{body/abstract}
@@ -99,9 +100,9 @@
 % 目录
 \tableofcontents
 % 表格索引
-\listoftables
+% \listoftables
 % 插图索引
-\listoffigures
+% \listoffigures
 
 % \addcontentsline{toc}{chapter}{\listfigurename} %将表格索引加入全文目录
 % \addcontentsline{toc}{chapter}{\listtablename}  %将图索引加入全文目录
@@ -113,7 +114,7 @@
 %% 正文
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \mainmatter
-
+\stylenormal
 
 %% 各章正文内容
 \include{body/chapter01}
@@ -155,9 +156,12 @@
 \include{body/ack}
 
 % 发表文章目录
-\include{body/pub}
+% \include{body/pub}
 
 % 参与项目列表
-\include{body/projects}
+% \include{body/projects}
+
+% 英文大摘要
+\include{body/bigabstract}
 
 \end{document}
