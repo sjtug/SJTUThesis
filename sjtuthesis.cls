@@ -41,6 +41,9 @@
 %% 上边距
 \addtolength{\voffset}{-0.5cm}
 
+%% 行距控制
+\RequirePackage{setspace}
+
 %% Command -- Clear Double Page
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \thispagestyle{empty}%
