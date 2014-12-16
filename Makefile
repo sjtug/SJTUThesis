@@ -19,7 +19,7 @@ all: $(THESIS).pdf
 .PHONY : all clean version cleantest release cleanall
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib *.cls *.cfg Makefile
-	-latexmk $(LATEXMK_OPT) $~
+	-latexmk $(LATEXMK_OPT) $(THESIS)
 
 clean :
 	latexmk -C
