@@ -7,12 +7,27 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis.cls}[2012/12/05 v0.5 sjtuthesis document class]
-\newif\ifsjtu@typeinfo \sjtu@typeinfotrue
-\DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
+\ProvidesClass{sjtuthesis}[2014/12/16 v0.9 Shanghai Jiao Tong University Template]
+% _DEPLICATE_ \newif\ifsjtu@typeinfo \sjtu@typeinfotrue
+% _DEPLICATE_ \DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
+\def\version{v0.5.3}
+\newif\ifsjtu@bachelor\sjtu@bachelorfalse
+\newif\ifsjtu@master\sjtu@masterfalse
+\newif\ifsjtu@doctor\sjtu@doctorfalse
+\DeclareOption{bachelor}{\sjtu@bachelortrue}
+\DeclareOption{master}{\sjtu@mastertrue}
+\DeclareOption{doctor}{\sjtu@doctortrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
-\LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
+\LoadClass[a4paper,fancyhdr,fntef,UTF8,adobefonts]{ctexbook}
+\ifsjtu@bachelor\relax\else
+  \ifsjtu@master\relax\else
+    \ifsjtu@doctor\relax\else
+      \ClassError{sjtuthesis}%
+      		{You have to specify one of thesis options: bachelor, master or doctor.}{}
+    \fi
+  \fi
+\fi
 
 %% sjtuthesis.cls segments
 % 0. Import sjtuthesis.cfg
@@ -26,10 +41,9 @@
 %==========
 
 %% 导入 sjtuthesis.cfg 文件
-\AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
+% _DEPLICATE_ \AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
+\AtEndOfClass{\input{sjtuthesis.cfg}}
 
-%% 当前模板的版本
-\newcommand{\version}{\sjtu@value@templateversion}
 
 %==========
 % Segment 1. Import LaTeX packages.
@@ -80,10 +94,16 @@
 \newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
-% \cleardoublepage -- Clear Double Page
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-  \thispagestyle{empty}%
-  \hbox{}\newpage\fi\fi}
+\def\cleardoublepage{\clearpage%
+	\if@twoside%
+	  \ifodd
+	    \c@page%
+	  \else%
+  	    \thispagestyle{empty}%
+  	    \hbox{}%
+	    \newpage%
+	  \fi%
+	\fi}
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
@@ -258,9 +278,9 @@
   \vskip \stretch{0.5}
   \clearpage
   \if@twoside
-    \thispagestyle{empty}
-    \ifsjtu@typeinfo
-    \fi
+    % _DEPLICATE_ \thispagestyle{empty}
+    % _DEPLICATE_ \ifsjtu@typeinfo
+    % _DEPLICATE_ \fi
     \cleardoublepage
   \fi
 }

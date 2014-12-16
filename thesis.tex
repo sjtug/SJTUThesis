@@ -1,88 +1,61 @@
 %%==================================================
-%% diss.tex for SJTU Master Thesis
-%% version: 0.3a
-%% last update: Dec 5th, 2010
+%% thesis.tex
 %%==================================================
 
-% 字号选项: c5size 五号(默认) cs4size 小四
-% 双面打印（注意字号设置）
-\documentclass[cs4size, a4paper, twoside]{sjtuthesis} 
-% 单面打印（注意字号设置）
-% \documentclass[cs4size, a4paper, oneside, openany]{sjtuthesis} 
-
+% 双面打印
+\documentclass[cs4size,twoside,doctor]{sjtuthesis} 
+% 单面打印 \documentclass[cs4size,oneside,openany]{sjtuthesis} 
+% 使用五号字作为正文字体：cs4size -> c5size
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 封面
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
+%% 无编号内容：中英文论文封面、授权页
 \include{tex/id}
-
-% 封面
 \maketitle
-
-% 英文封面
 \makeenglishtitle
-
-% 论文原创性声明和使用授权
 \makeDeclareOriginal
 \makeDeclareAuthorization
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 前言
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\frontmatter
+\frontmatter 	% 使用罗马数字对前言编号
 
-% 摘要
+%% 摘要
 \include{tex/abstract}
 
-% 目录
+%% 目录、插图目录、表格目录
 \tableofcontents
-% 插图索引
 \listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename} %将图索引加入全文目录
-% 表格索引
+\addcontentsline{toc}{chapter}{\listfigurename} %将插图目录加入全文目录
 \listoftables
-\addcontentsline{toc}{chapter}{\listtablename}  %将表格索引加入全文目录
+\addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
 
 \include{tex/symbol} % 主要符号、缩略词对照表
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 正文
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\mainmatter
+\mainmatter	% 使用阿拉伯数字对正文编号
 
-%% 各章正文内容
+%% 正文内容
 \include{tex/chapter01}
 \include{tex/chapter02}
 \include{tex/chapter03}
-\include{tex/conclusion} %% 全文总结
+\include{tex/conclusion}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 附录(章节编号重新计算，使用字母进行编号)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\appendix
-
-% 附录中编号形式是"A-1"的样子
-\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}
+\appendix	% 使用英文字母对附录编号，重新定义附录中的公式、图图表编号样式
+\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
 \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 
-\include{tex/app1} % 更新记录
-\include{tex/app2} % 麦克斯韦方程
-% \include{tex/app3}
+%% 附录内容，本科学位论文可以用翻译的文献替代。
+\include{tex/app1}
+\include{tex/app2}
 
+\backmatter	% 文后无编号部分 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% 文后(无章节编号)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\backmatter
+%% 参考资料
+\bibliography{bib/chap1,bib/chap2}
 
-\bibliography{bib/chap1,bib/chap2} % 参考文献
-% \include{tex/resume}
+%% 致谢、发表论文、参与项目、简历
 \include{tex/ack} 	%% 致谢
 \include{tex/pub}	%% 发表论文
 \include{tex/projects}  %% 参与的项目
+% \include{tex/resume}
 
 \end{document}
