@@ -4,65 +4,84 @@
 %% Hosted on https://github.com/weijianwen/sjtu-thesis-template-latex
 %% SJTU LaTeX Forum https://bbs.sjtu.edu.cn/bbsdoc,board,TeX_LaTeX.html
 %% Encoding: UTF-8
-%% ==================================================
+%%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis.cls}[2012/12/05 v0.5 sjtuthesis document class]
-\newif\ifsjtu@typeinfo \sjtu@typeinfotrue
-\DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
+\ProvidesClass{sjtuthesis}[2014/12/16 v0.9 Shanghai Jiao Tong University Template]
+% _DEPLICATE_ \newif\ifsjtu@typeinfo \sjtu@typeinfotrue
+% _DEPLICATE_ \DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
+\def\version{v0.5.3}
+\newif\ifsjtu@bachelor\sjtu@bachelorfalse
+\newif\ifsjtu@master\sjtu@masterfalse
+\newif\ifsjtu@doctor\sjtu@doctorfalse
+\DeclareOption{bachelor}{\sjtu@bachelortrue}
+\DeclareOption{master}{\sjtu@mastertrue}
+\DeclareOption{doctor}{\sjtu@doctortrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
-\LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
+\LoadClass[a4paper,fancyhdr,fntef,UTF8,adobefonts]{ctexbook}
+\ifsjtu@bachelor\relax\else
+  \ifsjtu@master\relax\else
+    \ifsjtu@doctor\relax\else
+      \ClassError{sjtuthesis}%
+      		{You have to specify one of thesis options: bachelor, master or doctor.}{}
+    \fi
+  \fi
+\fi
+
+%% sjtuthesis.cls segments
+% 0. Import sjtuthesis.cfg
+% 1. Import and configure LaTeX packages.
+% 2. Define general-purpose LaTeX commands. 
+% 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
+% 4. Draw the sjtuthesis
+
+%==========
+% Segment 0. Import sjtuthesis.cfg 
+%==========
 
 %% 导入 sjtuthesis.cfg 文件
-\AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
+% _DEPLICATE_ \AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
+\AtEndOfClass{\input{sjtuthesis.cfg}}
 
-%% 当前模板的版本
-\newcommand{\version}{\sjtu@value@templateversion}
 
-% XeTeX Fonts
-\RequirePackage{fontspec}
-\RequirePackage{metalogo} % Some Logo
-\setmainfont{TeX Gyre Termes}
+%==========
+% Segment 1. Import LaTeX packages.
+%==========
 
-%% 页边距设置
-\oddsidemargin 1.5 true cm
-\if@twoside
-  \evensidemargin 0 true cm
-\else
-  \evensidemargin 1.5 true cm
-\fi
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
-%% 上边距
-\addtolength{\voffset}{-0.5cm}
-
-%% Command -- Clear Double Page
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-  \thispagestyle{empty}%
-  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-
-%% 选择编译
 \RequirePackage{ifthen}
-
-%% check pdfTeX mode
-\RequirePackage{ifpdf}
-
-%% 复杂表格
+\RequirePackage{lastpage}
+\RequirePackage{fontspec}
+\RequirePackage{metalogo}
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
-\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
-
-%% Math Tools
 \RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
 \RequirePackage{upgreek}
+\RequirePackage{graphicx}
+\RequirePackage{subfigure}
+\RequirePackage{ccaption}
+\RequirePackage[sort&compress,numbers]{natbib}
+\RequirePackage{xcolor}
+\RequirePackage{marvosym}
+\RequirePackage{wasysym}
+\RequirePackage{listings}
+\RequirePackage[xetex]{hyperref}
+\RequirePackage{enumitem}
 
-%% 定义几个常用的数学常量符号
-\newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
+%==========
+% Segment 2. Define general-purpose LaTeX commands.
+%==========
+
+% User defined command list
+%% \me \mi \mj \dif \cleardoublepage \myRightarrow \myLeftarrow \myBigarrow \myLongEqual \cndash \CJKLaTeX \upcite
+
+% A new column type
+\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+% upper math letter
+\newcommand{\me}{\mathrm{e}} 
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\mathrm{d}}
@@ -71,64 +90,80 @@
 \def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
 \def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
 \def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
-
 \newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
 \newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
-% bullets in the item
-\renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
+\def\cleardoublepage{\clearpage%
+	\if@twoside%
+	  \ifodd
+	    \c@page%
+	  \else%
+  	    \thispagestyle{empty}%
+  	    \hbox{}%
+	    \newpage%
+	  \fi%
+	\fi}
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
 
-%% graphics packages
-\RequirePackage{graphicx}
-%% 并列子图
-\RequirePackage{subfigure}
-%% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
+% Upper quote
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+
+% cndash
+\newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
+
+%==========
+% Segment 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
+%==========
+
+% Set the mainfont
+\setmainfont{TeX Gyre Termes}
+
+% Page Layout
+\oddsidemargin 1.5 true cm
+\textheight 21 true cm
+\textwidth 14.5 true cm
+\headheight 15pt
+\parskip 0.5ex plus 0.25ex minus 0.25ex
+\addtolength{\voffset}{-0.5cm} %% 上边距
+\if@twoside
+  \evensidemargin 0 true cm
+\else
+  \evensidemargin 1.5 true cm
+\fi
+%% 行距缩放因子(x倍字号)
+\renewcommand{\baselinestretch}{1.3}
+
+% bullets in the item
+\renewcommand{\labelitemi}{\ensuremath{\bullet}}
+
+%% Graphic path & file extension
+\graphicspath{{fig/}{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
-% ccaption -- bicaption
-\RequirePackage{ccaption}
+
+% Caption setting in ccaption pacakge
 \captiondelim{\ }
 \captionnamefont{\kaishu\small}
 \captiontitlefont{\kaishu\small}
 
-
-%% sort and compress citations
-\RequirePackage[sort&compress,numbers]{natbib}
-% 上标引用
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
-
-% 将浮动参数设为较宽松的值
+% Floating parameters
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
 
-
 % 定公式、图、表编号为"3-1"的形式，即分隔符由.变为短杠
-\renewcommand\theequation{\arabic{chapter}--\arabic{equation}}
-\renewcommand\thefigure{\arabic{chapter}--\arabic{figure}}
-\renewcommand\thetable{\arabic{chapter}--\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 
-% 颜色宏包
-\RequirePackage{xcolor}
+% Title
+\renewcommand{\lstlistingname}{\sjtu@value@listingname} %% 重命名Listings标题头
 
-% LastPage
-\RequirePackage{lastpage}
-
-%% 一些有趣的符号图案
-\RequirePackage{marvosym}
-\RequirePackage{wasysym}
-
-
-% 中文破折号
-\newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
-
-% listings 源代码显示宏包
-\RequirePackage{listings}
+% Setting Package listings/lstlistings
 \lstset{tabsize=4, %
   frame=shadowbox, %把代码用带有阴影的框圈起来
   commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
@@ -158,13 +193,8 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
-\renewcommand{\lstlistingname}{\sjtu@value@listingname} %% 重命名Listings标题头
 
-
-%% hyperref package
-
-\ifxetex  % xelatex
-\RequirePackage[xetex]{hyperref}
+%% setting hyperref package
 \hypersetup{
   bookmarksnumbered,%
   colorlinks,%
@@ -173,19 +203,14 @@
   plainpages=false,%
   pdfstartview=FitH
 }
-\fi
-
-%% enumerate 列表环境间距调节
-% Ref: http://bbs.ctex.org/viewthread.php?tid=52331&page=1
-\RequirePackage{enumitem}
-% \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-% \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
-% \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
 
 %  参考文献风格 GBT7714-2005
-\bibliographystyle{GBT7714-2005NLang}
+\bibliographystyle{bst/GBT7714-2005NLang}
 
-% sjtuspace
+%==========
+% Segment 4. Draw the sjtuthesis
+%==========
+
 \newcommand\sjtuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 \def\sjtu@getfileinfo#1 #2 #3\relax#4\relax{%
   \def\sjtufiledate{#1}%
@@ -200,7 +225,6 @@
 \def\sjtu@underline[#1]#2{%
   \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\sjtuunderline{\@ifnextchar[\sjtu@underline\CTEXunderline}
-
 
 \newcommand\classification[1]{\def\sjtu@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
@@ -220,7 +244,6 @@
 \newcommand\defenddate[1]{\def\sjtu@value@defenddate{#1}}
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
-
 
 % “绘制”SJTU中文标题页
 \renewcommand\maketitle[1]{%
@@ -256,9 +279,9 @@
   \vskip \stretch{0.5}
   \clearpage
   \if@twoside
-    \thispagestyle{empty}
-    \ifsjtu@typeinfo
-    \fi
+    % _DEPLICATE_ \thispagestyle{empty}
+    % _DEPLICATE_ \ifsjtu@typeinfo
+    % _DEPLICATE_ \fi
     \cleardoublepage
   \fi
 }
@@ -366,37 +389,21 @@
   \fancyfoot[C]{--- {\bf\thepage} ---}      % 页脚
 }
 
+% 中英文摘要
+\newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
+\newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
+\newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
+\newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
- % 中文摘要
- \newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
-
- % 中文关键词
- \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
-
- % 英文摘要
- \newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
-
- % 英文摘要
- \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
-
-% 目录
 \renewcommand\tableofcontents{%
-  \if@twocolumn
-  \@restonecoltrue\onecolumn
-  \else
-  \@restonecolfalse
-  \fi
-  \chapter*{\contentsname}%目录里显示“目录”，否则\chapter*
+  \chapter{\contentsname}
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \@starttoc{toc}%
-  \if@restonecol\twocolumn\fi
-  % \thispagestyle{frontmatter}
 }
-
 
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
 
-%_ 参考文献环境
+% 参考文献环境
 \renewenvironment{thebibliography}[1]
      {\chapter{\bibname}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
@@ -502,5 +509,4 @@
 
 %%
 %% End of file `sjtuthesis.cls'.
-
 
