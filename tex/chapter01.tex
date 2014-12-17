@@ -11,115 +11,82 @@
 \chapter{这是什么}
 \label{chap:what}
 
-这是上海交通大学(非官方)硕士学位学位论文 \LaTeX 模板，当前版本是 \version 。
+这是上海交通大学(非官方)学位论文 \LaTeX 模板，当前版本是 \version 。
+这个模板能够生成符合排版规范的学士、硕士和博士学位论文，并提供双面打印和单面打印的开关选项。
+参考文献也使用了国标GBT7714风格。
 
 \section{模板的来历}
 
 最早的一版交大学位论文 \LaTeX 模板是一位热心的物理系同学制作的。
-那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的 \CJKLaTeX 方案。
+那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的 CJK\LaTeX 方案。
 我根据交大研究生院对学位论文的要求进行了调整，完成了一份基本可用的交大 \LaTeX 学位论文模板。
 
-但是，搭建一个 \CJKLaTeX 环境并不简单，在Linux下配置环境和调用中文字体的流程，对我而言犹如梦魇一般。
+但是，搭建一个 CJK\LaTeX 环境并不简单，在Linux下配置环境和调用中文字体的流程，对我而言犹如梦魇一般。
 在William Wang的建议下，我开始着手把模板移植到 \XeTeX 上。
 他完成了最初的移植，谢谢他的出色工作，使得后续的工作比我预想中的顺利。
 
 这个学位论文模板从我用它来完成学位学位论文以后，就没有更新过。
 过了快两年，随着知识水平的提高，我又想断断续续再做一些完善模板的工作，因此对原有的硕士论文模板做了修改，并在此基础上做了交大学士和博士学位论文 \LaTeX 模板。
 
-现在，交大学位论文 \LaTeX 模板的代码在github上维护，地址是：
-
-	\url{https://github.com/weijianwen/sjtu-thesis-template-latex/}
-
-学士学位论文、硕士学位论文、博士学位论文分别在bachelor-thesis，master-thesis和phd-thesis分支中维护。
-从下面的链接中可分别获得做新交大学士、硕士、博士模板zip压缩包，当前版本为\version 。
-
-\begin{itemize}
-	\item \href{https://github.com/weijianwen/sjtu-thesis-template-latex/archive/bachelor-0.5.3.zip}{交大学士学位论文模板\version} 
-	\item \href{https://github.com/weijianwen/sjtu-thesis-template-latex/archive/master-0.5.3.zip}{交大硕士学位论文模板\version}
-	\item \href{https://github.com/weijianwen/sjtu-thesis-template-latex/archive/phd-0.5.3.zip}{交大博士学位论文模板\version}
-\end{itemize}
-
-欢迎大家使用交大学位论文模板！你可以通过如下的途径反馈模板使用过程中遇到的问题：\href{https://github.com/weijianwen/sjtu-thesis-template-latex/issues}{开issue}
-、\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖，或者是给\href{mailto:weijianwen@gmail.com}{我}发送邮件---你可能需要好几天才能收到我的邮件回复。
-
-\section{模板说明}
-\subsection{模板特性}
-\label{sec:features}
-
-这个模板使用的中文解决方案是 \XeTeX/\LaTeX 。
-参考文献使用BibTeX处理，可以生成符合国标GBT7714风格的参考文献列表。
-模板在Windows，Linux和Mac OS X下测试通过，更详细的系统要求请参考\ref{sec:requirements}。
-
-模板的外观表现和功能都放在sjtuthesis.cls和sjtuthesis.cfg中，在对外观进行细微调整时，只需要更新这两个文件，不需要对.tex源文件做修改。
-
-最后，给出一个列表，罗列一下这个模板的功能要点：
-
-\begin{itemize}
-\item 使用 \XeTeX 引擎处理中文；
-\item 包含中文字符的源文件(.tex, .bib, .cfg)，编码都使用UTF-8；
-\item 使用BibTeX处理参考文献。参考文献表现形式(格式)受.bst控制，方便在不同风格间切换，目前生成的列表符合国标GBT7714要求；
-\item 可以直接插入EPS/PDF/JPG/PNG格式的图像，并且\emph{不需要}bounding box文件(.bb)。
-\item 模板的格式受sjtumater-xetex.cls和sjtuthesis.cfg控制，方便模板更新和模板修改。
-\end{itemize}
+现在，交大学位论文 \LaTeX 模板的代码在github
+\footnote{\url{https://github.com/weijianwen/sjtu-thesis-template-latex}}
+上维护。你可以\href{https://github.com/weijianwen/sjtu-thesis-template-latex/issues}{在github上开issue}
+、或者在\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖来反映遇到的问题。
 
 \subsection{系统要求}
 \label{sec:requirements}
 
-要使用这个模板协助你完成研究生学位论文的创作，下面的条件必须满足：
+模板在Windows，Linux和Mac OS X下测试通过，更详细的系统要求请参考\ref{sec:requirements}。
 
-\begin{itemize}
-\item 操作系统字体目录中有TeX Gyre Termes西文的：Regular, Italic, Bold, Bold Italic四种OTF字体\footnote{TeX Gyre Termes字体可以从\href{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}下载。我也附带了一份TeX.Gyre.Termes.Fonts.zip在模板中，解压缩到字体目录后用fc-cache -fv刷新即可，用fc-list应该能看到。}；
-\item 操作系统字体目录中有AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd四款中文字体\footnote{Adobe这四款中文OTF字体可以从Adobe Reader安装目录拿到。}；
-\item \TeX 系统有 \XeTeX 引擎；
-\item \TeX 系统有ctex宏包；
-\item 你有使用 \LaTeX 的经验。
-\end{itemize}
+要使用这个模板协助你完成学位论文的创作，TeX系统中需要安装TeX Gyre Termes字体
+\footnote{TeX Gyre Termes字体可以从\href{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}下载。}
+此外，还需要四款Adobe中文字体\footnote{请从合法渠道获得Adobe字体。}：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
 
-你可以试着编译模板文件夹中自带的test.tex文件，看看你的 \TeX 系统是否满足上面的要求：
-
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译测试文件test.tex}, numbers=none]
-xelatex test.tex
-\end{lstlisting}
-
-如果编译出的test.pdf中能够：显示中英文内容、显示4幅图像、正确嵌入AdobeSongStd和TeXGyreTermes字体（通过PDF阅读器的“属性”查看）、并且看到了英文字符的连字(ligature)和\textsc{SmallCapital}特性，那么恭喜你，你的 \TeX 系统应该能够编译这个学位论文模板。
-
-目前，我在手头的几个 \TeX 环境上都做过测试，MacTeX 2011, TeXLive 2011和C\TeX 2.9都能够顺利编译。在你到版上抱怨模板不能工作前，请确定你的 \TeX 系统能够编译前面的test.tex文件。欢迎大家到\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}反馈问题。为了提高解决问题的速度，请在帖子中说明：是否顺利编译模板、错误提示、操作系统版本、\TeX 系统版本和最近对 \TeX 系统做的操作(如升级等)。
+由于模板使用的中文解决方案是 \XeTeX/\LaTeX{}，因此你使用的TeX发行版需要带有XeTeX支持。 
+我在手头的几个 \TeX 环境上都做过测试，MacTeX 2011, TeXLive 2011和C\TeX 2.9(以及以后的版本)都能够顺利编译。
  
-\subsection{模板文件布局}
+此外，这不是一份“从零开始的\LaTeX{}入门文档”。
+在使用本模板前，你必须有一定的\LaTeX{}使用经验。
+
+\subsection{模板文件}
 \label{sec:layout}
 
 \begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
-  |-- diss.tex
-  |-- README.pdf
-  |-- sjtuthesis.cfg
-  |-- sjtuthesis.cls
-  |-- tex
-  |   |-- abstract.tex
-  |   |-- app1.tex
-  |   |-- app2.tex
-  |   |-- chapter01.tex
-  |   |-- chapter02.tex
-  |   |-- conclusion.tex
-  |   |-- projects.tex
-  |   |-- pub.tex
-  |   |-- resume.tex
-  |   |-- symbol.tex
-  |   \-- thanks.tex
-  |-- figure
-  |   \-- chap2
-  |-- GBT7714-2005NLang.bst
-  |-- Makefile
-  |-- reference
-  |   |-- chap1.bib
-  |   \-- chap2.bib
-  |-- test.tex
-  \-- test.pdf
+├── HOWTO.pdf
+├── Makefile
+├── README.md
+├── bib
+│   ├── chap1.bib
+│   └── chap2.bib
+├── bst
+│   └── GBT7714-2005NLang.bst
+├── figure
+│   └── chap2
+│       ├── testeps.eps
+│       ├── testjpg.jpg
+│       ├── testpdf.pdf
+│       └── testpng.png
+├── sjtubanner.png
+├── sjtuthesis.cfg
+├── sjtuthesis.cls
+├── tags
+├── tex
+│   ├── abstract.tex
+│   ├── ack.tex
+│   ├── app_eq.tex
+│   ├── app_log.tex
+│   ├── chapter01.tex
+│   ├── chapter02.tex
+│   ├── chapter03.tex
+│   ├── conclusion.tex
+│   ├── id.tex
+│   ├── projects.tex
+│   ├── pub.tex
+│   └── symbol.tex
+└── thesis.tex
 \end{lstlisting}
 
-你拿到手的模板文件大致会包含代码\ref{layout}所列的文件，乍看起来还是挺令人头大的。
-并且，这还是“干净”的时候，等到真正开始处理的时候，会冒出相当多的“中间文件”，这又会使情况变得更糟糕。
-所以，有必要对这些文件做一些简要说明。
-看完这部分以后，你应该发现，其实你要关心的文件类型并没有那么多。
+几个主要文件的功能简述如下。
 
 \subsubsection{格式控制文件}
 \label{sec:format}
@@ -128,50 +95,46 @@ xelatex test.tex
 sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
 其中，``.cfg''和``.cls''控制论文主体格式，``.bst''控制参考文献条目的格式，
 
-一般用户最好``忽略''格式控制文件的存在，不要去碰它们。
-有其他格式需要，欢迎到板上发贴。
-对于因为擅自更改格式控制文件出现的问题，我不一定能够解决。
+\subsubsection{主控文件thesis.tex}
+\label{sec:thesistex}
 
-\subsubsection{主控文件diss.tex}
-\label{sec:disstex}
-
-主控文件diss.tex的作用就是将你分散在多个文件中的内容``整合''成一篇完整的论文。
+主控文件thesis.tex的作用就是将你分散在多个文件中的内容``整合''成一篇完整的论文。
 使用这个模板撰写学位论文时，你的学位论文内容和素材会被``拆散''到各个文件中：
 譬如各章正文、各个附录、各章参考文献等等。
-在diss.tex中通过``include''命令将论文的各个部分包含进来，从而形成一篇结构完成的论文。
-封面页中的论文标题、作者等中英文信息，也是在diss.tex中填写。
-部分可能会频繁修改的设置，譬如行间距、图片文件目录等，我也放在了diss.tex中。
-你也可以在diss.tex中按照自己的需要引入一些的宏包
+在thesis.tex中通过``include''命令将论文的各个部分包含进来，从而形成一篇结构完成的论文。
+封面页中的论文标题、作者等中英文信息，也是在thesis.tex中填写。
+部分可能会频繁修改的设置，譬如行间距、图片文件目录等，我也放在了thesis.tex中。
+你也可以在thesis.tex中按照自己的需要引入一些的宏包
 \footnote{我对宏包的态度是：只有当你需要在文档中使用那个宏包时，才需要在导言区中用usepackage引入该宏包。如若不然，通过usepackage引入一大堆不被用到的宏包，必然是一场灾难。由于一开始没有一致的设计目标，\LaTeX 的各宏包几乎都是独立发展起来的，因重定义命令导致的宏包冲突屡见不鲜。}
 。
 
-大致而言，在diss.tex中，大家只要留意把``章''一级的内容，以及各章参考文献内容包含进来就可以了。
-需要注意，处理文档时所有的操作命令 \cndash{} xelatex, bibtex等，都是作用在diss.tex上，而\emph{不是}后面这些``分散''的文件，请参考\ref{sec:process}小节。
+大致而言，在thesis.tex中，大家只要留意把``章''一级的内容，以及各章参考文献内容包含进来就可以了。
+需要注意，处理文档时所有的操作命令 \cndash{} xelatex, bibtex等，都是作用在thesis.tex上，而\emph{不是}后面这些``分散''的文件，请参考\ref{sec:process}小节。
 
 \subsubsection{论文主体文件夹body}
 \label{sec:thesisbody}
 
 这一部分是论文的主体，是以``章''为单位划分的。
 
-正文前部分(frontmatter)：中英文摘要(abstract.tex)。其他部分，诸如中英文封面、授权信息等，都是根据diss.tex所填的信息``画''好了，
+正文前部分(frontmatter)：中英文摘要(abstract.tex)。其他部分，诸如中英文封面、授权信息等，都是根据thesis.tex所填的信息``画''好了，
 不单独弄成文件。
 
 正文部分(mainmatter)：自然就是各章内容chapter\emph{xxx}.tex了。
 
 正文后的部分(backmatter)：附录(app\emph{xx}.tex)；致谢(thuanks.tex)；攻读学位论文期间发表的学术论文目录(pub.tex)；个人简历(resume.tex)。
-参考文献列表是``生成''的，也不作为一个单独的文件。另外，学校的硕士研究生学位论文模板中，也没有要求加入个人简历，所以我没有在diss.tex中引入resume.tex。
+参考文献列表是``生成''的，也不作为一个单独的文件。另外，学校的硕士研究生学位论文模板中，也没有要求加入个人简历，所以我没有在thesis.tex中引入resume.tex。
 
-\subsubsection{图片文件夹fig}
+\subsubsection{图片文件夹figure}
 \label{sec:fig}
 
 fig文件夹放置了需要插入文档中的图片文件(PNG/JPG/PDF/EPS)，建议按章再划分子目录。
 
-\subsubsection{参考文献数据库文件夹reference}
-\label{sec:bibdir}
+\subsubsection{参考文献数据库文件夹bib}
+\label{sec:bib}
 
 reference文件夹放置的是各章``可能''会被引用的参考文献文件。
 参考文献的元数据，例如作者、文献名称、年限、出版地等，会以一定的格式记录在纯文本文件.bib中。
-最终的参考文献列表是BibTeX处理.bib后得到的，名为diss.bbl。
+最终的参考文献列表是BibTeX处理.bib后得到的，名为thesis.bbl。
 将参考文献按章划分的一个好处是，可以在各章后生成独立的参考文献，不过，现在看来没有这个必要。
 关于参考文献的管理，可以进一步参考第\ref{chap:example}章中的例子。
 
@@ -183,102 +146,34 @@ reference文件夹放置的是各章``可能''会被引用的参考文献文件�
 
 \subsubsection{逐行手工执行}
 
-模板使用 \XeTeX 引擎提供的xelatex的命令处理，作用于“主控文档”diss.tex。并且，可以省略扩展名。
+模板使用 \XeTeX 引擎提供的xelatex的命令处理，作用于“主控文档”thesis.tex。并且，可以省略扩展名。
 在命令提示符下逐行敲入如下命令完成编译。
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动执行编译过程}, numbers=none]
-xelatex -no-pdf --interaction=nonstopmode diss
-bibtex diss 
-xelatex -no-pdf --interaction=nonstopmode diss 
-xelatex --interaction=nonstopmode diss 
+xelatex -no-pdf --interaction=nonstopmode thesis
+bibtex thesis 
+xelatex -no-pdf --interaction=nonstopmode thesis
+xelatex --interaction=nonstopmode thesis 
 \end{lstlisting}
 
 运行bibtex的时候会提示一些错误，猜测是{{\sc Bib}\TeX}对UTF-8支持不充分，一般不影响最终结果。留意因为拼写错误导致的``找不到文献错误''即可。
 
 基本处理流程就是这样，一些 \LaTeX 排版的小例子可以参考第二章。
 
-\subsubsection{使用脚本}
-
-为方便使用，我把上面几条命令放到了两个脚本文件中。
-Linux用户可以使用run.sh脚本，Windows用户可以使用run.bat。
-
 \subsubsection{使用GNU make编译}
 
 模板自带了一个简单的Makefile，使用make可以方便地完成相应任务，如 pdf, view, clean, distclean等。
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={使用GNU make编译}, numbers=none]
-make && make view
+make clean all
 \end{lstlisting}
 
-\section{从 \CJKLaTeX 转向 \XeTeX}
-\label{sec:whydvipdfm}
+对于CJK\LaTeX{}用户，附录\ref{chap:whydvipdfm}提供了简要的转换说明。
 
-我习惯把v0.2a使用dvipdfmx编译的硕士学位论文模板称为``\CJKLaTeX 模板''，而这个使用 \XeTeX 引擎(xelatex程序)处理的模板则被称为``\XeTeX/\LaTeX 模板''。
-从 \CJKLaTeX 模板迁移到 \XeTeX\LaTeX 模板的好处有下：
-\begin{enumerate}
-\item[\large\smiley] 搭建 \XeTeX 环境比搭建 \CJKLaTeX 环境更容易；
-\item[\large\smiley] 更简单的字体控制；
-\item[\large\smiley] 完美支持PDF/EPS/PNG/JPG图片，不需要``.bb''文件；
-\item[\large\smiley] 支持OpenType字体的复杂字型变化功能(通常只有字母字体才有，学术文章也暂时用不上)；
-\end{enumerate}
-
-当然，这也是有代价的。由于 \XeTeX 比较新，在我看来，使用 \XeTeX 模板所必须付出的代价是：
-
-\begin{enumerate}
-\item[\large\frownie] 必须把你“古老的” \TeX 系统更新为较新的版本。TeXLive 2012和CTeX 2.9.2能够编译这份模板，而更早的版本则无能为力。
-\item[\large\frownie] 需要花一些时间把你在老模板上的工作迁移到新模板上。
-\end{enumerate}
-
-第一条就看你如何取舍了，新系统通常意味着更好的兼容性，值得升级。而转换模板也不是什么特别困难的事情，可以这样完成：
-
-\begin{enumerate}
-\item 备份你要转换的源文件，以防你的工作成果丢失；
-\item 将你原来的``.tex''和``.bib''文件"另存为"UTF-8编码的文件。iconv、vim、emacs、UEdit等等工具都可以完成。WinEdt对文件编码识别功能很差(到了v6.0还是如此)，不推荐作为字符编码转换工具；
-\item 将diss.tex导言区中的内容替换为XeTeX模板diss.tex导言区的内容；
-\item 将你对原先导言区的修改，小心翼翼地``合并''到新的导言区中；
-\item 使用XeTeX模板中的GBT7714-2005NLang.bst替换原有的bst文件，新的bst文件只是将字符编码转换为UTF--8。
-\item 删除bouding box文件``.bb''；
-\item 使用本文\ref{sec:process}介绍的方法，重新编译文档；
-\end{enumerate}
-
-\section{硕士学位论文格式的一些说明}
+\section{对模板布局的说明}
 \label{sec:thesisformat}
 
-所有关于研究生学位论文模板的要求，我参考的都是下面这个教务处的网址
+所有关于学位论文模板的要求，我参考下面的文献
 \href{http://www.gs.sjtu.edu.cn/policy/fileShow.ahtml?id=130}{《上海交通大学研究生学位论文格式的统一要求 》}。
-
-可惜，这个网址没有给出具体可用的“模板文件”。
-并且，``要求''中的一些要求也不仅合理，譬如，公式和公式编号之前要用……连接，实现起来困难，看起来也不美观，从来没有人这样用，所以无视之。
-师兄师姐的学位论文也是我可以参考的“范本”，尽管这些范本也不是很规范。
-我希望制作出的这个学位论文模板尽可能符合教务处的要求，如果有任何建议，欢迎提出！
-
-这个模板是为``双面打印''准备的，也就是说，迎面页总是奇数页，新的一章将从奇数页开始，``迎面页''和``背面页''(或者说奇数页和偶数页)的左右页眉是相互颠倒的，奇数页和偶数页的左右页边距也会被颠倒。通过双面打印得到的学位论文就像一本正常的书。
-
-你可以将diss.tex中设定文档类的语句改为：
-
-\begin{quote}
-  {\scriptsize\verb+\documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtuthesis}+}
-\end{quote}
-
-这样，就变成了适合“单面打印”的论文，新的一章可以从偶数页开始。
-
-关于页眉页脚。奇数页页眉为：左边``上海交通大学硕士学位论文''，右边：``章节名''；偶数页页眉为：左边``上海交通大学硕士学位论文''，右边：``论文题目''。每一章的内容按照排书的习惯，均从奇数页开始。
-
-教务处要求参考文献必须符合GBT7714风格，学校明确提出使用这个标准而不是自己拍脑袋想出别的做法，应该算是谢天谢地了。使用这个模板，结合BibTeX，可以很方便地生成符合GB标准的参考文献列表。
-
-\section{模板更新说明}
-\label{sec:update}
-
-我希望这个模板能够成为大家完成学位论文的助手。
-我会在一段时间内(一个月？一年？)，继续维护这个模板，修正其中的错误和不理想的地方。
-我还计划向模板中添加常用的``例子''，譬如表格、公式、图片的排版，这也是我知识汇总的。
-完整的更新记录可参考附录A.
-
-不管怎么说，模板更新应该是一件好事。
-如果``新的格式控制文件''产生的效果对你很有吸引力，那么不妨尝试一下。
-应用新的格式控制文件是一件非常简单的事情：
-你只要把原来的sjtuthesis.cls, sjtuthesis.cfg, GBxxx.bst覆盖(建议备份或者使用版本控制系统)，重新编译一遍，应该就OK了。
-
-我大力推荐大家使用\href{http://git-scm.com}{git}\cndash{}一个优秀的代码控制系统\cndash{}管理整个学位论文的协作过程。使用git合并(merge)最新版本的模板，是一件非常安全且无痛的工作。
-
+``要求''中的一些要求也不仅合理，譬如，公式和公式编号之前要用……连接，实现起来困难，看起来也不美观，从来没有人这样用，所以没有采纳。
 

@@ -7,10 +7,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2014/12/16 v0.9 Shanghai Jiao Tong University Template]
-% _DEPLICATE_ \newif\ifsjtu@typeinfo \sjtu@typeinfotrue
-% _DEPLICATE_ \DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
-\def\version{v0.5.3}
+\ProvidesClass{sjtuthesis}[2014/12/16 v0.6 Shanghai Jiao Tong University Template]
+\def\version{v0.6}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -18,8 +16,8 @@
 \DeclareOption{master}{\sjtu@mastertrue}
 \DeclareOption{doctor}{\sjtu@doctortrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
-\ProcessOptions
-\LoadClass[a4paper,fancyhdr,fntef,UTF8,adobefonts]{ctexbook}
+\ProcessOptions\relax
+\LoadClass[a4paper,fancyhdr,fntef,UTF8]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
@@ -41,7 +39,6 @@
 %==========
 
 %% 导入 sjtuthesis.cfg 文件
-% _DEPLICATE_ \AtEndOfPackage{\makeatletter\input{sjtuthesis.cfg}\makeatother}
 \AtEndOfClass{\input{sjtuthesis.cfg}}
 
 
@@ -96,7 +93,7 @@
 \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
 \def\cleardoublepage{\clearpage%
-	\if@twoside%
+	\if@openright%
 	  \ifodd
 	    \c@page%
 	  \else%
@@ -129,7 +126,7 @@
 \headheight 15pt
 \parskip 0.5ex plus 0.25ex minus 0.25ex
 \addtolength{\voffset}{-0.5cm} %% 上边距
-\if@twoside
+\if@openright
   \evensidemargin 0 true cm
 \else
   \evensidemargin 1.5 true cm
@@ -278,11 +275,10 @@
   \end{center}
   \vskip \stretch{0.5}
   \clearpage
-  \if@twoside
-    % _DEPLICATE_ \thispagestyle{empty}
-    % _DEPLICATE_ \ifsjtu@typeinfo
-    % _DEPLICATE_ \fi
+  \if@openright
     \cleardoublepage
+  \else
+    \clearpage
   \fi
 }
 
@@ -318,7 +314,7 @@
     \vskip 20pt
   \end{center}
   \clearpage
-  \if@twoside
+  \if@openright
     \thispagestyle{empty}
     \cleardoublepage
   \fi
@@ -339,7 +335,7 @@
   \vskip 15pt
   \hspace{16em}\sjtu@label@originalDate\hspace{1em}
   \clearpage
-  \if@twoside
+  \if@openright
     \thispagestyle{empty}
     \cleardoublepage
   \fi
@@ -362,37 +358,63 @@
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
   \clearpage
-  \if@twoside
+  \if@openright
     \thispagestyle{empty}
     \cleardoublepage
   \fi
 }
 
+% 根据学位论文类型、单双面打印设置页眉页脚类型
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-\fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
 
+\ifsjtu@bachelor
+  % 本科学位论文正文页眉页脚
+  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}
+  \fancyhead[RO, LE]{\small {\it \sjtu@value@titlemark}}
+  \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
+  % 本科学位论文开章页页眉页脚，双面打印时只是交换左右页眉
+  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+    \fancyhf{}%
+    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}
+    \fancyhead[R]{\small {\it \sjtu@value@titlemark}}
+    \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
+   }
+\else
+  % 研究生学位论文正文页眉页脚，针对openright和openany单独设置
+  \if@openright
+    \fancyhead[LO, RE]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+    \fancyhead[RO]{\small {\it\leftmark}}
+    \fancyhead[LE]{\small {\it\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    % 研究生学位论文开章页页眉页脚
+    \fancypagestyle{plain} {
+      \fancyhf{}
+      \fancyhead[LO,RE]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+      \fancyhead[RO]{\small {\it\leftmark}}
+      \fancyhead[LE]{\small {\it\sjtu@value@titlemark}}
+      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    }
+  \else
+    \fancyhead[L]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+    \fancyhead[R]{\small {\it\leftmark}}
+    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    % 研究生学位论文开章页页眉页脚
+    \fancypagestyle{plain} {
+      \fancyhf{}
+      \fancyhead[L]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+      \fancyhead[R]{\small {\it\leftmark}}
+      % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
+      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    }
+  \fi
+\fi
 
-\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
-  \fancyhf{}%
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
-}
-
-\fancypagestyle{frontmatter}{ % "frontmatter" page style
-  \fancyhf{}%
-  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
-  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页左页眉
-  \fancyfoot[C]{--- {\bf\thepage} ---}      % 页脚
-}
 
 % 中英文摘要
-\newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
+\newenvironment{abstract}{\chapter[\sjtu@label@abstract]{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
 \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
-\newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
+\newenvironment{englishabstract}{\chapter[\sjtu@label@englishabstract]{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
 \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
