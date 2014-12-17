@@ -1,4 +1,8 @@
-# What's this? 
+SJTU XeTeX-LaTeX Thesis Template
+======
+
+What's this? 
+-------
 
 This is (Xe)LaTeX template for thesis of Shanghai Jiaotong University. Currently, templates for bachelor, master, and Ph.D thesis are released in three different branches separately. You can download the zip packages from the following links. 
 
@@ -16,20 +20,27 @@ I used this template to finish my master thesis, and decided to make the templat
 
 But, I think the template is still in a *primitive* state, far from a *generally-nice* work. As my understanding about TeX, Git, document preparing grows, I think it's time to refresh the template. GitHub is a place full of all kinds of geniuses, thus I host my project here in hope for receiving all kinds of refinement or feedback. 
 
-# Roadmap
-* Clean the template files
-* Rewrite the templates with [Pandoc](http://johnmacfarlane.net/pandoc/)
-* Refine the extremely complicated ```bst``` file.
+TODO
+------
+* 把学士学位论文模板合并到主干。
+* 用中文重写这份README。
+* 使用良好的"LaTeX代码风格"改写文档源代码
+	* 使用 \command{body} 形式调用命令，避免无括号、等号指定；
+	* 避免在模板中使用 plain TeX 代码；
+* 模板和模板讲解分开——模板使用说明放在idx中，模板文件留几个空壳就可以，方便大家填入内容，也能保持模板核心内容简洁。
+* Replace bibtex with biber。
+* 使用```biber```模块替代```bibtex```处理参考文献。
 
-# How to use it? 
+How to use it?
+------
 
-## Prerequisites
+### Prerequisites
 
 * A usable XeTeX/XeLaTeX instance. The latest [CTeX], [TeXLive] and [MacTeX] are OK.
 * [TeX Gyre Font] collection which are used as main ASCII fonts.
 * Some available Chinese fonts. 
 
-## Compile the sample document
+### Compile the sample document
 
 Type the following commands and a file named ```diss.pdf``` will be generated.
 
@@ -43,17 +54,16 @@ Or, you can use the GNUMake tool.
 
 	$ make && make view
 
-A [README.pdf] is shipped with the project, which explains the usage further.
+A [HOWTO.pdf] is shipped with the project, which explains the usage further.
 
 # How to contribute? 
 
-**Contributions** toward this project include, but not limited to the following work. 
+Contributions toward this project include, but *not limited* to the following work. 
 
 * Use the template and report an [issue] when encountering problems.
 * Fork and refine the documents (README, Wiki, et al.).
 * Fork and refine the template according to the tasks listed in *TODO*.
 * Tell other guys the ```SJTU-XeLaTeX-Template``` is hosted here on github. 
-
 
 # FAQs and not-so-FAQs 
 
@@ -69,14 +79,6 @@ Q: @farseerfc hosts a project named [sjtu-thesis-xelatex] on github. Is this the
 
 A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapted to bachelor-thesis format. I really appreciate his contributions and hope to merge his changes into my repo if possible (not now but in the future). However, due to strong personality, I keep in mind that the git repo for SJTU-XeTeX-template should be in 100% control of mine and progresses exactly in the pace I set. Therefore, I create this repo along with the tasks listed in TODO. These tasks should differentiate my repo from other similar projects.
 
-
-# Update History 
-* Last update: May 26, 2013
-* Dec 27, 2012. v0.5.2 is released. Fix typos.
-* Dec 5, 2012. v0.5 is released. Add Makefile; refine the manual (README.pdf); replace xltxtra pacakge with metalog; replace amsmath package with mathtools.
-* May 30, 2012. v0.4 is released. Reopen this project. Add README.
-* Jan 23, 2011. Finish my master thesis. Code freeze.
-
 # See more
 [README.pdf]: https://raw.github.com/weijianwen/sjtu-thesis-template-latex/master/README.pdf
 [CTeX]: http://www.ctex.org/
@@ -85,3 +87,12 @@ A: Hmm... Let me explain.  @farseerfc's code was based on my template and adapte
 [TeX Gyre Font]: http://www.gust.org.pl/projects/e-foundry/tex-gyre/
 [LATEX Notes]: http://math.nju.edu.cn/~meijq/tex/lnotes.pdf
 [XeTeX/中文排版之胡言乱语]: http://goo.gl/oRNcW
+[Biber: A BibTeX replacement for users of BibLaTeX]: http://biblatex-biber.sourceforge.net/
+
+# Update History 
+* Last update: May 26, 2013
+* Dec 27, 2012. v0.5.2 is released. Fix typos.
+* Dec 5, 2012. v0.5 is released. Add Makefile; refine the manual (README.pdf); replace xltxtra pacakge with metalog; replace amsmath package with mathtools.
+* May 30, 2012. v0.4 is released. Reopen this project. Add README.
+* Jan 23, 2011. Finish my master thesis. Code freeze.
+
