@@ -3,9 +3,15 @@
 %%==================================================
 
 % 双面打印
-\documentclass[cs4size,twoside,doctor]{sjtuthesis} 
-% 单面打印 \documentclass[cs4size,oneside,openany]{sjtuthesis} 
-% 使用五号字作为正文字体：cs4size -> c5size
+\documentclass[doctor, adobefonts, openright, cs4size]{sjtuthesis} 
+% \documentclass[bachelor, adobefonts, openright, cs4size]{sjtuthesis} 
+% \documentclass[master]{sjtuthesis} 
+% \documentclass[%
+%   bachelor|master|doctor,	% 必选项
+%   adobefonts, winfonts  	% 只测试了adobefonts，请使用adobefonts
+%   openany|openright 		% 单面打印，双面打印(默认)
+%   cs4size|c5size 		% 正文字号：小四、五号(默认)
+% ]
 
 \begin{document}
 
@@ -44,8 +50,9 @@
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 
 %% 附录内容，本科学位论文可以用翻译的文献替代。
-\include{tex/app1}
-\include{tex/app2}
+\include{tex/app_log}
+\include{tex/app_eq}
+\include{tex/app_cjk}
 
 \backmatter	% 文后无编号部分 
 
