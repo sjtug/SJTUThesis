@@ -20,12 +20,12 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 编译模板
 -------
 
-	make clean all
+	$ make clean all
 
 查阅说明文档
 ------
 	
-	项目自带的```HOWTO.pdf```提供了更详细的使用说明。
+项目自带的HOWTO.pdf提供了更详细的使用说明。
 
 反馈问题
 =======
@@ -46,4 +46,4 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 开源许可证
 ======
 
-[MIT Licnese](LICENSE)
+[MIT License](LICENSE)
