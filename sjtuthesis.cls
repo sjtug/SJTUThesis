@@ -412,13 +412,13 @@
 
 
 % 中英文摘要
-\newenvironment{abstract}{\chapter[\sjtu@label@abstract]{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
+\newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}\markboth{\sjtu@label@abstract}{}}{}
 \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
-\newenvironment{englishabstract}{\chapter[\sjtu@label@englishabstract]{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
+\newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
 \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
-  \chapter{\contentsname}
+  \chapter*{\contentsname}
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \@starttoc{toc}%
 }
