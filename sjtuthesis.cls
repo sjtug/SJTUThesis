@@ -66,6 +66,7 @@
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
+\RequirePackage{longtable}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
