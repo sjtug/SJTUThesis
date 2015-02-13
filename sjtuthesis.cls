@@ -73,7 +73,7 @@
 %==========
 
 % User defined command list
-%% \me \mi \mj \dif \cleardoublepage \myRightarrow \myLeftarrow \myBigarrow \myLongEqual \cndash \CJKLaTeX \upcite
+%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX \upcite
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
@@ -83,15 +83,6 @@
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\mathrm{d}}
-
-% 可伸长的数学符号
-\def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
-\def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
-\def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
-\newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
-\newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
-\newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
-\newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
 \def\cleardoublepage{\clearpage%
 	\if@openright%
@@ -371,13 +362,13 @@
 
 \ifsjtu@bachelor
   % 本科学位论文正文页眉页脚
-  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}
+  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
   \fancyhead[RO, LE]{\small {\it \sjtu@value@titlemark}}
   \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
   % 本科学位论文开章页页眉页脚，双面打印时只是交换左右页眉
   \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
     \fancyhf{}%
-    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}
+    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
     \fancyhead[R]{\small {\it \sjtu@value@titlemark}}
     \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
    }
