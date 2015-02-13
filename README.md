@@ -7,6 +7,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 ======
 
 这是为撰写上海交通大学学士、硕士或博士论文而准备的XeLaTeX模板，非官方出品。
+生成的学位论文文件参见：<https://s3-ap-southeast-1.amazonaws.com/sjtuthesis/README.pdf>。
 
 如何使用?
 =======
