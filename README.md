@@ -25,8 +25,8 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 查阅说明文档
 ------
-	
-项目自带的HOWTO.pdf提供了更详细的使用说明。
+
+预先编译的[README.pdf](https://s3-ap-southeast-1.amazonaws.com/sjtuthesis/README.pdf)提供了更详细的使用说明。
 
 反馈问题
 =======
