@@ -214,7 +214,6 @@
 \def\sjtu@underline[#1]#2{%
   \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\sjtuunderline{\@ifnextchar[\sjtu@underline\CTEXunderline}
-
 \newcommand\classification[1]{\def\sjtu@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
@@ -239,31 +238,20 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      
-\songti\zihao{-3}\sjtu@label@statement
-
-    \vskip \stretch{1}
-       {\heiti\zihao{3} \sjtu@value@title}
-    \vskip \stretch{1}
-    {\fangsong\zihao{4}}
-    \def\tabcolsep{1pt}
-    \def\arraystretch{1.5}
-    \begin{tabular}{lc}
-      \heiti\sjtu@label@author &\songti
-      \sjtuunderline[150pt]{\sjtu@value@author}
-    \\
-      \heiti\sjtu@label@studentnumber &\songti
-      \sjtuunderline[150pt]{\sjtu@value@studentnumber}
-    \\
-      \heiti\sjtu@label@advisor &\songti
-      \sjtuunderline[150pt]{\sjtu@value@advisor}
-    \\  
-      \heiti\sjtu@label@major &\songti
-      \sjtuunderline[150pt]{\sjtu@value@major}
-    \\  
-      \heiti\sjtu@label@defenddate &\songti
-      \sjtuunderline[150pt]{\sjtu@value@defenddate}
-    \end{tabular}
+  \songti\zihao{-3}\sjtu@label@statement
+  \vskip\stretch{1}
+  {\heiti\zihao{3} \sjtu@value@title}
+  \vskip\stretch{1}
+  {\fangsong\zihao{4}}
+  \def\tabcolsep{1pt}
+  \def\arraystretch{1.5}
+  \begin{tabular}{lc}
+    \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
+    \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
+    \heiti\sjtu@label@advisor 		& \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+    \heiti\sjtu@label@major 		& \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
+    \heiti\sjtu@label@defenddate 	& \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
+  \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
   \clearpage
