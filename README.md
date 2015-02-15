@@ -15,8 +15,9 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 系统需求
 -------
 
-* 支持XeTeX的TeX发行版。经过测试， 2013年以后发行的CTeX、TeXLive和MacTeX都能编译此文档。
-* 系统中安装了TeX Gyre Font和四款Adobe中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
+* XeTeX的TeX发行版。2013年以后发行的CTeX、TeXLive和MacTeX应该都能编译此模板。
+* TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
+* 用于合并PDF文件的[stapler](https://github.com/hellerbarde/stapler)工具，建议通过```pip```或```easy_install```安装。若使用其他PDF工具，譬如[pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)、[PDFCat](http://freecode.com/projects/pdfcat)，请修改Makefile中的相应规则。
 
 下载模板
 -------
@@ -36,7 +37,14 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 编译模板
 -------
 
-	$ make clean all
+编译模板，生成学位论文PDF文件。
+若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在```thesis.tex```导入```sjtuthesis```宏包时，添加```review```参数，然后重新编译。
+
+	$ make clean thesis.pdf
+
+若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为```statement.pdf```，然后生成```submit.pdf```文件。在此过程中，stapler工具将被用于合并PDF文件。*使用前请在Makefile中调整stapler合并的页码范围。*
+
+	$ make clean submit.pdf
 
 查阅说明文档
 ------
