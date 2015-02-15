@@ -1,4 +1,5 @@
 *.pdf
+!statement.pdf
 *.bak
 *.fls
 *.aux

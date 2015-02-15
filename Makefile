@@ -1,4 +1,5 @@
 THESIS = thesis
+SUBMIT = submit
 # TEX, BIB, TEST dir
 TEX_DIR = tex
 BIB_DIR = bib
@@ -6,16 +7,21 @@ BIB_DIR = bib
 # Option for latexmk
 LATEXMK_OPT = -xelatex -gg -silent -f
 
-all: $(THESIS).pdf
+all: $(THESIS).pdf $(SUBMIT).pdf
 
 .PHONY : all clean version release cleanall
 
-$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib *.cls *.cfg Makefile
+$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
+
+$(SUBMIT).pdf : $(THESIS).pdf statement.pdf
+	rm -f _tmp_.pdf $@
+	stapler sel $(THESIS).pdf 1-4 statement.pdf _tmp_.pdf
+	stapler sel _tmp_.pdf $(THESIS).pdf 6-end $@
 
 clean :
 	latexmk -C
-	-rm *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls
+	-rm *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf
 
 cleanall : clean
 	-rm -f $(THESIS).pdf
