@@ -61,11 +61,8 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 后续工作计划
 =======
-* 使用良好的"LaTeX代码风格"改写文档源代码
-	* 使用 \command{body} 形式调用命令，避免无括号、等号指定；
-	* 避免在模板中使用 plain TeX 代码；
+* 使用```biber/biblatex```模块替代```bibtex```处理参考文献。
 * 模板和模板讲解分开——模板使用说明放在idx中，模板文件留几个空壳就可以，方便大家填入内容，也能保持模板核心内容简洁。
-* 使用```biber```模块替代```bibtex```处理参考文献。
 
 开源许可证
 ======
