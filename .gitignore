@@ -1,3 +1,5 @@
+*.bcf
+*.xml
 *.pdf
 !statement.pdf
 *.bak

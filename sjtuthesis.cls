@@ -61,7 +61,8 @@
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{ccaption}
-\RequirePackage[sort&compress,numbers]{natbib}
+% \RequirePackage[sort&compress,numbers]{natbib}
+\RequirePackage[backend=biber, style=caspervector, utf8, sorting=centy,]{biblatex}
 \RequirePackage{xcolor}
 \RequirePackage{marvosym}
 \RequirePackage{wasysym}
@@ -196,7 +197,7 @@
 }
 
 %  参考文献风格 GBT7714-2005
-\bibliographystyle{bst/GBT7714-2005NLang}
+% \bibliographystyle{bst/GBT7714-2005NLang}
 
 %==========
 % Segment 4. Draw the sjtuthesis
@@ -418,26 +419,25 @@
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
 
 % 参考文献环境
-\renewenvironment{thebibliography}[1]
-     {\chapter{\bibname}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
-
+% \renewenvironment{thebibliography}[1]
+%      {\chapter{\bibname}%
+%       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+%       \list{\@biblabel{\@arabic\c@enumiv}}%
+%            {\settowidth\labelwidth{\@biblabel{#1}}%
+%             \leftmargin\labelwidth
+%             \advance\leftmargin\labelsep
+%             \@openbib@code
+%             \usecounter{enumiv}%
+%             \let\p@enumiv\@empty
+%             \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%       \sloppy
+%       \clubpenalty4000
+%       \@clubpenalty \clubpenalty
+%       \widowpenalty4000%
+%       \sfcode`\.\@m}
+%      {\def\@noitemerr
+%        {\@latex@warning{Empty `thebibliography' environment}}%
+%       \endlist}
     
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
