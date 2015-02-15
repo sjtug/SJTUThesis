@@ -3,14 +3,15 @@
 %%==================================================
 
 % 双面打印
-\documentclass[doctor, adobefonts, openright, cs4size]{sjtuthesis} 
-% \documentclass[bachelor, adobefonts, openright, cs4size]{sjtuthesis} 
-% \documentclass[master]{sjtuthesis} 
+\documentclass[doctor, adobefonts, openright, cs4size]{sjtuthesis}
+% \documentclass[bachelor, adobefonts, openany, cs4size]{sjtuthesis} 
+% \documentclass[master, adobefonts, review]{sjtuthesis} 
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
 %   adobefonts, winfonts  	% 只测试了adobefonts，请使用adobefonts
 %   openany|openright 		% 单面打印，双面打印(默认)
 %   cs4size|c5size 		% 正文字号：小四、五号(默认)
+%   review	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
 % ]
 
 \begin{document}
@@ -61,9 +62,14 @@
 \bibliography{bib/chap1,bib/chap2}
 
 %% 致谢、发表论文、参与项目、简历
-\include{tex/ack} 	%% 致谢
-\include{tex/pub}	%% 发表论文
-\include{tex/projects}  %% 参与的项目
+%% 用于盲审的论文需隐去致谢、发表论文和参与的项目
+\makeatletter
+\ifsjtu@review\relax\else
+  \include{tex/ack} 	  %% 致谢
+  \include{tex/pub}	  %% 发表论文
+  \include{tex/projects}  %% 参与的项目
 % \include{tex/resume}
+\fi
+\makeatother
 
 \end{document}
