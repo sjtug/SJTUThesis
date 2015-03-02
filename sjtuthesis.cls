@@ -493,7 +493,7 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `patents' environment}}%
       \endlist}
- 
+
 \newenvironment{projects}[1]
      {\chapter{\sjtu@label@projects}%
       \@mkboth{\MakeUppercase\sjtu@label@projects}
