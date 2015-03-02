@@ -61,8 +61,10 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 后续工作计划
 =======
-* 使用```biber/biblatex```模块替代```bibtex```处理参考文献。
-* 模板和模板讲解分开——模板使用说明放在idx中，模板文件留几个空壳就可以，方便大家填入内容，也能保持模板核心内容简洁。
+
+* 尽可能将模板标签的*内容*——在```sjtuthesis.cfg```中定义，与*内容表现形式*——在```sjtuthesis.cls```分离。
+* 移除冗余代码，适当使用LaTeX命令替换复杂的TeX操作序列。包括移除```sjtuspace```命令、简化页面布局中过于繁杂的操作。
+* 撰写idx文件。
 
 开源许可证
 ======
