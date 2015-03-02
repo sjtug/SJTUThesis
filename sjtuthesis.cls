@@ -460,6 +460,27 @@
        {\@latex@warning{Empty `publications' environment}}%
       \endlist}
 
+\newenvironment{patents}[1]
+     {\chapter{\sjtu@label@patents}%
+      \@mkboth{\MakeUppercase\sjtu@label@patents}
+              {\MakeUppercase\sjtu@label@patents}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `patents' environment}}%
+      \endlist}
+ 
 \newenvironment{projects}[1]
      {\chapter{\sjtu@label@projects}%
       \@mkboth{\MakeUppercase\sjtu@label@projects}
@@ -480,8 +501,8 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `projects' environment}}%
       \endlist}
-    
-    \newenvironment{resume}
+
+\newenvironment{resume}
   {\chapter{\sjtu@label@resume}}
   {}
   
