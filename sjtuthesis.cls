@@ -118,15 +118,15 @@
 \textheight 21 true cm
 \textwidth 14.5 true cm
 \headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
+% \parskip 0.5ex plus 0.25ex minus 0.25ex
 \addtolength{\voffset}{-0.5cm} %% 上边距
 \if@openright
   \evensidemargin 0 true cm
 \else
   \evensidemargin 1.5 true cm
 \fi
-%% 行距缩放因子(x倍字号)
-\renewcommand{\baselinestretch}{1.3}
+%% 行距缩放因子
+\linespread{1.3}
 
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}
