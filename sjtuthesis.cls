@@ -48,7 +48,6 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
-\RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo}
@@ -63,7 +62,6 @@
 \RequirePackage{ccaption}
 \RequirePackage[sort&compress,numbers]{natbib}
 \RequirePackage{xcolor}
-\RequirePackage{marvosym}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
