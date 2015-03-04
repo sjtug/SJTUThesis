@@ -70,7 +70,7 @@
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
 \RequirePackage{longtable}
-\RequirePackage[perpage, buttom]{footmisc}
+\RequirePackage[perpage, bottom]{footmisc}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
