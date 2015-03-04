@@ -295,7 +295,7 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\zihao{-1} \sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle} 
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}
