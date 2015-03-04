@@ -69,7 +69,7 @@
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
 \RequirePackage{longtable}
-\RequirePackage[perpage, buttom]{footmisc}
+\RequirePackage[perpage, bottom]{footmisc}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -295,7 +295,7 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\zihao{-1} \sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle} 
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}
