@@ -2,28 +2,28 @@
 %% chapter01.tex for SJTU Master Thesis
 %%==================================================
 
-%\bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
+%\bibliographystyle{sjtu2}%[此处用于每章都生产参考文献]
 \chapter{这是什么}
 \label{chap:what}
 
-这是上海交通大学(非官方)学位论文 \LaTeX 模板，当前版本是 \version 。
+这是上海交通大学(非官方)学位论文{\LaTeX}模板，当前版本是{\version}。
 这个模板能够生成符合排版规范的学士、硕士和博士学位论文，并提供双面打印和单面打印的开关选项。
 参考文献也使用了国标GBT7714风格。
 
 \section{模板的来历}
 
-最早的一版交大学位论文 \LaTeX 模板是一位热心的物理系同学制作的。
-那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的 CJK\LaTeX 方案。
-我根据交大研究生院对学位论文的要求进行了调整，完成了一份基本可用的交大 \LaTeX 学位论文模板。
+最早的一版交大学位论文{\LaTeX}模板是一位热心的物理系同学制作的。
+那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的{\CJKLaTeX}方案。
+我根据交大研究生院对学位论文的要求进行了调整，完成了一份基本可用的交大{\LaTeX}学位论文模板。
 
-但是，搭建一个 CJK\LaTeX 环境并不简单，在Linux下配置环境和调用中文字体的流程，对我而言犹如梦魇一般。
-在William Wang的建议下，我开始着手把模板移植到 \XeTeX 上。
+但是，搭建一个{\CJKLaTeX}环境并不简单，在Linux下配置环境和调用中文字体的流程，对我而言犹如梦魇一般。
+在William Wang的建议下，我开始着手把模板移植到{\XeTeX}上。
 他完成了最初的移植，谢谢他的出色工作，使得后续的工作比我预想中的顺利。
 
 这个学位论文模板从我用它来完成学位学位论文以后，就没有更新过。
-过了快两年，随着知识水平的提高，我又想断断续续再做一些完善模板的工作，因此对原有的硕士论文模板做了修改，并在此基础上做了交大学士和博士学位论文 \LaTeX 模板。
+过了快两年，随着知识水平的提高，我又想断断续续再做一些完善模板的工作，因此对原有的硕士论文模板做了修改，并在此基础上做了交大学士和博士学位论文{\LaTeX}模板。
 
-现在，交大学位论文 \LaTeX 模板的代码在github
+现在，交大学位论文{\LaTeX}模板的代码在github
 \footnote{\url{https://github.com/weijianwen/sjtu-thesis-template-latex}}
 上维护。你可以\href{https://github.com/weijianwen/sjtu-thesis-template-latex/issues}{在github上开issue}
 、或者在\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖来反映遇到的问题。
@@ -38,11 +38,11 @@
 此外，还需要四款Adobe中文字体\footnote{请从合法渠道获得Adobe字体。}：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
 在Windows、Mac OS X 以及 Linux 上安装额外的字体，可以参考\href{https://www.searchfreefonts.com/articles/how-to-install-fonts.htm}{“How to install fonts?”}。
 
-由于模板使用的中文解决方案是 \XeTeX/\LaTeX{}，因此你使用的TeX发行版需要带有XeTeX支持。 
-我在手头的几个 \TeX 环境上都做过测试，MacTeX 2011, TeXLive 2011和C\TeX 2.9(以及以后的版本)都能够顺利编译。
+由于模板使用的中文解决方案是{\XeTeX/\LaTeX}，因此你使用的TeX发行版需要带有XeTeX支持。 
+我在手头的几个 \TeX 环境上都做过测试，MacTeX 2011, TeXLive 2011和{\CTeX} 2.9(以及以后的版本)都能够顺利编译。
  
-此外，这不是一份“从零开始的\LaTeX{}入门文档”。
-在使用本模板前，你必须有一定的\LaTeX{}使用经验。
+此外，这不是一份“从零开始的{\LaTeX}入门文档”。
+在使用本模板前，你必须有一定的{\LaTeX}使用经验。
 
 \subsection{模板文件}
 \label{sec:layout}
@@ -102,11 +102,11 @@ sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
 封面页中的论文标题、作者等中英文信息，也是在thesis.tex中填写。
 部分可能会频繁修改的设置，譬如行间距、图片文件目录等，我也放在了thesis.tex中。
 你也可以在thesis.tex中按照自己的需要引入一些的宏包
-\footnote{我对宏包的态度是：只有当你需要在文档中使用那个宏包时，才需要在导言区中用usepackage引入该宏包。如若不然，通过usepackage引入一大堆不被用到的宏包，必然是一场灾难。由于一开始没有一致的设计目标，\LaTeX 的各宏包几乎都是独立发展起来的，因重定义命令导致的宏包冲突屡见不鲜。}
+\footnote{我对宏包的态度是：只有当你需要在文档中使用那个宏包时，才需要在导言区中用usepackage引入该宏包。如若不然，通过usepackage引入一大堆不被用到的宏包，必然是一场灾难。由于一开始没有一致的设计目标，{\LaTeX}的各宏包几乎都是独立发展起来的，因重定义命令导致的宏包冲突屡见不鲜。}
 。
 
 大致而言，在thesis.tex中，大家只要留意把``章''一级的内容，以及各章参考文献内容包含进来就可以了。
-需要注意，处理文档时所有的操作命令 \cndash{} xelatex, bibtex等，都是作用在thesis.tex上，而\emph{不是}后面这些``分散''的文件，请参考\ref{sec:process}小节。
+需要注意，处理文档时所有的操作命令 \cndash{}xelatex, bibtex等，都是作用在thesis.tex上，而\emph{不是}后面这些``分散''的文件，请参考\ref{sec:process}小节。
 
 \subsubsection{论文主体文件夹body}
 \label{sec:thesisbody}
@@ -138,12 +138,12 @@ reference文件夹放置的是各章``可能''会被引用的参考文献文件�
 \subsection{如何使用模板}
 \label{sec:process}
 
-模板的 \LaTeX 源文件需要用 \XeTeX 编译产生PDF文件。
+模板的{\LaTeX}源文件需要用{\XeTeX}编译产生PDF文件。
 我在此给出三种命令行下的编译方式：逐行手工执行、使用脚本、使用latexmk，大家可以根据自己的喜好，选择\emph{其中一种}完成工作。
 
 \subsubsection{逐行手工执行}
 
-模板使用 \XeTeX 引擎提供的xelatex的命令处理，作用于“主控文档”thesis.tex。并且，可以省略扩展名。
+模板使用{\XeTeX}引擎提供的xelatex的命令处理，作用于“主控文档”thesis.tex。并且，可以省略扩展名。
 在命令提示符下逐行敲入如下命令完成编译。
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动执行编译过程}, numbers=none]
@@ -153,9 +153,9 @@ xelatex -no-pdf --interaction=nonstopmode thesis
 xelatex --interaction=nonstopmode thesis 
 \end{lstlisting}
 
-运行bibtex的时候会提示一些错误，猜测是{{\sc Bib}\TeX}对UTF-8支持不充分，一般不影响最终结果。留意因为拼写错误导致的``找不到文献错误''即可。
+运行bibtex的时候会提示一些错误，猜测是{{\sc Bib}\TeX}对UTF-8支持不充分，一般不影响最终结果。留意因为拼写错误导致的“找不到文献错误”即可。
 
-基本处理流程就是这样，一些 \LaTeX 排版的小例子可以参考第二章。
+基本处理流程就是这样，一些{\LaTeX}排版的小例子可以参考第二章。
 
 \subsubsection{使用GNU make编译}
 
