@@ -222,9 +222,8 @@ BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文
 在运行latex将.bbl插入文档之前，你可以用文本编辑器打开它，做一些小的修改。
 你会发现，.bbl的格式和你自己手动写item很相似，它已经被赋予了一定的“表现形式”
 
-.bib数据库中的参考文献条目可以手动编写，也可以在google的学术搜索中找到。
-各大数据库\footnote{应该说是国际知名数据库，譬如SCOPUS, IEEE, OSA等，国内数据库在搜索、导出方面一直是差得一塌糊涂。}也支持将参考文献信息导出为.bib，
-省时省力。
+bib数据库中的参考文献条目可以在google的学术搜索中查找，也可手动编写。
+大部分科技文献数据库也支持将参考文献信息导出为.bib，省时省力。
 以Google学术搜索为例：进入\url{http://scholar.google.com}，在“学术搜索设置”中，将“文献管理软件”设为“显示导入BibTeX”的连接，保存退出。
 然后学术搜索找到文献下会有“导出到BibTeX”连接，点击后Firefox会打开新的标签页，出现类似代码\ref{googlescholar}所示的内容
 \footnote{展示这些.bib条目使用了listings宏包，因为listings宏包协调中文的能力很糟糕，所以读者在查看模板的这部分源代码时会看到一些非常麻烦的东西。并且，直接将源代码的这部分内容复制到.bib中可能还会出错。我的建议是：这部分内容留意PDF就足够了。}。
@@ -239,7 +238,7 @@ BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文
     } 
   \end{lstlisting}
 
-  上面的.bib条目的“名字”cndash{}“白2008信用风险传染模型和信用衍生品的定价”包含ASCII以外的字符，BibTeX无法处理；
+  建议将bib条目的引用名“白2008信用风险传染模型和信用衍生品的定价”使用ASCII字符串替换。
   条目还缺少了address域，这样编译出来的结果会出现“地址不详”
   并且，条目还缺少language域，BibTeX需要language域来判断是否是中文参考文献。
   将上面的条目修正(改英文名、增加address和language域)，复制到本地的.bib文件中就可以了。
@@ -272,7 +271,7 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的“language�
   \newblock "上海: 上海交通大学, 2008."
 \end{lstlisting}
 
-再罗嗦两句，
+再啰嗦两句，
 .bst文件书写起来非常繁杂\footnote{可以参考\href{http://ftp.ctex.org/mirrors/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}{《Tame The BeaST》}。}，书写符合GBT7714标准的.bst文件更是一项浩大的工程。
 因此，当大家为漂亮、标准的参考文献列表感到满意时，应该对GBT7714-2005NLang.bst的作者充满谢意。
 作者在CTeX BBS发的帖子，请看
