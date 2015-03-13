@@ -70,22 +70,20 @@ make clean thesis.pdf
 make clean submit.pdf
 \end{lstlisting}
 
+编译失败时，可以尝试手动逐次编译，定位故障。
 
-模板使用{\XeTeX}引擎提供的xelatex的命令处理，作用于“主控文档”thesis.tex。并且，可以省略扩展名。
-在命令提示符下逐行敲入如下命令完成编译。
-
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动执行编译过程}, numbers=none]
-xelatex -no-pdf --interaction=nonstopmode thesis
-bibtex thesis 
-xelatex -no-pdf --interaction=nonstopmode thesis
-xelatex --interaction=nonstopmode thesis 
+\begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动逐次编译}, numbers=none]
+xelatex thesis
+bibtex thesis
+xelatex thesis
+xelatex thesis
 \end{lstlisting}
 
-\subsection{模板文件}
+\subsection{模板文件布局}
 \label{sec:layout}
 
 \begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
-├── HOWTO.pdf
+├── LICENSE
 ├── Makefile
 ├── README.md
 ├── bib
@@ -94,19 +92,20 @@ xelatex --interaction=nonstopmode thesis
 ├── bst
 │   └── GBT7714-2005NLang.bst
 ├── figure
+│   ├── chap2
+│   │   ├── sjtulogo.eps
+│   │   ├── sjtulogo.jpg
+│   │   ├── sjtulogo.pdf
+│   │   └── sjtulogo.png
 │   └── sjtubanner.png
-│   └── chap2
-│       ├── testeps.eps
-│       ├── testjpg.jpg
-│       ├── testpdf.pdf
-│       └── testpng.png
 ├── sjtuthesis.cfg
 ├── sjtuthesis.cls
 ├── statement.pdf
-├── tags
+├── submit.pdf
 ├── tex
 │   ├── abstract.tex
 │   ├── ack.tex
+│   ├── app_cjk.tex
 │   ├── app_eq.tex
 │   ├── app_log.tex
 │   ├── chapter01.tex
@@ -114,20 +113,21 @@ xelatex --interaction=nonstopmode thesis
 │   ├── chapter03.tex
 │   ├── conclusion.tex
 │   ├── id.tex
+│   ├── patents.tex
 │   ├── projects.tex
 │   ├── pub.tex
 │   └── symbol.tex
 └── thesis.tex
 \end{lstlisting}
 
-几个主要文件的功能简述如下。
+本节介绍学位论文模板中木要文件和目录的功能。
 
 \subsubsection{格式控制文件}
 \label{sec:format}
 
 格式控制文件控制着论文的表现形式，包括以下几个文件：
 sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
-其中，“.cfg”和“.cls”控制论文主体格式，“.bst”控制参考文献条目的格式，
+其中，“cfg”和“cls”控制论文主体格式，“bst”控制参考文献条目的格式，
 
 \subsubsection{主控文件thesis.tex}
 \label{sec:thesistex}
@@ -136,40 +136,30 @@ sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
 使用这个模板撰写学位论文时，你的学位论文内容和素材会被“拆散”到各个文件中：
 譬如各章正文、各个附录、各章参考文献等等。
 在thesis.tex中通过“include”命令将论文的各个部分包含进来，从而形成一篇结构完成的论文。
-封面页中的论文标题、作者等中英文信息，也是在thesis.tex中填写。
-部分可能会频繁修改的设置，譬如行间距、图片文件目录等，我也放在了thesis.tex中。
-你也可以在thesis.tex中按照自己的需要引入一些的宏包
-\footnote{我对宏包的态度是：只有当你需要在文档中使用那个宏包时，才需要在导言区中用usepackage引入该宏包。如若不然，通过usepackage引入一大堆不被用到的宏包，必然是一场灾难。由于一开始没有一致的设计目标，{\LaTeX}的各宏包几乎都是独立发展起来的，因重定义命令导致的宏包冲突屡见不鲜。}
-。
+对模板定制时引入的宏包，建议放在导言区。
 
-大致而言，在thesis.tex中，大家只要留意把“章”一级的内容，以及各章参考文献内容包含进来就可以了。
-需要注意，处理文档时所有的操作命令\cndash{}xelatex, bibtex等，都是作用在thesis.tex上，而\emph{不是}后面这些“分散”的文件，请参考\ref{sec:process}小节。
-
-\subsubsection{论文主体文件夹body}
+\subsubsection{各章源文件tex}
 \label{sec:thesisbody}
 
-这一部分是论文的主体，是以“章”为单位划分的。
+这一部分是论文的主体，是以“章”为单位划分的，包括：
 
-正文前部分(frontmatter)：中英文摘要(abstract.tex)。其他部分，诸如中英文封面、授权信息等，都是根据thesis.tex所填的信息“画”好了，
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+	\item 中英文摘要(abstract.tex)。前言(frontmatter)的其他部分，中英文封面、原创性声明、授权信息在sjtuthesis.cls中定义，不单独分离为tex文件。
 不单独弄成文件。
-
-正文部分(mainmatter)：自然就是各章内容chapter\emph{xxx}.tex了。
-
-正文后的部分(backmatter)：附录(app\emph{xx}.tex)；致谢(thuanks.tex)；攻读学位论文期间发表的学术论文目录(pub.tex)；个人简历(resume.tex)。
-参考文献列表是“生成”的，也不作为一个单独的文件。另外，学校的硕士研究生学位论文模板中，也没有要求加入个人简历，所以我没有在thesis.tex中引入resume.tex。
+	\item 正文(mainmatter)——学位论文正文的各章内容，源文件是chapter\emph{xxx}.tex。
+	\item 附录(app\emph{xx}.tex)、致谢(thuanks.tex)、攻读学位论文期间发表的学术论文目录(pub.tex)、个人简历(resume.tex)组成正文后的部分(backmatter)。
+参考文献列表由bibtex插入，不作为一个单独的文件。
+\end{itemize}
 
 \subsubsection{图片文件夹figure}
 \label{sec:fig}
 
-fig文件夹放置了需要插入文档中的图片文件(PNG/JPG/PDF/EPS)，建议按章再划分子目录。
+figure文件夹放置了需要插入文档中的图片文件(支持PNG/JPG/PDF/EPS格式的图片)，可以在按照章节划分子目录。
+模板文件中使用\verb|\graphicspath|命令定义了图片存储的顶层目录，在插入图片时，顶层目录名“figure”可省略。
 
-\subsubsection{参考文献数据库文件夹bib}
+\subsubsection{参考文献数据库bib}
 \label{sec:bib}
 
-reference文件夹放置的是各章“可能”会被引用的参考文献文件。
-参考文献的元数据，例如作者、文献名称、年限、出版地等，会以一定的格式记录在纯文本文件.bib中。
-最终的参考文献列表是BibTeX处理.bib后得到的，名为thesis.bbl。
-将参考文献按章划分的一个好处是，可以在各章后生成独立的参考文献，不过，现在看来没有这个必要。
-关于参考文献的管理，可以进一步参考第\ref{chap:example}章中的例子。
-
+目前参考文件数据库目录只存放一个参考文件数据库thesis.bib。
+关于参考文献引用，可参考第\ref{chap:example}章中的例子。
 
