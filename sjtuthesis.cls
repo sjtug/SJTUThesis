@@ -50,7 +50,7 @@
 
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
-\RequirePackage{metalogo}
+\RequirePackage{metalogo,doc}
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
@@ -68,6 +68,7 @@
 \RequirePackage{enumitem}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
+\RequirePackage{enumitem}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
