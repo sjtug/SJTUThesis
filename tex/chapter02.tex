@@ -5,10 +5,10 @@
 %% Encoding: UTF-8
 %%==================================================
 
-\chapter{一些 \LaTeX 排版的例子}
+\chapter{{\LaTeX}排版例子}
 \label{chap:example}
 
-\section{数学排版的例子}
+\section{数学排版}
 \label{sec:matheq}
 
 \subsection{公式排版}
@@ -145,19 +145,18 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
  \bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
 \end{figure}
 
-
-  \begin{figure}[!hbp]
+\begin{figure}[!hbp]
+  \centering
+  \begin{minipage}[b]{0.6\textwidth}
+    \captionstyle{\centering}
     \centering
-    \begin{minipage}[b]{0.6\textwidth}
-      \captionstyle{\centering}
-      \centering
-      \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
-      \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
-    \end{minipage}     
-  \end{figure}
-
+    \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
+    \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
+  \end{minipage}     
+\end{figure}
   
-\section{表格的例子}
+
+\section{表格}
 \label{sec:tab}
 
 这一节给出的是一些表格的例子，如表\ref{tab:firstone}所示。
@@ -203,87 +202,45 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 
 \section{参考文献管理}
 
-参考文献的管理是这个学位论文模板又一个好玩的地方。
+{\LaTeX}具有将参考文献内容和表现形式分开管理的能力，涉及三个要素：参考文献数据库、参考文献引用格式、在正文中引用参考文献。
+这样的流程需要多次编译：
 
-\subsection{将参考文献的内容与表现分离}
+\begin{enumerate}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+	\item 用户将论文中需要引用的参考文献条目，录入纯文本数据库文件(bib文件)。
+	\item 调用xelatex对论文模板做第一次编译，扫描文中引用的参考文献，生成参考文献入口文件(aux)文件。
+	\item 调用bibtex，以参考文献格式和入口文件为输入，生成格式化以后的参考文献条目文件(bib)。
+	\item 再次调用xelatex编译模板，将格式化以后的参考文献条目插入正文。
+\end{enumerate}
 
-这个论文模板使用BibTeX处理参考文献，这又是一个“内容”与“表现形式”分离的极好例子
-\footnote{当然，你也可以手动编参考文献item，直接插入文档中。但是，有BibTeX帮助，我觉得没有人想用这种麻烦的方法，所以就在脚注中说明了。}。
-参考文献的“内容”就是reference文件夹下的chap\textit{xx}.bib，参考文献的元数据(名称、作者、出处等)以一定的格式保存在这些纯文本文件中。
-.bib文件也可以理解为参考文献的“数据库”正文中所有引用的参考文件条目都会从这些文件中“析出”
-控制参考文献条目“表现形式”格式)的是.bst文件。.bst文件定义了参考文献风格，使用不同的参考文献风格能将同一个参考文献条目输出成不同的格式。
-当然，一个文档只能使用一个参考文献风格。
-按照教务处的要求，本模板使用的是国标GBT7714风格的参考文献。
+参考文献数据库(thesis.bib)的条目，可以从Google Scholar搜索引擎\footnote{\url{https://scholar.google.com}}、CiteSeerX搜索引擎\footnote{\url{http://citeseerx.ist.psu.edu}}中查找，文献管理软件Papers\footnote{\url{http://papersapp.com}}、Mendeley\footnote{\url{http://www.mendeley.com}}、JabRef\footnote{\url{http://jabref.sourceforge.net}}也能够输出条目信息。
 
-BibTeX的工作过程是这样的：
-BibTeX读取.aux(第一次运行latex得到的)看看你引用了什么参考文献条目，
-然后到.bib中找相关条目的信息，
-最后根据.bst的格式要求将参考文献条目格式化输出，写到.bbl文件中。
-在运行latex将.bbl插入文档之前，你可以用文本编辑器打开它，做一些小的修改。
-你会发现，.bbl的格式和你自己手动写item很相似，它已经被赋予了一定的“表现形式”
+下面是在Google Scholar上搜索到的一条文献信息，格式是纯文本：
 
-.bib数据库中的参考文献条目可以手动编写，也可以在google的学术搜索中找到。
-各大数据库\footnote{应该说是国际知名数据库，譬如SCOPUS, IEEE, OSA等，国内数据库在搜索、导出方面一直是差得一塌糊涂。}也支持将参考文献信息导出为.bib，
-省时省力。
-以Google学术搜索为例：进入\url{http://scholar.google.com}，在“学术搜索设置”中，将“文献管理软件”设为“显示导入BibTeX”的连接，保存退出。
-然后学术搜索找到文献下会有“导出到BibTeX”连接，点击后Firefox会打开新的标签页，出现类似代码\ref{googlescholar}所示的内容
-\footnote{展示这些.bib条目使用了listings宏包，因为listings宏包协调中文的能力很糟糕，所以读者在查看模板的这部分源代码时会看到一些非常麻烦的东西。并且，直接将源代码的这部分内容复制到.bib中可能还会出错。我的建议是：这部分内容留意PDF就足够了。}。
-请注意，这个条目离“规范”还有一些距离。
-
-  \begin{lstlisting}[caption={从Google Scholar找到的，但并不规范的.bib条目}, label=googlescholar, float, escapeinside="", numbers=none]
+\begin{lstlisting}[caption={从Google Scholar找到的参考文献条目}, label=googlescholar, float, escapeinside="", numbers=none]
     @phdthesis{"白2008信用风险传染模型和信用衍生品的定价",
       title={{"信用风险传染模型和信用衍生品的定价"}},
       author={"白云芬"},
       year={2008},
       school={"上海交通大学"}
     } 
-  \end{lstlisting}
-
-  上面的.bib条目的“名字”cndash{}“白2008信用风险传染模型和信用衍生品的定价”包含ASCII以外的字符，BibTeX无法处理；
-  条目还缺少了address域，这样编译出来的结果会出现“地址不详”
-  并且，条目还缺少language域，BibTeX需要language域来判断是否是中文参考文献。
-  将上面的条目修正(改英文名、增加address和language域)，复制到本地的.bib文件中就可以了。
-  显然，这里描述的是参考文献的内容，而不是表现形式。
-
-  \begin{lstlisting}[caption={一个符合规范的.bib条目}, label=itemok, float, escapeinside="", numbers=none]
-    @phdthesis{bai2008,
-      title={{"信用风险传染模型和信用衍生品的定价"}},
-      author={"白云芬"},
-      year={2008},
-      language={zh},
-      address={"上海"},
-      school={"上海交通大学"}
-    } 
-  \end{lstlisting}
-
-由于中英文参考文献处理起来有差异，所以需要在参考文献中标注是否是中文文献。
-确切地说，BibTeX并不具有区分中英文参考文献的“智能”这种智慧的来源是.bst文——它定义了处理参考文献的规则。
-GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的“language”域非空，就被认为是中文文献，否则被认为是英文文献。
-例如，刚才的文献，就会被认为是中文参考文献，采取一些针对中文的处理方式。
-
-最后，这个条目被bibtex处理后，赋予了一定的“表现形式”在.bbl文件中以下面的样子出现。
-你还可以对它进行小的修改，这是一种很折磨人的终极修改方法。
-再次运行latex之后，它将被插入到文档中。
-
-\begin{lstlisting}[caption={.bbl中被格式化之后的条目}, escapeinside="", numbers=none]
-\bibitem["白云芬(2008)"]{bai2008}
-  \textsc{"白云芬"}.
-  \newblock {"信用风险传染模型和信用衍生品的定价"}[D].
-  \newblock "上海: 上海交通大学, 2008."
 \end{lstlisting}
 
-再罗嗦两句，
-.bst文件书写起来非常繁杂\footnote{可以参考\href{http://ftp.ctex.org/mirrors/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}{《Tame The BeaST》}。}，书写符合GBT7714标准的.bst文件更是一项浩大的工程。
-因此，当大家为漂亮、标准的参考文献列表感到满意时，应该对GBT7714-2005NLang.bst的作者充满谢意。
-作者在CTeX BBS发的帖子，请看
-\href{http://bbs.ctex.org/viewthread.php?tid=33571&highlight=\%B2\%CE\%BF\%BC\%CE\%C4\%CF\%D7\%2BGB}{文后参考文献著录规则 GB/T 7714-2005}。
-关于GB/T 7714-2005标准本身，请看\href{http://bbs.ctex.org/viewthread.php?tid=33571&highlight=GB\%2B\%B2\%CE\%BF\%BC\%CE\%C4\%CF\%D7}{这里}。
+为了方便引用，建议将文献别名改用ASCII表示。
+中文文献的处理有别于英文文献，对中文参考文献需要增加“language”域显式说明。
 
-再多说两句，.bib是“参考文献的内容”，而控制参考文献表现(格式)的是.bst文件，本模板附带的是GBT7714-2005NLang.bst。
+\begin{lstlisting}[caption={修改后的参考文献条目}, label=itemok, float, escapeinside="", numbers=none]
+  @phdthesis{bai2008,
+    title={{"信用风险传染模型和信用衍生品的定价"}},
+    author={"白云芬"},
+    year={2008},
+    language={zh},
+    address={"上海"},
+    school={"上海交通大学"}
+  } 
+\end{lstlisting}
 
-\subsection{在正文中引用参考文献}
-
-参考文献可以分章节管理，只需要在主文件中的参考文献中都包含进去就可以，如\verb+\bibliography{chap1,chap2,...}+。
+按照教务处的要求，参考文献外观应符合国标GBT7714的要求\footnote{\url{http://www.cces.net.cn/guild/sites/tmxb/Files/19798_2.pdf}}。
+在模板中，表现形式的控制逻辑在GBT7714-2005NLang.bst中实现\footnote{\url{http://bbs.ctex.org/viewthread.php?tid=33571}}，是使用{\BibTeX}特有的堆栈式语言实现的\footnote{\url{http://ftp.ctex.org/mirrors/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}}。
 
 正文中引用参考文献时，用\verb+\supercite{key1,key2,key3...}+可以产生“上标引用的参考文献”，
 如\supercite{Meta_CN,chen2007act,DPMG}。
@@ -292,31 +249,12 @@ GBT7714-2005NLang.bst中规定：.bib中的条目，如果条目的“language�
 会议论文\parencite{DPMG,kocher99,cnproceed}，
 硕士学位论文\parencite{zhubajie,metamori2004}，博士学位论文\supercite{shaheshang,FistSystem01,bai2008}，标准文件\parencite{IEEE-1363}，技术报告\supercite{NPB2}，电子文献\parencite{xiaoyu2001, CHRISTINE1998}，用户手册\parencite{RManual}。
 
-最后总结一些注意事项：
+总结一些注意事项：
 \begin{itemize}
 \item 参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
 \item 参考文献“数据库文件”bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
 \item 参考文献条目中通过language域是否为空判断是否是中文文献；
-\item 参考文献条目同样有“内容”和“表现形式”之分，这种可控性是BibTeX带来的。
 \end{itemize}
-
-
-\subsection{参考文献管理器}
-
-参考文献数据库.bib虽然是纯文本的，可以用任意的文本编辑器查看，但总有人喜欢一个找一个“可视化”地查看每一条参考文献。
-我想\href{http://jabref.sourceforge.net/}{JabRef}应该是个很不错的选择。
-这是一个Java写的程序，需要JRE才能运行。
-就我测试的情况上看，很幸运，JabRef可以顺利打开GBK编码的.bib文件。
-但是，打开UTF--8编码的.bib源文件过程中总会崩溃，原因不得而知。
-由于我们的.bib文件使用的是UTF-8编码，所以JabRef暂时不可用。
-
-提到参考文献管理器，不得不提到另一个广被使用的软件——\href{http://www.endnote.com/}{EndNote}。
-在图书馆的宣讲会上，EndNote被吹得神乎其神，但我发现他对.bib的管理很不友好。
-EndNote可以导入.bib文件，却不能导出.bib，只能导出.bbl——被格式化的.bib。
-原来，JabRef比较“单纯”不具备格式化参考文献的能力；
-而EndNote有那么一点设置参考文献输出格式的能力，然后就把这种能力滥用，这点搞得我很不爽。
-看来，EndNote和Word配合得更好一些。
-
 
 \section{用listings插入源代码}
 
