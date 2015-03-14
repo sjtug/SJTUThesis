@@ -7,8 +7,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2015/2/15 v0.7 Shanghai Jiao Tong University Template]
-\def\version{v0.7}
+\ProvidesClass{sjtuthesis}[2015/3/15 v0.8 Shanghai Jiao Tong University Template]
+\def\version{v0.8}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -50,7 +50,7 @@
 
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
-\RequirePackage{metalogo}
+\RequirePackage{metalogo,doc}
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
@@ -60,15 +60,14 @@
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{ccaption}
-% \RequirePackage[sort&compress,numbers]{natbib}
 \RequirePackage[backend=biber, style=caspervector, utf8, sorting=centy,]{biblatex}
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
-\RequirePackage{enumitem}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
+\RequirePackage{enumitem}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -194,9 +193,6 @@
   plainpages=false,%
   pdfstartview=FitH
 }
-
-%  参考文献风格 GBT7714-2005
-% \bibliographystyle{bst/GBT7714-2005NLang}
 
 %==========
 % Segment 4. Draw the sjtuthesis
@@ -430,27 +426,6 @@
 
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
 
-% 参考文献环境
-% \renewenvironment{thebibliography}[1]
-%      {\chapter{\bibname}%
-%       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-%       \list{\@biblabel{\@arabic\c@enumiv}}%
-%            {\settowidth\labelwidth{\@biblabel{#1}}%
-%             \leftmargin\labelwidth
-%             \advance\leftmargin\labelsep
-%             \@openbib@code
-%             \usecounter{enumiv}%
-%             \let\p@enumiv\@empty
-%             \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-%       \sloppy
-%       \clubpenalty4000
-%       \@clubpenalty \clubpenalty
-%       \widowpenalty4000%
-%       \sfcode`\.\@m}
-%      {\def\@noitemerr
-%        {\@latex@warning{Empty `thebibliography' environment}}%
-%       \endlist}
-    
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
       \@mkboth{\MakeUppercase\sjtu@label@publications}
