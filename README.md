@@ -33,7 +33,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 ### 编译模板
 
-编译模板，生成学位论文PDF文件。GNUMake将调用```latexmk```程序，自动完模板的多轮编译。
+编译模板，生成学位论文PDF文件。GNUMake将调用```latexmk```程序，自动完成模板的多轮编译。
 
 	$ make clean thesis.pdf
 
@@ -66,8 +66,6 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 * 移除冗余代码，适当使用LaTeX命令替换复杂的TeX操作序列。包括移除```sjtuspace```命令、简化页面布局中过于繁杂的操作。
 * 增加例子，如Algorithm宏包。
-* 使用```biber```模块替代```bibtex```处理参考文献。
-* 撰写idx文件。 
 
 其他版本
 ------
