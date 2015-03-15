@@ -245,22 +245,22 @@
   \def\arraystretch{1.5}
   \begin{tabular}{rl}
     \ifsjtu@review
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides*} & \songti\sjtuunderline[150pt]{} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \songti\sjtuunderline[150pt]{} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\ 
       \fi
     \else
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides*} & \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@coadvisor} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@coadvisor} \\ 
       \fi
     \fi
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
