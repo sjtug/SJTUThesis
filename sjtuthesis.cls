@@ -1,8 +1,5 @@
 %==================================================
 %% sjtuthesis.cls for SJTU Master Thesis
-%% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
-%% Hosted on https://github.com/weijianwen/sjtu-thesis-template-latex
-%% SJTU LaTeX Forum https://bbs.sjtu.edu.cn/bbsdoc,board,TeX_LaTeX.html
 %% Encoding: UTF-8
 %%==================================================
 
@@ -48,7 +45,7 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
-\RequirePackage[top=3cm,bottom=3cm,left=3.5cm,right=2.5cm]{geometry} %设置版心
+\RequirePackage[top=3cm, headsep=1.2cm, bottom=3cm,left=3.5cm,right=2.5cm]{geometry} %设置版面
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -363,11 +360,10 @@
 \fancyhf{}
 
 \ifsjtu@bachelor
-  % 本科学位论文正文页眉页脚
-  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
-  \fancyhead[RO, LE]{\small {\it \sjtu@value@titlemark}}
+  % 本科学位论文正文页眉页脚，只处理单面打印的情况
+  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
+  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}
   \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
-  % 本科学位论文开章页页眉页脚，双面打印时只是交换左右页眉
   \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
     \fancyhf{}%
     \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
@@ -375,13 +371,13 @@
     \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
    }
 \else
-  % 研究生学位论文正文页眉页脚，针对openright和openany单独设置
+  % opnright 研究生学位论文正文页眉页脚设置
   \if@openright
     \fancyhead[LO, RE]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
     \fancyhead[RO]{\small {\it\leftmark}}
     \fancyhead[LE]{\small {\it\sjtu@value@titlemark}}
     \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    % 研究生学位论文开章页页眉页脚
+    % openright 开章页页眉页脚
     \fancypagestyle{plain} {
       \fancyhf{}
       \fancyhead[LO,RE]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
@@ -390,10 +386,11 @@
       \fancyfoot[C]{\small ---~{\bf\thepage}~---}
     }
   \else
+    % openany 研究生学位论文正文页眉页脚设置
     \fancyhead[L]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
     \fancyhead[R]{\small {\it\leftmark}}
     \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    % 研究生学位论文开章页页眉页脚
+    % openany 开章页页眉页脚
     \fancypagestyle{plain} {
       \fancyhf{}
       \fancyhead[L]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
