@@ -48,6 +48,7 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
+\RequirePackage[top=3cm,bottom=3cm,left=3.5cm,right=2.5cm]{geometry} %设置版心
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -113,18 +114,6 @@
 % Set the mainfont
 \setmainfont{TeX Gyre Termes}
 
-% Page Layout
-\oddsidemargin 1.5 true cm
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
-% \parskip 0.5ex plus 0.25ex minus 0.25ex
-\addtolength{\voffset}{-0.5cm} %% 上边距
-\if@openright
-  \evensidemargin 0 true cm
-\else
-  \evensidemargin 1.5 true cm
-\fi
 %% 行距缩放因子
 \linespread{1.3}
 
