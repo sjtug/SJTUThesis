@@ -17,3 +17,4 @@
 *.xdv
 *~
 *.fdb_latexmk
+tex/*.tex

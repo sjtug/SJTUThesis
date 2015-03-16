@@ -88,29 +88,33 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 
 ### 支持的图片格式 {#sec:imageformat}
 
-\XeTeX可以很方便地插入PDF、EPS、PNG、JPG格式的图片。
+\XeTeX 可以很方便地插入PDF、EPS、PNG、JPG格式的图片。
 
 插入PNG/JPG的例子如\ref{fig:SRR}所示。
 这两个水平并列放置的图共享一个“图标题”(table
 caption)，没有各自的小标题。
 
-\centering![image](chap2/sjtulogo.png)
-
-\hspace{1cm}
-![image](chap2/sjtulogo.jpg)
-\bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.png}
+  \hspace{1cm}
+  \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.jpg}
+  \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption} 
+\end{figure}
 
 这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
 
-\centering\subfigure[EPS Figure]{
+\begin{figure}
+  \centering
+  \subfigure[EPS Figure]{
     \label{fig:epspdf:a} %% label for first subfigure
     \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.eps}}
-
-\hspace{1in}
-\subfigure[PDF Figure]{
+  \hspace{1in}
+  \subfigure[PDF Figure]{
     \label{fig:epspdf:b} %% label for second subfigure
     \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.pdf}}
-\bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
+  \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
+\end{figure}
 
 更多关于
 LaTeX插图的例子可以参考[《LaTeX插图指南》](http://www.cs.duke.edu/junhu/Graphics3.pdf)。
@@ -120,43 +124,48 @@ LaTeX插图的例子可以参考[《LaTeX插图指南》](http://www.cs.duke.edu
 图\ref{fig:longcaptionbad}和图\ref{fig:longcaptiongood}都有比较长图标题，通过对比发现，图\ref{fig:longcaptiongood}的换行效果更好一些。
 其中使用了minipage环境来限制整个浮动题的宽度。
 
-\centering![image](chap2/sjtulogo.pdf)
-\bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
+ \bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
+\end{figure}
 
-\centering
-
-\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[!hbp]
+  \centering
+  \begin{minipage}[b]{0.6\textwidth}
     \captionstyle{\centering}
     \centering
     \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
     \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
-  \end{minipage}
+  \end{minipage}     
+\end{figure}
+
 表格 {#sec:tab}
 ----
 
 这一节给出的是一些表格的例子，如表\ref{tab:firstone}所示。
 
-\centering\bicaption[tab:firstone]{指向一个表格的表目录索引}{一个颇为标准的三线表格\footnotemark[1]}{Table}{A Table}
-
-  ------------------------------------- ------------- ------------
-  \toprule\multicolumn{2}{c}{Item}                    
-  \cmidrule(r)<span>1-2</span> Animal   Description     Price (\$)
-  \midruleGnat                          per gram             13.65
-                                        each                  0.01
-  Gnu                                   stuffed              92.50
-  Emu                                   stuffed              33.33
-  Armadillo                             frozen                8.99
-  \bottomrule                                         
-  ------------------------------------- ------------- ------------
-
+\begin{table}[!hpb]
+  \centering
+  \bicaption[tab:firstone]{指向一个表格的表目录索引}{一个颇为标准的三线表格\footnotemark[1]}{Table}{A Table}
+  \begin{tabular}{@{}llr@{}} \toprule
+    \multicolumn{2}{c}{Item} \\ \cmidrule(r){1-2}
+    Animal & Description & Price (\$)\\ \midrule
+    Gnat & per gram & 13.65 \\
+    & each & 0.01 \\
+    Gnu & stuffed & 92.50 \\
+    Emu & stuffed & 33.33 \\
+    Armadillo & frozen & 8.99 \\ \bottomrule
+  \end{tabular}
+\end{table}
 \footnotetext[1]{这个例子来自\href{http://www.ctan.org/tex-archive/macros/latex/contrib/booktabs/booktabs.pdf}{《Publication quality tables in LATEX》}(booktabs宏包的文档)。这也是一个在表格中使用脚注的例子，请留意与threeparttable实现的效果有何不同。}
 
 下面一个是一个更复杂的表格，用threeparttable实现带有脚注的表格，如表\ref{tab:footnote}。
 
-\bicaption[tab:footnote]{出现在表目录的标题}{一个带有脚注的表格的例子}{Table}{A Table with footnotes}
-\centering
-
-\begin{threeparttable}[b]
+\begin{table}[!htpb]
+  \bicaption[tab:footnote]{出现在表目录的标题}{一个带有脚注的表格的例子}{Table}{A Table with footnotes}
+  \centering
+  \begin{threeparttable}[b]
      \begin{tabular}{ccd{4}cccc}
       \toprule
       \multirow{2}{6mm}{total}&\multicolumn{2}{c}{20\tnote{1}} & \multicolumn{2}{c}{40} &  \multicolumn{2}{c}{60}\\
@@ -173,6 +182,8 @@ LaTeX插图的例子可以参考[《LaTeX插图指南》](http://www.cs.duke.edu
     \item [2] the second note.% or \item [b]
     \end{tablenotes}
   \end{threeparttable}
+\end{table}
+
 参考文献管理
 ------------
 

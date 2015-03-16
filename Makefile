@@ -28,7 +28,7 @@ $(THESIS).pdf : $(THESIS).tex $(TEX_FILES) $(BIB_DIR)/*.bib sjtuthesis.cls sjtut
 mkd2tex : $(MKD_FILES) $(TEX_FILES)
 
 tex2mkd :
-	cd $(TEX_DIR) && for texfile in `ls *.tex`; do f=$$(basename $$texfile .tex) && pandoc $(T2M_OPT) $$f.tex -o ../mkd/$f.mkd; done
+	cd $(TEX_DIR) && for texfile in `ls *.tex`; do f=$$(basename $$texfile .tex) && pandoc $(T2M_OPT) $$f.tex -o ../mkd/$$f.mkd; done
 
 $(SUBMIT).pdf : $(THESIS).pdf statement.pdf
 	rm -f _tmp_.pdf $@

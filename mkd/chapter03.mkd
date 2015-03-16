@@ -27,7 +27,7 @@ A:请删除`X:\CTEX\UserData\fonts\tfm\public\rsfs`下的文件再重新编译�
 <span>**Q:升级了TeXLive 2012，编译后的文档出现“minus”等字样?**</span>
 
 A:这是xltxtra和fontspec宏包导致的问题。学位论文模板从0.5起使用metatlog宏包代替xltxtra生成
-\XeTeX标志，解决了这个问题。
+\XeTeX 标志，解决了这个问题。
 
 <span>**Q:为什么在bib中加入的参考文献，没有在参考文献列表中出现?**</span>
 
