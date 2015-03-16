@@ -1,0 +1,4 @@
+\begin{patents}{99}
+    \item 第一发明人，“永动机”，专利申请号202510149890.0
+\end{patents}
+

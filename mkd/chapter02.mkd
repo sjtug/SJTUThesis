@@ -1,0 +1,280 @@
+ LaTeX排版例子 {#chap:example}
+==============
+
+数学排版 {#sec:matheq}
+--------
+
+### 公式排版 {#sec:eqformat}
+
+这里有举一个长公式排版的例子，来自[《Math
+mode》](http://www.tex.ac.uk/tex-archive/info/math/voss/mathmode/Mathmode.pdf)：
+
+$$\begin{gathered}
+  \frac {1}{2}\Delta (f_{ij}f^{ij})=
+  2\left (\sum _{i<j}\chi _{ij}(\sigma _{i}-
+    \sigma _{j}) ^{2}+ f^{ij}\nabla _{j}\nabla _{i}(\Delta f)+\right .\\
+  \left .+\nabla _{k}f_{ij}\nabla ^{k}f^{ij}+
+    f^{ij}f^{k}\left [2\nabla _{i}R_{jk}-
+      \nabla _{k}R_{ij}\right ]\vphantom {\sum _{i<j}}\right )\end{gathered}$$
+
+#### 一个四级标题 {#sec:depth4}
+
+这是全文唯一的一个四级标题。在这部分中将演示了mathtools宏包中可伸长符号（箭头、等号的例子）的例子。
+
+$$A \xleftarrow[n=0]{} B \xrightarrow[LongLongLongLong]{n>0} C$$
+
+$$\begin{aligned}
+  f(x) & \xleftrightarrow[]{A=B}  & B \\
+  & \xleftharpoondown[below]{above} & B \nonumber \\
+  & \xLeftrightarrow[below]{above} & B\end{aligned}$$
+
+又如：
+
+$$\begin{aligned}
+  \label{eq:none}
+  & I(X_3;X_4)-I(X_3;X_4\mid{}X_1)-I(X_3;X_4\mid{}X_2) \nonumber \\
+  = & [I(X_3;X_4)-I(X_3;X_4\mid{}X_1)]-I(X_3;X_4\mid{}\tilde{X}_2) \\
+  = & I(X_1;X_3;X_4)-I(X_3;X_4\mid{}\tilde{X}_2)\end{aligned}$$
+
+### 定理环境
+
+模板中定义了丰富的定理环境
+algo(算法)，thm(定理)，lem(引理)，prop(命题)，cor(推论)，defn(定义)，conj(猜想)，exmp(例)，rem(注)，case(情形)，
+bthm(断言定理)，blem(断言引理)，bprop(断言命题)，bcor(断言推论)。
+amsmath还提供了一个proof(证明)的环境。 这里举一个“定理”和“证明”的例子。
+
+\begin{thm}[留数定理]
+\label{thm:res}
+  假设$U$是复平面上的一个单连通开子集，$a_1,\ldots,a_n$是复平面上有限个点，$f$是定义在$U\backslash \{a_1,\ldots,a_n\}$上的全纯函数，
+  如果$\gamma$是一条把$a_1,\ldots,a_n$包围起来的可求长曲线，但不经过任何一个$a_k$，并且其起点与终点重合，那么：
+
+  \begin{equation}
+    \label{eq:res}
+    \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\uppi\mathbf{i}\sum^n_{k=1}\mathrm{I}(\gamma,a_k)\mathrm{Res}(f,a_k)
+  \end{equation}
+
+  如果$\gamma$是若尔当曲线，那么$\mathrm{I}(\gamma, a_k)=1$，因此：
+
+  \begin{equation}
+    \label{eq:resthm}
+    \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\uppi\mathbf{i}\sum^n_{k=1}\mathrm{Res}(f,a_k)
+  \end{equation}
+
+      % \oint_\gamma f(z)\, dz = 2\pi i \sum_{k=1}^n \mathrm{Res}(f, a_k ). 
+
+  在这里，$\mathrm{Res}(f, a_k)$表示$f$在点$a_k$的留数，$\mathrm{I}(\gamma,a_k)$表示$\gamma$关于点$a_k$的卷绕数。
+  卷绕数是一个整数，它描述了曲线$\gamma$绕过点$a_k$的次数。如果$\gamma$依逆时针方向绕着$a_k$移动，卷绕数就是一个正数，
+  如果$\gamma$根本不绕过$a_k$，卷绕数就是零。
+
+  定理\ref{thm:res}的证明。
+  
+  \begin{proof}
+    首先，由……
+
+    其次，……
+
+    所以……
+  \end{proof}
+\end{thm}
+上面的公式例子中，有一些细节希望大家注意。微分号d应该使用“直立体”也就是用mathrm包围起来。
+并且，微分号和被积函数之间应该有一段小间隔，可以插入`\,`得到。
+斜体的$d$通常只作为一般变量。
+i,j作为虚数单位时，也应该使用“直立体”为了明显，还加上了粗体，例如`\mathbf{i}`。斜体$i,j$通常用作表示“序号”。
+其他字母在表示常量时，也推荐使用“直立体”譬如，圆周率$\uppi$（需要upgreek宏包），自然对数的底$\mathrm{e}$。
+不过，我个人觉得斜体的$e$和$\pi$很潇洒，在不至于引起混淆的情况下，我也用这两个字母的斜体表示对应的常量。
+
+向文档中插入图像 {#sec:insertimage}
+----------------
+
+### 支持的图片格式 {#sec:imageformat}
+
+\XeTeX可以很方便地插入PDF、EPS、PNG、JPG格式的图片。
+
+插入PNG/JPG的例子如\ref{fig:SRR}所示。
+这两个水平并列放置的图共享一个“图标题”(table
+caption)，没有各自的小标题。
+
+\centering![image](chap2/sjtulogo.png)
+
+\hspace{1cm}
+![image](chap2/sjtulogo.jpg)
+\bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
+
+这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
+
+\centering\subfigure[EPS Figure]{
+    \label{fig:epspdf:a} %% label for first subfigure
+    \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.eps}}
+
+\hspace{1in}
+\subfigure[PDF Figure]{
+    \label{fig:epspdf:b} %% label for second subfigure
+    \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.pdf}}
+\bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
+
+更多关于
+LaTeX插图的例子可以参考[《LaTeX插图指南》](http://www.cs.duke.edu/junhu/Graphics3.pdf)。
+
+### 长标题的换行 {#sec:longcaption}
+
+图\ref{fig:longcaptionbad}和图\ref{fig:longcaptiongood}都有比较长图标题，通过对比发现，图\ref{fig:longcaptiongood}的换行效果更好一些。
+其中使用了minipage环境来限制整个浮动题的宽度。
+
+\centering![image](chap2/sjtulogo.pdf)
+\bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
+
+\centering
+
+\begin{minipage}[b]{0.6\textwidth}
+    \captionstyle{\centering}
+    \centering
+    \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
+    \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
+  \end{minipage}
+表格 {#sec:tab}
+----
+
+这一节给出的是一些表格的例子，如表\ref{tab:firstone}所示。
+
+\centering\bicaption[tab:firstone]{指向一个表格的表目录索引}{一个颇为标准的三线表格\footnotemark[1]}{Table}{A Table}
+
+  ------------------------------------- ------------- ------------
+  \toprule\multicolumn{2}{c}{Item}                    
+  \cmidrule(r)<span>1-2</span> Animal   Description     Price (\$)
+  \midruleGnat                          per gram             13.65
+                                        each                  0.01
+  Gnu                                   stuffed              92.50
+  Emu                                   stuffed              33.33
+  Armadillo                             frozen                8.99
+  \bottomrule                                         
+  ------------------------------------- ------------- ------------
+
+\footnotetext[1]{这个例子来自\href{http://www.ctan.org/tex-archive/macros/latex/contrib/booktabs/booktabs.pdf}{《Publication quality tables in LATEX》}(booktabs宏包的文档)。这也是一个在表格中使用脚注的例子，请留意与threeparttable实现的效果有何不同。}
+
+下面一个是一个更复杂的表格，用threeparttable实现带有脚注的表格，如表\ref{tab:footnote}。
+
+\bicaption[tab:footnote]{出现在表目录的标题}{一个带有脚注的表格的例子}{Table}{A Table with footnotes}
+\centering
+
+\begin{threeparttable}[b]
+     \begin{tabular}{ccd{4}cccc}
+      \toprule
+      \multirow{2}{6mm}{total}&\multicolumn{2}{c}{20\tnote{1}} & \multicolumn{2}{c}{40} &  \multicolumn{2}{c}{60}\\
+      \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+      &www & k & www & k & www & k \\
+      \midrule
+      &$\underset{(2.12)}{4.22}$ & 120.0140\tnote{2} & 333.15 & 0.0411 & 444.99 & 0.1387 \\
+      &168.6123 & 10.86 & 255.37 & 0.0353 & 376.14 & 0.1058 \\
+      &6.761    & 0.007 & 235.37 & 0.0267 & 348.66 & 0.1010 \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+    \item [1] the first note.% or \item [a]
+    \item [2] the second note.% or \item [b]
+    \end{tablenotes}
+  \end{threeparttable}
+参考文献管理
+------------
+
+LaTeX具有将参考文献内容和表现形式分开管理的能力，涉及三个要素：参考文献数据库、参考文献引用格式、在正文中引用参考文献。
+这样的流程需要多次编译：
+
+1.  用户将论文中需要引用的参考文献条目，录入纯文本数据库文件(bib文件)。
+
+2.  调用xelatex对论文模板做第一次编译，扫描文中引用的参考文献，生成参考文献入口文件(aux)文件。
+
+3.  调用biber，以参考文献格式和入口文件为输入，生成格式化以后的参考文献条目文件(bib)。
+
+4.  再次调用xelatex编译模板，将格式化以后的参考文献条目插入正文。
+
+参考文献数据库(thesis.bib)的条目，可以从Google
+Scholar搜索引擎[^1]、CiteSeerX搜索引擎[^2]中查找，文献管理软件Papers[^3]、Mendeley[^4]、JabRef[^5]也能够输出条目信息。
+
+下面是在Google Scholar上搜索到的一条文献信息，格式是纯文本：
+
+    @phdthesis{"白2008信用风险传染模型和信用衍生品的定价",
+          title={{"信用风险传染模型和信用衍生品的定价"}},
+          author={"白云芬"},
+          year={2008},
+          school={"上海交通大学"}
+        } 
+
+为了方便引用，建议将文献别名改用ASCII表示。
+中文文献的处理有别于英文文献，对中文参考文献需要增加“language”域显式说明。
+
+    @phdthesis{bai2008,
+        title={{"信用风险传染模型和信用衍生品的定价"}},
+        author={"白云芬"},
+        year={2008},
+        language={chinese},
+        address={"上海"},
+        school={"上海交通大学"}
+      } 
+
+按照教务处的要求，参考文献外观应符合国标GBT7714的要求[^6]。
+在本模板中，我们使用caspervector[^7]参考文献样式，这是一种非常接近GB风格，但在美学细节上更优秀的风格。
+
+正文中引用参考文献时，用`\supercite{key1,key2,key3...}`可以产生“上标引用的参考文献”，
+如[@Meta_CN; @chen2007act; @DPMG]。
+使用`\parencite{key1,key2,key3...}`则可以产生水平引用的参考文献，例如[@JohnD; @zhubajie; @IEEE-1363]。
+请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的[@Meta_CN; @JohnD; @IEEE-1363]，关于期刊的[@chen2007act; @chen2007ewi]，
+会议论文[@DPMG; @kocher99; @cnproceed]，
+硕士学位论文[@zhubajie; @metamori2004]，博士学位论文[@shaheshang; @FistSystem01; @bai2008]，标准文件[@IEEE-1363]，技术报告[@NPB2]，电子文献[@xiaoyu2001; @CHRISTINE1998]，用户手册[@RManual]。
+
+总结一些注意事项：
+
+-   参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
+
+-   参考文献“数据库文件”bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
+
+-   参考文献条目中通过language域是否为空判断是否是中文文献；
+
+用listings插入源代码
+--------------------
+
+原先ctexbook文档类和listings宏包配合使用时，代码在换页时会出现莫名其妙的错误，后来经高人指点，顺利解决了。
+感兴趣的话，可以看看[这里](http://bbs.ctex.org/viewthread.php?tid=53451)。
+这里给使用listings宏包插入源代码的例子，这里是一段C代码。
+另外，listings宏包真可谓博大精深，可以实现各种复杂、漂亮的效果，想要进一步学习的同学，可以参考
+[listings宏包手册](http://mirror.ctan.org/macros/latex/contrib/listings/listings.pdf)。
+
+    #include <stdio.h>
+    #include <unistd.h>
+    #include <sys/types.h>
+    #include <sys/wait.h>
+
+    int main() {
+      pid_t pid;
+
+      switch ((pid = fork())) {
+      case -1:
+        printf("fork failed\n");
+        break;
+      case 0:
+        /* child calls exec */
+        execl("/bin/ls", "ls", "-l", (char*)0);
+        printf("execl failed\n");
+        break;
+      default:
+        /* parent uses wait to suspend execution until child finishes */
+        wait((int*)0);
+        printf("is completed\n");
+        break;
+      }
+
+      return 0;
+    }
+
+[^1]: <https://scholar.google.com>
+
+[^2]: <http://citeseerx.ist.psu.edu>
+
+[^3]: <http://papersapp.com>
+
+[^4]: <http://www.mendeley.com>
+
+[^5]: <http://jabref.sourceforge.net>
+
+[^6]: <http://www.cces.net.cn/guild/sites/tmxb/Files/19798_2.pdf>
+
+[^7]: <http://www.ctan.org/pkg/biblatex-caspervector>
