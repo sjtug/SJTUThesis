@@ -45,7 +45,7 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
-\RequirePackage[top=3cm, headsep=1.2cm, bottom=3cm,left=3.5cm,right=2.5cm]{geometry} %设置版面
+\RequirePackage[top=3.5cm, headsep=0.5cm, bottom=2.5cm,left=3.5cm,right=2.5cm]{geometry} %设置版面
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -498,7 +498,11 @@
 \renewenvironment{thanks}
   {\chapter{\sjtu@label@thanks}}
   {}
-  
+
+\newenvironment{summary}
+{\chapter*{\sjtu@label@summary\markboth{\sjtu@label@summary}{}}\addcontentsline{toc}{chapter}{\sjtu@label@summary}
+}{}
+
 \newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
