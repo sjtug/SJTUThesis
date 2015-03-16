@@ -6,7 +6,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 上海交通大学学位论文模板
 ======
 
-这是为撰写上海交通大学学士、硕士或博士论文而准备的XeLaTeX模板，非官方出品。生成的学位论文文件参见：<https://s3.amazonaws.com/sjtuthesis/README.pdf>。
+这是为撰写上海交通大学学士、硕士或博士论文而准备的XeLaTeX模板，非官方出品。生成的学位论文文件参见[README.pdf][README]。
 
 如何使用
 ------
@@ -46,7 +46,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 ### 问题诊断
 
 编译失败时，可以尝试手动逐次编译。
-结合文档[README.pdf](https://s3-ap-southeast-1.amazonaws.com/sjtuthesis/README.pdf)中的说明，有助于定位故障。
+结合文档[README.pdf][README]中的说明，有助于定位故障。
 
 	$ xelatex thesis
 	$ biber thesis
@@ -76,3 +76,5 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 ------
 
 上海交通大学校徽图片(```sjtulog.png```)和横幅图片(```sjtubanner.png```)的版权归原作者所有。其他部分使用[MIT License](LICENSE)授权。
+
+[README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
