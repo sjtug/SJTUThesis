@@ -1,5 +1,5 @@
 主要符号对照表 {#chap:symb}
-==============
+========
 
 \begin{longtable}{rl}
 $\epsilon$     & 介电常数 \\

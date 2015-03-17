@@ -6,8 +6,7 @@
 
 ### 公式排版 {#sec:eqformat}
 
-这里有举一个长公式排版的例子，来自[《Math
-mode》](http://www.tex.ac.uk/tex-archive/info/math/voss/mathmode/Mathmode.pdf)：
+这里有举一个长公式排版的例子，来自[《Math mode》](http://www.tex.ac.uk/tex-archive/info/math/voss/mathmode/Mathmode.pdf)：
 
 $$\begin{gathered}
   \frac {1}{2}\Delta (f_{ij}f^{ij})=
@@ -21,20 +20,24 @@ $$\begin{gathered}
 
 这是全文唯一的一个四级标题。在这部分中将演示了mathtools宏包中可伸长符号（箭头、等号的例子）的例子。
 
-$$A \xleftarrow[n=0]{} B \xrightarrow[LongLongLongLong]{n>0} C$$
+\begin{displaymath}
+    A \xleftarrow[n=0]{} B \xrightarrow[LongLongLongLong]{n>0} C 
+\end{displaymath}
 
-$$\begin{aligned}
+\begin{eqnarray}
   f(x) & \xleftrightarrow[]{A=B}  & B \\
   & \xleftharpoondown[below]{above} & B \nonumber \\
-  & \xLeftrightarrow[below]{above} & B\end{aligned}$$
+  & \xLeftrightarrow[below]{above} & B
+\end{eqnarray}
 
 又如：
 
-$$\begin{aligned}
+\begin{align}
   \label{eq:none}
   & I(X_3;X_4)-I(X_3;X_4\mid{}X_1)-I(X_3;X_4\mid{}X_2) \nonumber \\
   = & [I(X_3;X_4)-I(X_3;X_4\mid{}X_1)]-I(X_3;X_4\mid{}\tilde{X}_2) \\
-  = & I(X_1;X_3;X_4)-I(X_3;X_4\mid{}\tilde{X}_2)\end{aligned}$$
+  = & I(X_1;X_3;X_4)-I(X_3;X_4\mid{}\tilde{X}_2)
+\end{align}
 
 ### 定理环境
 
@@ -76,10 +79,9 @@ amsmath还提供了一个proof(证明)的环境。 这里举一个“定理”�
     所以……
   \end{proof}
 \end{thm}
-上面的公式例子中，有一些细节希望大家注意。微分号d应该使用“直立体”也就是用mathrm包围起来。
-并且，微分号和被积函数之间应该有一段小间隔，可以插入`\,`得到。
-斜体的$d$通常只作为一般变量。
-i,j作为虚数单位时，也应该使用“直立体”为了明显，还加上了粗体，例如`\mathbf{i}`。斜体$i,j$通常用作表示“序号”。
+
+上面的公式例子中，微分号d使用了“直立体”，并且微分号和被积函数之间应该有一段小间隔，可以插入`\,`得到，通 斜体$d$则用来表示一般变量。
+i,j作为虚数单位时，也应该使用“直立体”为了明显，还加上了粗体，例如`\mathbf{i}`。斜体$i,j$通常用作迭代计数器。
 其他字母在表示常量时，也推荐使用“直立体”譬如，圆周率$\uppi$（需要upgreek宏包），自然对数的底$\mathrm{e}$。
 不过，我个人觉得斜体的$e$和$\pi$很潇洒，在不至于引起混淆的情况下，我也用这两个字母的斜体表示对应的常量。
 
@@ -191,11 +193,8 @@ LaTeX具有将参考文献内容和表现形式分开管理的能力，涉及三
 这样的流程需要多次编译：
 
 1.  用户将论文中需要引用的参考文献条目，录入纯文本数据库文件(bib文件)。
-
 2.  调用xelatex对论文模板做第一次编译，扫描文中引用的参考文献，生成参考文献入口文件(aux)文件。
-
 3.  调用biber，以参考文献格式和入口文件为输入，生成格式化以后的参考文献条目文件(bib)。
-
 4.  再次调用xelatex编译模板，将格式化以后的参考文献条目插入正文。
 
 参考文献数据库(thesis.bib)的条目，可以从Google
@@ -203,42 +202,45 @@ Scholar搜索引擎[^1]、CiteSeerX搜索引擎[^2]中查找，文献管理软�
 
 下面是在Google Scholar上搜索到的一条文献信息，格式是纯文本：
 
+\begin{lstlisting}[caption={从Google Scholar找到的参考文献条目}, label=googlescholar, float, escapeinside="", numbers=none]
     @phdthesis{"白2008信用风险传染模型和信用衍生品的定价",
-          title={{"信用风险传染模型和信用衍生品的定价"}},
-          author={"白云芬"},
-          year={2008},
-          school={"上海交通大学"}
-        } 
+      title={{"信用风险传染模型和信用衍生品的定价"}},
+      author={"白云芬"},
+      year={2008},
+      school={"上海交通大学"}
+    }
+\end{lstlisting}
 
 为了方便引用，建议将文献别名改用ASCII表示。
 中文文献的处理有别于英文文献，对中文参考文献需要增加“language”域显式说明。
 
-    @phdthesis{bai2008,
-        title={{"信用风险传染模型和信用衍生品的定价"}},
-        author={"白云芬"},
-        year={2008},
-        language={chinese},
-        address={"上海"},
-        school={"上海交通大学"}
-      } 
+\begin{lstlisting}[caption={修改后的参考文献条目}, label=itemok, float, escapeinside="", numbers=none]
+  @phdthesis{bai2008,
+    title={{"信用风险传染模型和信用衍生品的定价"}},
+    author={"白云芬"},
+    year={2008},
+    language={chinese},
+    address={"上海"},
+    school={"上海交通大学"}
+  }
+\end{lstlisting}
 
 按照教务处的要求，参考文献外观应符合国标GBT7714的要求[^6]。
 在本模板中，我们使用caspervector[^7]参考文献样式，这是一种非常接近GB风格，但在美学细节上更优秀的风格。
 
-正文中引用参考文献时，用`\supercite{key1,key2,key3...}`可以产生“上标引用的参考文献”，
-如[@Meta_CN; @chen2007act; @DPMG]。
-使用`\parencite{key1,key2,key3...}`则可以产生水平引用的参考文献，例如[@JohnD; @zhubajie; @IEEE-1363]。
-请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的[@Meta_CN; @JohnD; @IEEE-1363]，关于期刊的[@chen2007act; @chen2007ewi]，
-会议论文[@DPMG; @kocher99; @cnproceed]，
-硕士学位论文[@zhubajie; @metamori2004]，博士学位论文[@shaheshang; @FistSystem01; @bai2008]，标准文件[@IEEE-1363]，技术报告[@NPB2]，电子文献[@xiaoyu2001; @CHRISTINE1998]，用户手册[@RManual]。
+正文中引用参考文献时，用\verb+\supercite{key1,key2,key3...}+可以产生“上标引用的参考文献”，
+如\supercite{Meta_CN,chen2007act,DPMG}。
+使用\verb+\parencite{key1,key2,key3...}+则可以产生水平引用的参考文献，例如\parencite{JohnD,zhubajie,IEEE-1363}。
+请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的\parencite{Meta_CN,JohnD,IEEE-1363}，关于期刊的\supercite{chen2007act,chen2007ewi}，
+会议论文\parencite{DPMG,kocher99,cnproceed}，
+硕士学位论文\parencite{zhubajie,metamori2004}，博士学位论文\supercite{shaheshang,FistSystem01,bai2008}，标准文件\parencite{IEEE-1363}，技术报告\supercite{NPB2}，电子文献\parencite{xiaoyu2001, CHRISTINE1998}，用户手册\parencite{RManual}。
 
 总结一些注意事项：
-
--   参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
-
--   参考文献“数据库文件”bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
-
--   参考文献条目中通过language域是否为空判断是否是中文文献；
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+\item 参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
+\item 参考文献“数据库文件”bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
+\item 参考文献条目中通过language域是否为空判断是否是中文文献；
+\end{itemize}
 
 用listings插入源代码
 --------------------
@@ -249,43 +251,41 @@ Scholar搜索引擎[^1]、CiteSeerX搜索引擎[^2]中查找，文献管理软�
 另外，listings宏包真可谓博大精深，可以实现各种复杂、漂亮的效果，想要进一步学习的同学，可以参考
 [listings宏包手册](http://mirror.ctan.org/macros/latex/contrib/listings/listings.pdf)。
 
-    #include <stdio.h>
-    #include <unistd.h>
-    #include <sys/types.h>
-    #include <sys/wait.h>
+\begin{lstlisting}[language={C}, caption={一段C源代码}]
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-    int main() {
-      pid_t pid;
+int main() {
+  pid_t pid;
 
-      switch ((pid = fork())) {
-      case -1:
-        printf("fork failed\n");
-        break;
-      case 0:
-        /* child calls exec */
-        execl("/bin/ls", "ls", "-l", (char*)0);
-        printf("execl failed\n");
-        break;
-      default:
-        /* parent uses wait to suspend execution until child finishes */
-        wait((int*)0);
-        printf("is completed\n");
-        break;
-      }
+  switch ((pid = fork())) {
+  case -1:
+    printf("fork failed\n");
+    break;
+  case 0:
+    /* child calls exec */
+    execl("/bin/ls", "ls", "-l", (char*)0);
+    printf("execl failed\n");
+    break;
+  default:
+    /* parent uses wait to suspend execution until child finishes */
+    wait((int*)0);
+    printf("is completed\n");
+    break;
+  }
 
-      return 0;
-    }
+  return 0;
+}
+\end{lstlisting}
+
 
 [^1]: <https://scholar.google.com>
-
 [^2]: <http://citeseerx.ist.psu.edu>
-
 [^3]: <http://papersapp.com>
-
 [^4]: <http://www.mendeley.com>
-
 [^5]: <http://jabref.sourceforge.net>
-
 [^6]: <http://www.cces.net.cn/guild/sites/tmxb/Files/19798_2.pdf>
-
 [^7]: <http://www.ctan.org/pkg/biblatex-caspervector>
+

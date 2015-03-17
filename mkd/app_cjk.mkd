@@ -1,4 +1,5 @@
-# 从 CJKLaTeX 转向 XeTeX
+从 CJKLaTeX 转向 XeTeX
+========
 
 我习惯把v0.2a使用dvipdfmx编译的硕士学位论文模板称为“\CJKLaTeX 模板”，而这个使用 \XeTeX 引擎处理的模板则被称为“\XeTeX/\LaTeX 模板”。
 从 \CJKLaTeX 模板迁移到 \XeTeX/\LaTeX 模板的好处有下：
@@ -26,5 +27,4 @@
 5.  使用XeTeX模板中的GBT7714-2005NLang.bst替换原有的bst文件；
 6.  删除bouding box文件；
 7.  重新编译模板。
-
 
