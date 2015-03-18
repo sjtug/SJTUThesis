@@ -10,10 +10,12 @@
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
 \newif\ifsjtu@review\sjtu@reviewfalse
+\newif\ifsjtu@submit\sjtu@submitfalse
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
 \DeclareOption{doctor}{\sjtu@doctortrue}
 \DeclareOption{review}{\sjtu@reviewtrue}
+\DeclareOption{submit}{\sjtu@submittrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 \LoadClass[a4paper,fancyhdr,fntef,UTF8]{ctexbook}
@@ -66,6 +68,7 @@
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
 \RequirePackage{enumitem}
+\RequirePackage{pdfpages}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.

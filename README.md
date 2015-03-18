@@ -15,7 +15,6 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 * 支持XeTeX的**完整**TeX发行版。2014年以后的CTeX、TeXLive和MacTeX发行版应该都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
-* 用于合并PDF文件的[stapler](https://github.com/hellerbarde/stapler)工具，建议通过```pip```或```easy_install```安装。若使用其他PDF工具，譬如[pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)、[PDFCat](http://freecode.com/projects/pdfcat)，请修改Makefile中的相应规则。
 
 ### 获取模板
 
@@ -37,11 +36,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 	$ make clean thesis.pdf
 
-若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在导入```sjtuthesis```宏包时添加```review```选项。
-
-若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为```statement.pdf```，然后生成```submit.pdf```文件。 stapler程序将被用于PDF文件合并。 **使用前请在Makefile中调整合并的页码范围。** 
-
-	$ make clean submit.pdf
+若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在```thesis.tex```中为```sjtuthesis```文档类添加```review```选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为```pdf/origignal.pdf```和```pdf/authorization.pdf```，然后添加```submit```选项重新编译模板。
 
 ### 问题诊断
 
