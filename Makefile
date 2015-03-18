@@ -2,7 +2,6 @@ vpath %.tex tex
 vpath %.mkd mkd
 
 THESIS = thesis
-SUBMIT = submit
 # TEX, BIB, TEST dir
 MKD_DIR = mkd
 MKD_FILES = $(shell cd $(MKD_DIR) && ls *.mkd)
@@ -15,7 +14,7 @@ LATEXMK_OPT = -xelatex -gg -silent -f
 T2M_OPT = --parse-raw --no-tex-ligatures -f latex -t markdown 
 M2T_OPT = --chapters --parse-raw --no-tex-ligatures -f markdown -t latex
 
-all: $(THESIS).pdf $(SUBMIT).pdf
+all: $(THESIS).pdf
 
 .PHONY : all clean tex2mkd
 
@@ -29,11 +28,6 @@ mkd2tex : $(MKD_FILES) $(TEX_FILES)
 
 tex2mkd :
 	cd $(TEX_DIR) && for texfile in `ls *.tex`; do f=$$(basename $$texfile .tex) && pandoc $(T2M_OPT) $$f.tex -o ../mkd/$$f.mkd; done
-
-$(SUBMIT).pdf : $(THESIS).pdf statement.pdf
-	rm -f _tmp_.pdf $@
-	stapler sel $(THESIS).pdf 1-4 statement.pdf _tmp_.pdf
-	stapler sel _tmp_.pdf $(THESIS).pdf 6-end $@
 
 clean :
 	latexmk -C

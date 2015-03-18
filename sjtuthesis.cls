@@ -10,10 +10,12 @@
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
 \newif\ifsjtu@review\sjtu@reviewfalse
+\newif\ifsjtu@submit\sjtu@submitfalse
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
 \DeclareOption{doctor}{\sjtu@doctortrue}
 \DeclareOption{review}{\sjtu@reviewtrue}
+\DeclareOption{submit}{\sjtu@submittrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 \LoadClass[a4paper,fancyhdr,fntef,UTF8]{ctexbook}
@@ -66,6 +68,7 @@
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
 \RequirePackage{enumitem}
+\RequirePackage{pdfpages}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -321,11 +324,7 @@
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
   \hspace{16em}\sjtu@label@originalDate\hspace{1em}
-  \clearpage
-  \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \cleardoublepage
 }
 
 
@@ -344,11 +343,7 @@
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
-  \clearpage
-  \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \cleardoublepage
 }
 
 % 根据学位论文类型、单双面打印设置页眉页脚类型
