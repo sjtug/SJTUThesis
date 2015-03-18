@@ -328,11 +328,7 @@
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
   \hspace{16em}\sjtu@label@originalDate\hspace{1em}
-  \clearpage
-  \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \cleardoublepage
 }
 
 
@@ -351,11 +347,7 @@
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
-  \clearpage
-  \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \cleardoublepage
 }
 
 % 根据学位论文类型、单双面打印设置页眉页脚类型
