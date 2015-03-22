@@ -63,10 +63,11 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 * 使用```biber```模块替代```bibtex```处理参考文献。
 * 撰写idx文件。 
 
-其他版本
+所有版本
 ------
 
-* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)
+* [v 0.8](https://github.com/weijianwen/SJTUThesis/tree/v0.8)[(master)](https://github.com/weijianwen/SJTUThesis)：使用biber/biblatex处理参考文献，需要使用2014年以后的TeX发行版。
+* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)：使用bibex处理参考文献，需要使用2013年以后的TeX发行版。
 
 软件许可证
 ------
