@@ -62,10 +62,11 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 * 移除冗余代码，适当使用LaTeX命令替换复杂的TeX操作序列。包括移除```sjtuspace```命令、简化页面布局中过于繁杂的操作。
 * 增加例子，如Algorithm宏包。
 
-其他版本
+所有版本
 ------
 
-* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)
+* [v 0.8](https://github.com/weijianwen/SJTUThesis/tree/v0.8)[(master)](https://github.com/weijianwen/SJTUThesis)：使用biber/biblatex处理参考文献，需要使用2014年以后的TeX发行版。
+* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)：使用bibex处理参考文献，需要使用2013年以后的TeX发行版。
 
 软件许可证
 ------
