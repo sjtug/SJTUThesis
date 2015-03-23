@@ -117,6 +117,31 @@
 %% 行距缩放因子
 \linespread{1.3}
 
+%% CTeX Settings
+% 目录名、表格索引、插图索引
+\CTEXoptions[contentsname={\sjtu@contentsname}]
+\CTEXoptions[listfigurename={\sjtu@listfigurename}]
+\CTEXoptions[listtablename={\sjtu@listtablename}]
+% Title Settings at the chapter Level
+\CTEXsetup[nameformat={\Large\bfseries}]{chapter}
+\CTEXsetup[titleformat={\Large\bfseries}]{chapter}
+\CTEXsetup[beforeskip={15\p@}]{chapter}
+\CTEXsetup[afterskip={12\p@}]{chapter}
+% Title Settings at the section Level
+\CTEXsetup[format={\large\bfseries}]{section}
+\CTEXsetup[beforeskip={-3ex \@plus -1ex \@minus -.2ex}]{section}
+\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{section}
+% Title Settings at the subection Level
+\CTEXsetup[format={\bfseries\normalsize}]{subsection}
+\CTEXsetup[indent={0\ccwd}]{subsection}
+\CTEXsetup[beforeskip={-2.5ex \@plus -1ex \@minus -.2ex}]{subsection}
+\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsection}
+% Title Settings at the subsubection Level
+\CTEXsetup[format={\normalfont\normalsize}]{subsubsection}
+\CTEXsetup[indent={0\ccwd}]{subsubsection}
+\CTEXsetup[beforeskip={-2ex \@plus -1ex \@minus -.2ex}]{subsubsection}
+\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsubsection}
+
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}
 
