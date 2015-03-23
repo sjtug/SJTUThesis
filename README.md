@@ -58,6 +58,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 后续工作计划
 ------
 
+* 将```sjtuthesis.cfg```中使用```\def\CTEX@```做的设置，改用```\CTEXsetup```在```sjtuthesis.cls```中完成。
 * 移除冗余代码，适当使用LaTeX命令替换复杂的TeX操作序列。包括移除```sjtuspace```命令、简化页面布局中过于繁杂的操作。
 * 增加例子，如Algorithm宏包。
 * 使用```biber```模块替代```bibtex```处理参考文献。
