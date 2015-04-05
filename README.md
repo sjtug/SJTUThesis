@@ -15,6 +15,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 * 支持XeTeX的**完整**TeX发行版。2014年以后的CTeX、TeXLive和MacTeX发行版应该都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
+* Windows用户请使用[Cygwin](http://cygwin.com)安装GNU make工具。
 
 ### 获取模板
 
