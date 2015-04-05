@@ -23,4 +23,5 @@ s3 : $(THESIS).pdf
 git :
 	git push gitlab
 	git push github
+	git push gitcafe
 
