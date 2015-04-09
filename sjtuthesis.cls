@@ -60,7 +60,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{ccaption}
-\RequirePackage[backend=biber, style=caspervector, utf8, sorting=centy,]{biblatex}
+\RequirePackage[backend=biber, style=caspervector, sorting=none,]{biblatex}
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
