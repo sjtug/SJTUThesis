@@ -72,8 +72,8 @@ make clean submit.pdf
 编译失败时，可以尝试手动逐次编译，定位故障。
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动逐次编译}, numbers=none]
-xelatex thesis
-biber thesis
+xelatex -no-pdf thesis
+biber --debug thesis
 xelatex thesis
 xelatex thesis
 \end{lstlisting}
