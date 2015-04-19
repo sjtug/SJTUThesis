@@ -64,18 +64,19 @@
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
-\RequirePackage[xetex]{hyperref}
+\RequirePackage[xetex, bookmarksnumbered, colorlinks, linkcolor=blue, citecolor=blue, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
 \RequirePackage{enumitem}
 \RequirePackage{pdfpages}
+\RequirePackage{calc}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
 
 % User defined command list
-%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX \upcite
+%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
@@ -99,9 +100,6 @@
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
-
-% Upper quote
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -196,16 +194,6 @@
   % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
-}
-
-%% setting hyperref package
-\hypersetup{
-  bookmarksnumbered,%
-  colorlinks,%
-  linkcolor=blue,%
-  citecolor=blue,%
-  plainpages=false,%
-  pdfstartview=FitH
 }
 
 %==========

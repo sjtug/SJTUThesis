@@ -16,7 +16,7 @@ M2T_OPT = --chapters --parse-raw --no-tex-ligatures -f markdown -t latex
 
 all: $(THESIS).pdf
 
-.PHONY : all clean tex2mkd
+.PHONY : all clean tex2mkd validate
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_FILES) $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
@@ -28,6 +28,10 @@ mkd2tex : $(MKD_FILES) $(TEX_FILES)
 
 tex2mkd :
 	cd $(TEX_DIR) && for texfile in `ls *.tex`; do f=$$(basename $$texfile .tex) && pandoc $(T2M_OPT) $$f.tex -o ../mkd/$$f.mkd; done
+
+validate :
+	xelatex -no-pdf -halt-on-error $(THESIS)
+	biber --debug $(THESIS)
 
 clean :
 	latexmk -C
