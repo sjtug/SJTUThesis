@@ -64,19 +64,19 @@
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
-\RequirePackage[xetex]{hyperref}
-\RequirePackage{enumitem}
+\RequirePackage[xetex, bookmarksnumbered, colorlinks, linkcolor=blue, citecolor=blue, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
 \RequirePackage{enumitem}
 \RequirePackage{pdfpages}
+\RequirePackage{calc}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
 
 % User defined command list
-%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX \upcite
+%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
@@ -100,9 +100,6 @@
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
-
-% Upper quote
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -199,6 +196,7 @@
   numbersep=-1em
 }
 
+<<<<<<< HEAD
 %% setting hyperref package
 \hypersetup{
   bookmarksnumbered,%
@@ -212,6 +210,8 @@
 %  参考文献风格 GBT7714-2005
 \bibliographystyle{bst/GBT7714-2005NLang}
 
+=======
+>>>>>>> 671d3c9... Clean sjtuthesis.cls
 %==========
 % Segment 4. Draw the sjtuthesis
 %==========

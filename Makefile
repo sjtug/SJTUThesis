@@ -8,10 +8,14 @@ LATEXMK_OPT = -xelatex -gg -silent -f
 
 all: $(THESIS).pdf
 
-.PHONY : all clean
+.PHONY : all clean validate
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
+
+validate :
+	xelatex -no-pdf -halt-on-error $(THESIS)
+	biber --debug $(THESIS)
 
 clean :
 	latexmk -C
