@@ -9,7 +9,7 @@ LATEXMK_OPT = -xelatex -gg -silent -f
 
 all: $(THESIS).pdf $(SUBMIT).pdf
 
-.PHONY : all clean
+.PHONY : all clean validate
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
