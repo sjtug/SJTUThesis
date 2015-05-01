@@ -63,7 +63,6 @@ make clean thesis.pdf
 \end{lstlisting}
 
 若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为statement.pdf，然后调用make生成submit.pdf。
-在此过程中，stapler工具将被用于合并PDF文件。\emph{使用前请在Makefile中调整stapler合并的页码范围。}
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={生成用于提交的学位论文}, numbers=none]
 make clean submit.pdf
@@ -72,8 +71,8 @@ make clean submit.pdf
 编译失败时，可以尝试手动逐次编译，定位故障。
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动逐次编译}, numbers=none]
-xelatex thesis
-biber thesis
+xelatex -no-pdf thesis
+biber --debug thesis
 xelatex thesis
 xelatex thesis
 \end{lstlisting}

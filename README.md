@@ -44,8 +44,8 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 编译失败时，可以尝试手动逐次编译。
 结合文档[README.pdf][README]中的说明，有助于定位故障。
 
-	$ xelatex thesis
-	$ biber thesis
+	$ xelatex -no-pdf thesis
+	$ biber --debug thesis
 	$ xelatex thesis
 	$ xelatex thesis
 
