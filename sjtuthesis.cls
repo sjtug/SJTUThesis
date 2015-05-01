@@ -176,7 +176,6 @@
 % Segment 4. Draw the sjtuthesis
 %==========
 
-\newcommand\sjtuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 \def\sjtu@getfileinfo#1 #2 #3\relax#4\relax{%
   \def\sjtufiledate{#1}%
   \def\sjtufileversion{#2}%
@@ -308,7 +307,9 @@
   {\bf\zihao{3} \sjtu@label@original}
   \end{center}
   \vskip 10pt
+
   {\zihao{-4}\sjtu@label@originalcontent}
+
   \vskip 60pt
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
@@ -330,7 +331,9 @@
   {\bf\zihao{3} \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
+
   {\zihao{-4} \sjtu@label@authorizationcontent}
+
   \vskip 60pt
   
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
