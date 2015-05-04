@@ -73,6 +73,9 @@
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
 
+\setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
+\setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
+    
 % User defined command list
 %% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
 
@@ -171,6 +174,35 @@
 
 %  参考文献风格 GBT7714-2005
 \bibliographystyle{bst/GBT7714-2005NLang}
+
+% 定理环境
+\theoremstyle{plain}
+  \newtheorem{algo}{\sjtu@label@algo~}[chapter]
+  \newtheorem{thm}{\sjtu@label@thm~}[chapter]
+  \newtheorem{lem}[thm]{\sjtu@label@lem~}
+  \newtheorem{prop}[thm]{\sjtu@label@prop~}
+  \newtheorem{cor}[thm]{\sjtu@label@cor~}
+\theoremstyle{definition}
+  \newtheorem{defn}{\sjtu@label@defn~}[chapter]
+  \newtheorem{conj}{\sjtu@label@conj~}[chapter]
+  \newtheorem{exmp}{\sjtu@label@exmp~}[chapter]
+  \newtheorem{rem}{\sjtu@label@rem~}
+  \newtheorem{case}{\sjtu@label@case~}
+\theoremstyle{break}
+  \newtheorem{bthm}[thm]{\sjtu@label@thm~}
+  \newtheorem{blem}[thm]{\sjtu@label@lem~}
+  \newtheorem{bprop}[thm]{\sjtu@label@prop~}
+  \newtheorem{bcor}[thm]{\sjtu@label@cor~}
+  \renewcommand{\proofname}{\bf\sjtu@label@proof}
+\newtheoremstyle{break}% name
+  {}%      Space above, empty = `usual value'
+  {}%      Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
 
 %==========
 % Segment 4. Draw the sjtuthesis
@@ -527,18 +559,6 @@
 
 \newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
 
-\setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
-\setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-    
-\newtheoremstyle{break}% name
-  {}%      Space above, empty = `usual value'
-  {}%      Space below
-  {\itshape}% Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
 \endinput
 
 %%
