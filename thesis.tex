@@ -53,6 +53,8 @@
 \addcontentsline{toc}{chapter}{\listfigurename} %将插图目录加入全文目录
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
+% \listofalgorithms
+% \addcontentsline{toc}{chapter}{代码索引}  %将表格目录加入全文目录
 
 \include{tex/symbol} % 主要符号、缩略词对照表
 
@@ -69,6 +71,7 @@
 \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
 \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
+\renewcommand\thealgorithm{\Alph{chapter}--\arabic{algorithm}}
 
 %% 附录内容，本科学位论文可以用翻译的文献替代。
 \include{tex/app_log}
