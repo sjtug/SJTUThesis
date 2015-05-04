@@ -293,3 +293,21 @@ int main() {
 }
 \end{lstlisting}
 
+\section{用algorithm和algorithmic宏包插入算法描述}
+
+如算法\ref{algo:sum_I_want}所示。
+
+\begin{algorithm}
+\caption{求和算法}
+\label{algo:sum_I_want}
+\begin{algorithmic}
+\REQUIRE $n \geq 1$                  %输入条件
+\ENSURE $Sum = 1 + \cdots + n$       %输出
+\STATE $Sum \leftarrow 0$            %\STATE 命名演示
+\IF {$n < 1$}                        %条件语句
+\PRINT {Input Error}                 %打印语句
+\ENDIF
+\RETURN Sum
+\end{algorithmic}
+\end{algorithm}
+
