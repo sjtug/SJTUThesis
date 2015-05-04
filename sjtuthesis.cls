@@ -68,6 +68,7 @@
 \RequirePackage{enumitem}
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
+\RequirePackage{algorithm, algorithmic}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -115,6 +116,33 @@
 %% 行距缩放因子
 \linespread{1.3}
 
+%% CTeX Settings
+% 名称：目录、表格索引、插图索引、代码索引
+\CTEXoptions[contentsname={\sjtu@contentsname}]
+\CTEXoptions[listfigurename={\sjtu@listfigurename}]
+\CTEXoptions[listtablename={\sjtu@listtablename}]
+\renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
+\floatname{algorithm}{\sjtu@label@algo}
+% Title Settings at the chapter Level
+\CTEXsetup[nameformat={\Large\bfseries}]{chapter}
+\CTEXsetup[titleformat={\Large\bfseries}]{chapter}
+\CTEXsetup[beforeskip={15\p@}]{chapter}
+\CTEXsetup[afterskip={12\p@}]{chapter}
+% Title Settings at the section Level
+\CTEXsetup[format={\large\bfseries}]{section}
+\CTEXsetup[beforeskip={-3ex \@plus -1ex \@minus -.2ex}]{section}
+\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{section}
+% Title Settings at the subection Level
+\CTEXsetup[format={\bfseries\normalsize}]{subsection}
+\CTEXsetup[indent={0\ccwd}]{subsection}
+\CTEXsetup[beforeskip={-2.5ex \@plus -1ex \@minus -.2ex}]{subsection}
+\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsection}
+% Title Settings at the subsubection Level
+\CTEXsetup[format={\normalfont\normalsize}]{subsubsection}
+\CTEXsetup[indent={0\ccwd}]{subsubsection}
+\CTEXsetup[beforeskip={-2ex \@plus -1ex \@minus -.2ex}]{subsubsection}
+\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsubsection}
+
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}
 
@@ -133,10 +161,11 @@
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
 
-% 定公式、图、表编号为"3-1"的形式，即分隔符由.变为短杠
+% 定公式、图、表、算法的编号为"3-1"的形式，即分隔符由.变为短杠
 \renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
+\renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
 % Title
 \renewcommand{\lstlistingname}{\sjtu@value@listingname} %% 重命名Listings标题头
