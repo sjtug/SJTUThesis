@@ -33,10 +33,6 @@ validate :
 	xelatex -no-pdf -halt-on-error $(THESIS)
 	biber --debug $(THESIS)
 
-validate :
-	xelatex -no-pdf -halt-on-error $(THESIS)
-	biber --debug $(THESIS)
-
 clean :
 	latexmk -C
 	-rm *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml
