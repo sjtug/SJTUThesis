@@ -64,7 +64,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
-\RequirePackage[xetex, bookmarksnumbered, colorlinks, linkcolor=blue, citecolor=blue, plainpages=false, pdfstartview=FitH]{hyperref}
+\RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
 \RequirePackage{enumitem}
@@ -378,52 +378,57 @@
   \cleardoublepage
 }
 
-% 根据学位论文类型、单双面打印设置页眉页脚类型
-\pagestyle{fancy}
-\fancyhf{}
-
+% fancyhdr页眉页脚设置
 \ifsjtu@bachelor
-  % 本科学位论文正文页眉页脚，只处理单面打印的情况
-  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
-  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{LastPage}}~页}
-  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
-    \fancyhf{}%
-    \fancyhead[L]{\nouppercase{\small\kaishu\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
-    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-    \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{LastPage}}~页}
-   }
+	% 本科学位论文页眉页脚设置
+	%% 正文页眉页脚
+	\fancypagestyle{main}{
+	  \fancyhf{}
+	  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+	  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{LastPage}}~页}
+	}
+	%% 开章页页眉页脚
+	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+	  \fancyhf{}%
+	  \fancyhead[L]{\nouppercase{\small\kaishu\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
+	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+	  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{LastPage}}~页}
+	}
 \else
-  % opnright 研究生学位论文正文页眉页脚设置
-  \if@openright
-    \fancyhead[LO, RE]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}
-    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
-    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-    \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
-    % openright 开章页页眉页脚
-    \fancypagestyle{plain} {
-      \fancyhf{}
-      \fancyhead[LO,RE]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
-      \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
-      \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    }
-  \else
-    % openany 研究生学位论文正文页眉页脚设置
-    \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
-    \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
-    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    % openany 开章页页眉页脚
-    \fancypagestyle{plain} {
-      \fancyhf{}
-      \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
-      \fancyhead[R]{\nouppercase\small\kaishu\leftmark}}
-      % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
-      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    }
-  \fi
+	% 研究生学位论文页眉页脚设置
+	\if@twoside
+	  %% 正文页眉页脚
+	  \fancypagestyle{main}{
+	    \fancyhead[LO, RE]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}
+	    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
+	    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+	    \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
+	  }
+	  %% 开章页页眉页脚
+	  \fancypagestyle{plain}{
+	    \fancyhf{}
+	    \fancyhead[LO,RE]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+	    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
+	    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+	    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+	  }
+	\else
+	%% 正文页
+	\fancypagestyle{main}{
+	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
+	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+	}
+	\fancypagestyle{plain}{
+	  \fancyhf{}
+	  \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+	  \fancyhead[R]{\nouppercase\small\kaishu\leftmark}}
+	  % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
+	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+	}
+	\fi
 \fi
-
 
 % 中英文摘要
 \newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}\markboth{\sjtu@label@abstract}{}}{}
