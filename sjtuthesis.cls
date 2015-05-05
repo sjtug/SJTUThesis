@@ -234,24 +234,9 @@
 % Segment 4. Draw the sjtuthesis
 %==========
 
-\def\sjtu@getfileinfo#1 #2 #3\relax#4\relax{%
-  \def\sjtufiledate{#1}%
-  \def\sjtufileversion{#2}%
-  \def\sjtufileinfo{#3}}%
-\expandafter\ifx\csname ver@sjtuthesis.cls\endcsname\relax
-  \edef\reserved@a{\csname ver@ctextemp_sjtuthesis.cls\endcsname}
-\else
-  \edef\reserved@a{\csname ver@sjtuthesis.cls\endcsname}
-\fi
-\expandafter\sjtu@getfileinfo\reserved@a\relax? ? \relax\relax
-\def\sjtu@underline[#1]#2{%
-  \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
-\def\sjtuunderline{\@ifnextchar[\sjtu@underline\CTEXunderline}
 \newcommand\classification[1]{\def\sjtu@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
-\newcommand\UDC[1]{\def\sjtu@value@UDC{#1}}
-\newcommand\serialnumber[1]{\def\sjtu@value@serialnumber{#1}}
 \newcommand\school[1]{\def\sjtu@value@school{#1}}
 \newcommand\degree[1]{\def\sjtu@value@degree{#1}}
 \renewcommand\title[2][\sjtu@value@title]{%
@@ -280,22 +265,22 @@
   \def\arraystretch{1.5}
   \begin{tabular}{rl}
     \ifsjtu@review
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \songti\sjtuunderline[150pt]{} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[150pt]{}}\\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides}  & \underline{\makebox[150pt]{}} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\ 
       \fi
     \else
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides}	& \underline{\makebox[150pt]{\sjtu@value@author}} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@coadvisor} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
       \fi
     \fi
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@major}} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
