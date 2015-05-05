@@ -45,7 +45,7 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
-\RequirePackage[top=3.5cm, bottom=2.5cm,left=3.5cm,right=2.5cm]{geometry} %设置版面
+\RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
