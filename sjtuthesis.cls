@@ -284,12 +284,7 @@
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
-  \clearpage
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
+  \cleardoublepage
 }
 
 
@@ -333,12 +328,7 @@
     \normalfont\sjtu@value@englishinstitute \vskip 30pt
     \normalfont\sjtu@value@englishdate \vskip 20pt
   \end{center}
-  \clearpage
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
+  \cleardoublepage
 }
 
 % 原创性声明
