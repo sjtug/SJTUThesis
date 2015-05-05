@@ -119,12 +119,13 @@
 \linespread{1.3}
 
 %% CTeX Settings
-% 名称：目录、表格索引、插图索引、代码索引
+% 名称：目录、表格索引、插图索引、算法、算法索引、代码
 \CTEXoptions[contentsname={\sjtu@contentsname}]
 \CTEXoptions[listfigurename={\sjtu@listfigurename}]
 \CTEXoptions[listtablename={\sjtu@listtablename}]
-\renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \floatname{algorithm}{\sjtu@label@algo}
+\renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
+\renewcommand{\lstlistingname}{\sjtu@value@listingname}
 % Title Settings at the chapter Level
 \CTEXsetup[nameformat={\Large\bfseries}]{chapter}
 \CTEXsetup[titleformat={\Large\bfseries}]{chapter}
@@ -168,9 +169,6 @@
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
-
-% Title
-\renewcommand{\lstlistingname}{\sjtu@value@listingname} %% 重命名Listings标题头
 
 % Setting Package listings/lstlistings
 \lstset{tabsize=4, %
@@ -363,13 +361,11 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \sjtu@value@school}\\
-  {\bf\zihao{3} \sjtu@label@original}
+  	{\bf\zihao{3} \sjtu@value@school}\\
+  	{\bf\zihao{3} \sjtu@label@original}
   \end{center}
   \vskip 10pt
-
-  {\zihao{-4}\sjtu@label@originalcontent}
-
+  {\par\zihao{-4}\sjtu@label@originalcontent\par}
   \vskip 60pt
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
@@ -383,15 +379,12 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \sjtu@value@school}\\
-  {\bf\zihao{3} \sjtu@label@authorization}
+  	{\bf\zihao{3} \sjtu@value@school}\\
+  	{\bf\zihao{3} \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
-
-  {\zihao{-4} \sjtu@label@authorizationcontent}
-
+  {\par\zihao{-4}\sjtu@label@authorizationcontent\par}
   \vskip 60pt
-  
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
