@@ -16,6 +16,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 * 支持XeTeX的**完整**TeX发行版。2014年以后的CTeX、TeXLive和MacTeX发行版应该都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
 * 用于合并PDF文件的[stapler](https://github.com/hellerbarde/stapler)工具，建议通过```pip```或```easy_install```安装。若使用其他PDF工具，譬如[pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)、[PDFCat](http://freecode.com/projects/pdfcat)，请修改Makefile中的相应规则。
+* Windows用户请使用[Cygwin](http://cygwin.com)安装git和GNUmake工具。
 
 ### 获取模板
 
@@ -29,7 +30,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 或者是将本地模板更新到最新版
 
-	$ git pull --rebase upstream master
+	$ git pull upstream master
 
 ### 编译模板
 
