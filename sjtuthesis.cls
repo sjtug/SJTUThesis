@@ -1,6 +1,6 @@
+%# -*- coding: utf-8-unix -*-
 %==================================================
 %% sjtuthesis.cls for SJTU Master Thesis
-%% Encoding: UTF-8
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
