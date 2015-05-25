@@ -16,7 +16,7 @@ M2T_OPT = --chapters --parse-raw --no-tex-ligatures -f markdown -t latex
 
 all: $(THESIS).pdf
 
-.PHONY : all clean tex2mkd validate view
+.PHONY : all clean validate view
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_FILES) $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
