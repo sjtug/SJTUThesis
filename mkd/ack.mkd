@@ -1,0 +1,9 @@
+\begin{thanks}
+
+感谢所有测试和使用交大学位论文 LaTeX模板的同学！
+
+感谢那位最先制作出博士学位论文 LaTeX模板的交大物理系同学！
+
+感谢William Wang同学对模板移植做出的巨大贡献！
+
+\end{thanks}
