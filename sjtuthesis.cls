@@ -406,14 +406,14 @@
 	\else
 	%% 正文页
 	\fancypagestyle{main}{
-	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
 	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
 	}
 	\fancypagestyle{plain}{
 	  \fancyhf{}
 	  \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
-	  \fancyhead[R]{\nouppercase\small\kaishu\leftmark}}
+	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
 	  % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
 	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
 	}
