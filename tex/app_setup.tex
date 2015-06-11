@@ -25,15 +25,25 @@ cd install-tl-20150411/
 ./install-tl
 \end{lstlisting}
 
+\subsection{Deepin}
+
+建议Deepin用户使用系统自带的包管理器安装TeXLive发行版：
+
+\begin{lstlisting}[basicstyle=\small\ttfamily, numbers=none]
+sudo apt-get install update
+sudo apt-get install -y upgrade
+sudo apt-get install -y texlive-full
+\end{lstlisting}
+
 \section{安装中文字体}
 
 \subsection{Mac OS X}
 
 Mac用户双击字体文件即可安装字体。
 
-\subsection{RedHat/CentOS}
+\subsection{Linux用户}
 
-RedHat/CentOS用户请先将字体文件复制到字体目录下，调用fc-cache刷新缓存后即可在TeXLive中使用新字体。
+Linux用户请先将字体文件复制到字体目录下，调用fc-cache刷新缓存后即可在TeXLive中使用新字体。
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, numbers=none]
 mkdir ~/.fonts
