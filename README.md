@@ -15,7 +15,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 * 支持XeTeX的**完整**TeX发行版。2014年以后的[CTeX](http://www.ctex.org/ctexdownload)、[TeXLive](https://www.tug.org/texlive/)和[MacTeX](https://www.tug.org/mactex/)发行版都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
-* Windows用户请使用[Cygwin](http://cygwin.com)安装git和GNUmake工具。
+* Windows用户请使用[Cygwin](http://cygwin.com)安装如下工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
 
 ### 获取模板
 
@@ -38,6 +38,10 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 	$ make clean thesis.pdf
 
 若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在```thesis.tex```中为```sjtuthesis```文档类添加```review```选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为```pdf/origignal.pdf```和```pdf/authorization.pdf```，然后添加```submit```选项重新编译模板。
+
+### 字数统计
+
+	$ make wordcount	
 
 ### 问题诊断
 
