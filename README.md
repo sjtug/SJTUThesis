@@ -47,6 +47,10 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 	$ make wordcount	
 
+### 字数统计
+
+	$ make wordcount	
+
 ### 问题诊断
 
 编译失败时，可以尝试手动逐次编译。
