@@ -13,7 +13,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 ### 系统需求
 
-* 支持XeTeX的**完整**TeX发行版。2014年以后的[CTeX](http://www.ctex.org/ctexdownload)、[TeXLive](https://www.tug.org/texlive/)和[MacTeX](https://www.tug.org/mactex/)发行版都能编译此模板。
+* 支持XeTeX的**完整**TeX发行版。2014年的TeXLive和MacTeX发行版都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
 * Windows用户请使用[Cygwin](http://cygwin.com)安装如下工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
 
@@ -52,6 +52,11 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 	$ biber --debug thesis
 	$ xelatex thesis
 	$ xelatex thesis
+
+已知问题
+------
+
+由于新发行版中使用了ctex 2.x宏包，因此论文模板暂不能在TeXLive 2015下编译。
 
 反馈问题
 ------
