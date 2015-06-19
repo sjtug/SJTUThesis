@@ -16,7 +16,7 @@
 \DeclareOption{review}{\sjtu@reviewtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
-\LoadClass[a4paper,fancyhdr,fntef,UTF8]{ctexbook}
+\LoadClass[a4paper,fntef,UTF8]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
@@ -46,6 +46,7 @@
 %==========
 
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
+\RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -125,24 +126,36 @@
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
 % Title Settings at the chapter Level
-\CTEXsetup[nameformat={\Large\bfseries}]{chapter}
-\CTEXsetup[titleformat={\Large\bfseries}]{chapter}
-\CTEXsetup[beforeskip={15\p@}]{chapter}
-\CTEXsetup[afterskip={12\p@}]{chapter}
+\ctexset{chapter={
+	nameformat={\Large\bfseries},
+	titleformat={\Large\bfseries},
+	beforeskip={15\p@},
+	afterskip={12\p@},
+	}
+}
 % Title Settings at the section Level
-\CTEXsetup[format={\large\bfseries}]{section}
-\CTEXsetup[beforeskip={-3ex \@plus -1ex \@minus -.2ex}]{section}
-\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{section}
+\ctexset{section={
+	format={\large\bfseries},
+	beforeskip={-3ex \@plus -1ex \@minus -.2ex},
+	afterskip={1.0ex \@plus .2ex},
+	}
+}
 % Title Settings at the subection Level
-\CTEXsetup[format={\bfseries\normalsize}]{subsection}
-\CTEXsetup[indent={0\ccwd}]{subsection}
-\CTEXsetup[beforeskip={-2.5ex \@plus -1ex \@minus -.2ex}]{subsection}
-\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsection}
+\ctexset{subsection={
+	format={\bfseries\normalsize},
+	indent={0\ccwd},
+	beforeskip={-2.5ex \@plus -1ex \@minus -.2ex},
+	afterskip={1.0ex \@plus .2ex},
+	}
+}
 % Title Settings at the subsubection Level
-\CTEXsetup[format={\normalfont\normalsize}]{subsubsection}
-\CTEXsetup[indent={0\ccwd}]{subsubsection}
-\CTEXsetup[beforeskip={-2ex \@plus -1ex \@minus -.2ex}]{subsubsection}
-\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsubsection}
+\ctexset{subsubsection={
+	format={\normalfont\normalsize},
+	indent={0\ccwd},
+	beforeskip={-2ex \@plus -1ex \@minus -.2ex},
+	afterskip={1.0ex \@plus .2ex},
+	}
+}
 
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}

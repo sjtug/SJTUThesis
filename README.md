@@ -13,7 +13,11 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 ### 系统需求
 
+<<<<<<< HEAD
 * 支持XeTeX的**完整**TeX发行版。2014年以后的[CTeX](http://www.ctex.org/ctexdownload)、[TeXLive](https://www.tug.org/texlive/)和[MacTeX](https://www.tug.org/mactex/)发行版都能编译此模板。
+=======
+* 支持XeTeX的**完整**TeX发行版。2015年的[TeXLive](https://www.tug.org/texlive/)和[MacTeX](https://www.tug.org/mactex/)发行版都能编译此模板。
+>>>>>>> 6142266... Adapt to ctex 2.x, which requires TeXLive 2015.
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
 * Windows用户请使用[Cygwin](http://cygwin.com)安装如下工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
 
@@ -61,7 +65,8 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 	$ xelatex thesis
 	$ xelatex thesis
 
-### 反馈问题
+反馈问题
+------
 
 建议以如下的顺序反馈使用问题：
 
@@ -77,7 +82,9 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 其他版本
 ------
 
-* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)
+* [v 0.9](https://github.com/weijianwen/SJTUThesis/tree/v0.9): 当前master分支，适配ctex 2.x宏包，需要使用2015年的TeX发行版，无法使用更早的发行版编译。
+* [v 0.8](https://github.com/weijianwen/SJTUThesis/tree/v0.8)：使用biber/biblatex处理参考文献，需要使用2014的TeX发行版，无法使用2013年和2015年的TeX发行版编译。
+* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)：使用bibex处理参考文献（会产生错误信息，可忽略），需要使用2013或2014年的TeX发行版，无法使用2015年的TeX发行版编译。
 
 软件许可证
 ------
