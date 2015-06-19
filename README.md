@@ -82,9 +82,9 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 其他版本
 ------
 
-* [v 0.9](https://github.com/weijianwen/SJTUThesis/tree/v0.9): 当前master分支，适配ctex 2.x宏包，需要使用2015年的TeX发行版，无法使用更早的发行版编译。
-* [v 0.8](https://github.com/weijianwen/SJTUThesis/tree/v0.8)：使用biber/biblatex处理参考文献，需要使用2014的TeX发行版，无法使用2013年和2015年的TeX发行版编译。
-* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)：使用bibex处理参考文献（会产生错误信息，可忽略），需要使用2013或2014年的TeX发行版，无法使用2015年的TeX发行版编译。
+* [v 0.9](/weijianwen/SJTUThesis/tree/v0.9): 当前master分支，适配ctex 2.x宏包，需要使用2015年的TeX发行版，无法使用更早的发行版编译。
+* [v 0.8](/tree/v0.8)：使用biber/biblatex处理参考文献，需要使用2014的TeX发行版，无法使用2013年和2015年的TeX发行版编译。
+* [v 0.7](tree/v0.7)：使用bibex处理参考文献（会产生错误信息，可忽略），需要使用2013或2014年的TeX发行版，无法使用2015年的TeX发行版编译。
 
 软件许可证
 ------
