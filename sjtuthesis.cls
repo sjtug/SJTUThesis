@@ -119,9 +119,9 @@
 
 %% CTeX Settings
 % 名称：目录、表格索引、插图索引、算法、算法索引、代码
-\CTEXoptions[contentsname={\sjtu@contentsname}]
-\CTEXoptions[listfigurename={\sjtu@listfigurename}]
-\CTEXoptions[listtablename={\sjtu@listtablename}]
+\ctexset{contentsname={\sjtu@contentsname}}
+\ctexset{listfigurename={\sjtu@listfigurename}}
+\ctexset{listtablename={\sjtu@listtablename}}
 \floatname{algorithm}{\sjtu@label@algo}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
