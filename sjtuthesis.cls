@@ -46,7 +46,6 @@
 %==========
 
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
-\RequirePackage{indentfirst}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
@@ -137,7 +136,6 @@
 % Title Settings at the section Level
 \ctexset{section={
 	format={\large\bfseries},
-	beforeskip={-3ex \@plus -1ex \@minus -.2ex},
 	afterskip={1.0ex \@plus .2ex},
 	}
 }
@@ -145,7 +143,6 @@
 \ctexset{subsection={
 	format={\bfseries\normalsize},
 	indent={0\ccwd},
-	beforeskip={-2.5ex \@plus -1ex \@minus -.2ex},
 	afterskip={1.0ex \@plus .2ex},
 	}
 }
@@ -153,7 +150,6 @@
 \ctexset{subsubsection={
 	format={\normalfont\normalsize},
 	indent={0\ccwd},
-	beforeskip={-2ex \@plus -1ex \@minus -.2ex},
 	afterskip={1.0ex \@plus .2ex},
 	}
 }
