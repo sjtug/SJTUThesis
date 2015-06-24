@@ -48,7 +48,6 @@
 %==========
 
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
-\RequirePackage{indentfirst}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
