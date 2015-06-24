@@ -16,7 +16,7 @@
 \DeclareOption{review}{\sjtu@reviewtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
-\LoadClass[a4paper,fntef,UTF8]{ctexbook}
+\LoadClass[a4paper,UTF8,scheme=chinese]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
