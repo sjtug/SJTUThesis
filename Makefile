@@ -8,7 +8,7 @@ LATEXMK_OPT = -xelatex -gg -silent -f
 
 all: $(THESIS).pdf
 
-.PHONY : all clean validate view wordcount push
+.PHONY : all clean validate view wordcount git
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
@@ -32,5 +32,5 @@ clean :
 s3 : $(THESIS).pdf
 	s3cmd put $< s3://sjtuthesis/README.pdf
 
-push :
+git :
 	for tag in "v0.7" "v0.8" "v0.9" "master" "markdown"; do git co $${tag}; git push gitlab; git push github; git push gitcafe; done
