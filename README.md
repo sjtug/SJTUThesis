@@ -77,6 +77,6 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 软件许可证
 ------
 
-上海交通大学校徽图片(```sjtulog.png```)和横幅图片(```sjtubanner.png```)的版权归原作者所有。其他部分使用[MIT License](LICENSE)授权。
+上海交通大学校徽图片(```sjtulog.png```)和横幅图片(```sjtubanner.png```)的版权归原作者所有。其他部分使用[Apache License 2.0](LICENSE)授权。
 
 [README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
