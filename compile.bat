@@ -1,8 +1,8 @@
 @echo off
 del thesis.pdf >nul 2>nul
 if exist thesis.pdf (
-	echo ���رմ򿪵�thesis.pdf!!!
-	echo �Ƽ�ʹ��Sumatra��Ϊpdf�Ķ�����
+	echo Close the file: thesis.pdf!!!
+	echo Or use Sumatra to open thesis.pdf
 	pause
 	exit
 )
