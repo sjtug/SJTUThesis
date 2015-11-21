@@ -39,6 +39,10 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在```thesis.tex```中为```sjtuthesis```文档类添加```review```选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为```pdf/origignal.pdf```和```pdf/authorization.pdf```，然后添加```submit```选项重新编译模板。
 
+#### Windows用户编译
+
+双击`compile.bat`即可完成编译过程，生成`thesis.pdf`，不依赖于GNUMake。
+
 ### 字数统计
 
 	$ make wordcount	
