@@ -51,6 +51,10 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 	$ make wordcount	
 
+#### Windows用户编译
+
+双击`compile.bat`即可完成编译过程，生成`thesis.pdf`，不依赖于GNUMake。
+
 ### 字数统计
 
 	$ make wordcount	
