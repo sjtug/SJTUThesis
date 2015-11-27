@@ -5,7 +5,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtuthesis}[2015/3/15 v0.8 Shanghai Jiao Tong University Template]
-\def\version{v0.8}
+\def\version{v0.9}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
