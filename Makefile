@@ -4,14 +4,19 @@ TEX_DIR = tex
 BIB_DIR = bib
 
 # Option for latexmk
-LATEXMK_OPT = -xelatex -gg -silent -f
+LATEXMK_OPT_BASE = -xelatex -gg -silent
+LATEXMK_OPT = $(LATEXMK_OPT_BASE) -f
+LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
 all: $(THESIS).pdf
 
-.PHONY : all clean validate view wordcount git
+.PHONY : all clean pvc validate view wordcount git
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
+
+pvc :
+	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
 
 validate :
 	xelatex -no-pdf -halt-on-error $(THESIS)
