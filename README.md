@@ -59,14 +59,13 @@ git pull upstream master
 
 ### 编译模板
 
-编译模板，生成学位论文PDF文件。GNUMake将调用`latexmk`程序，自动完成模板的多轮编译。平时写论文时推荐使用`make pvc`达到「持续集成」——持续监听文件改动，用户无需操心后台编译的问题，编译好后会自动打开 PDF 文档，这个特性在没定稿之前非常方便！由于 CTeX 下的 Miktex `latexmk` 有可能有问题，故还是推荐 Windows 用户使用 TeXLive 发行版试试看。
-
-由于`latexmk -pvc`默认使用系统默认的 PDF 打开程序，你可以对这一行为进行定制，从而可使用专门的 PDF 阅读器来预览学位论文。以 OS X 下的 Skim 阅读器为例，执行以下命令即可。
+编译模板，生成学位论文PDF文件。GNUMake将调用`latexmk`程序，自动完成模板的多轮编译。平时写论文时推荐使用`make pvc`达到「持续集成」——持续监听文件改动，用户无需操心后台编译的问题，编译好后会自动打开 PDF 文档，这个特性在没定稿之前非常方便！由于 CTeX 下的 Miktex `texify/latexmk` 有可能有问题，故还是推荐 Windows 用户使用 TeXLive 发行版试试看。终端下执行以下命令即可。
 
 ```
-wget http://7xojrx.com1.z0.glb.clouddn.com/docs/latexmkrc -O ~/.latexmkrc
 make pvc
 ```
+
+由于`latexmk -pvc`使用系统默认的 PDF 阅读器打开编译好的 PDF，且默认不能自动更新 PDF 中的内容。你可以对这一行为进行定制，从而可使用能自动更新 PDF 的阅读器来预览学位论文，通过这种「曲线救国」的方式勉强可以达到「所见即所得」的效果。论文根目录下的`latexmkrc`中已经写好了 OS X 下使用 Skim 来预览 PDF 的配置文件(默认不启用)。其他如 Linux 和 Windows 系统可以参考`latexmk`的手册或是搜索下网路上其他人给出的配置文件进行测试。
 
 如果最终定稿，则使用以下命令编译。
 
