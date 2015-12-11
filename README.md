@@ -100,7 +100,7 @@ $ xelatex thesis
 
 建议以如下的顺序反馈使用问题：
 
-* [在 GitHub 项目主页开 issue](https://github.com/weijianwen/sjtu-thesis-template-latex/issues)
+* [在 GitHub 项目主页开 issue](https://github.com/weijianwen/SJTUThesis/issues)
 * [在水源 BBS TeX_LaTeX 版发帖](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
 
 ## 后续工作计划
