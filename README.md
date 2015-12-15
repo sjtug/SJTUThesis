@@ -1,14 +1,28 @@
 # What is SJTUThesis?
 
-SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, or doctor thesis in Shanghai Jiao Tong University. 
+SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, or doctor thesis in Shanghai Jiao Tong University.
 
 # 上海交通大学学位论文模板
 
 这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]。
 
+P.S. 该 README 用于重要的文档更新，其他细节更新正考虑逐步搬移到 [SJTUThesis Wiki](https://github.com/weijianwen/SJTUThesis/wiki), 欢迎贡献你的力量。:-)
+
 ## 如何使用
 
-### 系统需求
+使用方法大致可以分为在线和本地两种，在线编辑基于 ShareLaTeX 网站，下面分两种情况做详细说明。
+
+### 在线编译 - ShareLaTeX
+
+TeX 本地编译大家可能比较熟悉，但偶尔也会由于各种各样的原因导致你不能顺畅地在本地使用该模板写论文，这个时候不妨考虑下在 ShareLaTeX 上在线编辑，不受系统的影响，**无需本地安装 TeX 发行版**以及其他字体适配等工作。只要有一个稍微现代一点的浏览器如 Firefox, Chrome/Chromium 就行了。缺点是由于服务器在国外，访问起来不是很快，第一次编译可能会稍慢，这可能与 ShareLaTeX 后端的缓存策略有关。
+
+模板地址 ==> [SJTUThesis Template - ShareLaTeX](https://www.sharelatex.com/templates/566ea0fb08f4ac510fbc6b9e).
+
+如果直接从以上模板新建时显示『500 internal server error』的话说明 ShareLaTeX 的从模板新建的功能挂掉了，且登陆后出现的项目是错误的，务必及时删除。改从 [这里](https://www.sharelatex.com/project/56701ac8d63cd1d9646a622f) 以复制的形式新建你自己的项目。左侧菜单(Menu) -> Copy Project 即导入到自己的项目中。
+
+其他详细截屏教程见 [Usage - 使用文档](https://github.com/weijianwen/SJTUThesis/wiki/Usage)
+
+### 本地编译 - 系统需求
 
 #### TeX 发行版
 
