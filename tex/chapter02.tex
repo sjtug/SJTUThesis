@@ -9,6 +9,59 @@
 \chapter{ \LaTeX 排版例子}
 \label{chap:example}
 
+\section{列表环境}
+\label{sec:list}
+
+\subsection{无序列表}
+\label{sec:unorderlist}
+
+以下是一个无序列表的例子，列表的每个条目单独分段。
+
+\begin{itemize}
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+\end{itemize}
+
+使用\verb+itemize*+环境可以创建行内无序列表。
+\begin{itemize*}
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+\end{itemize*}
+行内无序列表条目不单独分段，所有内容直接插入在原文的段落中。
+
+\subsection{有序列表}
+\label{sec:orderlist}
+
+使用环境\verb+enumerate+和\verb+enumerate*+创建有序列表,
+使用方法无序列表类似。
+
+\begin{enumerate}
+  \item 这是一个有序列表。
+  \item 这是一个有序列表。
+  \item 这是一个有序列表。
+\end{enumerate}
+
+使用\verb+enumerate*+环境可以创建行内有序列表。
+\begin{enumerate*}
+  \item 这是一个默认有序列表。
+  \item 这是一个默认有序列表。
+  \item 这是一个默认有序列表。
+\end{enumerate*}
+行内有序列表条目不单独分段，所有内容直接插入在原文的段落中。
+
+\subsection{自定义列表样式}
+
+可以使用\verb+label+参数控制列表的样式，
+详细可以参考WikiBooks\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/List_Structures\#Customizing_lists}}。
+比如一个自定义样式的行内有序列表
+\begin{enumerate*}[label=\itshape\alph*)\upshape]
+  \item 这是一个自定义样式有序列表。
+  \item 这是一个自定义样式有序列表。
+  \item 这是一个自定义样式有序列表。
+\end{enumerate*}
+
 \section{数学排版}
 \label{sec:matheq}
 
