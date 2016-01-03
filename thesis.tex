@@ -88,13 +88,27 @@
 %% 致谢、发表论文、申请专利、参与项目、简历
 %% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
 \makeatletter
+
+%%
+% "研究生学位论文送盲审印刷格式的统一要求"
+% http://www.gs.sjtu.edu.cn/inform/3/2015/20151120_123928_738.htm
+
+% 盲审删去删去致谢页
 \ifsjtu@review\relax\else
   \include{tex/ack} 	  %% 致谢
-  \include{tex/pub}	  %% 发表论文
-  \include{tex/patents}	  %% 申请专利
-  \include{tex/projects}  %% 参与的项目
-% \include{tex/resume}	  %% 各人简历
 \fi
+
+% 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
+\ifsjtu@review\relax
+  \include{tex/pubreview}
+  \include{tex/projectsreview}  
+\else
+  \include{tex/pub}	      %% 发表论文
+  \include{tex/projects}  %% 参与的项目
+\fi
+
+% \include{tex/patents}	  %% 申请专利
+% \include{tex/resume}	  %% 个人简历
 \makeatother
 
 \end{document}
