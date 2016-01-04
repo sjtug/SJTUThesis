@@ -319,7 +319,7 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\huge\sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle \vskip 1pt}
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}
