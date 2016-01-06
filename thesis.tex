@@ -12,9 +12,10 @@
 %   fontset=adobe|windows,  	% 只测试了adobe
 %   oneside|twoside,		% 单面打印，双面打印(奇偶页交换页边距，默认)
 %   openany|openright, 		% 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
-%   zihao=-4|5,, 		% 正文字号：小四、五号(默认)
+%   zihao=-4|5,		% 正文字号：小四、五号(默认)
 %   review,	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
-%   submit			% 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
+%   submit			% 定稿提交的论文，不包含签名扫描版的原创性声明、授权声明 
+%   不使用review和submit任意一个选项时，生成的论文可用于打印。
 % ]
 
 % 逐个导入参考文献数据库
@@ -28,19 +29,6 @@
 \maketitle
 
 \makeenglishtitle
-
-\makeatletter
-\ifsjtu@submit\relax
-	\includepdf{pdf/original.pdf}
-	\cleardoublepage
-	\includepdf{pdf/authorization.pdf}
-	\cleardoublepage
-\else
-	\makeDeclareOriginal
-	\makeDeclareAuthorization
-\fi
-\makeatother
-
 
 \frontmatter 	% 使用罗马数字对前言编号
 
@@ -109,6 +97,16 @@
 
 % \include{tex/patents}	  %% 申请专利
 % \include{tex/resume}	  %% 个人简历
+\makeatother
+
+% 原创性声明、授权声明 
+\makeatletter
+\ifsjtu@submit\relax\else
+  \includepdf{pdf/original.pdf}
+  \cleardoublepage
+  \includepdf{pdf/authorization.pdf}
+  \cleardoublepage
+\fi
 \makeatother
 
 \end{document}
