@@ -14,6 +14,10 @@
 %   review	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
 % ]
 
+% 逐个导入参考文献数据库
+\addbibresource{bib/thesis.bib}
+% \addbibresource{bib/chap2.bib}
+
 \begin{document}
 
 %% 无编号内容：中英文论文封面、授权页
@@ -21,7 +25,9 @@
 \maketitle
 
 \makeenglishtitle
+
 \makeDeclareOriginal
+
 \makeDeclareAuthorization
 
 \frontmatter 	% 使用罗马数字对前言编号
@@ -59,16 +65,17 @@
 \backmatter	% 文后无编号部分 
 
 %% 参考资料
-\bibliography{bib/chap1,bib/chap2}
+\printbibliography[heading=bibintoc]
 
-%% 致谢、发表论文、参与项目、简历
-%% 用于盲审的论文需隐去致谢、发表论文和参与的项目
+%% 致谢、发表论文、申请专利、参与项目、简历
+%% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
 \makeatletter
 \ifsjtu@review\relax\else
   \include{tex/ack} 	  %% 致谢
   \include{tex/pub}	  %% 发表论文
+  \include{tex/patents}	  %% 申请专利
   \include{tex/projects}  %% 参与的项目
-% \include{tex/resume}
+% \include{tex/resume}	  %% 各人简历
 \fi
 \makeatother
 

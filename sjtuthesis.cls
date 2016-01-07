@@ -48,10 +48,9 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
-\RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
-\RequirePackage{metalogo}
+\RequirePackage{metalogo,doc}
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
@@ -63,12 +62,13 @@
 \RequirePackage{ccaption}
 \RequirePackage[sort&compress,numbers]{natbib}
 \RequirePackage{xcolor}
-\RequirePackage{marvosym}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
 \RequirePackage{longtable}
+\RequirePackage[perpage, bottom]{footmisc}
+\RequirePackage{enumitem}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -118,15 +118,15 @@
 \textheight 21 true cm
 \textwidth 14.5 true cm
 \headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
+% \parskip 0.5ex plus 0.25ex minus 0.25ex
 \addtolength{\voffset}{-0.5cm} %% 上边距
 \if@openright
   \evensidemargin 0 true cm
 \else
   \evensidemargin 1.5 true cm
 \fi
-%% 行距缩放因子(x倍字号)
-\renewcommand{\baselinestretch}{1.3}
+%% 行距缩放因子
+\linespread{1.3}
 
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}
@@ -228,7 +228,7 @@
   \def\sjtu@value@titlemark{\MakeUppercase{#1}}}
 \renewcommand\author[1]{\def\sjtu@value@author{#1}}
 \newcommand\advisor[1]{\def\sjtu@value@advisor{#1}}
-\newcommand\advisorinstitute[1]{\def\sjtu@value@advisorinstitute{#1}}
+\newcommand\coadvisor[1]{\def\sjtu@value@coadvisor{#1}}
 \newcommand\major[1]{\def\sjtu@value@major{#1}}
 \newcommand\submitdate[1]{\def\sjtu@value@submitdate{#1}}
 \newcommand\defenddate[1]{\def\sjtu@value@defenddate{#1}}
@@ -240,25 +240,31 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  \songti\zihao{-3}\sjtu@label@statement
+  {\songti\zihao{-3}\sjtu@label@statement}
   \vskip\stretch{1}
-  {\heiti\zihao{3} \sjtu@value@title}
+  {\heiti\zihao{3}\sjtu@value@title}
   \vskip\stretch{1}
   {\fangsong\zihao{4}}
   \def\tabcolsep{1pt}
   \def\arraystretch{1.5}
   \begin{tabular}{rl}
     \ifsjtu@review
-      \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{} \\
-      \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{} \\
-      \heiti\sjtu@label@advisor 	& \songti\sjtuunderline[150pt]{} \\ 
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides*} & \songti\sjtuunderline[150pt]{} \\
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\ 
+      \ifx\sjtu@value@coadvisor\undefined\else
+        \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\ 
+      \fi
     \else
-      \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
-      \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
-      \heiti\sjtu@label@advisor 	& \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides*} & \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+      \ifx\sjtu@value@coadvisor\undefined\else
+        \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@coadvisor} \\ 
+      \fi
     \fi
-    \heiti\sjtu@label@major 		& \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
-    \heiti\sjtu@label@defenddate 	& \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
+      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
@@ -275,6 +281,7 @@
 \newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
 \newcommand\englishauthor[1]{\def\sjtu@value@englishauthor{#1}}
 \newcommand\englishadvisor[1]{\def\sjtu@value@englishadvisor{#1}}
+\newcommand\englishcoadvisor[1]{\def\sjtu@value@englishcoadvisor{#1}}
 \newcommand\englishschool[1]{\def\sjtu@value@englishschool{#1}}
 \newcommand\englishinstitute[1]{\def\sjtu@value@englishinstitute{#1}}
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
@@ -287,19 +294,25 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\zihao{-1} \sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle} 
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}
       \vskip 3pt
       \vskip \stretch{2}
     \else
-      {\normalfont\zihao{4} \sjtu@value@englishauthor} 
+      {\normalfont\zihao{4}\sjtu@value@englishauthor} 
       \vskip \stretch{1}
-      {\normalfont\zihao{4} \sjtu@label@englishadvisor} 
-      \vskip 3pt
-      {\normalfont\zihao{4} \sjtu@value@englishadvisor} 
-      \vskip \stretch{2}
+      {\normalfont\zihao{4}\sjtu@label@englishadvisor} 
+      \vskip 2pt
+      {\normalfont\zihao{4}\sjtu@value@englishadvisor} 
+      \vskip 5pt
+      \ifx\sjtu@value@englishcoadvisor\undefined\else
+        {\normalfont\zihao{4}\sjtu@label@englishcoadvisor} 
+        \vskip 2pt
+        {\normalfont\zihao{4}\sjtu@value@englishcoadvisor} 
+        \vskip \stretch{2}
+      \fi
     \fi 
     \normalfont\sjtu@value@englishinstitute \vskip 30pt
     \normalfont\sjtu@value@englishdate \vskip 20pt
@@ -460,6 +473,27 @@
        {\@latex@warning{Empty `publications' environment}}%
       \endlist}
 
+\newenvironment{patents}[1]
+     {\chapter{\sjtu@label@patents}%
+      \@mkboth{\MakeUppercase\sjtu@label@patents}
+              {\MakeUppercase\sjtu@label@patents}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `patents' environment}}%
+      \endlist}
+ 
 \newenvironment{projects}[1]
      {\chapter{\sjtu@label@projects}%
       \@mkboth{\MakeUppercase\sjtu@label@projects}
@@ -480,8 +514,8 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `projects' environment}}%
       \endlist}
-    
-    \newenvironment{resume}
+
+\newenvironment{resume}
   {\chapter{\sjtu@label@resume}}
   {}
   
