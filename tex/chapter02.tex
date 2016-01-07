@@ -28,53 +28,26 @@
 \subsubsection{一个四级标题}
 \label{sec:depth4}
 
-这是全文唯一的一个四级标题。在这部分中将演示可伸长符号（箭头、等号的例子）的例子，以及如何在可伸长的符号上标注。在\href{http://zhou63.ahut.edu.cn/latex/ctexfaq.pdf}{《CTeX常见问题集》}中也由类似的介绍。
-首先需要在diss.tex导言区引入如下的内容：
-
-\begin{lstlisting}[language={TeX}, caption={插入导言区的内容}]
-  \makeatletter
-  \def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
-  \def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
-  \def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
-  \makeatother
-  
-  \newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
-  \newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
-  \newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
-  \newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
-\end{lstlisting}
-
-然后，在正文插入如代码\ref{mathextend}所示的内容。效果如下：
-
-\begin{lstlisting}[language={TeX}, caption={可伸长的符号},label=mathextend,float]
-  \begin{eqnarray}
-    f(x) & \myBioarrow{A=B}  & B \\
-    & \myLongEqual{A=B} & B \\
-    & \myLeftarrow[A=B^2]{B=A^2} & B \nonumber \\
-    & \myRightarrow{B^2=A^2} & B
-  \end{eqnarray}
-\end{lstlisting}
+这是全文唯一的一个四级标题。在这部分中将演示了mathtools宏包中可伸长符号（箭头、等号的例子）的例子。
 
 \begin{displaymath}
-    A \xleftarrow{n=0} B \xrightarrow[LongLongLongLong]{n>0} C 
+    A \xleftarrow[n=0]{} B \xrightarrow[LongLongLongLong]{n>0} C 
 \end{displaymath}
 
 \begin{eqnarray}
-  f(x) & \myBioarrow{A=B}  & B \\
-  & \myLongEqual{A=B} & B \\
-  & \myLeftarrow[A=B^2]{B=A^2} & B \nonumber \\
-  & \myRightarrow{B^2=A^2} & B
+  f(x) & \xleftrightarrow[]{A=B}  & B \\
+  & \xleftharpoondown[below]{above} & B \nonumber \\
+  & \xLeftrightarrow[below]{above} & B
 \end{eqnarray}
 
 又如：
 
 \begin{align}
   \label{eq:none}
-  & I(X_3;X_4)-I(X_3;X_4|X_1)-I(X_3;X_4|X_2) \nonumber \\
-  \myLongEqual{a)}\, & [I(X_3;X_4)-I(X_3;X_4|X_1)]-I(X_3;X_4|\tilde{X}_2) \\
-  \myLongEqual[\rule{0.28cm}{0cm}]{}\, & I(X_1;X_3;X_4)-I(X_3;X_4|\tilde{X}_2)
+  & I(X_3;X_4)-I(X_3;X_4\mid{}X_1)-I(X_3;X_4\mid{}X_2) \nonumber \\
+  = & [I(X_3;X_4)-I(X_3;X_4\mid{}X_1)]-I(X_3;X_4\mid{}\tilde{X}_2) \\
+  = & I(X_1;X_3;X_4)-I(X_3;X_4\mid{}\tilde{X}_2)
 \end{align}
-
 
 \subsection{定理环境}
 
@@ -138,9 +111,9 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.3\textwidth]{chap2/testpng}
+  \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.png}
   \hspace{1cm}
-  \includegraphics[width=0.3\textwidth]{chap2/testjpg}
+  \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.jpg}
   \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
 \end{figure}
 
@@ -150,11 +123,11 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
   \centering
   \subfigure[EPS Figure]{
     \label{fig:epspdf:a} %% label for first subfigure
-    \includegraphics[width=0.3\textwidth]{chap2/testeps}}
+    \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.eps}}
   \hspace{1in}
   \subfigure[PDF Figure]{
     \label{fig:epspdf:b} %% label for second subfigure
-    \includegraphics[angle=-90,origin=br,width=0.3\textwidth]{chap2/testpdf.pdf}}
+    \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.pdf}}
   \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
 \end{figure}
 
@@ -168,7 +141,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 
 \begin{figure}[!htp]
  \centering
- \includegraphics[angle=-90,origin=br,width=4cm]{chap2/testpdf.pdf}
+ \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
  \bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
 \end{figure}
 
@@ -178,7 +151,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
     \begin{minipage}[b]{0.6\textwidth}
       \captionstyle{\centering}
       \centering
-      \includegraphics[angle=-90,origin=br,width=4cm]{chap2/testpdf.pdf}
+      \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
       \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
     \end{minipage}     
   \end{figure}

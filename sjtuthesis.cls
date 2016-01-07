@@ -8,7 +8,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtuthesis}[2014/12/16 v0.6 Shanghai Jiao Tong University Template]
-\def\version{v0.6}
+\def\version{v0.6.5}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -66,13 +66,14 @@
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
+\RequirePackage{longtable}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
 
 % User defined command list
-%% \me \mi \mj \dif \cleardoublepage \myRightarrow \myLeftarrow \myBigarrow \myLongEqual \cndash \CJKLaTeX \upcite
+%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX \upcite
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
@@ -82,15 +83,6 @@
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\mathrm{d}}
-
-% 可伸长的数学符号
-\def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
-\def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
-\def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
-\newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
-\newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
-\newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
-\newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
 
 \def\cleardoublepage{\clearpage%
 	\if@openright%
@@ -222,7 +214,6 @@
 \def\sjtu@underline[#1]#2{%
   \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\sjtuunderline{\@ifnextchar[\sjtu@underline\CTEXunderline}
-
 \newcommand\classification[1]{\def\sjtu@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
@@ -247,31 +238,20 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      
-\songti\zihao{-3}\sjtu@label@statement
-
-    \vskip \stretch{1}
-       {\heiti\zihao{3} \sjtu@value@title}
-    \vskip \stretch{1}
-    {\fangsong\zihao{4}}
-    \def\tabcolsep{1pt}
-    \def\arraystretch{1.5}
-    \begin{tabular}{lc}
-      \heiti\sjtu@label@author &\songti
-      \sjtuunderline[150pt]{\sjtu@value@author}
-    \\
-      \heiti\sjtu@label@studentnumber &\songti
-      \sjtuunderline[150pt]{\sjtu@value@studentnumber}
-    \\
-      \heiti\sjtu@label@advisor &\songti
-      \sjtuunderline[150pt]{\sjtu@value@advisor}
-    \\  
-      \heiti\sjtu@label@major &\songti
-      \sjtuunderline[150pt]{\sjtu@value@major}
-    \\  
-      \heiti\sjtu@label@defenddate &\songti
-      \sjtuunderline[150pt]{\sjtu@value@defenddate}
-    \end{tabular}
+  \songti\zihao{-3}\sjtu@label@statement
+  \vskip\stretch{1}
+  {\heiti\zihao{3} \sjtu@value@title}
+  \vskip\stretch{1}
+  {\fangsong\zihao{4}}
+  \def\tabcolsep{1pt}
+  \def\arraystretch{1.5}
+  \begin{tabular}{lc}
+    \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
+    \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
+    \heiti\sjtu@label@advisor 		& \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+    \heiti\sjtu@label@major 		& \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
+    \heiti\sjtu@label@defenddate 	& \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
+  \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
   \clearpage
@@ -370,13 +350,13 @@
 
 \ifsjtu@bachelor
   % 本科学位论文正文页眉页脚
-  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}
+  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
   \fancyhead[RO, LE]{\small {\it \sjtu@value@titlemark}}
   \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
   % 本科学位论文开章页页眉页脚，双面打印时只是交换左右页眉
   \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
     \fancyhf{}%
-    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}
+    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
     \fancyhead[R]{\small {\it \sjtu@value@titlemark}}
     \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
    }
@@ -412,13 +392,13 @@
 
 
 % 中英文摘要
-\newenvironment{abstract}{\chapter[\sjtu@label@abstract]{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}}{}
+\newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}\markboth{\sjtu@label@abstract}{}}{}
 \newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
-\newenvironment{englishabstract}{\chapter[\sjtu@label@englishabstract]{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}}{}
+\newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
 \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
-  \chapter{\contentsname}
+  \chapter*{\contentsname}
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \@starttoc{toc}%
 }

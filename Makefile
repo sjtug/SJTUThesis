@@ -15,16 +15,13 @@ $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib *.cls *.cfg Make
 
 clean :
 	latexmk -C
-	-rm *.xdv *.bbl $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls
+	-rm *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls
 
 cleanall : clean
 	-rm -f $(THESIS).pdf
 
-test : $(THESIS).pdf
-	reattach-to-user-namespace open $^
-
-$(TESTFILE).pdf : test/$(TESTFILE).tex Makefile
-	cd $(TEST_DIR) && latexmk $(LATEXMK_OPT) $(TESTFILE)
+s3 : $(THESIS).pdf
+	s3cmd put $< s3://sjtuthesis/README.pdf
 
 git :
 	git push gitlab

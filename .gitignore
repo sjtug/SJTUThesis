@@ -1,3 +1,4 @@
+*.pdf
 *.bak
 *.fls
 *.aux
@@ -13,6 +14,3 @@
 *.xdv
 *~
 *.fdb_latexmk
-diss.pdf
-temptest.pdf
-thesis.pdf
