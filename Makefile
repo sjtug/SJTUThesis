@@ -1,50 +1,32 @@
-# Makefile for sjtu-thesis-template-latex
+THESIS = thesis
+# TEX, BIB, TEST dir
+TEX_DIR = tex
+BIB_DIR = bib
 
-# SED tool
-SED = gsed
-# Basename of thesis
-THESISMAIN = diss
-# Test file
-TESTFILE = temptest
-# pdf viewer: evince/open
-VIEWER = open
-# version number, which can be specified when calling make like
-# make VERSION="0.5.2"
-VERSION = 0.5.3
+# Option for latexmk
+LATEXMK_OPT = -xelatex -gg -silent -f
 
-all: $(THESISMAIN).pdf
+all: $(THESIS).pdf
 
-.PHONY : all clean version distclean cleantest release
+.PHONY : all clean version release cleanall
 
-$(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
-	-latexmk -silent -f -pdf $(THESISMAIN)
-	
-view : $(THESISMAIN).pdf 
-	$(VIEWER) $< &
+$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib *.cls *.cfg Makefile
+	-latexmk $(LATEXMK_OPT) $(THESIS)
 
 clean :
 	latexmk -C
+	-rm *.xdv *.bbl $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls
 
-distclean : clean
-	-@rm -f $(THESISMAIN).pdf
+cleanall : clean
+	-rm -f $(THESIS).pdf
 
-test : $(TESTFILE).pdf
+test : $(THESIS).pdf
+	reattach-to-user-namespace open $^
 
-$(TESTFILE).pdf : $(TESTFILE).tex
-	latexmk -silent -pdf $(TESTFILE) > /dev/null
-	$(VIEWER) $@
+$(TESTFILE).pdf : test/$(TESTFILE).tex Makefile
+	cd $(TEST_DIR) && latexmk $(LATEXMK_OPT) $(TESTFILE)
 
-cleantest :
-	-@rm $(TESTFILE).pdf
+git :
+	git push gitlab
+	git push github
 
-cp : $(THESISMAIN).pdf
-	-@cp -f $< README.pdf
-
-version :
-	$(SED) -i "s/templateversion{v.*}/templateversion{v$(VERSION)}/g" sjtuthesis.cfg	
-	$(SED) -i "s/bachelor-.*zip/bachelor-$(VERSION).zip/g" body/chapter01.tex
-	$(SED) -i "s/master-.*zip/master-$(VERSION).zip/g" body/chapter01.tex
-	$(SED) -i "s/phd-.*zip/phd-$(VERSION).zip/g" body/chapter01.tex
-
-release : clean version all cp
-	@echo "OK. Release version $(VERSION)."
