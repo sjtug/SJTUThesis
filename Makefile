@@ -10,7 +10,7 @@ LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
 all: $(THESIS).pdf
 
-.PHONY : all clean pvc validate view wordcount git
+.PHONY : all clean pvc validate view wordcount git zip
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
@@ -39,3 +39,6 @@ s3 : $(THESIS).pdf
 
 git :
 	for tag in "v0.7" "v0.8" "v0.9" "master"; do git co $${tag}; git push gitlab; git push github; git push gitcafe; done
+
+zip :
+	git archive --format zip --output thesis.zip master
