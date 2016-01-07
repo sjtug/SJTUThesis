@@ -1,29 +1,31 @@
 # Makefile for sjtu-thesis-template-latex
 
 # SED tool
-SED := gsed
+SED = gsed
 # Basename of thesis
-THESISMAIN := diss
+THESISMAIN = diss
 # Test file
-TESTFILE := test
+TESTFILE = temptest
 # pdf viewer: evince/open
-VIEWER := open
+VIEWER = open
+# version number, which can be specified when calling make like
+# make VERSION="0.5.2"
+VERSION = 0.5.2
 
+all: $(THESISMAIN).pdf
 
-all: pdf
+.PHONY : all clean version distclean cleantest release
 
-pdf: $(THESISMAIN).pdf
+$(THESISMAIN).pdf : $(THESISMAIN).tex body/*.tex reference/*.bib *.cls *.cfg
+	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)  &> /dev/null 
+	-bibtex $(THESISMAIN) &> /dev/null
+	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN) &> /dev/null
+	xelatex --interaction=nonstopmode $(THESISMAIN) &> /dev/null
 
-$(THESISMAIN).pdf: $(THESISMAIN).tex body/*.tex *.cls *.cfg
-	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)
-	-bibtex $(THESISMAIN)
-	xelatex -no-pdf --interaction=nonstopmode $(THESISMAIN)
-	xelatex --interaction=nonstopmode $(THESISMAIN)
+view : $(THESISMAIN).pdf 
+	$(VIEWER) $< &
 
-view: $(THESISMAIN).pdf 
-	$(VIEWER) $(THESISMAIN).pdf &
-
-clean:
+clean :
 	-@rm -f \
 		*~ \
 		*.aux \
@@ -50,20 +52,26 @@ clean:
 		body/*.aux \
 		body/x.log 
 
-distclean: clean
+distclean : clean
 	-@rm -f $(THESISMAIN).pdf
 
-test: $(TESTFILE).tex
-	xelatex $(TESTFILE)
-	$(VIEWER) $(TESTFILE).pdf
+test : $(TESTFILE).pdf
 
-cp: $(THESISMAIN).pdf
-	-@cp $(THESISMAIN).pdf README.pdf
+$(TESTFILE).pdf : $(TESTFILE).tex
+	xelatex $(TESTFILE) > /dev/null
+	$(VIEWER) $@
 
-release: diss.tex body/*.tex  # make version=0.5.1 release
-	$(SED) -i "s/templateversion{v.*)/templateversion{v$(version))/g" sjtuthesis.cfg	
-	$(SED) -i "s/bachelor-.*zip/bachelor-$(version).zip/g" body/chapter01.tex
-	$(SED) -i "s/master-.*zip/master-$(version).zip/g" body/chapter01.tex
-	$(SED) -i "s/phd-.*zip/phd-$(version).zip/g" body/chapter01.tex
+cleantest :
+	-@rm $(TESTFILE).pdf
 
+cp : $(THESISMAIN).pdf
+	-@cp -f $< README.pdf
 
+version :
+	$(SED) -i "s/templateversion{v.*}/templateversion{v$(VERSION)}/g" sjtuthesis.cfg	
+	$(SED) -i "s/bachelor-.*zip/bachelor-$(VERSION).zip/g" body/chapter01.tex
+	$(SED) -i "s/master-.*zip/master-$(VERSION).zip/g" body/chapter01.tex
+	$(SED) -i "s/phd-.*zip/phd-$(VERSION).zip/g" body/chapter01.tex
+
+release : clean version all cp
+	@echo "OK. Release version $(VERSION)."
