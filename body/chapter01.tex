@@ -1,26 +1,39 @@
+%%==================================================
+%% chapter01.tex for SJTU Master Thesis
+%% based on CASthesis
+%% modified by wei.jianwen@gmail.com
+%% version: 0.3a
+%% Encoding: UTF-8
+%% last update: Dec 5th, 2010
+%%==================================================
+
 %\bibliographystyle{sjtu2} %[此处用于每章都生产参考文献]
 \chapter{这是什么}
 \label{chap:what}
 
-这是上海交通大学硕士学位学位论文~\LaTeX~模板，当前版本是0.1a。
-这不是上海交大官方出品的的~\LaTeX~硕士论文模板，是大家根据研究生学位论文格式要求制作出的~\LaTeX~模板。
+这是上海交通大学硕士学位学位论文~\LaTeX~模板，当前版本是~\version。
+这是上海交大非官方出品的的~\LaTeX~硕士论文模板，是大家根据研究生院学位论文格式要求制作出的模板。
 
 \section{模板的来历}
 
-笔者不才，占了水源~TeX\_LaTeX~版版二的位置，只因自己对~\TeX~了解有限，一直没能做出一个使用“文档类”(documentclass)的学位论文模板。
+笔者不才，占了水源~TeX\_LaTeX~版版二的位置
+\footnote{笔者11月初去北京参加IETF79，沾了沾仙气，结果错过了版上述职时间，目前被撤职。等缓过来后仍会卷土重来。}
+。因自己对~\TeX/\LaTeX~了解有限，一直没能做出一个使用“文档类”(documentclass)的学位论文模板。
 正当我为这个事情发愁的时候，事情出现了重大转机：
 一位交大物理系的热心同学在~CASthesis~文档类的基础上制作了交大博士学位论文~\LaTeX~模板。
-借此东风，将该模板稍作修整后，我把它发在板上，供大家使用。
-目前，交大博士论文~\LaTeX~模板工作良好，希望能使更多同学收益。
+借此东风，将该模板稍作修整后，我把它发在版上，供大家使用。
+目前，交大博士论文~\LaTeX~模板工作良好，希望能使更多同学受益。
 
 最近，又有同学提出希望能制作出交大硕士学位论文模板。
 我参考了教务处对研究生学位论文格式的要求，在``博士学位论文~\LaTeX~模板''的基础上，制作了这个``硕士学位论文~\LaTeX~模板''。
 
-欢迎大家测试使用交大硕士学位论文~\LaTeX~模板，有任何问题或者建议欢迎到水源~TeX\_LaTeX~版发贴(推荐方式)，
-也可以通过邮件向我反映模板中与学校要求不相符的地方，或者其他可能是~Bugs~的问题，邮件主题中请加``latex''前缀\footnotemark[1]。
-\footnotetext[1]{笔者的联系方式是：\href{mailto:}{wei.jianwen@gmail.com}。最初那位制作模板的同学——也就是那位热心的物理系同学，留下的联系方式是\href{mailto:yang_tao@sjtu.edu.cn}{yang\_tao@sjtu.edu.cn}，不过似乎联系不上。笔者目前负责修正模板中与学校格式要求不符的地方，以及模板的Bug。一般的~\LaTeX~问题，仍推荐到版上讨论。}
+但是，大家也反映，使用~CJK--\LaTeX~仍存在不便之处。在~Linux~下使用~CJK~模板的同学，都有过搭建~CJK~环境的``恐怖经历''，并且因此放弃使用模板的也有。鉴于~\XeTeX~日渐成熟，它处理~UTF-8~编码文字的功夫令笔者惊叹，所以决定把模板移植到~\XeTeX~上。这里面很大一部分工作是~William Wang~完成的，在此向他表示感谢。
 
-再次感谢那位物理系的热心同学！
+欢迎大家使用交大硕士学位论文~\LaTeX~模板，有任何问题或者建议请到~TeX\_LaTeX~版发贴讨论。
+由于时间关系，我无法通过邮件提供~\LaTeX~支持，但是你可以通过邮件向我报告模板中的~Bugs，邮件主题中请加``latex''
+\footnote{笔者的联系方式是：\href{mailto:wei.jianwen@gmail.com}{wei.jianwen@gmail.com}。最初那位制作模板的同学——也就是那位热心的物理系同学，留下的联系方式是\href{mailto:yang_tao@sjtu.edu.cn}{yang\_tao@sjtu.edu.cn}，不过似乎联系不上。笔者目前负责修正模板中与学校格式要求不符的地方，以及模板的Bug。一般的~\LaTeX~问题，仍推荐到版上讨论。}。
+
+再次感谢那位物理系的热心同学和~William Wang~的无私帮助！
 
 \section{模板说明}
 \label{sec:fastguide}
@@ -28,86 +41,80 @@
 \subsection{模板特性}
 \label{sec:features}
 
-这个模板基于~CASthesis--0.1j~文档类，中文解决方案是~CJK。
-鉴于~dvipdfmx~支持的图像类型广(PDF/EPS/JPG/PNG)、工作稳定、输出的质量高，
-所以这个模板使用 latex $\rightarrow$ dvipdfmx 进行处理。
+这个模板基于~CASthesis--0.1j~文档类，中文解决方案是~\XeTeX/\LaTeX~。
 参考文献建议使用~BibTeX~管理，可以生成符合国标~GBT7714~风格的参考文献列表。
+模板在~Windows~和~Linux~下测试通过，更详细的系统要求请参考\ref{sec:requirements}。
 
-CASthesis~文档类又是基于~ctexbook~文档类——ctexbook~处理中文时对~GBK~编码青睐有加(处理UTF-8编码时又得使用ctexbookutf8)，
-所以引用源文件编码应该使用~GBK。
-
-这个模板在~Windows~和~Linux~下测试都通过了，所以”跨平台“应该不成问题。
-
-模板的外观表现和功能都放在~CASthesis.cls~和~CASthesis.cfg~中，在对外观进行细微调整时，只需要更新这两个文件，不需要对.tex源文件做修改。
+模板的外观表现和功能都放在~sjtumaster-xetex.cls~和~sjtumaster-xetex.cfg~中，在对外观进行细微调整时，只需要更新这两个文件，不需要对.tex源文件做修改。
 这也给模板更新带来了极大方便。
 
-最后，给出一个列表，罗列一下这个模板的特性：
+最后，给出一个列表，罗列一下这个模板的功能要点：
 
 \begin{itemize}
-\item 需要使用~latex $\rightarrow$ dvipdfmx~处理模板；
-\item 建议使用~BibTeX~管理参考文献；
-\item 包含中文的源文件请使用~GBK~编码，UTF-8编码将不能处理；
-\item 可以直接插入EPS/PDF/JPG/PNG格式的图像——不需要都转换为~EPS~格式。但是除了EPS外，都需要先使用~ebb~生成边框描述文件.bb(Bounding Box)；
-\item 模板在 Windows Server 2003 (32bit) + CTeX 2.7.0.39下测试通过；在 Gentoo Linux + TeXLive 2008 下测试通过（需要ctex宏包）。
-\item 模板的表现形式受~CASthesis.cls~和~CASthesis.cfg~控制，方便更新模板和修改表现形式。
-\item 参考文献表现形式(格式)受.bst控制，方便在不同风格间切换，目前生成的列表符合国标GBT7714要求；
+\item 使用~\XeTeX~引擎处理中文；
+\item 包含中文字符的源文件(.tex, .bib, .cfg)，编码都使用UTF-8；
+\item 使用~BibTeX~管理参考文献。参考文献表现形式(格式)受~.bst~控制，方便在不同风格间切换，目前生成的列表符合国标GBT7714要求；
+\item 可以直接插入EPS/PDF/JPG/PNG格式的图像，并且\emph{不需要}~bounding box~文件(.bb)。
+\item 模板的格式受~sjtumater-xetex.cls~和~sjtumaster-xetex.cfg~控制，方便模板更新和模板修改。
 \end{itemize}
 
 \subsection{系统要求}
 \label{sec:requirements}
 
-要使用这个模板协助你完成研究生学位论文的创作，你的~\TeX~系统应该能满足如下要求：
+要使用这个模板协助你完成研究生学位论文的创作，下面的条件必须满足：
 
 \begin{itemize}
-\item 能够使用~CJK~方案处理中文文档；
-\item \TeX~系统中有~ctex~宏包。
+\item 操作系统字体目录中有~TeX Gyre Termes~西文的：Regular, Italic, Bold, Bold Italic~四种~OTF~字体\footnote{TeX Gyre Termes~字体可以从\href{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}下载。我也附带了一份~TeX.Gyre.Termes.Fonts.zip~在模板中，解压缩到字体目录后用~fc-cache -fv~刷新即可，用~fc-list~应该能看到。}；
+\item 操作系统字体目录中有~AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd~四款中文字体\footnote{Adobe~这四款中文~OTF~字体可以从~Adobe Reader~安装目录拿到。}；
+\item \TeX~系统有~\XeTeX~引擎；
+\item \TeX~系统有~ctex~宏包；
 \item 你有使用~\LaTeX~的经验。
 \end{itemize}
 
-使用~CTeX~系统自然满足上面的要求。
+你可以试着编译模板文件夹中自带的~test.tex~文件，看看你的~\TeX~系统是否满足上面的要求：
 
- 用~TeXLive~自己搭建~\TeX~系统的同学，可以从~CTeX~中拷ctex宏包过来用，我本人\emph{不推荐}使用~GoogleCode SVN~上的~ctex-kit~宏包
- \footnote{\url{code.google.com/p/ctex-kit/} SVN版的ctex-kit很强大，但和这个模板配合起来使用却不是那么理想。这个主页上还有
-   \href{http://code.google.com/p/ctex-kit/wiki/SimpleChineseTemplates}{其他一些有用信息} }。
- ctex~宏包中还有一个~fd~文件夹，对~ctex~中使用的中文字体名称做了定义(font definition)。
- 使用者应该留意其中的信息，把字体映射到自己搭建~TeX~时定义的字体名字上。
+\begin{verbatim}
+xelatex test.tex
+\end{verbatim}
+
+如果编译出的~test.pdf~中能够：显示中英文内容、显示4幅图像、正确嵌入~AdobeSongStd~和~TeXGyreTermes~字体（通过PDF阅读器的“属性”查看）、并且看到了英文字符的连字(ligature)和\textsc{SmallCapital}特性，那么恭喜你，你的~\TeX~系统应该能够编译这个学位论文模板。
+
+目前，我在手头的几个~\TeX~环境上都做过测试，TeXLive 2010和C\TeX 2.9、C\TeX 2.8都能够顺利编译。在你到版上抱怨模板不能工作前，请确定你的~\TeX~系统能够编译前面的~test.tex~文件。欢迎大家把编译的情况直接\href{mailto:wei.jianwen@gmail.com}{反馈}给我(但我并不能保证能解决问题)。来信的内就写你是否顺利编译模板、错误提示、操作系统版本、\TeX~系统版本、xunicode.sty~版本和fontspec.sty版本。
  
 \subsection{模板文件布局}
 \label{sec:layout}
 
-\begin{lstlisting}[title={模板文件布局},label=layout,float,numbers=none]
-  |-- CASthesis.cfg
-  |-- CASthesis.cls
-  |-- GBT7714-2005NLang.bst
-  |-- diss.pdf
-  |-- diss.tex
-  |-- diss.bbl
-  |-- cctspace.cfg
-  |-- body
-  |   |-- abstract.tex
-  |   |-- app1.tex
-  |   |-- app2.tex
-  |   |-- chapter01.tex
-  |   |-- chapter02.tex
-  |   |-- chapter03.tex
-  |   |-- pub.tex
-  |   |-- resume.tex
-  |   |-- symbol.tex
-  |   \-- thanks.tex
-  |-- figures
-  |   \-- chap1
-  |       |-- fig1.bb
-  |       |-- fig1.jpg
-  |       |-- fig2.bb
-  |       |-- fig2.jpg
-  |       |-- testeps.eps
-  |       \-- ...
-  \-- reference
-      |-- chap1.bib
-      \-- chap2.bib
+\begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
+  ├─ diss.tex
+  ├── README.pdf
+  ├── sjtumaster-xetex.cfg
+  ├── sjtumaster-xetex.cls
+  ├── body
+  │   ├── abstract.tex
+  │   ├── app1.tex
+  │   ├── app2.tex
+  │   ├── chapter01.tex
+  │   ├── chapter02.tex
+  │   ├── conclusion.tex
+  │   ├── projects.tex
+  │   ├── pub.tex
+  │   ├── resume.tex
+  │   ├── symbol.tex
+  │   └── thanks.tex
+  ├── figures
+  │   └── chap2
+  ├── from.gkb.to.utf8.txt
+  ├── GBT7714-2005NLang.bst
+  ├── Makefile
+  ├── reference
+  │   ├── chap1.bib
+  │   └── chap2.bib
+  ├── run.bat
+  ├── run.sh
+  └── test.tex
 \end{lstlisting}
 
-你拿到手的模板文件大致会包含\ref{layout}所列的文件，乍看起来还是挺令人头大的。
+你拿到手的模板文件大致会包含代码\ref{layout}所列的文件，乍看起来还是挺令人头大的。
 并且，这还是“干净”的时候，等到真正开始处理的时候，会冒出相当多的“中间文件”，这又会使情况变得更糟糕。
 所以，有必要对这些文件做一些简要说明。
 看完这部分以后，你应该发现，其实你要关心的文件类型并没有那么多。
@@ -116,19 +123,12 @@ CASthesis~文档类又是基于~ctexbook~文档类——ctexbook~处理中文时
 \label{sec:format}
 
 格式控制文件控制着论文的表现形式，包括以下几个文件：
-CASthesis.cfg, CASthesis.cls~和~GBT7714-2005NLang.bst.
-其中，.bst控制的是参考文献条目的表现形式，前面两个控制的是论文除参考文献以外的表现。
-还有一个文件——cctspace.cfg，也算是格式控制文件，控制的是中英文的间隔(大约如此)，
-必须配合~C\TeX~套件下的~cctspace~程序使用。
-我主要是在~Linux~下编写模板，cctspace部分是否工作没有尽心过确认，所以暂不使用cctsapce
-\footnote{Word中有很好的机制来调整中英文字符的间距。\LaTeX~中目前只能手动在中英文字符之间加入～字符，即~CJKtilde。
-  cctspace的作用之一是：处理.tex文档，在每个中英文字符间插入～字符。可惜CJKtilde的间隔缺乏弹性，看起来有些呆板。
-  在~XeTeX~中，已经有很好的方法解决这个问题，可惜这个模板暂时无福享受这样的好处了}。
+sjtumaster-xetex.cfg, sjtumaster-xetex.cls~和~GBT7714-2005NLang.bst。
+其中，``.cfg''和``.cls''控制论文主体格式，``.bst''控制参考文献条目的格式，
 
-\emph{\large 总之，一般用户最好``忽略''格式控制文件的存在，不要去碰它们。
-   模板有问题，有其他格式需要，欢迎到板上发贴。
-   对于因为擅自更改格式控制文件出现的问题，我一概不负责 {\LARGE\Smiley}
- }
+一般用户最好``忽略''格式控制文件的存在，不要去碰它们。
+有其他格式需要，欢迎到板上发贴。
+对于因为擅自更改格式控制文件出现的问题，我一概不负责。{\large\smiley}
 
 \subsubsection{主控文件~diss.tex}
 \label{sec:disstex}
@@ -138,19 +138,18 @@ CASthesis.cfg, CASthesis.cls~和~GBT7714-2005NLang.bst.
 譬如各章正文、各个附录、各章参考文献等等。
 在~diss.tex~中通过``include''命令将论文的各个部分包含进来，从而形成一篇结构完成的论文。
 封面页中的论文标题、作者等中英文信息，也是在~diss.tex~中填写。
-一些不便于写入.cls的格式设置，
-或是引入一些``个性化''的宏包，也可以在~diss.tex~中引入
-\footnote{我对宏包的态度是：只有当你需要在文档中使用那个宏包时，才需要在导言区中用~usepackage~引入该宏包。
-  如若不然，通过usepackage引入一大堆不被用到的宏包，必然是一场灾难。因为一开始没有一致的设计目标，\LaTeX~的各宏包几乎都是独立发展起来的。
-  因为重定义命令导致的宏包冲突屡见不鲜。}。
+部分可能会频繁修改的设置，譬如行间距、图片文件目录等，我也放在了diss.tex中。
+你也可以在diss.tex中按照自己的需要引入一些的宏包
+\footnote{我对宏包的态度是：只有当你需要在文档中使用那个宏包时，才需要在导言区中用~usepackage~引入该宏包。如若不然，通过usepackage引入一大堆不被用到的宏包，必然是一场灾难。由于一开始没有一致的设计目标，\LaTeX~的各宏包几乎都是独立发展起来的，因重定义命令导致的宏包冲突屡见不鲜。}
+。
 
 大致而言，在~diss.tex~中，大家只要留意把``章''一级的内容，以及各章参考文献内容包含进来就可以了。
-\emph{需要注意，处理文档时所有的操作命令latex, bibtex, dvipdfmx等，都是作用在~diss.tex~上，而\emph{不是}后面这些``分散''的文件，请参考\ref{sec:process}小节。}
+需要注意，处理文档时所有的操作命令{}\cndash{}xelatex, bibtex等，都是作用在~diss.tex~上，而\emph{不是}后面这些``分散''的文件，请参考\ref{sec:process}小节。
 
 \subsubsection{论文主体文件夹body}
 \label{sec:thesisbody}
 
-这一部分是论文的主体，是以``章''为单位划分的，还可以在分为正文前的部分(frontmatter)，正文(mainmatter)，正文后的部分(backmatter)。
+这一部分是论文的主体，是以``章''为单位划分的。
 
 正文前部分(frontmatter)：中英文摘要(abstract.tex)。其他部分，诸如中英文封面、授权信息等，都是根据~diss.tex~所填的信息``画''好了，
 不单独弄成文件。
@@ -164,7 +163,6 @@ CASthesis.cfg, CASthesis.cls~和~GBT7714-2005NLang.bst.
 \label{sec:figuresdir}
 
 figures~文件夹放置了需要插入文档中的图片文件(PNG/JPG/PDF/EPS)，建议按章再划分子目录。
-除了图片文件外，还有一些.bb文件，这些文件用来说明图片的``边界''(Bouding Box)，其作用以及生成方法可参考第\ref{chap:example}章中插入图片的例子。
 
 \subsubsection{参考文献数据库文件夹~reference}
 \label{sec:bibdir}
@@ -175,26 +173,55 @@ reference~文件夹放置的是各章``可能''会被引用的参考文献文件
 将参考文献按章划分的一个好处是，可以在各章后生成独立的参考文献，不过，现在看来没有这个必要。
 关于参考文献的管理，可以进一步参考第\ref{chap:example}章中的例子。
 
-
-\subsection{处理过程}
+\subsection{如何使用}
 \label{sec:process}
 
-模板使用~latex $\rightarrow$ dvipdfmx~的方式进行处理，所有的命令都是作用于“主控文档”diss.tex，并且，可以省略扩展名。完整的处理流程是：
-\begin{quote}
-latex diss  \%第一次运行latex \\
-bibtex diss  \%处理参考文献\footnote{运行bibtex的时候会提示一些错误，我也拿它没办法，还好，最终结果良好，\emph{留意因为拼错名字提示的``找不到文献错误''即可}。} \\
-latex diss  \%再次运行latex \\
-latex diss  \%正确插入参考文献 \\ 
-dvipdfmx diss \%输出为PDF文档
-\end{quote}
+模板使用~\XeTeX~引擎提供的~xelatex~的命令处理，作用于“主控文档”diss.tex。并且，可以省略扩展名。完整的处理流程是：
+\begin{enumerate}
+\item[] xelatex -no-pdf -{}-interaction=nonstopmode diss
+\item[] bibtex diss 
+\item[] xelatex -no-pdf -{}-interaction=nonstopmode diss 
+\item[] xelatex -{}-interaction=nonstopmode diss 
+\end{enumerate}
 
-如果你是~C\TeX~用户，在WinEdt编辑器中，dvipdfmx对应的按钮应该是dvi2pdf。
-WinEdt那一排按钮中，有个墨绿色的狮子头对应的是``Texify''，可以根据依赖关系帮你生成好.dvi。
-得到.dvi文件以后，可以按``dvi2pdf''按钮生成pdf文件。
-还有一个狮子头``TexifyPDF''调用的是pdflatex，无法配合这个模板工作，所以不能使用。
+运行bibtex的时候会提示一些错误，猜测是~{{\sc Bib}\TeX}~对UTF-8支持不充分，一般不影响最终结果。留意因为拼写错误导致的``找不到文献错误''即可。
+
+加入~\verb|--interaction=nonstopmode|~参数是不让错误打断编译过程。\XeTeX~仍存在一些宏包兼容性问题，所以会产生一些莫名其妙的错误(通常是重定义错误)，而这些错误通常不会影响最终的编译结果\footnote{xunicode宏包就很蛋痛地重定义了几个数学符号，还有诸如$\backslash$nobreakspace命令}。
+为方便使用，我把处理过程写到了run.sh(for Linux)和run.bat(for Windows)批处理文件中。更规范的应该是使用Makefile，可惜笔者功力不够，希望哪位高人把好用的Makefile补上。
 
 基本处理流程就是这样，一些~\LaTeX~排版的小例子可以参考第二章。
-大家可以根据自己的喜好额外使用一些工具，譬如~autotools~或者是批处理。
+
+\section{从~CJK-\LaTeX~迁移到~\XeTeX/\LaTeX}
+\label{sec:whydvipdfm}
+
+我习惯把v0.2a使用dvipdfmx编译的硕士学位论文模板称为``CJK-\LaTeX{}模板''，而这个使用\XeTeX{}引擎(xelatex程序)处理的模板则被称为``\XeTeX/\LaTeX{}模板''。
+从CJK--LaTeX模板迁移到XeTeX\_LaTeX模板的好处有下：
+\begin{enumerate}
+\item[\large\smiley] 搭建~\XeTeX~环境比搭建CJK--\LaTeX~环境更容易；
+\item[\large\smiley] 更简单的字体控制；
+\item[\large\smiley] 完美支持PDF/EPS/PNG/JPG图片，不需要``.bb''文件；
+\item[\large\smiley] 支持~OpenType~字体的复杂字型变化功能(通常只有字母字体才有，学术文章也暂时用不上)；
+\end{enumerate}
+
+当然，这也是有代价的。由于~\XeTeX~比较新，宏包兼容性仍不是很完美(\LaTeX~也存在这样的问题)，很多宏包仍然在“修正”，以便更好地协同工作。在我看来，使用这个XeTeX模板所必须付出的代价是：
+
+\begin{enumerate}
+\item[\large\frownie] 必须把你“古老的”~\TeX~系统更新为较新的版本。TeXLive 2010~和~CTeX 2.9~能够编译这份模板，而~TeXLive 2009~和~CTeX 2.8~对此则无能为力；
+\item[\large\frownie] 需要一点点时间把你的~CJK-LaTeX~源文件转换为~XeTeX~源文件；
+\end{enumerate}
+
+第一条就看你如何取舍了，新系统通常意味着更好的兼容性，值得升级。而转换模板也不是什么特别困难的事情，可以这样完成：
+
+\begin{enumerate}
+\item 备份你要转换的源文件，以防你的工作成果丢失；
+\item 将你原来的``.tex''和``.bib''文件"另存为"UTF-8编码的文件。iconv、vim、emacs、UEdit~等等工具都可以完成。WinEdt~对文件编码识别功能很差(到了v6.0还是如此)，不推荐作为字符编码转换工具；
+\item 将``.tex''源文件中的以$\backslash$开始的~\LaTeX~命令，用\verb|~|将其与中文字符分开，否则与之相连的中文字符也被认为是命令的一部分，造成错误；
+\item 将~diss.tex~导言区中的内容替换为~XeTeX~模板~diss.tex~导言区的内容；
+\item 将你对原先导言区的修改，小心翼翼地``合并''到新的导言区中；
+\item 使用~XeTeX~模板中的~GBT7714-2005NLang.bst~替换原有的bst文件，新的bst文件只是将字符编码转换为UTF--8。
+\item 删除~bouding box~文件``.bb''；
+\item 使用本文\ref{sec:process}介绍的方法，重新编译文档；
+\end{enumerate}
 
 \section{硕士学位论文格式的一些说明}
 \label{sec:thesisformat}
@@ -212,15 +239,14 @@ WinEdt那一排按钮中，有个墨绿色的狮子头对应的是``Texify''，�
 你可以将~diss.tex~中设定文档类的语句改为：
 
 \begin{quote}
-\verb+\documentclass{CASthesis}+
+  {\scriptsize\verb+\documentclass[cs4size, a4paer, cs4size, oneside, openany]{sjtumaster-xetex}+}
 \end{quote}
 
-这样，就变成了适合“单面打印”的论文，新的一章可以从偶数页开始。但是，“单面打印”似乎要所更多的工作——我在编译过程中遇到了一些错误，无伤大雅，但我必须按回车让latex强制完成剩下的工作。所以，我不推荐“单面打印”这种用法。
+这样，就变成了适合“单面打印”的论文，新的一章可以从偶数页开始。
 
-奇数页页眉为：左边``上海交通大学硕士学位论文''，右边：``章节名''；偶数页页眉为：左边``上海交通大学硕士学位论文''，右边：``论文题目''。每一章的内容按照排书的习惯，均从奇数页开始。
+关于页眉页脚。奇数页页眉为：左边``上海交通大学硕士学位论文''，右边：``章节名''；偶数页页眉为：左边``上海交通大学硕士学位论文''，右边：``论文题目''。每一章的内容按照排书的习惯，均从奇数页开始。
 
-教务处要求参考文献必须符合GBT7714风格，学校明确提出使用这个标准而不是自己拍脑袋想出别的做法，应该算是谢天谢地了。
-使用这个模板，结合BibTeX，可以很方便地生成符合GB标准的参考文献列表。
+教务处要求参考文献必须符合~GBT7714~风格，学校明确提出使用这个标准而不是自己拍脑袋想出别的做法，应该算是谢天谢地了。使用这个模板，结合BibTeX，可以很方便地生成符合GB标准的参考文献列表。
 
 \section{模板更新说明}
 \label{sec:update}
@@ -235,8 +261,9 @@ WinEdt那一排按钮中，有个墨绿色的狮子头对应的是``Texify''，�
 
 \begin{itemize}
 \item 如果仅仅是增加模板中的例子，不对模板的格式控制文件做修改，那么版本号将在字母上增加，数字不变，例如，0.1a$\rightarrow$0.1b；
-\item 如果对格式控制文件(CASthesis.cls, CASthesis.cfg, GBxxx.bst)做了修改，版本号将在数字上做变动，同时字母回归a，例如，0.1c$\rightarrow$0.2a。
+\item 如果对格式控制文件(sjtumaster-xetex.cls, sjtumaster-xetex.cfg, GBxxx.bst)做了修改，版本号将在数字上做变动，同时字母回归a，例如，0.1c$\rightarrow$0.2a。
 \end{itemize}
+
 至此，大家可以通过留意版本号的变化来判断模板更新的类型。
 完整的更新记录可参考附录A.
 
@@ -244,55 +271,13 @@ WinEdt那一排按钮中，有个墨绿色的狮子头对应的是``Texify''，�
 因为在对模板进行修改时，我总是最大限度的保证其兼容性。
 如果``新的格式控制文件''产生的效果对你很有吸引力，那么不妨尝试一下。
 应用新的格式控制文件是一件非常简单的事情：
-你只要把原来的~CASthesis.cls, CASthesis.cfg, GBxxx.bst~备份，再把新的版本复制到工作目录中，重新编译一遍，应该就OK了。
+你只要把原来的~sjtumaster-xetex.cls, sjtumaster-xetex.cfg, GBxxx.bst~覆盖(建议备份或者使用版本控制系统)，重新编译一遍，应该就OK了。
 
-\section{意见反馈}
+
+\section{获取帮助和意见反馈}
 \label{sec:replay}
 
-如果你对这个模板有任何问题或建议(前提是你认真读完这份文档后发现确实没有能帮助你的地方)，欢迎到水源TeX\_LaTeX版上发贴反馈。
-你的反馈将是我完善模板的动力！
+如果你对这个模板有任何问题或建议(前提是你认真读完这份文档后发现确实没有能帮助你的地方)，欢迎到水源TeX\_LaTeX版上发贴反馈。你的反馈将是我完善模板的动力！
 
 如果你是~\TeX/\LaTeX~方面的专家，也可以直接给我发\href{mailto:wei.jianwen@gmail.com}{邮件}，一起讨论改善模板的方法。
-邮件的主题请加上latex字样。
-
-\section{题外话：为什么使用dvipdfmx而不是pdflatex}
-\label{sec:whydvipdfm}
-
-我想这个模板使用~latex/dvipdfmx~进行处理，而不是使用“一次成形”的~pdflatex？
-我想看了下面两个表以后，你心里应该会有个数。
-
-\begin{table}[!hbp]
-  \bicaption[tab:pdflatex]{pdflatex优缺点}{pdflatex优缺点}{Table}{features of pdflatex}
-  \centering
-  \begin{tabular}{r|l}
-    \toprule
-    优点： & 一步到位生成pdf；可直接插入PDF/PNG/JPG图像，不需要ebb计算边界； \\
-    &  可直接插入PDF/PNG/JPG图像，不需要ebb计算边界。\\
-    \midrule
-    缺点： & 不支持直接插入EPS图像；\\
-    & GBK编码的.tex文件需要配合ccmap宏包才能生成“可复制粘贴搜索的的中文PDF”；\\
-    & PDF中文书签的问题一直不能很好解决；\\
-    & 让这个模板在~pdflatex~方式下工作“正常”目前超出了笔者的能力。\\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-
-\begin{table}[!hbp]
-  \bicaption[tab:latex]{latex/dvipdfmx优缺点}{latex/dvipdfmx优缺点}{Table}{features of latex/dvipdfmx}
-  \centering
-  \begin{tabular}{r|l}
-    \toprule
-    优点： & GBK/UTF-8编码的.tex文件都能生成“可复制粘贴搜索的的中文PDF”； \\
-    & 可生成PDF中文书签 \\
-    & 支持直接插入EPS/PDF/PNG/JPG图像； \\
-    & 在模板中做了一些修改后，我能够让它在latex下正常工作。\\
-    \midrule
-    缺点： & 包含引用时，需要来回多次编译才能得到正确的结果；\\
-    & 插入PDF/PNG/JPG时需要用ebb生成.bb文件描述“边界”； \\
-    & ebb计算的PNG/JPG的边界不准确{\LARGE \Frowny} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-
+邮件的主题请加上``latex''字样。此外，模板中的其他纰缪，也欢迎直接来信抱怨。

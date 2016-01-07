@@ -1,19 +1,19 @@
-%%==================================================
+%==================================================
 %% sjtumaster-xetex.cls for SJTU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% modified by wei.jianwen@gmail.com
-%% version: 0.2a
-%% last update: Dec 25th, 2009
-%% --------------------------------------------------
-% !!! This template is intended to be processed by "latex->dvipdfmx" only !!!
-% !!! source files .tex should be encoded in GBK
+%% Encoding: UTF-8
+%% version: 0.4
+%% last update: May 30, 2012
 %% ==================================================
 
+%% math packages -- conflict with xunicode
+\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+\RequirePackage{upgreek}
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sjtumaster-xetex}
-  [2009/12/25 v0.2a sjtumaster-xetex
-   document class]
+  [2009/12/25 v0.2a sjtumaster-xetex document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
 \newif\ifCAST@dvips \CAST@dvipsfalse
@@ -24,32 +24,90 @@
 \ProcessOptions
 \LoadClass[fancyhdr,fntef,UTF8,adobefonts]{ctexbook}[2005/11/25]
 
+%% 导入 sjtumaster-xetex.cfg 文件
+\AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
+
+%% 当前模板的版本
+\newcommand{\version}{\CAST@value@templateversion}
+
+%% 页边距设置
+\oddsidemargin 1.5 true cm
+\if@twoside
+  \evensidemargin 0 true cm
+\else
+  \evensidemargin 1.5 true cm
+\fi
+\textheight 21 true cm
+\textwidth 14.5 true cm
+\headheight 15pt
+\parskip 0.5ex plus 0.25ex minus 0.25ex
+%% 上边距
+\addtolength{\voffset}{-0.5cm}
+
+
+%% Command -- Clear Double Page
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \thispagestyle{empty}%
+  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+%% 选择编译
+\RequirePackage{ifthen}
 
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
-%% math packages
-\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
 
-%% Times Fonts
-\RequirePackage{times}
+%% 复杂表格
+\RequirePackage{threeparttable}
+\RequirePackage{dcolumn}
+\RequirePackage{multirow}
+\RequirePackage{booktabs}
+\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
-%_ added by wei.jianwen@gmail.com
-\RequirePackage{ccaption}
-\captiondelim{\ }
-\captionnamefont{\kaishu\zihao{5}}
-\captiontitlefont{\kaishu\zihao{5}}
+%% 定义几个常用的数学常量符号
+\newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\mj}{\mathrm{j}}
+\newcommand{\dif}{\mathrm{d}}
+
+% 可伸长的数学符号
+% \makeatletter
+\def\ExtendSymbol#1#2#3#4#5{\ext@arrow 0099{\arrowfill@#1#2#3}{#4}{#5}}
+\def\RightExtendSymbol#1#2#3#4#5{\ext@arrow 0359{\arrowfill@#1#2#3}{#4}{#5}}
+\def\LeftExtendSymbol#1#2#3#4#5{\ext@arrow 6095{\arrowfill@#1#2#3}{#4}{#5}}
+% \makeatother
+
+\newcommand\myRightarrow[2][]{\RightExtendSymbol{=}{=}{\Rightarrow}{#1}{#2}}
+\newcommand\myLeftarrow[2][]{\LeftExtendSymbol{\Leftarrow}{=}{=}{#1}{#2}}
+\newcommand\myBioarrow[2][]{\ExtendSymbol{\Leftarrow}{=}{\Rightarrow}{#1}{#2}}
+\newcommand\myLongEqual[2][]{\ExtendSymbol{=}{=}{=}{#1}{#2}}
+
+
+%% 英文字体使用 Times New Roman
+\RequirePackage{fontspec}
+\RequirePackage{xltxtra} % \XeTeX Logo
+\setmainfont{TeX Gyre Termes}
+%% bullets in the item
+\renewcommand\labelitemi{\ensuremath{\bullet}} % 原来定义为 \textbullet
+
 
 %% graphics packages
-\RequirePackage[dvips]{graphicx}
-% \RequirePackage{graphicx}
+\RequirePackage{graphicx}
+%% 并列子图
+\RequirePackage{subfigure}
+%% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
+% ccaption -- bicaption
+\RequirePackage{ccaption}
+\captiondelim{\ }
+\captionnamefont{\kaishu\small}
+\captiontitlefont{\kaishu\small}
+
 
 %% sort and compress citations
 \RequirePackage[sort&compress,numbers]{natbib}
 % 上标引用
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
-
-%_ added by wei.jianwen@gmail.com
 % 将浮动参数设为较宽松的值
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
@@ -66,60 +124,77 @@
 \RequirePackage{xcolor}
 
 
-%% ==================================================
-%% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
-% \DeclareGraphicsExtensions{.eps,.pdf,.jpg,.png}
-%% 让 latex 从 .bb 中读取 Bounding Box 信息
-% \DeclareGraphicsRule{.jpg}{eps}{.bb}{}
-% \DeclareGraphicsRule{.png}{eps}{.bb}{}
-% \DeclareGraphicsRule{.pdf}{eps}{.bb}{}
-%% ==================================================
+%% 一些有趣的符号图案
+\RequirePackage{marvosym}
+\RequirePackage{wasysym}
 
-%% hyperref
-% \RequirePackage[dvipdfm]{hyperref}
-% \AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
-% configuration of hyperref package
-% \hypersetup{CJKbookmarks,%
-%   bookmarksnumbered,%
-%   colorlinks,%
-%   linkcolor=blue,%
-%   citecolor=blue,%
-%   plainpages=false,%
-%   pdfstartview=FitH
-% }
+
+% 中文破折号
+\newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
+
+% listings 源代码显示宏包
+\RequirePackage{listings}
+\lstset{tabsize=4, %
+  frame=shadowbox, %把代码用带有阴影的框圈起来
+  commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
+  rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+  keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+  showstringspaces=false,%不显示代码字符串中间的空格标记
+  stringstyle=\ttfamily, % 代码字符串的特殊格式
+  keepspaces=true, %
+  breakindent=22pt, %
+  numbers=left,%左侧显示行号
+  stepnumber=1,%
+  numberstyle=\tiny, %行号字体用小号
+  basicstyle=\footnotesize, %
+  showspaces=false, %
+  flexiblecolumns=true, %
+  breaklines=true, %对过长的代码自动换行
+  breakautoindent=true,%
+  breakindent=4em, %
+  aboveskip=1em, %代码块边框
+  %% added by http://bbs.ctex.org/viewthread.php?tid=53451
+  fontadjust,
+  captionpos=t,
+  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
+  xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
+  texcl=true,
+  % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
+  extendedchars=false,columns=flexible,mathescape=true
+  numbersep=-1em
+}
+\renewcommand{\lstlistingname}{\CAST@value@listingname} %% 重命名Listings标题头
+
+
+%% hyperref package
 
 \ifxetex  % xelatex
-\usepackage[xetex]{hyperref}
+\RequirePackage[xetex]{hyperref}
+\hypersetup{
+  bookmarksnumbered,%
+  colorlinks,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  plainpages=false,%
+  pdfstartview=FitH
+}
 \else
 \ifpdf    % pdflatex
-\usepackage[pdftex,unicode]{hyperref}
+\RequirePackage[pdftex,unicode]{hyperref}
 \else     % dvipdfmx or dvips
-\usepackage[dvipdfmx,unicode]{hyperref}
+\RequirePackage[dvipdfmx,unicode]{hyperref}
 \fi
 \fi
 
-
-\AtEndOfPackage{\makeatletter\input{sjtumaster-xetex.cfg}\makeatother}
-\oddsidemargin 1.5 true cm
-\if@twoside
-  \evensidemargin 0 true cm
-\else
-  \evensidemargin 1.5 true cm
-\fi
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-  \thispagestyle{empty}%
-  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+%% enumerate 列表环境间距调节
+% Ref: http://bbs.ctex.org/viewthread.php?tid=52331&page=1
+\RequirePackage{enumitem}
+% \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+% \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+% \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
 
 %_  参考文献风格 added by wei.jianwen@gmail.com
 \bibliographystyle{GBT7714-2005NLang}
-% \bibliographystyle{thubib}
-% \newcommand\thudot{\unskip.}
-% \newcommand\thumasterbib{[Master Thesis]}
-% \newcommand\thuphdbib{[Doctor Thesis]}
 
 %_ CASTspace
 \newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
@@ -158,7 +233,7 @@
 \newcommand\chairman[1]{\def\CAST@value@chairman{#1}}
 
 
-%_ “绘制”SJTU中文标题页
+% “绘制”SJTU中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -259,7 +334,7 @@
 }
 
 
-%_ 授权声明
+% 授权声明
 \newcommand\makeDeclareAuthorization{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -281,39 +356,23 @@
   \fi
 }
 
-
-%_ 页眉页脚
-\pagestyle{fancy}
-\fancyhf{}
-% \fancyhead[CE]{\small \CAST@value@titlemark}
-\fancyhead[LE]{\small {\it 上海交通大学硕士学位论文}}  % 偶数页左页眉
-\fancyhead[RE]{\small \CAST@value@titlemark}       % 偶数页右页眉
-% \fancyhead[OE]{}       % 偶数页中页眉
-\fancyhead[LO]{\small {\it 上海交通大学硕士学位论文}}  % 奇数页左页眉
-% \fancyhead[RO]{\small \rightmark}
-\fancyhead[RO]{\small \leftmark}                   % 奇数页左页眉
-% \fancyhead[OE]{}       % 奇数页中页眉
-% \fancyfoot[OL]{\bfseries \small ~---~\thepage~---~}
-\fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
-% \fancyfoot[LE,RO]{\bfseries \small ~--~\thepage~--~}
-
-
-\fancypagestyle{plain}{% 设置开章页页眉页脚风格
-  \fancyhf{}%
-  % \fancyfoot[C]{\bfseries \small ~第~\thepage~页~}
- \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %%首页页脚格式
-  \renewcommand{\headrulewidth}{0pt}%
-  \renewcommand{\footrulewidth}{0pt}%
+\pagestyle{fancy} {
+	\fancyhf{}
+	\fancyhead[LO, RE]{\small {\it \CAST@value@school\CAST@value@degree\CAST@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
+	\fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
+	\fancyhead[LE]{\small {\it \CAST@value@titlemark}}  % 偶数页左页眉
+	\fancyfoot[C]{\small ~---~{\bf\thepage}~---~}      % 页脚
 }
 
-% 每一章的首页也使用fancyhdr的页眉页脚设置
-% \makeatletter
-% \let\ps@plain\relax
-% \let\ps@plain=\ps@fancy
-% \makeatother
- 
+\fancypagestyle{plain} { % 设置开章页页眉页脚风格
+  \fancyhf{}
+  \fancyhead[LO,RE]{\small {\it \CAST@value@school\CAST@value@degree\CAST@label@thesis}}  % 奇数页左页眉和偶数页右页眉，即靠近书籍的页眉
+  \fancyhead[RO]{\small {\it \leftmark}}                   % 奇数页右页眉
+  \fancyhead[LE]{\small {\it \CAST@value@titlemark}} 	 % 偶数页左页眉
+  \fancyfoot[C]{\small ~---~{\bf\thepage}~---~} %页脚格式
+}
 
- %_ 中文摘要
+ % 中文摘要
  \newenvironment{abstract}
  {\chapter[\heiti 摘要]{\CAST@value@title\vskip 20pt\CAST@label@abstract}}
  {}
@@ -332,7 +391,7 @@
   \vspace{2ex}\noindent{\bf\large \CAST@label@englishkeywords} #1}
 
 
-%_ 目录
+% 目录
 \renewcommand\tableofcontents{%
   \if@twocolumn
   \@restonecoltrue\onecolumn
@@ -391,6 +450,27 @@
        {\@latex@warning{Empty `publications' environment}}%
       \endlist}
 
+\newenvironment{projects}[1]
+     {\chapter{\CAST@label@projects}%
+      \@mkboth{\MakeUppercase\CAST@label@projects}
+              {\MakeUppercase\CAST@label@projects}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `projects' environment}}%
+      \endlist}
+    
     \newenvironment{resume}
   {\chapter{\CAST@label@resume}}
   {}
@@ -434,6 +514,7 @@
   {\newline}% Space after thm head: \newline = linebreak
   {}%         Thm head spec
 \endinput
+
 %%
 %% End of file `sjtumaster-xetex.cls'.
 

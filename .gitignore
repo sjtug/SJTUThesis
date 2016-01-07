@@ -6,4 +6,8 @@
 *.blg
 *.bbl
 *.lof
-
+*.swp
+*.xdv
+*~
+*.fdb_latexmk
+diss.pdf
