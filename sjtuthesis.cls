@@ -7,14 +7,16 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2014/12/16 v0.6 Shanghai Jiao Tong University Template]
-\def\version{v0.6.5}
+\ProvidesClass{sjtuthesis}[2015/2/15 v0.7 Shanghai Jiao Tong University Template]
+\def\version{v0.7}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
+\newif\ifsjtu@review\sjtu@reviewfalse
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
 \DeclareOption{doctor}{\sjtu@doctortrue}
+\DeclareOption{review}{\sjtu@reviewtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 \LoadClass[a4paper,fancyhdr,fntef,UTF8]{ctexbook}
@@ -245,10 +247,16 @@
   {\fangsong\zihao{4}}
   \def\tabcolsep{1pt}
   \def\arraystretch{1.5}
-  \begin{tabular}{lc}
-    \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
-    \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
-    \heiti\sjtu@label@advisor 		& \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+  \begin{tabular}{rl}
+    \ifsjtu@review
+      \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{} \\
+      \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{} \\
+      \heiti\sjtu@label@advisor 	& \songti\sjtuunderline[150pt]{} \\ 
+    \else
+      \heiti\sjtu@label@author 		& \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
+      \heiti\sjtu@label@studentnumber 	& \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
+      \heiti\sjtu@label@advisor 	& \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+    \fi
     \heiti\sjtu@label@major 		& \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
     \heiti\sjtu@label@defenddate 	& \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
   \end{tabular}
@@ -277,26 +285,30 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\normalfont\zihao{4} \sjtu@label@englishstatement}
-    \vspace*{20pt}
-    \vskip\stretch{1}
-     {\zihao{-1} \sjtu@value@englishtitle}
-    \vskip \stretch{1}
-      {\normalfont\zihao{4} \sjtu@value@englishauthor}
-    \vskip \stretch{1}
-      {\normalfont\zihao{4} \sjtu@label@englishadvisor}
-    \vskip 3pt
-      {\normalfont\zihao{4} \sjtu@value@englishadvisor}
-    \vskip \stretch{2}
-      \normalfont\normalsize \sjtu@value@englishinstitute
-    \vskip 30pt
-      \normalfont\normalsize \sjtu@value@englishdate
-    \vskip 20pt
+      {\normalfont\zihao{4} \sjtu@label@englishstatement} 
+      \vspace{20pt} \vskip\stretch{1}
+      {\zihao{-1} \sjtu@value@englishtitle} 
+      \vskip \stretch{1}
+    \ifsjtu@review
+      \vskip \stretch{1}
+      \vskip 3pt
+      \vskip \stretch{2}
+    \else
+      {\normalfont\zihao{4} \sjtu@value@englishauthor} 
+      \vskip \stretch{1}
+      {\normalfont\zihao{4} \sjtu@label@englishadvisor} 
+      \vskip 3pt
+      {\normalfont\zihao{4} \sjtu@value@englishadvisor} 
+      \vskip \stretch{2}
+    \fi 
+    \normalfont\sjtu@value@englishinstitute \vskip 30pt
+    \normalfont\sjtu@value@englishdate \vskip 20pt
   \end{center}
   \clearpage
   \if@openright
-    \thispagestyle{empty}
     \cleardoublepage
+  \else
+    \clearpage
   \fi
 }
 
