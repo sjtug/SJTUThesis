@@ -4,16 +4,18 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2015/2/15 v0.7 Shanghai Jiao Tong University Template]
+\ProvidesClass{sjtuthesis}[2015/3/15 v0.9 Shanghai Jiao Tong University Template]
 \def\version{v0.7}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
 \newif\ifsjtu@review\sjtu@reviewfalse
+\newif\ifsjtu@submit\sjtu@submitfalse
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
 \DeclareOption{doctor}{\sjtu@doctortrue}
 \DeclareOption{review}{\sjtu@reviewtrue}
+\DeclareOption{submit}{\sjtu@submittrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 \LoadClass[a4paper,UTF8,scheme=chinese]{ctexbook}
@@ -79,7 +81,7 @@
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
     
 % User defined command list
-%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
+%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX \upcite
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
@@ -103,6 +105,9 @@
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
+
+% Upper quote
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -209,11 +214,19 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
-
 %  参考文献风格 GBT7714-2005
 \bibliographystyle{bst/GBT7714-2005NLang}
 
 % 定理环境
+\newtheoremstyle{break}% name
+  {}%      Space above, empty = `usual value'
+  {}%      Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
 \theoremstyle{plain}
   \newtheorem{algo}{\sjtu@label@algo~}[chapter]
   \newtheorem{thm}{\sjtu@label@thm~}[chapter]
@@ -368,11 +381,7 @@
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
   \hspace{16em}\sjtu@label@originalDate\hspace{1em}
-  \clearpage
-  \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \cleardoublepage
 }
 
 
@@ -390,11 +399,7 @@
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
-  \clearpage
-  \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \cleardoublepage
 }
 
 % fancyhdr页眉页脚设置
@@ -469,28 +474,6 @@
 
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
 
-% 参考文献环境
-\renewenvironment{thebibliography}[1]
-     {\chapter{\bibname}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
-
-    
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
       \@mkboth{\MakeUppercase\sjtu@label@publications}
@@ -532,7 +515,7 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `patents' environment}}%
       \endlist}
- 
+
 \newenvironment{projects}[1]
      {\chapter{\sjtu@label@projects}%
       \@mkboth{\MakeUppercase\sjtu@label@projects}

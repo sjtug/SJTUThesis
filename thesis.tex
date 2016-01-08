@@ -17,10 +17,6 @@
 %   submit			% 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
 % ]
 
-% 逐个导入参考文献数据库
-\addbibresource{bib/thesis.bib}
-% \addbibresource{bib/chap2.bib}
-
 \begin{document}
 
 %% 无编号内容：中英文论文封面、授权页
@@ -83,7 +79,7 @@
 \backmatter	% 文后无编号部分 
 
 %% 参考资料
-\printbibliography[heading=bibintoc]
+\bibliography{bib/thesis.bib}
 
 %% 致谢、发表论文、申请专利、参与项目、简历
 %% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
