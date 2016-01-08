@@ -9,7 +9,7 @@ LATEXMK_OPT = -xelatex -gg -silent -f
 
 all: $(THESIS).pdf $(SUBMIT).pdf
 
-.PHONY : all clean
+.PHONY : all clean validate view
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
@@ -18,6 +18,9 @@ $(SUBMIT).pdf : $(THESIS).pdf statement.pdf
 	rm -f _tmp_.pdf $@
 	stapler sel $(THESIS).pdf 1-4 statement.pdf _tmp_.pdf
 	stapler sel _tmp_.pdf $(THESIS).pdf 6-end $@
+
+view : $(THESIS).pdf
+	open $<
 
 clean :
 	latexmk -C
