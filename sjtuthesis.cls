@@ -16,7 +16,7 @@
 \DeclareOption{review}{\sjtu@reviewtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
-\LoadClass[a4paper,fancyhdr,fntef,UTF8]{ctexbook}
+\LoadClass[a4paper,UTF8,scheme=chinese]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
@@ -46,6 +46,7 @@
 %==========
 
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
+\RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -65,7 +66,7 @@
 \RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
-\RequirePackage{enumitem}
+\RequirePackage[inline]{enumitem}
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmic}
@@ -118,31 +119,40 @@
 
 %% CTeX Settings
 % 名称：目录、表格索引、插图索引、算法、算法索引、代码
-\CTEXoptions[contentsname={\sjtu@contentsname}]
-\CTEXoptions[listfigurename={\sjtu@listfigurename}]
-\CTEXoptions[listtablename={\sjtu@listtablename}]
+\ctexset{contentsname={\sjtu@contentsname}}
+\ctexset{listfigurename={\sjtu@listfigurename}}
+\ctexset{listtablename={\sjtu@listtablename}}
 \floatname{algorithm}{\sjtu@label@algo}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
 % Title Settings at the chapter Level
-\CTEXsetup[nameformat={\Large\bfseries}]{chapter}
-\CTEXsetup[titleformat={\Large\bfseries}]{chapter}
-\CTEXsetup[beforeskip={15\p@}]{chapter}
-\CTEXsetup[afterskip={12\p@}]{chapter}
+\ctexset{chapter={
+	nameformat={\Large\bfseries},
+	titleformat={\Large\bfseries},
+	beforeskip={15\p@},
+	afterskip={12\p@},
+	}
+}
 % Title Settings at the section Level
-\CTEXsetup[format={\large\bfseries}]{section}
-\CTEXsetup[beforeskip={-3ex \@plus -1ex \@minus -.2ex}]{section}
-\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{section}
+\ctexset{section={
+	format={\large\bfseries},
+	afterskip={1.0ex \@plus .2ex},
+	}
+}
 % Title Settings at the subection Level
-\CTEXsetup[format={\bfseries\normalsize}]{subsection}
-\CTEXsetup[indent={0\ccwd}]{subsection}
-\CTEXsetup[beforeskip={-2.5ex \@plus -1ex \@minus -.2ex}]{subsection}
-\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsection}
+\ctexset{subsection={
+	format={\bfseries\normalsize},
+	indent={0\ccwd},
+	afterskip={1.0ex \@plus .2ex},
+	}
+}
 % Title Settings at the subsubection Level
-\CTEXsetup[format={\normalfont\normalsize}]{subsubsection}
-\CTEXsetup[indent={0\ccwd}]{subsubsection}
-\CTEXsetup[beforeskip={-2ex \@plus -1ex \@minus -.2ex}]{subsubsection}
-\CTEXsetup[afterskip={1.0ex \@plus .2ex}]{subsubsection}
+\ctexset{subsubsection={
+	format={\normalfont\normalsize},
+	indent={0\ccwd},
+	afterskip={1.0ex \@plus .2ex},
+	}
+}
 
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}
@@ -165,6 +175,7 @@
 % 定公式、图、表、算法的编号为"3-1"的形式，即分隔符由.变为短杠
 \renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
+\renewcommand\p@subfigure{\thefigure}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
@@ -181,7 +192,7 @@
   numbers=left,%左侧显示行号
   stepnumber=1,%
   numberstyle=\tiny, %行号字体用小号
-  basicstyle=\footnotesize, %
+  basicstyle={\footnotesize\ttfamily}, %
   showspaces=false, %
   flexiblecolumns=true, %
   breaklines=true, %对过长的代码自动换行
@@ -221,15 +232,26 @@
   \newtheorem{bprop}[thm]{\sjtu@label@prop~}
   \newtheorem{bcor}[thm]{\sjtu@label@cor~}
   \renewcommand{\proofname}{\bf\sjtu@label@proof}
-\newtheoremstyle{break}% name
-  {}%      Space above, empty = `usual value'
-  {}%      Space below
-  {\itshape}% Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following definitions are to extend the LaTeX algorithmic 
+% package with SWITCH statements and one-line structures.
+% The extension is by 
+%   Prof. Farn Wang 
+%   Dept. of Electrical Engineering, 
+%   National Taiwan University. 
+% 
+\newcommand{\SWITCH}[1]{\STATE \textbf{switch} (#1)}
+\newcommand{\ENDSWITCH}{\STATE \textbf{end switch}}
+\newcommand{\CASE}[1]{\STATE \textbf{case} #1\textbf{:} \begin{ALC@g}}
+\newcommand{\ENDCASE}{\end{ALC@g}}
+\newcommand{\CASELINE}[1]{\STATE \textbf{case} #1\textbf{:} }
+\newcommand{\DEFAULT}{\STATE \textbf{default:} \begin{ALC@g}}
+\newcommand{\ENDDEFAULT}{\end{ALC@g}}
+\newcommand{\DEFAULTLINE}[1]{\STATE \textbf{default:} }
+% 
+% End of the LaTeX algorithmic package extension.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %==========
 % Segment 4. Draw the sjtuthesis
@@ -306,7 +328,7 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\huge\sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle \vskip 1pt}
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}

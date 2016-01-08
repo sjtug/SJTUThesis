@@ -9,7 +9,7 @@ LATEXMK_OPT = -xelatex -gg -silent -f
 
 all: $(THESIS).pdf $(SUBMIT).pdf
 
-.PHONY : all clean validate view wordcount
+.PHONY : all clean pvc view wordcount git zip
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
@@ -29,12 +29,13 @@ wordcount:
 
 clean :
 	latexmk -C
-	-rm *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml
+	-@rm -f *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml 2> /dev/null || true
 
 s3 : $(THESIS).pdf
 	s3cmd put $< s3://sjtuthesis/README.pdf
 
 git :
-	git push gitlab
-	git push github
+	for tag in "v0.7" "v0.8" "v0.9" "master"; do git co $${tag}; git push gitlab; git push github; git push gitcafe; done
 
+zip :
+	git archive --format zip --output thesis.zip master

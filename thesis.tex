@@ -4,16 +4,22 @@
 %%==================================================
 
 % 双面打印
-\documentclass[doctor, adobefonts, openright, cs4size]{sjtuthesis}
-% \documentclass[bachelor, adobefonts, openany, oneside, cs4size]{sjtuthesis} 
+\documentclass[doctor, fontset=adobe, openright, twoside, zihao=-4]{sjtuthesis}
+% \documentclass[bachelor, fontset=adobe, openany, oneside, zihao=-4, submit]{sjtuthesis} 
 % \documentclass[master, adobefonts, review]{sjtuthesis} 
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
-%   adobefonts, winfonts  	% 只测试了adobefonts，请使用adobefonts
-%   openany|openright 		% 单面打印，双面打印(默认)
-%   cs4size|c5size 		% 正文字号：小四、五号(默认)
-%   review	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
+%   fontset=adobe|windows,  	% 只测试了adobe
+%   oneside|twoside,		% 单面打印，双面打印(奇偶页交换页边距，默认)
+%   openany|openright, 		% 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
+%   zihao=-4|5,, 		% 正文字号：小四、五号(默认)
+%   review,	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
+%   submit			% 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
 % ]
+
+% 逐个导入参考文献数据库
+\addbibresource{bib/thesis.bib}
+% \addbibresource{bib/chap2.bib}
 
 \begin{document}
 
@@ -23,13 +29,23 @@
 
 \makeenglishtitle
 
-\makeDeclareOriginal
+\makeatletter
+\ifsjtu@submit\relax
+	\includepdf{pdf/original.pdf}
+	\cleardoublepage
+	\includepdf{pdf/authorization.pdf}
+	\cleardoublepage
+\else
+	\makeDeclareOriginal
+	\makeDeclareAuthorization
+\fi
+\makeatother
 
-\makeDeclareAuthorization
 
 \frontmatter 	% 使用罗马数字对前言编号
 
 %% 摘要
+\pagestyle{main}
 \include{tex/abstract}
 
 %% 目录、插图目录、表格目录
@@ -39,13 +55,14 @@
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
 % \listofalgorithms
-% \addcontentsline{toc}{chapter}{代码索引}  %将表格目录加入全文目录
+% \addcontentsline{toc}{chapter}{算法索引}        %将算法目录加入全文目录
 
 \include{tex/symbol} % 主要符号、缩略词对照表
 
 \mainmatter	% 使用阿拉伯数字对正文编号
 
 %% 正文内容
+\pagestyle{main}
 \include{tex/chapter01}
 \include{tex/chapter02}
 \include{tex/chapter03}
@@ -66,18 +83,32 @@
 \backmatter	% 文后无编号部分 
 
 %% 参考资料
-\bibliography{bib/chap1,bib/chap2}
+\printbibliography[heading=bibintoc]
 
 %% 致谢、发表论文、申请专利、参与项目、简历
 %% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
 \makeatletter
+
+%%
+% "研究生学位论文送盲审印刷格式的统一要求"
+% http://www.gs.sjtu.edu.cn/inform/3/2015/20151120_123928_738.htm
+
+% 盲审删去删去致谢页
 \ifsjtu@review\relax\else
   \include{tex/ack} 	  %% 致谢
-  \include{tex/pub}	  %% 发表论文
-  \include{tex/patents}	  %% 申请专利
-  \include{tex/projects}  %% 参与的项目
-% \include{tex/resume}	  %% 各人简历
 \fi
+
+% 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
+\ifsjtu@review\relax
+  \include{tex/pubreview}
+  \include{tex/projectsreview}  
+\else
+  \include{tex/pub}	      %% 发表论文
+  \include{tex/projects}  %% 参与的项目
+\fi
+
+% \include{tex/patents}	  %% 申请专利
+% \include{tex/resume}	  %% 个人简历
 \makeatother
 
 \end{document}

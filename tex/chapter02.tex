@@ -9,6 +9,59 @@
 \chapter{ \LaTeX 排版例子}
 \label{chap:example}
 
+\section{列表环境}
+\label{sec:list}
+
+\subsection{无序列表}
+\label{sec:unorderlist}
+
+以下是一个无序列表的例子，列表的每个条目单独分段。
+
+\begin{itemize}
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+\end{itemize}
+
+使用\verb+itemize*+环境可以创建行内无序列表。
+\begin{itemize*}
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+  \item 这是一个无序列表。
+\end{itemize*}
+行内无序列表条目不单独分段，所有内容直接插入在原文的段落中。
+
+\subsection{有序列表}
+\label{sec:orderlist}
+
+使用环境\verb+enumerate+和\verb+enumerate*+创建有序列表,
+使用方法无序列表类似。
+
+\begin{enumerate}
+  \item 这是一个有序列表。
+  \item 这是一个有序列表。
+  \item 这是一个有序列表。
+\end{enumerate}
+
+使用\verb+enumerate*+环境可以创建行内有序列表。
+\begin{enumerate*}
+  \item 这是一个默认有序列表。
+  \item 这是一个默认有序列表。
+  \item 这是一个默认有序列表。
+\end{enumerate*}
+行内有序列表条目不单独分段，所有内容直接插入在原文的段落中。
+
+\subsection{自定义列表样式}
+
+可以使用\verb+label+参数控制列表的样式，
+详细可以参考WikiBooks\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/List_Structures\#Customizing_lists}}。
+比如一个自定义样式的行内有序列表
+\begin{enumerate*}[label=\itshape\alph*)\upshape]
+  \item 这是一个自定义样式有序列表。
+  \item 这是一个自定义样式有序列表。
+  \item 这是一个自定义样式有序列表。
+\end{enumerate*}
+
 \section{数学排版}
 \label{sec:matheq}
 
@@ -105,7 +158,7 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 \subsection{支持的图片格式}
 \label{sec:imageformat}
 
-\XeTeX 可以很方便地插入PDF、EPS、PNG、JPG格式的图片。
+\XeTeX 可以很方便地插入PDF、PNG、JPG格式的图片。
 
 插入PNG/JPG的例子如\ref{fig:SRR}所示。
 这两个水平并列放置的图共享一个“图标题”(table caption)，没有各自的小标题。
@@ -118,19 +171,19 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
   \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
 \end{figure}
 
-这里还有插入eps图像和pdf图像的例子，如图\ref{fig:pdfeps}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
-
-\begin{figure}
-  \centering
-  \subfigure[EPS Figure]{
-    \label{fig:epspdf:a} %% label for first subfigure
-    \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.eps}}
-  \hspace{1in}
-  \subfigure[PDF Figure]{
-    \label{fig:epspdf:b} %% label for second subfigure
-    \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.pdf}}
-  \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
-\end{figure}
+% 这里还有插入eps图像和pdf图像的例子，如图\ref{fig:epspdf:a}和图\ref{fig:epspdf:b}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
+% 
+% \begin{figure}
+%   \centering
+%   \subfigure[EPS Figure]{
+%     \label{fig:epspdf:a} %% label for first subfigure
+%     \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.eps}}
+%   \hspace{1in}
+%   \subfigure[PDF Figure]{
+%     \label{fig:epspdf:b} %% label for second subfigure
+%     \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.pdf}}
+%   \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
+% \end{figure}
 
 更多关于 \LaTeX 插图的例子可以参考\href{http://www.cs.duke.edu/junhu/Graphics3.pdf}{《\LaTeX 插图指南》}。
 
@@ -138,7 +191,7 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 \label{sec:longcaption}
 
 图\ref{fig:longcaptionbad}和图\ref{fig:longcaptiongood}都有比较长图标题，通过对比发现，图\ref{fig:longcaptiongood}的换行效果更好一些。
-其中使用了minipage环境来限制整个浮动题的宽度。
+其中使用了minipage环境来限制整个浮动体的宽度。
 
 \begin{figure}[!htp]
  \centering
@@ -313,3 +366,27 @@ int main() {
 \end{algorithmic}
 \end{algorithm}
 
+王凡教授\footnote{\url{http://cc.ee.ntu.edu.tw/~farn/}}对algorithmic做了扩展，支持\verb+STATE+、\verb+SWITCH+和\verb+CASE+等语句。
+
+\begin{algorithm}
+\caption{fibonacci}
+\label{algo: Fibonacci Sequence}
+\begin{algorithmic}
+\REQUIRE $num$
+
+\STATE $res \leftarrow 0$
+\SWITCH {$num$}
+  \CASE {$0$}
+    \STATE $res \leftarrow 1$
+  \ENDCASE
+  \CASE {$1$}
+    \STATE $res \leftarrow 1$
+  \ENDCASE
+  \DEFAULT
+    \STATE $res \leftarrow fibonacci(num-1) + fibonacci(num-2)$
+  \ENDDEFAULT
+\ENDSWITCH
+
+\RETURN $res$
+\end{algorithmic}
+\end{algorithm}
