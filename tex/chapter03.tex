@@ -47,7 +47,23 @@ A:这是xltxtra和fontspec宏包导致的问题。学位论文模板从0.5起使
 
 A: bib中的参考文献条目，只有通过\verb+\cite+或者\verb+\upcite+在正文中引用，才会加入到参考文献列表中。
 
-{\bfseries{}如何向你致谢?}
+{\bfseries{}Q:在macTex中，为什么pdf图片无法插入？}
 
-A:请在模板的\href{https://github.com/weijianwen/sjtu-thesis-template-latex}{github主页}点击“Star”，我想粗略统计一下使用学位论文模板的人数，谢谢大家。
+A:如果报错是“pdf: image inclusion failed for "./figure/chap2/sjtulogo.pdf".”，则采取以下步骤
 
+\begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译模板}, numbers=none]
+  brew install xpdf
+  wget http://mirrors.ctan.org/support/epstopdf.zip
+  unzip epstopdf.zip
+  cp epstopdf/epstopdf.pl /usr/local/bin/
+  cd figure/chap2
+  pdftops sjtulogo.pdf
+  epstopdf sjtulogo.ps
+  pdfcrop sjtulogo.pdf
+  mv sjtulogo.pdf backup.pdf
+  mv sjtulogo-crop.pdf sjtulogo.pdf
+\end{lstlisting}
+
+{\bfseries{}Q:如何向你致谢?}
+
+A: 烦请在模板的\href{https://github.com/weijianwen/SJTUThesis}{github主页}点击“Star”，我想粗略统计一下使用学位论文模板的人数，谢谢大家。非常欢迎大家向项目贡献代码。
