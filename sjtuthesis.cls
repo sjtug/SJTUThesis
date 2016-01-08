@@ -1,8 +1,5 @@
 %==================================================
 %% sjtuthesis.cls for SJTU Master Thesis
-%% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
-%% Hosted on https://github.com/weijianwen/sjtu-thesis-template-latex
-%% SJTU LaTeX Forum https://bbs.sjtu.edu.cn/bbsdoc,board,TeX_LaTeX.html
 %% Encoding: UTF-8
 %%==================================================
 
@@ -48,6 +45,7 @@
 % Segment 1. Import LaTeX packages.
 %==========
 
+\RequirePackage[top=3.5cm, headsep=0.5cm, bottom=2.5cm,left=3.5cm,right=2.5cm]{geometry} %设置版面
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -113,18 +111,6 @@
 % Set the mainfont
 \setmainfont{TeX Gyre Termes}
 
-% Page Layout
-\oddsidemargin 1.5 true cm
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
-% \parskip 0.5ex plus 0.25ex minus 0.25ex
-\addtolength{\voffset}{-0.5cm} %% 上边距
-\if@openright
-  \evensidemargin 0 true cm
-\else
-  \evensidemargin 1.5 true cm
-\fi
 %% 行距缩放因子
 \linespread{1.3}
 
@@ -249,22 +235,22 @@
   \def\arraystretch{1.5}
   \begin{tabular}{rl}
     \ifsjtu@review
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides*} & \songti\sjtuunderline[150pt]{} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \songti\sjtuunderline[150pt]{} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{} \\ 
       \fi
     \else
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides*} & \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@author} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \songti\sjtuunderline[150pt]{\sjtu@value@studentnumber} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@advisor} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@coadvisor} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@coadvisor} \\ 
       \fi
     \fi
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
-      \begin{CJKfilltwosides*}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides*} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@major} \\
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \songti\sjtuunderline[150pt]{\sjtu@value@defenddate}
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
@@ -374,11 +360,10 @@
 \fancyhf{}
 
 \ifsjtu@bachelor
-  % 本科学位论文正文页眉页脚
-  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
-  \fancyhead[RO, LE]{\small {\it \sjtu@value@titlemark}}
+  % 本科学位论文正文页眉页脚，只处理单面打印的情况
+  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
+  \fancyhead[R]{\small {\it \sjtu@value@titlemark}}
   \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
-  % 本科学位论文开章页页眉页脚，双面打印时只是交换左右页眉
   \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
     \fancyhf{}%
     \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
@@ -386,13 +371,13 @@
     \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
    }
 \else
-  % 研究生学位论文正文页眉页脚，针对openright和openany单独设置
+  % opnright 研究生学位论文正文页眉页脚设置
   \if@openright
     \fancyhead[LO, RE]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
     \fancyhead[RO]{\small {\it\leftmark}}
     \fancyhead[LE]{\small {\it\sjtu@value@titlemark}}
     \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    % 研究生学位论文开章页页眉页脚
+    % openright 开章页页眉页脚
     \fancypagestyle{plain} {
       \fancyhf{}
       \fancyhead[LO,RE]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
@@ -401,10 +386,11 @@
       \fancyfoot[C]{\small ---~{\bf\thepage}~---}
     }
   \else
+    % openany 研究生学位论文正文页眉页脚设置
     \fancyhead[L]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
     \fancyhead[R]{\small {\it\leftmark}}
     \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-    % 研究生学位论文开章页页眉页脚
+    % openany 开章页页眉页脚
     \fancypagestyle{plain} {
       \fancyhf{}
       \fancyhead[L]{\small {\it\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
@@ -538,7 +524,11 @@
 \renewenvironment{thanks}
   {\chapter{\sjtu@label@thanks}}
   {}
-  
+
+\newenvironment{summary}
+{\chapter*{\sjtu@label@summary\markboth{\sjtu@label@summary}{}}\addcontentsline{toc}{chapter}{\sjtu@label@summary}
+}{}
+
 \newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
