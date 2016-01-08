@@ -4,8 +4,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2015/2/15 v0.7 Shanghai Jiao Tong University Template]
-\def\version{v0.7}
+\ProvidesClass{sjtuthesis}[2015/3/15 v0.8 Shanghai Jiao Tong University Template]
+\def\version{v0.8}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -48,6 +48,7 @@
 %==========
 
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
+\RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
 \RequirePackage{metalogo,doc}
@@ -67,7 +68,7 @@
 \RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
-\RequirePackage{enumitem}
+\RequirePackage[inline]{enumitem}
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmic}
@@ -167,6 +168,7 @@
 % 定公式、图、表、算法的编号为"3-1"的形式，即分隔符由.变为短杠
 \renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
+\renewcommand\p@subfigure{\thefigure}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
@@ -183,7 +185,7 @@
   numbers=left,%左侧显示行号
   stepnumber=1,%
   numberstyle=\tiny, %行号字体用小号
-  basicstyle=\footnotesize, %
+  basicstyle={\footnotesize\ttfamily}, %
   showspaces=false, %
   flexiblecolumns=true, %
   breaklines=true, %对过长的代码自动换行
@@ -220,17 +222,28 @@
   \newtheorem{bprop}[thm]{\sjtu@label@prop~}
   \newtheorem{bcor}[thm]{\sjtu@label@cor~}
   \renewcommand{\proofname}{\bf\sjtu@label@proof}
-\newtheoremstyle{break}% name
-  {}%      Space above, empty = `usual value'
-  {}%      Space below
-  {\itshape}% Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
 
->>>>>>> 92db221... Clean code: Move theorem definition into sjtuthesis.cls
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following definitions are to extend the LaTeX algorithmic 
+% package with SWITCH statements and one-line structures.
+% The extension is by 
+%   Prof. Farn Wang 
+%   Dept. of Electrical Engineering, 
+%   National Taiwan University. 
+% 
+\newcommand{\SWITCH}[1]{\STATE \textbf{switch} (#1)}
+\newcommand{\ENDSWITCH}{\STATE \textbf{end switch}}
+\newcommand{\CASE}[1]{\STATE \textbf{case} #1\textbf{:} \begin{ALC@g}}
+\newcommand{\ENDCASE}{\end{ALC@g}}
+\newcommand{\CASELINE}[1]{\STATE \textbf{case} #1\textbf{:} }
+\newcommand{\DEFAULT}{\STATE \textbf{default:} \begin{ALC@g}}
+\newcommand{\ENDDEFAULT}{\end{ALC@g}}
+\newcommand{\DEFAULTLINE}[1]{\STATE \textbf{default:} }
+% 
+% End of the LaTeX algorithmic package extension.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+>>>>>>> abb7e93... Add CASE to algorithmic.
 %==========
 % Segment 4. Draw the sjtuthesis
 %==========
@@ -306,7 +319,7 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\huge\sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle \vskip 1pt}
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}
