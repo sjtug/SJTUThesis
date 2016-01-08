@@ -4,8 +4,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2015/2/15 v0.7 Shanghai Jiao Tong University Template]
-\def\version{v0.7}
+\ProvidesClass{sjtuthesis}[2015/3/15 v0.9 Shanghai Jiao Tong University Template]
+\def\version{v0.9}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -68,7 +68,7 @@
 \RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
-\RequirePackage{enumitem}
+\RequirePackage[inline]{enumitem}
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmic}
@@ -138,7 +138,6 @@
 % Title Settings at the section Level
 \ctexset{section={
 	format={\large\bfseries},
-	beforeskip={-3ex \@plus -1ex \@minus -.2ex},
 	afterskip={1.0ex \@plus .2ex},
 	}
 }
@@ -146,7 +145,6 @@
 \ctexset{subsection={
 	format={\bfseries\normalsize},
 	indent={0\ccwd},
-	beforeskip={-2.5ex \@plus -1ex \@minus -.2ex},
 	afterskip={1.0ex \@plus .2ex},
 	}
 }
@@ -154,7 +152,6 @@
 \ctexset{subsubsection={
 	format={\normalfont\normalsize},
 	indent={0\ccwd},
-	beforeskip={-2ex \@plus -1ex \@minus -.2ex},
 	afterskip={1.0ex \@plus .2ex},
 	}
 }
@@ -180,6 +177,7 @@
 % 定公式、图、表、算法的编号为"3-1"的形式，即分隔符由.变为短杠
 \renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
+\renewcommand\p@subfigure{\thefigure}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
@@ -196,7 +194,7 @@
   numbers=left,%左侧显示行号
   stepnumber=1,%
   numberstyle=\tiny, %行号字体用小号
-  basicstyle=\footnotesize, %
+  basicstyle={\footnotesize\ttfamily}, %
   showspaces=false, %
   flexiblecolumns=true, %
   breaklines=true, %对过长的代码自动换行
@@ -215,6 +213,15 @@
 }
 
 % 定理环境
+\newtheoremstyle{break}% name
+  {}%      Space above, empty = `usual value'
+  {}%      Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
 \theoremstyle{plain}
   \newtheorem{algo}{\sjtu@label@algo~}[chapter]
   \newtheorem{thm}{\sjtu@label@thm~}[chapter]
@@ -233,17 +240,27 @@
   \newtheorem{bprop}[thm]{\sjtu@label@prop~}
   \newtheorem{bcor}[thm]{\sjtu@label@cor~}
   \renewcommand{\proofname}{\bf\sjtu@label@proof}
-\newtheoremstyle{break}% name
-  {}%      Space above, empty = `usual value'
-  {}%      Space below
-  {\itshape}% Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
 
->>>>>>> 92db221... Clean code: Move theorem definition into sjtuthesis.cls
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following definitions are to extend the LaTeX algorithmic 
+% package with SWITCH statements and one-line structures.
+% The extension is by 
+%   Prof. Farn Wang 
+%   Dept. of Electrical Engineering, 
+%   National Taiwan University. 
+% 
+\newcommand{\SWITCH}[1]{\STATE \textbf{switch} (#1)}
+\newcommand{\ENDSWITCH}{\STATE \textbf{end switch}}
+\newcommand{\CASE}[1]{\STATE \textbf{case} #1\textbf{:} \begin{ALC@g}}
+\newcommand{\ENDCASE}{\end{ALC@g}}
+\newcommand{\CASELINE}[1]{\STATE \textbf{case} #1\textbf{:} }
+\newcommand{\DEFAULT}{\STATE \textbf{default:} \begin{ALC@g}}
+\newcommand{\ENDDEFAULT}{\end{ALC@g}}
+\newcommand{\DEFAULTLINE}[1]{\STATE \textbf{default:} }
+% 
+% End of the LaTeX algorithmic package extension.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %==========
 % Segment 4. Draw the sjtuthesis
 %==========
@@ -319,7 +336,7 @@
   \begin{center}
       {\normalfont\zihao{4} \sjtu@label@englishstatement} 
       \vspace{20pt} \vskip\stretch{1}
-      {\huge\sjtu@value@englishtitle} 
+      {\huge\sjtu@value@englishtitle \vskip 1pt}
       \vskip \stretch{1}
     \ifsjtu@review
       \vskip \stretch{1}
@@ -452,28 +469,6 @@
 
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
 
-% 参考文献环境
-\renewenvironment{thebibliography}[1]
-     {\chapter{\bibname}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
-
-    
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
       \@mkboth{\MakeUppercase\sjtu@label@publications}
@@ -515,7 +510,7 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `patents' environment}}%
       \endlist}
- 
+
 \newenvironment{projects}[1]
      {\chapter{\sjtu@label@projects}%
       \@mkboth{\MakeUppercase\sjtu@label@projects}
