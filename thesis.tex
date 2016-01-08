@@ -1,15 +1,17 @@
+%# -*- coding: utf-8-unix -*-
 %%==================================================
 %% thesis.tex
 %%==================================================
 
 % 双面打印
-\documentclass[doctor, adobefonts, openright, cs4size]{sjtuthesis}
+\documentclass[doctor, adobefonts, openright, twoside, cs4size]{sjtuthesis}
 % \documentclass[bachelor, adobefonts, openany, oneside, cs4size, submit]{sjtuthesis} 
 % \documentclass[master, adobefonts, review]{sjtuthesis} 
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
 %   adobefonts|winfonts,  	% 只测试了adobefonts，请使用adobefonts
-%   openany|openright, 		% 单面打印，双面打印(默认)
+%   oneside|twoside,		% 单面打印，双面打印(奇偶页交换页边距，默认)
+%   openany|openright, 		% 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
 %   cs4size|c5size, 		% 正文字号：小四、五号(默认)
 %   review,	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
 %   submit			% 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
@@ -43,6 +45,7 @@
 \frontmatter 	% 使用罗马数字对前言编号
 
 %% 摘要
+\pagestyle{main}
 \include{tex/abstract}
 
 %% 目录、插图目录、表格目录
@@ -51,12 +54,15 @@
 \addcontentsline{toc}{chapter}{\listfigurename} %将插图目录加入全文目录
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
+% \listofalgorithms
+% \addcontentsline{toc}{chapter}{代码索引}  %将表格目录加入全文目录
 
 \include{tex/symbol} % 主要符号、缩略词对照表
 
 \mainmatter	% 使用阿拉伯数字对正文编号
 
 %% 正文内容
+\pagestyle{main}
 \include{tex/chapter01}
 \include{tex/chapter02}
 \include{tex/chapter03}
@@ -66,6 +72,7 @@
 \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
 \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
+\renewcommand\thealgorithm{\Alph{chapter}--\arabic{algorithm}}
 
 %% 附录内容，本科学位论文可以用翻译的文献替代。
 \include{tex/app_log}

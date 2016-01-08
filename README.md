@@ -13,9 +13,9 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 ### 系统需求
 
-* 支持XeTeX的**完整**TeX发行版。2014年以后的CTeX、TeXLive和MacTeX发行版应该都能编译此模板。
+* 支持XeTeX的**完整**TeX发行版。2014年以后的[CTeX](http://www.ctex.org/ctexdownload)、[TeXLive](https://www.tug.org/texlive/)和[MacTeX](https://www.tug.org/mactex/)发行版都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
-* Windows用户请使用[Cygwin](http://cygwin.com)安装GNU make工具。
+* Windows用户请使用[Cygwin](http://cygwin.com)安装git和GNUmake工具。
 
 ### 获取模板
 
@@ -29,7 +29,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 或者是将本地模板更新到最新版
 
-	$ git pull --rebase upstream master
+	$ git pull upstream master
 
 ### 编译模板
 
@@ -44,8 +44,8 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 编译失败时，可以尝试手动逐次编译。
 结合文档[README.pdf][README]中的说明，有助于定位故障。
 
-	$ xelatex thesis
-	$ bibtex thesis
+	$ xelatex -no-pdf thesis
+	$ biber --debug thesis
 	$ xelatex thesis
 	$ xelatex thesis
 
@@ -59,10 +59,8 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 后续工作计划
 ------
 
-* 移除冗余代码，适当使用LaTeX命令替换复杂的TeX操作序列。包括移除```sjtuspace```命令、简化页面布局中过于繁杂的操作。
-* 增加例子，如Algorithm宏包。
-* 使用```biber```模块替代```bibtex```处理参考文献。
-* 撰写idx文件。 
+* 精简代码；
+* 改进开章页设计；
 
 所有版本
 ------
