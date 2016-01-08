@@ -6,7 +6,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 上海交通大学学位论文模板
 ======
 
-这是为撰写上海交通大学学士、硕士或博士论文而准备的XeLaTeX模板，非官方出品。生成的学位论文文件参见：<https://s3.amazonaws.com/sjtuthesis/README.pdf>。
+这是为撰写上海交通大学学士、硕士或博士论文而准备的XeLaTeX模板，非官方出品。生成的学位论文文件参见[README.pdf][README]。
 
 如何使用
 ------
@@ -15,7 +15,7 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 * 支持XeTeX的**完整**TeX发行版。2014年以后的CTeX、TeXLive和MacTeX发行版应该都能编译此模板。
 * TeX Gyre Font西文字体和Adobe四款中文字体：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
-* 用于合并PDF文件的[stapler](https://github.com/hellerbarde/stapler)工具，建议通过```pip```或```easy_install```安装。若使用其他PDF工具，譬如[pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)、[PDFCat](http://freecode.com/projects/pdfcat)，请修改Makefile中的相应规则。
+* Windows用户请使用[Cygwin](http://cygwin.com)安装GNU make工具。
 
 ### 获取模板
 
@@ -37,16 +37,12 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 
 	$ make clean thesis.pdf
 
-若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在导入```sjtuthesis```宏包时添加```review```选项。
-
-若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为```statement.pdf```，然后生成```submit.pdf```文件。 stapler程序将被用于PDF文件合并。 **使用前请在Makefile中调整合并的页码范围。** 
-
-	$ make clean submit.pdf
+若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在```thesis.tex```中为```sjtuthesis```文档类添加```review```选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为```pdf/origignal.pdf```和```pdf/authorization.pdf```，然后添加```submit```选项重新编译模板。
 
 ### 问题诊断
 
 编译失败时，可以尝试手动逐次编译。
-结合文档[README.pdf](https://s3-ap-southeast-1.amazonaws.com/sjtuthesis/README.pdf)中的说明，有助于定位故障。
+结合文档[README.pdf][README]中的说明，有助于定位故障。
 
 	$ xelatex thesis
 	$ bibtex thesis
@@ -68,13 +64,15 @@ SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, o
 * 使用```biber```模块替代```bibtex```处理参考文献。
 * 撰写idx文件。 
 
-其他版本
+所有版本
 ------
 
-* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)
+* [v 0.8](https://github.com/weijianwen/SJTUThesis/tree/v0.8)[(master)](https://github.com/weijianwen/SJTUThesis)：使用biber/biblatex处理参考文献，需要使用2014年以后的TeX发行版。
+* [v 0.7](https://github.com/weijianwen/SJTUThesis/tree/v0.7)：使用bibex处理参考文献，需要使用2013年以后的TeX发行版。
 
 软件许可证
 ------
 
 上海交通大学校徽图片(```sjtulog.png```)和横幅图片(```sjtubanner.png```)的版权归原作者所有。其他部分使用[MIT License](LICENSE)授权。
 
+[README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
