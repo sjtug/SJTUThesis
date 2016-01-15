@@ -252,7 +252,7 @@
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
 \newcommand\school[1]{\def\sjtu@value@school{#1}}
-\newcommand\degree[1]{\def\sjtu@value@degree{#1}}
+\newcommand\chinesedegree[1]{\def\sjtu@value@chinesedegree{#1}}
 \renewcommand\title[2][\sjtu@value@title]{%
   \def\sjtu@value@title{#2}
   \def\sjtu@value@titlemark{\MakeUppercase{#1}}}
@@ -404,7 +404,7 @@
 	\if@twoside
 	  %% 正文页眉页脚
 	  \fancypagestyle{main}{
-	    \fancyhead[LO, RE]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}
+	    \fancyhead[LO, RE]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
 	    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
 	    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
 	    \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
@@ -413,7 +413,7 @@
 	  %% 开章页页眉页脚
 	  \fancypagestyle{plain}{
 	    \fancyhf{}
-	    \fancyhead[LO,RE]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+	    \fancyhead[LO,RE]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}}
 	    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
 	    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
 	    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
@@ -422,14 +422,14 @@
 	\else
 	%% 正文页
 	\fancypagestyle{main}{
-	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}
+	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
 	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
 	  \renewcommand{\headheight}{32pt}
 	}
 	\fancypagestyle{plain}{
 	  \fancyhf{}
-	  \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@degree\sjtu@label@thesis}}
+	  \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
 	  % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
 	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
