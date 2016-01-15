@@ -72,6 +72,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmic}
+\RequirePackage{siunitx}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
