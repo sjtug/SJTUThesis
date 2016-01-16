@@ -1,0 +1,28 @@
+\begin{tikzpicture}[node distance=2cm]
+    \node (pic) [startstop] {待测图片};
+    \node (bg) [io, below of=pic] {读取背景};
+    \node (pair) [process, below of=bg] {匹配特征点对};
+    \node (threshold) [decision, below of=pair, yshift=-0.5cm] {多于阈值};
+    \node (clear) [decision, right of=threshold, xshift=3cm] {清晰？};
+    \node (capture) [process, right of=pair, xshift=3cm, yshift=0.5cm] {重采};
+    \node (matrix_p) [process, below of=threshold, yshift=-0.8cm] {透视变换矩阵};
+    \node (matrix_a) [process, right of=matrix_p, xshift=3cm] {仿射变换矩阵};
+    \node (reg) [process, below of=matrix_p] {图像修正};
+    \node (return) [startstop, below of=reg] {配准结果};
+     
+    %连接具体形状
+    \draw [arrow](pic) -- (bg);
+    \draw [arrow](bg) -- (pair);
+    \draw [arrow](pair) -- (threshold);
+
+    \draw [arrow](threshold) -- node[anchor=south] {否} (clear);
+
+    \draw [arrow](clear) -- node[anchor=west] {否} (capture);
+    \draw [arrow](capture) |- (pic);
+    \draw [arrow](clear) -- node[anchor=west] {是} (matrix_a);
+    \draw [arrow](matrix_a) |- (reg);
+
+    \draw [arrow](threshold) -- node[anchor=east] {是} (matrix_p);
+    \draw [arrow](matrix_p) -- (reg);
+    \draw [arrow](reg) -- (return);
+\end{tikzpicture}
