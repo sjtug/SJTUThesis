@@ -185,6 +185,9 @@
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
+% 列表右缩进
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+
 % Setting Package listings/lstlistings
 \lstset{tabsize=4, %
   frame=shadowbox, %把代码用带有阴影的框圈起来
