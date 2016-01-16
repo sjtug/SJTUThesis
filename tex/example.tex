@@ -51,6 +51,15 @@
 \end{enumerate*}
 行内有序列表条目不单独分段，所有内容直接插入在原文的段落中。
 
+\subsection{描述型列表}
+
+使用环境\verb+description+可创建带有主题词的列表，条目语法是\verb+\item[主题] 内容+。
+\begin{description}
+    \item[主题一] 详细内容
+    \item[主题二] 详细内容
+    \item[主题三] 详细内容 \ldots
+\end{description}
+
 \subsection{自定义列表样式}
 
 可以使用\verb+label+参数控制列表的样式，
