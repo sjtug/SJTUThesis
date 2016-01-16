@@ -73,6 +73,8 @@
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmic}
 \RequirePackage{siunitx}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -181,6 +183,13 @@
 \renewcommand\p@subfigure{\thefigure}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
+
+% 流程图定义基本形状
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{io} = [trapezium, trapezium left angle=75, trapezium right angle=105, minimum width=1cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{decision} = [diamond, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
 
 % Setting Package listings/lstlistings
 \lstset{tabsize=4, %
