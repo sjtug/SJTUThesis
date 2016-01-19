@@ -17,3 +17,5 @@
 *.fdb_latexmk
 *.zip
 *.gz
+*.bcf
+*.xml

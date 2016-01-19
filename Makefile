@@ -1,23 +1,26 @@
 THESIS = thesis
-SUBMIT = submit
 # TEX, BIB, TEST dir
 TEX_DIR = tex
 BIB_DIR = bib
 
 # Option for latexmk
-LATEXMK_OPT = -xelatex -gg -silent -f
+LATEXMK_OPT_BASE = -xelatex -gg -silent
+LATEXMK_OPT = $(LATEXMK_OPT_BASE) -f
+LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
-all: $(THESIS).pdf $(SUBMIT).pdf
+all: $(THESIS).pdf
 
 .PHONY : all clean pvc view wordcount git zip
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
 
-$(SUBMIT).pdf : $(THESIS).pdf statement.pdf
-	rm -f _tmp_.pdf $@
-	stapler sel $(THESIS).pdf 1-4 statement.pdf _tmp_.pdf
-	stapler sel _tmp_.pdf $(THESIS).pdf 6-end $@
+pvc :
+	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
+
+validate :
+	xelatex -no-pdf -halt-on-error $(THESIS)
+	biber --debug $(THESIS)
 
 view : $(THESIS).pdf
 	open $<
