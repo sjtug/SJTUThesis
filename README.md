@@ -100,7 +100,7 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 上海交通大学校徽图片(`sjtulog.png`)和横幅图片(`sjtubanner.png`)的版权归原作者所有。其他部分使用 [Apache License 2.0](LICENSE) 授权。
 
-[README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
+[README]: https://s3.amazonaws.com/sjtuthesis/README_0.8.pdf
 [0.9.2]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.2
 [0.8.6]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.6
 [0.7.6]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.6
