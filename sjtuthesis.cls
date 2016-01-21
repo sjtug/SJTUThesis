@@ -247,7 +247,6 @@
 % End of the LaTeX algorithmic package extension.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
->>>>>>> abb7e93... Add CASE to algorithmic.
 %==========
 % Segment 4. Draw the sjtuthesis
 %==========
