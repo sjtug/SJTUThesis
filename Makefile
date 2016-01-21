@@ -35,7 +35,7 @@ clean :
 	-@rm -f *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml 2> /dev/null || true
 
 s3 : $(THESIS).pdf
-	s3cmd put $< s3://sjtuthesis/README.pdf
+	s3cmd put $< s3://sjtuthesis/README_0.7.pdf
 
 git :
 	for b in "0.7.x" "0.8.x" "develop" "develop-0.7" "develop-0.8"; do git co $${b}; git push --tags -f -u gitlab $${b}; git push --tags -f -u github $${b}; git push -f -u gitcafe $${b}; done
