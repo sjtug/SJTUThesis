@@ -51,6 +51,15 @@
 \end{enumerate*}
 行内有序列表条目不单独分段，所有内容直接插入在原文的段落中。
 
+\subsection{描述型列表}
+
+使用环境\verb+description+可创建带有主题词的列表，条目语法是\verb+\item[主题] 内容+。
+\begin{description}
+    \item[主题一] 详细内容
+    \item[主题二] 详细内容
+    \item[主题三] 详细内容 \ldots
+\end{description}
+
 \subsection{自定义列表样式}
 
 可以使用\verb+label+参数控制列表的样式，
@@ -78,6 +87,10 @@
     f^{ij}f^{k}\left [2\nabla _{i}R_{jk}-
       \nabla _{k}R_{ij}\right ]\vphantom {\sum _{i<j}}\right )
 \end{multline}
+
+\subsection{SI单位}
+
+使用\verb+siunitx+宏包可以方便地输入SI单位制单位，例如\verb+\SI{5}{\um}+可以得到\SI{5}{\um}。
 
 \subsubsection{一个四级标题}
 \label{sec:depth4}
@@ -165,9 +178,9 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.png}
+  \includegraphics[width=0.3\textwidth]{example/sjtulogo.png}
   \hspace{1cm}
-  \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.jpg}
+  \includegraphics[width=0.3\textwidth]{example/sjtulogo.jpg}
   \bicaption[fig:SRR]{这里将出现在插图索引中}{中文题图}{Fig}{English caption}
 \end{figure}
 
@@ -177,11 +190,11 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 %   \centering
 %   \subfigure[EPS Figure]{
 %     \label{fig:epspdf:a} %% label for first subfigure
-%     \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.eps}}
+%     \includegraphics[width=0.3\textwidth]{example/sjtulogo.eps}}
 %   \hspace{1in}
 %   \subfigure[PDF Figure]{
 %     \label{fig:epspdf:b} %% label for second subfigure
-%     \includegraphics[width=0.3\textwidth]{chap2/sjtulogo.pdf}}
+%     \includegraphics[width=0.3\textwidth]{example/sjtulogo.pdf}}
 %   \bicaption[fig:pdfeps]{插入eps图像和pdf图像}{插入eps和pdf的例子}{Fig}{An EPS and PDF demo}
 % \end{figure}
 
@@ -195,18 +208,27 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 
 \begin{figure}[!htp]
  \centering
- \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
+ \includegraphics[width=4cm]{example/sjtulogo.pdf}
  \bicaption[fig:longcaptionbad]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
 \end{figure}
 
-\begin{figure}[!hbp]
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}[b]{0.6\textwidth}
     \captionstyle{\centering}
     \centering
-    \includegraphics[width=4cm]{chap2/sjtulogo.pdf}
+    \includegraphics[width=4cm]{example/sjtulogo.pdf}
     \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
   \end{minipage}     
+\end{figure}
+
+\subsection{绘制流程图}
+
+图\ref{fig:flow_chart}是一张流程图示意。使用tikz环境，搭配四种预定义节点（\verb+startstop+、\verb+process+、\verb+decision+和\verb+io+），可以容易地绘制出流程图。
+\begin{figure}[!p]
+    \centering
+    \resizebox{6cm}{!}{\input{figure/example/flow_chart.tex}}
+    \bicaption[fig:flow_chart]{绘制流程图效果}{流程图}{Fig}{Flow chart}
 \end{figure}
   
 \clearpage

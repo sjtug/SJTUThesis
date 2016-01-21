@@ -1,23 +1,26 @@
 THESIS = thesis
-SUBMIT = submit
 # TEX, BIB, TEST dir
 TEX_DIR = tex
 BIB_DIR = bib
 
 # Option for latexmk
-LATEXMK_OPT = -xelatex -gg -silent -f
+LATEXMK_OPT_BASE = -xelatex -gg -silent
+LATEXMK_OPT = $(LATEXMK_OPT_BASE) -f
+LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
-all: $(THESIS).pdf $(SUBMIT).pdf
+all: $(THESIS).pdf
 
 .PHONY : all clean pvc view wordcount git zip
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
 
-$(SUBMIT).pdf : $(THESIS).pdf statement.pdf
-	rm -f _tmp_.pdf $@
-	stapler sel $(THESIS).pdf 1-4 statement.pdf _tmp_.pdf
-	stapler sel _tmp_.pdf $(THESIS).pdf 6-end $@
+pvc :
+	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
+
+validate :
+	xelatex -no-pdf -halt-on-error $(THESIS)
+	biber --debug $(THESIS)
 
 view : $(THESIS).pdf
 	open $<
@@ -32,10 +35,11 @@ clean :
 	-@rm -f *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml 2> /dev/null || true
 
 s3 : $(THESIS).pdf
-	s3cmd put $< s3://sjtuthesis/README.pdf
+	s3cmd put $< s3://sjtuthesis/README_0.7.pdf
 
 git :
-	for tag in "v0.7" "v0.8" "v0.9" "master"; do git co $${tag}; git push gitlab; git push github; git push gitcafe; done
+	for b in "0.7.x" "0.8.x" "develop" "develop-0.7" "develop-0.8"; do git co $${b}; git push --tags -f -u gitlab $${b}; git push --tags -f -u github $${b}; git push -f -u gitcafe $${b}; done
+	git co master; git push gitlab master; git push github master; git push gitcafe master
 
 zip :
 	git archive --format zip --output thesis.zip master
