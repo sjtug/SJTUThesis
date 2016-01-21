@@ -17,3 +17,5 @@ README.pdf
 *.xdv
 *~
 *.fdb_latexmk
+*.zip
+*.gz
