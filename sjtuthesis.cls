@@ -173,8 +173,12 @@
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
-% 列表右缩进
-\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+% 使用enumitem宏包配制列表环境
+% 紧凑间距
+\setlist{nosep}
+% 列表和段落头对齐
+\setlist*{leftmargin=*}
+\setlist[1]{labelindent=\parindent} % Only the level 1
 
 % Setting Package listings/lstlistings
 \lstset{tabsize=4, %
