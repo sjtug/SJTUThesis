@@ -4,7 +4,7 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2015/3/15 v0.9 Shanghai Jiao Tong University Template]
+\ProvidesClass{sjtuthesis}[2016/04/06 v0.9 Shanghai Jiao Tong University Template]
 \def\version{v0.9}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
@@ -184,8 +184,12 @@
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
 
-% 列表右缩进
-\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+% 使用enumitem宏包配制列表环境
+% 紧凑间距
+\setlist{nosep}
+% 列表和段落头对齐
+\setlist*{leftmargin=*}
+\setlist[1]{labelindent=\parindent} % Only the level 1
 
 % 流程图定义基本形状
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm, text centered, draw=black]
