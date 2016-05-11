@@ -4,8 +4,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2016/04/06 v0.9 Shanghai Jiao Tong University Template]
-\def\version{v0.9}
+\ProvidesClass{sjtuthesis}[2015/3/15 v0.7 Shanghai Jiao Tong University Template]
+\def\version{v0.7}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -61,7 +61,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{ccaption}
-\RequirePackage[backend=biber, style=caspervector,utf8, bibencoding=utf8, sorting=none]{biblatex}
+\RequirePackage[sort&compress,numbers]{natbib}
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
@@ -84,7 +84,7 @@
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
     
 % User defined command list
-%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
+%% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX \upcite
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
@@ -108,6 +108,9 @@
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
+
+% Upper quote
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -228,6 +231,8 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
+%  参考文献风格 GBT7714-2005
+\bibliographystyle{bst/GBT7714-2005NLang}
 
 % 定理环境
 \newtheoremstyle{break}% name
@@ -419,20 +424,29 @@
 	% 本科学位论文页眉页脚设置
 	%% 正文页眉页脚
 	\fancypagestyle{main}{
-	  \fancyhf{}
-	  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
-	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-	  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{LastPage}}~页}
-	  \renewcommand{\headheight}{32pt}
-	}
-	%% 开章页页眉页脚
-	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
-	  \fancyhf{}%
-	  \fancyhead[L]{\nouppercase{\small\kaishu\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
-	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-	  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{LastPage}}~页}
-	  \renewcommand{\headheight}{32pt}
-	}
+    \fancyhf{}
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{last}}~页}
+    \renewcommand{\headheight}{32pt}
+  }
+  
+  \fancypagestyle{biglast}{
+    \fancyhf{}
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{biglast}}~页}
+    \renewcommand{\headheight}{32pt}
+  }
+  
+  %% 开章页页眉页脚
+  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+    \fancyhf{}%
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+   \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+   \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{last}}~页}
+    \renewcommand{\headheight}{32pt}
+  }
 \else
 	% 研究生学位论文页眉页脚设置
 	\if@twoside
@@ -570,8 +584,36 @@
    {\endlist}
    
 \renewenvironment{thanks}
-  {\chapter{\sjtu@label@thanks}}
+  {\chapter{\sjtu@label@thanks}
+  \label{last}
+  }
   {}
+
+
+\newenvironment{bigabstract}
+  {
+
+  \fancypagestyle{biglast}{
+    \fancyhf{}
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{biglast}}~页}
+    \renewcommand{\headheight}{32pt}
+  }
+
+  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+    \fancyhf{}%
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{biglast}}~页}
+    \renewcommand{\headheight}{32pt}
+  }
+
+
+  \chapter*{\bf\MakeUppercase{\sjtu@value@englishtitle}\vskip 20pt }
+  \setcounter{page}{1}
+  }
+  { \label{biglast}}
 
 \newenvironment{summary}
 {\chapter*{\sjtu@label@summary\markboth{\sjtu@label@summary}{}}\addcontentsline{toc}{chapter}{\sjtu@label@summary}
