@@ -370,45 +370,62 @@ int main() {
 }
 \end{lstlisting}
 
-\section{用algorithm和algorithmic宏包插入算法描述}
+\section{用algorithm和algorithmicx宏包插入算法描述}
 
-如算法\ref{algo:sum_I_want}所示。
+algorithmicx 比 algorithmic 增加了一些命令。
+示例如\ref{algo:merge_sort}，示例代码来自\href{http://hustsxh.is-programmer.com/posts/38801.html}{xhSong的博客}。
+详细的使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/latex/contrib/algorithmicx/algorithmicx.pdf}{官方README}。
 
-\begin{algorithm}
-\caption{求和算法}
-\label{algo:sum_I_want}
-\begin{algorithmic}
-\REQUIRE $n \geq 1$                  %输入条件
-\ENSURE $Sum = 1 + \cdots + n$       %输出
-\STATE $Sum \leftarrow 0$            %\STATE 命名演示
-\IF {$n < 1$}                        %条件语句
-\PRINT {Input Error}                 %打印语句
-\ENDIF
-\RETURN Sum
-\end{algorithmic}
-\end{algorithm}
+总结一些注意事项：
 
-王凡教授\footnote{\url{http://cc.ee.ntu.edu.tw/~farn/}}对algorithmic做了扩展，支持\verb+STATE+、\verb+SWITCH+和\verb+CASE+等语句。
+\begin{itemize}
+  \item 
+  部分情况下，浮动时会出现图片出现在算法中间的情况。
+  参考
+  \href{http://tex.stackexchange.com/questions/165021/fixing-the-location-of-the-appearance-in-algorithmicx-environment}{这个问题}
+  使用H来强制定位，不允许浮动。
+\end{itemize}
 
 \begin{algorithm}
-\caption{fibonacci}
-\label{algo: Fibonacci Sequence}
-\begin{algorithmic}
-\REQUIRE $num$
-
-\STATE $res \leftarrow 0$
-\SWITCH {$num$}
-  \CASE {$0$}
-    \STATE $res \leftarrow 1$
-  \ENDCASE
-  \CASE {$1$}
-    \STATE $res \leftarrow 1$
-  \ENDCASE
-  \DEFAULT
-    \STATE $res \leftarrow fibonacci(num-1) + fibonacci(num-2)$
-  \ENDDEFAULT
-\ENDSWITCH
-
-\RETURN $res$
+\label{algo:merge_sort}
+\caption{用归并排序求逆序数}
+\begin{algorithmic}[1] %每行显示行号
+\Require $Array$数组，$n$数组大小
+\Ensure 逆序数
+\Function {MergerSort}{$Array, left, right$}
+  \State $result \gets 0$
+  \If {$left < right$}
+    \State $middle \gets (left + right) / 2$
+    \State $result \gets result +$ \Call{MergerSort}{$Array, left, middle$}
+    \State $result \gets result +$ \Call{MergerSort}{$Array, middle, right$}
+    \State $result \gets result +$ \Call{Merger}{$Array,left,middle,right$}
+  \EndIf
+  \State \Return{$result$}
+\EndFunction
+\State %空一行
+\Function{Merger}{$Array, left, middle, right$}
+  \State $i\gets left$
+  \State $j\gets middle$
+  \State $k\gets 0$
+  \State $result \gets 0$
+  \While{$i<middle$ \textbf{and} $j<right$}
+    \If{$Array[i]<Array[j]$}
+      \State $B[k++]\gets Array[i++]$
+    \Else
+      \State $B[k++] \gets Array[j++]$
+      \State $result \gets result + (middle - i)$
+    \EndIf
+  \EndWhile
+  \While{$i<middle$}
+    \State $B[k++] \gets Array[i++]$
+  \EndWhile
+  \While{$j<right$}
+    \State $B[k++] \gets Array[j++]$
+  \EndWhile
+  \For{$i = 0 \to k-1$}
+    \State $Array[left + i] \gets B[i]$
+  \EndFor
+  \State \Return{$result$}
+\EndFunction
 \end{algorithmic}
 \end{algorithm}
