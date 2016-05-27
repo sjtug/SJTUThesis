@@ -5,6 +5,7 @@
 *.aux
 *.log
 *.lot
+*.loa
 *.out
 *.toc
 *.blg
