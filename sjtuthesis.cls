@@ -71,7 +71,7 @@
 \RequirePackage[inline]{enumitem}
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
-\RequirePackage{algorithm, algorithmic}
+\RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -128,8 +128,11 @@
 \ctexset{listfigurename={\sjtu@listfigurename}}
 \ctexset{listtablename={\sjtu@listtablename}}
 \floatname{algorithm}{\sjtu@label@algo}
+\renewcommand{\algorithmicrequire}{\textbf{输入:}} 
+\renewcommand{\algorithmicensure}{\textbf{输出:}}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
+
 % Title Settings at the chapter Level
 \ctexset{chapter={
 	nameformat={\Large\bfseries},
@@ -257,26 +260,6 @@
   \newtheorem{bprop}[thm]{\sjtu@label@prop~}
   \newtheorem{bcor}[thm]{\sjtu@label@cor~}
   \renewcommand{\proofname}{\bf\sjtu@label@proof}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% The following definitions are to extend the LaTeX algorithmic 
-% package with SWITCH statements and one-line structures.
-% The extension is by 
-%   Prof. Farn Wang 
-%   Dept. of Electrical Engineering, 
-%   National Taiwan University. 
-% 
-\newcommand{\SWITCH}[1]{\STATE \textbf{switch} (#1)}
-\newcommand{\ENDSWITCH}{\STATE \textbf{end switch}}
-\newcommand{\CASE}[1]{\STATE \textbf{case} #1\textbf{:} \begin{ALC@g}}
-\newcommand{\ENDCASE}{\end{ALC@g}}
-\newcommand{\CASELINE}[1]{\STATE \textbf{case} #1\textbf{:} }
-\newcommand{\DEFAULT}{\STATE \textbf{default:} \begin{ALC@g}}
-\newcommand{\ENDDEFAULT}{\end{ALC@g}}
-\newcommand{\DEFAULTLINE}[1]{\STATE \textbf{default:} }
-% 
-% End of the LaTeX algorithmic package extension.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %==========
 % Segment 4. Draw the sjtuthesis
