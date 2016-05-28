@@ -11,6 +11,8 @@
 \newif\ifsjtu@doctor\sjtu@doctorfalse
 \newif\ifsjtu@review\sjtu@reviewfalse
 \newif\ifsjtu@submit\sjtu@submitfalse
+\newif\ifsjtu@typeinfo \sjtu@typeinfotrue
+\DeclareOption{notypeinfo}{\sjtu@typeinfofalse}
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
 \DeclareOption{doctor}{\sjtu@doctortrue}
@@ -299,40 +301,75 @@
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
 
+
+% sjtuspace
+\newcommand\sjtuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
+\def\sjtu@getfileinfo#1 #2 #3\relax#4\relax{%
+  \def\sjtufiledate{#1}%
+  \def\sjtufileversion{#2}%
+  \def\sjtufileinfo{#3}}%
+\expandafter\ifx\csname ver@sjtuthesis.cls\endcsname\relax
+  \edef\reserved@a{\csname ver@ctextemp_sjtuthesis.cls\endcsname}
+\else
+  \edef\reserved@a{\csname ver@sjtuthesis.cls\endcsname}
+\fi
+\expandafter\sjtu@getfileinfo\reserved@a\relax? ? \relax\relax
+\def\sjtu@underline[#1]#2{%
+  \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
+\def\sjtuunderline{\@ifnextchar[\sjtu@underline\CTEXunderline}
+
 % “绘制”SJTU中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\songti\zihao{-3}\sjtu@label@statement}
-  \vskip\stretch{1}
-  {\heiti\zihao{3}\sjtu@value@title}
-  \vskip\stretch{1}
-  {\fangsong\zihao{4}}
-  \def\tabcolsep{1pt}
-  \def\arraystretch{1.5}
-  \begin{tabular}{rl}
-    \ifsjtu@review
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[150pt]{}}\\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides}  & \underline{\makebox[150pt]{}} \\ 
-      \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\ 
-      \fi
-    \else
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides}	& \underline{\makebox[150pt]{\sjtu@value@author}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
-      \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
-      \fi
-    \fi
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@major}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
-  \end{tabular}
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[angle=0,origin=br,width=13cm]{figure/sjtu}
+\end{figure}
+\heiti\zihao{-2}\sjtu@label@sjtu
+\vskip 15pt
+\textbf{\kaishu\zihao{1}\sjtu@label@statement}
+\vskip 5pt
+\heiti\zihao{-2}\sjtu@label@bacheloreng
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[angle=0,origin=br,width=4cm]{figure/sjtubadge}
+\end{figure}
+    \vskip 20pt
+    \begin{tabular}{ll}
+    \huge{\kaishu\sjtu@label@title} &\kaishu
+\sjtuunderline[350pt]{\sjtu@value@title}
+    \end{tabular}
+    \vskip 5pt
+    {\fangsong\zihao{4}}
+    \def\tabcolsep{1pt}
+    \def\arraystretch{1}
+    \begin{tabular}{lc}
+      \kaishu\sjtu@label@author &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@author}
+    \\
+      \kaishu\sjtu@label@studentnumber &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@studentnumber}
+    \\
+      \kaishu\sjtu@label@advisor &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@advisor}
+    \\  
+      \kaishu\sjtu@label@major &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@major}
+    \\  
+      \kaishu\sjtu@label@institute &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@institute}
+    \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
-  \cleardoublepage
+  \clearpage
+  \if@twoside
+    \thispagestyle{empty}
+    \ifsjtu@typeinfo
+    \fi
+    \cleardoublepage
+  \fi
 }
 
 
