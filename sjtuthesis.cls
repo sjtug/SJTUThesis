@@ -510,10 +510,10 @@
 \fi
 
 % 中英文摘要
-\newenvironment{abstract}{\chapter*{\sjtu@value@title\vskip 20pt\sjtu@label@abstract}\markboth{\sjtu@label@abstract}{}}{}
-\newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@keywords} #1}
-\newenvironment{englishabstract}{\chapter*{\sjtu@value@englishtitle\vskip 20pt\bfseries \sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
-\newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \sjtu@label@englishkeywords} #1}
+\newenvironment{abstract}{\chapter*{\zihao{3}\sjtu@value@title\vskip 20pt\zihao{4}\sjtu@label@abstract}\markboth{\sjtu@label@abstract}{}}{}
+\newcommand\keywords[1]{\vspace{4ex}\noindent{\heiti\zihao{-4}\sjtu@label@keywords} #1}
+\newenvironment{englishabstract}{\chapter*{\zihao{3}\MakeUppercase{\sjtu@value@englishtitle}\vskip 20pt\bfseries \zihao{4}\sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
+\newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\zihao{-4} \sjtu@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
   \chapter*{\contentsname}
