@@ -472,3 +472,24 @@ algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/
 对于算法的索引要注意\verb+\caption+和\verb+\label+的位置, 
 必须是先\verb+\caption+再\verb+\label+\footnote{http://tex.stackexchange.com/questions/65993/algorithm-numbering}，
 否则会出现\verb+\ref{algo:sum_100}+生成的编号跟对应算法上显示不一致的问题。
+
+根据Werner的回答\footnote{http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic}
+增加了\verb+Switch+和\verb+Case+的支持，见算法\ref{algo:switch_example}。
+
+\begin{algorithm}
+\caption{Switch示例}
+\label{algo:switch_example}
+\begin{algorithmic}[1]
+  \Switch{$s$}
+    \Case{$a$}
+      \Assert{0}
+    \EndCase
+    \Case{$b$}
+      \Assert{1}
+    \EndCase
+    \Default
+      \Assert{2}
+    \EndDefault
+  \EndSwitch
+\end{algorithmic}
+\end{algorithm}
