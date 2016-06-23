@@ -376,15 +376,18 @@ algorithmicx 比 algorithmic 增加了一些命令。
 示例如算法\ref{algo:sum_100}和算法\ref{algo:merge_sort}，
 后者的代码来自\href{http://hustsxh.is-programmer.com/posts/38801.html}{xhSong的博客}。
 algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/latex/contrib/algorithmicx/algorithmicx.pdf}{官方README}。
-使用算法宏包时，算法出现的位置不一定按照tex文件里的书写顺序。
+使用算法宏包时，算法出现的位置很多时候不按照tex文件里的书写顺序, 
+需要强制定位时可以使用\verb+\begin{algorithm}[H]+
+\footnote{http://tex.stackexchange.com/questions/165021/fixing-the-location-of-the-appearance-in-algorithmicx-environment}
 
-这是写在第一个算法前面的一段话，它一般会出现在算法前面。
+这是写在算法\ref{algo:sum_100}前面的一段话，在生成的文件里它会出现在算法\ref{algo:sum_100}前面。
 
 \begin{algorithm}
+% \begin{algorithm}[H] % 强制定位
 \label{algo:sum_100}
 \caption{求100以内的整数和}
-\begin{algorithmic}
-\Ensure 100以内的整数和
+\begin{algorithmic}[1] %每行显示行号
+\Ensure 100以内的整数和 % 输出
 \State $sum \gets 0$
 \For{$i = 0 \to 100$}
     \State $sum \gets sum + i$
@@ -392,15 +395,31 @@ algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/
 \end{algorithmic}
 \end{algorithm}
 
-这是写在两个算法中间的一段话，但是它有可能出现在第一个算法前面。
+这是写在两个算法中间的一段话，当算法\ref{algo:sum_100}不使用\verb+\begin{algorithm}[H]+时它也会出现在算法\ref{algo:sum_100}前面。
+
+对于很长的算法，单一的算法块\verb+\begin{algorithm}...\end{algorithm}+是不能自动跨页的
+\footnote{http://tex.stackexchange.com/questions/70733/latex-algorithm-not-display-under-correct-section}，
+会出现的情况有：
+
+\begin{itemize}
+  \item 该页放不下当前的算法，留下大片空白，算法在下一页显示
+  \item 单一页面放不下当前的算法，显示时超过页码的位置直到超出整个页面范围
+\end{itemize}
+
+解决方法有：
+
+\begin{itemize}
+  \item (推荐)使用\verb+algstore{algname}+和\verb+algrestore{algname}+来讲算法分为两个部分\footnote{http://tex.stackexchange.com/questions/29816/algorithm-over-2-pages}，如算法\ref{algo:merge_sort}。
+  \item 人工拆分算法为多个小的部分。
+\end{itemize}
 
 \begin{algorithm}
 % \begin{algorithm}[H] % 强制定位
 \label{algo:merge_sort}
 \caption{用归并排序求逆序数}
 \begin{algorithmic}[1] %每行显示行号
-\Require $Array$数组，$n$数组大小
-\Ensure 逆序数
+\Require $Array$数组，$n$数组大小 % 输入
+\Ensure 逆序数 % 输出
 \Function {MergerSort}{$Array, left, right$}
   \State $result \gets 0$
   \If {$left < right$}
@@ -446,15 +465,6 @@ algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/
 \end{algorithmic}
 \end{algorithm}
 
-这是写在第二个算法后面的一段话，但是它很有可能出现在第二个算法前面。
-
-总结一些注意事项：
-
-\begin{itemize}
-  \item 
-  部分情况下，浮动时会出现图片出现在算法中间的情况。
-  参考
-  \href{http://tex.stackexchange.com/questions/165021/fixing-the-location-of-the-appearance-in-algorithmicx-environment}{这个问题}
-  使用H来强制定位，不允许浮动，但是会有明显的副作用。
-  \item 算法过长时会出现显示问题，比如\ref{algo:merge_sort}超过了单页的长度，可以改小字体或者分成多个小的算法来解决。
-\end{itemize}
+这是写在算法\ref{algo:merge_sort}后面的一段话，
+但是当算法\ref{algo:merge_sort}不使用\verb+\begin{algorithm}[H]+时它会出现在算法\ref{algo:merge_sort}
+甚至算法\ref{algo:sum_100}前面。
