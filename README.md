@@ -1,9 +1,6 @@
-# What is SJTUThesis?
-
-SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, or doctor thesis in Shanghai Jiao Tong University.
-
 # 上海交通大学学位论文模板
 
+[English README](README_en-US.md)
 
 这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/weijianwen/SJTUThesis/wiki)，欢迎大家分享使用经验。
 
@@ -49,9 +46,9 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 | TeXLive发行版 | 参考文献处理程序             | SJTUThesis版本 |
 |---------------|------------------------------|----------------|
-| 2015          | biber+biblatex+caspervector  | [0.9.3][0.9.3] |
-| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.7][0.7.7] |
-| 2014          | biber+biblatex+caspervector  | [0.8.7][0.8.7] |
+| 2015          | biber+biblatex+caspervector  | [0.9.4][0.9.4] |
+| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.8][0.7.8] |
+| 2014          | biber+biblatex+caspervector  | [0.8.8][0.8.8] |
 | 2013          | bibtex+GBT7714-2005NLang.bst | [0.7.1][0.7.1] |
 
 ### 编译模板
@@ -100,8 +97,9 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 上海交通大学校徽图片(`sjtulog.png`)和横幅图片(`sjtubanner.png`)的版权归原作者所有。其他部分使用 [Apache License 2.0](LICENSE) 授权。
 
+<<<<<<< HEAD
 [README]: https://s3.amazonaws.com/sjtuthesis/README_0.7.pdf
-[0.9.3]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.3
-[0.8.7]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.7
-[0.7.7]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.7
+[0.9.4]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.4
+[0.8.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.8
+[0.7.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.8
 [0.7.1]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.1

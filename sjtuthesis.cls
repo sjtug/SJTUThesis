@@ -71,7 +71,7 @@
 \RequirePackage[inline]{enumitem}
 \RequirePackage{pdfpages}
 \RequirePackage{calc}
-\RequirePackage{algorithm, algorithmic}
+\RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -131,8 +131,11 @@
 \ctexset{listfigurename={\sjtu@listfigurename}}
 \ctexset{listtablename={\sjtu@listtablename}}
 \floatname{algorithm}{\sjtu@label@algo}
+\renewcommand{\algorithmicrequire}{\textbf{输入:}} 
+\renewcommand{\algorithmicensure}{\textbf{输出:}}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
+
 % Title Settings at the chapter Level
 \ctexset{chapter={
 	nameformat={\Large\bfseries},
@@ -263,25 +266,33 @@
   \newtheorem{bcor}[thm]{\sjtu@label@cor~}
   \renewcommand{\proofname}{\bf\sjtu@label@proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% The following definitions are to extend the LaTeX algorithmic 
-% package with SWITCH statements and one-line structures.
-% The extension is by 
-%   Prof. Farn Wang 
-%   Dept. of Electrical Engineering, 
-%   National Taiwan University. 
-% 
-\newcommand{\SWITCH}[1]{\STATE \textbf{switch} (#1)}
-\newcommand{\ENDSWITCH}{\STATE \textbf{end switch}}
-\newcommand{\CASE}[1]{\STATE \textbf{case} #1\textbf{:} \begin{ALC@g}}
-\newcommand{\ENDCASE}{\end{ALC@g}}
-\newcommand{\CASELINE}[1]{\STATE \textbf{case} #1\textbf{:} }
-\newcommand{\DEFAULT}{\STATE \textbf{default:} \begin{ALC@g}}
-\newcommand{\ENDDEFAULT}{\end{ALC@g}}
-\newcommand{\DEFAULTLINE}[1]{\STATE \textbf{default:} }
-% 
-% End of the LaTeX algorithmic package extension.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following definitions add Switch statement to LaTeX algorithmicx package
+% It's based on Werner's answer on stackoverflow
+% http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic  
+
+% New definitions
+\algnewcommand\algorithmicswitch{\textbf{switch}}
+\algnewcommand\algorithmiccase{\textbf{case}}
+\algnewcommand\algorithmicdefault{\textbf{default}}
+
+% New "environments"
+% using \algtext*{<env>} removes any typesetting of that command
+\algdef{SE}[SWITCH]{Switch}{EndSwitch}[1]{\algorithmicswitch\ (#1)}{\algorithmicend\ \algorithmicswitch}%
+%\algtext*{EndSwitch}%
+\algdef{SE}[CASE]{Case}{EndCase}[1]{\algorithmiccase\ #1:}{\algorithmicend\ \algorithmiccase}%
+\algtext*{EndCase}%
+\algdef{SE}[DEFAULT]{Default}{EndDefault}{\algorithmicdefault\ :}{\algorithmicend\ \algorithmicdefault}%
+\algtext*{EndDefault}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following add some extra commands to LaTeX algorithmicx package
+
+% Assert
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %==========
 % Segment 4. Draw the sjtuthesis
@@ -427,15 +438,23 @@
 	  \fancyhf{}
 	  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-	  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{LastPage}}~页}
+	  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{last}}~页}
 	  \renewcommand{\headheight}{32pt}
 	}
+  %% 英文大摘要
+  \fancypagestyle{biglast}{
+    \fancyhf{}
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{biglast}}~页}
+    \renewcommand{\headheight}{32pt}
+  }
 	%% 开章页页眉页脚
 	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
-	  \fancyhf{}%
+	  \fancyhf{}
 	  \fancyhead[L]{\nouppercase{\small\kaishu\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-	  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{LastPage}}~页}
+	  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{last}}~页}
 	  \renewcommand{\headheight}{32pt}
 	}
 \else
@@ -575,14 +594,38 @@
    {\endlist}
    
 \renewenvironment{thanks}
-  {\chapter{\sjtu@label@thanks}}
+  {\chapter{\sjtu@label@thanks}\label{last}}
   {}
 
 \newenvironment{summary}
 {\chapter*{\sjtu@label@summary\markboth{\sjtu@label@summary}{}}\addcontentsline{toc}{chapter}{\sjtu@label@summary}
 }{}
 
-\newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
+\newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}
+}{}
+
+\newenvironment{bigabstract}
+{
+\setcounter{page}{1}
+\fancypagestyle{biglast}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{biglast}}~页}
+  \renewcommand{\headheight}{32pt}
+}
+
+\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{biglast}}~页}
+  \renewcommand{\headheight}{32pt}
+}
+
+\chapter*{\bf\MakeUppercase{\sjtu@value@englishtitle}\vskip 20pt }
+}
+{\label{biglast}}
 
 \endinput
 

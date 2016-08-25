@@ -370,45 +370,126 @@ int main() {
 }
 \end{lstlisting}
 
-\section{用algorithm和algorithmic宏包插入算法描述}
+\section{用algorithm和algorithmicx宏包插入算法描述}
 
-如算法\ref{algo:sum_I_want}所示。
+algorithmicx 比 algorithmic 增加了一些命令。
+示例如算法\ref{algo:sum_100}和算法\ref{algo:merge_sort}，
+后者的代码来自\href{http://hustsxh.is-programmer.com/posts/38801.html}{xhSong的博客}。
+algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/latex/contrib/algorithmicx/algorithmicx.pdf}{官方README}。
+使用算法宏包时，算法出现的位置很多时候不按照tex文件里的书写顺序, 
+需要强制定位时可以使用\verb+\begin{algorithm}[H]+
+\footnote{http://tex.stackexchange.com/questions/165021/fixing-the-location-of-the-appearance-in-algorithmicx-environment}
+
+这是写在算法\ref{algo:sum_100}前面的一段话，在生成的文件里它会出现在算法\ref{algo:sum_100}前面。
 
 \begin{algorithm}
-\caption{求和算法}
-\label{algo:sum_I_want}
-\begin{algorithmic}
-\REQUIRE $n \geq 1$                  %输入条件
-\ENSURE $Sum = 1 + \cdots + n$       %输出
-\STATE $Sum \leftarrow 0$            %\STATE 命名演示
-\IF {$n < 1$}                        %条件语句
-\PRINT {Input Error}                 %打印语句
-\ENDIF
-\RETURN Sum
+% \begin{algorithm}[H] % 强制定位
+\caption{求100以内的整数和}
+\label{algo:sum_100}
+\begin{algorithmic}[1] %每行显示行号
+\Ensure 100以内的整数和 % 输出
+\State $sum \gets 0$
+\For{$i = 0 \to 100$}
+    \State $sum \gets sum + i$
+  \EndFor
 \end{algorithmic}
 \end{algorithm}
 
-王凡教授\footnote{\url{http://cc.ee.ntu.edu.tw/~farn/}}对algorithmic做了扩展，支持\verb+STATE+、\verb+SWITCH+和\verb+CASE+等语句。
+这是写在两个算法中间的一段话，当算法\ref{algo:sum_100}不使用\verb+\begin{algorithm}[H]+时它也会出现在算法\ref{algo:sum_100}前面。
+
+对于很长的算法，单一的算法块\verb+\begin{algorithm}...\end{algorithm}+是不能自动跨页的
+\footnote{http://tex.stackexchange.com/questions/70733/latex-algorithm-not-display-under-correct-section}，
+会出现的情况有：
+
+\begin{itemize}
+  \item 该页放不下当前的算法，留下大片空白，算法在下一页显示
+  \item 单一页面放不下当前的算法，显示时超过页码的位置直到超出整个页面范围
+\end{itemize}
+
+解决方法有：
+
+\begin{itemize}
+  \item (推荐)使用\verb+algstore{algname}+和\verb+algrestore{algname}+来讲算法分为两个部分\footnote{http://tex.stackexchange.com/questions/29816/algorithm-over-2-pages}，如算法\ref{algo:merge_sort}。
+  \item 人工拆分算法为多个小的部分。
+\end{itemize}
 
 \begin{algorithm}
-\caption{fibonacci}
-\label{algo: Fibonacci Sequence}
-\begin{algorithmic}
-\REQUIRE $num$
+% \begin{algorithm}[H] % 强制定位
+\caption{用归并排序求逆序数}
+\label{algo:merge_sort}
+\begin{algorithmic}[1] %每行显示行号
+\Require $Array$数组，$n$数组大小 % 输入
+\Ensure 逆序数 % 输出
+\Function {MergerSort}{$Array, left, right$}
+  \State $result \gets 0$
+  \If {$left < right$}
+    \State $middle \gets (left + right) / 2$
+    \State $result \gets result +$ \Call{MergerSort}{$Array, left, middle$}
+    \State $result \gets result +$ \Call{MergerSort}{$Array, middle, right$}
+    \State $result \gets result +$ \Call{Merger}{$Array,left,middle,right$}
+  \EndIf
+  \State \Return{$result$}
+\EndFunction
+\State %空一行
+\Function{Merger}{$Array, left, middle, right$}
+  \State $i\gets left$
+  \State $j\gets middle$
+  \State $k\gets 0$
+  \State $result \gets 0$
+  \While{$i<middle$ \textbf{and} $j<right$}
+    \If{$Array[i]<Array[j]$}
+      \State $B[k++]\gets Array[i++]$
+    \Else
+      \State $B[k++] \gets Array[j++]$
+      \State $result \gets result + (middle - i)$
+    \EndIf
+  \EndWhile
+  \algstore{MergeSort}
+\end{algorithmic}
+\end{algorithm}
 
-\STATE $res \leftarrow 0$
-\SWITCH {$num$}
-  \CASE {$0$}
-    \STATE $res \leftarrow 1$
-  \ENDCASE
-  \CASE {$1$}
-    \STATE $res \leftarrow 1$
-  \ENDCASE
-  \DEFAULT
-    \STATE $res \leftarrow fibonacci(num-1) + fibonacci(num-2)$
-  \ENDDEFAULT
-\ENDSWITCH
+\begin{algorithm}
+\begin{algorithmic}[1]
+  \algrestore{MergeSort}
+  \While{$i<middle$}
+    \State $B[k++] \gets Array[i++]$
+  \EndWhile
+  \While{$j<right$}
+    \State $B[k++] \gets Array[j++]$
+  \EndWhile
+  \For{$i = 0 \to k-1$}
+    \State $Array[left + i] \gets B[i]$
+  \EndFor
+  \State \Return{$result$}
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
-\RETURN $res$
+这是写在算法\ref{algo:merge_sort}后面的一段话，
+但是当算法\ref{algo:merge_sort}不使用\verb+\begin{algorithm}[H]+时它会出现在算法\ref{algo:merge_sort}
+甚至算法\ref{algo:sum_100}前面。
+
+对于算法的索引要注意\verb+\caption+和\verb+\label+的位置, 
+必须是先\verb+\caption+再\verb+\label+\footnote{http://tex.stackexchange.com/questions/65993/algorithm-numbering}，
+否则会出现\verb+\ref{algo:sum_100}+生成的编号跟对应算法上显示不一致的问题。
+
+根据Werner的回答\footnote{http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic}
+增加了\verb+Switch+和\verb+Case+的支持，见算法\ref{algo:switch_example}。
+
+\begin{algorithm}
+\caption{Switch示例}
+\label{algo:switch_example}
+\begin{algorithmic}[1]
+  \Switch{$s$}
+    \Case{$a$}
+      \Assert{0}
+    \EndCase
+    \Case{$b$}
+      \Assert{1}
+    \EndCase
+    \Default
+      \Assert{2}
+    \EndDefault
+  \EndSwitch
 \end{algorithmic}
 \end{algorithm}
