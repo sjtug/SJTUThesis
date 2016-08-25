@@ -46,9 +46,9 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 | TeXLive发行版 | 参考文献处理程序             | SJTUThesis版本 |
 |---------------|------------------------------|----------------|
-| 2015          | biber+biblatex+caspervector  | [0.9.3][0.9.3] |
-| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.7][0.7.7] |
-| 2014          | biber+biblatex+caspervector  | [0.8.7][0.8.7] |
+| 2015          | biber+biblatex+caspervector  | [0.9.4][0.9.4] |
+| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.8][0.7.8] |
+| 2014          | biber+biblatex+caspervector  | [0.8.8][0.8.8] |
 | 2013          | bibtex+GBT7714-2005NLang.bst | [0.7.1][0.7.1] |
 
 ### 编译模板
@@ -98,7 +98,7 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 上海交通大学校徽图片(`sjtulog.png`)和横幅图片(`sjtubanner.png`)的版权归原作者所有。其他部分使用 [Apache License 2.0](LICENSE) 授权。
 
 [README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
-[0.9.3]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.3
-[0.8.7]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.7
-[0.7.7]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.7
+[0.9.4]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.4
+[0.8.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.8
+[0.7.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.8
 [0.7.1]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.1
