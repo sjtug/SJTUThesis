@@ -12,7 +12,7 @@ SJTUThesis可以在本地编译，也可以在线编译。
 
 #### TeX 发行版
 
-SJTUThesis 需要使用 XeTeX 引擎编译。2014和2015年的 [TeXLive](https://www.tug.org/texlive/) 和 [MacTeX](https://www.tug.org/mactex/) 发行版都能编译此模板。Windows 下的 CTeX(2.9.2) 也能顺利编译此模板。**Windows用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
+SJTUThesis 需要使用 XeTeX 引擎编译。2014年、2015年和2016年的 [TeXLive](https://www.tug.org/texlive/) 和 [MacTeX](https://www.tug.org/mactex/) 发行版都能编译此模板。Windows 下的 CTeX(2.9.2) 也能顺利编译此模板。**Windows用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
 
 #### 字体
 
@@ -46,8 +46,8 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 | TeXLive发行版 | 参考文献处理程序             | SJTUThesis版本 |
 |---------------|------------------------------|----------------|
-| 2015          | biber+biblatex+caspervector  | [0.9.4][0.9.4] |
-| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.8][0.7.8] |
+| 2015 2016     | biber+biblatex+caspervector  | [0.9.4][0.9.4] |
+| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.9][0.7.9] |
 | 2014          | biber+biblatex+caspervector  | [0.8.8][0.8.8] |
 | 2013          | bibtex+GBT7714-2005NLang.bst | [0.7.1][0.7.1] |
 
@@ -100,5 +100,5 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 [README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
 [0.9.4]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.4
 [0.8.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.8
-[0.7.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.8
+[0.7.9]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.9
 [0.7.1]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.1
