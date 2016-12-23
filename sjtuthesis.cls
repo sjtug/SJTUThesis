@@ -31,12 +31,12 @@
 %% sjtuthesis.cls segments
 % 0. Import sjtuthesis.cfg
 % 1. Import and configure LaTeX packages.
-% 2. Define general-purpose LaTeX commands. 
+% 2. Define general-purpose LaTeX commands.
 % 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
 % 4. Draw the sjtuthesis
 
 %==========
-% Segment 0. Import sjtuthesis.cfg 
+% Segment 0. Import sjtuthesis.cfg
 %==========
 
 %% 导入 sjtuthesis.cfg 文件
@@ -56,12 +56,12 @@
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs}
 \RequirePackage{upgreek}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{ccaption}
-\RequirePackage[backend=biber, style=caspervector,utf8, bibencoding=utf8, sorting=none]{biblatex}
+\RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
 \RequirePackage{xcolor}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
@@ -82,7 +82,7 @@
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-    
+
 % User defined command list
 %% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
 
@@ -90,7 +90,7 @@
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
 % upper math letter
-\newcommand{\me}{\mathrm{e}} 
+\newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\mathrm{d}}
@@ -107,7 +107,7 @@
 	\fi}
 
 % CJK-LaTeX Logo \CJKLaTeX
-\newcommand{\CJKLaTeX}{CJK--\LaTeX} 
+\newcommand{\CJKLaTeX}{CJK--\LaTeX}
 
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -128,7 +128,7 @@
 \ctexset{listfigurename={\sjtu@listfigurename}}
 \ctexset{listtablename={\sjtu@listtablename}}
 \floatname{algorithm}{\sjtu@label@algo}
-\renewcommand{\algorithmicrequire}{\textbf{输入:}} 
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}
 \renewcommand{\algorithmicensure}{\textbf{输出:}}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
@@ -264,7 +264,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The following definitions add Switch statement to LaTeX algorithmicx package
 % It's based on Werner's answer on stackoverflow
-% http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic  
+% http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic
 
 % New definitions
 \algnewcommand\algorithmicswitch{\textbf{switch}}
@@ -326,16 +326,16 @@
     \ifsjtu@review
       \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[150pt]{}}\\
       \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides}  & \underline{\makebox[150pt]{}} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides}  & \underline{\makebox[150pt]{}} \\
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\
       \fi
     \else
       \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides}	& \underline{\makebox[150pt]{\sjtu@value@author}} \\
       \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
+      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
+        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\
       \fi
     \fi
       \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@major}} \\
@@ -362,7 +362,7 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      {\normalfont\zihao{4} \sjtu@label@englishstatement} 
+      {\normalfont\zihao{4} \sjtu@label@englishstatement}
       \vspace{20pt} \vskip\stretch{1}
       {\huge\sjtu@value@englishtitle \vskip 1pt}
       \vskip \stretch{1}
@@ -371,19 +371,19 @@
       \vskip 3pt
       \vskip \stretch{2}
     \else
-      {\normalfont\zihao{4}\sjtu@value@englishauthor} 
+      {\normalfont\zihao{4}\sjtu@value@englishauthor}
       \vskip \stretch{1}
-      {\normalfont\zihao{4}\sjtu@label@englishadvisor} 
+      {\normalfont\zihao{4}\sjtu@label@englishadvisor}
       \vskip 2pt
-      {\normalfont\zihao{4}\sjtu@value@englishadvisor} 
+      {\normalfont\zihao{4}\sjtu@value@englishadvisor}
       \vskip 5pt
       \ifx\sjtu@value@englishcoadvisor\undefined\else
-        {\normalfont\zihao{4}\sjtu@label@englishcoadvisor} 
+        {\normalfont\zihao{4}\sjtu@label@englishcoadvisor}
         \vskip 2pt
-        {\normalfont\zihao{4}\sjtu@value@englishcoadvisor} 
+        {\normalfont\zihao{4}\sjtu@value@englishcoadvisor}
         \vskip \stretch{2}
       \fi
-    \fi 
+    \fi
     \normalfont\sjtu@value@englishinstitute \vskip 30pt
     \normalfont\sjtu@value@englishdate \vskip 20pt
   \end{center}
@@ -571,14 +571,14 @@
 \newenvironment{resume}
   {\chapter{\sjtu@label@resume}}
   {}
-  
+
 \newenvironment{resumesection}[1]
   {{\noindent\normalfont\bfseries #1}
    \list{}{\labelwidth\z@
            \leftmargin 2\ccwd}
    \item\relax}
    {\endlist}
-   
+
 \newenvironment{resumelist}[1]
   {{\noindent\normalfont\bfseries #1}
    \list{}{\labelwidth\z@
@@ -587,7 +587,7 @@
            \listparindent\itemindent}
    \item\relax}
    {\endlist}
-   
+
 \renewenvironment{thanks}
   {\chapter{\sjtu@label@thanks}\label{last}}
   {}
@@ -626,4 +626,3 @@
 
 %%
 %% End of file `sjtuthesis.cls'.
-

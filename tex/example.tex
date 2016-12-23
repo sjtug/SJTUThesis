@@ -98,7 +98,7 @@
 这是全文唯一的一个四级标题。在这部分中将演示了mathtools宏包中可伸长符号（箭头、等号的例子）的例子。
 
 \begin{displaymath}
-    A \xleftarrow[n=0]{} B \xrightarrow[LongLongLongLong]{n>0} C 
+    A \xleftarrow[n=0]{} B \xrightarrow[LongLongLongLong]{n>0} C
 \end{displaymath}
 
 \begin{eqnarray}
@@ -140,14 +140,14 @@ amsmath还提供了一个proof(证明)的环境。
     \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\uppi\mathbf{i}\sum^n_{k=1}\mathrm{Res}(f,a_k)
   \end{equation}
 
-      % \oint_\gamma f(z)\, dz = 2\pi i \sum_{k=1}^n \mathrm{Res}(f, a_k ). 
+      % \oint_\gamma f(z)\, dz = 2\pi i \sum_{k=1}^n \mathrm{Res}(f, a_k ).
 
   在这里，$\mathrm{Res}(f, a_k)$表示$f$在点$a_k$的留数，$\mathrm{I}(\gamma,a_k)$表示$\gamma$关于点$a_k$的卷绕数。
   卷绕数是一个整数，它描述了曲线$\gamma$绕过点$a_k$的次数。如果$\gamma$依逆时针方向绕着$a_k$移动，卷绕数就是一个正数，
   如果$\gamma$根本不绕过$a_k$，卷绕数就是零。
 
   定理\ref{thm:res}的证明。
-  
+
   \begin{proof}
     首先，由……
 
@@ -185,7 +185,7 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 \end{figure}
 
 % 这里还有插入eps图像和pdf图像的例子，如图\ref{fig:epspdf:a}和图\ref{fig:epspdf:b}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
-% 
+%
 % \begin{figure}
 %   \centering
 %   \subfigure[EPS Figure]{
@@ -219,7 +219,7 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
     \centering
     \includegraphics[width=4cm]{example/sjtulogo.pdf}
     \bicaption[fig:longcaptiongood]{这里将出现在插图索引}{海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}{Fig}{Where there is a will, there is a way.}
-  \end{minipage}     
+  \end{minipage}
 \end{figure}
 
 \subsection{绘制流程图}
@@ -230,7 +230,7 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
     \resizebox{6cm}{!}{\input{figure/example/flow_chart.tex}}
     \bicaption[fig:flow_chart]{绘制流程图效果}{流程图}{Fig}{Flow chart}
 \end{figure}
-  
+
 \clearpage
 
 \section{表格}
@@ -299,38 +299,38 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
       author={"白云芬"},
       year={2008},
       school={"上海交通大学"}
-    } 
+    }
 \end{lstlisting}
 
 为了方便引用，建议将文献别名改用ASCII表示。
-中文文献的处理有别于英文文献，对中文参考文献需要增加“language”域显式说明。
 
 \begin{lstlisting}[caption={修改后的参考文献条目}, label=itemok, float, escapeinside="", numbers=none]
   @phdthesis{bai2008,
     title={{"信用风险传染模型和信用衍生品的定价"}},
     author={"白云芬"},
-    year={2008},
-    language={zh},
+    date={2008},
     address={"上海"},
     school={"上海交通大学"}
-  } 
+  }
 \end{lstlisting}
 
 按照教务处的要求，参考文献外观应符合国标GBT7714的要求\footnote{\url{http://www.cces.net.cn/guild/sites/tmxb/Files/19798_2.pdf}}。
-在模板中，表现形式的控制逻辑在GBT7714-2005NLang.bst中实现\footnote{\url{http://bbs.ctex.org/viewthread.php?tid=33571}}，是使用{\BibTeX}特有的堆栈式语言实现的\footnote{\url{http://ftp.ctex.org/mirrors/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}}。
+在模板中，表现形式的控制逻辑通过bibla­tex-gb7714-2015实现。
 
-正文中引用参考文献时，用\verb+\supercite{key1,key2,key3...}+可以产生“上标引用的参考文献”，
+正文中引用参考文献时，用\verb+\supercite{key1,key2,key3...}+可以产生“上标引用的参考文献”，并且上标不包含括号，
 如\supercite{Meta_CN,chen2007act,DPMG}。
-使用\verb+\parencite{key1,key2,key3...}+则可以产生水平引用的参考文献，例如\parencite{JohnD,zhubajie,IEEE-1363}。
-请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的\parencite{Meta_CN,JohnD,IEEE-1363}，关于期刊的\supercite{chen2007act,chen2007ewi}，
-会议论文\parencite{DPMG,kocher99,cnproceed}，
-硕士学位论文\parencite{zhubajie,metamori2004}，博士学位论文\supercite{shaheshang,FistSystem01,bai2008}，标准文件\parencite{IEEE-1363}，技术报告\supercite{NPB2}，电子文献\parencite{xiaoyu2001, CHRISTINE1998}，用户手册\parencite{RManual}。
+使用\verb+\parencite{key1,key2,key3...}+已经不能产生水平引用的参考文献，例如\parencite{JohnD,zhubajie,IEEE-1363}。
+
+推荐的引用方式变为\verb+\cite{key1,key2,...}+
+请看下面的例子：关于书的\cite{Meta_CN,JohnD,IEEE-1363}，关于期刊的\cite{chen2007act,chen2007ewi}，
+会议论文\cite{DPMG,kocher99,cnproceed}，
+硕士学位论文\cite{zhubajie,metamori2004}，博士学位论文\cite{shaheshang,FistSystem01,bai2008}，标准文件\cite{IEEE-1363}，技术报告\cite{NPB2}，电子文献\cite{xiaoyu2001, CHRISTINE1998}，用户手册\cite{RManual}。
 
 总结一些注意事项：
 \begin{itemize}
 \item 参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
 \item 参考文献“数据库文件”bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
-\item 参考文献条目中通过language域是否为空判断是否是中文文献；
+\item 使用gb7714-2015管理参考文献时，主要通过date域输入时间。虽然兼容year域，但是编译时会有warning。
 \end{itemize}
 
 \section{用listings插入源代码}
@@ -376,7 +376,7 @@ algorithmicx 比 algorithmic 增加了一些命令。
 示例如算法\ref{algo:sum_100}和算法\ref{algo:merge_sort}，
 后者的代码来自\href{http://hustsxh.is-programmer.com/posts/38801.html}{xhSong的博客}。
 algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/latex/contrib/algorithmicx/algorithmicx.pdf}{官方README}。
-使用算法宏包时，算法出现的位置很多时候不按照tex文件里的书写顺序, 
+使用算法宏包时，算法出现的位置很多时候不按照tex文件里的书写顺序,
 需要强制定位时可以使用\verb+\begin{algorithm}[H]+
 \footnote{http://tex.stackexchange.com/questions/165021/fixing-the-location-of-the-appearance-in-algorithmicx-environment}
 
@@ -469,7 +469,7 @@ algorithmicx的详细使用方法见\href{http://mirror.hust.edu.cn/CTAN/macros/
 但是当算法\ref{algo:merge_sort}不使用\verb+\begin{algorithm}[H]+时它会出现在算法\ref{algo:merge_sort}
 甚至算法\ref{algo:sum_100}前面。
 
-对于算法的索引要注意\verb+\caption+和\verb+\label+的位置, 
+对于算法的索引要注意\verb+\caption+和\verb+\label+的位置,
 必须是先\verb+\caption+再\verb+\label+\footnote{http://tex.stackexchange.com/questions/65993/algorithm-numbering}，
 否则会出现\verb+\ref{algo:sum_100}+生成的编号跟对应算法上显示不一致的问题。
 
