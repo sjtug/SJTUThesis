@@ -293,44 +293,42 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 
 下面是在Google Scholar上搜索到的一条文献信息，格式是纯文本：
 
-\begin{lstlisting}[caption={从Google Scholar找到的参考文献条目}, label=googlescholar, float, escapeinside="", numbers=none]
+\begin{lstlisting}[caption={从Google Scholar找到的参考文献条目}, label=googlescholar, escapeinside="", numbers=none]
     @phdthesis{"白2008信用风险传染模型和信用衍生品的定价",
-      title={{"信用风险传染模型和信用衍生品的定价"}},
+      title={"信用风险传染模型和信用衍生品的定价"},
       author={"白云芬"},
       year={2008},
       school={"上海交通大学"}
     } 
 \end{lstlisting}
 
-为了方便引用，建议将文献别名改用ASCII表示。
-中文文献的处理有别于英文文献，对中文参考文献需要增加“language”域显式说明。
+推荐修改后在bib文件中的内容为：
 
-\begin{lstlisting}[caption={修改后的参考文献条目}, label=itemok, float, escapeinside="", numbers=none]
+\begin{lstlisting}[caption={修改后的参考文献条目}, label=itemok, escapeinside="", numbers=none]
   @phdthesis{bai2008,
-    title={{"信用风险传染模型和信用衍生品的定价"}},
+    title={"信用风险传染模型和信用衍生品的定价"},
     author={"白云芬"},
-    year={2008},
-    language={zh},
+    date={2008},
     address={"上海"},
     school={"上海交通大学"}
   } 
 \end{lstlisting}
 
 按照教务处的要求，参考文献外观应符合国标GBT7714的要求\footnote{\url{http://www.cces.net.cn/guild/sites/tmxb/Files/19798_2.pdf}}。
-在模板中，表现形式的控制逻辑在GBT7714-2005NLang.bst中实现\footnote{\url{http://bbs.ctex.org/viewthread.php?tid=33571}}，是使用{\BibTeX}特有的堆栈式语言实现的\footnote{\url{http://ftp.ctex.org/mirrors/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}}。
+在模板中，表现形式的控制逻辑通过bibla­tex-gb7714-2015包实现\footnote{\url{https://www.ctan.org/pkg/biblatex-gb7714-2015}}，基于{Bib\LaTeX}管理文献。在目前的多数TeX发行版中，可能都没有默认包含biblatex-gb7714-2015，需要手动安装。
 
-正文中引用参考文献时，用\verb+\supercite{key1,key2,key3...}+可以产生“上标引用的参考文献”，
-如\supercite{Meta_CN,chen2007act,DPMG}。
-使用\verb+\parencite{key1,key2,key3...}+则可以产生水平引用的参考文献，例如\parencite{JohnD,zhubajie,IEEE-1363}。
-请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的\parencite{Meta_CN,JohnD,IEEE-1363}，关于期刊的\supercite{chen2007act,chen2007ewi}，
-会议论文\parencite{DPMG,kocher99,cnproceed}，
-硕士学位论文\parencite{zhubajie,metamori2004}，博士学位论文\supercite{shaheshang,FistSystem01,bai2008}，标准文件\parencite{IEEE-1363}，技术报告\supercite{NPB2}，电子文献\parencite{xiaoyu2001, CHRISTINE1998}，用户手册\parencite{RManual}。
+正文中引用参考文献时，用\verb+\cite{key1,key2,key3...}+可以产生“上标引用的参考文献”，
+如\cite{Meta_CN,chen2007act,DPMG}。
+使用\verb+\citen{key1,key2,key3...}+则可以产生水平引用的参考文献，例如\citen{JohnD,zhubajie,IEEE-1363}。
+请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的\citen{Meta_CN,JohnD,IEEE-1363}，关于期刊的\cite{chen2007act,chen2007ewi}，
+会议论文\citen{DPMG,kocher99,cnproceed}，
+硕士学位论文\citen{zhubajie,metamori2004}，博士学位论文\cite{shaheshang,FistSystem01,bai2008}，标准文件\citen{IEEE-1363}，技术报告\cite{NPB2}，电子文献\citen{xiaoyu2001, CHRISTINE1998}，用户手册\citen{RManual}。
 
 总结一些注意事项：
 \begin{itemize}
 \item 参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
 \item 参考文献“数据库文件”bib是纯文本文件，请使用UTF-8编码，不要使用GBK编码；
-\item 参考文献条目中通过language域是否为空判断是否是中文文献；
+\item 参考文献条目中默认通过date域输入时间。兼容使用year域时会产生编译warning，可忽略。
 \end{itemize}
 
 \section{用listings插入源代码}
