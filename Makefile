@@ -38,9 +38,8 @@ s3 : $(THESIS).pdf
 	s3cmd put $< s3://sjtuthesis/README.pdf
 
 git :
-	for b in "0.7.x" "0.8.x" "develop" "develop-0.7" "develop-0.8"; do git co $${b}; git pull gitlab $${b}; done
-	for b in "0.7.x" "0.8.x" "develop" "develop-0.7" "develop-0.8"; do git co $${b}; git push --tags -f -u gitlab $${b}; git push --tags -f -u github $${b}; git push -f -u gitcafe $${b}; done
-	git co master; git push gitlab master; git push github master; git push gitcafe master
+	git push --tags github; git push github;
+	git push --tags gitlab; git push gitlab; 
 
 zip :
 	git archive --format zip --output thesis.zip master
