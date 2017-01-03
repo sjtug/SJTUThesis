@@ -179,6 +179,7 @@
 
 % Caption setting in ccaption pacakge
 \captiondelim{\ }
+% TODO: replace.
 \captionnamefont{\kaishu\small}
 \captiontitlefont{\kaishu\small}
 
@@ -323,13 +324,17 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
+  % TODO: replace.
   {\songti\zihao{-3}\sjtu@label@statement}
   \vskip\stretch{1}
+  % TODO: replace.
   {\heiti\zihao{3}\sjtu@value@title}
   \vskip\stretch{1}
+  % TODO: replace.
   {\fangsong\zihao{4}}
   \def\tabcolsep{1pt}
   \def\arraystretch{1.5}
+  % TODO: replace.
   \begin{tabular}{rl}
     \ifsjtu@review
       \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[150pt]{}}\\
@@ -432,6 +437,8 @@
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
   \cleardoublepage
 }
+
+% TODO: replace.
 
 % fancyhdr页眉页脚设置
 \ifsjtu@bachelor
