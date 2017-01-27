@@ -1,7 +1,5 @@
 # 上海交通大学学位论文模板
 
-[English README](README_en-US.md)
-
 这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/weijianwen/SJTUThesis/wiki)，欢迎大家分享使用经验。
 
 ## 如何使用
@@ -12,15 +10,11 @@ SJTUThesis可以在本地编译，也可以在线编译。
 
 #### TeX 发行版
 
-SJTUThesis 需要使用 XeTeX 引擎编译。2014和2015年的 [TeXLive](https://www.tug.org/texlive/) 和 [MacTeX](https://www.tug.org/mactex/) 发行版都能编译此模板。Windows 下的 CTeX(2.9.2) 也能顺利编译此模板。**Windows用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
+SJTUThesis 需要使用 XeTeX 引擎编译。2016年的 [TeXLive](https://www.tug.org/texlive/) 和 [MacTeX](https://www.tug.org/mactex/) 发行版都能编译此模板。Windows 下的 CTeX(2.9.2) 也能顺利编译此模板。**Windows用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(版本控制)、GNUmake(编译控制)、perl(字数统计)。
 
 #### 字体
 
 中英文分别依赖 Adobe 的四套简体中文字体和 TeX Gyre Termes 西文字体。Tex Gyre Termes 可从 [CTAN](http://www.ctan.org/tex-archive/fonts/tex-gyre/fonts/opentype/public/tex-gyre) 下载四种不同字型。出于版权考虑，需要大家自行解决 AdobeSongStd, AdobeKaitiStd, AdobeHeitiStd, AdobeFangsongStd 四款中文字体的授权问题。
-
-### 在线编译 - ShareLaTeX
-
-[ShareLaTeX](https://www.sharelatex.com/) 是一个优秀的 LaTeX 在线编译站点，可以完成 SJTUThesis 0.8.1 版本的编译。在[SJTUThesis-0.8](https://www.sharelatex.com/project/56701ac8d63cd1d9646a622f)页面将该项目复制到自己的列表中，就可以开始在模版上工作了。更详细的使用说明，请参考[Usage - 使用文档](https://github.com/weijianwen/SJTUThesis/wiki/Usage)。
 
 ### 获取模板
 
@@ -44,12 +38,9 @@ git pull upstream master
 
 SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具有相近的外观，但依赖不同的TeXLive发行版和参考文献处理程序。
 
-| TeXLive发行版 | 参考文献处理程序             | SJTUThesis版本 |
-|---------------|------------------------------|----------------|
-| 2015          | biber+biblatex+caspervector  | [0.9.4][0.9.4] |
-| 2015          | bibtex+GBT7714-2005NLang.bst | [0.7.8][0.7.8] |
-| 2014          | biber+biblatex+caspervector  | [0.8.8][0.8.8] |
-| 2013          | bibtex+GBT7714-2005NLang.bst | [0.7.1][0.7.1] |
+| TeXLive发行版 | 参考文献风格  | SJTUThesis版本 |
+|---------------|---------------|----------------|
+| 2016          | GB7714        | [0.9.5][0.9.5] |
 
 ### 编译模板
 
@@ -98,7 +89,4 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 上海交通大学校徽图片(`sjtulog.png`)和横幅图片(`sjtubanner.png`)的版权归原作者所有。其他部分使用 [Apache License 2.0](LICENSE) 授权。
 
 [README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
-[0.9.4]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.4
-[0.8.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.8
-[0.7.8]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.8
-[0.7.1]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.1
+[0.9.5]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.5

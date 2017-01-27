@@ -9,12 +9,12 @@ if exist thesis.pdf (
 
 echo Compile...
 echo xelatex -no-pdf thesis...
-xelatex -no-pdf thesis > nul
+xelatex -no-pdf thesis 1> nul
 echo biber --debug thesis...
-biber --debug thesis > nul
+biber --debug thesis 1> nul
 echo xelatex thesis...
-xelatex thesis > nul
-xelatex thesis > nul
+xelatex thesis 1> nul
+xelatex thesis 1> nul
 echo clean files...
 del *.aux *.run.xml *.bcf *.log *.xdv *.bbl *.bak *.blg *.out *.thm *.toc *.synctex* *.glg *.glo *.gls *.ist *.idx *.ilg *.ind *.acn *.acr *.lof *.lot *.loa *.alg *.glsdefs >nul 2>nul
 cd tex

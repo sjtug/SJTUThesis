@@ -5,8 +5,8 @@
 
 % 双面打印
 \documentclass[doctor, fontset=adobe, openright, twoside]{sjtuthesis}
-% \documentclass[bachelor, fontset=adobe, openany, oneside, submit]{sjtuthesis} 
-% \documentclass[master, adobefonts, review]{sjtuthesis} 
+% \documentclass[bachelor, fontset=adobe, openany, oneside, submit]{sjtuthesis}
+% \documentclass[master, fontset=adobe, review]{sjtuthesis}
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
 %   fontset=adobe|windows,  	% 只测试了adobe
@@ -36,8 +36,12 @@
 	\includepdf{pdf/authorization.pdf}
 	\cleardoublepage
 \else
+\ifsjtu@review\relax
+% exclude the original claim and authorization
+\else
 	\makeDeclareOriginal
 	\makeDeclareAuthorization
+\fi
 \fi
 \makeatother
 
