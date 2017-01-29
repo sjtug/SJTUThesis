@@ -14,7 +14,17 @@ SJTUThesis 需要使用 XeTeX 引擎编译。2016年的 [TeXLive](https://www.tu
 
 #### 字体
 
-中英文分别依赖 Adobe 的四套简体中文字体和 TeX Gyre Termes 西文字体。Tex Gyre Termes 可从 [CTAN](http://www.ctan.org/tex-archive/fonts/tex-gyre/fonts/opentype/public/tex-gyre) 下载四种不同字型。出于版权考虑，需要大家自行解决 AdobeSongStd, AdobeKaitiStd, AdobeHeitiStd, AdobeFangsongStd 四款中文字体的授权问题。
+SJTUThesis 需要五种字体，分别是一套英文字体，和宋体、仿宋、黑体、楷体四种中文字体。在不同的操作系统上，有不同的字体选择。
+
+##### 中文字体选择
+
+在中文字体中，Fandol 开放字体和 Adobe 付费字体是全系统支持的（Linux、macOS、Windows 等）。其中 Fandol 是开源在 GPL 许可证下的，不涉及字体版权问题，可在 [https://www.ctan.org/pkg/fandol](https://www.ctan.org/pkg/fandol) 自行下载安装。
+
+Adobe 字体是由 Adobe 推出的中文字体，需要 Adobe 授权使用。因为版权问题，若要使用请大家自行解决 AdobeSongStd, AdobeKaitiStd, AdobeHeitiStd, AdobeFangsongStd 四个中文字体的授权问题。
+
+##### 英文字体选择
+
+SJTUThesis 使用 TeX Gyre Termes 作为英文字体，Tex Gyre Termes 可从 [CTAN](http://www.ctan.org/tex-archive/fonts/tex-gyre/fonts/opentype/public/tex-gyre) 下载四种不同字型。
 
 ### 获取模板
 
