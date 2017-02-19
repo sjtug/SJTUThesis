@@ -4,8 +4,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2016/04/06 v0.9 Shanghai Jiao Tong University Template]
-\def\version{v0.9}
+\ProvidesClass{sjtuthesis}[2017/02/19 v0.9.5 Shanghai Jiao Tong University Template]
+\def\version{v0.9.5}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
@@ -60,7 +60,8 @@
 \RequirePackage{upgreek}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
-\RequirePackage{ccaption}
+\RequirePackage{caption}
+\RequirePackage[list=off]{bicaption}
 \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
 \DeclareCiteCommand{\citen} %加入一个水平引用函数
   {[\usebibmacro{cite:init}%直接添加方括号
@@ -177,10 +178,21 @@
 \graphicspath{{fig/}{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 
-% Caption setting in ccaption pacakge
-\captiondelim{\ }
-\captionnamefont{\kaishu\small}
-\captiontitlefont{\kaishu\small}
+% Caption setting in caption and bicaption pacakge
+\captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font=small}
+\captionsetup[bi-first]{bi-first}
+\captionsetup[bi-second]{bi-second}
+
+\DeclareCaptionOption{bi-first}[]{
+    \def\tablename{\sjtu@tablename}
+    \def\figurename{\sjtu@figurename}
+
+}
+\DeclareCaptionOption{bi-second}[]{
+    \def\tablename{Table}
+    \def\figurename{Figure}
+
+}
 
 % Floating parameters
 \renewcommand{\textfraction}{0.15}
