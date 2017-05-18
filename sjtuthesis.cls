@@ -194,6 +194,9 @@
 
 }
 
+% Ref https://github.com/weijianwen/SJTUThesis/issues/186
+\@addtoreset{algorithm}{chapter}% algorithm counter resets every chapter
+
 % Floating parameters
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
