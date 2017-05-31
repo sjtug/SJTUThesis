@@ -321,6 +321,9 @@
 % “绘制”SJTU中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
+\ifsjtu@bachelor
+  \includepdf{pdf/inner_cover.pdf}
+\else
   \thispagestyle{empty}
   \begin{center}
   {\songti\zihao{-3}\sjtu@label@statement}
@@ -351,6 +354,7 @@
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
+\fi
   \cleardoublepage
 }
 
@@ -367,6 +371,8 @@
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
 % "绘制"英文标题页
 \newcommand\makeenglishtitle[1]{%
+\ifsjtu@bachelor
+\else
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
@@ -395,6 +401,7 @@
     \normalfont\sjtu@value@englishinstitute \vskip 30pt
     \normalfont\sjtu@value@englishdate \vskip 20pt
   \end{center}
+\fi
   \cleardoublepage
 }
 
