@@ -338,9 +338,17 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\songti\zihao{-3}\sjtu@label@statement}
+  \includegraphics[width=0.8\textwidth]{figure/cover/sjtubannerblue.png}
+  \vskip 10pt
+  {\huge SHANGHAI JIAO TONG UNIVERSITY}\\
+  \vskip 3em
+  {\fangsong\zihao{1}\textbf{学士学位论文}}
+  \vskip 1em
+  {\zihao{3} THESIS OF BACHELOR}\\
+   \vskip 3em
+  \includegraphics[width=0.25\textwidth]{figure/cover/sjtulogoblue.png}
   \vskip\stretch{1}
-  {\heiti\zihao{3}\sjtu@value@title}
+  {\heiti\zihao{3}\sjtu@label@title\sjtu@value@title}
   \vskip\stretch{1}
   {\fangsong\zihao{4}}
   \def\tabcolsep{1pt}
@@ -354,15 +362,18 @@
         \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\ 
       \fi
     \else
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides}	& \underline{\makebox[150pt]{\sjtu@value@author}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
+        \begin{CJKfilltwosides}{5em}\heiti\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@author}} \\
+        \begin{CJKfilltwosides}{5em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
+        \begin{CJKfilltwosides}{5em}\heiti\sjtu@label@major\end{CJKfilltwosides}   & \underline{\makebox[150pt]{\sjtu@value@major}} \\
+        \begin{CJKfilltwosides}{5em}\heiti\sjtu@label@advisor\end{CJKfilltwosides}   & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
+
       \ifx\sjtu@value@coadvisor\undefined\else
         \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
       \fi
     \fi
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@major}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
+      % \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@major}} \\
+      % \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
+     \begin{CJKfilltwosides}{5em}\heiti\sjtu@label@institute\end{CJKfilltwosides}    & \underline{\makebox[150pt]{\sjtu@value@institute}}
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
@@ -499,7 +510,7 @@
 	%% 正文页
 	\fancypagestyle{main}{
 	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
-	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
+	  \[R]{\nouppercase{\small\kaishu\leftmark}}
 	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
 	  \renewcommand{\headheight}{32pt}
 	}
