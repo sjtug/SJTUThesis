@@ -121,6 +121,9 @@
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
 
+% Declare command for customized font size
+\DeclareDocumentCommand\setfontsize{mo}{\IfValueTF{#2}{\fontsize{#1}{#2}}{\fontsize{#1}{2\dimexpr#1}}\linespread{1}\selectfont\relax}
+
 %==========
 % Segment 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
 %==========
@@ -316,6 +319,16 @@
 % Segment 4. Draw the sjtuthesis
 %==========
 
+\renewcommand\maketitle[1]{%
+  \pdfbookmark[0]{封~~~~面}{titlepage}
+  \ifsjtu@bachelor
+    \make@bachelor@cntitle \cleardoublepage
+  \else
+    \make@cntitle \cleardoublepage
+    \make@entitle \cleardoublepage
+  \fi
+}
+
 \newcommand\classification[1]{\def\sjtu@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
@@ -333,8 +346,8 @@
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
 
-% “绘制”SJTU中文标题页
-\renewcommand\maketitle[1]{%
+% “绘制”中文标题页
+\newcommand\make@cntitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
@@ -369,7 +382,6 @@
   \cleardoublepage
 }
 
-
 % English Title Page
 \newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
 \newcommand\englishauthor[1]{\def\sjtu@value@englishauthor{#1}}
@@ -380,8 +392,9 @@
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
-% "绘制"英文标题页
-\newcommand\makeenglishtitle[1]{%
+
+% “绘制”英文标题页
+\newcommand\make@entitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
@@ -410,6 +423,56 @@
     \normalfont\sjtu@value@englishinstitute \vskip 30pt
     \normalfont\sjtu@value@englishdate \vskip 20pt
   \end{center}
+  \cleardoublepage
+}
+
+% “绘制”学士论文标题页
+\newcommand\make@bachelor@cntitle[1]{%
+  \cleardoublepage
+  \newgeometry{body={16cm,24cm}}
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{37pt}
+    \begin{figure}[!h]
+      \centering
+      \includegraphics{sjtulogo}
+    \end{figure}
+    \vskip 15pt
+    {\kaishu\setfontsize{32bp}\sjtu@value@chinesedegree\sjtu@label@thesis}
+    \vskip 15pt
+    {\zihao{-2}\MakeUppercase{Thesis of \sjtu@value@englishdegree}}
+    \vskip 3pt
+    \begin{figure}[!h]
+     \centering
+     \includegraphics[width=3cm]{sjtubadge}
+    \end{figure}
+    \vskip \stretch{2}
+    {\kaishu\zihao{2}
+    \begin{tabular}{r@{：}l}
+      \sjtu@label@title &
+      {\zihao{-2}\underline{\begin{minipage}{360pt}\centering\sjtu@value@title\end{minipage}}}
+    \end{tabular}}
+    \vskip \stretch{1}
+    {\kaishu\zihao{3}
+    \def\arraystretch{1.1}
+    \begin{tabular}{r@{：}l}
+      \ifsjtu@review
+        \begin{CJKfilltwosides}{4em}\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[180pt]{}}\\
+        \begin{CJKfilltwosides}{4em}\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[180pt]{}} \\
+      \else
+        \begin{CJKfilltwosides}{4em}\sjtu@label@author\end{CJKfilltwosides}	& \underline{\makebox[180pt]{\sjtu@value@author}} \\
+        \begin{CJKfilltwosides}{4em}\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[180pt]{\sjtu@value@studentnumber}} \\
+      \fi
+      \begin{CJKfilltwosides}{4em}\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[180pt]{\sjtu@value@major}} \\
+      \ifsjtu@review
+        \begin{CJKfilltwosides}{4em}\sjtu@label@advisor\end{CJKfilltwosides}  & \underline{\makebox[180pt]{}} \\
+      \else
+        \begin{CJKfilltwosides}{4em}\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[180pt]{\sjtu@value@advisor}} \\
+      \fi
+      \begin{CJKfilltwosides}{4em}\sjtu@label@institute\end{CJKfilltwosides} 	 & \underline{\makebox[180pt]{\sjtu@value@institute}}
+  \end{tabular}}
+  \end{center}
+  \restoregeometry
   \cleardoublepage
 }
 
@@ -470,7 +533,7 @@
 	%% 开章页页眉页脚
 	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
 	  \fancyhf{}
-	  \fancyhead[L]{\nouppercase{\small\kaishu\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}}
+	  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
 	  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{last}}~页}
 	  \renewcommand{\headheight}{32pt}
