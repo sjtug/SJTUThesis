@@ -32,7 +32,7 @@ wordcount:
 
 clean :
 	latexmk -C
-	-@rm -f *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml 2> /dev/null || true
+	-@rm -f *.bbl *.fls *.loa *.xdv $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml 2> /dev/null || true
 
 s3 : $(THESIS).pdf
 	s3cmd put $< s3://sjtuthesis/README.pdf

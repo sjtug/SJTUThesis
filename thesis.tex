@@ -4,9 +4,9 @@
 %%==================================================
 
 % 双面打印
-\documentclass[doctor, fontset=fandol, openright, twoside]{sjtuthesis}
-% \documentclass[bachelor, fontset=fandol, openany, oneside, submit]{sjtuthesis}
+\documentclass[bachelor, fontset=fandol, openany, oneside, submit]{sjtuthesis}
 % \documentclass[master, fontset=fandol, review]{sjtuthesis}
+% \documentclass[doctor, fontset=fandol, openright, twoside]{sjtuthesis}
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
 %   fontset=adobe|windows|fandol, % 字体选项
@@ -26,8 +26,6 @@
 %% 无编号内容：中英文论文封面、授权页
 \include{tex/id}
 \maketitle
-
-\makeenglishtitle
 
 \makeatletter
 \ifsjtu@submit\relax
