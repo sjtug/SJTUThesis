@@ -179,19 +179,18 @@
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 
 % Caption setting in caption and bicaption pacakge
-\captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font=small}
+\DeclareCaptionFont{kaishu}{\kaishu}
+\captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font={small,kaishu}}
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
 
 \DeclareCaptionOption{bi-first}[]{
     \def\tablename{\sjtu@tablename}
     \def\figurename{\sjtu@figurename}
-
 }
 \DeclareCaptionOption{bi-second}[]{
     \def\tablename{Table}
     \def\figurename{Figure}
-
 }
 
 % Ref https://github.com/weijianwen/SJTUThesis/issues/186
@@ -203,12 +202,13 @@
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
 
-% 定公式、图、表、算法的编号为"3-1"的形式，即分隔符由.变为短杠
+% 定公式、图、表、算法、代码的编号为"3-1"的形式，即分隔符由.变为短杠
 \renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
 \renewcommand\p@subfigure{\thefigure}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
 \renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
+\AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{chapter}--\arabic{lstlisting}}}
 
 % 使用enumitem宏包配制列表环境
 % 紧凑间距
@@ -247,7 +247,7 @@
   %% added by http://bbs.ctex.org/viewthread.php?tid=53451
   fontadjust,
   captionpos=t,
-  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
+  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-6pt,belowcaptionskip=9pt,
   xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
   texcl=true,
   % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
