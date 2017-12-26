@@ -18,6 +18,7 @@
 \DeclareOption{submit}{\sjtu@submittrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
+\PassOptionsToPackage{no-math}{fontspec}
 \LoadClass[a4paper,UTF8,scheme=chinese]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
@@ -50,14 +51,18 @@
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
-\RequirePackage{fontspec}
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
+\RequirePackage[defaultsups]{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage{sourcecodepro}
+\RequirePackage{upgreek}
+\RequirePackage{wasysym}
+\RequirePackage{anyfontsize}
 \RequirePackage{metalogo,doc}
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
-\RequirePackage{upgreek}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{caption}
@@ -72,7 +77,6 @@
   {\usebibmacro{cite:dump}%
    \usebibmacro{postnote}]}
 \RequirePackage{xcolor}
-\RequirePackage{wasysym}
 \RequirePackage{listings}
 \RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
@@ -124,9 +128,6 @@
 %==========
 % Segment 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
 %==========
-
-% Set the mainfont
-\setmainfont{TeX Gyre Termes}
 
 %% 行距缩放因子
 \linespread{1.3}
@@ -254,6 +255,9 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
+
+% Setting Package siunitx
+\sisetup{detect-all} % Detecting fonts
 
 % 定理环境
 \newtheoremstyle{break}% name
