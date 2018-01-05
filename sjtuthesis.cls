@@ -59,6 +59,7 @@
 \RequirePackage{wasysym}
 \RequirePackage{anyfontsize}
 \RequirePackage{metalogo,doc}
+\RequirePackage{array}
 \RequirePackage{threeparttable}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
@@ -320,6 +321,16 @@
 % Segment 4. Draw the sjtuthesis
 %==========
 
+\renewcommand\maketitle{%
+  \pdfbookmark[0]{扉~~~~页}{titlepage}
+  \ifsjtu@bachelor
+    \makechinesetitle@bachelor
+  \else
+    \makechinesetitle
+    \makeenglishtitle
+  \fi
+}
+
 \newcommand\classification[1]{\def\sjtu@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
@@ -337,8 +348,8 @@
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
 
-% “绘制”SJTU中文标题页
-\renewcommand\maketitle[1]{%
+% “绘制”中文标题页
+\newcommand\makechinesetitle{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
@@ -349,30 +360,29 @@
   {\fangsong\zihao{4}}
   \def\tabcolsep{1pt}
   \def\arraystretch{1.5}
-  \begin{tabular}{rl}
+  \begin{tabular}{>{\begin{CJKfilltwosides}{4em}\heiti}r<{\end{CJKfilltwosides}}l}
     \ifsjtu@review
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides} & \underline{\makebox[150pt]{}}\\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides}  & \underline{\makebox[150pt]{}} \\ 
+      \sjtu@label@author        & \underline{\makebox[150pt]{}} \\
+      \sjtu@label@studentnumber & \underline{\makebox[150pt]{}} \\
+      \sjtu@label@advisor       & \underline{\makebox[150pt]{}} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} & \underline{\makebox[150pt]{}} \\ 
+        \sjtu@label@coadvisor     & \underline{\makebox[150pt]{}} \\ 
       \fi
     \else
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@author\end{CJKfilltwosides}	& \underline{\makebox[150pt]{\sjtu@value@author}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@studentnumber\end{CJKfilltwosides} & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
+      \sjtu@label@author        & \underline{\makebox[150pt]{\sjtu@value@author}} \\
+      \sjtu@label@studentnumber & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
+      \sjtu@label@advisor       & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
       \ifx\sjtu@value@coadvisor\undefined\else
-        \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@coadvisor\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
+        \sjtu@label@coadvisor     & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
       \fi
     \fi
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@major\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@major}} \\
-      \begin{CJKfilltwosides}{4em}\heiti\sjtu@label@defenddate\end{CJKfilltwosides} 	 & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
+      \sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\
+      \sjtu@label@defenddate    & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
   \cleardoublepage
 }
-
 
 % English Title Page
 \newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
@@ -384,8 +394,9 @@
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
-% "绘制"英文标题页
-\newcommand\makeenglishtitle[1]{%
+
+% “绘制”英文标题页
+\newcommand\makeenglishtitle{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
@@ -413,6 +424,48 @@
     \fi 
     \normalfont\sjtu@value@englishinstitute \vskip 30pt
     \normalfont\sjtu@value@englishdate \vskip 20pt
+  \end{center}
+  \cleardoublepage
+}
+
+% “绘制”学士论文中文标题页
+\newcommand\makechinesetitle@bachelor{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{20pt} \vskip 7pt
+    \includegraphics{sjtulogo}
+    \vskip 30pt
+    {\fontsize{32}{32}\kaishu\sjtu@value@chinesedegree\sjtu@label@thesis}
+    \vskip 15pt
+    {\zihao{-2}\MakeUppercase{Thesis of \sjtu@value@englishdegree}}
+    \vskip 15pt
+    \includegraphics{sjtubadge}
+    \vskip \stretch{2}
+    {\kaishu\zihao{2}
+    \begin{tabular}{r@{：}l}
+      \sjtu@label@title &
+      {\zihao{-2}\underline{\begin{minipage}{360pt}\centering\sjtu@value@title\end{minipage}}}
+    \end{tabular}}
+    \vskip \stretch{1}
+    {\kaishu\zihao{3}
+    \def\arraystretch{1.1}
+    \begin{tabular}{>{\begin{CJKfilltwosides}{4em}}r<{\end{CJKfilltwosides}}@{：}l}
+      \ifsjtu@review
+        \sjtu@label@author        & \underline{\makebox[180pt]{}} \\
+        \sjtu@label@studentnumber & \underline{\makebox[180pt]{}} \\
+      \else
+        \sjtu@label@author        & \underline{\makebox[180pt]{\sjtu@value@author}} \\
+        \sjtu@label@studentnumber & \underline{\makebox[180pt]{\sjtu@value@studentnumber}} \\
+      \fi
+        \sjtu@label@major         & \underline{\makebox[180pt]{\sjtu@value@major}} \\
+      \ifsjtu@review
+        \sjtu@label@advisor       & \underline{\makebox[180pt]{}} \\
+      \else
+        \sjtu@label@advisor       & \underline{\makebox[180pt]{\sjtu@value@advisor}} \\
+      \fi
+        \sjtu@label@institute     & \underline{\makebox[180pt]{\sjtu@value@institute}}
+    \end{tabular}}
   \end{center}
   \cleardoublepage
 }
