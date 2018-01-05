@@ -14,19 +14,11 @@ SJTUThesis 需要使用 XeTeX 引擎编译。Linux 用户可以安装 [TeX Live]
 
 注：**Windows用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(用于版本控制)、GNUmake(用于编译控制)、perl(用于字数统计)。
 
-#### 字体
+#### 中文字体
 
-SJTUThesis 使用 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 提供中文支持，共需要五种字体，分别是一套英文字体，和宋体、仿宋、黑体、楷体四种中文字体。在不同的操作系统上，有不同的字体选择。
+SJTUThesis 由 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 宏集提供中文支持，CTeX 宏集预定义了六种不同的中文字体配置，以适应不同的操作系统。
 
-##### 中文字体选择
-
-在中文字体中，Fandol 开放字体和 Adobe 付费字体是全系统支持的（Linux、macOS、Windows 等）。其中 Fandol 是开源在 GPL 许可证下的，不涉及字体版权问题，可在 [https://www.ctan.org/pkg/fandol](https://www.ctan.org/pkg/fandol) 自行下载安装。
-
-Adobe 字体是由 Adobe 推出的中文字体，需要 Adobe 授权使用。因为版权问题，若要使用请大家自行解决 AdobeSongStd, AdobeKaitiStd, AdobeHeitiStd, AdobeFangsongStd 四个中文字体的授权问题。
-
-##### 英文字体选择
-
-SJTUThesis 使用 TeX Gyre Termes 作为英文字体，Tex Gyre Termes 可从 [CTAN](http://www.ctan.org/tex-archive/fonts/tex-gyre/fonts/opentype/public/tex-gyre) 下载四种不同字型。
+模版默认选用 Fandol 中文字库。 Fandol 字库是一套采用 GPL 许可证的开源字体，不涉及版权问题，而且支持绝大多数的操作系统（Linux、macOS、Windows 等）。可在 [https://www.ctan.org/pkg/fandol](https://www.ctan.org/pkg/fandol) 自行下载安装。你也可以根据自己的实际需要选择其他字体配置。
 
 ### 获取模板
 
