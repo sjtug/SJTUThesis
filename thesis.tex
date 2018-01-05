@@ -4,7 +4,7 @@
 %%==================================================
 
 % 双面打印
-\documentclass[doctor, fontset=fandol, openright, twoside]{sjtuthesis}
+\documentclass[bachelor, fontset=fandol, openright, twoside]{sjtuthesis}
 % \documentclass[bachelor, fontset=fandol, openany, oneside, submit]{sjtuthesis}
 % \documentclass[master, fontset=fandol, review]{sjtuthesis}
 % \documentclass[%
@@ -67,10 +67,10 @@
 
 %% 正文内容
 \pagestyle{main}
-\include{tex/intro}
-\include{tex/example}
-\include{tex/faq}
-\include{tex/summary}
+% \include{tex/intro}
+% \include{tex/example}
+% \include{tex/faq}
+% \include{tex/summary}
 
 \appendix	% 使用英文字母对附录编号，重新定义附录中的公式、图图表编号样式
 \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
@@ -79,10 +79,10 @@
 \renewcommand\thealgorithm{\Alph{chapter}--\arabic{algorithm}}
 
 %% 附录内容，本科学位论文可以用翻译的文献替代。
-\include{tex/app_setup}
-\include{tex/app_eq}
-\include{tex/app_cjk}
-\include{tex/app_log}
+% \include{tex/app_setup}
+% \include{tex/app_eq}
+% \include{tex/app_cjk}
+% \include{tex/app_log}
 
 \backmatter	% 文后无编号部分 
 
