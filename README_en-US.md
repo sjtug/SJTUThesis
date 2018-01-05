@@ -2,7 +2,7 @@
 
 SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, or doctor thesis in Shanghai Jiao Tong University.
 
-The generated thesis example PDF file can be found at `README.pdf` (this file has been removed, see weijianwen/SJTUThesis/#26 contributing PDF into repo will increase the repo size) . The user guide will be found at  [SJTUThesis Wiki](https://github.com/weijianwen/SJTUThesis/wiki)，welcome for contribution。
+The generated thesis example PDF file can be found at `README.pdf` (this file has been removed, see sjtug/SJTUThesis/#26 contributing PDF into repo will increase the repo size) . The user guide will be found at  [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)，welcome for contribution。
 
 ## User Guide
 
@@ -18,14 +18,14 @@ SJTUThesis requires XeTeX。[TeXLive](https://www.tug.org/texlive/)  distributed
 
 #### Fonts
 
-Chinese contents depend on four Adobe Simplified Chinese fonts, and English depends on TeX Gyre Termes font. Tex Gyre Termes can be found from [CTAN](http://www.ctan.org/tex-archive/fonts/tex-gyre/fonts/opentype/public/tex-gyre) . However, in order NOT to violate the font license, we don't provide AdobeSongStd, AdobeKaitiStd, AdobeHeitiStd or AdobeFangsongStd. (see weijianwen/SJTUThesis/#74  )
+Chinese contents depend on four Adobe Simplified Chinese fonts, and English depends on TeX Gyre Termes font. Tex Gyre Termes can be found from [CTAN](http://www.ctan.org/tex-archive/fonts/tex-gyre/fonts/opentype/public/tex-gyre) . However, in order NOT to violate the font license, we don't provide AdobeSongStd, AdobeKaitiStd, AdobeHeitiStd or AdobeFangsongStd. (see sjtug/SJTUThesis/#74  )
 
 ### Cloud Compiling by ShareLaTeX
 
 [ShareLaTeX](https://www.sharelatex.com/) can be used for compiling the SJTUThesis 0.8.1.
 Copy the page named [SJTUThesis-0.8](https://www.sharelatex.com/project/56701ac8d63cd1d9646a622f) and then start to write your thesis.
 
-For details, please read [Usage](https://github.com/weijianwen/SJTUThesis/wiki/Usage).
+For details, please read [Usage](https://github.com/sjtug/SJTUThesis/wiki/Usage).
 
 ### Get the Template
 
@@ -35,7 +35,7 @@ Determine the `git branch` you will use depending on your system environment. `c
 
     # clone a new copy
     cd
-    git clone https://github.com/weijianwen/SJTUThesis.git
+    git clone https://github.com/sjtug/SJTUThesis.git
     # OR update the latest code from Github
     git pull origin master
     # OR update to your fork repo
@@ -94,7 +94,7 @@ Double click the `complie.bat`, the final PDF file will be named as `thesis.pdf`
 
 We are hearing from:
 
-* [issue page of Github](https://github.com/weijianwen/SJTUThesis/issues)
+* [issue page of Github](https://github.com/sjtug/SJTUThesis/issues)
 * [SJTU BBS](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
 
 ## Further Plan
@@ -110,7 +110,7 @@ banner (`sjtubanner.png`) belongs to the original owner.
 The remain part is under [Apache License 2.0](LICENSE)
 
 [README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
-[0.9.3]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.3
-[0.8.7]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.8.7
-[0.7.7]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.7
-[0.7.1]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.7.1
+[0.9.3]: https://github.com/sjtug/SJTUThesis/releases/tag/0.9.3
+[0.8.7]: https://github.com/sjtug/SJTUThesis/releases/tag/0.8.7
+[0.7.7]: https://github.com/sjtug/SJTUThesis/releases/tag/0.7.7
+[0.7.1]: https://github.com/sjtug/SJTUThesis/releases/tag/0.7.1

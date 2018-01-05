@@ -1,6 +1,6 @@
 # 上海交通大学学位论文模板
 
-这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/weijianwen/SJTUThesis/wiki)，欢迎大家分享使用经验。
+这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)，欢迎大家分享使用经验。
 
 ## 如何使用
 
@@ -27,7 +27,7 @@ SJTUThesis 由 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 宏集提供中文�
 #### 终端中克隆最新版
 
     cd
-    git clone https://github.com/weijianwen/SJTUThesis.git
+    git clone https://github.com/sjtug/SJTUThesis.git
 
 如果之前有克隆过此模板但是想与 GitHub 上的最新版本同步，以`master`分支为例，执行以下命令更新到最新版。
 
@@ -80,7 +80,7 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 建议以如下的顺序反馈使用问题：
 
-* [在 GitHub 项目主页开 issue](https://github.com/weijianwen/SJTUThesis/issues)
+* [在 GitHub 项目主页开 issue](https://github.com/sjtug/SJTUThesis/issues)
 * [在水源 BBS TeX_LaTeX 版发帖](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
 
 ## 后续工作计划
@@ -93,4 +93,4 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 上海交通大学校徽图片(`sjtulog.png`)和横幅图片(`sjtubanner.png`)的版权归原作者所有。其他部分使用 [Apache License 2.0](LICENSE) 授权。
 
 [README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
-[0.9.5]: https://github.com/weijianwen/SJTUThesis/releases/tag/0.9.5
+[0.9.5]: https://github.com/sjtug/SJTUThesis/releases/tag/0.9.5
