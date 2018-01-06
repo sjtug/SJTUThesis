@@ -16,9 +16,7 @@ SJTUThesis 需要使用 XeTeX 引擎编译。Linux 用户可以安装 [TeX Live]
 
 #### 中文字体
 
-SJTUThesis 由 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 宏集提供中文支持，CTeX 宏集预定义了六种不同的中文字体配置，以适应不同的操作系统。
-
-模版默认选用 Fandol 中文字库。 Fandol 字库是一套采用 GPL 许可证的开源字体，不涉及版权问题，而且支持绝大多数的操作系统（Linux、macOS、Windows 等）。可在 [https://www.ctan.org/pkg/fandol](https://www.ctan.org/pkg/fandol) 自行下载安装。你也可以根据自己的实际需要选择其他字体配置。
+SJTUThesis 由 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 宏集提供中文支持，默认情况下可以自动检测操作系统选择字体配置，同时 CTeX 宏集也提供了相应选项以供在自动配置失效或用户有特殊需求的情况下使用。
 
 ### 获取模板
 

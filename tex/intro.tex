@@ -31,11 +31,10 @@
 \subsection{准备工作}
 \label{sec:requirements}
 
-要使用这个模板撰写学位论文，需要在\emph{TeX系统}、\emph{中文字体}、\emph{TeX技能}上有所准备。
+要使用这个模板撰写学位论文，需要在\emph{TeX系统}、\emph{TeX技能}上有所准备。
 
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 	\item {\TeX}系统：所使用的{\TeX}系统要支持 \XeTeX 引擎，且带有ctex 2.x宏包，以2015年的\emph{完整}TeXLive、MacTeX发行版为佳。
-	\item 中文字体：模板使用 \CTeX 宏集预定义的字体配置，默认使用开源的 Fandol 字库\footnote{\url{https://www.ctan.org/pkg/fandol}}。也可以使用 \CTeX 宏集预定义的其他中文字库，使用前需确保操作系统中安装了相应的字体\footnote{在Windows、macOS 以及 Linux 上安装额外的字体，可以参考\href{https://www.searchfreefonts.com/articles/how-to-install-fonts.htm}{“How to install fonts?”}。}。
 	\item TeX技能：尽管提供了对模板的必要说明，但这不是一份“ \LaTeX 入门文档”。在使用前请先通读其他入门文档。
 	\item 针对Windows用户的额外需求：学位论文模本分别使用git和GNUMake进行版本控制和构建，建议从Cygwin\footnote{\url{http://cygwin.com}}安装这两个工具。
 \end{itemize}
@@ -48,7 +47,7 @@ sjtuthesis提供了一些常用选项，在thesis.tex在导入sjtuthesis模板�
 
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 \item 学位类型：bachelor(学位)、master(硕士)、doctor(博士)，是必选项。
-\item 中文字体：fandol(Fandol 开源字体)、windows(Windows 系统下的中文字体)、mac(macOS 系统下的华文字体)、ubuntu(Ubuntu 系统下的文泉驿和文鼎字体)、adobe(Adobe 公司的中文字体)、founder(方正公司的中文字体)。
+\item 中文字体：fandol(Fandol 开源字体)、windows(Windows 系统下的中文字体)、mac(macOS 系统下的华文字体)、ubuntu(Ubuntu 系统下的文泉驿和文鼎字体)、adobe(Adobe 公司的中文字体)、founder(方正公司的中文字体)，默认根据操作系统自动配置。
 \item 正文字号：cs4size(小四)、c5size(五号)。
 \item 盲审选项：使用review选项后，论文作者、学号、导师姓名、致谢、发表论文和参与项目将被隐去。
 \end{itemize}
