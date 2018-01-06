@@ -1,23 +1,63 @@
 @echo off
-del thesis.pdf >nul 2>nul
-if exist thesis.pdf (
-	echo Close the file: thesis.pdf!!!
-	echo Or use Sumatra to open thesis.pdf
-	pause
-	exit
+chcp 65001 >nul
+
+set flag=%1
+if %flag%x == x (
+	set flag=thesis
 )
 
-echo Compile...
-echo xelatex -no-pdf thesis...
-xelatex -no-pdf thesis 1> nul
-echo biber --debug thesis...
-biber --debug thesis 1> nul
-echo xelatex thesis...
-xelatex thesis 1> nul
-xelatex thesis 1> nul
-echo clean files...
-del *.aux *.run.xml *.bcf *.log *.xdv *.bbl *.bak *.blg *.out *.thm *.toc *.synctex* *.glg *.glo *.gls *.ist *.idx *.ilg *.ind *.acn *.acr *.lof *.lot *.loa *.alg *.glsdefs >nul 2>nul
-cd tex
-del *.aux *.run.xml *.bcf *.log *.xdv *.bbl *.bak *.blg *.out *.thm *.toc *.synctex* *.glg *.glo *.gls *.ist *.idx *.ilg *.ind *.acn *.acr *.lof *.lot *.loa *.alg *.glsdefs >nul 2>nul
-echo finish...
-pause
+if %flag%x == thesisx (
+	call:cleanall
+	call:thesis	
+	if ERRORLEVEL 1 (
+		echo Error! Please check the 'thesis.log' for more details...
+		pause
+	) else (
+		call:clean
+		echo Finished!
+	)
+	goto:EOF
+)
+
+if %flag%x == cleanx (
+	call:clean
+	goto:EOF
+)
+
+if %flag%x == cleanallx (
+	call:cleanall
+	goto:EOF
+)
+
+:help
+	echo This is the compile batch script for SJTUThesis.
+	echo Usage:
+	echo     compile.bat [option]
+	echo options:
+	echo   thesis    Compile the thesis (default)
+	echo   clean     Clean all work files
+	echo   cleanall  Clean all work files and thesis.pdf
+	echo   help      Print this help message
+goto:EOF
+
+:thesis
+	echo Compile...
+	latexmk -xelatex -halt-on-error -silent thesis >nul 2>nul
+goto:EOF
+
+:clean
+	echo Clean files...
+	latexmk -c -silent
+	del tex\*.aux >nul 2>nul
+goto:EOF
+
+:cleanall
+	echo Clean files...
+	latexmk -C -silent
+	del tex\*.aux >nul 2>nul
+	if exist thesis.pdf (
+		echo Close the file: thesis.pdf!
+		pause
+		call:cleanall
+	)
+goto:EOF
