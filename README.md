@@ -1,5 +1,17 @@
 # 上海交通大学学位论文模板
 
+版本发布：[![](https://img.shields.io/github/release/sjtug/SJTUThesis.svg)](https://github.com/sjtug/SJTUThesis/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/sjtug/SJTUThesis.svg)]()
+
+持续集成：[![Build Status](https://travis-ci.org/sjtug/SJTUThesis.svg?branch=master)](https://travis-ci.org/sjtug/SJTUThesis)
+
+开发情况：[![](https://img.shields.io/github/commit-activity/y/sjtug/SJTUThesis.svg)](https://github.com/sjtug/SJTUThesis/graphs/commit-activity)
+[![](https://img.shields.io/github/contributors/sjtug/SJTUThesis.svg)](https://github.com/sjtug/SJTUThesis/graphs/contributors)
+![](https://img.shields.io/github/repo-size/sjtug/SJTUThesis.svg)
+[![GitHub top language](https://img.shields.io/github/languages/top/sjtug/SJTUthesis.svg)]()
+
+开源协议：![license](https://img.shields.io/github/license/sjtug/SJTUThesis.svg)
+
 这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)，欢迎大家分享使用经验。
 
 ## 如何使用
@@ -73,6 +85,13 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
     biber --debug thesis
     xelatex thesis
     xelatex thesis
+
+## ShareLaTeX
+
+[![](https://img.shields.io/badge/ShareLaTeX-v0.8-green.svg)](https://www.sharelatex.com/templates/566ea0fb08f4ac510fbc6b9e)
+[![](https://img.shields.io/badge/ShareLaTeX-v0.9.5-green.svg)](https://www.sharelatex.com/templates/588163ec93a02abc513710fd)
+
+因为 ShareLaTeX 的 GitHub 同步功能是收费的，因此其上模板不再更新，如遇到问题建议尝试本地编译。
 
 ## 反馈问题
 
