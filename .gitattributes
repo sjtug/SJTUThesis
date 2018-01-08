@@ -1,2 +1,8 @@
-texcount.pl linguist-vendored
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# except .bat
 *.bat eol=crlf
+
+# Ignore binary or vendored files
+*.pl linguist-vendored
