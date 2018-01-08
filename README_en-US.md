@@ -1,5 +1,9 @@
 # What is SJTUThesis?
 
+[![Build Status](https://travis-ci.org/sjtug/SJTUThesis.svg?branch=master)](https://travis-ci.org/sjtug/SJTUThesis)
+[![](https://img.shields.io/github/release/sjtug/SJTUThesis.svg)](https://github.com/sjtug/SJTUThesis/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/sjtug/SJTUThesis.svg)]()
+
 SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, or doctor thesis in Shanghai Jiao Tong University.
 
 The generated thesis example PDF file can be found at `README.pdf` (this file has been removed, see sjtug/SJTUThesis/#26 contributing PDF into repo will increase the repo size) . The user guide will be found at  [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)，welcome for contribution。
@@ -12,7 +16,7 @@ The generated thesis example PDF file can be found at `README.pdf` (this file ha
 
 #### TeX Distribution
 
-SJTUThesis requires XeTeX。[TeXLive](https://www.tug.org/texlive/)  distributed on 2014 and 2015,  [MacTeX](https://www.tug.org/mactex/)  released distribution can be used for compile this Template.  CTeX(2.9.2)  in Windows can be also compile  this successfully.  
+SJTUThesis requires XeTeX。[TeXLive](https://www.tug.org/texlive/)  distributed on 2014 and 2015,  [MacTeX](https://www.tug.org/mactex/)  released distribution can be used for compile this Template.  CTeX(2.9.2)  in Windows can be also compile  this successfully.
 
 [Babun](http://babun.github.io/) is recommended for **Windows User** as the `bash` terminal, which contains `git`, `GNUmake` and `perl` by default.
 
