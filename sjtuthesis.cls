@@ -210,7 +210,10 @@
     \def\figurename{Figure}
 }
 
-% Ref https://github.com/weijianwen/SJTUThesis/issues/186
+% Set fontnote font size in threeparttable
+\appto\TPTnoteSettings{\footnotesize}
+
+% Ref https://github.com/sjtug/SJTUThesis/issues/186
 \@addtoreset{algorithm}{chapter}% algorithm counter resets every chapter
 
 % Floating parameters
