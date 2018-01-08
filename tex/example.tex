@@ -178,29 +178,44 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.3\textwidth]{example/sjtulogo.png}
+  \includegraphics[width=4cm]{example/sjtulogo.png}
   \hspace{1cm}
-  \includegraphics[width=0.3\textwidth]{example/sjtulogo.jpg}
+  \includegraphics[width=4cm]{example/sjtulogo.jpg}
   \bicaption[这里将出现在插图索引中]
     {中文题图}
     {English caption}
   \label{fig:SRR}
 \end{figure}
 
-% 这里还有插入eps图像和pdf图像的例子，如图\ref{fig:epspdf:a}和图\ref{fig:epspdf:b}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。并列子图的功能是使用subfigure宏包提供的。
-% 
-% \begin{figure}
-%   \centering
-%   \subfigure[EPS Figure]{
-%     \label{fig:epspdf:a} %% label for first subfigure
-%     \includegraphics[width=0.3\textwidth]{example/sjtulogo.eps}}
-%   \hspace{1in}
-%   \subfigure[PDF Figure]{
-%     \label{fig:epspdf:b} %% label for second subfigure
-%     \includegraphics[width=0.3\textwidth]{example/sjtulogo.pdf}}
-%   \bicaption{插入eps和pdf的例子}{An EPS and PDF demo}
-%   \label{fig:pdfeps}
-% \end{figure}
+这里还有插入EPS图像和PDF图像的例子，如图\ref{fig:epspdf:a}和图\ref{fig:epspdf:b}。这里将EPS和PDF图片作为子图插入，每个子图有自己的小标题。子图标题使用subcaption宏包添加。
+
+\begin{figure}[!htp]
+  \centering
+  \subcaptionbox{EPS 图像\label{fig:epspdf:a}}[3cm] %标题的长度，超过则会换行，如下一个小图。
+    {\includegraphics[height=2.5cm]{example/sjtulogo.eps}}
+  \hspace{4em}
+  \subcaptionbox{PDF 图像，注意这个图略矮些。如果标题很长的话，它会自动换行\label{fig:epspdf:b}}
+    {\includegraphics[height=2cm]{sjtulogo.pdf}}
+  \bicaption{插入eps和pdf的例子（使用 subcaptionbox 方式）}{An EPS and PDF demo with subcaptionbox}
+  \label{fig:pdfeps-subcaptionbox}
+\end{figure}
+
+\begin{figure}[!htp]
+  \centering
+  \begin{subfigure}{2.5cm}
+    \centering
+    \includegraphics[height=2.5cm]{example/sjtulogo.eps}
+    \caption{EPS 图像}
+  \end{subfigure}
+  \hspace{4em}
+  \begin{subfigure}{0.4\textwidth}
+    \centering
+    \includegraphics[height=2cm]{sjtulogo.pdf}
+    \caption{PDF 图像，注意这个图略矮些。subfigure中同一行的子图在顶端对齐。}
+  \end{subfigure}
+  \bicaption{插入eps和pdf的例子（使用 subfigure 方式）}{An EPS and PDF demo with subfigure}
+  \label{fig:pdfeps-subfigure}
+\end{figure}
 
 更多关于 \LaTeX 插图的例子可以参考\href{http://www.cs.duke.edu/junhu/Graphics3.pdf}{《\LaTeX 插图指南》}。
 
@@ -211,9 +226,9 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
 其中使用了minipage环境来限制整个浮动体的宽度。
 
 \begin{figure}[!htp]
- \centering
- \includegraphics[width=4cm]{example/sjtulogo.pdf}
- \bicaption[这里将出现在插图索引]
+  \centering
+  \includegraphics[width=4cm]{sjtubadge.pdf}
+  \bicaption[这里将出现在插图索引]
     {上海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}
     {Where there is a will, there is a way.}
  \label{fig:longcaptionbad}
@@ -223,7 +238,7 @@ i,j作为虚数单位时，也应该使用“直立体”为了明显，还加�
   \centering
   \begin{minipage}[b]{0.6\textwidth}
     \centering
-    \includegraphics[width=4cm]{example/sjtulogo.pdf}
+    \includegraphics[width=4cm]{sjtubadge.pdf}
     \bicaption[出现在插图索引中]
       {上海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学.}
       {Where there is a will, there is a way.}
