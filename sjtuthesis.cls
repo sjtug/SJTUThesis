@@ -74,9 +74,9 @@
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
 \RequirePackage{graphicx}
-\RequirePackage{subfigure}
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
+\RequirePackage{subcaption}
 \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
 \DeclareCiteCommand{\citen} %加入一个水平引用函数
   {[\usebibmacro{cite:init}%直接添加方括号
@@ -199,6 +199,7 @@
 \captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font={small,kaishu}}
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
+\captionsetup[sub]{font=footnotesize}
 
 \DeclareCaptionOption{bi-first}[]{
     \def\tablename{\sjtu@tablename}
@@ -263,7 +264,7 @@
   %% added by http://bbs.ctex.org/viewthread.php?tid=53451
   fontadjust,
   captionpos=t,
-  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-6pt,belowcaptionskip=9pt,
+  framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-9pt,belowcaptionskip=9pt,
   xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
   texcl=true,
   % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
