@@ -10,7 +10,7 @@ LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
 all: $(THESIS).pdf
 
-.PHONY : all clean pvc view wordcount git zip
+.PHONY : all cleanall pvc view wordcount git zip
 
 $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
 	-latexmk $(LATEXMK_OPT) $(THESIS)
@@ -26,13 +26,17 @@ view : $(THESIS).pdf
 	open $<
 
 wordcount:
-	@perl texcount.pl $(THESIS).tex -inc          | awk '/total/ {getline; print "词数    :",$$4}' 
-	@perl texcount.pl $(THESIS).tex -inc -char    | awk '/total/ {getline; print "字符数  :",$$4}' 
+	@perl texcount.pl $(THESIS).tex -inc          | awk '/total/ {getline; print "词数　　:",$$4}' 
+	@perl texcount.pl $(THESIS).tex -inc -char    | awk '/total/ {getline; print "字符数　:",$$4}' 
 	@perl texcount.pl $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "中文字数:",$$4}' 
 
 clean :
-	latexmk -C
-	-@rm -f *.xdv *.bbl *.fls $(TEX_DIR)/*.xdv $(TEX_DIR)/*.aux $(TEX_DIR)/*.log $(TEX_DIR)/*.fls _tmp_.pdf *.xml 2> /dev/null || true
+	-@latexmk -c -silent 2> /dev/null
+	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
+
+cleanall :
+	-@latexmk -C -silent 2> /dev/null
+	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
 
 s3 : $(THESIS).pdf
 	s3cmd put $< s3://sjtuthesis/README.pdf

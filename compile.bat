@@ -7,26 +7,26 @@ if %flag%x == x (
 )
 
 if %flag%x == thesisx (
-	call:cleanall
-	call:thesis	
+	call :cleanall
+	call :thesis	
 	if ERRORLEVEL 1 (
 		echo Error! Please check the 'thesis.log' for more details...
 		pause
 	) else (
-		call:clean
+		call :clean
 		echo Finished!
 	)
-	goto:EOF
+	goto :EOF
 )
 
 if %flag%x == cleanx (
-	call:clean
-	goto:EOF
+	call :clean
+	goto :EOF
 )
 
 if %flag%x == cleanallx (
-	call:cleanall
-	goto:EOF
+	call :cleanall
+	goto :EOF
 )
 
 :help
@@ -38,26 +38,26 @@ if %flag%x == cleanallx (
 	echo   clean     Clean all work files
 	echo   cleanall  Clean all work files and thesis.pdf
 	echo   help      Print this help message
-goto:EOF
+goto :EOF
 
 :thesis
 	echo Compile...
 	latexmk -xelatex -halt-on-error -silent thesis >nul 2>nul
-goto:EOF
+goto :EOF
 
 :clean
 	echo Clean files...
-	latexmk -c -silent
+	latexmk -c -silent 2>nul
 	del tex\*.aux >nul 2>nul
-goto:EOF
+goto :EOF
 
 :cleanall
 	echo Clean files...
-	latexmk -C -silent
+	latexmk -C -silent 2>nul
 	del tex\*.aux >nul 2>nul
 	if exist thesis.pdf (
 		echo Close the file: thesis.pdf!
 		pause
-		call:cleanall
+		call :cleanall
 	)
-goto:EOF
+goto :EOF

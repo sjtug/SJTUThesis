@@ -36,15 +36,19 @@ SJTUThesis 由 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 宏集提供中文�
 
 #### 终端中克隆最新版
 
-    cd
-    git clone https://github.com/sjtug/SJTUThesis.git
+```shell
+git clone https://github.com/sjtug/SJTUThesis.git
+```
 
 如果之前有克隆过此模板但是想与 GitHub 上的最新版本同步，以`master`分支为例，执行以下命令更新到最新版。
 
-    git pull origin master
+```shell
+git pull origin master
+```
 
 若是自己 fork 后克隆下来的，则执行以下命令。
-```
+
+```shell
 git pull upstream master
 ```
 
@@ -60,11 +64,15 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 编译模板，生成学位论文PDF文件。GNUMake将调用`latexmk`程序，自动完成模板的多轮编译。
 
-    make pvc
+```shell
+make pvc
+```
 
 定稿后可使用以下命令生成最终版本。
 
-    make clean thesis.pdf
+```shell
+make cleanall thesis.pdf
+```
 
 若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在`thesis.tex`中为`sjtuthesis`文档类添加`review`选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为`pdf/origignal.pdf`和`pdf/authorization.pdf`，然后添加`submit`选项重新编译模板。
 
@@ -74,17 +82,21 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 ### 字数统计
 
-    make wordcount
+```shell
+make wordcount
+```
 
 ### 问题诊断
 
 编译失败时，可以尝试手动逐次编译。
 结合文档 [README.pdf][README] 中的说明，有助于定位故障。
 
-    xelatex -no-pdf thesis
-    biber --debug thesis
-    xelatex thesis
-    xelatex thesis
+```shell
+xelatex -no-pdf thesis
+biber --debug thesis
+xelatex thesis
+xelatex thesis
+```
 
 ## ShareLaTeX
 
