@@ -231,6 +231,18 @@ TSWLatexianTemp*
 .AppleDouble
 .LSOverride
 
+# Thumbnails
+._*
+
+# See https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+[Dd]esktop.ini
+
 # Project specific
 thesis.pdf
 README.pdf
