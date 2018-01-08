@@ -113,8 +113,8 @@ xelatex thesis
 * 感谢 [CTeX](http://www.ctex.org/HomePage) 提供了 LaTeX 的中文支持
 * 感谢那位最先制作出博士学位论文 LaTeX 模板的交大物理系同学
 * 感谢 William Wang 同学对模板移植做出的巨大贡献
-* 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的维护工作
-* 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的维护工作
+* 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的开发和维护工作
+* 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的开发和维护工作
 * 感谢所有为模板贡献过代码的[同学们](./AUTHORS.md), 以及所有测试和使用模板的各位同学
 
 ## 软件许可证
