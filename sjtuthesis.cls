@@ -78,14 +78,6 @@
 \RequirePackage[list=off]{bicaption}
 \RequirePackage{subcaption}
 \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
-\DeclareCiteCommand{\citen} %加入一个水平引用函数
-  {[\usebibmacro{cite:init}%直接添加方括号
-   \usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \usebibmacro{cite:comp}}
-  {}
-  {\usebibmacro{cite:dump}%
-   \usebibmacro{postnote}]}
 \RequirePackage{xcolor}
 \RequirePackage{listings}
 \RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
