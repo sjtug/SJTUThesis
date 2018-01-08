@@ -8,7 +8,7 @@
 
 ## 如何使用
 
-SJTUThesis可以在本地编译，也可以在线编译。
+SJTUThesis 可以在本地编译，也可以在线编译。
 
 ### 本地编译 - 系统需求
 
@@ -16,7 +16,7 @@ SJTUThesis可以在本地编译，也可以在线编译。
 
 SJTUThesis 需要使用 XeTeX 引擎编译。Linux 用户可以安装 [TeX Live](https://www.tug.org/texlive/)，MacOS 用户可以安装 [MacTeX](https://www.tug.org/mactex/)，Windows 用户可以安装 [CTeX 套装（包含完整版 MiKTeX）](http://www.ctex.org/CTeXDownload)。
 
-注：**Windows用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(用于版本控制)、GNUmake(用于编译控制)、perl(用于字数统计)。
+注：**Windows 用户**推荐使用 [Babun](http://babun.github.io/) 作为命令行终端。Babun 已默认安装有这些工具：git(用于版本控制)、GNUmake(用于编译控制)、perl(用于字数统计)。
 
 #### 中文字体
 
@@ -32,7 +32,7 @@ SJTUThesis 由 [CTeX](https://www.ctan.org/pkg/ctex?lang=en) 宏集提供中文�
 git clone https://github.com/sjtug/SJTUThesis.git
 ```
 
-如果之前有克隆过此模板但是想与 GitHub 上的最新版本同步，以`master`分支为例，执行以下命令更新到最新版。
+如果之前有克隆过此模板但是想与 GitHub 上的最新版本同步，以 `master` 分支为例，执行以下命令更新到最新版。
 
 ```shell
 git pull origin master
@@ -46,7 +46,7 @@ git pull upstream master
 
 #### 压缩包下载
 
-SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具有相近的外观，但依赖不同的TeXLive发行版和参考文献处理程序。
+SJTUThesis 提供了多个稳定版供您使用，这些版本的输出结果具有相近的外观，但依赖不同的 TeXLive 发行版和参考文献处理程序。
 
 | TeXLive发行版 | 参考文献风格  | SJTUThesis版本 |
 |---------------|---------------|----------------|
@@ -54,7 +54,7 @@ SJTUThesis提供了多个稳定版供您使用，这些版本的输出结果具�
 
 ### 编译模板
 
-编译模板，生成学位论文PDF文件。GNUMake将调用`latexmk`程序，自动完成模板的多轮编译。
+编译模板，生成学位论文 PDF 文件。GNUMake 将调用 `latexmk` 程序，自动完成模板的多轮编译。
 
 ```shell
 make pvc
@@ -66,11 +66,11 @@ make pvc
 make cleanall thesis.pdf
 ```
 
-若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在`thesis.tex`中为`sjtuthesis`文档类添加`review`选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为`pdf/origignal.pdf`和`pdf/authorization.pdf`，然后添加`submit`选项重新编译模板。
+若需要生成用于提交盲审的论文(隐去作者、导师等信息)，可在 `thesis.tex` 中为 `sjtuthesis` 文档类添加 `review` 选项。 若需要生成包含“原创性声明扫描件”和“授权书”签名扫描件的学位论文，请将扫描件分别保存为 `pdf/origignal.pdf` 和 `pdf/authorization.pdf`，然后添加 `submit` 选项重新编译模板。
 
 #### Windows用户编译
 
-双击`compile.bat`即可完成编译过程，生成`thesis.pdf`，不依赖于 GNUMake。
+双击 `compile.bat` 即可完成编译过程，生成 `thesis.pdf`，不依赖于 GNUMake。
 
 ### 字数统计
 
@@ -106,8 +106,7 @@ xelatex thesis
 
 ## 后续工作计划
 
-* 精简代码；
-* 改进开章页设计；
+* 分离学位论文的使用文档和示例文档，准备提交到 CTAN [#47](https://github.com/sjtug/SJTUThesis/issues/47)
 
 ## 软件许可证
 
