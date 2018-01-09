@@ -94,10 +94,11 @@ xelatex thesis
 
 ### ShareLaTeX 在线编译
 
-[![](https://img.shields.io/badge/ShareLaTeX-v0.8-green.svg)](https://www.sharelatex.com/templates/566ea0fb08f4ac510fbc6b9e)
-[![](https://img.shields.io/badge/ShareLaTeX-v0.9.5-green.svg)](https://www.sharelatex.com/templates/588163ec93a02abc513710fd)
+[![](https://img.shields.io/badge/ShareLaTeX-v0.10-green.svg)](https://www.sharelatex.com/templates/5a54637e8cd4f9d91b6b6416)
+[![](https://img.shields.io/badge/ShareLaTeX-v0.9.5-yellow.svg)](https://www.sharelatex.com/templates/588163ec93a02abc513710fd)
+[![](https://img.shields.io/badge/ShareLaTeX-v0.8-yellow.svg)](https://www.sharelatex.com/templates/566ea0fb08f4ac510fbc6b9e)
 
-因为 ShareLaTeX 的 GitHub 同步功能是收费的，因此其上模板不再更新，如遇到问题建议尝试本地编译。
+我们有多个版本的模板在 ShareLaTeX 上可用, 但是推荐使用最新版本, 以避免可能遇到的一些问题。此外如果在 ShareLaTeX 上遇到问题建议尝试本地编译。
 
 ## 反馈问题
 
