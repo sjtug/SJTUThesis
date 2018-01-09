@@ -115,7 +115,7 @@ xelatex thesis
 * 感谢 William Wang 同学对模板移植做出的巨大贡献
 * 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的开发和维护工作
 * 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的开发和维护工作
-* 感谢所有为模板贡献过代码的[同学们](./AUTHORS.md), 以及所有测试和使用模板的各位同学
+* 感谢所有为模板贡献过代码的[同学们](https://github.com/sjtug/SJTUThesis/graphs/contributors), 以及所有测试和使用模板的各位同学
 
 ## 软件许可证
 
