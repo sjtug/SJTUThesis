@@ -52,5 +52,5 @@ RUN tlmgr install latexmk ulem
 
 WORKDIR /workdir
 
-ENTRYPOINT make
-CMD all
+ENTRYPOINT ["make"]
+CMD ["all"]
