@@ -4,8 +4,8 @@
 %%==================================================
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sjtuthesis}[2017/02/19 v0.9.5 Shanghai Jiao Tong University Template]
-\def\version{v0.9.5}
+\ProvidesClass{sjtuthesis}[2018/01/09 v0.10 Shanghai Jiao Tong University Template]
+\def\version{v0.10}
 \newif\ifsjtu@bachelor\sjtu@bachelorfalse
 \newif\ifsjtu@master\sjtu@masterfalse
 \newif\ifsjtu@doctor\sjtu@doctorfalse
