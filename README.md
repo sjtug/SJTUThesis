@@ -124,5 +124,5 @@ xelatex thesis
 
 上海交通大学校徽图片(`sjtulogo.pdf` 等)的版权归上海交通大学所有。其他部分使用 [Apache License 2.0](LICENSE) 授权。
 
-[README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
+[README]: http://sjtug.org/SJTUThesis/README.pdf
 [0.9.5]: https://github.com/sjtug/SJTUThesis/releases/tag/0.9.5
