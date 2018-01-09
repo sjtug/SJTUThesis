@@ -28,9 +28,8 @@ RUN apt-get update && apt-get install -y \
     xfonts-intl-chinese \
     xfonts-intl-chinese-big
 
-RUN mkdir -p ${INSTALL}
-
-RUN curl -sSL $REMOTE/install-tl-unx.tar.gz | tar -xzv -C ${INSTALL} --strip-components=1
+RUN mkdir -p ${INSTALL} \
+    && curl -sSL $REMOTE/install-tl-unx.tar.gz | tar -xzv -C ${INSTALL} --strip-components=1
 
 RUN echo "selected_scheme scheme-basic" >> ${INSTALL}/tl.profile \
     && echo "collection-basic 1" >> ${INSTALL}/tl.profile \
