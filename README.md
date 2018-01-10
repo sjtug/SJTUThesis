@@ -110,7 +110,7 @@ xelatex thesis
 
 [![Docker Repository on Quay](https://quay.io/repository/sjtug/sjtuthesis/status "Docker Repository on Quay")](https://quay.io/repository/sjtug/sjtuthesis)
 
-然后执行如下命令即可, 其中 `PATH_TO_SJTUTHESIS` 为模板目录所在的位置, 如 `~/code/SJTUThesis` 等.
+在模板目录下执行以下命令即可:
 
 ```shell
 docker pull quay.io/sjtug/sjtuthesis
