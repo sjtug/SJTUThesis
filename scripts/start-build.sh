@@ -26,3 +26,5 @@ docker run --rm=true \
   -w "/workdir" \
   -u "${USER_NAME}" \
   "sjtuthesis-${USER_ID}"
+
+cd - > /dev/null
