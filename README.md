@@ -8,11 +8,17 @@
 
 ## 如何使用
 
-SJTUThesis 可以在本地编译，也可以在线编译。
+SJTUThesis 共有三种编译方式支持:
+
+- [本地编译](#本地编译)
+- [在 ShareLaTeX 网站上进行在线编译](#sharelatex-在线编译)
+- [在 Docker 容器中编译](#使用-docker-编译)
+
+第一种编译方式需要在本地安装 TeX 发行版，好处在于环境问题少，坏处在于安装过程比较漫长且繁琐。第二种编译方式是完全在线的，不需要在本地安装任何环境，缺点在于需要完全依赖 ShareLaTeX 网站，其在国内的稳定性存疑。第三种方式需要在本地安装 Docker，相比第一种，不会污染本地的环境。但要求用户对 Docker 有一定了解。
 
 ### 本地编译
 
-本地编译需要依赖一个可用的 LaTeX 发行版, 以及中文字体的支持。
+本地编译需要依赖一个可用的 LaTeX 发行版，以及中文字体的支持。
 
 #### TeX 发行版
 
@@ -98,7 +104,18 @@ xelatex thesis
 [![](https://img.shields.io/badge/ShareLaTeX-v0.9.5-yellow.svg)](https://www.sharelatex.com/templates/588163ec93a02abc513710fd)
 [![](https://img.shields.io/badge/ShareLaTeX-v0.8-yellow.svg)](https://www.sharelatex.com/templates/566ea0fb08f4ac510fbc6b9e)
 
-我们有多个版本的模板在 ShareLaTeX 上可用, 但是推荐使用最新版本, 以避免可能遇到的一些问题。此外如果在 ShareLaTeX 上遇到问题建议尝试本地编译。
+我们有多个版本的模板在 ShareLaTeX 上可用，但是推荐使用最新版本，以避免可能遇到的一些问题。此外如果在 ShareLaTeX 上遇到问题建议尝试本地编译。
+
+### 使用 Docker 编译
+
+[![Docker Repository on Quay](https://quay.io/repository/sjtug/sjtuthesis/status "Docker Repository on Quay")](https://quay.io/repository/sjtug/sjtuthesis)
+
+然后执行如下命令即可, 其中 `PATH_TO_SJTUTHESIS` 为模板目录所在的位置, 如 `~/code/SJTUThesis` 等.
+
+```shell
+docker pull quay.io/sjtug/sjtuthesis
+./scripts/start-build.sh
+```
 
 ## 反馈问题
 
@@ -118,7 +135,7 @@ xelatex thesis
 * 感谢 William Wang 同学对模板移植做出的巨大贡献
 * 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的开发和维护工作
 * 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的开发和维护工作
-* 感谢所有为模板贡献过代码的[同学们](https://github.com/sjtug/SJTUThesis/graphs/contributors), 以及所有测试和使用模板的各位同学
+* 感谢所有为模板贡献过代码的[同学们](https://github.com/sjtug/SJTUThesis/graphs/contributors)，以及所有测试和使用模板的各位同学
 
 ## 软件许可证
 
