@@ -2,8 +2,8 @@
 
 set -e               # exit on error
 
-cd "$(dirname "$0")" # connect to root
-cd ..
+ROOT=$(dirname "${BASH_SOURCE}")/..
+cd ${ROOT}
 
 if [ "$(uname -s)" == "Linux" ]; then
   USER_NAME=${SUDO_USER:=$USER}
