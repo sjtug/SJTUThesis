@@ -3,6 +3,7 @@
 set -e               # exit on error
 
 cd "$(dirname "$0")" # connect to root
+cd ..
 
 if [ "$(uname -s)" == "Linux" ]; then
   USER_NAME=${SUDO_USER:=$USER}
