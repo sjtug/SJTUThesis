@@ -11,9 +11,9 @@
 
 SJTUThesis 共有三种编译方式支持:
 
-- [本地编译](#本地编译)
-- [在 ShareLaTeX 网站上进行在线编译](#sharelatex-在线编译)
-- [在 Docker 容器中编译](#使用-docker-编译)
+* [本地编译](#本地编译)
+* [在 ShareLaTeX 网站上进行在线编译](#sharelatex-在线编译)
+* [在 Docker 容器中编译](#使用-docker-编译)
 
 第一种编译方式需要在本地安装 TeX 发行版，好处在于环境问题少，坏处在于安装过程比较漫长且繁琐。第二种编译方式是完全在线的，不需要在本地安装任何环境，缺点在于需要完全依赖 ShareLaTeX 网站，其在国内的稳定性存疑。第三种方式需要在本地安装 Docker，相比第一种，不会污染本地的环境。但要求用户对 Docker 有一定了解。
 
@@ -120,10 +120,22 @@ docker pull quay.io/sjtug/sjtuthesis
 
 ## 反馈问题
 
-建议以如下的顺序反馈使用问题：
+建议以如下的顺序反馈使用过程中的问题：
 
 * [在 GitHub 项目主页开 issue](https://github.com/sjtug/SJTUThesis/issues) (推荐)
 * [在水源 BBS TeX_LaTeX 版发帖](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
+
+如果你觉得项目的使用体验不好，或者想感谢我们的维护者们等等任何与使用无关的想法，都可以通过我们的[在线聊天频道](https://gitter.im/sjtug/SJTUThesis)告诉我们。
+
+## 如何贡献
+
+SJTUThesis 是一个由诸多感兴趣的同学一起维护的开源项目，我们非常欢迎新的贡献者! 这里有很多贡献的方式:
+
+* 帮助我们解答同学们的[问题](https://github.com/sjtug/SJTUThesis/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Atype%2Fquestion+)，这些问题你也可能遇到过并且知道如何解决
+* 与我们一起维护项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)，Wiki 是可以直接编辑的
+* 向我们贡献代码，我们有一些对新的贡献者比较友好的问题，你可以从[这些问题](https://github.com/sjtug/SJTUThesis/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue)开始熟悉贡献代码的流程
+* 向周围同学安利 SJTUThesis，让更多的同学使用我们维护的模板
+* 在我们的[在线聊天频道上](https://gitter.im/sjtug/SJTUThesis)告诉我们你的使用体验，以及吐槽。如果你也想成为项目的长期维护者，也可以通过在线频道告诉我们 :-)
 
 ## 后续工作计划
 
