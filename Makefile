@@ -1,4 +1,5 @@
 THESIS = thesis
+CLASS = sjtuthesis
 # TEX, BIB, TEST dir
 TEX_DIR = tex
 BIB_DIR = bib
@@ -18,7 +19,11 @@ $(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls s
 pvc :
 	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
 
-validate :
+doc :
+	latexmk $(CLASS).dtx
+	latexmk -c $(CLASS).dtx
+
+validate : doc
 	xelatex -no-pdf -halt-on-error $(THESIS)
 	biber --debug $(THESIS)
 

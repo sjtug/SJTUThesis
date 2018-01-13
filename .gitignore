@@ -11,6 +11,7 @@
 *.fot
 *.cb
 *.cb2
+*.hd
 
 ## Intermediate documents:
 *.dvi
@@ -245,3 +246,4 @@ ehthumbs_vista.db
 
 # Project specific
 thesis.pdf
+sjtuthesis.pdf
