@@ -35,7 +35,6 @@ install:
 
 before_script:
   - sed -i 's/,\s*fontset=\?\w*//' thesis.tex
-  - sed -i '/setmainfont/d' sjtuthesis.cls
 
 script:
   - make validate
