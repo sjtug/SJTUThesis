@@ -244,7 +244,7 @@ The Current Maintainers of this work are Jianwen Wei and Alexara Wu.
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
-\RequirePackage[defaultsups]{newtxtext}
+\RequirePackage[helvratio=1]{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage{sourcecodepro}
 \RequirePackage{upgreek}
@@ -319,48 +319,44 @@ The Current Maintainers of this work are Jianwen Wei and Alexara Wu.
 
 %% CTeX Settings
 % 名称：目录、表格索引、插图索引、算法、算法索引、代码
-\ctexset{contentsname={\sjtu@contentsname}}
-\ctexset{listfigurename={\sjtu@listfigurename}}
-\ctexset{listtablename={\sjtu@listtablename}}
+\ctexset{%
+  contentsname   = \sjtu@contentsname,
+  listfigurename = \sjtu@listfigurename,
+  listtablename  = \sjtu@listtablename,
+  autoindent     = true,
+  chapter={%
+    format       = \zihao{3}\bfseries\centering,
+    nameformat   = {},
+    titleformat  = {},
+    aftername    = \quad,
+    afterindent  = true,
+    beforeskip   = {15\p@},
+    afterskip    = {12\p@},
+  },
+  section={%
+    format       = \zihao{4}\bfseries,
+    afterindent  = true,
+    afterskip    = {1.0ex \@plus .2ex},
+  },
+  subsection={%
+    format       = \zihao{-4}\bfseries,
+    afterindent  = true,
+    afterskip    = {1.0ex \@plus .2ex},
+  },
+  subsubsection={%
+    format       = \normalfont\normalsize,
+    afterindent  = true,
+    afterskip    = {1.0ex \@plus .2ex},
+  },
+  paragraph/afterindent    = true,
+  subparagraph/afterindent = true,
+}
+
 \floatname{algorithm}{\sjtu@label@algo}
 \renewcommand{\algorithmicrequire}{\textbf{\sjtu@algorithmicrequire}} 
 \renewcommand{\algorithmicensure}{\textbf{\sjtu@algorithmicensure}}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
-
-% Title Settings at the chapter Level
-\ctexset{chapter={
-	format={\centering},
-	nameformat={\Large\bfseries},
-	titleformat={\Large\bfseries},
-	aftername={\quad},
-	beforeskip={15\p@},
-	afterskip={12\p@},
-	}
-}
-% Title Settings at the section Level
-\ctexset{section={
-	format={\large\bfseries},
-	afterskip={1.0ex \@plus .2ex},
-	}
-}
-% Title Settings at the subection Level
-\ctexset{subsection={
-	format={\bfseries\normalsize},
-	indent={0\ccwd},
-	afterskip={1.0ex \@plus .2ex},
-	}
-}
-% Title Settings at the subsubection Level
-\ctexset{subsubsection={
-	format={\normalfont\normalsize},
-	indent={0\ccwd},
-	afterskip={1.0ex \@plus .2ex},
-	}
-}
-
-% Set indent in English mode
-\ifsjtu@english\setlength{\parindent}{2\ccwd}\fi
 
 % bullets in the item
 \renewcommand{\labelitemi}{\ensuremath{\bullet}}
@@ -398,12 +394,14 @@ The Current Maintainers of this work are Jianwen Wei and Alexara Wu.
 \renewcommand{\floatpagefraction}{0.60}
 
 % 定公式、图、表、算法、代码的编号为"3-1"的形式，即分隔符由.变为短杠
-\renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
-\renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
-\renewcommand\p@subfigure{\thefigure}
-\renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
-\renewcommand{\thealgorithm}{\arabic{chapter}--\arabic{algorithm}}
-\AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{chapter}--\arabic{lstlisting}}}
+\AtBeginDocument{
+  \renewcommand{\theequation}{\thechapter--\arabic{equation}}
+  \renewcommand{\thefigure}{\thechapter--\arabic{figure}}
+  \renewcommand\p@subfigure{\thefigure}
+  \renewcommand{\thetable}{\thechapter--\arabic{table}}
+  \renewcommand{\thealgorithm}{\thechapter--\arabic{algorithm}}
+  \renewcommand{\thelstlisting}{\thechapter--\arabic{lstlisting}}
+}
 
 % 使用enumitem宏包配制列表环境
 % 紧凑间距
@@ -771,16 +769,39 @@ The Current Maintainers of this work are Jianwen Wei and Alexara Wu.
 \fi
 
 % 中英文摘要
-\newenvironment{abstract}{\cleardoublepage \pdfbookmark[0]{\sjtu@label@abstract}{abstract} \ifsjtu@english\let\@afterindentfalse\relax\fi
-\chapter*{\sjtu@value@chinesetitle\vskip 20pt\sjtu@label@chineseabstract}\markboth{\sjtu@label@chineseabstract}{}}{}
-\newcommand\keywords[1]{\vspace{2ex}\noindent{\bfseries\large \sjtu@label@keywords} #1}
-\newenvironment{englishabstract}{\cleardoublepage
-\chapter*{\MakeUppercase\sjtu@value@englishtitle\vskip 20pt\bfseries \MakeUppercase\sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
-\newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bfseries\large \sjtu@label@englishkeywords} #1}
+\newenvironment{abstract}{%
+  \cleardoublepage
+  \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
+  \chapter*{%
+    \sjtu@value@chinesetitle
+    \vskip 20pt
+    \sjtu@label@chineseabstract
+  }
+  \markboth{\sjtu@label@chineseabstract}{}
+}{}
+\newcommand\keywords[1]{%
+  \vspace{2ex}
+  \noindent{\bfseries\large \sjtu@label@keywords}{#1}
+}
+\newenvironment{englishabstract}{%
+  \cleardoublepage
+  \chapter*{%
+    \MakeUppercase\sjtu@value@englishtitle
+    \vskip 20pt
+    \MakeUppercase\sjtu@label@englishabstract
+  }
+  \markboth{\sjtu@label@englishabstract}{}
+}{}
+\newcommand\englishkeywords[1]{%
+  \vspace{2ex}
+  \noindent{\bfseries\large \sjtu@label@englishkeywords}{#1}
+}
 
 % 主要符号对照表
-\newenvironment{nomenclaturename}{\cleardoublepage
-\chapter{\sjtu@nomenclature}{}}{}
+\newenvironment{nomenclaturename}{
+  \cleardoublepage
+  \chapter{\sjtu@nomenclature}
+}{}
 
 \renewcommand\tableofcontents{%
   \cleardoublepage
