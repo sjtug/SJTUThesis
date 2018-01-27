@@ -43,11 +43,10 @@
 \fi
 \makeatother
 
-
 \frontmatter 	% 使用罗马数字对前言编号
+\pagestyle{front}
 
 %% 摘要
-\pagestyle{main}
 \include{tex/abstract}
 
 %% 目录、插图目录、表格目录
@@ -62,9 +61,9 @@
 \include{tex/symbol} % 主要符号、缩略词对照表
 
 \mainmatter	% 使用阿拉伯数字对正文编号
+\pagestyle{main}
 
 %% 正文内容
-\pagestyle{main}
 % \include{tex/intro}
 \include{tex/example}
 \include{tex/faq}
@@ -75,10 +74,8 @@
 %% 附录内容，本科学位论文可以用翻译的文献替代。
 \include{tex/app_setup}
 \include{tex/app_eq}
-\include{tex/app_cjk}
+% \include{tex/app_cjk}
 % \include{tex/app_log}
-
-\backmatter	% 文后无编号部分 
 
 %% 参考资料
 \printbibliography[heading=bibintoc]
@@ -96,9 +93,10 @@
   \include{tex/ack} 	  %% 致谢
 \fi
 
+\backmatter	% 文后无编号部分
+
 \ifsjtu@bachelor
   % 学士学位论文要求在最后有一个英文大摘要，单独编页码
-  \pagestyle{biglast}
   \include{tex/end_english_abstract}
 \else
   % 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
