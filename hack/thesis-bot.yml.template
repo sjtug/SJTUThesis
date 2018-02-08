@@ -38,11 +38,5 @@ common_configuration:
             version/0.9: ["label/0.9","0.9"]
             version/0.10: ["label/0.10","0.10"]
             version/1.0rc: ["label/1.0rc","1.0rc"]
-  - triggers:
-      pull_request: [ edited, opened, reopened ]
-    operations:
-      - type: label
-        settings:
-          patterns:
             status/wip: ["wip"]
             status/pending-review: ["PTAL"]
