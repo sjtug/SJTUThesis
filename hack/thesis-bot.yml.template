@@ -1,0 +1,48 @@
+http_listen: ":$HTTP_PORT"
+http_secret: "$HTTP_SECRET"
+
+token: "$POULE_GITHUB_TOKEN"
+
+repositories:
+  sjtug/SJTUThesis: ""
+
+common_configuration:
+  - triggers:
+      issues: [ edited, opened, reopened ]
+      pull_request: [ edited, opened, reopened ]
+    operations:
+      - type: label
+        settings:
+          patterns:
+            area/bachelor: ["label/bachelor","本科","学士","bachelor"]
+            area/master: ["label/master","研究生","硕士","master"]
+            area/phd: ["label/phd","博士","phd"]
+            area/bibliography: ["label/bibliography","bib","参考文献","reference"]
+            area/docs: ["label/docs","文档","docs"]
+            good-first-issue: ["label/good-first-issue"]
+            help-wanted: ["label/help-wanted"]
+            os/Linux: ["label/linux","linux","ubuntu","centos"]
+            os/macOS: ["label/macOS","苹果","apple","macOS"]
+            os/Windows: ["label/windows","windows"]
+            platform/ShareLaTeX: ["label/sharelatex","sharelatex"]
+            platform/TeXLive: ["label/texlive","texlive","tex live"]
+            priority/high: ["label/high"]
+            priority/low: ["label/low"]
+            priority/medium: ["label/medium"]
+            status/blocked: ["label/blocked"]
+            type/bug: ["label/bug","bug"]
+            type/discussion: ["label/discussion","discussion"]
+            type/enhancement: ["label/enhancement","enhancement"]
+            type/feature: ["label/feature","feature"]
+            version/0.8: ["label/0.8","0.8"]
+            version/0.9: ["label/0.9","0.9"]
+            version/0.10: ["label/0.10","0.10"]
+            version/1.0rc: ["label/1.0rc","1.0rc"]
+  - triggers:
+      pull_request: [ edited, opened, reopened ]
+    operations:
+      - type: label
+        settings:
+          patterns:
+            status/wip: ["wip"]
+            status/pending-review: ["PTAL"]
