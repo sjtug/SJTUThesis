@@ -26,9 +26,9 @@ view : $(THESIS).pdf
 	open $<
 
 wordcount:
-	@perl texcount.pl $(THESIS).tex -inc          | awk '/total/ {getline; print "词数　　:",$$4}' 
-	@perl texcount.pl $(THESIS).tex -inc -char    | awk '/total/ {getline; print "字符数　:",$$4}' 
-	@perl texcount.pl $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "中文字数:",$$4}' 
+	@texcount $(THESIS).tex -inc          | awk '/total/ {getline; print "词数　　:",$$4}'
+	@texcount $(THESIS).tex -inc -char    | awk '/total/ {getline; print "字符数　:",$$4}'
+	@texcount $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "中文字数:",$$4}'
 
 clean :
 	-@latexmk -c -silent 2> /dev/null
@@ -43,7 +43,7 @@ s3 : $(THESIS).pdf
 
 git :
 	git push --tags github; git push github;
-	git push --tags gitlab; git push gitlab; 
+	git push --tags gitlab; git push gitlab;
 
 zip :
 	git archive --format zip --output thesis.zip master
