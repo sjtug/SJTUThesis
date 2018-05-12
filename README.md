@@ -63,7 +63,7 @@ make pvc
 使用以下指令可以清除之前所有的构建文件：
 
 ```bash
-make pvc
+make clean
 ```
 
 ### 查看字数统计
