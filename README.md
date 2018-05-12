@@ -40,6 +40,40 @@ docker pull quay.io/sjtug/sjtuthesis
 ./scripts/start-build.sh
 ```
 
+## Makefile 使用
+
+### 编译生成学位论文 PDF 文件
+
+通过以下指令，可以编译生成 thesis.pdf：
+
+```bash
+make
+```
+
+### 持续编译
+
+编写学位论文往往是一个修改 -> 查看论文 PDF 显示效果 -> 继续修改的过程。因此我们实现了持续编译的支持。在文件被修改后，会自动进行新一轮的编译，产生新的 PDF 文件，在写论文时无需写完重新运行 `make`：
+
+```bash
+make pvc
+```
+
+### 清除所有生成文件
+
+使用以下指令可以清除之前所有的构建文件：
+
+```bash
+make pvc
+```
+
+### 查看字数统计
+
+通过以下指令，可以查看目前的字数（可只关注词数一项）：
+
+```bash
+make wordcount
+```
+
 ## 反馈问题
 
 如果在使用上有任何问题，建议先阅读[常见问题与建议](https://github.com/sjtug/SJTUThesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E5%BB%BA%E8%AE%AE)。如果这些不能解决你的问题，建议以如下的顺序反馈使用过程中的问题：
