@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 LABEL maintainer="Ce Gao(gaocegege) <gaocegege@hotmail.com>"
 
-ENV REMOTE="https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet"
+ENV REMOTE="http://mirror.ctan.org/systems/texlive/tlnet"
 ENV INSTALL="/tmp/install-texlive"
 
 VOLUME ["/workdir"]
@@ -28,8 +28,7 @@ RUN mkdir -p ${INSTALL} \
     && curl -sSL $REMOTE/install-tl-unx.tar.gz | tar -xzv -C ${INSTALL} --strip-components=1
 
 COPY .ci/tl.profile /etc/tl.profile
-
-# RUN ${INSTALL}/install-tl -profile /etc/tl.profile -repository https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet
+RUN ${INSTALL}/install-tl -profile /etc/tl.profile
 
 RUN export VERSION=$($INSTALL/install-tl --version | grep 'version' | grep -o '[0-9]\{4\}')
 RUN export PLATFORM=$($INSTALL/install-tl --print-platform)
