@@ -24,7 +24,7 @@ build_script:
   # Get the directory of texlive. E.g. c:\texlive\2018
   - ps: $TEXLIVE=$(ls 20* | % {$_.FullName})
   - ps: $TEXBIN="$TEXLIVE\bin\win32"
-  - ps: set PATH=%PATH%;$TEXBIN
+  - ps: $env:Path += ";"+$TEXBIN
   - ps: tlmgr install latexmk ulem fandol
   - ps: cd c:\projects\SJTUThesis
   - ps: xelatex -no-pdf -halt-on-error thesis
