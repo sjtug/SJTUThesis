@@ -20,12 +20,12 @@ before_build:
   - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' thesis.tex
 
 build_script:
-  - cd c:\texlive\
+  - ps: cd c:\texlive\
   # Get the directory of texlive. E.g. c:\texlive\2018
   - ps: $TEXLIVE=$(ls 20* | % {$_.FullName})
-  - set TEXBIN="$TEXLIVE\bin\win32"
-  - set PATH=%PATH%;%TEXBIN%
-  - tlmgr install latexmk ulem fandol
-  - cd c:\projects\SJTUThesis
-  - xelatex -no-pdf -halt-on-error thesis
-  - biber --debug thesis
+  - ps: set TEXBIN="$TEXLIVE\bin\win32"
+  - ps: set PATH=%PATH%;%TEXBIN%
+  - ps: tlmgr install latexmk ulem fandol
+  - ps: cd c:\projects\SJTUThesis
+  - ps: xelatex -no-pdf -halt-on-error thesis
+  - ps: biber --debug thesis
