@@ -25,7 +25,7 @@ build_script:
   - ps: $TEXLIVE=$(ls 20* | % {$_.FullName})
   - ps: $TEXBIN="$TEXLIVE\bin\win32"
   - ps: $env:Path += ";"+$TEXBIN
-  - ps: tlmgr install latexmk ulem fandol
-  - ps: cd c:\projects\SJTUThesis
-  - ps: xelatex -no-pdf -halt-on-error thesis
-  - ps: biber --debug thesis
+  - tlmgr install latexmk ulem fandol
+  - cd c:\projects\SJTUThesis
+  - xelatex -no-pdf -halt-on-error thesis
+  - biber --debug thesis
