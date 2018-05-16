@@ -4,12 +4,14 @@ clone_folder: c:\projects\SJTUThesis
 
 install:
   - curl -L http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip > c:\projects\install-tl.zip
-  - cd c:\projects && unzip c:\projects\install-tl.zip -d c:\projects\tmp
-  # - xcopy c:\projects\tmp\* c:\projects\install-tl
+
+  - cd c:\projects
   - unzip c:\projects\install-tl.zip
+  - ps: cp -r $(ls install-tl-* | % {$_.FullName}) c:\projects\install-tl
+
   # Use echo to send a CRLF to the program to stop hanging on pause command.
   # See https://stackoverflow.com/questions/33374713/how-to-skip-the-procedure-needed-to-press-any-key-to-exit-the-exe-in-batch-file
-  - echo . | c:\projects\install-tl-20180513\install-tl-windows.bat --profile c:\projects\SJTUThesis\.ci\tl.profile
+  - echo . | c:\projects\install-tl\install-tl-windows.bat --profile c:\projects\SJTUThesis\.ci\tl.profile
 
 before_build:
   - cd c:\projects\SJTUThesis
@@ -18,9 +20,10 @@ before_build:
   - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' thesis.tex
 
 build_script:
-  # - set VERSION=$(c:\projects\install-tl-20180512\install-tl-windows.bat --version | grep 'version' | grep -o '[0-9]\{4\}')
-  # - PLATFORM=$(c:\projects\install-tl-20180512\install-tl-windows.bat --print-platform)
-  - set TEXBIN="c:\texlive\2018\bin\win32"
+  - cd c:\texlive\
+  # Get the directory of texlive. E.g. c:\texlive\2018
+  - ps: $TEXLIVE=$(ls 20* | % {$_.FullName})
+  - set TEXBIN="$TEXLIVE\bin\win32"
   - set PATH=%PATH%;%TEXBIN%
   - tlmgr install latexmk ulem fandol
   - cd c:\projects\SJTUThesis
