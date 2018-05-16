@@ -1,10 +1,6 @@
 FROM ubuntu:16.04
 LABEL maintainer="Ce Gao(gaocegege) <gaocegege@hotmail.com>"
 
-ARG VERSION=${version:-"2017"}
-ARG PLATFORM=${platform:-"x86_64-linux"}
-
-ENV PATH=${PATH}:"/usr/local/texlive/${VERSION}/bin/${PLATFORM}"
 ENV REMOTE="http://mirror.ctan.org/systems/texlive/tlnet"
 ENV INSTALL="/tmp/install-texlive"
 
@@ -31,22 +27,13 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p ${INSTALL} \
     && curl -sSL $REMOTE/install-tl-unx.tar.gz | tar -xzv -C ${INSTALL} --strip-components=1
 
-RUN echo "selected_scheme scheme-basic" >> ${INSTALL}/tl.profile \
-    && echo "collection-basic 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-bibtexextra 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-fontsextra 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-fontsrecommended 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-langchinese 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-latex 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-latexextra 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-latexrecommended 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-mathscience 1" >> ${INSTALL}/tl.profile \
-    && echo "collection-xetex 1" >> ${INSTALL}/tl.profile \
-    && echo "tlpdbopt_autobackup 0" >> ${INSTALL}/tl.profile \
-    && echo "tlpdbopt_install_docfiles 0" >> ${INSTALL}/tl.profile \
-    && echo "tlpdbopt_install_srcfiles 0" >> ${INSTALL}/tl.profile
+COPY .ci/tl.profile /etc/tl.profile
+RUN ${INSTALL}/install-tl -profile /etc/tl.profile
 
-RUN ${INSTALL}/install-tl -profile ${INSTALL}/tl.profile
+RUN export VERSION=$($INSTALL/install-tl --version | grep 'version' | grep -o '[0-9]\{4\}')
+RUN export PLATFORM=$($INSTALL/install-tl --print-platform)
+RUN export TEXBIN="/usr/local/texlive/${VERSION}/bin/${PLATFORM}"
+RUN export "PATH=$TEXBIN:$PATH"
 
 RUN tlmgr install latexmk ulem
 
