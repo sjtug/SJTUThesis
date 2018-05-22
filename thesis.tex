@@ -8,13 +8,13 @@
 % \documentclass[bachelor, openany, oneside, submit]{sjtuthesis}
 % \documentclass[master, review]{sjtuthesis}
 % \documentclass[%
-%   bachelor|master|doctor,	% 必选项
+%   bachelor|master|doctor, % 必选项
 %   fontset=fandol|windows|mac|ubuntu|adobe|founder, % 字体选项
-%   oneside|twoside,		% 单面打印，双面打印(奇偶页交换页边距，默认)
-%   openany|openright, 		% 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
-%   english,			% 启用英文模版
-%   review,	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
-%   submit			% 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
+%   oneside|twoside,        % 单面打印，双面打印(奇偶页交换页边距，默认)
+%   openany|openright,      % 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
+%   english,                % 启用英文模版
+%   review,     % 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
+%   submit      % 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
 % ]
 
 % 逐个导入参考文献数据库
@@ -23,87 +23,77 @@
 
 \begin{document}
 
-%% 无编号内容：中英文论文封面、授权页
+% 无编号内容：中英文论文封面、授权页
 \include{tex/id}
 \maketitle
 
 \makeatletter
 \ifsjtu@submit\relax
-	\includepdf{pdf/original.pdf}
-	\cleardoublepage
-	\includepdf{pdf/authorization.pdf}
-	\cleardoublepage
+  \includepdf{pdf/original.pdf}
+  \cleardoublepage
+  \includepdf{pdf/authorization.pdf}
+  \cleardoublepage
 \else
 \ifsjtu@review\relax
 % exclude the original claim and authorization
 \else
-	\makeDeclareOriginal
-	\makeDeclareAuthorization
+  \makeDeclareOriginal
+  \makeDeclareAuthorization
 \fi
 \fi
 \makeatother
 
+\frontmatter % 使用罗马数字对前言编号
 
-\frontmatter 	% 使用罗马数字对前言编号
-
-%% 摘要
-\pagestyle{main}
+% 摘要
 \include{tex/abstract}
 
-%% 目录、插图目录、表格目录
+% 目录、插图目录、表格目录
 \tableofcontents
 \listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename} %将插图目录加入全文目录
+\addcontentsline{toc}{chapter}{\listfigurename}     % 将插图目录加入全文目录
 \listoftables
-\addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
+\addcontentsline{toc}{chapter}{\listtablename}      % 将表格目录加入全文目录
 \listofalgorithms
-\addcontentsline{toc}{chapter}{\listalgorithmname} %将算法目录加入全文目录
+\addcontentsline{toc}{chapter}{\listalgorithmname}  % 将算法目录加入全文目录
 
 \include{tex/symbol} % 主要符号、缩略词对照表
 
-\mainmatter	% 使用阿拉伯数字对正文编号
+\mainmatter % 使用阿拉伯数字对正文编号
 
-%% 正文内容
-\pagestyle{main}
+% 正文内容
 \include{tex/intro}
 \include{tex/example}
 \include{tex/faq}
 \include{tex/summary}
 
-\appendix	% 使用英文字母对附录编号，重新定义附录中的公式、图图表编号样式
-\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
-\renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
-\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
-\renewcommand\thealgorithm{\Alph{chapter}--\arabic{algorithm}}
-\renewcommand\thelstlisting{\Alph{chapter}--\arabic{lstlisting}}
+\appendix % 使用英文字母对附录编号
 
-%% 附录内容，本科学位论文可以用翻译的文献替代。
+% 附录内容，本科学位论文可以用翻译的文献替代。
 \include{tex/app_setup}
 \include{tex/app_eq}
 \include{tex/app_cjk}
 \include{tex/app_log}
 
-\backmatter	% 文后无编号部分 
+\backmatter % 文后无编号部分 
 
-%% 参考资料
+% 参考资料
 \printbibliography[heading=bibintoc]
 
-%% 致谢、发表论文、申请专利、参与项目、简历
-%% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
+% 致谢、发表论文、申请专利、参与项目、简历
+% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
 \makeatletter
 
-%%
 % "研究生学位论文送盲审印刷格式的统一要求"
 % http://www.gs.sjtu.edu.cn/inform/3/2015/20151120_123928_738.htm
 
 % 盲审删去删去致谢页
 \ifsjtu@review\relax\else
-  \include{tex/ack} 	  %% 致谢
+  \include{tex/ack}         % 致谢
 \fi
 
 \ifsjtu@bachelor
   % 学士学位论文要求在最后有一个英文大摘要，单独编页码
-  \pagestyle{biglast}
   \include{tex/end_english_abstract}
 \else
   % 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
@@ -111,13 +101,13 @@
     \include{tex/pubreview}
     \include{tex/projectsreview}  
   \else
-    \include{tex/pub}	      %% 发表论文
-    \include{tex/projects}  %% 参与的项目
+    \include{tex/pub}       % 发表论文
+    \include{tex/projects}  % 参与的项目
   \fi
 \fi
 
-% \include{tex/patents}	  %% 申请专利
-% \include{tex/resume}	  %% 个人简历
+% \include{tex/patents}     % 申请专利
+% \include{tex/resume}      % 个人简历
 
 \makeatother
 
