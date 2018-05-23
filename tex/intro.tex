@@ -34,7 +34,7 @@
 要使用这个模板撰写学位论文，需要在\emph{TeX系统}、\emph{TeX技能}上有所准备。
 
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-	\item {\TeX}系统：所使用的{\TeX}系统要支持 \XeTeX 引擎，且带有ctex 2.x宏包，以2015年的\emph{完整}TeXLive、MacTeX发行版为佳。
+	\item {\TeX}系统：所使用的{\TeX}系统要支持 \XeTeX 引擎，且带有ctex 2.x宏包，以2017年或更新版本的\emph{完整}TeXLive、MacTeX发行版为佳。
 	\item TeX技能：尽管提供了对模板的必要说明，但这不是一份“ \LaTeX 入门文档”。在使用前请先通读其他入门文档。
 	\item 针对Windows用户的额外需求：学位论文模本分别使用git和GNUMake进行版本控制和构建，建议从Cygwin\footnote{\url{http://cygwin.com}}安装这两个工具。
 \end{itemize}
@@ -122,9 +122,8 @@ xelatex thesis
 \subsubsection{格式控制文件}
 \label{sec:format}
 
-格式控制文件控制着论文的表现形式，包括以下几个文件：
-sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
-其中，“cfg”和“cls”控制论文主体格式，“bst”控制参考文献条目的格式，
+格式控制文件控制着论文的表现形式，包括sjtuthesis.cfg和sjtuthesis.cls。
+其中，“cls”控制论文主体格式，“cfg”为配置文件。
 
 \subsubsection{主控文件thesis.tex}
 \label{sec:thesistex}
