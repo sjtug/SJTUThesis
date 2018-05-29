@@ -1,4 +1,7 @@
 %# -*- coding: utf-8-unix -*-
+% !TEX program = xelatex
+% !TEX root = ../thesis.tex
+% !TEX encoding = UTF-8 Unicode
 \chapter{常见问题}
 \label{chap:faq}
 
@@ -46,6 +49,16 @@ A:这是xltxtra和fontspec宏包导致的问题。学位论文模板从0.5起使
 {\bfseries{}Q:为什么在bib中加入的参考文献，没有在参考文献列表中出现?}
 
 A: bib中的参考文献条目，只有通过\verb+\cite+或者\verb+\upcite+在正文中引用，才会加入到参考文献列表中。
+
+{\bfseries{}Q:我可以使用Sublime Text编写学位论文吗？}
+
+A: 可以。首先\href{https://www.sublimetext.com/}{下载}并安装Sublime Text，然后安装
+\href{https://packagecontrol.io/installation}{Package Control}，
+之后按\verb|ctrl+shift+p|或者\verb|cmd+shift+p|调出命令窗口，
+输入\verb|install|，选择\textit{Package Control: Install Package}，按回车，
+稍等片刻，等待索引载入后会弹出选项框，输入\verb|LaTeXTools|并回车，即可成功安装插件。
+之后只需要打开\verb|.tex|文件，按\verb|ctrl+b|或者\verb|cmd+b|即可编译，
+如有错误，双击错误信息可以跳转到出错的行。
 
 {\bfseries{}Q:在macTex中，为什么pdf图片无法插入？}
 
