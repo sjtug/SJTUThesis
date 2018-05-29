@@ -23,11 +23,11 @@ A:模板默认是双面打印，迎面页和背面页的页边距是要交换的
 
 {\bfseries{}Q:为什么在参考文献中会有“//”符号?}
 
-A:那就是国标GBT7714参考文献风格规定的。
+A:那就是国标GBT7714参考文献风格规定的。但可以使用 gbpunctin=false 选项将其还原成 in:，进一步可以在导言区加入\verb+\DefineBibliographyStrings{english}{in={}}+将其去掉。
 
 {\bfseries{}Q:为什么参考文献中会有[s.n.],[S.l], [EB/OL]等符号?}
 
-A: 那也是国标GBT7714参考文献风格定义的。[s.n.]表示出版者不祥，[S.l]表示出版地不祥，[EB/OL]表示引用的参考文献类型为在线电子文档。
+A: 那也是国标GBT7714参考文献风格定义的。[s.n.]表示出版者不祥，[S.l]表示出版地不祥，[EB/OL]表示引用的参考文献类型为在线电子文档。但可以使用gbpub=false 选项将其缺省补充的出版项[s.n.]等去掉。也可以使用选项 gbtype=false 将参考文献类型标识去掉。
 
 {\bfseries{}Q:如何获得帮助和反馈意见?}
 
@@ -48,7 +48,8 @@ A:这是xltxtra和fontspec宏包导致的问题。学位论文模板从0.5起使
 
 {\bfseries{}Q:为什么在bib中加入的参考文献，没有在参考文献列表中出现?}
 
-A: bib中的参考文献条目，只有通过\verb+\cite+或者\verb+\upcite+在正文中引用，才会加入到参考文献列表中。
+A: bib中的参考文献条目，常通过\verb+\cite+或\verb+\parencite+或\verb+\supercite+或\verb+\textcite+等命令在正文中引用进而加入到参考文献列表中。当需要将参考文献条目加入到文献表中但又不引用可以使用\verb+\nocite+命令，当nocite参数为*时则引入bib中的所有文献。
+%\verb+\upcite+ 是哪个宏包的？之前没有见过
 
 {\bfseries{}Q:我可以使用Sublime Text编写学位论文吗？}
 
