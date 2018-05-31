@@ -8,15 +8,13 @@
 
 这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)。
 
+## 封面展示
 
-<figure align="center" role="group">
-    <figure>
-        <a href="http://sjtug.org/SJTUThesis/bachelor.pdf"><img src="./docs/images/bachelor.png" height="220"></a>
-        <a href="http://sjtug.org/SJTUThesis/master.pdf"><img src="./docs/images/master.png" height="220"></a>
-        <a href="http://sjtug.org/SJTUThesis/doctor.pdf"><img src="./docs/images/doctor.png" height="220"></a>
-    </figure>
-    <figcaption>效果展示</figcaption>
-</figure>
+<div align="center">
+    <a href="http://sjtug.org/SJTUThesis/bachelor.pdf"><img src="./docs/images/bachelor.png" height="330"></a>
+    <a href="http://sjtug.org/SJTUThesis/master.pdf"><img src="./docs/images/master.png" height="330"></a>
+    <a href="http://sjtug.org/SJTUThesis/doctor.pdf"><img src="./docs/images/doctor.png" height="330"></a>
+</div>
 
 
 ## 如何使用
