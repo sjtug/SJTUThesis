@@ -27,7 +27,7 @@ A:那就是国标GBT7714参考文献风格规定的。但可以使用 gbpunctin=
 
 {\bfseries{}Q:为什么无法生成参考文献页，且正文中的引用全部变成了引用序号上标全部变成了引用关键字了？}
 
-A: 出现这种情况请先确认自己使用的bibliography tool是Biber，再在thesis.tex内在数据库导入部分注释掉\verb|\addbibresource{}|，并取消\verb|\bibliography{}|的注释。
+A: 出现这种情况请先确认自己使用的 bibliography tool 是 Biber，再在 thesis.tex 内在数据库导入部分注释掉\verb|\addbibresource{}|，并取消\verb|\bibliography{}|的注释。
 
 {\bfseries{}Q:为什么参考文献中会有[s.n.],[S.l], [EB/OL]等符号?}
 
@@ -70,22 +70,22 @@ A: 可以。首先\href{https://www.sublimetext.com/}{下载}并安装Sublime Te
 A:如果报错是“pdf: image inclusion failed for "./figure/chap2/sjtulogo.pdf".”，则采取以下步骤
 
 \begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译模板}, numbers=none]
-  brew install xpdf
-  wget http://mirrors.ctan.org/support/epstopdf.zip
-  unzip epstopdf.zip
-  cp epstopdf/epstopdf.pl /usr/local/bin/
-  cd figure/chap2
-  pdftops sjtulogo.pdf
-  epstopdf sjtulogo.ps
-  pdfcrop sjtulogo.pdf
-  mv sjtulogo.pdf backup.pdf
-  mv sjtulogo-crop.pdf sjtulogo.pdf
+brew install xpdf
+wget http://mirrors.ctan.org/support/epstopdf.zip
+unzip epstopdf.zip
+cp epstopdf/epstopdf.pl /usr/local/bin/
+cd figure/chap2
+pdftops sjtulogo.pdf
+epstopdf sjtulogo.ps
+pdfcrop sjtulogo.pdf
+mv sjtulogo.pdf backup.pdf
+mv sjtulogo-crop.pdf sjtulogo.pdf
 \end{lstlisting}
 
-{\bfseries{}Q:为什么维普等查重系统无法识别此模板生成的pdf内所有的中文?}
+{\bfseries{}Q:为什么维普等查重系统无法识别此模板生成的 pdf 内所有的中文?}
 
-A: 中文无法识别的情况多半是由于使用了ShareLaTeX的原因，请尝试使用TexStudio等软件在本地进行编译。
-如果使用TeXstudio请在Preferences-Build中将Default Compiler和Default Bibliography Tool分别改为XeLaTeX和Biber。
+A: 中文无法识别的情况多半是由于使用了 ShareLaTeX 的原因，请尝试使用 TexStudio 等软件在本地进行编译。
+如果使用 TeXstudio 请在 Preferences-Build 中将 Default Compiler 和 Default Bibliography Tool 分别改为 XeLaTeX 和 Biber。
 
 {\bfseries{}Q:如何向你致谢?}
 
