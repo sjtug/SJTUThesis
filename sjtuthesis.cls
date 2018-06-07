@@ -157,22 +157,18 @@
     titleformat  = {},
     aftername    = \quad,
     afterindent  = true,
-    beforeskip={1.0\baselineskip},
-    afterskip={1.0\baselineskip},
+    beforeskip   = {15\p@},
+    afterskip    = {12\p@},
   },
   section={%
     format       = \zihao{4}\bfseries,
-    indent={2\ccwd},
     afterindent  = true,
-    beforeskip={0.5\baselineskip},
-    afterskip={0.5\baselineskip},
+    afterskip    = {1.0ex \@plus .2ex},
   },
   subsection={%
-    format       = \zihao{-4},
-    indent={2\ccwd},
+    format       = \zihao{-4}\bfseries,
     afterindent  = true,
-    beforeskip={0\baselineskip},
-    afterskip={0\baselineskip},
+    afterskip    = {1.0ex \@plus .2ex},
   },
   subsubsection={%
     format       = \normalfont\normalsize,
@@ -197,8 +193,8 @@
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 
 % Caption setting in caption and bicaption pacakge
-\DeclareCaptionFont{heiti}{\heiti}
-\captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font={bf, normalsize,heiti}}
+\DeclareCaptionFont{kaishu}{\kaishu}
+\captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font={small,kaishu}}
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
 \captionsetup[sub]{font=footnotesize}
@@ -458,7 +454,7 @@
     \vskip 30pt
     {\fontsize{32}{32}\kaishu\sjtu@value@chinesedegree\sjtu@label@thesis}
     \vskip 15pt
-    {\zihao{-2}\MakeUppercase{\sjtu@value@englishdegree's thesis}}
+    {\zihao{-2}\MakeUppercase{Thesis of \sjtu@value@englishdegree}}
     \vskip 15pt
     \includegraphics{sjtubadge}
     \vskip \stretch{2}
@@ -527,11 +523,11 @@
 % fancyhdr页眉页脚设置
 \ifsjtu@english
   \def\sjtu@value@titlemark{\sjtu@value@englishtitle}
-  \newcommand\sjtu@fancyhead{\footnotesize\heiti}
+  \newcommand\sjtu@fancyhead{\footnotesize\kaishu}
   \newcommand\sjtu@fancyfoot[2]{\small --~~Page~~{\bfseries{#1}}~~of~~{\bfseries{#2}}~~--}
 \else
   \def\sjtu@value@titlemark{\sjtu@value@chinesetitle}
-  \newcommand\sjtu@fancyhead{\small\heiti}
+  \newcommand\sjtu@fancyhead{\small\kaishu}
   \newcommand\sjtu@fancyfoot[2]{\small 第~{\bfseries{#1}}~页\,共~{\bfseries{#2}}~页}
 \fi
 \def\markboxwidth{0.75\textwidth}
@@ -541,7 +537,7 @@
   %% 前言页眉页脚
   \fancypagestyle{front}{%
     \fancyhf{}
-    \fancyhead[L]{\includegraphics[width=3.5cm]{figure/sjtubannerred}}
+    \fancyhead[L]{\includegraphics{figure/sjtubanner}}
     \fancyhead[R]{\parbox[b]{\markboxwidth}{\raggedleft\nouppercase{\sjtu@fancyhead\sjtu@value@titlemark}}}
     \fancyfoot[C]{\sjtu@fancyfoot{\thepage}{\lastpageref{pagesLTS.Roman}}}
     \renewcommand{\headheight}{32pt}
@@ -549,7 +545,7 @@
   %% 正文页眉页脚
   \fancypagestyle{main}{%
     \fancyhf{}
-    \fancyhead[L]{\includegraphics[width=3.5cm]{figure/sjtubannerred}}
+    \fancyhead[L]{\includegraphics{figure/sjtubanner}}
     \fancyhead[R]{\parbox[b]{\markboxwidth}{\raggedleft\nouppercase{\sjtu@fancyhead\sjtu@value@titlemark}}}
     \fancyfoot[C]{\sjtu@fancyfoot{\thepage}{\lastpageref{pagesLTS.arabic}}}
     \renewcommand{\headheight}{32pt}
@@ -557,7 +553,7 @@
   %% 英文大摘要
   \fancypagestyle{biglast}{%
     \fancyhf{}
-    \fancyhead[L]{\includegraphics[width=3.5cm]{figure/sjtubannerred}}
+    \fancyhead[L]{\includegraphics{figure/sjtubanner}}
     \fancyhead[R]{\parbox[b]{\markboxwidth}{\raggedleft\nouppercase{\sjtu@fancyhead\sjtu@value@titlemark}}}
     \fancyfoot[C]{\sjtu@fancyfoot{\theCurrentPageLocal}{\lastpageref{pagesLTS.roman.local}}}
     \renewcommand{\headheight}{32pt}
