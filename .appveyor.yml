@@ -11,7 +11,7 @@ install:
 
   # Use echo to send a CRLF to the program to stop hanging on pause command.
   # See https://stackoverflow.com/questions/33374713/how-to-skip-the-procedure-needed-to-press-any-key-to-exit-the-exe-in-batch-file
-  - echo . | c:\projects\install-tl\install-tl-windows.bat --profile c:\projects\SJTUThesis\.ci\tl.profile
+  - echo . | c:\projects\install-tl\install-tl-windows.bat -repository https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet/ -profile c:\projects\SJTUThesis\.ci\tl.profile
 
 before_build:
   - cd c:\projects\SJTUThesis
