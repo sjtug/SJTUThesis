@@ -61,6 +61,7 @@
 \RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
 \RequirePackage{fancyhdr}
 \RequirePackage{pageslts}
+\RequirePackage[titles]{tocloft}
 \RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
 \RequirePackage[defaultsups]{newtxtext}
 \RequirePackage{newtxmath}
@@ -98,7 +99,8 @@
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-    
+\renewcommand{\cftchapfont}{\bfseries\heiti}  % 目录章节标题（黑体加粗）
+
 % User defined command list
 %% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
 
@@ -152,7 +154,7 @@
   listtablename  = \sjtu@listtablename,
   autoindent     = true,
   chapter={%
-    format       = \zihao{3}\bfseries\centering,
+    format       = \zihao{3}\bfseries\heiti\centering,
     nameformat   = {},
     titleformat  = {},
     aftername    = \quad,
@@ -161,17 +163,17 @@
     afterskip    = {12\p@},
   },
   section={%
-    format       = \zihao{4}\bfseries,
+    format       = \zihao{4}\bfseries\heiti,
     afterindent  = true,
     afterskip    = {1.0ex \@plus .2ex},
   },
   subsection={%
-    format       = \zihao{-4}\bfseries,
+    format       = \zihao{-4}\normalfont,
     afterindent  = true,
     afterskip    = {1.0ex \@plus .2ex},
   },
   subsubsection={%
-    format       = \normalfont\normalsize,
+    format       = \normalsize\normalfont,
     afterindent  = true,
     afterskip    = {1.0ex \@plus .2ex},
   },
@@ -491,8 +493,8 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\bfseries\zihao{3} \sjtu@value@school}\\
-    {\bfseries\zihao{3} \sjtu@label@original}
+    {\zihao{3}\bfseries\heiti \sjtu@value@school} \\
+    {\zihao{3}\bfseries\heiti \sjtu@label@original}
   \end{center}
   \vskip 10pt
   {\par\zihao{-4}\sjtu@label@originalcontent\par}
@@ -508,8 +510,8 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\bfseries\zihao{3} \sjtu@value@school}\\
-    {\bfseries\zihao{3} \sjtu@label@authorization}
+    {\zihao{3}\bfseries\heiti \sjtu@value@school} \\
+    {\zihao{3}\bfseries\heiti \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
   {\par\zihao{-4}\sjtu@label@authorizationcontent\par}
