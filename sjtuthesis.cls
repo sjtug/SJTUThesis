@@ -82,6 +82,7 @@
 \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
 \RequirePackage{xcolor}
 \RequirePackage{listings}
+\RequirePackage{textcomp}
 \RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
@@ -274,7 +275,10 @@
   texcl=true,
   % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
   extendedchars=false,columns=flexible,mathescape=true
-  numbersep=-1em
+  numbersep=-1em,
+  % 改变双引号和单引号的样式
+  literate={"}{\textquotedbl}1,
+  upquote=true
 }
 
 % Setting Package siunitx
