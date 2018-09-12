@@ -369,6 +369,7 @@
 \newcommand\defenddate[1]{\def\sjtu@value@defenddate{#1}}
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
+\newcommand\keywords[1]{\def\sjtu@value@keywords{#1}}
 
 % “绘制”中文标题页
 \newcommand\makechinesetitle{%
@@ -416,6 +417,7 @@
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
+\newcommand\englishkeywords[1]{\def\sjtu@value@englishkeywords{#1}}
 
 % “绘制”英文标题页
 \newcommand\makeenglishtitle{%
@@ -618,7 +620,7 @@
   \pagenumbering{arabic}
 }
 
-% 中英文摘要
+% 中英文摘要+关键词
 \newenvironment{abstract}{%
   \cleardoublepage
   \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
@@ -628,10 +630,9 @@
     \sjtu@label@chineseabstract
   }
   \markboth{\sjtu@label@chineseabstract}{}
-}{}
-\newcommand\keywords[1]{%
+}{
   \vspace{2ex}\noindent
-  {\zihao{4} \textbf{\sjtu@label@keywords}{#1}}
+  {\zihao{4} \textbf{\sjtu@label@keywords}{\sjtu@value@keywords}}
 }
 \newenvironment{englishabstract}{%
   \cleardoublepage
@@ -641,10 +642,9 @@
     \MakeUppercase\sjtu@label@englishabstract
   }
   \markboth{\sjtu@label@englishabstract}{}
-}{}
-\newcommand\englishkeywords[1]{%
+}{
   \vspace{2ex}\noindent
-  {\zihao{4} \textbf{\sjtu@label@englishkeywords}{#1}}
+  {\zihao{4} \textbf{\sjtu@label@englishkeywords}{\sjtu@value@englishkeywords}}
 }
 
 % 主要符号对照表
