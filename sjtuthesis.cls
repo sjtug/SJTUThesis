@@ -714,26 +714,25 @@
        {\@latex@warning{Empty `projects' environment}}%
       \endlist}
 
-\newenvironment{resume}
-  {\chapter{\sjtu@label@resume}}
+\newenvironment{resume}%
+  {\chapter{\sjtu@label@resume}}%
   {}
-  
-\newenvironment{resumesection}[1]
+
+\newenvironment{resumesection}[1]%
   {{\noindent\normalfont\bfseries #1}
    \list{}{\labelwidth\z@
            \leftmargin 2\ccwd}
-   \item\relax}
+   \item\relax}%
   {\endlist}
-   
-\newenvironment{resumelist}[1]
+
+\newenvironment{resumelist}[1]%
   {{\noindent\normalfont\bfseries #1}
    \list{}{\labelwidth\z@
            \leftmargin 4\ccwd
            \itemindent -2\ccwd
-           \listparindent\itemindent}
-   \item\relax}
+           \listparindent\itemindent}}%
   {\endlist}
-   
+
 \renewenvironment{thanks}{%
   \chapter*{%
     \sjtu@label@thanks
@@ -741,7 +740,7 @@
   }
   \addcontentsline{toc}{chapter}{\sjtu@label@thanks}
 }{}
- 
+
 \newenvironment{summary}{%
   \chapter*{%
     \sjtu@label@summary
