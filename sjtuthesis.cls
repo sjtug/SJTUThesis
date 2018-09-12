@@ -630,8 +630,8 @@
   \markboth{\sjtu@label@chineseabstract}{}
 }{}
 \newcommand\keywords[1]{%
-  \vspace{2ex}
-  \noindent{\bfseries\large \sjtu@label@keywords}{#1}
+  \vspace{2ex}\noindent
+  {\zihao{4} \textbf{\sjtu@label@keywords}{#1}}
 }
 \newenvironment{englishabstract}{%
   \cleardoublepage
@@ -643,8 +643,8 @@
   \markboth{\sjtu@label@englishabstract}{}
 }{}
 \newcommand\englishkeywords[1]{%
-  \vspace{2ex}
-  \noindent{\bfseries\large \sjtu@label@englishkeywords}{#1}
+  \vspace{2ex}\noindent
+  {\zihao{4} \textbf{\sjtu@label@englishkeywords}{#1}}
 }
 
 % 主要符号对照表
