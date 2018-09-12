@@ -40,18 +40,46 @@
 \LoadClass[a4paper,UTF8]{ctexbook}
 
 %% sjtuthesis.cls segments
-% 0. Import sjtuthesis.cfg
+% 0. Import sjtuthesis.cfg & define variables
 % 1. Import and configure LaTeX packages.
-% 2. Define general-purpose LaTeX commands. 
+% 2. Define general-purpose LaTeX commands.
 % 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
 % 4. Draw the sjtuthesis
 
 %==========
-% Segment 0. Import sjtuthesis.cfg 
+% Segment 0. Import sjtuthesis.cfg & define variables
 %==========
 
-%% 导入 sjtuthesis.cfg 文件
 \AtEndOfClass{\input{sjtuthesis.cfg}}
+
+% Chinese variables
+\newcommand\classification[1]{\def\sjtu@value@classification{#1}}
+\newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
+\newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
+\newcommand\school[1]{\def\sjtu@value@school{#1}}
+\newcommand\chinesedegree[1]{\def\sjtu@value@chinesedegree{#1}}
+\renewcommand\title[1]{\def\sjtu@value@chinesetitle{#1}}
+\renewcommand\author[1]{\def\sjtu@value@author{#1}}
+\newcommand\advisor[1]{\def\sjtu@value@advisor{#1}}
+\newcommand\coadvisor[1]{\def\sjtu@value@coadvisor{#1}}
+\newcommand\major[1]{\def\sjtu@value@major{#1}}
+\newcommand\submitdate[1]{\def\sjtu@value@submitdate{#1}}
+\newcommand\defenddate[1]{\def\sjtu@value@defenddate{#1}}
+\newcommand\institute[1]{\def\sjtu@value@institute{#1}}
+\newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
+\newcommand\keywords[1]{\def\sjtu@value@keywords{#1}}
+
+% English variables
+\newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
+\newcommand\englishauthor[1]{\def\sjtu@value@englishauthor{#1}}
+\newcommand\englishadvisor[1]{\def\sjtu@value@englishadvisor{#1}}
+\newcommand\englishcoadvisor[1]{\def\sjtu@value@englishcoadvisor{#1}}
+\newcommand\englishschool[1]{\def\sjtu@value@englishschool{#1}}
+\newcommand\englishinstitute[1]{\def\sjtu@value@englishinstitute{#1}}
+\newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
+\newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
+\newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
+\newcommand\englishkeywords[1]{\def\sjtu@value@englishkeywords{#1}}
 
 %==========
 % Segment 1. Import LaTeX packages.
@@ -83,7 +111,6 @@
 \RequirePackage{xcolor}
 \RequirePackage{listings}
 \RequirePackage{textcomp}
-\RequirePackage[xetex, bookmarksnumbered, colorlinks, urlcolor=black, linkcolor=black, citecolor=black, plainpages=false, pdfstartview=FitH]{hyperref}
 \RequirePackage{longtable}
 \RequirePackage[perpage, bottom]{footmisc}
 \RequirePackage[inline]{enumitem}
@@ -91,8 +118,27 @@
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
+
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
+
+% Make hyperref to set PDF metadata (author, title, subject, keywords)
+\AtBeginDocument{
+  \hypersetup{
+    bookmarksnumbered,
+    colorlinks,
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    plainpages=false,
+    pdfstartview=FitH,
+    pdfauthor={\sjtu@value@author},
+    pdftitle={\sjtu@value@chinesetitle},
+    pdfsubject={\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis},
+    pdfkeywords={\sjtu@value@keywords},
+  }
+}
+\RequirePackage{hyperref}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -355,22 +401,6 @@
   \fi
 }
 
-\newcommand\classification[1]{\def\sjtu@value@classification{#1}}
-\newcommand\studentnumber[1]{\def\sjtu@value@studentnumber{#1}}
-\newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
-\newcommand\school[1]{\def\sjtu@value@school{#1}}
-\newcommand\chinesedegree[1]{\def\sjtu@value@chinesedegree{#1}}
-\renewcommand\title[1]{\def\sjtu@value@chinesetitle{#1}}
-\renewcommand\author[1]{\def\sjtu@value@author{#1}}
-\newcommand\advisor[1]{\def\sjtu@value@advisor{#1}}
-\newcommand\coadvisor[1]{\def\sjtu@value@coadvisor{#1}}
-\newcommand\major[1]{\def\sjtu@value@major{#1}}
-\newcommand\submitdate[1]{\def\sjtu@value@submitdate{#1}}
-\newcommand\defenddate[1]{\def\sjtu@value@defenddate{#1}}
-\newcommand\institute[1]{\def\sjtu@value@institute{#1}}
-\newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
-\newcommand\keywords[1]{\def\sjtu@value@keywords{#1}}
-
 % “绘制”中文标题页
 \newcommand\makechinesetitle{%
   \cleardoublepage
@@ -406,18 +436,6 @@
   \vskip \stretch{0.5}
   \cleardoublepage
 }
-
-% English Title Page
-\newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
-\newcommand\englishauthor[1]{\def\sjtu@value@englishauthor{#1}}
-\newcommand\englishadvisor[1]{\def\sjtu@value@englishadvisor{#1}}
-\newcommand\englishcoadvisor[1]{\def\sjtu@value@englishcoadvisor{#1}}
-\newcommand\englishschool[1]{\def\sjtu@value@englishschool{#1}}
-\newcommand\englishinstitute[1]{\def\sjtu@value@englishinstitute{#1}}
-\newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
-\newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
-\newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
-\newcommand\englishkeywords[1]{\def\sjtu@value@englishkeywords{#1}}
 
 % “绘制”英文标题页
 \newcommand\makeenglishtitle{%
