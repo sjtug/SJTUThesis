@@ -26,9 +26,8 @@ view : $(THESIS).pdf
 	open $<
 
 wordcount:
-	@texcount $(THESIS).tex -inc          | awk '/total/ {getline; print "词数　　:",$$4}'
-	@texcount $(THESIS).tex -inc -char    | awk '/total/ {getline; print "字符数　:",$$4}'
-	@texcount $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "中文字数:",$$4}'
+	@texcount $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'
+	@texcount $(THESIS).tex -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
 
 clean :
 	-@latexmk -c -silent 2> /dev/null
