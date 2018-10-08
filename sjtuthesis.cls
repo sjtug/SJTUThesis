@@ -118,6 +118,7 @@
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
+\RequirePackage{xstring}
 
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -402,6 +403,7 @@
 }
 
 % “绘制”中文标题页
+\newcommand\longtextsplitchar{;;}
 \newcommand\makechinesetitle{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -429,7 +431,11 @@
         \sjtu@label@coadvisor     & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
       \fi
     \fi
-      \sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\
+    % 专业字数最多支持两行
+    \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
+      {\sjtu@label@major         & \underline{\makebox[150pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}} \\
+                                 & \underline{\makebox[150pt]{\StrBehind{\sjtu@value@major}{\longtextsplitchar}}} \\}
+      {\sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\}
       \sjtu@label@defenddate    & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
   \end{tabular}
   \end{center}
