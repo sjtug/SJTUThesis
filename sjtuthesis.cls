@@ -118,6 +118,8 @@
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
+\RequirePackage{xstring}
+\expandarg%只展开";;"不展开其他变量，参考 http://tug.ctan.org/macros/generic/xstring/xstring_doc_en.pdf
 
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -402,6 +404,7 @@
 }
 
 % “绘制”中文标题页
+\newcommand\longtextsplitchar{;;}
 \newcommand\makechinesetitle{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -429,7 +432,11 @@
         \sjtu@label@coadvisor     & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
       \fi
     \fi
-      \sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\
+    % 专业名称最长支持两行
+    \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
+      {\sjtu@label@major         & \underline{\makebox[150pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}} \\
+                                 & \underline{\makebox[150pt]{\StrBehind{\sjtu@value@major}{\longtextsplitchar}}} \\}
+      {\sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\}
       \sjtu@label@defenddate    & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
   \end{tabular}
   \end{center}
@@ -486,8 +493,16 @@
     \vskip \stretch{2}
     {\kaishu\zihao{2}
     \begin{tabular}{r@{：}l}
-      \sjtu@label@title &
-      {\zihao{-2}\underline{\begin{minipage}{360pt}\centering\sjtu@value@chinesetitle\end{minipage}}}
+      % 标题名称最长支持两行
+      \IfSubStr{\sjtu@value@chinesetitle}{\longtextsplitchar}
+        {
+          \sjtu@label@title & {\zihao{-2}\underline{\makebox[360pt]{\StrBefore{\sjtu@value@chinesetitle}{\longtextsplitchar}}}}
+          \end{tabular}
+          \begin{tabular}{r@{\quad}l}
+          ~~~~~~~~~~~~~~~~~ & {\zihao{-2}\underline{\makebox[360pt]{\StrBehind{\sjtu@value@chinesetitle}{\longtextsplitchar}}}} 
+        }
+        {\sjtu@label@title &
+      {\zihao{-2}\underline{\begin{minipage}{360pt}\centering\sjtu@value@chinesetitle\end{minipage}}}}
     \end{tabular}}
     \vskip \stretch{1}
     {\kaishu\zihao{3}
@@ -500,7 +515,17 @@
         \sjtu@label@author        & \underline{\makebox[180pt]{\sjtu@value@author}} \\
         \sjtu@label@studentnumber & \underline{\makebox[180pt]{\sjtu@value@studentnumber}} \\
       \fi
-        \sjtu@label@major         & \underline{\makebox[180pt]{\sjtu@value@major}} \\
+      % 专业名称最长支持两行
+      \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
+        {
+          \sjtu@label@major         & \underline{\makebox[180pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}}
+          \end{tabular}
+          \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{\quad}l}
+        ~~~~ & \underline{\makebox[180pt]{\StrBehind{\sjtu@value@major}{\longtextsplitchar}}} 
+          \end{tabular}
+          \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}l}
+        }
+        {\sjtu@label@major         & \underline{\makebox[180pt]{\sjtu@value@major}} \\}
       \ifsjtu@review
         \sjtu@label@advisor       & \underline{\makebox[180pt]{}} \\
       \else
