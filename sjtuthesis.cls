@@ -119,7 +119,6 @@
 \RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
 \RequirePackage{xstring}
-\expandarg%只展开";;"不展开其他变量，参考 http://tug.ctan.org/macros/generic/xstring/xstring_doc_en.pdf
 
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -404,7 +403,8 @@
 }
 
 % “绘制”中文标题页
-\newcommand\longtextsplitchar{;;}
+\expandarg%只展开"\null\null"不展开其他变量，参考 http://tug.ctan.org/macros/generic/xstring/xstring_doc_en.pdf
+\newcommand\longtextsplitchar{\null\null}
 \newcommand\makechinesetitle{%
   \cleardoublepage
   \thispagestyle{empty}
