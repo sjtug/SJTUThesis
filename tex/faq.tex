@@ -86,3 +86,15 @@ A: 中文无法识别的情况多半是由于使用了 ShareLaTeX 的原因，�
 {\bfseries{}Q:如何向你致谢?}
 
 A: 烦请在模板的\href{https://github.com/sjtug/SJTUThesis}{github主页}点击“Star”，我想粗略统计一下使用学位论文模板的人数，谢谢大家。非常欢迎大家向项目贡献代码。
+
+{\bfseries{}Q:标题页面中专业名称太长怎么办？}
+
+A: 如果专业名称字数还没有超过两行的话，可以在专业名称需要换行的地方加上双空特殊字符“\verb|\null\null|”，如果需要，还得补个空格，避免歧义。如下所示。如果超过两行的话，建议用缩写，或者您继续向我们反馈问题，详情参考\href{https://github.com/sjtug/SJTUThesis/pull/370}{这里}。
+
+\begin{lstlisting}[language={Tex}, caption={标题专业名称太长怎么办}]
+\major{某某专业\null\null 这个专业比较长}
+\end{lstlisting}
+
+{\bfseries{}Q:本科标题页面标题太长怎么办？}
+
+A: 同上，在需要换行的地方加上双空特殊字符“\verb|\null\null|”。
