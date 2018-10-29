@@ -403,7 +403,6 @@
 }
 
 % “绘制”中文标题页
-
 \newcommand\longtextsplitchar{\null\null}
 \newcommand\makechinesetitle{%
   \cleardoublepage
