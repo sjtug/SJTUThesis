@@ -392,7 +392,6 @@
 % Segment 4. Draw the sjtuthesis
 %==========
 
-\newcommand\longtextsplitchar{\null\null}
 \renewcommand\maketitle{%
   \pdfbookmark[0]{\sjtu@titlepage}{titlepage}
   \ifsjtu@bachelor
@@ -404,6 +403,8 @@
 }
 
 % “绘制”中文标题页
+
+\newcommand\longtextsplitchar{\null\null}
 \newcommand\makechinesetitle{%
   \cleardoublepage
   \thispagestyle{empty}
