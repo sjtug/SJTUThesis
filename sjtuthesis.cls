@@ -403,7 +403,6 @@
 }
 
 % “绘制”中文标题页
-\expandarg%只展开"\null\null"不展开其他变量，参考 http://tug.ctan.org/macros/generic/xstring/xstring_doc_en.pdf
 \newcommand\longtextsplitchar{\null\null}
 \newcommand\makechinesetitle{%
   \cleardoublepage
@@ -432,12 +431,15 @@
         \sjtu@label@coadvisor     & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
       \fi
     \fi
-    % 专业名称最长支持两行
+    % 专业名称最长支持两行，issue https://github.com/sjtug/SJTUThesis/issues/375
+    \saveexpandmode% 参考https://tex.stackexchange.com/questions/178610/replacing-substrings-by-linebreaks
+    \expandarg%只展开"\null\null"不展开其他变量，参考 http://tug.ctan.org/macros/generic/xstring/xstring_doc_en.pdf
     \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
       {\sjtu@label@major         & \underline{\makebox[150pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}} \\
                                  & \underline{\makebox[150pt]{\StrBehind{\sjtu@value@major}{\longtextsplitchar}}} \\}
       {\sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\}
       \sjtu@label@defenddate    & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
+    \restoreexpandmode
   \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
@@ -494,15 +496,18 @@
     {\kaishu\zihao{2}
     \begin{tabular}{r@{：}l}
       % 标题名称最长支持两行
+      \saveexpandmode
+      \expandarg
       \IfSubStr{\sjtu@value@chinesetitle}{\longtextsplitchar}
         {
           \sjtu@label@title & {\zihao{-2}\underline{\makebox[360pt]{\StrBefore{\sjtu@value@chinesetitle}{\longtextsplitchar}}}}
           \end{tabular}
           \begin{tabular}{r@{\quad}l}
-          ~~~~~~~~~~~~~~~~~ & {\zihao{-2}\underline{\makebox[360pt]{\StrBehind{\sjtu@value@chinesetitle}{\longtextsplitchar}}}} 
+          ~~~~~~~~~~~~~~~~~ & {\zihao{-2}\underline{\makebox[360pt]{\StrBehind{\sjtu@value@chinesetitle}{\longtextsplitchar}}}}
         }
         {\sjtu@label@title &
       {\zihao{-2}\underline{\begin{minipage}{360pt}\centering\sjtu@value@chinesetitle\end{minipage}}}}
+      \restoreexpandmode
     \end{tabular}}
     \vskip \stretch{1}
     {\kaishu\zihao{3}
@@ -516,6 +521,8 @@
         \sjtu@label@studentnumber & \underline{\makebox[180pt]{\sjtu@value@studentnumber}} \\
       \fi
       % 专业名称最长支持两行
+      \saveexpandmode
+      \expandarg
       \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
         {
           \sjtu@label@major         & \underline{\makebox[180pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}}
@@ -526,6 +533,7 @@
           \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}l}
         }
         {\sjtu@label@major         & \underline{\makebox[180pt]{\sjtu@value@major}} \\}
+      \restoreexpandmode
       \ifsjtu@review
         \sjtu@label@advisor       & \underline{\makebox[180pt]{}} \\
       \else
