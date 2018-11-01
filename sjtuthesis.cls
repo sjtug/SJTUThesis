@@ -58,7 +58,9 @@
 \newcommand\confidential[1]{\def\sjtu@value@confidential{#1}}
 \newcommand\school[1]{\def\sjtu@value@school{#1}}
 \newcommand\chinesedegree[1]{\def\sjtu@value@chinesedegree{#1}}
-\renewcommand\title[1]{\def\sjtu@value@chinesetitle{#1}}
+\renewcommand\title[1]{%
+  \def\sjtu@value@chinesetitle{\sjtu@title@handler{#1}}%
+  \def\sjtu@value@chinesecovertitle{\sjtu@covertitle@handler{#1}}}
 \renewcommand\author[1]{\def\sjtu@value@author{#1}}
 \newcommand\advisor[1]{\def\sjtu@value@advisor{#1}}
 \newcommand\coadvisor[1]{\def\sjtu@value@coadvisor{#1}}
@@ -86,7 +88,7 @@
 %==========
 
 \RequirePackage{etoolbox}
-\RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
+\RequirePackage{geometry} %设置版面
 \RequirePackage{fancyhdr}
 \RequirePackage{pageslts}
 \RequirePackage[titles]{tocloft}
@@ -118,8 +120,7 @@
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
-\RequirePackage{xstring}
-
+\RequirePackage{xparse}
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
 
@@ -144,7 +145,13 @@
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
-
+\geometry{
+  paper      = a4paper,
+  top        = 3.5cm,
+  bottom     = 4.0cm,
+  left       = 3.3cm,
+  right      = 2.8cm,
+}
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
 \renewcommand{\cftchapfont}{\bfseries\heiti}  % 目录章节标题（黑体加粗）
@@ -154,6 +161,9 @@
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+% E-mail
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 % upper math letter
 \newcommand{\me}{\mathrm{e}} 
@@ -394,55 +404,73 @@
 
 \renewcommand\maketitle{%
   \pdfbookmark[0]{\sjtu@titlepage}{titlepage}
+  \newgeometry{
+    paper      = a4paper,
+    top        = 3.5cm,
+    bottom     = 3.0cm,
+    left       = 3.3cm,
+    right      = 2.8cm,
+  }
   \ifsjtu@bachelor
     \makechinesetitle@bachelor
+    \restoregeometry
   \else
     \makechinesetitle
+    \restoregeometry
     \makeenglishtitle
   \fi
 }
 
+\ExplSyntaxOn
+\tl_new:N        \l__sjtu_tmp_tl
+\seq_new:N       \l__sjtu_tmp_seq
+\NewDocumentCommand{ \sjtu@covertitle@handler } { O { \\ } m }
+  {
+    \seq_set_split:Nnn \l__sjtu_tmp_seq { #1 } { #2 }
+    \seq_pop_right:NN  \l__sjtu_tmp_seq \l__sjtu_tmp_tl
+    \seq_map_inline:Nn \l__sjtu_tmp_seq { \underline { \makebox [ 320pt ] { ##1 } } \\ }
+    \underline { \makebox [ 320pt ] { \l__sjtu_tmp_tl } }
+  }
+\NewDocumentCommand{ \sjtu@title@handler } { O { \\ } m }
+  {
+    \seq_set_split:Nnn \l__sjtu_tmp_seq { #1 } { #2 }
+    \seq_map_inline:Nn \l__sjtu_tmp_seq { ##1 }
+  }
+\ExplSyntaxOff
+
 % “绘制”中文标题页
-\newcommand\longtextsplitchar{\null\null}
 \newcommand\makechinesetitle{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\songti\zihao{-3}\sjtu@label@statement}
+  {\zihao{-3}\sjtu@label@statement}
   \vskip\stretch{1}
   {\heiti\zihao{3}\sjtu@value@chinesetitle}
   \vskip\stretch{1}
-  {\fangsong\zihao{4}}
   \def\tabcolsep{1pt}
   \def\arraystretch{1.5}
-  \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}\heiti}r<{\end{CJKfilltwosides}}l}
+  \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}\heiti}r<{\end{CJKfilltwosides}}@{：}c}
     \ifsjtu@review
-      \sjtu@label@author        & \underline{\makebox[150pt]{}} \\
-      \sjtu@label@studentnumber & \underline{\makebox[150pt]{}} \\
-      \sjtu@label@advisor       & \underline{\makebox[150pt]{}} \\ 
+      \sjtu@label@author        &  \\ \cline{2-2}
+      \sjtu@label@studentnumber &  \\ \cline{2-2}
+      \sjtu@label@advisor       &  \\ \cline{2-2}
       \ifx\sjtu@value@coadvisor\undefined\else
-        \sjtu@label@coadvisor     & \underline{\makebox[150pt]{}} \\ 
+        \sjtu@label@coadvisor     &  \\ \cline{2-2}
       \fi
     \else
-      \sjtu@label@author        & \underline{\makebox[150pt]{\sjtu@value@author}} \\
-      \sjtu@label@studentnumber & \underline{\makebox[150pt]{\sjtu@value@studentnumber}} \\
-      \sjtu@label@advisor       & \underline{\makebox[150pt]{\sjtu@value@advisor}} \\ 
+      \sjtu@label@author        & \sjtu@value@author \\ \cline{2-2}
+      \sjtu@label@studentnumber & \sjtu@value@studentnumber \\ \cline{2-2}
+      \sjtu@label@advisor       & \sjtu@value@advisor \\ \cline{2-2}
       \ifx\sjtu@value@coadvisor\undefined\else
-        \sjtu@label@coadvisor     & \underline{\makebox[150pt]{\sjtu@value@coadvisor}} \\ 
+        \sjtu@label@coadvisor     & \sjtu@value@coadvisor \\ \cline{2-2}
       \fi
     \fi
-    % 专业名称最长支持两行，issue https://github.com/sjtug/SJTUThesis/issues/375
-    \saveexpandmode% 参考https://tex.stackexchange.com/questions/178610/replacing-substrings-by-linebreaks
-    \expandarg%只展开"\null\null"不展开其他变量，参考 http://tug.ctan.org/macros/generic/xstring/xstring_doc_en.pdf
-    \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
-      {\sjtu@label@major         & \underline{\makebox[150pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}} \\
-                                 & \underline{\makebox[150pt]{\StrBehind{\sjtu@value@major}{\longtextsplitchar}}} \\}
-      {\sjtu@label@major         & \underline{\makebox[150pt]{\sjtu@value@major}} \\}
-      \sjtu@label@defenddate    & \underline{\makebox[150pt]{\sjtu@value@defenddate}}
-    \restoreexpandmode
+    \sjtu@label@major         & \sjtu@value@major \\ \cline{2-2}
+    \sjtu@label@defenddate    & \sjtu@value@defenddate \\ \cline{2-2}
+    \multicolumn{1}{c}{}      & \multicolumn{1}{c}{\phantom{一二三四一二三四一二三四}}
   \end{tabular}
+  \vskip 30pt
   \end{center}
-  \vskip \stretch{0.5}
   \cleardoublepage
 }
 
@@ -484,63 +512,44 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
+    \kaishu
     \vspace*{20pt} \vskip 7pt
     \includegraphics{sjtulogo}
     \vskip 30pt
-    {\fontsize{32}{32}\kaishu\sjtu@value@chinesedegree\sjtu@label@thesis}
+    {\fontsize{32}{32}\sjtu@value@chinesedegree\sjtu@label@thesis}
     \vskip 15pt
     {\zihao{-2}\MakeUppercase{Thesis of \sjtu@value@englishdegree}}
     \vskip 15pt
     \includegraphics{sjtubadge}
     \vskip \stretch{2}
-    {\kaishu\zihao{2}
-    \begin{tabular}{r@{：}l}
-      % 标题名称最长支持两行
-      \saveexpandmode
-      \expandarg
-      \IfSubStr{\sjtu@value@chinesetitle}{\longtextsplitchar}
-        {
-          \sjtu@label@title & {\zihao{-2}\underline{\makebox[360pt]{\StrBefore{\sjtu@value@chinesetitle}{\longtextsplitchar}}}}
-          \end{tabular}
-          \begin{tabular}{r@{\quad}l}
-          ~~~~~~~~~~~~~~~~~ & {\zihao{-2}\underline{\makebox[360pt]{\StrBehind{\sjtu@value@chinesetitle}{\longtextsplitchar}}}}
-        }
-        {\sjtu@label@title &
-      {\zihao{-2}\underline{\begin{minipage}{360pt}\centering\sjtu@value@chinesetitle\end{minipage}}}}
-      \restoreexpandmode
-    \end{tabular}}
+    {
+      \zihao{2}
+      \begin{tabular}{r@{：}l}
+        \sjtu@label@title & {\zihao{-2}\parbox[t]{320pt}{\sjtu@value@chinesecovertitle}}
+      \end{tabular}
+    }
     \vskip \stretch{1}
-    {\kaishu\zihao{3}
-    \def\arraystretch{1.1}
-    \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}l}
-      \ifsjtu@review
-        \sjtu@label@author        & \underline{\makebox[180pt]{}} \\
-        \sjtu@label@studentnumber & \underline{\makebox[180pt]{}} \\
-      \else
-        \sjtu@label@author        & \underline{\makebox[180pt]{\sjtu@value@author}} \\
-        \sjtu@label@studentnumber & \underline{\makebox[180pt]{\sjtu@value@studentnumber}} \\
-      \fi
-      % 专业名称最长支持两行
-      \saveexpandmode
-      \expandarg
-      \IfSubStr{\sjtu@value@major}{\longtextsplitchar}
-        {
-          \sjtu@label@major         & \underline{\makebox[180pt]{\StrBefore{\sjtu@value@major}{\longtextsplitchar}}}
-          \end{tabular}
-          \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{\quad}l}
-        ~~~~ & \underline{\makebox[180pt]{\StrBehind{\sjtu@value@major}{\longtextsplitchar}}} 
-          \end{tabular}
-          \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}l}
-        }
-        {\sjtu@label@major         & \underline{\makebox[180pt]{\sjtu@value@major}} \\}
-      \restoreexpandmode
-      \ifsjtu@review
-        \sjtu@label@advisor       & \underline{\makebox[180pt]{}} \\
-      \else
-        \sjtu@label@advisor       & \underline{\makebox[180pt]{\sjtu@value@advisor}} \\
-      \fi
-        \sjtu@label@institute     & \underline{\makebox[180pt]{\sjtu@value@institute}}
-    \end{tabular}}
+    {
+      \zihao{3}
+      \def\arraystretch{1.1}
+      \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
+        \ifsjtu@review
+          \sjtu@label@author        &  \\ \cline{2-2}
+          \sjtu@label@studentnumber &  \\ \cline{2-2}
+        \else
+          \sjtu@label@author        & \sjtu@value@author \\ \cline{2-2}
+          \sjtu@label@studentnumber & \sjtu@value@studentnumber \\ \cline{2-2}
+        \fi
+          \sjtu@label@major         & \sjtu@value@major \\ \cline{2-2}
+        \ifsjtu@review
+          \sjtu@label@advisor       &  \\ \cline{2-2}
+        \else
+          \sjtu@label@advisor       & \sjtu@value@advisor \\ \cline{2-2}
+        \fi
+        \sjtu@label@institute     & \sjtu@value@institute \\ \cline{2-2}
+        \multicolumn{1}{c}{}      & \multicolumn{1}{c}{\phantom{一二三四一二三四一二}}
+      \end{tabular}
+    }
   \end{center}
   \cleardoublepage
 }
