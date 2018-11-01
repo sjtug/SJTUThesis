@@ -88,7 +88,7 @@
 %==========
 
 \RequirePackage{etoolbox}
-\RequirePackage[centering,a4paper,body={16cm,22cm}]{geometry} %设置版面
+\RequirePackage{geometry} %设置版面
 \RequirePackage{fancyhdr}
 \RequirePackage{pageslts}
 \RequirePackage[titles]{tocloft}
@@ -120,7 +120,6 @@
 \RequirePackage{calc}
 \RequirePackage{algorithm, algorithmicx, algpseudocode}
 \RequirePackage{siunitx}
-\RequirePackage{adjustbox}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -146,7 +145,13 @@
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
-
+\geometry{
+  paper      = a4paper,
+  top        = 3.5cm,
+  bottom     = 4.0cm,
+  left       = 3.3cm,
+  right      = 2.8cm,
+}
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
 \renewcommand{\cftchapfont}{\bfseries\heiti}  % 目录章节标题（黑体加粗）
@@ -156,6 +161,9 @@
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+% E-mail
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 % upper math letter
 \newcommand{\me}{\mathrm{e}} 
@@ -396,17 +404,22 @@
 
 \renewcommand\maketitle{%
   \pdfbookmark[0]{\sjtu@titlepage}{titlepage}
+  \newgeometry{
+    paper      = a4paper,
+    top        = 3.5cm,
+    bottom     = 3.0cm,
+    left       = 3.3cm,
+    right      = 2.8cm,
+  }
   \ifsjtu@bachelor
     \makechinesetitle@bachelor
+    \restoregeometry
   \else
     \makechinesetitle
+    \restoregeometry
     \makeenglishtitle
   \fi
 }
-
-\NewDocumentCommand{\sjtu@ulbox}{O{150pt} m}{%
-  \underline{\makebox[#1]{%
-    \begin{adjustbox}{max width=#1}#2\end{adjustbox}}}}
 
 \ExplSyntaxOn
 \tl_new:N        \l__sjtu_tmp_tl
@@ -415,8 +428,8 @@
   {
     \seq_set_split:Nnn \l__sjtu_tmp_seq { #1 } { #2 }
     \seq_pop_right:NN  \l__sjtu_tmp_seq \l__sjtu_tmp_tl
-    \seq_map_inline:Nn \l__sjtu_tmp_seq { \sjtu@ulbox [ 320pt ] { ##1 } \\ }
-    \sjtu@ulbox [ 320pt ] { \l__sjtu_tmp_tl }
+    \seq_map_inline:Nn \l__sjtu_tmp_seq { \underline { \makebox [ 320pt ] { ##1 } } \\ }
+    \underline { \makebox [ 320pt ] { \l__sjtu_tmp_tl } }
   }
 \NewDocumentCommand{ \sjtu@title@handler } { O { \\ } m }
   {
@@ -436,27 +449,28 @@
   \vskip\stretch{1}
   \def\tabcolsep{1pt}
   \def\arraystretch{1.5}
-  \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}\heiti}r<{\end{CJKfilltwosides}}l}
+  \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}\heiti}r<{\end{CJKfilltwosides}}@{：}c}
     \ifsjtu@review
-      \sjtu@label@author        & \sjtu@ulbox{} \\
-      \sjtu@label@studentnumber & \sjtu@ulbox{} \\
-      \sjtu@label@advisor       & \sjtu@ulbox{} \\ 
+      \sjtu@label@author        &  \\ \cline{2-2}
+      \sjtu@label@studentnumber &  \\ \cline{2-2}
+      \sjtu@label@advisor       &  \\ \cline{2-2}
       \ifx\sjtu@value@coadvisor\undefined\else
-        \sjtu@label@coadvisor     & \sjtu@ulbox{} \\ 
+        \sjtu@label@coadvisor     &  \\ \cline{2-2}
       \fi
     \else
-      \sjtu@label@author        & \sjtu@ulbox{\sjtu@value@author} \\
-      \sjtu@label@studentnumber & \sjtu@ulbox{\sjtu@value@studentnumber} \\
-      \sjtu@label@advisor       & \sjtu@ulbox{\sjtu@value@advisor} \\ 
+      \sjtu@label@author        & \sjtu@value@author \\ \cline{2-2}
+      \sjtu@label@studentnumber & \sjtu@value@studentnumber \\ \cline{2-2}
+      \sjtu@label@advisor       & \sjtu@value@advisor \\ \cline{2-2}
       \ifx\sjtu@value@coadvisor\undefined\else
-        \sjtu@label@coadvisor     & \sjtu@ulbox{\sjtu@value@coadvisor} \\ 
+        \sjtu@label@coadvisor     & \sjtu@value@coadvisor \\ \cline{2-2}
       \fi
     \fi
-      \sjtu@label@major         & \sjtu@ulbox{\sjtu@value@major} \\
-      \sjtu@label@defenddate    & \sjtu@ulbox{\sjtu@value@defenddate}
+    \sjtu@label@major         & \sjtu@value@major \\ \cline{2-2}
+    \sjtu@label@defenddate    & \sjtu@value@defenddate \\ \cline{2-2}
+    \multicolumn{1}{c}{}      & \multicolumn{1}{c}{\phantom{一二三四一二三四一二三四}}
   \end{tabular}
+  \vskip 30pt
   \end{center}
-  \vskip \stretch{0.5}
   \cleardoublepage
 }
 
@@ -518,21 +532,22 @@
     {
       \zihao{3}
       \def\arraystretch{1.1}
-      \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}l}
+      \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
         \ifsjtu@review
-          \sjtu@label@author        & \sjtu@ulbox[180pt]{} \\
-          \sjtu@label@studentnumber & \sjtu@ulbox[180pt]{} \\
+          \sjtu@label@author        &  \\ \cline{2-2}
+          \sjtu@label@studentnumber &  \\ \cline{2-2}
         \else
-          \sjtu@label@author        & \sjtu@ulbox[180pt]{\sjtu@value@author} \\
-          \sjtu@label@studentnumber & \sjtu@ulbox[180pt]{\sjtu@value@studentnumber} \\
+          \sjtu@label@author        & \sjtu@value@author \\ \cline{2-2}
+          \sjtu@label@studentnumber & \sjtu@value@studentnumber \\ \cline{2-2}
         \fi
-          \sjtu@label@major         & \sjtu@ulbox[180pt]{\sjtu@value@major} \\
+          \sjtu@label@major         & \sjtu@value@major \\ \cline{2-2}
         \ifsjtu@review
-          \sjtu@label@advisor       & \sjtu@ulbox[180pt]{} \\
+          \sjtu@label@advisor       &  \\ \cline{2-2}
         \else
-          \sjtu@label@advisor       & \sjtu@ulbox[180pt]{\sjtu@value@advisor} \\
+          \sjtu@label@advisor       & \sjtu@value@advisor \\ \cline{2-2}
         \fi
-          \sjtu@label@institute     & \sjtu@ulbox[180pt]{\sjtu@value@institute}
+        \sjtu@label@institute     & \sjtu@value@institute \\ \cline{2-2}
+        \multicolumn{1}{c}{}      & \multicolumn{1}{c}{\phantom{一二三四一二三四一二}}
       \end{tabular}
     }
   \end{center}

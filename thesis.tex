@@ -23,8 +23,6 @@
 
 \input{tex/id}  % NOTE: the enclosed commands must be executed in preamble
 
-\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
-
 \begin{document}
 
 % 无编号内容：中英文论文封面、授权页
@@ -106,11 +104,10 @@
   \else
     \include{tex/pub}       % 发表论文
     \include{tex/projects}  % 参与的项目
+    % \include{tex/patents}   % 申请专利
+    \include{tex/resume}    % 个人简历
   \fi
 \fi
-
-% \include{tex/patents}     % 申请专利
-\include{tex/resume}      % 个人简历
 
 \makeatother
 
