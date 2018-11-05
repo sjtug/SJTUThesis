@@ -141,6 +141,9 @@
   }
 }
 \RequirePackage{hyperref}
+\pdfstringdefDisableCommands{%
+  \let\\\@empty%
+  \let\sjtu@title@handler\@empty}
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
@@ -404,19 +407,10 @@
 
 \renewcommand\maketitle{%
   \pdfbookmark[0]{\sjtu@titlepage}{titlepage}
-  \newgeometry{
-    paper      = a4paper,
-    top        = 3.5cm,
-    bottom     = 3.0cm,
-    left       = 3.3cm,
-    right      = 2.8cm,
-  }
   \ifsjtu@bachelor
     \makechinesetitle@bachelor
-    \restoregeometry
   \else
     \makechinesetitle
-    \restoregeometry
     \makeenglishtitle
   \fi
 }
@@ -428,8 +422,8 @@
   {
     \seq_set_split:Nnn \l__sjtu_tmp_seq { #1 } { #2 }
     \seq_pop_right:NN  \l__sjtu_tmp_seq \l__sjtu_tmp_tl
-    \seq_map_inline:Nn \l__sjtu_tmp_seq { \underline { \makebox [ 320pt ] { ##1 } } \\ }
-    \underline { \makebox [ 320pt ] { \l__sjtu_tmp_tl } }
+    \seq_map_inline:Nn \l__sjtu_tmp_seq { \underline { \makebox [ 300pt ] { ##1 } } \\ }
+    \underline { \makebox [ 300pt ] { \l__sjtu_tmp_tl } }
   }
 \NewDocumentCommand{ \sjtu@title@handler } { O { \\ } m }
   {
@@ -452,14 +446,14 @@
   \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}\heiti}r<{\end{CJKfilltwosides}}@{：}c}
     \ifsjtu@review
       \sjtu@label@author        &  \\ \cline{2-2}
-      \sjtu@label@studentnumber &  \\ \cline{2-2}
+      \sjtu@label@studentnumber & \makebox[150pt]{} \\ \cline{2-2}
       \sjtu@label@advisor       &  \\ \cline{2-2}
       \ifx\sjtu@value@coadvisor\undefined\else
         \sjtu@label@coadvisor     &  \\ \cline{2-2}
       \fi
     \else
       \sjtu@label@author        & \sjtu@value@author \\ \cline{2-2}
-      \sjtu@label@studentnumber & \sjtu@value@studentnumber \\ \cline{2-2}
+      \sjtu@label@studentnumber & \makebox[150pt]{\sjtu@value@studentnumber} \\ \cline{2-2}
       \sjtu@label@advisor       & \sjtu@value@advisor \\ \cline{2-2}
       \ifx\sjtu@value@coadvisor\undefined\else
         \sjtu@label@coadvisor     & \sjtu@value@coadvisor \\ \cline{2-2}
@@ -467,7 +461,6 @@
     \fi
     \sjtu@label@major         & \sjtu@value@major \\ \cline{2-2}
     \sjtu@label@defenddate    & \sjtu@value@defenddate \\ \cline{2-2}
-    \multicolumn{1}{c}{}      & \multicolumn{1}{c}{\phantom{一二三四一二三四一二三四}}
   \end{tabular}
   \vskip 30pt
   \end{center}
@@ -535,10 +528,10 @@
       \begin{tabular}{>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
         \ifsjtu@review
           \sjtu@label@author        &  \\ \cline{2-2}
-          \sjtu@label@studentnumber &  \\ \cline{2-2}
+          \sjtu@label@studentnumber & \makebox[180pt]{} \\ \cline{2-2}
         \else
           \sjtu@label@author        & \sjtu@value@author \\ \cline{2-2}
-          \sjtu@label@studentnumber & \sjtu@value@studentnumber \\ \cline{2-2}
+          \sjtu@label@studentnumber & \makebox[180pt]{\sjtu@value@studentnumber} \\ \cline{2-2}
         \fi
           \sjtu@label@major         & \sjtu@value@major \\ \cline{2-2}
         \ifsjtu@review
@@ -547,7 +540,6 @@
           \sjtu@label@advisor       & \sjtu@value@advisor \\ \cline{2-2}
         \fi
         \sjtu@label@institute     & \sjtu@value@institute \\ \cline{2-2}
-        \multicolumn{1}{c}{}      & \multicolumn{1}{c}{\phantom{一二三四一二三四一二}}
       \end{tabular}
     }
   \end{center}
