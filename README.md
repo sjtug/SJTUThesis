@@ -12,8 +12,12 @@
 
 <div align="center">
     <a href="http://sjtug.org/SJTUThesis/bachelor.pdf"><img src="./docs/images/bachelor.png" height="330"></a>
-    <a href="http://sjtug.org/SJTUThesis/master.pdf"><img src="./docs/images/master.png" height="330"></a>
-    <a href="http://sjtug.org/SJTUThesis/doctor.pdf"><img src="./docs/images/doctor.png" height="330"></a>
+    <a href="http://sjtug.org/SJTUThesis/coursepaper.pdf"><img src="./docs/images/coursepaper.png" height="330"></a>
+</div>
+
+<div align="center">
+    <a href="http://sjtug.org/SJTUThesis/master.pdf"><img src="./docs/images/master.png" height="305"></a>
+    <a href="http://sjtug.org/SJTUThesis/doctor.pdf"><img src="./docs/images/doctor.png" height="305"></a>
 </div>
 
 
