@@ -6,14 +6,18 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/sjtug/SJTUThesis.svg)](https://github.com/sjtug/SJTUThesis/releases)
 [![Join the chat at https://gitter.im/sjtug/SJTUThesis](https://badges.gitter.im/sjtug/SJTUThesis.svg)](https://gitter.im/sjtug/SJTUThesis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-这是为撰写上海交通大学学士、硕士或博士论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)。
+这是为撰写上海交通大学学士、硕士、博士学位论文或课程论文而准备的 XeLaTeX 模板，非官方出品。生成的学位论文文件参见 [README.pdf][README]，详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)。
 
 ## 封面展示
 
 <div align="center">
     <a href="http://sjtug.org/SJTUThesis/bachelor.pdf"><img src="./docs/images/bachelor.png" height="330"></a>
-    <a href="http://sjtug.org/SJTUThesis/master.pdf"><img src="./docs/images/master.png" height="330"></a>
-    <a href="http://sjtug.org/SJTUThesis/doctor.pdf"><img src="./docs/images/doctor.png" height="330"></a>
+    <a href="http://sjtug.org/SJTUThesis/coursepaper.pdf"><img src="./docs/images/coursepaper.png" height="330"></a>
+</div>
+
+<div align="center">
+    <a href="http://sjtug.org/SJTUThesis/master.pdf"><img src="./docs/images/master.png" height="305"></a>
+    <a href="http://sjtug.org/SJTUThesis/doctor.pdf"><img src="./docs/images/doctor.png" height="305"></a>
 </div>
 
 
