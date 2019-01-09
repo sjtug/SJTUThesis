@@ -13,6 +13,7 @@
 \newif\ifsjtu@english\sjtu@englishfalse
 \newif\ifsjtu@review\sjtu@reviewfalse
 \newif\ifsjtu@submit\sjtu@submitfalse
+\newif\ifsjtu@altcover\sjtu@altcoverfalse
 \DeclareOption{coursepaper}{\sjtu@coursepapertrue}
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
@@ -20,6 +21,7 @@
 \DeclareOption{english}{\sjtu@englishtrue}
 \DeclareOption{review}{\sjtu@reviewtrue}
 \DeclareOption{submit}{\sjtu@submittrue}
+\DeclareOption{altcover}{\sjtu@altcovertrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 \ifsjtu@english
@@ -88,6 +90,7 @@
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
+\newcommand\englishstudentid[1]{\def\sjtu@value@englishstudentid{#1}}
 \newcommand\englishkeywords[1]{\def\sjtu@value@englishkeywords{#1}}
 
 %==========
@@ -129,6 +132,7 @@
 \RequirePackage{siunitx}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
+\RequirePackage{makecell}
 \usetikzlibrary{shapes.geometric, arrows}
 
 % Make hyperref to set PDF metadata (author, title, subject, keywords)
@@ -420,8 +424,13 @@
     \ifsjtu@bachelor
       \makechinesetitle@bachelor
     \else
-      \makechinesetitle
-      \makeenglishtitle
+      \ifsjtu@altcover
+        \makechinesetitle@altcover
+        \makeenglishtitle@altcover
+      \else
+        \makechinesetitle
+        \makeenglishtitle
+      \fi
     \fi
   \fi
 }
@@ -442,6 +451,85 @@
     \seq_map_inline:Nn \l__sjtu_tmp_seq { ##1 }
   }
 \ExplSyntaxOff
+
+% “绘制”硕士论文模板中文标题页
+\newcommand\makechinesetitle@altcover{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+  {\songti\zihao{-2}\sjtu@label@statement}
+  \vskip\stretch{1}
+  {\heiti\zihao{2}\sjtu@value@chinesetitle}
+  \vskip\stretch{1}
+  {\fangsong\zihao{4}}
+  \zihao{4}
+  \def\tabcolsep{1pt}
+  \def\arraystretch{1.5}
+  \begin{tabular}{>{\begin{CJKfilltwosides}[t]{7\ccwd}\heiti }r<{\end{CJKfilltwosides}}l}
+    \ifsjtu@review
+      \sjtu@label@author        & \enspace ~ \\
+      \sjtu@label@studentnumber & \enspace ~ \\
+      \sjtu@label@advisor       & \enspace ~ \\
+      \ifx\sjtu@value@coadvisor\undefined\else
+        \sjtu@label@coadvisor     & \enspace ~ \\
+      \fi
+    \else
+      \sjtu@label@author        & \enspace {\sjtu@value@author} \\
+      \sjtu@label@studentnumber & \enspace {\sjtu@value@studentnumber} \\
+      \sjtu@label@advisor       & \enspace {\sjtu@value@advisor} \\
+      \ifx\sjtu@value@coadvisor\undefined\else
+        \sjtu@label@coadvisor     & \enspace {\sjtu@value@coadvisor} \\
+      \fi
+    \fi
+      \sjtu@label@chinesedegree   & \enspace {\sjtu@value@chinesedegree} \\
+      \sjtu@label@major         & \enspace {\sjtu@value@major} \\
+      \sjtu@label@institute         & \enspace {\sjtu@value@institute} \\
+      \sjtu@label@defenddate    & \enspace {\sjtu@value@defenddate} \\
+      \sjtu@label@school        & \enspace {\sjtu@value@school}
+  \end{tabular}
+  \end{center}
+  \vskip \stretch{0.5}
+  \cleardoublepage
+}
+% “绘制”硕士论文模板英文标题页
+\newcommand\makeenglishtitle@altcover{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+      {\normalfont\zihao{-2} \sjtu@label@englishstatement}
+      \vspace{20pt} \vskip\stretch{1}
+      {\zihao{2} \textbf{\MakeUppercase{\sjtu@value@englishtitle}} \vskip 1pt}
+      \vskip \stretch{1}
+      {\normalfont\zihao{4}}
+      \zihao{4}
+      \def\tabcolsep{1pt}
+      \def\arraystretch{1.5}
+      \begin{tabular}{ll}
+        \ifsjtu@review
+          \textbf{\sjtu@label@englishauthor} & \enspace ~ \\
+          \textbf{\sjtu@label@englishstudentid} & \enspace ~ \\
+          \textbf{\sjtu@label@englishadvisor}       & \enspace ~ \\
+          \ifx\sjtu@value@englishcoadvisor\undefined\else
+            \textbf{\sjtu@label@englishcoadvisor}     & \enspace ~ \\
+          \fi
+        \else
+          \textbf{\sjtu@label@englishauthor} & \enspace \sjtu@value@englishauthor \\
+          \textbf{\sjtu@label@englishstudentid} & \enspace \sjtu@value@englishstudentid \\
+          \textbf{\sjtu@label@englishadvisor}      & \enspace \sjtu@value@englishadvisor \\
+          \ifx\sjtu@value@englishcoadvisor\undefined\else
+            \textbf{\sjtu@label@englishcoadvisor}    & \enspace \sjtu@value@englishcoadvisor \\
+          \fi
+        \fi
+        \textbf{\sjtu@label@englishdegree}   & \enspace \sjtu@value@englishdegree \\
+        \textbf{\sjtu@label@englishmajor}         & \enspace \sjtu@value@englishmajor \\
+        \textbf{\sjtu@label@englishinstitute}        & \enspace \makecell[l]{\sjtu@value@englishinstitute} \\
+        \textbf{\sjtu@label@englishdate}    & \enspace \sjtu@value@englishdate \\
+        \textbf{\sjtu@label@englishschool}        & \enspace \sjtu@value@englishschool
+      \end{tabular}
+  \end{center}
+  \vskip \stretch{0.5}
+  \cleardoublepage
+}
 
 % “绘制”中文标题页
 \newcommand\makechinesetitle{%
@@ -601,7 +689,7 @@
     {\zihao{3}\bfseries\heiti \sjtu@label@original}
   \end{center}
   \vskip 10pt
-  {\par\zihao{-4}\sjtu@label@originalcontent\par}
+  {\par\zihao{-4}本人郑重声明：所呈交的学位论文《\sjtu@value@chinesetitle》，\sjtu@label@originalcontent\par}
   \vskip 60pt
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
   \vskip 15pt
@@ -752,7 +840,7 @@
     \vskip 20pt
     \sjtu@label@chineseabstract
   }
-  \markboth{\sjtu@label@chineseabstract}{}
+  \zihao{4} \markboth{\sjtu@label@chineseabstract}{}
 }{
   \vspace{2ex}\noindent
   {\zihao{4} \textbf{\sjtu@label@keywords}{\sjtu@value@keywords}}
@@ -764,7 +852,7 @@
     \vskip 20pt
     \MakeUppercase\sjtu@label@englishabstract
   }
-  \markboth{\sjtu@label@englishabstract}{}
+  \zihao{4} \markboth{\sjtu@label@englishabstract}{}
 }{
   \vspace{2ex}\noindent
   {\zihao{4} \textbf{\sjtu@label@englishkeywords}{\sjtu@value@englishkeywords}}
