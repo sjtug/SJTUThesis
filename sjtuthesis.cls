@@ -77,6 +77,7 @@
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
 \newcommand\keywords[1]{\def\sjtu@value@keywords{#1}}
+\newcommand\cnacademicdegree[1]{\def\sjtu@value@cnacademicdegree{#1}}
 
 % English variables
 \newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
@@ -85,10 +86,13 @@
 \newcommand\englishcoadvisor[1]{\def\sjtu@value@englishcoadvisor{#1}}
 \newcommand\englishschool[1]{\def\sjtu@value@englishschool{#1}}
 \newcommand\englishinstitute[1]{\def\sjtu@value@englishinstitute{#1}}
+\newcommand\englishinstitutemaster[1]{\def\sjtu@value@englishinstitutemaster{#1}}
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
+\newcommand\englishstudentid[1]{\def\sjtu@value@englishstudentid{#1}}
 \newcommand\englishkeywords[1]{\def\sjtu@value@englishkeywords{#1}}
+\newcommand\enacademicdegree[1]{\def\sjtu@value@enacademicdegree{#1}}
 
 %==========
 % Segment 1. Import LaTeX packages.
@@ -129,6 +133,7 @@
 \RequirePackage{siunitx}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
+\RequirePackage{makecell}
 \usetikzlibrary{shapes.geometric, arrows}
 
 % Make hyperref to set PDF metadata (author, title, subject, keywords)
@@ -300,6 +305,19 @@
   \renewcommand{\thelstlisting}{\thechapter--\arabic{lstlisting}}
 }
 
+% 图表索引前加下“图”，“表”关键词
+\ifsjtu@master
+  \renewcommand*\cftfigpresnum{\sjtu@figurename~}
+  % \newlength{\sjtu@cftfignumwidth@tmp}
+  % \settowidth{\sjtu@cftfignumwidth@tmp}{\cftfigpresnum}
+  % \addtolength{\cftfignumwidth}{\sjtu@cftfignumwidth@tmp}
+  \renewcommand{\cftfigaftersnumb}{\enspace~}
+  \renewcommand*\cfttabpresnum{\sjtu@tablename~}
+  % \newlength{\sjtu@cfttabnumwidth@tmp}
+  % \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
+  % \addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
+  \renewcommand{\cfttabaftersnumb}{\enspace~}
+\fi
 % 使用enumitem宏包配制列表环境
 % 紧凑间距
 \setlist{nosep}
@@ -420,8 +438,13 @@
     \ifsjtu@bachelor
       \makechinesetitle@bachelor
     \else
-      \makechinesetitle
-      \makeenglishtitle
+      \ifsjtu@master
+        \makechinesetitle@master
+        \makeenglishtitle@master
+      \else
+        \makechinesetitle
+        \makeenglishtitle
+      \fi
     \fi
   \fi
 }
@@ -442,6 +465,85 @@
     \seq_map_inline:Nn \l__sjtu_tmp_seq { ##1 }
   }
 \ExplSyntaxOff
+
+% “绘制”硕士论文模板中文标题页
+\newcommand\makechinesetitle@master{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+  {\songti\zihao{-2} ~\\[35pt] \sjtu@label@statement}
+  \vskip\stretch{1}
+  {\heiti\zihao{2}\sjtu@value@chinesetitle}
+  \vskip\stretch{1.2}
+  {\fangsong\zihao{4}}
+  \zihao{4}
+  \def\tabcolsep{1pt}
+  \def\arraystretch{1.25}
+  \begin{tabular}{>{\begin{CJKfilltwosides}[t]{7\ccwd}\heiti }r<{\end{CJKfilltwosides}}l}
+    \ifsjtu@review
+      \sjtu@label@author        & \enspace ~ \\
+      \sjtu@label@studentnumber & \enspace ~ \\
+      \sjtu@label@advisor       & \enspace ~ \\
+      \ifx\sjtu@value@coadvisor\undefined\else
+        \sjtu@label@coadvisor     & \enspace ~ \\
+      \fi
+    \else
+      \sjtu@label@author        & \enspace {\sjtu@value@author} \\
+      \sjtu@label@studentnumber & \enspace {\sjtu@value@studentnumber} \\
+      \sjtu@label@advisor       & \enspace {\sjtu@value@advisor} \\
+      \ifx\sjtu@value@coadvisor\undefined\else
+        \sjtu@label@coadvisor     & \enspace {\sjtu@value@coadvisor} \\
+      \fi
+    \fi
+      \sjtu@label@cnacademicdegree & \enspace {\sjtu@value@cnacademicdegree } \\
+      \sjtu@label@major         & \enspace {\sjtu@value@major} \\
+      \sjtu@label@institute         & \enspace {\sjtu@value@institute} \\
+      \sjtu@label@defenddate    & \enspace {\sjtu@value@defenddate} \\
+      \sjtu@label@school        & \enspace {\sjtu@value@school}
+  \end{tabular}
+  \end{center}
+  \vskip \stretch{0.25}
+  \cleardoublepage
+}
+% “绘制”硕士论文模板英文标题页
+\newcommand\makeenglishtitle@master{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+      {\normalfont\zihao{-2} ~\\[35pt] \sjtu@label@englishstatement}
+      \vskip\stretch{1}
+      {\zihao{2} \textbf{\MakeUppercase{\sjtu@value@englishtitle}} \vskip 1pt}
+      \vskip \stretch{1}
+      {\normalfont\zihao{4}}
+      \zihao{4}
+      \def\tabcolsep{1pt}
+      \def\arraystretch{1.3}
+      \begin{tabular}{ll}
+        \ifsjtu@review
+          \textbf{\sjtu@label@englishauthor} & \enspace ~ \\
+          \textbf{\sjtu@label@englishstudentid} & \enspace ~ \\
+          \textbf{\sjtu@label@englishadvisor}       & \enspace ~ \\
+          \ifx\sjtu@value@englishcoadvisor\undefined\else
+            \textbf{\sjtu@label@englishcoadvisor}     & \enspace ~ \\
+          \fi
+        \else
+          \textbf{\sjtu@label@englishauthor} & \enspace \sjtu@value@englishauthor \\
+          \textbf{\sjtu@label@englishstudentid} & \enspace \sjtu@value@englishstudentid \\
+          \textbf{\sjtu@label@englishadvisor}      & \enspace \sjtu@value@englishadvisor \\
+          \ifx\sjtu@value@englishcoadvisor\undefined\else
+            \textbf{\sjtu@label@englishcoadvisor}    & \enspace \sjtu@value@englishcoadvisor \\
+          \fi
+        \fi
+        \textbf{\sjtu@label@enacademicdegree}   & \enspace \sjtu@value@enacademicdegree \\
+        \textbf{\sjtu@label@englishmajor}         & \enspace \sjtu@value@englishmajor \\
+        \textbf{\sjtu@label@englishinstitutemaster}        & \enspace \makecell[l]{\sjtu@value@englishinstitutemaster} \\
+        \textbf{\sjtu@label@englishdate}    & \enspace \sjtu@value@englishdate \\
+        \textbf{\sjtu@label@englishschool}        & \enspace \sjtu@value@englishschool
+      \end{tabular}
+  \end{center}
+  \vskip \stretch{0.4}
+  \cleardoublepage
+}
 
 % “绘制”中文标题页
 \newcommand\makechinesetitle{%
@@ -597,15 +699,17 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\zihao{3}\bfseries\heiti \sjtu@value@school} \\
-    {\zihao{3}\bfseries\heiti \sjtu@label@original}
+    ~\\[70pt]
+    % \linespread{1.5}
+    {\zihao{-2}\heiti \textbf{\sjtu@value@school}} \\[12pt]
+    {\zihao{-2}\heiti \textbf{\sjtu@label@original}} \\[12pt]
   \end{center}
   \vskip 10pt
-  {\par\zihao{-4}\sjtu@label@originalcontent\par}
-  \vskip 60pt
-  \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
-  \vskip 15pt
-  \hspace{16em}\sjtu@label@originalDate\hspace{1em}
+  {\par\linespread{2}\zihao{4}本人郑重声明：所呈交的学位论文《\sjtu@value@chinesetitle》，\sjtu@label@originalcontent\par}
+  \vskip 80pt
+  {\zihao{4}\hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}}
+  \vskip 40pt
+  {\zihao{4}\hspace{11em}\sjtu@label@originalDate\hspace{1em}}
   \cleardoublepage
 }
 
@@ -614,15 +718,16 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\zihao{3}\bfseries\heiti \sjtu@value@school} \\
-    {\zihao{3}\bfseries\heiti \sjtu@label@authorization}
+    ~\\[30pt]
+    {\zihao{-2}\bfseries\heiti \sjtu@value@school} \\[12pt]
+    {\zihao{-2}\bfseries\heiti \sjtu@label@authorization} \\[12pt]
   \end{center}
   \vskip 10pt
-  {\par\zihao{-4}\sjtu@label@authorizationcontent\par}
-  \vskip 60pt
-  \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
-  \vskip 15pt
-  \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
+  {\par\linespread{1.5}\zihao{4}\sjtu@label@authorizationcontent\par}
+  \vskip 150pt
+  {\zihao{4} \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill}
+  \vskip 40pt
+  {\zihao{4} \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate}
   \cleardoublepage
 }
 
@@ -752,7 +857,7 @@
     \vskip 20pt
     \sjtu@label@chineseabstract
   }
-  \markboth{\sjtu@label@chineseabstract}{}
+  \zihao{4} \markboth{\sjtu@label@chineseabstract}{}
 }{
   \vspace{2ex}\noindent
   {\zihao{4} \textbf{\sjtu@label@keywords}{\sjtu@value@keywords}}
@@ -764,7 +869,7 @@
     \vskip 20pt
     \MakeUppercase\sjtu@label@englishabstract
   }
-  \markboth{\sjtu@label@englishabstract}{}
+  \zihao{4} \markboth{\sjtu@label@englishabstract}{}
 }{
   \vspace{2ex}\noindent
   {\zihao{4} \textbf{\sjtu@label@englishkeywords}{\sjtu@value@englishkeywords}}
