@@ -13,7 +13,6 @@
 \newif\ifsjtu@english\sjtu@englishfalse
 \newif\ifsjtu@review\sjtu@reviewfalse
 \newif\ifsjtu@submit\sjtu@submitfalse
-\newif\ifsjtu@altcover\sjtu@altcoverfalse
 \DeclareOption{coursepaper}{\sjtu@coursepapertrue}
 \DeclareOption{bachelor}{\sjtu@bachelortrue}
 \DeclareOption{master}{\sjtu@mastertrue}
@@ -21,7 +20,6 @@
 \DeclareOption{english}{\sjtu@englishtrue}
 \DeclareOption{review}{\sjtu@reviewtrue}
 \DeclareOption{submit}{\sjtu@submittrue}
-\DeclareOption{altcover}{\sjtu@altcovertrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 \ifsjtu@english
@@ -79,6 +77,7 @@
 \newcommand\institute[1]{\def\sjtu@value@institute{#1}}
 \newcommand\chairman[1]{\def\sjtu@value@chairman{#1}}
 \newcommand\keywords[1]{\def\sjtu@value@keywords{#1}}
+\newcommand\cnacademicdegree[1]{\def\sjtu@value@cnacademicdegree{#1}}
 
 % English variables
 \newcommand\englishtitle[1]{\def\sjtu@value@englishtitle{#1}}
@@ -92,6 +91,7 @@
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
 \newcommand\englishstudentid[1]{\def\sjtu@value@englishstudentid{#1}}
 \newcommand\englishkeywords[1]{\def\sjtu@value@englishkeywords{#1}}
+\newcommand\enacademicdegree[1]{\def\sjtu@value@enacademicdegree{#1}}
 
 %==========
 % Segment 1. Import LaTeX packages.
@@ -424,9 +424,9 @@
     \ifsjtu@bachelor
       \makechinesetitle@bachelor
     \else
-      \ifsjtu@altcover
-        \makechinesetitle@altcover
-        \makeenglishtitle@altcover
+      \ifsjtu@master
+        \makechinesetitle@master
+        \makeenglishtitle@master
       \else
         \makechinesetitle
         \makeenglishtitle
@@ -453,18 +453,18 @@
 \ExplSyntaxOff
 
 % “绘制”硕士论文模板中文标题页
-\newcommand\makechinesetitle@altcover{%
+\newcommand\makechinesetitle@master{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\songti\zihao{-2}\sjtu@label@statement}
+  {\songti\zihao{-2} ~\\[35pt] \sjtu@label@statement}
   \vskip\stretch{1}
   {\heiti\zihao{2}\sjtu@value@chinesetitle}
-  \vskip\stretch{1}
+  \vskip\stretch{1.2}
   {\fangsong\zihao{4}}
   \zihao{4}
   \def\tabcolsep{1pt}
-  \def\arraystretch{1.5}
+  \def\arraystretch{1.25}
   \begin{tabular}{>{\begin{CJKfilltwosides}[t]{7\ccwd}\heiti }r<{\end{CJKfilltwosides}}l}
     \ifsjtu@review
       \sjtu@label@author        & \enspace ~ \\
@@ -481,29 +481,29 @@
         \sjtu@label@coadvisor     & \enspace {\sjtu@value@coadvisor} \\
       \fi
     \fi
-      \sjtu@label@chinesedegree   & \enspace {\sjtu@value@chinesedegree} \\
+      \sjtu@label@cnacademicdegree & \enspace {\sjtu@value@cnacademicdegree } \\
       \sjtu@label@major         & \enspace {\sjtu@value@major} \\
       \sjtu@label@institute         & \enspace {\sjtu@value@institute} \\
       \sjtu@label@defenddate    & \enspace {\sjtu@value@defenddate} \\
       \sjtu@label@school        & \enspace {\sjtu@value@school}
   \end{tabular}
   \end{center}
-  \vskip \stretch{0.5}
+  \vskip \stretch{0.25}
   \cleardoublepage
 }
 % “绘制”硕士论文模板英文标题页
-\newcommand\makeenglishtitle@altcover{%
+\newcommand\makeenglishtitle@master{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      {\normalfont\zihao{-2} \sjtu@label@englishstatement}
-      \vspace{20pt} \vskip\stretch{1}
+      {\normalfont\zihao{-2} ~\\[35pt] \sjtu@label@englishstatement}
+      \vskip\stretch{1}
       {\zihao{2} \textbf{\MakeUppercase{\sjtu@value@englishtitle}} \vskip 1pt}
       \vskip \stretch{1}
       {\normalfont\zihao{4}}
       \zihao{4}
       \def\tabcolsep{1pt}
-      \def\arraystretch{1.5}
+      \def\arraystretch{1.3}
       \begin{tabular}{ll}
         \ifsjtu@review
           \textbf{\sjtu@label@englishauthor} & \enspace ~ \\
@@ -520,14 +520,14 @@
             \textbf{\sjtu@label@englishcoadvisor}    & \enspace \sjtu@value@englishcoadvisor \\
           \fi
         \fi
-        \textbf{\sjtu@label@englishdegree}   & \enspace \sjtu@value@englishdegree \\
+        \textbf{\sjtu@label@enacademicdegree}   & \enspace \sjtu@value@cnacademicdegree \\
         \textbf{\sjtu@label@englishmajor}         & \enspace \sjtu@value@englishmajor \\
         \textbf{\sjtu@label@englishinstitute}        & \enspace \makecell[l]{\sjtu@value@englishinstitute} \\
         \textbf{\sjtu@label@englishdate}    & \enspace \sjtu@value@englishdate \\
         \textbf{\sjtu@label@englishschool}        & \enspace \sjtu@value@englishschool
       \end{tabular}
   \end{center}
-  \vskip \stretch{0.5}
+  \vskip \stretch{0.4}
   \cleardoublepage
 }
 
@@ -685,15 +685,17 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\zihao{3}\bfseries\heiti \sjtu@value@school} \\
-    {\zihao{3}\bfseries\heiti \sjtu@label@original}
+    ~\\[70pt]
+    % \linespread{1.5}
+    {\zihao{-2}\heiti \textbf{\sjtu@value@school}} \\[12pt]
+    {\zihao{-2}\heiti \textbf{\sjtu@label@original}} \\[12pt]
   \end{center}
   \vskip 10pt
-  {\par\zihao{-4}本人郑重声明：所呈交的学位论文《\sjtu@value@chinesetitle》，\sjtu@label@originalcontent\par}
-  \vskip 60pt
-  \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
-  \vskip 15pt
-  \hspace{16em}\sjtu@label@originalDate\hspace{1em}
+  {\par\linespread{2}\zihao{4}本人郑重声明：所呈交的学位论文《\sjtu@value@chinesetitle》，\sjtu@label@originalcontent\par}
+  \vskip 80pt
+  {\zihao{4}\hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}}
+  \vskip 40pt
+  {\zihao{4}\hspace{11em}\sjtu@label@originalDate\hspace{1em}}
   \cleardoublepage
 }
 
@@ -702,15 +704,16 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    {\zihao{3}\bfseries\heiti \sjtu@value@school} \\
-    {\zihao{3}\bfseries\heiti \sjtu@label@authorization}
+    ~\\[30pt]
+    {\zihao{-2}\bfseries\heiti \sjtu@value@school} \\[12pt]
+    {\zihao{-2}\bfseries\heiti \sjtu@label@authorization} \\[12pt]
   \end{center}
   \vskip 10pt
-  {\par\zihao{-4}\sjtu@label@authorizationcontent\par}
-  \vskip 60pt
-  \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
-  \vskip 15pt
-  \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
+  {\par\linespread{1.5}\zihao{4}\sjtu@label@authorizationcontent\par}
+  \vskip 150pt
+  {\zihao{4} \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill}
+  \vskip 40pt
+  {\zihao{4} \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate}
   \cleardoublepage
 }
 
