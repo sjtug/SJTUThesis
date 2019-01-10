@@ -86,6 +86,7 @@
 \newcommand\englishcoadvisor[1]{\def\sjtu@value@englishcoadvisor{#1}}
 \newcommand\englishschool[1]{\def\sjtu@value@englishschool{#1}}
 \newcommand\englishinstitute[1]{\def\sjtu@value@englishinstitute{#1}}
+\newcommand\englishmasterinstitute[1]{\def\sjtu@value@englishmasterinstitute{#1}}
 \newcommand\englishdate[1]{\def\sjtu@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\sjtu@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\sjtu@value@englishmajor{#1}}
@@ -520,9 +521,9 @@
             \textbf{\sjtu@label@englishcoadvisor}    & \enspace \sjtu@value@englishcoadvisor \\
           \fi
         \fi
-        \textbf{\sjtu@label@enacademicdegree}   & \enspace \sjtu@value@cnacademicdegree \\
+        \textbf{\sjtu@label@enacademicdegree}   & \enspace \sjtu@value@enacademicdegree \\
         \textbf{\sjtu@label@englishmajor}         & \enspace \sjtu@value@englishmajor \\
-        \textbf{\sjtu@label@englishinstitute}        & \enspace \makecell[l]{\sjtu@value@englishinstitute} \\
+        \textbf{\sjtu@label@englishmasterinstitute}        & \enspace \makecell[l]{\sjtu@value@englishmasterinstitute} \\
         \textbf{\sjtu@label@englishdate}    & \enspace \sjtu@value@englishdate \\
         \textbf{\sjtu@label@englishschool}        & \enspace \sjtu@value@englishschool
       \end{tabular}
