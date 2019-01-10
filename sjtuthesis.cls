@@ -308,14 +308,14 @@
 % 图表索引前加下“图”，“表”关键词
 \ifsjtu@master
   \renewcommand*\cftfigpresnum{\sjtu@figurename~}
-  \newlength{\sjtu@cftfignumwidth@tmp}
-  \settowidth{\sjtu@cftfignumwidth@tmp}{\cftfigpresnum}
-  \addtolength{\cftfignumwidth}{\sjtu@cftfignumwidth@tmp}
+  % \newlength{\sjtu@cftfignumwidth@tmp}
+  % \settowidth{\sjtu@cftfignumwidth@tmp}{\cftfigpresnum}
+  % \addtolength{\cftfignumwidth}{\sjtu@cftfignumwidth@tmp}
   \renewcommand{\cftfigaftersnumb}{\enspace~}
   \renewcommand*\cfttabpresnum{\sjtu@tablename~}
-  \newlength{\sjtu@cfttabnumwidth@tmp}
-  \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
-  \addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
+  % \newlength{\sjtu@cfttabnumwidth@tmp}
+  % \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
+  % \addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
   \renewcommand{\cfttabaftersnumb}{\enspace~}
 \fi
 % 使用enumitem宏包配制列表环境
