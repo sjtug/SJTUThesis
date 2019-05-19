@@ -25,9 +25,13 @@ validate :
 view : $(THESIS).pdf
 	open $<
 
-wordcount:
-	@texcount $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'
-	@texcount $(THESIS).tex -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
+wordcount: $(THESIS).tex
+	@if grep -v ^% $< | grep -qz '\\documentclass\[[^\[]*english'; then \
+		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
+	else \
+		texcount $< -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
+	fi
+	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
 
 clean :
 	-@latexmk -c -silent 2> /dev/null
