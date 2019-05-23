@@ -241,7 +241,7 @@
     afterskip    = {1.0ex \@plus .2ex},
   },
   subsection={%
-    format       = \zihao{-4}\normalfont,
+    format       = \zihao{-4}\bfseries\heiti,
     afterindent  = true,
     afterskip    = {1.0ex \@plus .2ex},
   },
