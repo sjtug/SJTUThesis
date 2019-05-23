@@ -852,27 +852,53 @@
 \newenvironment{abstract}{%
   \cleardoublepage
   \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
-  \chapter*{%
-    \sjtu@value@chinesetitle
-    \vskip 20pt
-    \sjtu@label@chineseabstract
-  }
-  \zihao{4} \markboth{\sjtu@label@chineseabstract}{}
+  \ifsjtu@bachelor
+    \chapter*{%
+      {\zihao{3} \sjtu@value@chinesetitle}
+      \vskip 20pt
+      {\zihao{4} \sjtu@label@chineseabstract}
+    }
+    \zihao{5} \markboth{\sjtu@label@chineseabstract}{}
+  \else
+    \chapter*{%
+      \sjtu@value@chinesetitle
+      \vskip 20pt
+      \sjtu@label@chineseabstract
+    }
+    \zihao{4} \markboth{\sjtu@label@chineseabstract}{}
+  \fi
 }{
   \vspace{2ex}\noindent
-  {\zihao{4} \textbf{\sjtu@label@keywords}{\sjtu@value@keywords}}
+  \ifsjtu@bachelor
+    {\zihao{-4} \textbf{\sjtu@label@keywords}}{\zihao{5}{\sjtu@value@keywords}}
+  \else
+    {\zihao{4} \textbf{\sjtu@label@keywords}{\sjtu@value@keywords}}
+  \fi
 }
 \newenvironment{englishabstract}{%
   \cleardoublepage
-  \chapter*{%
-    \MakeUppercase\sjtu@value@englishtitle
-    \vskip 20pt
-    \MakeUppercase\sjtu@label@englishabstract
-  }
-  \zihao{4} \markboth{\sjtu@label@englishabstract}{}
+  \ifsjtu@bachelor
+    \chapter*{%
+      {\zihao{3} \MakeUppercase\sjtu@value@englishtitle}
+      \vskip 20pt
+      {\zihao{4} \MakeUppercase\sjtu@label@englishabstract}
+    }
+    \zihao{5} \markboth{\sjtu@label@englishabstract}{}
+  \else
+    \chapter*{%
+      \MakeUppercase\sjtu@value@englishtitle
+      \vskip 20pt
+      \MakeUppercase\sjtu@label@englishabstract
+    }
+    \zihao{4} \markboth{\sjtu@label@englishabstract}{}
+  \fi
 }{
   \vspace{2ex}\noindent
-  {\zihao{4} \textbf{\sjtu@label@englishkeywords}{\sjtu@value@englishkeywords}}
+  \ifsjtu@bachelor
+    {\zihao{-4} \textbf{\sjtu@label@englishkeywords}}{\zihao{5} \sjtu@value@englishkeywords}
+  \else
+    {\zihao{4} \textbf{\sjtu@label@englishkeywords}{\sjtu@value@englishkeywords}}
+  \fi
 }
 
 % 主要符号对照表
