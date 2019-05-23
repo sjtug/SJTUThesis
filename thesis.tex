@@ -105,8 +105,11 @@
   \fi
 
   \ifsjtu@bachelor
-    % 学士学位论文要求在最后有一个英文大摘要，单独编页码
-    \include{tex/end_english_abstract}
+    \ifsjtu@english
+    \else
+      % 中文学士学位论文要求在最后有一个英文大摘要，单独编页码，英文学士学位论文不需要
+      \include{tex/end_english_abstract}
+    \fi
   \else
     % 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
     \ifsjtu@review\relax
