@@ -1,6 +1,8 @@
 @echo off
 chcp 65001 >nul
 
+set THESIS=thesis
+
 set flag=%1
 if %flag%x == x (
 	set flag=thesis
@@ -29,6 +31,11 @@ if %flag%x == cleanallx (
 	goto :EOF
 )
 
+if %flag%x == wordcountx (
+	call :wordcount
+	goto :EOF
+)
+
 :help
 	echo This is the compile batch script for SJTUThesis.
 	echo Usage:
@@ -37,6 +44,7 @@ if %flag%x == cleanallx (
 	echo   thesis    Compile the thesis (default)
 	echo   clean     Clean all work files
 	echo   cleanall  Clean all work files and thesis.pdf
+	echo   wordcount Count words in thesis.pdf
 	echo   help      Print this help message
 goto :EOF
 
@@ -59,5 +67,39 @@ goto :EOF
 		echo Close the file: thesis.pdf!
 		pause
 		call :cleanall
+	)
+goto :EOF
+
+:wordcount
+	set found=0
+	setlocal enabledelayedexpansion
+
+	findstr "\\documentclass\[[^\[]*english" %THESIS%.tex > nul
+	if %errorlevel% equ 0 (
+		for /f "delims=" %%i in ('texcount %THESIS%.tex -inc -char-only  2^>nul') do (
+			if !found! equ 1 (
+				echo 英文字符数:		!%%i!
+				goto :total
+			)
+			echo %%i | findstr "total" > nul && set found=1
+		)
+	) else (
+		for /f "delims=" %%i in ('texcount %THESIS%.tex -inc -ch-only  2^>nul') do (
+			if !found! equ 1 (
+				echo 纯中文字数:		!%%i!
+				goto :total
+			)
+			echo %%i | findstr "total" > nul && set found=1
+		)
+	)
+
+:total
+	set found=0
+	for /f "delims=" %%i in ('texcount %THESIS%.tex -inc -chinese 2^>nul') do (
+		if !found! equ 1 (
+			echo 总字数^(英文单词+中文字^):!%%i!
+			goto :EOF
+		)
+		echo %%i | findstr "total" > nul && set found=1
 	)
 goto :EOF
