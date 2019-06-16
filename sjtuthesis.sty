@@ -1,0 +1,106 @@
+%%
+%% This is file `sjtuthesis.sty',
+%% You can put any packages you would like to use here.
+%%
+\ProvidesPackage{sjtuthesis}
+  [2018/01/09 v0.10 Shanghai Jiao Tong University Template]
+
+\RequirePackage{bm}
+
+% \RequirePackage{unicode-math}
+% \setmainfont{TeX Gyre Termes}
+% \setsansfont{TeX Gyre Heros}
+% \setmonofont{TeX Gyre Cursor}
+% \setmathfont{TeX Gyre Termes Math}
+
+\RequirePackage{upgreek}
+\RequirePackage{wasysym}
+
+% 表格中支持跨行
+\RequirePackage{multirow}
+
+\RequirePackage{dcolumn}
+% A new column type
+\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+\RequirePackage{threeparttable}
+
+\RequirePackage{siunitx}
+
+\RequirePackage{hologo}
+\newcommand{\XeTeX}{\hologo{XeTeX}}
+\newcommand{\BibTeX}{\hologo{BibTeX}}
+\newcommand{\CJKLaTeX}{CJK--\LaTeX}
+
+\RequirePackage{tikz}
+
+\RequirePackage{ntheorem}
+
+\RequirePackage{listings}
+
+% \RequirePackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+\RequirePackage{algorithm}
+
+\sjtu@atendpackage{algorithm}{
+
+\ifsjtu@english
+  \def\sjtu@label@algorequire{Input:}
+  \def\sjtu@label@algoensure{Output:}
+\else
+  \def\sjtu@label@algorequire{输入:}
+  \def\sjtu@label@algoensure{输出:}
+\fi
+\renewcommand{\algorithmicrequire}{\textbf{\sjtu@label@algorequire}}
+\renewcommand{\algorithmicensure}{\textbf{\sjtu@label@algoensure}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following definitions add Switch statement to LaTeX algorithmicx package
+% It's based on Werner's answer on stackoverflow
+% http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic
+
+% New definitions
+\algnewcommand\algorithmicswitch{\textbf{switch}}
+\algnewcommand\algorithmiccase{\textbf{case}}
+\algnewcommand\algorithmicdefault{\textbf{default}}
+
+% New "environments"
+% using \algtext*{<env>} removes any typesetting of that command
+\algdef{SE}[SWITCH]{Switch}{EndSwitch}[1]{\algorithmicswitch\ (#1)}{\algorithmicend\ \algorithmicswitch}%
+%\algtext*{EndSwitch}%
+\algdef{SE}[CASE]{Case}{EndCase}[1]{\algorithmiccase\ #1:}{\algorithmicend\ \algorithmiccase}%
+\algtext*{EndCase}%
+\algdef{SE}[DEFAULT]{Default}{EndDefault}{\algorithmicdefault\ :}{\algorithmicend\ \algorithmicdefault}%
+\algtext*{EndDefault}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following add some extra commands to LaTeX algorithmicx package
+
+% Assert
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+
+% 自定义命令
+
+% E-mail
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+% upper math letter
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\mj}{\mathrm{j}}
+\newcommand{\dif}{\mathrm{d}}
+
+% bullets in the item
+\renewcommand{\labelitemi}{\ensuremath{\bullet}}
+
+%% Graphic path & file extension
+\graphicspath{{fig/}{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
+
+\endinput
+%%
+%% End of file `sjtuthesis.sty'.
