@@ -108,13 +108,7 @@ We are hearing from:
 
 ## License
 
-The copyright of image sources including SJTU badge (`sjtulog.png`) and
-banner (`sjtubanner.png`) belongs to the original owner.
+The copyright of image sources including SJTU logo (`sjtulogo.pdf` etc.)
+belongs to Shanghai Jiao Tong University.
 
-The remain part is under [Apache License 2.0](LICENSE)
-
-[README]: https://s3.amazonaws.com/sjtuthesis/README.pdf
-[0.9.3]: https://github.com/sjtug/SJTUThesis/releases/tag/0.9.3
-[0.8.7]: https://github.com/sjtug/SJTUThesis/releases/tag/0.8.7
-[0.7.7]: https://github.com/sjtug/SJTUThesis/releases/tag/0.7.7
-[0.7.1]: https://github.com/sjtug/SJTUThesis/releases/tag/0.7.1
+The remain part is under [LPPL](LICENSE)

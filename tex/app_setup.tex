@@ -11,9 +11,9 @@
 Mac用户可以从MacTeX主页\footnote{\url{https://tug.org/mactex/}}下载MacTeX。
 也可以通过brew包管理器\footnote{\url{http://caskroom.io}}安装MacTeX。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, numbers=none]
+\begin{codeblock}[sh]
 brew cask install mactex
-\end{lstlisting}
+\end{codeblock}
 
 \subsection{Linux}
 
@@ -21,12 +21,12 @@ brew cask install mactex
 以下命令将把TeXLive发行版安装到当前用户的家目录下。
 若计划安装一个供系统上所有用户使用的TeXLive，请使用root账户操作。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, numbers=none]
+\begin{codeblock}[sh]
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar xzvpf install-tl-unx.tar.gz
 cd install-tl-20150411/
 ./install-tl
-\end{lstlisting}
+\end{codeblock}
 
 \section{安装中文字体}
 
@@ -38,10 +38,10 @@ Mac和Deepin用户双击字体文件即可安装字体。
 
 RedHat/CentOS用户请先将字体文件复制到字体目录下，调用fc-cache刷新缓存后即可在TeXLive中使用新字体。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, numbers=none]
+\begin{codeblock}[sh]
 mkdir ~/.fonts
 cp *.ttf ~/.fonts				# 当前用户可用新字体
 cp *.ttf /usr/share/fonts/local/	# 所有用户可以使用新字体
 fc-cache -f
-\end{lstlisting}
+\end{codeblock}
 

@@ -1,31 +1,54 @@
+# Makefile for SJTUThesis
+
+# Basename of thesis
 THESIS = thesis
-# TEX, BIB, TEST dir
-TEX_DIR = tex
-BIB_DIR = bib
+PACKAGE = sjtuthesis
+CLSFILES = $(PACKAGE).cls $(PACKAGE)-bachelor.ltx $(PACKAGE)-graduate.ltx
 
 # Option for latexmk
-LATEXMK_OPT_BASE = -xelatex -gg -silent
-LATEXMK_OPT = $(LATEXMK_OPT_BASE) -f
+LATEXMK_OPT = -xelatex -silent -file-line-error -halt-on-error -interaction=nonstopmode
 LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
-all: $(THESIS).pdf
+# make deletion work on Windows
+ifdef SystemRoot
+	RM = del /Q
+	OPEN = start
+else
+	RM = rm -f
+	OPEN = open
+endif
 
-.PHONY : all cleanall pvc view wordcount git zip
+.PHONY : all cls doc pvc validate view viewdoc wordcount cleana cleanall FORCE_MAKE
 
-$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
-	-latexmk $(LATEXMK_OPT) $(THESIS)
+all : $(THESIS).pdf
 
-pvc :
+cls : $(CLSFILES)
+
+$(CLSFILES) : $(PACKAGE).dtx
+	xetex --interaction=batchmode $<
+
+doc : $(PACKAGE).pdf
+
+$(PACKAGE).pdf : $(PACKAGE).dtx FORCE_MAKE
+	latexmk $(LATEXMKOPTS) $<
+
+$(THESIS).pdf : $(THESIS).tex $(CLSFILES) FORCE_MAKE
+	latexmk $(LATEXMKOPTS) $<
+
+pvc : $(THESIS).tex $(CLSFILES)
 	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
 
-validate :
+validate : $(THESIS).tex $(CLSFILES)
 	xelatex -no-pdf -halt-on-error $(THESIS)
 	biber --debug $(THESIS)
 
 view : $(THESIS).pdf
-	open $<
+	$(OPEN) $<
 
-wordcount: $(THESIS).tex
+viewdoc : $(PACKAGE).pdf
+	$(OPEN) $<
+
+wordcount : $(THESIS).tex
 	@if grep -v ^% $< | grep -qz '\\documentclass\[[^\[]*english'; then \
 		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
 	else \
@@ -34,19 +57,11 @@ wordcount: $(THESIS).tex
 	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
 
 clean :
-	-@latexmk -c -silent 2> /dev/null
+	-@latexmk -c -silent $(THESIS).tex  2> /dev/null
+	-@latexmk -c -silent $(PACKAGE).dtx 2> /dev/null
 	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
 
 cleanall :
-	-@latexmk -C -silent 2> /dev/null
+	-@latexmk -C -silent $(THESIS).tex  2> /dev/null
+	-@latexmk -C -silent $(PACKAGE).dtx 2> /dev/null
 	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
-
-s3 : $(THESIS).pdf
-	s3cmd put $< s3://sjtuthesis/README.pdf
-
-git :
-	git push --tags github; git push github;
-	git push --tags gitlab; git push gitlab;
-
-zip :
-	git archive --format zip --output thesis.zip master
