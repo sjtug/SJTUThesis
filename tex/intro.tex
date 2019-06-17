@@ -60,29 +60,29 @@ sjtuthesis提供了一些常用选项，在thesis.tex在导入sjtuthesis模板�
 
 模板默认使用GNUMake构建，GNUMake将调用latemk工具自动完成模板多轮编译：
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译模板}, numbers=none]
+\begin{codeblock}[sh]
 make clean thesis.pdf
-\end{lstlisting}
+\end{codeblock}
 
 若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为statement.pdf，然后调用make生成submit.pdf。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={生成用于提交的学位论文}, numbers=none]
+\begin{codeblock}[sh]
 make clean submit.pdf
-\end{lstlisting}
+\end{codeblock}
 
 编译失败时，可以尝试手动逐次编译，定位故障。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动逐次编译}, numbers=none]
+\begin{codeblock}[sh]
 xelatex -no-pdf thesis
 biber --debug thesis
 xelatex thesis
 xelatex thesis
-\end{lstlisting}
+\end{codeblock}
 
 \subsection{模板文件布局}
 \label{sec:layout}
 
-\begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
+\begin{codeblock}
 ├── LICENSE
 ├── Makefile
 ├── README.md
@@ -118,7 +118,7 @@ xelatex thesis
 │   ├── pub.tex
 │   └── symbol.tex
 └── thesis.tex
-\end{lstlisting}
+\end{codeblock}
 
 本节介绍学位论文模板中木要文件和目录的功能。
 
