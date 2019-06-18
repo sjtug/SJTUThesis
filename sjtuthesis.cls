@@ -294,13 +294,7 @@
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
 \captionsetup[sub]{font=sjtusubcaptionfont}
-\newcommand{\sjtu@square}{%
-  \ifsjtu@unsetfont
-    {$\square$}
-  \else
-    \raisebox{-0.125ex}{\scalebox{1.5}{$\square$}}
-  \fi
-}
+\newcommand{\sjtu@square}{{\CJKfamily+{zhsong}\symbol{"25A1}}}
 \newcommand{\sjtu@authconf}{%
   \par\hspace{7em}%
   {\heiti 保\quad 密}~\sjtu@square，在 \uline{\hspace{3em}}
