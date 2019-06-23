@@ -6,14 +6,7 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/sjtug/SJTUThesis.svg)](https://github.com/sjtug/SJTUThesis/releases)
 [![Join the chat at https://gitter.im/sjtug/SJTUThesis](https://badges.gitter.im/sjtug/SJTUThesis.svg)](https://gitter.im/sjtug/SJTUThesis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-这是为撰写上海交通大学学士、硕士、博士学位论文或课程论文而准备的 XeLaTeX 模板，非官方出品。使用文档参见 [sjtuthesis.pdf](./docs/sjtuthesis.pdf)，详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)。
-
-## 封面展示
-
-<div align="center">
-    <a href="./docs/bachelor.pdf"><img src="./docs/images/bachelor.png" height="300"></a>
-    <a href="./docs/master.pdf"><img src="./docs/images/master.png" height="300"></a>
-</div>
+这是为撰写上海交通大学学士、硕士、博士学位论文或课程论文而准备的 XeLaTeX 模板，非官方出品。详细使用说明参见 [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)。
 
 ## 如何使用
 

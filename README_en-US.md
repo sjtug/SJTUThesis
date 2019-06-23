@@ -6,7 +6,7 @@
 
 SJTUThesis is an *unofficial* XeLaTeX template for preparing bachelor, master, or doctor thesis in Shanghai Jiao Tong University.
 
-The generated thesis example PDF file can be found at `README.pdf` (this file has been removed, see sjtug/SJTUThesis/#26 contributing PDF into repo will increase the repo size) . The user guide will be found at  [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)，welcome for contribution。
+The user guide will be found at  [SJTUThesis Wiki](https://github.com/sjtug/SJTUThesis/wiki)，welcome for contribution。
 
 ## User Guide
 
