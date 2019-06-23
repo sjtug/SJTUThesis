@@ -31,7 +31,7 @@ mkdir -p $TDS_DIR
 mkdir -p $CTAN_DIR
 
 if [ -d $RELEASE_DIR ]; then
-  echo 'Directory' $4 'already exists'
+  echo "Directory ${4} already exists"
   exit 1
 else
   mkdir -p $RELEASE_DIR
