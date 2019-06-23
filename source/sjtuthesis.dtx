@@ -1188,13 +1188,15 @@ The Current Maintainer of this work is Alexara Wu.
 %    \begin{macrocode}
 %<*class>
 \renewcommand{\cftfigpresnum}{\sjtu@label@figure~}
-\newlength{\sjtu@cftfignumwidth@tmp}
-  \settowidth{\sjtu@cftfignumwidth@tmp}{\cftfigpresnum}
-\addtolength{\cftfignumwidth}{\sjtu@cftfignumwidth@tmp}
 \renewcommand{\cfttabpresnum}{\sjtu@label@table~}
-\newlength{\sjtu@cfttabnumwidth@tmp}
-  \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
-\addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
+\AtEndPreamble{%
+  \newlength{\sjtu@cftfignumwidth@tmp}
+    \settowidth{\sjtu@cftfignumwidth@tmp}{\cftfigpresnum}
+  \addtolength{\cftfignumwidth}{\sjtu@cftfignumwidth@tmp}
+  \newlength{\sjtu@cfttabnumwidth@tmp}
+    \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
+  \addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
+}
 %</class>
 %    \end{macrocode}
 %
@@ -1216,7 +1218,8 @@ The Current Maintainer of this work is Alexara Wu.
   \renewcommand{\theequation}{\thechapter--\arabic{equation}}
   \renewcommand{\thefigure}{\thechapter--\arabic{figure}}
   \renewcommand{\p@subfigure}{\thefigure}
-  \renewcommand{\thetable}{\thechapter--\arabic{table}}}
+  \renewcommand{\thetable}{\thechapter--\arabic{table}}
+}
 %    \end{macrocode}
 %
 % 设置双语题注。
@@ -1384,7 +1387,8 @@ The Current Maintainer of this work is Alexara Wu.
       \pagestyle{sjtu@biglast}
       \pdfbookmark[0]{\sjtu@label@bigabstract}{bigabstract}%
       \chapter*{\MakeUppercase\sjtu@value@entitle}
-      \sjtu@bigabstract@body}
+      \sjtu@bigabstract@body
+    }
   \fi
 \fi}
 %</bachelor>
@@ -1849,9 +1853,11 @@ The Current Maintainer of this work is Alexara Wu.
   \newcommand{\cftalgpresnum}{\sjtu@label@algorithm~}
   \newlength{\cftalgnumwidth}
     \setlength{\cftalgnumwidth}{2.3em}
-  \newlength{\sjtu@cftalgnumwidth@tmp}
-    \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
-  \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
+  \AtEndPreamble{%
+    \newlength{\sjtu@cftalgnumwidth@tmp}
+      \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
+    \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
+  }
   \renewcommand*{\l@algocf}[2]{%
     \vskip \cftbeforefigskip
     {\leftskip \cftfigindent\relax
@@ -1897,9 +1903,11 @@ The Current Maintainer of this work is Alexara Wu.
   \newcommand{\cftalgpresnum}{\sjtu@label@algorithm~}
   \newlength{\cftalgnumwidth}
     \setlength{\cftalgnumwidth}{2.3em}
-  \newlength{\sjtu@cftalgnumwidth@tmp}
-    \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
-  \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
+  \AtEndPreamble{%
+    \newlength{\sjtu@cftalgnumwidth@tmp}
+      \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
+    \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
+  }
   \newcommand*{\l@algorithm}[2]{%
     \vskip \cftbeforefigskip
     {\leftskip \cftfigindent\relax
