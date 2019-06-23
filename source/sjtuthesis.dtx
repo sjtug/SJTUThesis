@@ -50,6 +50,7 @@ The Current Maintainer of this work is Alexara Wu.
     \file{\jobname.cls}         {\from{\jobname.dtx}{class}}
     \file{\jobname-bachelor.ltx}{\from{\jobname.dtx}{bachelor}}
     \file{\jobname-graduate.ltx}{\from{\jobname.dtx}{graduate}}
+    \file{sjtudoc.cls}          {\from{\jobname.dtx}{document}}
 %</install>
 %<*internal>
   \usedir{source/latex/sjtuthesis}
@@ -68,63 +69,63 @@ The Current Maintainer of this work is Alexara Wu.
 %<*driver>
 \ProvidesFile{sjtuthesis.dtx}
 %</driver>
-%<class>\NeedsTeXFormat{LaTeX2e}
+%<class|document>\NeedsTeXFormat{LaTeX2e}
 %<class>\ProvidesClass{sjtuthesis}
+%<document>\ProvidesClass{sjtudoc}
 %<bachelor>\ProvidesFile{sjtuthesis-bachelor.ltx}
 %<graduate>\ProvidesFile{sjtuthesis-graduate.ltx}
-%<*(class|bachelor|graduate)>
+%<*(class|bachelor|graduate|document)>
   [2019/06/16 1.0.0rc Shanghai Jiao Tong University Thesis Template]
-%</(class|bachelor|graduate)>
-%<*(driver|class)>
+%</(class|bachelor|graduate|document)>
+%<*(document|class)>
 \hyphenation{SJTU-Thesis}
 \def\sjtuthesis{SJTUThesis}
 \def\version{1.0.0rc}
-%</(driver|class)>
+%</(document|class)>
 %<*driver>
-\documentclass{ctxdoc}
-\usepackage{graphicx}
-\usepackage{listings}
-\hypersetup{
-  allcolors         = blue,
-  bookmarksnumbered = true,
-  bookmarksopen     = true,
-}
-\definecolor{sjtublue}{cmyk}{1,0.8,0,0}
-\lstdefinestyle{lstStyleBase}{
-  basicstyle        = \footnotesize\ttfamily,
-  commentstyle      = \slshape\color{black!60},
-  stringstyle       = \color{green!40!black!100},
-  keywordstyle      = \bfseries\color{blue!50!black},
-  backgroundcolor   = \color{gray!10},
-  gobble            = 2, % 重要！否则会生成注释符号"%"
-  tabsize           = 2,
-  xleftmargin       = 1em,
-  xrightmargin      = 1em,
-  framexleftmargin  = 1em,
-  framexrightmargin = 1em
-}
-\lstdefinestyle{lstStyleShell}{
-   style=lstStyleBase,
-   language=bash
-}
-\lstdefinestyle{lstStyleLaTeX}{
-   style=lstStyleBase,
-   language=[LaTeX]TeX
-}
-\newcommand\shellcmd[1]{\colorbox{\color{gray!10}}{\lstinline[style=lstStyleShell]|#1|}}
-\lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
-\lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
-\newcommand{\note}[1]{{%
-\color{magenta}{\noindent\bfseries 说明：}\emph{#1}}}
-\newcommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
-\newcommand{\CJKLaTeX}{CJK--\LaTeX}
-\newcommand{\macTeX}{Mac\TeX{}}
+\documentclass{sjtudoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+% \OnlyDescription
 \begin{document}
   \DocInput{\jobname.dtx}
+  \clearpage
   \PrintChanges
+  \clearpage
+  \PrintIndex
 \end{document}
 %</driver>
 % \fi
+%
+% \DoNotIndex{\def,\long,\edef,\xdef,\gdef,\let,\global}
+% \DoNotIndex{\if,\ifnum,\ifdim,\ifcat,\ifmmode,\ifvmode,\ifhmode,%
+%             \iftrue,\iffalse,\ifvoid,\ifx,\ifeof,\ifcase,\else,\or,\fi}
+% \DoNotIndex{\begin,\end,\bgroup,\egroup,\begingroup,\endgroup}
+% \DoNotIndex{\expandafter,\csname,\endcsname}
+% \DoNotIndex{\hsize,\vsize,\hskip,\vskip,\kern,\hfil,\hfill,\hss}
+% \DoNotIndex{\hspace,\vspace}
+% \DoNotIndex{\p@,\m@ne,\z@,\@ne,\tw@,\@plus,\@minus}
+% \DoNotIndex{\newcounter,\setcounter,\addtocounter,}
+% \DoNotIndex{\newdim,\newlength,\setlength,\addtolength}
+% \DoNotIndex{\newcommand,\renewcommand,\providecommand,\DeclareRobustCommand}
+% \DoNotIndex{\newenvironment,\renewenvironment}
+% \DoNotIndex{\RequirePackage,\LoadClass,\ProvidesClass}
+% \DoNotIndex{\DeclareOption,\CurrentOption,\ExecuteOptions,\ProcessOptions}
+% \DoNotIndex{\rmfamily,\sffamily,\ttfamily,\bfseries,\mdseries,\itshape,%
+%             \textrm,\textsf,\texttt,\textbf,\textmd,\textit,\textsl,\textsc}
+% \DoNotIndex{\iint,\iiint,\iiiint,\oint,\oiint,\oiiint,%
+%             \intclockwise,\varointclockwise,\ointctrclockwise,\sumint,%
+%             \intbar,\intBar,\fint,\cirfnint,\awint,\rppolint,%
+%             \scpolint,\npolint,\pointint,\sqint,\intlarhk,\intx,%
+%             \intcap,\intcup,\upint,\lowint}
+% \DoNotIndex{\a,\b,\c,\d,\e,\f,\g,\h,\i,\j,\k,\l,%
+%             \m,\n,\o,\p,\q,\r,\s,\t,\u,\v,\w,\x,\y,\z,%
+%             \A,\B,\C,\D,\E,\F,\G,\H,\I,\J,\K,\L,%
+%             \M,\N,\O,\P,\Q,\R,\S,\T,\U,\V,\W,\X,\Y,\Z,%
+%             \do\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ ,\,,\!,\',\",\/,\*,\-}
+% \DoNotIndex{\quad,\par,\relax,\ccwd}
+% \DoNotIndex{\bp@}
 %
 % \GetFileInfo{\jobname.dtx}
 %
@@ -148,16 +149,16 @@ The Current Maintainer of this work is Alexara Wu.
 % \changes{v0.1a}{2009/11/12}{上海交通大学硕士学位论文 \LaTeX 模板发布。}
 %
 % \title{\bfseries\color{sjtublue}\sjtuthesis：上海交通大学学位论文模板}
-% \author{SJTUG\\[5pt]\url{https://sjtug.org/}}
+% \author{\href{https://sjtug.org/}{SJTUG}}
 % \date{\filedate\qquad v\fileversion}
 %
 % \maketitle
 % \thispagestyle{empty}
 % \vspace{\stretch{1}}
 % \begin{center}
-%		\includegraphics[height=4cm]{figure/sjtubadge.pdf}
+%   \includegraphics[height=4cm]{sjtu-badge.pdf}
 % \end{center}
-%	\vspace{\stretch{1}}
+% \vspace{\stretch{1}}
 % \begin{abstract}
 % 此宏包旨在建立一个简单易用的上海交通大学论文模板，包括学士、硕士、博士学位论文
 % 以及普通课程论文。
@@ -185,9 +186,12 @@ The Current Maintainer of this work is Alexara Wu.
 % \end{abstract}
 % \vspace{\stretch{3}}
 %
-%
 % \clearpage
+% \begin{multicols}{2}[
+%   \setlength{\columnseprule}{.4pt}
+%   \setlength{\columnsep}{18pt}]
 %   \tableofcontents
+% \end{multicols}
 % \clearpage
 %
 % \section{介绍}
@@ -236,11 +240,6 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % 你可以在 \href{https://github.com/sjtug/SJTUThesis/releases}{GitHub Release}
 % 中找到 \sjtuthesis 的所有版本，推荐使用最新版本以避免一些问题。
-%
-% 如果要使用开发版，可以直接克隆仓库：
-% \begin{shell}
-% git clone https://github.com/sjtug/SJTUThesis.git
-% \end{shell}
 %
 % \subsection{文件组成}
 %
@@ -315,8 +314,6 @@ The Current Maintainer of this work is Alexara Wu.
 % 个 \file{Makefile}：
 %
 % \begin{shell}
-% make cls                  # 生成 sjtuthesis.cls
-% make sjtuthesis.pdf       # 生成说明文档 sjtuthesis.pdf
 % make thesis.pdf           # 生成示例文档 thesis.pdf
 % make clean
 % make cleanall
@@ -864,11 +861,12 @@ The Current Maintainer of this work is Alexara Wu.
   的个人和集体，均已在文中以明确方式标明。本人完全意识到本声明的法律结果
   由本人承担。}
 \sjtu@def@label{authbody}{%
-  本\sjtu@label@thesistype 作者完全了解学校有关保留、使用\sjtu@label@thesistype
-  的规定，同意学校保留并向国家有关部门或机构送交论文的复印件和电子版，允
-  许论文被查阅和借阅。本人授权上海交通大学可以将本\sjtu@label@thesistype
-  的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制
-  手段保存和汇编本\sjtu@label@thesistype 。}
+  本\sjtu@label@thesistype 作者
+  完全了解学校有关保留、使用\sjtu@label@thesistype 的规定，同意学校保留
+  并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。
+  本人授权\sjtu@label@schoolChi 可以将本\sjtu@label@thesistype 的全部或
+  部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存
+  和汇编本\sjtu@label@thesistype 。}
 \sjtu@def@label{abstractChi}{摘\quad 要}
 \sjtu@def@label{abstractEng}{Abstract}
 \sjtu@def@label{keywordsChi}{关键词：}
@@ -931,8 +929,7 @@ The Current Maintainer of this work is Alexara Wu.
 \geometry{%
   paper      = a4paper,
 %<*bachelor>
-  top        = 84bp,
-  bottom     = 72bp,
+  vmargin    = {84bp, 72bp},
   hmargin    = 90bp,
   headheight = 60bp,
   headsep    = 12bp}
@@ -966,7 +963,7 @@ The Current Maintainer of this work is Alexara Wu.
 \fi
 \fancypagestyle{sjtu@front}{%
   \fancyhf{}
-  \fancyhead[L]{\includegraphics{figure/sjtubanner.pdf}}
+  \fancyhead[L]{\includegraphics{sjtu-logo.pdf}}
   \fancyhead[R]{\sjtu@fancyhead}
   \fancyfoot[C]{\sjtu@fancyfoot{\thepage}{\lastpageref{pagesLTS.Roman}}}
 }
@@ -995,7 +992,7 @@ The Current Maintainer of this work is Alexara Wu.
 \fancypagestyle{sjtu@plain}{%
   \fancyhf{}
 %<*bachelor>
-  \fancyhead[L]{\includegraphics{figure/sjtubanner.pdf}}
+  \fancyhead[L]{\includegraphics{sjtu-logo.pdf}}
   \fancyhead[R]{\sjtu@fancyhead}
   \fancyfoot[C]{\sjtu@fancyfoot{\thepage}{\lastpageref{pagesLTS.arabic}}}
 %</bachelor>
@@ -1013,7 +1010,7 @@ The Current Maintainer of this work is Alexara Wu.
 %<*bachelor>
 \fancypagestyle{sjtu@biglast}{%
   \fancyhf{}
-  \fancyhead[L]{\includegraphics{figure/sjtubanner.pdf}}
+  \fancyhead[L]{\includegraphics{sjtu-logo.pdf}}
   \fancyhead[R]{\sjtu@fancyhead}
   \fancyfoot[C]{\sjtu@fancyfoot{\theCurrentPageLocal}%
                                {\lastpageref{pagesLTS.roman.local}}}
@@ -1580,13 +1577,13 @@ The Current Maintainer of this work is Alexara Wu.
   \begin{center}
     \kaishu
     \vspace*{48bp}
-    \includegraphics{figure/sjtulogo.pdf}
+    \includegraphics{sjtu-name.pdf}
     \vskip 28bp
     {\fontsize{32}{32}\sjtu@label@subjectChi}
     \vskip 16bp
     {\zihao{-2}\MakeUppercase\sjtu@label@subjectEng}
     \vskip 16bp
-    \includegraphics{figure/sjtubadge.pdf}
+    \includegraphics{sjtu-badge.pdf}
     \vskip \stretch{2}
     {\zihao{2}
       \begin{tabular}{r@{：}l}
@@ -2004,5 +2001,141 @@ The Current Maintainer of this work is Alexara Wu.
 %</class>
 %    \end{macrocode}
 %
+% \iffalse
+%    \begin{macrocode}
+%<*document>
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ltxdoc}}
+\PassOptionsToClass{a4paper}{ltxdoc}
+\ProcessOptions
+\LoadClass{ltxdoc}
+\RequirePackage{expl3}
+\RequirePackage[UTF8, scheme=chinese]{ctex}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{hologo}
+\RequirePackage{listings}
+\RequirePackage{newpxmath}
+\RequirePackage{newpxtext}
+\RequirePackage{xcolor}
+\RequirePackage{hypdoc}
+\geometry{
+  includemp,
+  hmargin   = { 0mm, 15mm},
+  vmargin   = {25mm, 15mm},
+  footskip  = 7mm
+}
+\ctexset{
+  abstractname   = 简介,
+}
+\hypersetup{
+  allcolors         = blue,
+  bookmarksnumbered = true,
+  bookmarksopen     = true,
+}
+\definecolor{sjtublue}{cmyk}{1,0.8,0,0}
+\lstdefinestyle{lstStyleBase}{
+  basicstyle        = \footnotesize\ttfamily,
+  commentstyle      = \slshape\color{black!60},
+  stringstyle       = \color{green!40!black!100},
+  keywordstyle      = \bfseries\color{blue!50!black},
+  backgroundcolor   = \color{gray!10},
+  gobble            = 2, % 重要！否则会生成注释符号"%"
+  tabsize           = 2,
+  xleftmargin       = 1em,
+  xrightmargin      = 1em,
+  framexleftmargin  = 1em,
+  framexrightmargin = 1em
+}
+\lstdefinestyle{lstStyleShell}{
+   style=lstStyleBase,
+   language=bash
+}
+\lstdefinestyle{lstStyleLaTeX}{
+   style=lstStyleBase,
+   language=[LaTeX]TeX
+}
+\newcommand\shellcmd[1]{\colorbox{\color{gray!10}}{\lstinline[style=lstStyleShell]|#1|}}
+\lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
+\lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
+\newcommand{\note}[1]{{%
+\color{magenta}{\noindent\bfseries 说明：}\emph{#1}}}
+\def\TeX{\hologo{TeX}}
+\def\TeXLive{\TeX\ Live}
+\def\macTeX{Mac\TeX{}}
+\def\LaTeX{\hologo{LaTeX}}
+\def\BibLaTeX{\textsc{Bib}\LaTeX}
+\def\CJKLaTeX{CJK--\LaTeX}
+\def\XeTeX{\hologo{XeTeX}}
+\def\XeLaTeX{\hologo{XeLaTeX}}
+\DeclareRobustCommand\file{\nolinkurl}
+\DeclareRobustCommand\env{\texttt}
+\DeclareRobustCommand\pkg{\textsf}
+\DeclareRobustCommand\cls{\textsf}
+\DeclareRobustCommand\opt{\texttt}
+\def\DescribeOption{\leavevmode\@bsphack\begingroup\MakePrivateLetters
+  \Describe@Option}
+\def\Describe@Option#1{\endgroup
+  \marginpar{\raggedleft\PrintDescribeOption{#1}}%
+  \SpecialEnvIndex{#1}\@esphack\ignorespaces}
+\@ifundefined{PrintDescribeOption}
+  {\def\PrintDescribeOption#1{\strut \MacroFont #1\ }}{}
+\renewcommand\glossaryname{版本历史}
+\GlossaryPrologue{\section*{\glossaryname}}
+\ExplSyntaxOn
+\DeclareDocumentCommand \StopSpecialIndexModule { }
+  { \cs_set_eq:NN \__codedoc_special_index_module:nnnnN \use_none:nnnnn }
+\cs_new_eq:NN \__sjtudoc_ltx_changes:nnn \changes@
+\cs_set_protected:Npn \changes@ #1#2
+  {
+    \tl_if_empty:nTF {#1}
+      { \__sjtudoc_ltx_changes:nnn }
+      { \__sjtudoc_version_zfill:wnnn #1 \q_stop }
+      {#1} {#2}
+  }
+\cs_new_protected:Npn \__sjtudoc_version_zfill:wnnn #1#2 \q_stop
+  {
+    \str_if_eq:nnTF {#1} { v }
+      { \__sjtudoc_version_zfill:nnnn {#2} }
+      { \__sjtudoc_ltx_changes:nnn }
+  }
+\cs_new_protected:Npn \__sjtudoc_version_zfill:nnnn #1#2
+  {
+    \tl_clear:N \l__sjtudoc_tmp_tl
+    \int_zero:N \l_tmpa_int
+    \seq_set_split:Nnn \l_tmpa_seq { . } {#1}
+    \seq_map_function:NN \l_tmpa_seq \__sjtudoc_version_zfill:n
+    \int_compare:nNnF \l_tmpa_int > 2
+      {
+        \tl_put_right:Nx \l__sjtudoc_tmp_tl
+          { \prg_replicate:nn { 3 - \l_tmpa_int } { 00000 } }
+      }
+    \__sjtudoc_ltx_changes:nnn { \l__sjtudoc_tmp_tl \actualchar #2 }
+  }
+\tl_new:N \l__sjtudoc_tmp_tl
+\cs_new_protected:Npn \__sjtudoc_version_zfill:n #1
+  {
+    \int_incr:N \l_tmpa_int
+    \tl_put_right:Nx \l__sjtudoc_tmp_tl
+      {
+        \prg_replicate:nn
+          { \int_max:nn { 0 } { 5 - \tl_count:n {#1} } } { 0 }
+        \exp_not:n {#1}
+      }
+  }
+\ExplSyntaxOff
+\renewcommand\indexname{命令索引}
+\IndexPrologue{%
+  \section*{\indexname}
+  \textit{意大利体的数字表示描述对应索引项的页码；%
+    带下划线的数字表示定义对应索引项的代码行号；%
+    罗马字体的数字表示使用对应索引项的代码行号。}%
+}
+%</document>
+%    \end{macrocode}
+% \fi
+%
 % \Finale
+%
 \endinput
