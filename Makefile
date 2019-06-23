@@ -1,67 +1,29 @@
 # Makefile for SJTUThesis
 
-# Basename of thesis
-THESIS = thesis
 PACKAGE = sjtuthesis
-CLSFILES = $(PACKAGE).cls $(PACKAGE)-bachelor.ltx $(PACKAGE)-graduate.ltx
 
-# Option for latexmk
-LATEXMK_OPT = -xelatex -silent -file-line-error -halt-on-error -interaction=nonstopmode
-LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
+SOURCE_DIR = source
+LOGO_DIR = logos
+RELEASE_DIR = release
+SAMPLE_DIR = sample
+THESIS = thesis
 
-# make deletion work on Windows
-ifdef SystemRoot
-	RM = del /Q
-	OPEN = start
-else
-	RM = rm -f
-	OPEN = open
-endif
+SOURCE = $(SOURCE_DIR)/$(PACKAGE).dtx
+SCRIPTS = $(SOURCE_DIR)/latexmkrc $(SOURCE_DIR)/sample.bat $(SOURCE_DIR)/sample.mak
+LOGOS = $(LOGO_DIR)/sjtu-badge.pdf $(LOGO_DIR)/sjtu-logo.pdf $(LOGO_DIR)/sjtu-name.pdf
 
-.PHONY : all cls doc pvc validate view viewdoc wordcount cleana cleanall FORCE_MAKE
+VERSION = $(shell git describe --tags)
+TEXMF = $(shell kpsewhich --var-value TEXMFHOME)
 
-all : $(THESIS).pdf
+TDS_ARCHIVE = $(RELEASE_DIR)/$(PACKAGE).tds.zip
+PACK = scripts/pack.sh
 
-cls : $(CLSFILES)
+.PHONY : all install
 
-$(CLSFILES) : $(PACKAGE).dtx
-	xetex --interaction=batchmode $<
+all : $(TDS_ARCHIVE)
 
-doc : $(PACKAGE).pdf
+$(TDS_ARCHIVE) : $(PACK) $(SOURCE) $(SCRIPTS) $(LOGOS)
+	@$(PACK) $(SOURCE_DIR) $(LOGO_DIR) $(SAMPLE_DIR) $(RELEASE_DIR) $(VERSION)
 
-$(PACKAGE).pdf : $(PACKAGE).dtx FORCE_MAKE
-	latexmk $(LATEXMKOPTS) $<
-
-$(THESIS).pdf : $(THESIS).tex $(CLSFILES) FORCE_MAKE
-	latexmk $(LATEXMKOPTS) $<
-
-pvc : $(THESIS).tex $(CLSFILES)
-	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
-
-validate : $(THESIS).tex $(CLSFILES)
-	xelatex -no-pdf -halt-on-error $(THESIS)
-	biber --debug $(THESIS)
-
-view : $(THESIS).pdf
-	$(OPEN) $<
-
-viewdoc : $(PACKAGE).pdf
-	$(OPEN) $<
-
-wordcount : $(THESIS).tex
-	@if grep -v ^% $< | grep -qz '\\documentclass\[[^\[]*english'; then \
-		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
-	else \
-		texcount $< -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
-	fi
-	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
-
-clean :
-	-@latexmk -c -silent $(THESIS).tex  2> /dev/null
-	-@latexmk -c -silent $(PACKAGE).dtx 2> /dev/null
-	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
-
-cleanall :
-	-@latexmk -C -silent $(THESIS).tex  2> /dev/null
-	-@latexmk -C -silent $(PACKAGE).dtx 2> /dev/null
-	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
+install : $(TDS_ARCHIVE)
+	unzip -o -q $(TDS_ARCHIVE) -d $(TEXMF)/
