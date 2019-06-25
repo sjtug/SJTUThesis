@@ -44,7 +44,7 @@ mkdir -p $TEX_DIR
 mkdir -p $DOC_DIR
 
 cp $SOURCE_DIR/$JOB_NAME.dtx            $TEMP_DIR/
-cp $SOURCE_DIR/latexmkrc                $TEMP_DIR/
+cp $SOURCE_DIR/latexmkrc.pl             $TEMP_DIR/latexmkrc
 cp $SAMPLE_DIR/thesis.tex               $TEMP_DIR/
 cp $LOGO_DIR/sjtu-badge.pdf             $TEMP_DIR/
 cp $LOGO_DIR/sjtu-logo.pdf              $TEMP_DIR/
@@ -83,8 +83,8 @@ cd $RELEASE_DIR
 zip -q -r -9 $JOB_NAME-overleaf-v$VERSION.zip $JOB_NAME-$VERSION
 
 rm $OUTPUT_DIR/gb7714-2015.*
-cp $SOURCE_DIR/latexmkrc                $OUTPUT_DIR/.latexmkrc
-cp $SOURCE_DIR/sample.mak               $OUTPUT_DIR/Makefile
+cp $SOURCE_DIR/latexmkrc.pl             $OUTPUT_DIR/latexmkrc
+cp $SOURCE_DIR/sample.mk                $OUTPUT_DIR/Makefile
 cp $SOURCE_DIR/sample.bat               $OUTPUT_DIR/compile.bat
 
 zip -q -r -9 $JOB_NAME-v$VERSION.zip    $JOB_NAME-$VERSION

@@ -9,7 +9,7 @@ SAMPLE_DIR = sample
 THESIS = thesis
 
 SOURCE = $(SOURCE_DIR)/$(PACKAGE).dtx
-SCRIPTS = $(SOURCE_DIR)/latexmkrc $(SOURCE_DIR)/sample.bat $(SOURCE_DIR)/sample.mak
+SCRIPTS = $(SOURCE_DIR)/latexmkrc.pl $(SOURCE_DIR)/sample.bat $(SOURCE_DIR)/sample.mk
 LOGOS = $(LOGO_DIR)/sjtu-badge.pdf $(LOGO_DIR)/sjtu-logo.pdf $(LOGO_DIR)/sjtu-name.pdf
 
 VERSION = $(shell git describe --tags)

@@ -4,7 +4,7 @@
 THESIS = thesis
 
 # Option for latexmk
-LATEXMK_OPT = -xelatex -silent -file-line-error -halt-on-error -interaction=nonstopmode
+LATEXMK_OPT = -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode
 LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
 # make deletion work on Windows
@@ -21,10 +21,10 @@ endif
 all : $(THESIS).pdf
 
 $(THESIS).pdf : $(THESIS).tex FORCE_MAKE
-	latexmk $(LATEXMKOPTS) $<
+	@latexmk $(LATEXMK_OPT) $<
 
 pvc : $(THESIS).tex
-	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
+	@latexmk $(LATEXMK_OPT_PVC) $(THESIS)
 
 view : $(THESIS).pdf
 	$(OPEN) $<
