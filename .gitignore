@@ -251,6 +251,7 @@ ehthumbs_vista.db
 
 # Project specific
 release/*
+sample/*.pdf
 *.cls
 *.ins
 *.ltx
