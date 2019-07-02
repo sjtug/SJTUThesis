@@ -1249,7 +1249,14 @@ The Current Maintainer of this work is Alexara Wu.
   labelformat   = simple,
   labelsep      = space,
   justification = centering,
-  font          = sjtucaptionfont}
+  font          = sjtucaptionfont
+}
+\captionsetup[sub]{%
+  format        = hang,
+  labelformat   = brace,
+  justification = justified,
+  font          = sjtusubcaptionfont
+}
 \DeclareCaptionOption{bi-first}[]{%
   \def\tablename{\sjtu@label@table}
   \def\figurename{\sjtu@label@figure}}
@@ -1258,7 +1265,6 @@ The Current Maintainer of this work is Alexara Wu.
   \def\figurename{Figure}}
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
-\captionsetup[sub]{font=sjtusubcaptionfont}
 %</class>
 %    \end{macrocode}
 %
