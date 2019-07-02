@@ -1032,6 +1032,10 @@ The Current Maintainer of this work is Alexara Wu.
 %</(bachelor|graduate)>
 %    \end{macrocode}
 %
+% \subsection{主文档格式}
+%
+% \subsubsection{Three matters}
+%
 % \begin{macro}{\cleardoublepage}
 % 空白页清空页眉页脚。
 %    \begin{macrocode}
@@ -1068,23 +1072,24 @@ The Current Maintainer of this work is Alexara Wu.
   \cleardoublepage
   \@mainmatterfalse
   \pagenumbering{Roman}
-%<*bachelor>
-  \pagestyle{sjtu@front}}
-%</bachelor>
-%<*graduate>
-  \pagestyle{sjtu@plain}}
-%</graduate>
+%<bachelor>  \pagestyle{sjtu@front}
+%<graduate>  \pagestyle{sjtu@plain}
+}
 \renewcommand{\mainmatter}{%
   \cleardoublepage
   \@mainmattertrue
+  \sjtu@setfloatfonttrue
   \pagenumbering{arabic}
-  \pagestyle{sjtu@plain}}
+  \pagestyle{sjtu@plain}
+}
+\renewcommand{\backmatter}{%
+  \cleardoublepage
+  \@mainmatterfalse
+}
 %</(bachelor|graduate)>
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-%
-% \subsection{主文档格式}
 %
 % \subsubsection{章节标题}
 % 各级标题格式设置。
@@ -1240,10 +1245,30 @@ The Current Maintainer of this work is Alexara Wu.
 }
 %    \end{macrocode}
 %
+% 设置浮动体内的默认字号。
+%    \begin{macrocode}
+\newif\ifsjtu@setfloatfont
+\renewcommand{\@floatboxreset}{%
+  \reset@font
+  \ifsjtu@setfloatfont
+    \zihao{5}
+  \else
+    \normalsize
+  \fi
+  \@setminipage
+}
+\BeforeBeginEnvironment{longtable}
+  {\begingroup\ifsjtu@setfloatfont\zihao{5}\fi}
+\AfterEndEnvironment{longtable}
+  {\endgroup}
+\NewDocumentCommand{\sjtuSetFloatFontOn}{}{\sjtu@setfloatfonttrue}
+\NewDocumentCommand{\sjtuSetFloatFontOff}{}{\sjtu@setfloatfontfalse}
+%    \end{macrocode}
+%
 % 设置双语题注。
 %    \begin{macrocode}
 \DeclareCaptionFont{sjtucaptionfont}{\zihao{5}\kaishu}
-\DeclareCaptionFont{sjtusubcaptionfont}{\zihao{-5}\normalfont}
+\DeclareCaptionFont{sjtusubcaptionfont}{\zihao{5}\normalfont}
 \captionsetup{%
   format        = plain,
   labelformat   = simple,
@@ -1613,7 +1638,8 @@ The Current Maintainer of this work is Alexara Wu.
     \vskip 16bp
     \includegraphics{sjtu-badge.pdf}
     \vskip \stretch{2}
-    {\zihao{2}
+    \begingroup
+      \zihao{2}
       \begin{tabular}{r@{：}l}
         论文题目 &
         \begin{minipage}[t]{280pt}
@@ -1622,12 +1648,14 @@ The Current Maintainer of this work is Alexara Wu.
             \sjtu@uline\sjtu@value@title
           \end{center}
         \end{minipage}
-      \end{tabular}}
+      \end{tabular}
+    \endgroup
     \vskip \stretch{1}
-    {\zihao{3}
+    \begingroup
+      \zihao{3}
       \def\arraystretch{1.1}
       \begin{tabular}
-        {>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
+        {>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}  
         \sjtu@label@authorChi        & \sjtu@value@author      \\ \cline{2-2}
         \sjtu@label@studentidChi     & \makebox[180pt]{\sjtu@value@studentid} \\
           \cline{2-2}
@@ -1638,7 +1666,8 @@ The Current Maintainer of this work is Alexara Wu.
         \fi
         \sjtu@label@supervisorChi    & \sjtu@value@supervisor  \\ \cline{2-2}
         \sjtu@label@departmentChi    & \sjtu@value@department  \\ \cline{2-2}
-      \end{tabular}}
+      \end{tabular}
+    \endgroup
     \vskip 40bp
 %</bachelor>
 %<*graduate>
@@ -1649,7 +1678,8 @@ The Current Maintainer of this work is Alexara Wu.
     \vskip \stretch{4}
     {\zihao{2}\heiti\sjtu@value@title \vskip 1bp}
     \vskip \stretch{5}
-    {\zihao{4}
+    \begingroup
+      \zihao{4}
       \def\tabcolsep{1bp}
       \def\arraystretch{1.25}
       \begin{tabular}
@@ -1666,7 +1696,8 @@ The Current Maintainer of this work is Alexara Wu.
         \sjtu@label@departmentChi       & \sjtu@value@department     \\
         \sjtu@label@defenddateChi       & \sjtu@value@date           \\
         \sjtu@label@conferringChi       & \sjtu@label@schoolChi      \\
-      \end{tabular}}
+      \end{tabular}
+    \endgroup
     \vskip 26bp
 %</graduate>
   \end{center}
@@ -1682,7 +1713,8 @@ The Current Maintainer of this work is Alexara Wu.
     \vskip \stretch{4}
     {\zihao{2}\bfseries\MakeUppercase\sjtu@value@entitle \vskip 1bp}
     \vskip \stretch{5}
-    {\zihao{4}
+    \begingroup
+      \zihao{4}
       \def\tabcolsep{1bp}
       \def\arraystretch{1.3}
       \begin{tabular}
@@ -1698,7 +1730,8 @@ The Current Maintainer of this work is Alexara Wu.
         \sjtu@label@departmentEng       & \sjtu@value@endepartment     \\
         \sjtu@label@defenddateEng       & \sjtu@value@endate           \\
         \sjtu@label@conferringEng       & \sjtu@label@schoolEng        \\
-      \end{tabular}}
+      \end{tabular}
+    \endgroup
     \vskip 26bp
   \end{center}
   \cleardoublepage}
