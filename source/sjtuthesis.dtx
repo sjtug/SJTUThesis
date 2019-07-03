@@ -646,10 +646,12 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % 字体相关宏包。
 %    \begin{macrocode}
-\ifsjtu@unsetfont\relax\else%
+\ifsjtu@unsetfont\relax\else
   \RequirePackage[defaultsups]{newtxtext}
   \RequirePackage[upint]{newtxmath}
-  \RequirePackage[opentype]{sourcecodepro}
+  \RequirePackage[opentype,scaled=.9]{sourcecodepro}
+  \RequirePackage{bm}
+  \RequirePackage{upgreek}
 \fi
 \RequirePackage{anyfontsize}
 %    \end{macrocode}
@@ -1220,7 +1222,6 @@ The Current Maintainer of this work is Alexara Wu.
     \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
   \addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
 }
-%</class>
 %    \end{macrocode}
 %
 % \subsubsection{浮动对象以及表格}
@@ -1228,7 +1229,6 @@ The Current Maintainer of this work is Alexara Wu.
 % 下面这组命令使浮动对象的缺省值稍微宽松一点，从而防止幅度对象占据过多的文本页
 % 面，也可以防止在很大空白的浮动页上放置很小的图形。
 %    \begin{macrocode}
-%<*class>
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
@@ -1290,14 +1290,43 @@ The Current Maintainer of this work is Alexara Wu.
   \def\figurename{Figure}}
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
-%</class>
 %    \end{macrocode}
+%
+% \subsubsection{数学相关}
+%
+% \begin{macro}{\Re}
+% \begin{macro}{\Im}
+% 实部、虚部操作符使用罗马体 $\mathrm{Re}$、$\mathrm{Im}$ 而不是 fraktur 体
+% $\Re$、$\Im$。
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \renewcommand{\Re}{\operatorname{Re}}%
+  \renewcommand{\Im}{\operatorname{Im}}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\upe}
+% \begin{macro}{\upi}
+% \begin{macro}{\upj}
+% \begin{macro}{\dif}
+% 提供一些方便的命令：
+%    \begin{macrocode}
+\newcommand\upe{\mathrm{e}}
+\newcommand\upi{\mathrm{i}}
+\newcommand\upj{\mathrm{j}}
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 %
 % \subsubsection{声明}
 %
 % 支持扫描文件替换。
 %    \begin{macrocode}
-%<*class>
 \newcommand{\sjtu@square}{{\CJKfamily+{zhsong}\symbol{"25A1}}}
 \newcommand{\sjtu@authconf}{%
   \par\hspace{7em}%
@@ -1866,13 +1895,17 @@ The Current Maintainer of this work is Alexara Wu.
     \def\sjtu@label@remark{Remark}
     \def\sjtu@label@theorem{Theorem}
   \fi
-  \theorembodyfont{\normalfont}
   \theoremheaderfont{\bfseries\heiti}
-  \theoremseparator{\enspace}
+  \ifsjtu@chinese
+    \theoremseparator{\enspace}
+    \theorembodyfont{\normalfont}
+  \else
+    \theoremseparator{.}
+    \theorembodyfont{\itshape}
+  \fi
   \theoremsymbol{\ensuremath{\square}}
   \newtheorem*{proof}{\sjtu@label@proof}
   \theoremstyle{plain}
-  \theorembodyfont{\kaishu}
   \theoremsymbol{}
   \newtheorem{assertion}  {\sjtu@label@assertion}  [chapter]
   \newtheorem{assumption} {\sjtu@label@assumption} [chapter]
