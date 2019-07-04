@@ -20,3 +20,6 @@ before_script:
 
 script:
   - latexmk -cd -quiet -halt-on-error -time -xelatex sample/thesis.tex
+
+after_failure:
+  - cat sample/thesis.log
