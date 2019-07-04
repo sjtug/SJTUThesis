@@ -18,8 +18,7 @@ fi
 
 # Install TeX Live packages
 tlmgr install           \
-  algorithmicx          \
-  algorithms            \
+  algorithm2e           \
   anyfontsize           \
   biber                 \
   biblatex              \
@@ -34,11 +33,12 @@ tlmgr install           \
   eso-pic               \
   etoolbox              \
   fandol                \
-  float                 \
   fontaxes              \
   fontspec              \
   footmisc              \
+  ifoddpage             \
   kastrup               \
+  l3backend             \
   l3kernel              \
   l3packages            \
   latexmk               \
@@ -53,6 +53,7 @@ tlmgr install           \
   pageslts              \
   pdfpages              \
   pgf                   \
+  relsize               \
   siunitx               \
   sourcecodepro         \
   tex-gyre              \
@@ -65,8 +66,6 @@ tlmgr install           \
   ulem                  \
   undolabl              \
   was                   \
-  wasy                  \
-  wasysym               \
   xcolor                \
   xecjk                 \
   xetex                 \
