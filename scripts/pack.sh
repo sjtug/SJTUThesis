@@ -51,9 +51,10 @@ cp $LOGO_DIR/sjtu-logo.pdf              $TEMP_DIR/
 cp $LOGO_DIR/sjtu-name.pdf              $TEMP_DIR/
 
 cd $TEMP_DIR
-xetex --interaction=batchmode $JOB_NAME.dtx >/dev/null
-latexmk -silent $JOB_NAME.dtx     >/dev/null
-latexmk -silent -c $JOB_NAME.dtx  >/dev/null
+xetex --interaction=batchmode $JOB_NAME.dtx   >/dev/null
+latexmk -silent $JOB_NAME.dtx                 >/dev/null
+latexmk -silent -c $JOB_NAME.dtx              >/dev/null
+latexmk -silent -cd -C $OUTPUT_DIR/thesis.tex >/dev/null
 
 # All files should be rw-r--r--
 chmod 644 $TEMP_DIR/*.*
