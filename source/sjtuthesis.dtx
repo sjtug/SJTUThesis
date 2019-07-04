@@ -1016,9 +1016,9 @@ The Current Maintainer of this work is Alexara Wu.
   \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
   \renewcommand{\headrule}{%
     \hrule\@height2.25\p@\@width\headwidth
-    \vskip0.75\p@
+    \vskip 0.75\p@
     \hrule\@height0.75\p@\@width\headwidth
-    \vskip-2.75\p@
+    \vskip -2.75\p@
   }
 %</graduate>
 }
@@ -1327,7 +1327,9 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % 支持扫描文件替换。
 %    \begin{macrocode}
-\newcommand{\sjtu@square}{{\CJKfamily+{zhsong}\symbol{"25A1}}}
+\newcommand{\sjtu@square}{%
+  \begingroup\CJKfamily+{zhsong}\symbol{"25A1}\endgroup
+}
 \newcommand{\sjtu@authconf}{%
   \par\hspace{7em}%
   {\heiti 保\quad 密}~\sjtu@square，在 \uline{\hspace{3em}}
@@ -1346,44 +1348,50 @@ The Current Maintainer of this work is Alexara Wu.
   }
 }
 \NewDocumentCommand{\makeDeclareOriginality}{o}{%
-  \ifsjtu@review\relax\else%
+  \ifsjtu@review\relax\else
     \cleardoublepage
     \pdfbookmark[0]{\sjtu@label@originality}{origtitle}
     \IfNoValueTF{#1}{%
       \thispagestyle{empty}
       \chapter*{\zihao{-2}\sjtu@label@schoolChi \\%
                 \sjtu@label@origtitle}
-      {\zihao{4}
+      \begingroup
+        \zihao{4}
         \sjtu@label@origbody
-        \vskip16ex
+        \vskip 16ex
         \noindent
         \begin{minipage}{\textwidth}
           \hfill
           \sjtu@signbox{\sjtu@label@thesiscat 作者}
-        \end{minipage}}}
-      {\includepdf[pagecommand={\thispagestyle{empty}}]{#1}}
+        \end{minipage}
+      \endgroup
+    }
+    {\includepdf[pagecommand={\thispagestyle{empty}}]{#1}}
   \fi
 }
 \NewDocumentCommand{\makeDeclareAuthorization}{o}{%
-  \ifsjtu@review\relax\else%
+  \ifsjtu@review\relax\else
     \cleardoublepage
     \pdfbookmark[0]{\sjtu@label@authorization}{authtitle}
     \IfNoValueTF{#1}{%
       \thispagestyle{empty}
       \chapter*{\zihao{-2}\sjtu@label@schoolChi \\%
                 \sjtu@label@authtitle}
-      {\zihao{4}
+      \begingroup
+        \zihao{4}
         \sjtu@label@authbody
-        \vskip1ex
+        \vskip 1ex
         \sjtu@authconf
-        \vskip16ex
+        \vskip 16ex
         \noindent
         \begin{minipage}{\textwidth}
           \sjtu@signbox{\sjtu@label@thesiscat 作者}
           \hfill
           \sjtu@signbox{指导教师}
-        \end{minipage}}}
-      {\includepdf[pagecommand={\thispagestyle{empty}}]{#1}}
+        \end{minipage}
+      \endgroup
+    }
+    {\includepdf[pagecommand={\thispagestyle{empty}}]{#1}}
   \fi
 }
 %</class>
@@ -1394,31 +1402,29 @@ The Current Maintainer of this work is Alexara Wu.
 % 定义摘要环境，本科与研究生论文的摘要样式要求略有不同。
 %    \begin{macrocode}
 %<*(bachelor|graduate)>
-\NewDocumentEnvironment{abstract}{}%
-{\cleardoublepage
+\NewDocumentEnvironment{abstract}{}{%
+  \cleardoublepage
   \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
   \chapter*{%
     \sjtu@value@title \vskip 2ex
-%<*bachelor>
-    {\zihao{4}\sjtu@label@abstractChi}
-%</bachelor>
-%<*graduate>
-    \sjtu@label@abstractChi
-%</graduate>
+    \begingroup
+%<bachelor>      \zihao{4}
+      \sjtu@label@abstractChi
+    \endgroup
   }
-  \markboth{\sjtu@label@abstractChi}%
-           {\sjtu@label@abstractChi}
-%<*graduate>
-  \zihao{4}
-%</graduate>
+  \@mkboth{\sjtu@label@abstractChi}%
+          {\sjtu@label@abstractChi}%
+%<graduate>  \zihao{4}
 }{%
   \vskip 3ex \noindent
-%<*bachelor>
-  {\zihao{-4}\heiti\sjtu@label@keywordsChi}{\zihao{5}\sjtu@value@keywords}
-%</bachelor>
-%<*graduate>
-  {\heiti\sjtu@label@keywordsChi}\sjtu@value@keywords
-%</graduate>
+  \begingroup
+%<bachelor>    \zihao{-4}
+    \heiti\sjtu@label@keywordsChi
+  \endgroup
+  \begingroup
+%<bachelor>    \zihao{5}
+    \sjtu@value@keywords
+  \endgroup
 }
 %    \end{macrocode}
 %
@@ -1428,51 +1434,52 @@ The Current Maintainer of this work is Alexara Wu.
   \cleardoublepage
   \chapter*{%
     \MakeUppercase\sjtu@value@entitle \vskip 2ex
-%<*bachelor>
-    {\zihao{4}\MakeUppercase\sjtu@label@abstractEng}}
-%</bachelor>
-%<*graduate>
-    \MakeUppercase\sjtu@label@abstractEng}
-%</graduate>
-  \markboth{\sjtu@label@abstractEng}%
-           {\sjtu@label@abstractEng}
-%<*graduate>
-  \zihao{4}
-%</graduate>
+    \begingroup
+%<bachelor>      \zihao{4}
+      \MakeUppercase\sjtu@label@abstractEng
+    \endgroup
+  }
+  \@mkboth{\sjtu@label@abstractEng}%
+          {\sjtu@label@abstractEng}%
+%<graduate>  \zihao{4}
 }{%
   \vskip 3ex \noindent
-%<*bachelor>
-  {\zihao{-4}\bfseries\sjtu@label@keywordsEng}
-  {\zihao{5}\sjtu@value@enkeywords}}
-%</bachelor>
-%<*graduate>
-  {\bfseries\MakeUppercase\sjtu@label@keywordsEng}
-  \sjtu@value@enkeywords}
-%</graduate>
+  \begingroup
+%<bachelor>    \zihao{-4}\bfseries
+%<graduate>    \bfseries\MakeUppercase
+    \sjtu@label@keywordsEng
+  \endgroup
+  \begingroup
+%<bachelor>    \zihao{5}
+    \sjtu@value@enkeywords
+  \endgroup
+}
 %    \end{macrocode}
 %
 % 本科论文英文大摘要。
 %    \begin{macrocode}
 \newcommand{\sjtu@bigabstract}[1]{\long\gdef\sjtu@bigabstract@body{#1}}
-\NewDocumentEnvironment{bigabstract}{}
-{\Collect@Body\sjtu@bigabstract}
+\NewDocumentEnvironment{bigabstract}{}{%
+  \Collect@Body\sjtu@bigabstract
+}{%
 %<*bachelor>
-{\ifsjtu@course\relax\else%
-  \ifsjtu@english\relax\else%
-    \AtEndDocument{%
-      \cleardoublepage
-      \pagenumbering{roman}
-      \pagestyle{sjtu@biglast}
-      \pdfbookmark[0]{\sjtu@label@bigabstract}{bigabstract}%
-      \chapter*{\MakeUppercase\sjtu@value@entitle}
-      \sjtu@bigabstract@body
-    }
+  \ifsjtu@course\relax\else
+    \ifsjtu@english\relax\else
+      \AtEndDocument{%
+        \cleardoublepage
+        \pagenumbering{roman}
+        \pagestyle{sjtu@biglast}
+        \pdfbookmark[0]{\sjtu@label@bigabstract}{bigabstract}%
+        \chapter*{\MakeUppercase\sjtu@value@entitle}
+        \@mkboth{\sjtu@label@bigabstract}%
+                {\sjtu@label@bigabstract}%
+        \sjtu@bigabstract@body
+      }
+    \fi
   \fi
-\fi}
 %</bachelor>
-%<*graduate>
-{}
-%</graduate>
+%<graduate>  \relax
+}
 %</(bachelor|graduate)>
 %    \end{macrocode}
 %
@@ -1481,14 +1488,14 @@ The Current Maintainer of this work is Alexara Wu.
 % 使用 \pkg{longtable} 实现符号对照表。
 %    \begin{macrocode}
 %<*class>
-\NewDocumentEnvironment{nomenclature}{m}
-{\cleardoublepage
+\NewDocumentEnvironment{nomenclature}{m}{%
+  \cleardoublepage
   \pdfbookmark[0]{\sjtu@label@nomenclature}{nomenclature}
   \chapter*{\sjtu@label@nomenclature}
-  \markboth{\sjtu@label@nomenclature}%
-           {\sjtu@label@nomenclature}
-  \begin{longtable}{#1}}
-{\end{longtable}}
+  \@mkboth{\sjtu@label@nomenclature}%
+          {\sjtu@label@nomenclature}%
+  \begin{longtable}{#1}
+}{\end{longtable}}
 %    \end{macrocode}
 %
 % \subsubsection{全文总结}
@@ -1497,9 +1504,9 @@ The Current Maintainer of this work is Alexara Wu.
 \NewDocumentEnvironment{summary}{}{%
   \cleardoublepage
   \chapter*{\sjtu@label@summary}
-  \markboth{\sjtu@label@summary}%
-           {\sjtu@label@summary}
-  \addcontentsline{toc}{chapter}{\sjtu@label@summary}
+  \@mkboth{\sjtu@label@summary}%
+          {\sjtu@label@summary}%
+  \addcontentsline{toc}{chapter}{\sjtu@label@summary}%
 }{}
 %    \end{macrocode}
 %
@@ -1508,77 +1515,126 @@ The Current Maintainer of this work is Alexara Wu.
 % 定义致谢环境，盲审模式下隐藏致谢。
 %    \begin{macrocode}
 \newcommand{\sjtu@acknowledgements}[1]{\long\gdef\sjtu@acknowledgements@body{#1}}
-\NewDocumentEnvironment{acknowledgements}{}
-{\Collect@Body\sjtu@acknowledgements}
-{\ifsjtu@review\relax\else%
+\NewDocumentEnvironment{acknowledgements}{}{%
+  \Collect@Body\sjtu@acknowledgements
+}{%
+  \ifsjtu@review\relax\else
     \cleardoublepage
     \chapter*{\sjtu@label@acknowledgements}
-    \markboth{\sjtu@label@acknowledgements}%
-             {\sjtu@label@acknowledgements}
-    \addcontentsline{toc}{chapter}{\sjtu@label@acknowledgements}
+    \@mkboth{\sjtu@label@acknowledgements}%
+            {\sjtu@label@acknowledgements}%
+    \addcontentsline{toc}{chapter}{\sjtu@label@acknowledgements}%
     \sjtu@acknowledgements@body
-  \fi}
+  \fi
+}
 %    \end{macrocode}
 %
 % \subsubsection{附录}
 %
 % 定义附录使用的列表环境，使用和参考文献列表相同的样式。
 %    \begin{macrocode}
-\NewDocumentEnvironment{sjtu@bibliolist}{o}{%
-  \list%
-    {\@biblabel{\@arabic\c@enumiv}}%
-    {\settowidth\labelwidth{\@biblabel{#1}}
-      \setlength{\labelsep}{\biblabelsep}%
-      \setlength{\leftmargin}{\bibhang}%
-      \addtolength{\leftmargin}{\labelwidth}%
-      \setlength{\itemindent}{0pt}%
-      \setlength{\itemsep}{\bibitemsep}%
-      \setlength{\parsep}{\bibparsep}}%
-  \usecounter{enumiv}%
-  \let\p@enumiv\@empty
-  \renewcommand{\theenumiv}{\@arabic\c@enumiv}}
-{\def\@noitemerr
-  {\@latex@warning{Empty `bibliolist' environment}}%
-  \endlist}
+\newenvironment{sjtu@bibliolist}[2]{%
+  \cleardoublepage
+  \chapter{#2}
+  \@mkboth{#2}{#2}%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+       {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy
+  \clubpenalty4000
+  \@clubpenalty \clubpenalty
+  \widowpenalty4000%
+  \sfcode`\.\@m
+}{%
+  \def\@noitemerr
+    {\@latex@warning{Empty `bibliolist' environment}}%
+  \endlist
+}
 %    \end{macrocode}
 %
 % 分别定义论文、专利和项目三个附录环境。
 %    \begin{macrocode}
-\NewDocumentEnvironment{publications}{O{99}}
-{\cleardoublepage
-  \chapter{\sjtu@label@publications}
-  \markboth{\sjtu@label@publications}%
-           {\sjtu@label@publications}
-  \begin{sjtu@bibliolist}[#1]}
-{\end{sjtu@bibliolist}}
-\NewDocumentEnvironment{patents}{O{99}}
-{\cleardoublepage
-  \chapter{\sjtu@label@patents}
-  \markboth{\sjtu@label@patents}%
-           {\sjtu@label@patents}
-  \begin{sjtu@bibliolist}[#1]}
-{\end{sjtu@bibliolist}}
-\NewDocumentEnvironment{projects}{O{99}}
-{\cleardoublepage
-  \chapter{\sjtu@label@projects}
-  \markboth{\sjtu@label@projects}%
-           {\sjtu@label@projects}
-  \begin{sjtu@bibliolist}[#1]}
-{\end{sjtu@bibliolist}}
+\newcommand{\sjtu@publications}[1]{\long\gdef\sjtu@publications@body{#1}}
+\NewDocumentEnvironment{publications}{O{99}}{%
+  \Collect@Body\sjtu@publications
+}{%
+  \ifsjtu@review\relax\else
+    \begin{sjtu@bibliolist}{#1}{\sjtu@label@publications}
+      \sjtu@publications@body
+    \end{sjtu@bibliolist}
+  \fi
+}
+\newcommand{\sjtu@@publications}[1]{\long\gdef\sjtu@@publications@body{#1}}
+\NewDocumentEnvironment{publications*}{O{99}}{%
+  \Collect@Body\sjtu@@publications
+}{%
+  \ifsjtu@review
+    \begin{sjtu@bibliolist}{#1}{\sjtu@label@publications}
+      \sjtu@@publications@body
+    \end{sjtu@bibliolist}
+  \fi
+}
+\newcommand{\sjtu@projects}[1]{\long\gdef\sjtu@projects@body{#1}}
+\NewDocumentEnvironment{projects}{O{99}}{%
+  \Collect@Body\sjtu@projects
+}{%
+  \ifsjtu@review\relax\else
+    \begin{sjtu@bibliolist}{#1}{\sjtu@label@projects}
+      \sjtu@projects@body
+    \end{sjtu@bibliolist}
+  \fi
+}
+\newcommand{\sjtu@@projects}[1]{\long\gdef\sjtu@@projects@body{#1}}
+\NewDocumentEnvironment{projects*}{O{99}}{%
+  \Collect@Body\sjtu@@projects
+}{%
+  \ifsjtu@review
+    \begin{sjtu@bibliolist}{#1}{\sjtu@label@projects}
+      \sjtu@@projects@body
+    \end{sjtu@bibliolist}
+  \fi
+}
+\newcommand{\sjtu@patents}[1]{\long\gdef\sjtu@patents@body{#1}}
+\NewDocumentEnvironment{patents}{O{99}}{%
+  \Collect@Body\sjtu@patents
+}{%
+  \ifsjtu@review\relax\else
+    \begin{sjtu@bibliolist}{#1}{\sjtu@label@patents}
+      \sjtu@patents@body
+    \end{sjtu@bibliolist}
+  \fi
+}
+\newcommand{\sjtu@@patents}[1]{\long\gdef\sjtu@@patents@body{#1}}
+\NewDocumentEnvironment{patents*}{O{99}}{%
+  \Collect@Body\sjtu@@patents
+}{%
+  \ifsjtu@review
+    \begin{sjtu@bibliolist}{#1}{\sjtu@label@patents}
+      \sjtu@@patents@body
+    \end{sjtu@bibliolist}
+  \fi
+}
 %    \end{macrocode}
 %
 % 定义简历环境。
 %    \begin{macrocode}
 \newcommand{\sjtu@resume}[1]{\long\gdef\sjtu@resume@body{#1}}
-\NewDocumentEnvironment{resume}{}
-{\Collect@Body\sjtu@resume}
-{\ifsjtu@review\relax\else%
-  \cleardoublepage
-  \chapter{\sjtu@label@resume}
-  \markboth{\sjtu@label@resume}%
-           {\sjtu@label@resume}
-  \sjtu@resume@body
-\fi}
+\NewDocumentEnvironment{resume}{}{%
+  \Collect@Body\sjtu@resume
+}{%
+  \ifsjtu@review\relax\else
+    \cleardoublepage
+    \chapter{\sjtu@label@resume}
+    \@mkboth{\sjtu@label@resume}%
+            {\sjtu@label@resume}%
+    \sjtu@resume@body
+  \fi
+}
 %    \end{macrocode}
 %
 % \subsubsection{盲审模式}
@@ -1626,19 +1682,20 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % 定义一个特殊的下划线命令供绘制本科论文封面时使用。
 %    \begin{macrocode}
-\newcommand{\sjtu@uline}[1]%
-{\begingroup
-  \setbox0=\vbox{\strut #1\strut}%
-  \dimen0=0pt
-  \loop\ifdim\ht0>0pt
-    \dimen1=\dimexpr\ht0 - \baselineskip\relax
-    \setbox1=\vsplit0 to \ht\strutbox
-    \advance\dimen1 by -\ht0
-    \noindent\raisebox{-\dimen0}[\ht\strutbox][\dp\strutbox]{\box1}%
-    \advance\dimen0 by \dimen1
-    \vspace{-0.2ex}\hrule\vskip 0.2ex
-  \repeat
-\endgroup}
+\newcommand{\sjtu@uline}[1]{%
+  \begingroup
+    \setbox0=\vbox{\strut #1\strut}%
+    \dimen0=0pt
+    \loop\ifdim\ht0>0pt
+      \dimen1=\dimexpr\ht0 - \baselineskip\relax
+      \setbox1=\vsplit0 to \ht\strutbox
+      \advance\dimen1 by -\ht0
+      \noindent\raisebox{-\dimen0}[\ht\strutbox][\dp\strutbox]{\box1}%
+      \advance\dimen0 by \dimen1
+      \vspace{-0.2ex}\hrule\vskip 0.2ex
+    \repeat
+  \endgroup
+}
 %</class>
 %    \end{macrocode}
 %
@@ -1648,11 +1705,9 @@ The Current Maintainer of this work is Alexara Wu.
 \RenewDocumentCommand\maketitle{}{%
   \pdfbookmark[0]{\sjtu@label@titlepage}{titlepage}
   \sjtu@makechinesetitle%
-%<*graduate>
-  \sjtu@makeenglishtitle%
-%</graduate>
+%<graduate>  \sjtu@makeenglishtitle%
 }
-\newcommand{\sjtu@makechinesetitle}{
+\newcommand{\sjtu@makechinesetitle}{%
   \cleardoublepage
 %<*bachelor>
   \thispagestyle{empty}
@@ -1730,8 +1785,8 @@ The Current Maintainer of this work is Alexara Wu.
     \vskip 26bp
 %</graduate>
   \end{center}
-  \cleardoublepage}
-%</(bachelor|graduate)>
+  \cleardoublepage
+}
 %<*graduate>
 \newcommand{\sjtu@makeenglishtitle}{%
   \cleardoublepage
@@ -1763,8 +1818,10 @@ The Current Maintainer of this work is Alexara Wu.
     \endgroup
     \vskip 26bp
   \end{center}
-  \cleardoublepage}
+  \cleardoublepage
+}
 %</graduate>
+%</(bachelor|graduate)>
 %    \end{macrocode}
 %
 % \subsection{文档部件}
