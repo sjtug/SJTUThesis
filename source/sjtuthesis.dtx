@@ -130,23 +130,23 @@ The Current Maintainer of this work is Alexara Wu.
 % \GetFileInfo{\jobname.dtx}
 %
 % \changes{v0.10}{2018/01/09}{项目转移至 \href{https://github.com/sjtug/SJTUThesis}{SJTUG} 名下，并增加了英文模版，修改了默认字体设置。}
-% \changes{v0.9.5}{2017/01/27}{改用 GB7714-2015 参考文献风格。}
+% \changes{v0.9.5}{2017/01/27}{改用 GB/7714-2015 参考文献风格。}
 % \changes{v0.9.4}{2016/08/25}{增加算法和流程图。}
 % \changes{v0.9}{2015/06/19}{适配 \pkg{ctex} 2.x 宏包，需要使用 TeXLive 2015 编译。}
-% \changes{v0.8}{2015/03/15}{使用 \pkg{biber}/\pkg{biblatex} 组合替代 \BibTeX ，带来更强大稳定的参考文献处理能力；添加 \pkg{enumitem} 宏包增强列表环境控制能力；完善宏包文字描述。}
+% \changes{v0.8}{2015/03/15}{使用 \pkg{biber}/\pkg{biblatex} 组合替代 \BibTeX，带来更强大稳定的参考文献处理能力；添加 \pkg{enumitem} 宏包增强列表环境控制能力；完善宏包文字描述。}
 % \changes{v0.7}{2015/02/15}{增加盲审选项，调用外部工具插入扫描件。}
-% \changes{v0.6.5}{2015/02/14}{修正一些小问题，缩减 git 仓库体积，仓库由 sjtu-thesis-template-latex 更名为 \cls{SJTUThesis}。}
+% \changes{v0.6.5}{2015/02/14}{修正一些小问题，缩减 git 仓库体积，仓库由 sjtu-thesis-template-latex 更名为 \sjtuthesis。}
 % \changes{v0.6}{2014/12/17}{学士、硕士、博士学位论文模板合并在了一起。}
-% \changes{v0.5.3}{2013/05/26}{更正 \env{subsubsection} 格式错误，这个错误导致如 ``1.1 小结'' 这样的标题没有被正确加粗。}
+% \changes{v0.5.3}{2013/05/26}{更正 \env{subsubsection} 格式错误，这个错误导致如“1.1 小结”这样的标题没有被正确加粗。}
 % \changes{v0.5.2}{2012/12/27}{更正拼写错误。在 \file{diss.tex} 加入 \file{ack.tex}。}
-% \changes{v0.5.1}{2012/12/21}{在 \LaTeX 命令和中文字符之间留了空格，在 Makefile 中增加 release 功能。}
-% \changes{v0.5}{2012/12/05}{修改说明文件的措辞，更正 Makefile 文件，使用 \pkg{metalog} 宏包替换 \pkg{xltxtra} 宏包，使用 \pkg{mathtools} 宏包替换 \pkg{amsmath} 宏包，移除了所有 CJKtilde 符号。}
+% \changes{v0.5.1}{2012/12/21}{在 \LaTeX\ 命令和中文字符之间留了空格，在 \file{Makefile} 中增加 release 功能。}
+% \changes{v0.5}{2012/12/05}{修改说明文件的措辞，更正 \file{Makefile} 文件，使用 \pkg{metalog} 宏包替换 \pkg{xltxtra} 宏包，使用 \pkg{mathtools} 宏包替换 \pkg{amsmath} 宏包，移除了所有 CJKtilde 符号。}
 % \changes{v0.4}{2012/05/30}{包含交大学士、硕士、博士学位论文模板。模板在 \href{https://github.com/weijianwen/SJTUThesis}{GitHub} 上管理和更新。}
 % \changes{v0.3a}{2010/12/05}{移植到 \XeTeX/\LaTeX 上。}
-% \changes{v0.2a}{2009/12/25}{模板由 \cls{CASthesis} 改名为 \cls{sjtumaster}。在 \file{diss.tex} 中可以方便地改变正文字号、切换但双面打印。增加了不编号的一章 ``全文总结''。添加了可伸缩符号(等号、箭头) 的例子，增加了长标题换行的例子。}
-% \changes{v0.1c}{2009/11/20}{增加了 Linux 下使用 \pkg{ctex} 宏包的注意事项、\file{.bib} 条目的规范要求，修正了 \pkg{ctexbook} 与 \pkg{listings} 共同使用时的断页错误。}
+% \changes{v0.2a}{2009/12/25}{模板由 \cls{CASthesis} 改名为 \cls{sjtumaster}。在 \file{diss.tex} 中可以方便地改变正文字号、切换但双面打印。增加了不编号的一章“全文总结”。添加了可伸缩符号（等号、箭头）的例子，增加了长标题换行的例子。}
+% \changes{v0.1c}{2009/11/20}{增加了 Linux 下使用 \pkg{ctex} 宏包的注意事项、\file{bib} 条目的规范要求，修正了 \pkg{ctexbook} 与 \pkg{listings} 共同使用时的断页错误。}
 % \changes{v0.1b}{2009/11/13}{完善了模板使用说明，增加了定理环境、并列子图、三线表格的例子。}
-% \changes{v0.1a}{2009/11/12}{上海交通大学硕士学位论文 \LaTeX 模板发布。}
+% \changes{v0.1a}{2009/11/12}{上海交通大学硕士学位论文 \LaTeX\ 模板发布。}
 %
 % \title{\bfseries\color{sjtublue}\sjtuthesis：上海交通大学学位论文模板}
 % \author{\href{https://sjtug.org/}{SJTUG}}
@@ -200,23 +200,15 @@ The Current Maintainer of this work is Alexara Wu.
 % 板。
 %
 % 最早的一版学位模板由一位热心的物理系同学制作，中文字符处理采用了当时最为流行的
-% \CJKLaTeX\ 方案。
+% \CJKLaTeX\ 方案。在此基础上，weijianwen 根据交大研究生院对学位论文的要求，完成
+% 了一份基本可用的交大 \LaTeX\ 学位论文模板。由于 \CJKLaTeX\ 方案不易使用，
+% weijianwen 与 William Wang 开始着手把模板向\XeTeX\ 引擎移植。之后 weijianwen
+% 又断断续续做了一些完善模板的工作，在原有硕士学位论文模板的基础上完成了交大学士
+% 和博士学位论文模板。
 %
-% 在此基础上，weijianwen 根据交大研究生院对学位论文的要求，完成了一份基本可用的
-% 交大 \LaTeX\ 学位论文模板。
-%
-% 由于 \CJKLaTeX\ 方案不易使用，weijianwen 与 William Wang 开始着手把模板向
-% \XeTeX\ 引擎移植。之后 weijianwen 又断断续续做了一些完善模板的工作，在原有硕
-% 士学位论文模板的基础上完成了交大学士和博士学位论文模板。
-%
-% 2012 年 5 月模板开始在 GitHub 上管理和更新，2018 年 1 月项目转移至 SJTUG 名下。
-%
-% 2019 年 6 月 Alexara Wu 重构了整个宏包的代码，并使用 doc 和 DocStrip 工具进行
-% 代码的管理，升级版本号为 1.0。
-%
-% \sjtuthesis 模板的许多实现细节离不开 \href{https://github.com/sjtug/SJTUThesis/graphs/contributors}
-%  {热心同学们} 的贡献，在此感谢所有为模板贡献过代码的同学们, 以及所有测试和使用
-% 模板的各位同学！
+% 2012 年 5 月模板开始在 GitHub 上管理和更新，2018 年 1 月项目转移至 SJTUG 名
+% 下。2019 年 6 月 Alexara Wu 重构了整个宏包的代码，并使用 doc 和 DocStrip 工具
+% 进行代码的管理，升级版本号为 1.0。
 %
 % 本文档将尽量完整的介绍模板的使用方法，如有不清楚之处可以参考示例文档或者根据
 % 第~\ref{sec:howtoask} 节说明提问，有兴趣者都可以参与完善此手册，也非常欢迎对代
@@ -227,15 +219,6 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % \section{安装}
 %
-% \subsection{系统要求}
-% \label{sec:requirements}
-%
-% 使用本模板需要你的 \TeX\ 系统支持 \XeTeX\ 引擎，并且带有 \pkg{ctex} 2.x 宏包。
-%
-% 对于新手来说，一般推荐完整安装当年最新版的 \TeXLive/\macTeX。您也可以根据自
-% 己的实际需求选择不同的 \TeX\ 发行版，具体可以参考 \href{https://github.com/sjtug/SJTUThesis/wiki/TeX-%E7%9A%84%E5%8F%91%E8%A1%8C%E7%89%88%E5%8F%8A%E5%85%B6%E5%AE%89%E8%A3%85}
-% {《\TeX\ 的发行版及其安装》}。
-%
 % \subsection{获取 \sjtuthesis}
 %
 % 你可以在 \href{https://github.com/sjtug/SJTUThesis/releases}{GitHub Release}
@@ -245,7 +228,7 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % 表~\ref{tab:files} 列出了 \sjtuthesis 的主要文件及其功能介绍。
 %
-% \begin{table}[htb]
+% \begin{table}[!hbt]
 %   \centering
 %   \caption{模板的文件组成}
 %   \label{tab:files}
@@ -253,11 +236,12 @@ The Current Maintainer of this work is Alexara Wu.
 %     \toprule
 %     类别     & 文件                     & 说明                          \\
 %     \midrule
-%     模板文件 & \file{sjtuthesis.dtx}    & 模板原始代码文件 (开发用)     \\
-%              & \file{sjtuthesis.cls}    & 文档类文件                    \\
-%              & \file{sjtuthesis-*.ltx}  & 文档类辅助文件                \\
+%     源文件   & \file{sjtuthesis.dtx}    & 模板源代码文件 (开发用)        \\
 %     \midrule
-%     生成文件 & \file{sjtuthesis.pdf}    & 用户手册 (本文档)             \\
+%     生成文件 & \file{sjtuthesis.cls}    & 文档类文件                    \\
+%              & \file{sjtuthesis-*.ltx}  & 文档类辅助文件                \\
+%              & \file{sjtu-*.pdf}        & 校徽、校名图片                \\
+%              & \file{sjtuthesis.pdf}    & 用户手册 (本文档)             \\
 %     \midrule
 %     示例文档 & \file{thesis.tex}        & 主文档                        \\
 %              & \file{tex/*.tex}         & 示例文档的各个章节            \\
@@ -265,7 +249,7 @@ The Current Maintainer of this work is Alexara Wu.
 %              & \file{bib/*.bib}         & 参考文献目录                  \\
 %     \midrule
 %     其他     & \file{README.md}         & 基本说明                      \\
-%              & \file{.latexmkrc}        & latexmk 的配置文件            \\
+%              & \file{latexmkrc}         & latexmk 的配置文件            \\
 %              & \file{Makefile}          & GNU make 的配置文件           \\
 %     \bottomrule
 %   \end{tabular}
@@ -289,7 +273,7 @@ The Current Maintainer of this work is Alexara Wu.
 % biber thesis
 % # 3.解决文件中的交叉引用
 % xelatex thesis
-% # 4.生成完整的pdf文件
+% # 4.生成完整的 pdf 文件
 % xelatex thesis
 % # 5.更新目录
 % xelatex thesis
@@ -333,8 +317,8 @@ The Current Maintainer of this work is Alexara Wu.
 % 按照优先级推荐提问的位置如下：
 %
 % \begin{itemize}
-% \item \href{https://github.com/sjtug/SJTUThesis/issues}{Github Issues}
-% \item \href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}
+%   \item \href{https://github.com/sjtug/SJTUThesis/issues}{Github Issues}
+%   \item \href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}
 % \end{itemize}
 %
 % \subsection{示例文件}
@@ -520,6 +504,12 @@ The Current Maintainer of this work is Alexara Wu.
 % 参考文献表可以使用 \BibLaTeX\ 生成，其表现形式的控制逻辑通过
 % \pkg{biblatex-gb7714-2015} 实现。在文中使用 \cs{printbibliography} 命令输出参
 % 考文献表。添加参数 \opt{heading=bibintoc} 可将参考文献表加入目录。
+%
+% \section{致谢}
+%
+% \sjtuthesis 模板的许多实现细节离不开 \href{https://github.com/sjtug/SJTUThesis/graphs/contributors}
+%  {热心同学们} 的贡献，在此感谢所有为模板贡献过代码的同学们, 以及所有测试和使用
+% 模板的各位同学！
 %
 % \section{实现细节}
 %
@@ -2160,15 +2150,14 @@ The Current Maintainer of this work is Alexara Wu.
 \RequirePackage{graphicx}
 \RequirePackage{hologo}
 \RequirePackage{listings}
-\RequirePackage{newpxmath}
 \RequirePackage{newpxtext}
+\RequirePackage{newpxmath}
 \RequirePackage{xcolor}
 \RequirePackage{hypdoc}
 \geometry{
-  includemp,
-  hmargin   = { 0mm, 15mm},
-  vmargin   = {25mm, 15mm},
-  footskip  = 7mm
+  vmargin = 25mm,
+  hmargin = {40mm, 20mm},
+  headsep = 3mm
 }
 \ctexset{
   abstractname   = 简介,
@@ -2178,6 +2167,7 @@ The Current Maintainer of this work is Alexara Wu.
   bookmarksnumbered = true,
   bookmarksopen     = true,
 }
+\AtEndOfClass{\sloppy}
 \definecolor{sjtublue}{cmyk}{1,0.8,0,0}
 \lstdefinestyle{lstStyleBase}{
   basicstyle        = \footnotesize\ttfamily,
