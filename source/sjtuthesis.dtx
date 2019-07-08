@@ -1357,6 +1357,7 @@ The Current Maintainer of this work is Alexara Wu.
       \endgroup
     }
     {\includepdf[pagecommand={\thispagestyle{empty}}]{#1}}
+    \cleardoublepage
   \fi
 }
 \NewDocumentCommand{\makeDeclareAuthorization}{o}{%
@@ -1382,6 +1383,7 @@ The Current Maintainer of this work is Alexara Wu.
       \endgroup
     }
     {\includepdf[pagecommand={\thispagestyle{empty}}]{#1}}
+    \cleardoublepage
   \fi
 }
 %</class>
@@ -1943,27 +1945,22 @@ The Current Maintainer of this work is Alexara Wu.
     \def\sjtu@label@theorem{Theorem}
   \fi
   \theoremheaderfont{\bfseries\heiti}
-  \ifsjtu@chinese
-    \theoremseparator{\enspace}
-    \theorembodyfont{\normalfont}
-  \else
-    \theoremseparator{.}
-    \theorembodyfont{\itshape}
-  \fi
+  \theorembodyfont{\normalfont}
+  \theoremseparator{}
   \theoremsymbol{\ensuremath{\square}}
   \newtheorem*{proof}{\sjtu@label@proof}
   \theoremstyle{plain}
   \theoremsymbol{}
-  \newtheorem{assertion}  {\sjtu@label@assertion}  [chapter]
-  \newtheorem{assumption} {\sjtu@label@assumption} [chapter]
-  \newtheorem{axiom}      {\sjtu@label@axiom}      [chapter]
-  \newtheorem{corollary}  {\sjtu@label@corollary}  [chapter]
-  \newtheorem{definition} {\sjtu@label@definition} [chapter]
-  \newtheorem{example}    {\sjtu@label@example}    [chapter]
-  \newtheorem{lemma}      {\sjtu@label@lemma}      [chapter]
-  \newtheorem{proposition}{\sjtu@label@proposition}[chapter]
-  \newtheorem{remark}     {\sjtu@label@remark}     [chapter]
-  \newtheorem{theorem}    {\sjtu@label@theorem}    [chapter]
+  \newtheorem{theorem}             {\sjtu@label@theorem}    [chapter]
+  \newtheorem{assertion}  [theorem]{\sjtu@label@assertion}
+  \newtheorem{axiom}      [theorem]{\sjtu@label@axiom}
+  \newtheorem{corollary}  [theorem]{\sjtu@label@corollary}
+  \newtheorem{lemma}      [theorem]{\sjtu@label@lemma}
+  \newtheorem{proposition}[theorem]{\sjtu@label@proposition}
+  \newtheorem{assumption}          {\sjtu@label@assumption} [chapter]
+  \newtheorem{definition}          {\sjtu@label@definition} [chapter]
+  \newtheorem{example}             {\sjtu@label@example}    [chapter]
+  \newtheorem*{remark}             {\sjtu@label@remark}
 }
 %    \end{macrocode}
 %
