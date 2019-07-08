@@ -1977,28 +1977,18 @@ The Current Maintainer of this work is Alexara Wu.
                    {\sjtu@label@listalgorithm}
   \SetAlgoCaptionSeparator{~}
   \newcommand{\cftalgpresnum}{\sjtu@label@algorithm~}
-  \newlength{\cftalgnumwidth}
-    \setlength{\cftalgnumwidth}{2.3em}
   \AtEndPreamble{%
+    \newlength{\cftalgindent}
+      \setlength{\cftalgindent}{1.5em}
+    \newlength{\cftalgnumwidth}
+      \setlength{\cftalgnumwidth}{2.3em}
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
     \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
   }
-  \renewcommand*{\l@algocf}[2]{%
-    \vskip \cftbeforefigskip
-    {\leftskip \cftfigindent\relax
-      \rightskip \@tocrmarg
-      \parfillskip -\rightskip
-      \parindent \cftfigindent\relax\@afterindenttrue
-      \interlinepenalty\@M
-      \leavevmode
-      \@tempdima \cftalgnumwidth\relax
-      \let\@cftbsnum \cftalgpresnum
-      \let\@cftasnum \cftfigaftersnum
-      \let\@cftasnumb \cftfigaftersnumb
-      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-      {\cftfigfont #1}\nobreak
-      \cftfigfillnum{#2}}%
+  \renewcommand*{\l@algocf}{%
+    \let\@cftbsnum \cftalgpresnum
+    \@dottedtocline{1}{\cftalgindent}{\cftalgnumwidth}
   }
   \renewcommand{\listofalgorithms}{%
     \cleardoublepage%
@@ -2019,36 +2009,26 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@atendpackage{algorithm}{
   \RequirePackage{algorithmicx, algpseudocode}
   \floatname{algorithm}{\sjtu@label@algorithm}
-  \renewcommand{\listalgorithmname}{\sjtu@label@listalgorithm}
   \@addtoreset{algorithm}{chapter}
   \patchcmd\@chapter%
     {\if@twocolumn}
     {\addtocontents{loa}{\protect\addvspace{10\p@}}%
       \if@twocolumn}
     {}{}
+  \renewcommand{\listalgorithmname}{\sjtu@label@listalgorithm}
   \newcommand{\cftalgpresnum}{\sjtu@label@algorithm~}
-  \newlength{\cftalgnumwidth}
-    \setlength{\cftalgnumwidth}{2.3em}
   \AtEndPreamble{%
+    \newlength{\cftalgindent}
+      \setlength{\cftalgindent}{1.5em}
+    \newlength{\cftalgnumwidth}
+      \setlength{\cftalgnumwidth}{2.3em}
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
     \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
   }
-  \newcommand*{\l@algorithm}[2]{%
-    \vskip \cftbeforefigskip
-    {\leftskip \cftfigindent\relax
-      \rightskip \@tocrmarg
-      \parfillskip -\rightskip
-      \parindent \cftfigindent\relax\@afterindenttrue
-      \interlinepenalty\@M
-      \leavevmode
-      \@tempdima \cftalgnumwidth\relax
-      \let\@cftbsnum \cftalgpresnum
-      \let\@cftasnum \cftfigaftersnum
-      \let\@cftasnumb \cftfigaftersnumb
-      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-      {\cftfigfont #1}\nobreak
-      \cftfigfillnum{#2}}%
+  \newcommand*{\l@algorithm}{%
+    \let\@cftbsnum \cftalgpresnum
+    \@dottedtocline{1}{\cftalgindent}{\cftalgnumwidth}
   }
   \renewcommand{\listofalgorithms}{%
     \cleardoublepage%
