@@ -561,23 +561,23 @@ The Current Maintainer of this work is Alexara Wu.
 %    \begin{macrocode}
 \ProcessKeyvalOptions*
 \newcommand{\sjtu@validate@key}[1]{%
-  \@ifundefined{sjtu@\csname sjtu@#1\endcsname true}{%
+  \@ifundefined{sjtu@#1@\csname sjtu@#1\endcsname true}{%
     \ClassError{sjtuthesis}{Invalid value '\csname sjtu@#1\endcsname'}{}%
   }{%
-    \csname sjtu@\csname sjtu@#1\endcsname true\endcsname
+    \csname sjtu@#1@\csname sjtu@#1\endcsname true\endcsname
   }%
 }
-\newif\ifsjtu@course
-\newif\ifsjtu@bachelor
-\newif\ifsjtu@master
-\newif\ifsjtu@doctor
+\newif\ifsjtu@degree@course
+\newif\ifsjtu@degree@bachelor
+\newif\ifsjtu@degree@master
+\newif\ifsjtu@degree@doctor
 \sjtu@validate@key{degree}
-\ifsjtu@course\sjtu@bachelortrue\fi
-\ifsjtu@doctor\sjtu@mastertrue\fi
-\newif\ifsjtu@chinese
-\newif\ifsjtu@english
+\ifsjtu@degree@course\sjtu@degree@bachelortrue\fi
+\ifsjtu@degree@doctor\sjtu@degree@mastertrue\fi
+\newif\ifsjtu@language@chinese
+\newif\ifsjtu@language@english
 \sjtu@validate@key{language}
-\ifsjtu@english
+\ifsjtu@language@english
   \PassOptionsToClass{scheme=plain}{ctexbook}
 \fi
 %    \end{macrocode}
@@ -595,10 +595,10 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % 根据选项载入配置文件。
 %    \begin{macrocode}
-\ifsjtu@bachelor%
+\ifsjtu@degree@bachelor
   \AtEndOfClass{\input{sjtuthesis-bachelor.ltx}}
 \else
-  \ifsjtu@master%
+  \ifsjtu@degree@master
     \AtEndOfClass{\input{sjtuthesis-graduate.ltx}}
   \fi
 \fi
@@ -786,7 +786,7 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@def@label{schoolEng}{Shanghai Jiao Tong University}
 %</class>
 %<*bachelor>
-\ifsjtu@course
+\ifsjtu@degree@course
   \sjtu@def@label{degreetypeChi}{}
   \sjtu@def@label{degreetypeEng}{}
 \else
@@ -799,7 +799,7 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@def@label{coursenameChi}{课程名称}
 \sjtu@def@label{majorChi}{专业}
 \sjtu@def@label{departmentChi}{学院(系)}
-\ifsjtu@course
+\ifsjtu@degree@course
   \sjtu@def@label{thesiscat}{课程论文}
   \def\sjtu@label@thesistype{\sjtu@label@thesiscat}
   \sjtu@def@label{subjectChi}{\sjtu@label@thesiscat}
@@ -813,7 +813,7 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@def@label{bigabstract}{英文大摘要}
 %</bachelor>
 %<*graduate>
-\ifsjtu@doctor
+\ifsjtu@degree@doctor
   \sjtu@def@label{degreetypeChi}{博士}
   \sjtu@def@label{degreetypeEng}{Doctor}
 \else
@@ -874,7 +874,7 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@def@label{abstractEng}{Abstract}
 \sjtu@def@label{keywordsChi}{关键词：}
 \sjtu@def@label{keywordsEng}{Key words:~}
-\ifsjtu@english
+\ifsjtu@language@english
   \sjtu@def@label{titlepage}{Title Page}
   \def\sjtu@label@originality{\sjtu@label@originalityEng}
   \def\sjtu@label@authorization{\sjtu@label@authorizationEng}
@@ -951,7 +951,7 @@ The Current Maintainer of this work is Alexara Wu.
 % 设置页眉页脚。
 %    \begin{macrocode}
 %<*bachelor>
-\ifsjtu@english
+\ifsjtu@language@english
   \def\sjtu@titlemark{\sjtu@value@entitle}
   \newcommand{\sjtu@fancyhead}{%
     \parbox[b]{0.75\textwidth}{%
@@ -1455,8 +1455,8 @@ The Current Maintainer of this work is Alexara Wu.
   \Collect@Body\sjtu@bigabstract
 }{%
 %<*bachelor>
-  \ifsjtu@course\relax\else
-    \ifsjtu@english\relax\else
+  \ifsjtu@degree@course\relax\else
+    \ifsjtu@language@english\relax\else
       \AtEndDocument{%
         \cleardoublepage
         \pagenumbering{roman}
@@ -1735,7 +1735,7 @@ The Current Maintainer of this work is Alexara Wu.
         \sjtu@label@authorChi        & \sjtu@value@author      \\ \cline{2-2}
         \sjtu@label@studentidChi     & \makebox[180pt]{\sjtu@value@studentid} \\
           \cline{2-2}
-        \ifsjtu@course
+        \ifsjtu@degree@course
           \sjtu@label@coursenameChi  & \sjtu@value@coursename  \\ \cline{2-2}
         \else
           \sjtu@label@majorChi       & \sjtu@value@major       \\ \cline{2-2}
@@ -1904,7 +1904,7 @@ The Current Maintainer of this work is Alexara Wu.
     separate-uncertainty = true,
     inter-unit-product   = \ensuremath{{}\cdot{}},
   }
-  \ifsjtu@chinese
+  \ifsjtu@language@chinese
     \sisetup{
       list-final-separator = { 和 },
       list-pair-separator  = { 和 },
@@ -1919,7 +1919,7 @@ The Current Maintainer of this work is Alexara Wu.
 %    \begin{macrocode}
 \PassOptionsToPackage{amsmath,thmmarks,hyperref}{ntheorem}
 \sjtu@atendpackage{ntheorem}{
-  \ifsjtu@chinese
+  \ifsjtu@language@chinese
     \def\sjtu@label@assertion{断言}
     \def\sjtu@label@assumption{假设}
     \def\sjtu@label@axiom{公理}
