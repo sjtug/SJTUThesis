@@ -1914,10 +1914,16 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@atendpackage{siunitx}{
   \sisetup{
     detect-all,
+    text-angstrom        = \ensuremath{\text{\AA}},
+    math-angstrom        = \ensuremath{\text{\AA}},
+    math-micro           = \ensuremath{\text{\textmu}},
+    math-ohm             = \ensuremath{\text{\textohm}},
     group-minimum-digits = 4,
     separate-uncertainty = true,
     inter-unit-product   = \ensuremath{{}\cdot{}},
   }
+  \AtBeginDocument{
+    \expandafter\let\csname c__siunitx_minus_tl\endcsname=\textminus}
   \ifsjtu@language@chinese
     \sisetup{
       list-final-separator = { 和 },
