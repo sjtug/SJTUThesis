@@ -9,7 +9,7 @@
 
 这是为撰写上海交通大学学士、硕士、博士学位论文以及课程论文而准备的（非官方）LaTeX 模板。
 
-本模板目前支持 XeTeX 引擎，字符编码仅支持 UTF-8。
+本模板目前仅支持 XeTeX 引擎，字符编码仅支持 UTF-8。
 
 ## 获取 SJTUThesis
 
@@ -37,7 +37,7 @@ make install    # 将 sjtuthesis 安装到本地的 TeX 系统中
 
 ## 反馈问题
 
-如果在使用上有任何问题，建议先阅读[常见问题与建议](https://github.com/sjtug/SJTUThesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E5%BB%BA%E8%AE%AE)。如果这些不能解决你的问题，建议以如下的顺序反馈使用过程中的问题：
+如果在使用上有任何问题，建议先查阅项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)。如果这些不能解决你的问题，建议以如下的顺序反馈使用过程中的问题：
 
 * [在 GitHub 项目主页开 issue](https://github.com/sjtug/SJTUThesis/issues) (推荐)
 * [在水源 BBS TeX_LaTeX 版发帖](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
