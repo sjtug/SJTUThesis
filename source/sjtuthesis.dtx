@@ -350,9 +350,9 @@ The Current Maintainer of this work is Alexara Wu.
 % \DescribeOption{language=\meta{language}}
 % 论文的主要语言（默认：中文）。可选：\opt{chinese}，\opt{english}。
 %
-% \DescribeOption{bibstyle=\meta{bibstyle}}
+% \DescribeOption{bibstyle=\meta{style}}
 % 参考文献样式（默认：gb7714-2015）。
-% 可选：\opt{gb7714-2015}，\opt{gb7714-2015ay}, \opt{ieee}。
+% 可选：\opt{gb7714-2015}，\opt{gb7714-2015ay}，\opt{ieee}。
 %
 % \DescribeOption{review}
 % 盲审模式开关（默认:关闭）。
@@ -532,14 +532,14 @@ The Current Maintainer of this work is Alexara Wu.
 \DeclareStringOption[chinese]{language}[chinese]
 %    \end{macrocode}
 %
-% 参考文献样式。
-%    \begin{macrocode}
-\DeclareStringOption[gb7714-2015]{bibstyle}[gb7714-2015]
-%    \end{macrocode}
-%
 % 字号大小。
 %    \begin{macrocode}
 \DeclareStringOption[5]{zihao}[5]
+%    \end{macrocode}
+%
+% 参考文献样式。
+%    \begin{macrocode}
+\DeclareStringOption[gb7714-2015]{bibstyle}[gb7714-2015]
 %    \end{macrocode}
 %
 % 盲审模式开关。
@@ -582,8 +582,8 @@ The Current Maintainer of this work is Alexara Wu.
 \fi
 %    \end{macrocode}
 %
-% 使用 XeTeX 引擎时，fontspec 宏包会被 xeCJK 自动调用。传递给 fontspec 宏包
-% no-math 选项，避免部分数学符号字体自动调整为 CMR。
+% 使用 \XeTeX\ 引擎时，\pkg{fontspec} 宏包会被 \pkg{xeCJK} 自动调用。传递给
+% \pkg{fontspec} 宏包 \opt{no-math} 选项，避免部分数学符号字体自动调整为 CMR。
 %    \begin{macrocode}
 \PassOptionsToPackage{no-math}{fontspec}
 %    \end{macrocode}
@@ -1057,6 +1057,7 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % \begin{macro}{\frontmatter}
 % \begin{macro}{\mainmatter}
+% \begin{macro}{\backmatter}
 % 前言的页码设置为大写罗马数字，同时设置前言与正文的页眉页脚风格。
 %    \begin{macrocode}
 %<*(bachelor|graduate)>
@@ -1080,6 +1081,7 @@ The Current Maintainer of this work is Alexara Wu.
 }
 %</(bachelor|graduate)>
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 %
@@ -1871,15 +1873,27 @@ The Current Maintainer of this work is Alexara Wu.
 %
 %    \begin{macrocode}
 \sjtu@atendpackage{unicode-math}{
-  \unimathsetup{
-    math-style = ISO,
-    bold-style = ISO,
-    nabla      = upright,
-    partial    = upright,
-  }
+%    \end{macrocode}
+%
+% \begin{macro}{\bm}
+% \begin{macro}{\boldsymbol}
+% 兼容旧的粗体命令：\pkg{bm} 的 \cs{bm} 和 \pkg{amsmath} 的 \cs{boldsymbol}。
+%    \begin{macrocode}
   \newcommand{\bm}{\symbf}
   \renewcommand{\boldsymbol}{\symbf}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\square}
+% 兼容 \pkg{amssymb} 中的命令。
+%    \begin{macrocode}
   \newcommand{\square}{\mdlgwhtsquare}
+%    \end{macrocode}
+% \end{macro}
+%
+% 修复 \pkg{hyperref} 与 \pkg{unicode-math} 存在一些兼容性问题。
+%    \begin{macrocode}
   \@ifpackagelater{hyperref}{2019/04/27}{}{%
     \g@addto@macro\psdmapshortnames{\let\mu\textmugreek}%
   }
