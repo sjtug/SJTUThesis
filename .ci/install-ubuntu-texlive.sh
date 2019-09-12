@@ -24,7 +24,6 @@ tlmgr install           \
   biblatex              \
   biblatex-gb7714-2015  \
   booktabs              \
-  boondox               \
   caption               \
   cjk                   \
   ctex                  \
@@ -33,11 +32,10 @@ tlmgr install           \
   eso-pic               \
   etoolbox              \
   fandol                \
-  fontaxes              \
+  filehook              \
   fontspec              \
   footmisc              \
   ifoddpage             \
-  kastrup               \
   l3backend             \
   l3kernel              \
   l3packages            \
@@ -45,10 +43,8 @@ tlmgr install           \
   listings              \
   lm                    \
   logreq                \
-  mathtools             \
   ms                    \
   multirow              \
-  newtx                 \
   ntheorem              \
   pageslts              \
   pdfpages              \
@@ -56,19 +52,19 @@ tlmgr install           \
   relsize               \
   siunitx               \
   sourcecodepro         \
+  sourcesanspro         \
   tex-gyre              \
   threeparttable        \
-  times                 \
   tocloft               \
   translator            \
   trimspaces            \
-  txfonts               \
   ulem                  \
   undolabl              \
-  was                   \
+  unicode-math          \
   xcolor                \
   xecjk                 \
   xetex                 \
+  xits                  \
   xkeyval               \
   xstring               \
   zapfding              \

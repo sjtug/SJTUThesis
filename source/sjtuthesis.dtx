@@ -350,6 +350,10 @@ The Current Maintainer of this work is Alexara Wu.
 % \DescribeOption{language=\meta{language}}
 % 论文的主要语言（默认：中文）。可选：\opt{chinese}，\opt{english}。
 %
+% \DescribeOption{mathstyle=\meta{style}}
+% 数学字体风格（默认：GB）。仅在 \pkg{unicode-math} 启用时有效。
+% 可选：\opt{GB}, \opt{ISO}，\opt{TeX}。
+%
 % \DescribeOption{bibstyle=\meta{style}}
 % 参考文献样式（默认：gb7714-2015）。
 % 可选：\opt{gb7714-2015}，\opt{gb7714-2015ay}，\opt{ieee}。
@@ -357,20 +361,29 @@ The Current Maintainer of this work is Alexara Wu.
 % \DescribeOption{review}
 % 盲审模式开关（默认:关闭）。
 %
-% \DescribeOption{unsetfont}
-% 是否取消模版预设的西文字体（默认:关闭）。如果取消，则需要自行设置西文字体。
+% \subsection{字体配置}
 %
-% \subsection{中文字体}
+% 本模板默认以 \pkg{fontspec} + \pkg{unicode-math} + \pkg{xeCJK} 的方式来配置字
+% 体。
 %
-% \subsubsection{字体配置}
+% \subsubsection{西文字体}
+%
+% \DescribeOption{setlatinfont=\meta{scope}}
+% 模板默认使用 OpenType 西文字体。默认设置下，正文字体为 XITS，数学字体为 XITS
+% Math，无衬线字体与等宽字体分别为 Source Sans Pro 与 Source Code Pro。
+% 用户可以在调用文档类时加入选项
+% \opt{setlatinfont=all/main/math/none} 控制西文字体的设置。默认为 \opt{all}，同
+% 时设置正文字体和数学字体；\opt{main} 仅设置正文字体；\opt{math} 仅设置数学字
+% 体；也可以使用 \opt{none}，然后自行配置西文字体。
+%
+% \subsubsection{中文字体}
 %
 % \DescribeOption{fontset=\meta{font}}
 % 模板默认使用 \CTeX 的字体配置。默认情况下，本模板可以自动检测操作系统，并配置
 % 合适的字体。
 % 用户可以在调用文档类时加入选项
 % \opt{fontset=mac/windows/adobe} 指定加载的字库，
-% 也可以使用 \opt{fontset=none}，然后自行配置，
-% 详见 \pkg{ctex}、\pkg{xeCJK}、\pkg{fontspec} 等宏包的使用说明。
+% 也可以使用 \opt{fontset=none}，然后自行配置中文字体。
 %
 % 注意，Linux 系统下默认的中文字库 Fandol 容易出现缺字的情况。
 % 我们建议 Linux 用户自行配置合适的字体。
@@ -537,6 +550,16 @@ The Current Maintainer of this work is Alexara Wu.
 \DeclareStringOption[5]{zihao}[5]
 %    \end{macrocode}
 %
+% 设置西文字体方式。
+%    \begin{macrocode}
+\DeclareStringOption[all]{setlatinfont}[all]
+%    \end{macrocode}
+%
+% 数学字体风格。
+%    \begin{macrocode}
+\DeclareStringOption[GB]{mathstyle}[GB]
+%    \end{macrocode}
+%
 % 参考文献样式。
 %    \begin{macrocode}
 \DeclareStringOption[gb7714-2015]{bibstyle}[gb7714-2015]
@@ -545,11 +568,6 @@ The Current Maintainer of this work is Alexara Wu.
 % 盲审模式开关。
 %    \begin{macrocode}
 \DeclareBoolOption{review}
-%    \end{macrocode}
-%
-% 是否取消设置西文字体。
-%    \begin{macrocode}
-\DeclareBoolOption{unsetfont}
 %    \end{macrocode}
 %
 % 将选项传递给 \pkg{ctexbook}。
@@ -577,6 +595,20 @@ The Current Maintainer of this work is Alexara Wu.
 \newif\ifsjtu@language@chinese
 \newif\ifsjtu@language@english
 \sjtu@validate@key{language}
+\newif\ifsjtu@setlatinfont@none
+\newif\ifsjtu@setlatinfont@main
+\newif\ifsjtu@setlatinfont@math
+\newif\ifsjtu@setlatinfont@all
+\sjtu@validate@key{setlatinfont}
+\ifsjtu@setlatinfont@all
+  \sjtu@setlatinfont@maintrue
+  \sjtu@setlatinfont@mathtrue
+\fi
+\newif\ifsjtu@mathstyle@GB
+\@ifundefined{sjtu@mathstyle@\csname sjtu@mathstyle\endcsname true}{}{%
+  \sjtu@mathstyle@GBtrue
+  \def\sjtu@mathstyle{ISO}
+}
 \ifsjtu@language@english
   \PassOptionsToClass{scheme=plain}{ctexbook}
 \fi
@@ -586,6 +618,11 @@ The Current Maintainer of this work is Alexara Wu.
 % \pkg{fontspec} 宏包 \opt{no-math} 选项，避免部分数学符号字体自动调整为 CMR。
 %    \begin{macrocode}
 \PassOptionsToPackage{no-math}{fontspec}
+%    \end{macrocode}
+%
+% 传递数学字体风格设置给 \pkg{unicode-math}。
+%    \begin{macrocode}
+\PassOptionsToPackage{math-style=\sjtu@mathstyle}{unicode-math}
 %    \end{macrocode}
 %
 % 使用 \pkg{ctexbook} 类，优于调用 \pkg{ctex} 宏包。
@@ -629,19 +666,15 @@ The Current Maintainer of this work is Alexara Wu.
 \RequirePackage{pageslts}
 %    \end{macrocode}
 %
-% 使用 \pkg{mathtools} 处理数学公式。
+% 使用 \pkg{amsmath} 处理数学公式。
 %    \begin{macrocode}
-\RequirePackage{mathtools}
+\RequirePackage{amsmath}
 %    \end{macrocode}
 %
 % 字体相关宏包。
 %    \begin{macrocode}
-\ifsjtu@unsetfont\relax\else
-  \RequirePackage[defaultsups]{newtxtext}
-  \RequirePackage[upint]{newtxmath}
-  \RequirePackage[opentype,scaled=.9]{sourcecodepro}
-  \RequirePackage{bm}
-  \RequirePackage{upgreek}
+\ifsjtu@setlatinfont@math
+  \RequirePackage{unicode-math}
 \fi
 \RequirePackage{anyfontsize}
 %    \end{macrocode}
@@ -921,6 +954,77 @@ The Current Maintainer of this work is Alexara Wu.
   contentsname   = \sjtu@label@contents,
   listfigurename = \sjtu@label@listfigure,
   listtablename  = \sjtu@label@listtable}
+%    \end{macrocode}
+%
+% \subsection{西文字体}
+% 
+% 使用 \pkg{fontspec} 配置西文字体。
+%
+% \cs{IfFontExistsTF} 是 \pkg{fontspec} v2.5c (2017/01/20) 才提供的；而 XITS 字
+% 体于 v1.109 (2018/09/28) 更改了字体的文件名。这里做一些兼容性设置。
+%    \begin{macrocode}
+\newif\ifsjtu@xitsnew
+\@ifpackagelater{fontspec}{2017/01/20}{
+  \IfFontExistsTF{XITSMath-Regular.otf}{
+    \sjtu@xitsnewtrue
+  }{}
+}{}
+%    \end{macrocode}
+%
+% 正文字体设置为 XITS，小型大写使用 TeX Gyre Termes 补充。
+%    \begin{macrocode}
+\ifsjtu@setlatinfont@main
+  \ifsjtu@xitsnew
+    \setmainfont{XITS}[
+      Extension          = .otf,
+      UprightFont        = *-Regular,
+      BoldFont           = *-Bold,
+      ItalicFont         = *-Italic,
+      BoldItalicFont     = *-BoldItalic,
+      UprightFeatures    = { SmallCapsFont = texgyretermes-regular },
+      BoldFeatures       = { SmallCapsFont = texgyretermes-bold },
+      ItalicFeatures     = { SmallCapsFont = texgyretermes-italic },
+      BoldItalicFeatures = { SmallCapsFont = texgyretermes-bolditalic },
+      SmallCapsFeatures  = { Letters = SmallCaps }
+    ]
+  \else
+    \setmainfont{xits}[
+      Extension          = .otf,
+      UprightFont        = *-regular,
+      BoldFont           = *-bold,
+      ItalicFont         = *-italic,
+      BoldItalicFont     = *-bolditalic,
+      UprightFeatures    = { SmallCapsFont = texgyretermes-regular },
+      BoldFeatures       = { SmallCapsFont = texgyretermes-bold },
+      ItalicFeatures     = { SmallCapsFont = texgyretermes-italic },
+      BoldItalicFeatures = { SmallCapsFont = texgyretermes-bolditalic },
+      SmallCapsFeatures  = { Letters = SmallCaps }
+    ]
+  \fi
+  \RequirePackage[opentype,scaled=.9]{sourcesanspro}
+  \RequirePackage[opentype,scaled=.9]{sourcecodepro}
+\fi
+%    \end{macrocode}
+%
+% 使用 \pkg{unicode-math} 配置数学字体。
+%    \begin{macrocode}
+\ifsjtu@setlatinfont@math
+  \ifsjtu@xitsnew
+    \setmathfont{XITSMath-Regular}[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 8
+    ]
+    \setmathfont{XITSMath-Regular.otf}[range={cal,bfcal},StylisticSet=1]
+    \else
+    \setmathfont{xits-math}[
+      Extension    = .otf,
+      BoldFont     = *bold,
+      StylisticSet = 8
+    ]
+    \setmathfont{xits-math.otf}[range={cal,bfcal},StylisticSet=1]
+  \fi
+\fi
 %</class>
 %    \end{macrocode}
 %
@@ -1286,15 +1390,28 @@ The Current Maintainer of this work is Alexara Wu.
 %
 % \subsubsection{数学相关}
 %
+% 根据中文的数学排印习惯进行调整：
+%    \begin{macrocode}
+\ifsjtu@mathstyle@GB
+%    \end{macrocode}
+%
+% \begin{macro}{\ldots}
+% 省略号一律居中，所以 \cs{ldots} 不再居于底部。
+%    \begin{macrocode}
+  \let\mathellipsis\cdots
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\Re}
 % \begin{macro}{\Im}
 % 实部、虚部操作符使用罗马体 $\mathrm{Re}$、$\mathrm{Im}$ 而不是 fraktur 体
 % $\Re$、$\Im$。
 %    \begin{macrocode}
-\AtBeginDocument{%
-  \renewcommand{\Re}{\operatorname{Re}}%
-  \renewcommand{\Im}{\operatorname{Im}}%
-}
+  \AtBeginDocument{%
+    \renewcommand{\Re}{\operatorname{Re}}%
+    \renewcommand{\Im}{\operatorname{Im}}%
+  }
+\fi
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1914,16 +2031,10 @@ The Current Maintainer of this work is Alexara Wu.
 \sjtu@atendpackage{siunitx}{
   \sisetup{
     detect-all,
-    text-angstrom        = \ensuremath{\text{\AA}},
-    math-angstrom        = \ensuremath{\text{\AA}},
-    math-micro           = \ensuremath{\text{\textmu}},
-    math-ohm             = \ensuremath{\text{\textohm}},
     group-minimum-digits = 4,
     separate-uncertainty = true,
     inter-unit-product   = \ensuremath{{}\cdot{}},
   }
-  \AtBeginDocument{
-    \expandafter\let\csname c__siunitx_minus_tl\endcsname=\textminus}
   \ifsjtu@language@chinese
     \sisetup{
       list-final-separator = { 和 },
