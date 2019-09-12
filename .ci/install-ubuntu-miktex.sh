@@ -21,11 +21,8 @@ export MIKTEX_USERINSTALL=$HOME/.miktex/texmfs/install
 # Refresh the whole file name database
 initexmf --update-fndb --verbose
 
-# Install MiKTeX packages
-mpm --set-repository=$REPO/tm/packages/
-mpm --verbose --install boondox
-
 # Update MiKTeX
+mpm --set-repository=$REPO/tm/packages/
 mpm --update --verbose
 
 # Refresh the whole file name database again
