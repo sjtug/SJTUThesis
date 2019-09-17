@@ -2077,7 +2077,7 @@ The Current Maintainer of this work is Alexara Wu.
   \fi
   \theoremheaderfont{\bfseries\heiti}
   \theorembodyfont{\normalfont}
-  \theoremseparator{}
+  \theoremseparator{\enskip}
   \theoremsymbol{\ensuremath{\square}}
   \newtheorem*{proof}{\sjtu@label@proof}
   \theoremstyle{plain}
@@ -2092,6 +2092,65 @@ The Current Maintainer of this work is Alexara Wu.
   \newtheorem{definition}          {\sjtu@label@definition} [chapter]
   \newtheorem{example}             {\sjtu@label@example}    [chapter]
   \newtheorem*{remark}             {\sjtu@label@remark}
+}
+%    \end{macrocode}
+%
+% \subsubsection{\pkg{amsthm} 宏包}
+%
+%    \begin{macrocode}
+\sjtu@atendpackage{amsthm}{
+  \ifsjtu@language@chinese
+    \def\sjtu@label@assertion{断言}
+    \def\sjtu@label@assumption{假设}
+    \def\sjtu@label@axiom{公理}
+    \def\sjtu@label@corollary{推论}
+    \def\sjtu@label@definition{定义}
+    \def\sjtu@label@example{例}
+    \def\sjtu@label@lemma{引理}
+    \def\sjtu@label@proof{证明}
+    \def\sjtu@label@proposition{命题}
+    \def\sjtu@label@remark{注}
+    \def\sjtu@label@theorem{定理}
+  \else
+    \def\sjtu@label@assertion{Assertion}
+    \def\sjtu@label@assumption{Assumption}
+    \def\sjtu@label@axiom{Axiom}
+    \def\sjtu@label@corollary{Corollary}
+    \def\sjtu@label@definition{Definition}
+    \def\sjtu@label@example{Example}
+    \def\sjtu@label@lemma{Lemma}
+    \def\sjtu@label@proof{Proof}
+    \def\sjtu@label@proposition{Proposition}
+    \def\sjtu@label@remark{Remark}
+    \def\sjtu@label@theorem{Theorem}
+  \fi
+  \newtheoremstyle{sjtuplain}
+    {}{}
+    {\normalfont}{}
+    {\bfseries\heiti}{}
+    {\ccwd}{}
+  \theoremstyle{sjtuplain}
+  \newtheorem{theorem}             {\sjtu@label@theorem}    [chapter]
+  \newtheorem{assertion}  [theorem]{\sjtu@label@assertion}
+  \newtheorem{axiom}      [theorem]{\sjtu@label@axiom}
+  \newtheorem{corollary}  [theorem]{\sjtu@label@corollary}
+  \newtheorem{lemma}      [theorem]{\sjtu@label@lemma}
+  \newtheorem{proposition}[theorem]{\sjtu@label@proposition}
+  \newtheorem{assumption}          {\sjtu@label@assumption} [chapter]
+  \newtheorem{definition}          {\sjtu@label@definition} [chapter]
+  \newtheorem{example}             {\sjtu@label@example}    [chapter]
+  \newtheorem*{remark}             {\sjtu@label@remark}
+  \renewcommand\proofname\sjtu@label@proof
+  \renewenvironment{proof}[1][\proofname]{\par
+    \pushQED{\qed}%
+    \normalfont \topsep6\p@\@plus6\p@\relax
+    \trivlist
+    \item\relax
+      {\bfseries\heiti #1~}
+      \hspace\labelsep\ignorespaces
+  }{%
+    \popQED\endtrivlist\@endpefalse
+  }
 }
 %    \end{macrocode}
 %
