@@ -34,17 +34,27 @@
 
 公式应另起一行居中排版。公式后应注明编号，按章顺序编排，编号右端对齐。
 \begin{equation}
-  \upe^{\upi\uppi} + 1 = 0
+  \upe^{\upi\uppi} + 1 = 0,
 \end{equation}
 \begin{equation}
-  \frac{\dif^2 u}{\dif t^2} = \int f(x) \dif x
+  \frac{\dif^2 u}{\dif t^2} = \int f(x) \dif x.
 \end{equation}
 
+公式末尾是需要添加标点符号的，至于用逗号还是句号，取决于公式下面一句是接着公式说的，还是另起一句。
+\begin{equation}
+		\frac{2h}{\pi}\int_{0}^{\infty}\frac{\sin\left( \omega\delta \right)}{\omega}
+		\cos\left( \omega x \right) \dif\omega = 
+		\begin{cases}
+				h, \ \left| x \right| < \delta, \\
+				\frac{h}{2}, \ x = \pm \delta, \\
+				0, \ \left| x \right| > \delta.
+		\end{cases}
+\end{equation}
 公式较长时最好在等号“$=$”处转行。
 \begin{align}
     & I (X_3; X_4) - I (X_3; X_4 \mid X_1) - I (X_3; X_4 \mid X_2) \nonumber \\
   = & [I (X_3; X_4) - I (X_3; X_4 \mid X_1)] - I (X_3; X_4 \mid \tilde{X}_2) \\
-  = & I (X_1; X_3; X_4) - I (X_3; X_4 \mid \tilde{X}_2)
+  = & I (X_1; X_3; X_4) - I (X_3; X_4 \mid \tilde{X}_2).
 \end{align}
 
 如果在等号处转行难以实现，也可在 $+$、$-$、$\times$、$\div$运算符号处转行，转行
@@ -55,7 +65,7 @@
     + f^{ij} \nabla_{j} \nabla_{i} (\Delta f) \right. \\
   \left. + \nabla_{k} f_{ij} \nabla^{k} f^{ij} +
     f^{ij} f^{k} \left[2\nabla_{i}R_{jk}
-    - \nabla_{k} R_{ij} \right] \vphantom{\sum_{i<j}} \right)
+    - \nabla_{k} R_{ij} \right] \vphantom{\sum_{i<j}} \right).
 \end{multline}
 
 \subsection{定理环境}
@@ -73,14 +83,14 @@
 
   \begin{equation}
     \label{eq:res}
-    \ointop_\gamma f(z)\, \dif z = 2\uppi \upi \sum_{k=1}^n \operatorname{I}(\gamma, a_k) \operatorname{Res}(f, a_k)
+    \ointop_\gamma f(z)\, \dif z = 2\uppi \upi \sum_{k=1}^n \operatorname{I}(\gamma, a_k) \operatorname{Res}(f, a_k).
   \end{equation}
 
   如果 $\gamma$ 是若尔当曲线，那么 $\operatorname{I}(\gamma, a_k) = 1$，因此：
 
   \begin{equation}
     \label{eq:resthm}
-    \ointop_\gamma f(z)\, \dif z = 2\uppi \upi \sum_{k=1}^n \operatorname{Res}(f, a_k)
+    \ointop_\gamma f(z)\, \dif z = 2\uppi \upi \sum_{k=1}^n \operatorname{Res}(f, a_k).
   \end{equation}
 
   在这里，$\operatorname{Res}(f, a_k)$ 表示 $f$ 在点 $a_k$ 的留数，
