@@ -20,9 +20,14 @@
 | 文件名 | 描述 |
 | --- | --- |
 | sjtuthesis-vXXX.zip | 本地使用的模版压缩包，包含示例文档 |
-| sjtuthesis-overleaf-vXXX.zip | overleaf 在线使用的模版压缩包，包含示例文档，已集成 `biblatex-gb7714-2015`，可直接上传使用 |
 | sjtuthesis.tds.zip | 按 TDS（TeX Directory Structure）组织的压缩包 |
 | sjtuthesis.pdf | 模版的使用文档 |
+
+### Overleaf
+
+[Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) 用户可以从下面的模版链接创建自己的项目。
+
+[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/spmggcjfshrb?r=b3b31f49&rm=d&rs=b) 
 
 ### 生成模板
 
