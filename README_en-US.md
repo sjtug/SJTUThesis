@@ -20,9 +20,14 @@ We'd recommend to use packed files downloaded from [Releases](https://github.com
 | Filename | Description |
 | --- | --- |
 | sjtuthesis-vXXX.zip | Packed file for local usage，samples included |
-| sjtuthesis-overleaf-vXXX.zip | Packed file for remote usage on overleaf,  distributed with `biblatex-gb7714-2015`，samples included |
 | sjtuthesis.tds.zip | TDS（TeX Directory Structure）package |
 | sjtuthesis.pdf | Document for SJTUThesis |
+
+### Overleaf
+
+[Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) users are able to create project from the template link below.
+
+[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/spmggcjfshrb?r=b3b31f49&rm=d&rs=b) 
 
 ### Generate manually
 
