@@ -23,6 +23,16 @@ We'd recommend to use packed files downloaded from [Releases](https://github.com
 | sjtuthesis.tds.zip | TDS（TeX Directory Structure）package |
 | sjtuthesis.pdf | Document for SJTUThesis |
 
+Please read `sjtuthesis.pdf` carefully before using the template. And do not
+use `xelatex` to compile `thesis.tex` directly:
+
+```bash
+xelatex thesis.tex 
+```
+
+We highly recommend using `Makefile` or `compile.bat`(for Windows users) 
+to compile.
+
 ### Overleaf
 
 [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) users are able to create project from the template link below.
