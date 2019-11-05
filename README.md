@@ -23,6 +23,15 @@
 | sjtuthesis.tds.zip | 按 TDS（TeX Directory Structure）组织的压缩包 |
 | sjtuthesis.pdf | 模版的使用文档 |
 
+请务必仔细阅读模板的使用文档前三小节。请不要直接使用
+
+```bash
+xelatex thesis.tex
+```
+
+进行编译。推荐使用已经写好的`Makefile`，Windows用户请使用配套的
+`compile.bat`。
+
 ### Overleaf
 
 [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) 用户可以从下面的模版链接创建自己的项目。
