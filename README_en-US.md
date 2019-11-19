@@ -11,45 +11,33 @@ SJTUThesis is an *unofficial* LaTeX template for preparing bachelor, master, doc
 
 At present, `sjtuthesis` only supports XeTeX engine. `sjtuthesis` only allows UTF-8 character encoding.
 
-## Obtain SJTUThesis
+## 1. Obtain SJTUThesis
 
-### Downloads
+### 1.1 Downloads
 
-We'd recommend to use packed files downloaded from [Releases](https://github.com/sjtug/SJTUThesis/releases) page directly for normal users.
-
-| Filename | Description |
-| --- | --- |
-| sjtuthesis-vXXX.zip | Packed file for local usage，samples included |
-| sjtuthesis.tds.zip | TDS（TeX Directory Structure）package |
-| sjtuthesis.pdf | Document for SJTUThesis |
-
-Please read `sjtuthesis.pdf` carefully before using the template. And do not
-use `xelatex` to compile `thesis.tex` directly:
-
+You can clone this repository directly or just download from github
 ```bash
-xelatex thesis.tex 
+git clone https://github.com/sjtug/SJTUThesis.git 
 ```
 
-We highly recommend using `Makefile` or `compile.bat`(for Windows users) 
-to compile.
-
-### Overleaf
+### 1.2 Overleaf
 
 [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) users are able to create project from the template link below.
 
 [![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/spmggcjfshrb?r=b3b31f49&rm=d&rs=b) 
 
-### Generate manually
-
-The source of SJTUThesis located in `source/sjtuthesis.dtx`, you can use `make` to generate the packed files:
+## 2. How to Compile
+### 2.1 Linux of MacOS Users
+you can use `make` to compile directly:
 
 ```bash
-make            # generate the template and pack files
-make install    # install sjtuthesis into your local TeX system
+make all       # compile and generate Thesis.pdf
+make clean     # remove useless files
+make cleanall  # remove everything produced by make all
+make wordcount # count the words of the thesis
 ```
-
-The default output folder is `release`.
-
+### 2.2 Windows Users
+We suggest using `compile.bat`.
 ## Feedback
 
 We are hearing from:
