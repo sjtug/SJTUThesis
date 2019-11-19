@@ -79,10 +79,10 @@
 \PassOptionsToPackage{math-style=\sjtu@mathstyle}{unicode-math}
 \LoadClass[a4paper,zihao=\sjtu@zihao,linespread=1.3,UTF8]{ctexbook}
 \ifsjtu@degree@bachelor
-  \AtEndOfClass{\input{sjtuthesis-bachelor.ltx}}
+  \AtEndOfClass{\input{src/sjtuthesis-bachelor.ltx}}
 \else
   \ifsjtu@degree@master
-    \AtEndOfClass{\input{sjtuthesis-graduate.ltx}}
+    \AtEndOfClass{\input{src/sjtuthesis-graduate.ltx}}
   \fi
 \fi
 \RequirePackage{etoolbox}
