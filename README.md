@@ -31,7 +31,7 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。
 
-### `Linux` 或 `macOS` 用户
+### Linux 与 macOS 用户
 
 推荐使用模版提供的 `Makefile` 进行编译，具体来说我们提供了如下几条可用的命令：
 
@@ -42,9 +42,9 @@ make cleanall                 # 删除 thesis.pdf 和所有中间文件
 make wordcount                # 论文字数统计
 ```
 
-### `Windows` 用户
+### Windows 用户
 
-对 `Windows` 用户，我们也提供了编译脚本 `Compile.bat`。可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
+对于 Windows 用户，我们也提供了编译脚本 `Compile.bat`。可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
 
 ```bash
 .\Compile.bat thesis          # 编译生成 thesis.pdf
