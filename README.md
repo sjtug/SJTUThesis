@@ -39,7 +39,18 @@ SJTUThesis 是一个由诸多感兴趣的同学一起维护的开源项目，我
 
 
 ## 2. 模板使用
-### 2.1 `Linux`或`MacOS`用户
+### 2.1 文件结构说明
+```
+.
+├── bib # 参考文献
+├── figure　# 图片
+├── pdf  # 可插入的pdf以及SJTU的logo 
+├── src　# cls与sty文件，也就是documentclass源代码和sjtuthesis宏包源代码
+└── tex　# 写论文所需修改的tex源代码
+```
+
+### 2.2 如何编译
+#### 2.2.1 `Linux`或`MacOS`用户
 推荐使用已经编写好的`Makefile`进行tex文件的编译，具体来说我们提供了如下几条可用的命令：
 ```bash
 make all       # 编译生成Thesis.pdf
@@ -47,7 +58,7 @@ make clean     # 删除编译所产生的中间文件
 make cleanall  # 删除pdf和所有中间文件
 make wordcount # 论文字数统计
 ```
-### 2.2 `Windows`用户
+#### 2.2.2 `Windows`用户
 对`Windows`用户，我们也提供了`compile.bat`方便一键编译。
 
 **请不要直接使用**`xelatex thesis.tex`进行编译。更多关于模板的实现细节以及使用信息，请查看使用文档`sjtuthesis.pdf`。
