@@ -13,7 +13,7 @@
 
 ## 获取模板
 
-### 本地下载
+### 下载模版
 
 普通用户可以直接 `clone` 或者在 [Github](https://github.com/sjtug/SJTUThesis) 页面下载仓库代码。
 
@@ -59,7 +59,7 @@ make wordcount                # 论文字数统计
 
 本模版是由诸多感兴趣的同学一起维护的开源项目，我们非常欢迎问题反馈和新的贡献者！
 
-### 问题反馈
+### 反馈问题
 
 如果在使用上有任何问题，建议先查阅项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)。
 如果这些不能解决你的问题，建议通过以下方式进行反馈（按推荐顺序排序）：
@@ -81,12 +81,12 @@ make wordcount                # 论文字数统计
 
 ## 致谢
 
-* 感谢 [CTeX-kit](https://github.com/CTeX-org/ctex-kit) 提供了 LaTeX 的中文支持
-* 感谢那位最先制作出博士学位论文 LaTeX 模板的交大物理系同学
-* 感谢 William Wang 同学对模板移植做出的巨大贡献
-* 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的开发和维护工作
-* 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的开发和维护工作
-* 感谢所有为模板贡献过代码的[同学们](https://github.com/sjtug/SJTUThesis/graphs/contributors)，以及所有测试和使用模板的各位同学
+* 感谢 [CTeX-kit](https://github.com/CTeX-org/ctex-kit) 提供了 LaTeX 的中文支持；
+* 感谢那位最先制作出博士学位论文 LaTeX 模板的交大物理系同学；
+* 感谢 William Wang 同学对模板移植做出的巨大贡献；
+* 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的开发和维护工作；
+* 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的开发和维护工作；
+* 感谢所有为模板贡献过代码的[同学们](https://github.com/sjtug/SJTUThesis/graphs/contributors)，以及所有测试和使用模板的各位同学。
 
 ## 软件许可证
 
