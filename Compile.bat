@@ -50,7 +50,7 @@ goto :EOF
 
 :thesis
 	echo Compile...
-	latexmk -xelatex -halt-on-error -silent thesis >nul 2>nul
+	latexmk -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode thesis >nul 2>nul
 goto :EOF
 
 :clean
