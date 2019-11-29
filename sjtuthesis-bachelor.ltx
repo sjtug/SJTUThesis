@@ -1,0 +1,233 @@
+%%
+%% This is file `sjtuthesis-bachelor.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuthesis.dtx  (with options: `bachelor')
+%% 
+%% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
+%%           (C) 2018-2019 by SJTUG
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This file has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Alexara Wu.
+%% 
+\ProvidesFile{sjtuthesis-bachelor.ltx}
+  [2019/06/16 1.0.0rc Shanghai Jiao Tong University Thesis Template]
+\ifsjtu@degree@course
+  \sjtu@def@label{degreetypeChi}{}
+  \sjtu@def@label{degreetypeEng}{}
+\else
+  \sjtu@def@label{degreetypeChi}{学士}
+  \sjtu@def@label{degreetypeEng}{Bachelor}
+\fi
+\sjtu@def@label{authorChi}{学生姓名}
+\sjtu@def@label{studentidChi}{学生学号}
+\sjtu@def@label{supervisorChi}{指导教师}
+\sjtu@def@label{coursenameChi}{课程名称}
+\sjtu@def@label{majorChi}{专业}
+\sjtu@def@label{departmentChi}{学院(系)}
+\ifsjtu@degree@course
+  \sjtu@def@label{thesiscat}{课程论文}
+  \def\sjtu@label@thesistype{\sjtu@label@thesiscat}
+  \sjtu@def@label{subjectChi}{\sjtu@label@thesiscat}
+  \sjtu@def@label{subjectEng}{Course Paper}
+\else
+  \sjtu@def@label{thesiscat}{学位论文}
+  \def\sjtu@label@thesistype{毕业设计（论文）}
+  \sjtu@def@label{subjectChi}{\sjtu@label@degreetypeChi\sjtu@label@thesiscat}
+  \sjtu@def@label{subjectEng}{Thesis of \sjtu@label@degreetypeEng}
+\fi
+\sjtu@def@label{bigabstract}{英文大摘要}
+\geometry{%
+  paper      = a4paper,
+  vmargin    = {84bp, 72bp},
+  hmargin    = 90bp,
+  headheight = 60bp,
+  headsep    = 12bp,
+}
+\ifsjtu@language@english
+  \def\sjtu@titlemark{\sjtu@value@entitle}
+  \newcommand{\sjtu@fancyhead}{%
+    \parbox[b]{0.75\textwidth}{%
+      \raggedleft\nouppercase{\footnotesize\heiti\sjtu@titlemark}}}
+  \newcommand{\sjtu@fancyfoot}[2]{%
+    \small --~~Page~~{\bfseries{#1}}~~of~~{\bfseries{#2}}~~--}
+\else
+  \def\sjtu@titlemark{\sjtu@value@title}
+  \newcommand{\sjtu@fancyhead}{%
+    \parbox[b]{0.75\textwidth}{%
+      \raggedleft\nouppercase{\small\heiti\sjtu@titlemark}}}
+  \newcommand{\sjtu@fancyfoot}[2]{%
+    \small 第~{\bfseries{#1}}~页\,共~{\bfseries{#2}}~页}
+\fi
+\fancypagestyle{sjtu@front}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics{sjtu-logo.pdf}}
+  \fancyhead[R]{\sjtu@fancyhead}
+  \fancyfoot[C]{\sjtu@fancyfoot{\thepage}{\lastpageref{pagesLTS.Roman}}}
+}
+\fancypagestyle{sjtu@plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics{sjtu-logo.pdf}}
+  \fancyhead[R]{\sjtu@fancyhead}
+  \fancyfoot[C]{\sjtu@fancyfoot{\thepage}{\lastpageref{pagesLTS.arabic}}}
+}
+\fancypagestyle{sjtu@biglast}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics{sjtu-logo.pdf}}
+  \fancyhead[R]{\sjtu@fancyhead}
+  \fancyfoot[C]{\sjtu@fancyfoot{\theCurrentPageLocal}%
+                               {\lastpageref{pagesLTS.roman.local}}}
+}
+\renewcommand{\frontmatter}{%
+  \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{Roman}
+  \pagestyle{sjtu@front}
+}
+\renewcommand{\mainmatter}{%
+  \cleardoublepage
+  \@mainmattertrue
+  \sjtu@setfloatfonttrue
+  \pagenumbering{arabic}
+  \pagestyle{sjtu@plain}
+}
+\renewcommand{\backmatter}{%
+  \cleardoublepage
+  \@mainmatterfalse
+}
+\ctexset{%
+  subsection/format = \zihao{-4}\normalfont,
+}
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchapleader}{\normalfont\cftdotfill{\cftdotsep}}
+\renewcommand{\cftchappagefont}{\normalfont}
+\NewDocumentEnvironment{abstract}{}{%
+  \cleardoublepage
+  \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
+  \chapter*{%
+    \sjtu@value@title \vskip 2ex
+    \begingroup
+      \zihao{4}
+      \sjtu@label@abstractChi
+    \endgroup
+  }
+  \@mkboth{\sjtu@label@abstractChi}%
+          {\sjtu@label@abstractChi}%
+}{%
+  \vskip 3ex \noindent
+  \begingroup
+    \zihao{-4}
+    \heiti\sjtu@label@keywordsChi
+  \endgroup
+  \begingroup
+    \zihao{5}
+    \sjtu@value@keywords
+  \endgroup
+}
+\NewDocumentEnvironment{enabstract}{}{%
+  \cleardoublepage
+  \chapter*{%
+    \MakeUppercase\sjtu@value@entitle \vskip 2ex
+    \begingroup
+      \zihao{4}
+      \MakeUppercase\sjtu@label@abstractEng
+    \endgroup
+  }
+  \@mkboth{\sjtu@label@abstractEng}%
+          {\sjtu@label@abstractEng}%
+}{%
+  \vskip 3ex \noindent
+  \begingroup
+    \zihao{-4}\bfseries
+    \sjtu@label@keywordsEng
+  \endgroup
+  \begingroup
+    \zihao{5}
+    \sjtu@value@enkeywords
+  \endgroup
+}
+\newcommand{\sjtu@bigabstract}[1]{\long\gdef\sjtu@bigabstract@body{#1}}
+\NewDocumentEnvironment{bigabstract}{}{%
+  \Collect@Body\sjtu@bigabstract
+}{%
+  \ifsjtu@degree@course\relax\else
+    \ifsjtu@language@english\relax\else
+      \AtEndDocument{%
+        \cleardoublepage
+        \pagenumbering{roman}
+        \pagestyle{sjtu@biglast}
+        \pdfbookmark[0]{\sjtu@label@bigabstract}{bigabstract}%
+        \chapter*{\MakeUppercase\sjtu@value@entitle}
+        \@mkboth{\sjtu@label@bigabstract}%
+                {\sjtu@label@bigabstract}%
+        \sjtu@bigabstract@body
+      }
+    \fi
+  \fi
+}
+\RenewDocumentCommand\maketitle{}{%
+  \pdfbookmark[0]{\sjtu@label@titlepage}{titlepage}
+  \sjtu@makechinesetitle%
+}
+\newcommand{\sjtu@makechinesetitle}{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+    \kaishu
+    \vspace*{48bp}
+    \includegraphics{sjtu-name.pdf}
+    \vskip 28bp
+    {\fontsize{32}{32}\sjtu@label@subjectChi}
+    \vskip 16bp
+    {\zihao{-2}\MakeUppercase\sjtu@label@subjectEng}
+    \vskip 16bp
+    \includegraphics{sjtu-badge.pdf}
+    \vskip \stretch{2}
+    \begingroup
+      \zihao{2}
+      \begin{tabular}{r@{：}l}
+        论文题目 &
+        \begin{minipage}[t]{280pt}
+          \zihao{-2}
+          \begin{center}
+            \sjtu@uline\sjtu@value@title
+          \end{center}
+        \end{minipage}
+      \end{tabular}
+    \endgroup
+    \vskip \stretch{1}
+    \begingroup
+      \zihao{3}
+      \def\arraystretch{1.1}
+      \begin{tabular}
+        {>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
+        \sjtu@label@authorChi        & \sjtu@value@author      \\ \cline{2-2}
+        \sjtu@label@studentidChi     & \makebox[180pt]{\sjtu@value@studentid} \\
+          \cline{2-2}
+        \ifsjtu@degree@course
+          \sjtu@label@coursenameChi  & \sjtu@value@coursename  \\ \cline{2-2}
+        \else
+          \sjtu@label@majorChi       & \sjtu@value@major       \\ \cline{2-2}
+        \fi
+        \sjtu@label@supervisorChi    & \sjtu@value@supervisor  \\ \cline{2-2}
+        \sjtu@label@departmentChi    & \sjtu@value@department  \\ \cline{2-2}
+      \end{tabular}
+    \endgroup
+    \vskip 40bp
+  \end{center}
+  \cleardoublepage
+}
+\endinput
+%%
+%% End of file `sjtuthesis-bachelor.ltx'.

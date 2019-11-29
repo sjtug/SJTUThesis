@@ -250,11 +250,5 @@ ehthumbs_vista.db
 [Dd]esktop.ini
 
 # Project specific
-release/*
-sample/*.pdf
-*.cls
-*.ins
-*.ltx
-sjtuthesis.pdf
 thesis.pdf
 thesis-bot.yml

@@ -15,11 +15,10 @@ matrix:
           - $HOME/.miktex
 
 before_script:
-  - source scripts/unpack.sh
-  - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' sample/thesis.tex
+  - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' thesis.tex
 
 script:
-  - latexmk -cd -quiet -halt-on-error -time -xelatex sample/thesis.tex
+  - latexmk -quiet -halt-on-error -time -xelatex thesis.tex
 
 after_failure:
-  - cat sample/thesis.log
+  - cat thesis.log
