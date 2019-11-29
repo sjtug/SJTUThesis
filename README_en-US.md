@@ -6,7 +6,7 @@
 
 ## Welcome to LaTeX thesis template for Shanghai Jiao Tong University
 
-This sample template is a full implementation of SJTUThesis document class which is an *unofficial* LaTeX class for preparing degree theses or course papers in Shanghai Jiao Tong University. 
+This sample template is a full implementation of SJTUThesis document class which is an *unofficial* LaTeX class for preparing degree theses or course papers in Shanghai Jiao Tong University.
 
 Please note that `sjtuthesis` only supports XeTeX engine, `sjtuthesis` only allows UTF-8 character encoding.
 
@@ -22,7 +22,7 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 ### Overleaf
 
-If you are [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) user, you can create your own project through the link below.
+If you are an [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) user, you can create your own project through the link below.
 
 [![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/spmggcjfshrb?r=b3b31f49&rm=d&rs=b) 
 
