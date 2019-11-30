@@ -1,11 +1,11 @@
 # Latexmk configuration file.
 
-# Use XeLaTeX to compile.
+# Use xelatex with latexmk.
 $pdf_mode = 5;
+$postscript_mode = $dvi_mode = 0;
 
-# Set the locale to be used for sorting.
-# $biber = 'biber -l zh__pinyin %O %S';
-# $biber = 'biber -l zh__stroke %O %S'; 
+# Always try to embed fonts, ignoring licensing flags, etc.
+$xdvipdfmx = 'xdvipdfmx -E -o %D %O %S';
 
 # Files to clean.
-$clean_ext = 'bbl loa run.xml xdv';
+$clean_ext = 'bbl glo gls hd loa run.xml thm xdv';

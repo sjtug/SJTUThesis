@@ -1,0 +1,74 @@
+%%
+%% This is file `sjtuthesis.sty',
+%% You can put any packages you would like to use here.
+%%
+\ProvidesPackage{sjtuthesis}
+  [2018/01/09 v0.10 Shanghai Jiao Tong University Template]
+
+% 使用 Type 1 西文字体
+% \RequirePackage[defaultsups]{newtxtext}
+% \RequirePackage[upint]{newtxmath}
+% \RequirePackage{bm}
+% \RequirePackage{upgreek}
+
+% 确定浮动对象的位置，可以使用 [H]，强制将浮动对象放到这里（可能效果很差）
+% \RequirePackage{float}
+
+% 固定宽度的表格
+% \RequirePackage{tabularx}
+
+% 表格中支持跨行
+\RequirePackage{multirow}
+
+% 表格中数字按小数点对齐
+\RequirePackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+% 附带脚注的表格
+\RequirePackage{threeparttable}
+
+% 算法环境宏包
+\RequirePackage[ruled,vlined,linesnumbered]{algorithm2e}
+% \RequirePackage{algorithm}
+
+% 代码环境宏包
+\RequirePackage{listings}
+
+% 国际单位制宏包
+\RequirePackage{siunitx}
+
+% 定理环境宏包
+\RequirePackage{ntheorem}
+% \RequirePackage{amsthm}
+
+% 绘图宏包
+\RequirePackage{tikz}
+
+% 一些文档中用到的 logo
+\RequirePackage{hologo}
+\newcommand{\XeTeX}{\hologo{XeTeX}}
+\newcommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
+
+% 借用 ltxdoc 里面的几个命令。
+\def\cmd#1{\cs{\expandafter\cmd@to@cs\string#1}}
+\def\cmd@to@cs#1#2{\char\number`#2\relax}
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+
+\newcommand*{\meta}[1]{{%
+  \ensuremath{\langle}\rmfamily\itshape#1\/\ensuremath{\rangle}}}
+\providecommand\marg[1]{%
+  {\ttfamily\char`\{}\meta{#1}{\ttfamily\char`\}}}
+\providecommand\oarg[1]{%
+  {\ttfamily[}\meta{#1}{\ttfamily]}}
+\providecommand\parg[1]{%
+  {\ttfamily(}\meta{#1}{\ttfamily)}}
+\providecommand\pkg[1]{{\sffamily#1}}
+
+% 自定义命令
+
+% E-mail
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+\endinput
+%%
+%% End of file `sjtuthesis.sty'.

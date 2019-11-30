@@ -1,114 +1,93 @@
-%# -*- coding: utf-8-unix -*-
-%%==================================================
-%% thesis.tex
-%%==================================================
+% 设置 biblatex 额外选项
+% \PassOptionsToPackage{gbpub=false, gbtype=false}{biblatex}
 
-% 双面打印
-\documentclass[doctor, openright, twoside]{sjtuthesis}
-% \documentclass[bachelor, openany, oneside, submit]{sjtuthesis}
-% \documentclass[master, review]{sjtuthesis}
-% \documentclass[%
-%   bachelor|master|doctor, % 必选项
-%   fontset=fandol|windows|mac|ubuntu|adobe|founder, % 字体选项
-%   oneside|twoside,        % 单面打印，双面打印(奇偶页交换页边距，默认)
-%   openany|openright,      % 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
-%   english,                % 启用英文模版
-%   review,     % 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
-%   submit      % 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
-% ]
+% 载入 SJTUThesis 模版
+% \documentclass[degree=doctor, zihao=-4, language=english, review]{sjtuthesis}
+\documentclass[degree=master, zihao=-4]{sjtuthesis}
+% \documentclass[degree=bachelor, openany, oneside]{sjtuthesis}
+% \documentclass[degree=course, language=english, openright, twoside]{sjtuthesis}
+% 选项
+%   degree=[doctor|master|bachelor|course],     % 必选，学位类型
+%   language=[chinese|english],                 % 可选（默认：chinese），论文的主要语言
+%   bibstyle=[gb7714-2015|gb7714-2015ay|ieee],  % 可选（默认：gb7714-2015），参考文献样式
+%   review,                                     % 可选（默认：关闭），盲审模式
 
-% 逐个导入参考文献数据库
+% 所有其它可能用到的包都统一放到这里了，可以根据自己的实际添加或者删除。
+\usepackage{sjtuthesis}
+
+% 定义图片文件目录与扩展名
+\graphicspath{{figure/}}
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
+
+% 导入参考文献数据库
 \addbibresource{bib/thesis.bib}
-% \addbibresource{bib/chap2.bib}
 
-\input{tex/id}  % NOTE: the enclosed commands must be executed in preamble
+% 信息录入，必须在导言区进行！
+\input{tex/info}
+
+% 自定义项目标签名称
+% \sjtuSetLabel{
+%   listfigure = {图\quad 录},
+%   listtable  = {表\quad 录}
+% }
 
 \begin{document}
 
 % 无编号内容：中英文论文封面、授权页
 \maketitle
+\makeDeclareOriginality[pdf/originality.pdf]
+\makeDeclareAuthorization
 
-\makeatletter
-\ifsjtu@submit\relax
-  \includepdf{pdf/original.pdf}
-  \cleardoublepage
-  \includepdf{pdf/authorization.pdf}
-  \cleardoublepage
-\else
-\ifsjtu@review\relax
-% exclude the original claim and authorization
-\else
-  \makeDeclareOriginal
-  \makeDeclareAuthorization
-\fi
-\fi
-\makeatother
-
-\frontmatter % 使用罗马数字对前言编号
+% 使用罗马数字对前言编号
+\frontmatter
 
 % 摘要
-\include{tex/abstract}
+\input{tex/abstract}
 
 % 目录、插图目录、表格目录
 \tableofcontents
 \listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename}     % 将插图目录加入全文目录
 \listoftables
-\addcontentsline{toc}{chapter}{\listtablename}      % 将表格目录加入全文目录
 \listofalgorithms
-\addcontentsline{toc}{chapter}{\listalgorithmname}  % 将算法目录加入全文目录
 
-\include{tex/symbol} % 主要符号、缩略词对照表
+% 主要符号、缩略词对照表
+\input{tex/nomenclature}
 
-\mainmatter % 使用阿拉伯数字对正文编号
+% 使用阿拉伯数字对正文编号
+\mainmatter
 
 % 正文内容
-\include{tex/intro}
-\include{tex/example}
-\include{tex/faq}
-\include{tex/summary}
+\input{tex/intro}
+\input{tex/floats}
+\input{tex/math_and_citations}
+\input{tex/summary}
 
-\appendix % 使用英文字母对附录编号
+% 使用英文字母对附录编号
+\appendix
 
 % 附录内容，本科学位论文可以用翻译的文献替代。
-\include{tex/app_setup}
-\include{tex/app_eq}
-\include{tex/app_cjk}
-\include{tex/app_log}
+\input{tex/app_maxwell_equations}
+\input{tex/app_flow_chart}
 
-\backmatter % 文后无编号部分 
+% 文后无编号部分
+\backmatter
 
 % 参考资料
 \printbibliography[heading=bibintoc]
 
-% 致谢、发表论文、申请专利、参与项目、简历
-% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目
-\makeatletter
+% 用于盲审的论文需隐去致谢、发表论文、参与项目、申请专利、简历
 
-% "研究生学位论文送盲审印刷格式的统一要求"
-% http://www.gs.sjtu.edu.cn/inform/3/2015/20151120_123928_738.htm
+% 致谢
+\input{tex/acknowledgements}
 
-% 盲审删去删去致谢页
-\ifsjtu@review\relax\else
-  \include{tex/ack}         % 致谢
-\fi
+% 发表论文、参与项目、申请专利、简历
+% 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
+\input{tex/publications}
+\input{tex/projects}
+\input{tex/patents}
+\input{tex/resume}
 
-\ifsjtu@bachelor
-  % 学士学位论文要求在最后有一个英文大摘要，单独编页码
-  \include{tex/end_english_abstract}
-\else
-  % 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
-  \ifsjtu@review\relax
-    \include{tex/pubreview}
-    \include{tex/projectsreview}  
-  \else
-    \include{tex/pub}       % 发表论文
-    \include{tex/projects}  % 参与的项目
-    % \include{tex/patents}   % 申请专利
-    \include{tex/resume}    % 个人简历
-  \fi
-\fi
-
-\makeatother
+% 中文学士学位论文要求在最后有一个英文大摘要，单独编页码，英文学士学位论文不需要
+\input{tex/end_english_abstract}
 
 \end{document}

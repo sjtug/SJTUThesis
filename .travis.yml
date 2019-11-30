@@ -1,30 +1,24 @@
-os:
-  - linux
+dist: xenial
 
-sudo: required
+language: shell
 
-install:
-  - REMOTE="http://mirror.ctan.org/systems/texlive/tlnet"
-  - INSTALL="/tmp/install-texlive"
-  - mkdir -p $INSTALL
-  - curl -sSL $REMOTE/install-tl-unx.tar.gz | tar -xzv -C $INSTALL --strip-components=1
-
-  - sudo $INSTALL/install-tl -profile .ci/tl.profile
-
-  - VERSION=$($INSTALL/install-tl --version | grep 'version' | grep -o '[0-9]\{4\}')
-  - PLATFORM=$($INSTALL/install-tl --print-platform)
-  - TEXBIN="/usr/local/texlive/${VERSION}/bin/${PLATFORM}"
-  - export "PATH=$TEXBIN:$PATH"
-
-  - sudo $TEXBIN/tlmgr install latexmk ulem
+matrix:
+  include:
+    - install: source .ci/install-ubuntu-texlive.sh
+      cache:
+        directories:
+          - /tmp/texlive
+          - $HOME/.texlive
+    - install: source .ci/install-ubuntu-miktex.sh
+      cache:
+        directories:
+          - $HOME/.miktex
 
 before_script:
-  - sed -i 's/,\s*fontset=\?\w*//' thesis.tex
-  - sed -i '/setmainfont/d' sjtuthesis.cls
+  - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' thesis.tex
 
 script:
-  - make validate
+  - latexmk -quiet -halt-on-error -time -xelatex thesis.tex
 
-notifications:
-  webhooks: https://www.travisbuddy.com/
-  on_success: never
+after_failure:
+  - cat thesis.log

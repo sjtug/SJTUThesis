@@ -110,6 +110,9 @@ acs-*.bib
 *.gaux
 *.gtex
 
+# hypdoc
+*.hd
+
 # hyperref
 *.brf
 
@@ -214,6 +217,9 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
+# VSCode
+.vscode/*
 
 # auto folder when using emacs and auctex
 ./auto/*

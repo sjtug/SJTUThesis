@@ -1,48 +1,46 @@
+# Makefile for SJTUThesis
+
+# Basename of thesis
 THESIS = thesis
-# TEX, BIB, TEST dir
-TEX_DIR = tex
-BIB_DIR = bib
 
 # Option for latexmk
-LATEXMK_OPT_BASE = -xelatex -gg -silent
-LATEXMK_OPT = $(LATEXMK_OPT_BASE) -f
+LATEXMK_OPT = -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode
 LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
-all: $(THESIS).pdf
+# make deletion work on Windows
+ifdef SystemRoot
+	RM = del /Q
+	OPEN = start
+else
+	RM = rm -f
+	OPEN = open
+endif
 
-.PHONY : all cleanall pvc view wordcount git zip
+.PHONY : all pvc view wordcount clean cleanall FORCE_MAKE
 
-$(THESIS).pdf : $(THESIS).tex $(TEX_DIR)/*.tex $(BIB_DIR)/*.bib sjtuthesis.cls sjtuthesis.cfg Makefile
-	-latexmk $(LATEXMK_OPT) $(THESIS)
+all : $(THESIS).pdf
 
-pvc :
-	latexmk $(LATEXMK_OPT_PVC) $(THESIS)
+$(THESIS).pdf : $(THESIS).tex FORCE_MAKE
+	@latexmk $(LATEXMK_OPT) $<
 
-validate :
-	xelatex -no-pdf -halt-on-error $(THESIS)
-	biber --debug $(THESIS)
+pvc : $(THESIS).tex
+	@latexmk $(LATEXMK_OPT_PVC) $(THESIS)
 
 view : $(THESIS).pdf
-	open $<
+	$(OPEN) $<
 
-wordcount:
-	@texcount $(THESIS).tex -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'
-	@texcount $(THESIS).tex -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
+wordcount : $(THESIS).tex
+	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \
+		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
+	else \
+		texcount $< -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
+	fi
+	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
 
 clean :
-	-@latexmk -c -silent 2> /dev/null
+	-@latexmk -c -silent $(THESIS).tex 2> /dev/null
 	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
 
 cleanall :
-	-@latexmk -C -silent 2> /dev/null
+	-@latexmk -C -silent $(THESIS).tex 2> /dev/null
 	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
-
-s3 : $(THESIS).pdf
-	s3cmd put $< s3://sjtuthesis/README.pdf
-
-git :
-	git push --tags github; git push github;
-	git push --tags gitlab; git push gitlab;
-
-zip :
-	git archive --format zip --output thesis.zip master

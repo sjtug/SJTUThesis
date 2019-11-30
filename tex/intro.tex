@@ -1,164 +1,98 @@
-%# -*- coding: utf-8-unix -*-
-% !TEX program = xelatex
 % !TEX root = ../thesis.tex
-% !TEX encoding = UTF-8 Unicode
-%%==================================================
-%% chapter01.tex for SJTU Master Thesis
-%%==================================================
 
-%\bibliographystyle{sjtu2}%[此处用于每章都生产参考文献]
-\chapter{这是什么}
-\label{chap:intro}
+\chapter{简介}
 
-这是上海交通大学(非官方)学位论文 \LaTeX 模板，当前版本是 \version 。
+这是 \sjtuthesis 的示例文档，基本上覆盖了模板中所有格式的设置。建议大家在使用模
+板之前，除了阅读《\sjtuthesis\ 使用文档》，这个示例文档也最好能看一看。
 
-最早的一版学位模板是一位热心的物理系同学制作的。
-那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的 \CJKLaTeX 方案。
-我根据交大研究生院对学位论文的要求
-\footnote{\url{http://www.gs.sjtu.edu.cn/policy/fileShow.ahtml?id=130}}
-，结合少量个人审美喜好，完成了一份基本可用的交大 \LaTeX 学位论文模板。
-但是，搭建一个 \CJKLaTeX 环境并不简单，单单在Linux下配置环境和添加中文字体，就足够让新手打退堂鼓。
-在William Wang的建议下，我开始着手把模板向 \XeTeX 引擎移植。
-他完成了最初的移植，多亏了他出色的工作，后续的改善工作也得以顺利进行。
+\section{二级标题}
 
-随着我对 \LaTeX 系统认知增加，我又断断续续做了一些完善模板的工作，在原有硕士学位论文模板的基础上完成了交大学士和博士学位论文模板。
+\subsection{三级标题}
 
-现在，交大学位论文模板SJTUTHesis代码在github
-\footnote{\url{https://github.com/sjtug/SJTUThesis}}
-上维护。
-你可以\href{https://github.com/sjtug/SJTUThesis/issues}{在github上开issue}
-、或者在\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖来反映遇到的问题。
+\subsubsection{四级标题}
 
-\section{使用模板}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
 
-\subsection{准备工作}
-\label{sec:requirements}
+\section{脚注}
 
-要使用这个模板撰写学位论文，需要在\emph{TeX系统}、\emph{TeX技能}上有所准备。
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. \footnote{Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+dolore eu fugiat nulla pariatur.}
 
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-	\item {\TeX}系统：所使用的{\TeX}系统要支持 \XeTeX 引擎，且带有ctex 2.x宏包，以2017年或更新版本的\emph{完整}TeXLive、MacTeX发行版为佳。
-	\item TeX技能：尽管提供了对模板的必要说明，但这不是一份“ \LaTeX 入门文档”。在使用前请先通读其他入门文档。
-	\item 针对Windows用户的额外需求：学位论文模本分别使用git和GNUMake进行版本控制和构建，建议从Cygwin\footnote{\url{http://cygwin.com}}安装这两个工具。
-\end{itemize}
+\section{字体}
 
-\subsection{模板选项}
-\label{sec:thesisoption}
 
-sjtuthesis提供了一些常用选项，在thesis.tex在导入sjtuthesis模板类时，可以组合使用。
-这些选项包括：
+上海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全
+国重点大学，是国家“七五”、“八五”重点建设和“211 工程”、“985 工程”的首批建
+设高校。经过 115 年的不懈努力，上海交通大学已经成为一所“综合性、研究型、国际化”
+的国内一流、国际知名大学，并正在向世界一流大学稳步迈进。 
 
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-	\item 学位类型：bachelor(学位)、master(硕士)、doctor(博士)，是必选项。
-	\item 中文字体：fandol(Fandol 开源字体)、windows(Windows 系统下的中文字体)、mac(macOS 系统下的华文字体)、ubuntu(Ubuntu 系统下的文泉驿和文鼎字体)、adobe(Adobe 公司的中文字体)、founder(方正公司的中文字体)，默认根据操作系统自动配置。
-	\item 英文模版：使用english选项启用英文模版。
-	\item 盲审选项：使用review选项后，论文作者、学号、导师姓名、致谢、发表论文和参与项目将被隐去。
-\end{itemize}
+{\songti 十九世纪末，甲午战败，民族危难。中国近代著名实业家、教育家盛宣怀和一批
+  有识之士秉持“自强首在储才，储才必先兴学”的信念，于 1896 年在上海创办了交通大
+  学的前身——南洋公学。建校伊始，学校即坚持“求实学，务实业”的宗旨，以培养“第
+  一等人才”为教育目标，精勤进取，笃行不倦，在二十世纪二三十年代已成为国内著名的
+  高等学府，被誉为“东方MIT”。抗战时期，广大师生历尽艰难，移转租界，内迁重庆，
+  坚持办学，不少学生投笔从戎，浴血沙场。解放前夕，广大师生积极投身民主革命，学校
+  被誉为“民主堡垒”。}
 
-\subsection{编译模板}
-\label{sec:process}
+{\heiti 新中国成立初期，为配合国家经济建设的需要，学校调整出相当一部分优势专业、
+  师资设备，支持国内兄弟院校的发展。五十年代中期，学校又响应国家建设大西北的号
+  召，根据国务院决定，部分迁往西安，分为交通大学上海部分和西安部分。1959 年 3月
+  两部分同时被列为全国重点大学，7 月经国务院批准分别独立建制，交通大学上海部分启
+  用“上海交通大学”校名。历经西迁、两地办学、独立办学等变迁，为构建新中国的高等
+  教育体系，促进社会主义建设做出了重要贡献。六七十年代，学校先后归属国防科工委和
+  六机部领导，积极投身国防人才培养和国防科研，为“两弹一星”和国防现代化做出了
+  巨大贡献。}
 
-模板默认使用GNUMake构建，GNUMake将调用latemk工具自动完成模板多轮编译：
+{\kaishu 改革开放以来，学校以“敢为天下先”的精神，大胆推进改革：率先组成教授代
+  表团访问美国，率先实行校内管理体制改革，率先接受海外友人巨资捐赠等，有力地推动
+  了学校的教学科研改革。1984 年，邓小平同志亲切接见了学校领导和师生代表，对学校
+  的各项改革给予了充分肯定。在国家和上海市的大力支持下，学校以“上水平、创一流”
+  为目标，以学科建设为龙头，先后恢复和兴建了理科、管理学科、生命学科、法学和人文
+  学科等。1999 年，上海农学院并入；2005 年，与上海第二医科大学强强合并。至此，学
+  校完成了综合性大学的学科布局。近年来，通过国家“985 工程”和“211 工程”的建
+  设，学校高层次人才日渐汇聚，科研实力快速提升，实现了向研究型大学的转变。与此同
+  时，学校通过与美国密西根大学等世界一流大学的合作办学，实施国际化战略取得重要突
+  破。1985 年开始闵行校区建设，历经 20 多年，已基本建设成设施完善，环境优美的现
+  代化大学校园，并已完成了办学重心向闵行校区的转移。学校现有徐汇、闵行、法华、七
+  宝和重庆南路（卢湾）5 个校区，总占地面积 4840 亩。通过一系列的改革和建设，学校
+  的各项办学指标大幅度上升，实现了跨越式发展，整体实力显著增强，为建设世界一流大
+  学奠定了坚实的基础。}
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译模板}, numbers=none]
-make clean thesis.pdf
-\end{lstlisting}
+{\fangsong 交通大学始终把人才培养作为办学的根本任务。一百多年来，学校为国家和社
+  会培养了 20余万各类优秀人才，包括一批杰出的政治家、科学家、社会活动家、实业
+  家、工程技术专家和医学专家，如江泽民、陆定一、丁关根、汪道涵、钱学森、吴文俊、
+  徐光宪、张光斗、黄炎培、邵力子、李叔同、蔡锷、邹韬奋、陈敏章、王振义、陈竺等。
+  在中国科学院、中国工程院院士中，有 200 余位交大校友；在国家 23 位“两弹一星”
+  功臣中，有 6 位交大校友；在 18 位国家最高科学技术奖获得者中，有 3 位来自交大。
+  交大创造了中国近现代发展史上的诸多“第一”：中国最早的内燃机、最早的电机、最早
+  的中文打字机等；新中国第一艘万吨轮、第一艘核潜艇、第一艘气垫船、第一艘水翼艇、
+  自主设计的第一代战斗机、第一枚运载火箭、第一颗人造卫星、第一例心脏二尖瓣分离
+  术、第一例成功移植同种原位肝手术、第一例成功抢救大面积烧伤病人手术等，都凝聚着
+  交大师生和校友的心血智慧。改革开放以来，一批年轻的校友已在世界各地、各行各业崭
+  露头角。}
 
-若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为statement.pdf，然后调用make生成submit.pdf。
+{\ifcsname lishu\endcsname\lishu\else[无 \cs{lishu} 字体。]\fi 截至 2011 年 12
+  月 31 日，学校共有 24 个学院 / 直属系（另有继续教育学院、技术学院和国际教育学
+  院），19 个直属单位，12 家附属医院，全日制本科生 16802 人、研究生24495 人（其
+  中博士研究生 5059 人）；有专任教师 2979 名，其中教授 835 名；中国科学院院士 15
+  名，中国工程院院士 20 名，中组部“千人计划”49 名，“长江学者”95 名，国家杰出
+  青年基金获得者 80 名，国家重点基础研究发展计划（973 计划）首席科学家 24名，国
+  家重大科学研究计划首席科学家 9名，国家基金委创新研究群体 6 个，教育部创新团队
+  17 个。}
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={生成用于提交的学位论文}, numbers=none]
-make clean submit.pdf
-\end{lstlisting}
-
-编译失败时，可以尝试手动逐次编译，定位故障。
-
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动逐次编译}, numbers=none]
-xelatex -no-pdf thesis
-biber --debug thesis
-xelatex thesis
-xelatex thesis
-\end{lstlisting}
-
-\subsection{模板文件布局}
-\label{sec:layout}
-
-\begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
-├── LICENSE
-├── Makefile
-├── README.md
-├── bib
-│   ├── chap1.bib
-│   └── chap2.bib
-├── bst
-│   └── GBT7714-2005NLang.bst
-├── figure
-│   ├── chap2
-│   │   ├── sjtulogo.eps
-│   │   ├── sjtulogo.jpg
-│   │   ├── sjtulogo.pdf
-│   │   └── sjtulogo.png
-│   └── sjtubanner.png
-├── sjtuthesis.cfg
-├── sjtuthesis.cls
-├── statement.pdf
-├── submit.pdf
-├── tex
-│   ├── abstract.tex
-│   ├── ack.tex
-│   ├── app_cjk.tex
-│   ├── app_eq.tex
-│   ├── app_log.tex
-│   ├── chapter01.tex
-│   ├── chapter02.tex
-│   ├── chapter03.tex
-│   ├── conclusion.tex
-│   ├── id.tex
-│   ├── patents.tex
-│   ├── projects.tex
-│   ├── pub.tex
-│   └── symbol.tex
-└── thesis.tex
-\end{lstlisting}
-
-本节介绍学位论文模板中木要文件和目录的功能。
-
-\subsubsection{格式控制文件}
-\label{sec:format}
-
-格式控制文件控制着论文的表现形式，包括sjtuthesis.cfg和sjtuthesis.cls。
-其中，“cls”控制论文主体格式，“cfg”为配置文件。
-
-\subsubsection{主控文件thesis.tex}
-\label{sec:thesistex}
-
-主控文件thesis.tex的作用就是将你分散在多个文件中的内容“整合”成一篇完整的论文。
-使用这个模板撰写学位论文时，你的学位论文内容和素材会被“拆散”到各个文件中：
-譬如各章正文、各个附录、各章参考文献等等。
-在thesis.tex中通过“include”命令将论文的各个部分包含进来，从而形成一篇结构完成的论文。
-对模板定制时引入的宏包，建议放在导言区。
-
-\subsubsection{各章源文件tex}
-\label{sec:thesisbody}
-
-这一部分是论文的主体，是以“章”为单位划分的，包括：
-
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-	\item 中英文摘要(abstract.tex)。前言(frontmatter)的其他部分，中英文封面、原创性声明、授权信息在sjtuthesis.cls中定义，不单独分离为tex文件。
-不单独弄成文件。
-	\item 正文(mainmatter)——学位论文正文的各章内容，源文件是chapter\emph{xxx}.tex。
-	\item 附录(app\emph{xx}.tex)、致谢(ack.tex)、攻读学位论文期间发表的学术论文目录(pub.tex)、个人简历(resume.tex)组成正文后的部分(backmatter)。
-参考文献列表由bibtex插入，不作为一个单独的文件。
-\end{itemize}
-
-\subsubsection{图片文件夹figure}
-\label{sec:fig}
-
-figure文件夹放置了需要插入文档中的图片文件(支持PNG/JPG/PDF/EPS格式的图片)，可以在按照章节划分子目录。
-模板文件中使用\verb|\graphicspath|命令定义了图片存储的顶层目录，在插入图片时，顶层目录名“figure”可省略。
-
-\subsubsection{参考文献数据库bib}
-\label{sec:bib}
-
-目前参考文件数据库目录只存放一个参考文件数据库thesis.bib。
-关于参考文献引用，可参考第\ref{chap:example}章中的例子。
-
+{\ifcsname youyuan\endcsname\youyuan\else[无 \cs{youyuan} 字体。]\fi 学校现有本
+  科专业 68 个，涵盖经济学、法学、文学、理学、工学、农学、医学、管理学和艺术等九
+  个学科门类；拥有国家级教学及人才培养基地 7 个，国家级校外实践教育基地 5个，国
+  家级实验教学示范中心 5 个，上海市实验教学示范中心 4 个；有国家级教学团队 8个，
+  上海市教学团队 15 个；有国家级教学名师 7 人，上海市教学名师 35 人；有国家级精
+  品课程 46 门，上海市精品课程 117 门；有国家级双语示范课程 7 门；2001、2005 和
+  2009 年，作为第一完成单位，共获得国家级教学成果 37 项、上海市教学成果 157
+  项。}
