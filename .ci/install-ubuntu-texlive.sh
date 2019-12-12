@@ -32,7 +32,6 @@ tlmgr install           \
   eso-pic               \
   etoolbox              \
   fandol                \
-  filehook              \
   fontspec              \
   footmisc              \
   ifoddpage             \
@@ -40,6 +39,7 @@ tlmgr install           \
   l3kernel              \
   l3packages            \
   latexmk               \
+  letltxmacro           \
   listings              \
   lm                    \
   logreq                \
