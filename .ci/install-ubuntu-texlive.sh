@@ -24,6 +24,7 @@ tlmgr install           \
   biber                 \
   biblatex              \
   biblatex-gb7714-2015  \
+  bitset                \
   booktabs              \
   caption               \
   cjk                   \
