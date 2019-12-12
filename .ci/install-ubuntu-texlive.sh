@@ -48,6 +48,7 @@ tlmgr install           \
   multirow              \
   ntheorem              \
   pageslts              \
+  pdfescape             \
   pdflscape             \
   pdfpages              \
   pgf                   \
