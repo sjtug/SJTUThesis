@@ -19,6 +19,7 @@ fi
 # Install TeX Live packages
 tlmgr install           \
   algorithm2e           \
+  alphalph              \
   anyfontsize           \
   biber                 \
   biblatex              \
@@ -34,6 +35,7 @@ tlmgr install           \
   fandol                \
   fontspec              \
   footmisc              \
+  hologo                \
   ifoddpage             \
   l3backend             \
   l3kernel              \
@@ -41,12 +43,12 @@ tlmgr install           \
   latexmk               \
   letltxmacro           \
   listings              \
-  lm                    \
   logreq                \
   ms                    \
   multirow              \
   ntheorem              \
   pageslts              \
+  pdflscape             \
   pdfpages              \
   pgf                   \
   relsize               \
@@ -67,7 +69,6 @@ tlmgr install           \
   xits                  \
   xkeyval               \
   xstring               \
-  zapfding              \
   zhnumber
 
 # Keep no backups (not required, simply makes cache bigger)
