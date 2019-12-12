@@ -24,7 +24,7 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 If you are an [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) user, you can create your own project through the link below.
 
-[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/spmggcjfshrb?r=b3b31f49&rm=d&rs=b) 
+[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=b3b31f49&rm=d&rs=b) 
 
 ## Usage
 
