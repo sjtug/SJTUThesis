@@ -221,7 +221,9 @@
           \sjtu@label@majorChi       & \sjtu@value@major       \\ \cline{2-2}
         \fi
         \sjtu@label@supervisorChi    & \sjtu@value@supervisor  \\ \cline{2-2}
+        \ifx\sjtu@value@department\@empty\else
         \sjtu@label@departmentChi    & \sjtu@value@department  \\ \cline{2-2}
+		\fi
       \end{tabular}
     \endgroup
     \vskip 40bp
