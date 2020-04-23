@@ -194,7 +194,9 @@
         \fi
         \sjtu@label@degreeChi           & \sjtu@value@degree         \\
         \sjtu@label@majorChi            & \sjtu@value@major          \\
+        \ifx\sjtu@value@department\@empty\else
         \sjtu@label@departmentChi       & \sjtu@value@department     \\
+		\fi
         \sjtu@label@defenddateChi       & \sjtu@value@date           \\
         \sjtu@label@conferringChi       & \sjtu@label@schoolChi      \\
       \end{tabular}
@@ -226,7 +228,9 @@
         \fi
         \sjtu@label@degreeEng           & \sjtu@value@endegree         \\
         \sjtu@label@majorEng            & \sjtu@value@enmajor          \\
+        \ifx\sjtu@value@departmentEng\@empty\else
         \sjtu@label@departmentEng       & \sjtu@value@endepartment     \\
+		\fi
         \sjtu@label@defenddateEng       & \sjtu@value@endate           \\
         \sjtu@label@conferringEng       & \sjtu@label@schoolEng        \\
       \end{tabular}
