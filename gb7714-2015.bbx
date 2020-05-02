@@ -11,7 +11,7 @@
 %
 %   版本和时间信息
 %
-\def\versionofgbtstyle{2019/08/28 v1.0s}
+\def\versionofgbtstyle{2020/03/20 v1.0u}
 \def\versionofbiblatex{\abx@version}
 \ProvidesFile{gb7714-2015.bbx}[\versionofgbtstyle biblatex bibliography style]
 %\RequireBiber[3]%显式指定用biber后端，当用bibtex时会报错，但其实不会影响编译，只是采用bibtex后无法达成格式需求
@@ -199,11 +199,27 @@
     \DeclareDatamodelFields[type=field,datatype=literal]{shortbooktitle}
     \DeclareDatamodelFields[type=field,datatype=literal]{lansortorder}
 
+    %因为biblatex更新3.14版本以后，biber对于为声明数据模型的条目类型
+    %不再默认读取，而是以空字符串作为条目类型名，自然在条目定义alias时
+    %就会出现问题，因此显式的声明一下newspaper，然后保留后面采用alias的方式
+    %而standard类型则是采用另一种方式直接在sourcemap中转换为其它类型。
+    \@ifpackagelater{biblatex}{2019/11/30}{%2019/12/01 v3.14
+    \DeclareDatamodelEntrytypes{newspaper}%
+    }{}
+
 
 
 %=====================================================================
 %   设置宏包选项
 %=====================================================================
+    %
+    %   增加一个控制是否输出文献载体的选项
+    %   20191125,v1,0s,hzz
+    \newtoggle{bbx:gbmedium}
+    \DeclareBibliographyOption{gbmedium}[true]{%biblatex低版本
+      \settoggle{bbx:gbmedium}{#1}}
+    \ExecuteBibliographyOptions{gbmedium}
+
     %
     %   增加一个控制是否输出annotation域的选项，该域可以用于在文献条目后面输出一些注释信息
     %   20190509,v1,0s,hzz
@@ -606,7 +622,39 @@
     %   numeric样式，不使用该选项，这里给出仅为兼容性考虑
     %   v1.0q，20190307，hzz
     %
-    \DeclareBibliographyOption[string]{gblanorder}[chineseahead]{}
+        %   增加不同语言排序的切换选项
+    %   gblanorder=chineseahead的顺序为cn，jp，kr，en，fr，ru
+    %   gblanorder=englishahead的顺序为en，fr，ru，cn，jp，kr
+    %   gblanorder=cn;en;ru;fr;jp;kr的顺序为指定的cn;en;ru;fr;jp;kr，自定义内容可以随意写以分号分隔
+    %   v1.0q，20190307，hzz
+    %
+    \DeclareBibliographyOption[string]{gblanorder}[chineseahead]{%
+        \ifstrequal{#1}{chineseahead}%%中文在前的顺序
+            {\gdef\lancnorder{1}\gdef\lanjporder{2}\gdef\lankrorder{3}%
+             \gdef\lanenorder{4}\gdef\lanfrorder{5}\gdef\lanruorder{6}}%
+            {%
+            \ifstrequal{#1}{englishahead}%
+                {\execlanodeah\dealsortlan}%
+                {\execlanodudf{#1}\dealsortlan}%
+            }%
+    }
+    \ExecuteBibliographyOptions{gblanorder}
+
+    \def\execlanodeah{%中文在后的顺序
+        \gdef\lancnorder{4}
+        \gdef\lanjporder{5}
+        \gdef\lankrorder{6}
+        \gdef\lanenorder{1}
+        \gdef\lanfrorder{2}
+        \gdef\lanruorder{3}}
+
+    \newcounter{lanordernum}
+    \newcommand{\execlanodudf}[1]{%like：cn;en;ru;fr;jp;kr
+        \setcounter{lanordernum}{0}
+        \DeclareListParser{\parsinglanorder}{;}
+        \renewcommand*{\do}[1]{\stepcounter{lanordernum}\csxdef{lan##1order}{\thelanordernum}}
+        \parsinglanorder{#1}
+    }
 
     %
     %   增加本地化字符串的中英文切换选项
@@ -670,7 +718,7 @@
   }
   {% 针对biblatex<3.3版本的选项设置
     %   增加不同语言排序的切换选项
-    %   numeric样式，不使用该选项，这里给出仅为兼容性考虑
+    %   numeric样式， biblatex 3.4及以下版本不能使用多个stylesourcemap，所以不使用该选项
     %   v1.0q，20190307，hzz
     %
     \DeclareBibliographyOption{gblanorder}[chineseahead]{}
@@ -1104,10 +1152,6 @@
             \step[fieldsource=entrykey]
             \step[fieldset=keywords, origfieldval]
             }
-        \map{%文献题名的中文判断，将信息保存到userd中，避免因为标签生成原因导致title域被清除而产生问题
-            \step[fieldsource=title, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]%
-            \step[fieldset=userd, fieldvalue={chinese}]
-            }
         \map{\step[fieldsource=title,match=\regexp{[\x{0100}-\x{017F}]},final]%\x80-\xFF
             \step[fieldset=userd,fieldvalue={french}]%法语,0080开始到00ff的字符没法匹配有点奇怪
             }
@@ -1123,13 +1167,13 @@
             \step[fieldsource=title,match=\regexp{[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}]},final]
             \step[fieldset=userd,fieldvalue={korean}]%韩语
             }
+        \map{%文献题名的中文判断，将信息保存到userd中，避免因为标签生成原因导致title域被清除而产生问题
+            \step[fieldsource=title, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]%
+            \step[fieldset=userd, fieldvalue={chinese}]
+            }
         \map{%将没有设置userd，且存在title域的默认设置为英文
             \step[fieldsource=title,final]
             \step[fieldset=userd,fieldvalue={english}]
-            }
-       \map{%作者的中文判断
-	        \step[fieldsource=author, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]
-            \step[fieldset=userf, fieldvalue={chinese}]
             }
        \map{\step[fieldsource=author,match=\regexp{[\x{0100}-\x{017F}]},final]%\x80-\xFF
             \step[fieldset=userf,fieldvalue={french}]%法语,0080开始到00ff的字符没法匹配有点奇怪
@@ -1146,13 +1190,13 @@
             \step[fieldsource=author,match=\regexp{[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}]},final]
             \step[fieldset=userf,fieldvalue={korean}]%韩语
             }
+        \map{%作者的中文判断
+	        \step[fieldsource=author, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]
+            \step[fieldset=userf, fieldvalue={chinese}]
+            }
         \map{%将没有设置userf，且存在author域的默认设置为英文
             \step[fieldsource=author,final]
             \step[fieldset=userf,fieldvalue={english}]
-            }
-	   \map{%译者的中文判断
-            \step[fieldsource=translator, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]
-            \step[fieldset=usere, fieldvalue={chinese}]
             }
        \map{\step[fieldsource=translator,match=\regexp{[\x{0100}-\x{017F}]},final]%\x80-\xFF
             \step[fieldset=usere,fieldvalue={french}]%法语,0080开始到00ff的字符没法匹配有点奇怪
@@ -1169,13 +1213,13 @@
             \step[fieldsource=translator,match=\regexp{[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}]},final]
             \step[fieldset=usere,fieldvalue={korean}]%韩语
             }
+        \map{%译者的中文判断
+            \step[fieldsource=translator, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]
+            \step[fieldset=usere, fieldvalue={chinese}]
+            }
         \map{%将没有设置usere，且存在translator域的默认设置为英文
             \step[fieldsource=translator,final]
             \step[fieldset=usere,fieldvalue={english}]
-            }
-       \map{%编者的中文判断
-	        \step[fieldsource=editor, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]%直接匹配cjk字符，unicode编码位置从2FF0到9FA5
-            \step[fieldset=userc, fieldvalue={chinese}]
             }
        \map{\step[fieldsource=editor,match=\regexp{[\x{0100}-\x{017F}]},final]%\x80-\xFF
             \step[fieldset=userc,fieldvalue={french}]%法语,0080开始到00ff的字符没法匹配有点奇怪
@@ -1192,13 +1236,13 @@
             \step[fieldsource=editor,match=\regexp{[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}]},final]
             \step[fieldset=userc,fieldvalue={korean}]%韩语
             }
+        \map{%编者的中文判断
+	        \step[fieldsource=editor, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]%直接匹配cjk字符，unicode编码位置从2FF0到9FA5
+            \step[fieldset=userc, fieldvalue={chinese}]
+            }
         \map{%将没有设置userc，且存在editor域的默认设置为英文
             \step[fieldsource=editor,final]
             \step[fieldset=userc,fieldvalue={english}]
-            }
-        \map{%编者的中文判断
-	        \step[fieldsource=bookauthor, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]%直接匹配cjk字符，unicode编码位置从2FF0到9FA5
-            \step[fieldset=userb, fieldvalue={chinese}]
             }
        \map{\step[fieldsource=bookauthor,match=\regexp{[\x{0100}-\x{017F}]},final]%\x80-\xFF
             \step[fieldset=userb,fieldvalue={french}]%法语,0080开始到00ff的字符没法匹配有点奇怪
@@ -1214,6 +1258,10 @@
         \map{%
             \step[fieldsource=bookauthor,match=\regexp{[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}]},final]
             \step[fieldset=userb,fieldvalue={korean}]%韩语
+            }
+        \map{%编者的中文判断
+	        \step[fieldsource=bookauthor, match=\regexp{[\x{2FF0}-\x{9FA5}]},final]%直接匹配cjk字符，unicode编码位置从2FF0到9FA5
+            \step[fieldset=userb, fieldvalue={chinese}]
             }
         \map{%将没有设置userc，且存在editor域的默认设置为英文
             \step[fieldsource=bookauthor,final]
@@ -1237,26 +1285,32 @@
         \map{%当文献给出language域时，设置文献要使用的本地化字符串的语言
             \step[fieldsource=language,match=\regexp{(e|E)(n|N)(g|G)(l|L)(i|I)(s|S)(h|H)},final]
             \step[fieldset=langid,fieldvalue={english}]
+            \step[fieldset=lansortorder,fieldvalue=\lanenorder]
             }
         \map{
             \step[fieldsource=language,match=\regexp{(r|R)(u|U)(s|S)(s|S)(i|I)(a|A)(n|N)},final]
             \step[fieldset=langid,fieldvalue={russian}]
+            \step[fieldset=lansortorder,fieldvalue=\lanruorder]
             }
         \map{%
             \step[fieldsource=language,match=\regexp{(f|F)(r|R)(e|E)(n|N)(c|C)(h|H)},final]
             \step[fieldset=langid,fieldvalue={french}]
+            \step[fieldset=lansortorder,fieldvalue=\lanfrorder]
             }
         \map{%
             \step[fieldsource=language,match=\regexp{(c|C)(h|H)(i|I)(n|N)(e|E)(s|S)(e|E)},final]%中日韩语目前都用english，
             \step[fieldset=langid,fieldvalue={english}]
+            \step[fieldset=lansortorder,fieldvalue=\lancnorder]
             }
         \map{%
             \step[fieldsource=language,match=\regexp{(j|J)(a|A)(p|P)(a|A)(n|N)(e|E)(s|S)(e|E)},final]%中日韩语目前都用english，
             \step[fieldset=langid,fieldvalue={english}]
+            \step[fieldset=lansortorder,fieldvalue=\lanjporder]
             }
         \map{%
             \step[fieldsource=language,match=\regexp{(k|K)(o|O)(r|R)(e|E)(a|A)(n|N)},final]%中日韩语目前都用english，
             \step[fieldset=langid,fieldvalue={english}]
+            \step[fieldset=lansortorder,fieldvalue=\lankrorder]
             }
 }
 }
@@ -1562,6 +1616,42 @@
     {\switchversion{3.0}{map}}%%当采用biblatex<=3.2版本时
     {\switchversion{3.4}{map}}%%当采用3.3<=biblatex版本时
 
+
+%
+%   不同语言分集调整的实现方式
+%
+%   原理方法:利用样式层的动态数据修改lansortorder域来实现排序
+\def\dealsortlan{
+  \DeclareStyleSourcemap{
+      \maps[datatype=bibtex]{
+      \map[overwrite]{%当文献给出language域时，设置文献要使用的本地化字符串的语言
+          \step[fieldsource=language,match=english,final]
+          \step[fieldset=lansortorder,fieldvalue=\lanenorder]
+          }
+      \map[overwrite]{
+          \step[fieldsource=language,match=russian,final]
+          \step[fieldset=lansortorder,fieldvalue=\lanruorder]
+          }
+      \map[overwrite]{%
+          \step[fieldsource=language,match=french,final]
+          \step[fieldset=lansortorder,fieldvalue=\lanfrorder]
+          }
+      \map[overwrite]{%
+          \step[fieldsource=language,match=chinese,final]%中日韩语目前都用english，
+          \step[fieldset=lansortorder,fieldvalue=\lancnorder]
+          }
+      \map[overwrite]{%
+          \step[fieldsource=language,match=japanese,final]%中日韩语目前都用english，
+          \step[fieldset=lansortorder,fieldvalue=\lanjporder]
+          }
+      \map[overwrite]{%
+          \step[fieldsource=language,match=korean,final]%中日韩语目前都用english，
+          \step[fieldset=lansortorder,fieldvalue=\lankrorder]
+          }
+      }
+  }
+}
+
 %
 %驱动别名等价于驱动层映射
 %
@@ -1579,7 +1669,298 @@
 \DeclareBibliographyAlias{map}{manual}
 \DeclareBibliographyAlias{archive}{manual}
 
+%=====================================================================
+%   设置排序格式
+%=====================================================================
+%
+%   排序格式，用降序，及userb域，针对biblatex3.7及以下版本
+%
+\defversion{3.7}{sort}{%这是3.4版的，3.7版略有差异，但不大，后面有注释
+    \DeclareSortingScheme{gb7714-2015}{
+      \sort{
+        \field{presort}
+      }
+      %\sort[final]{
+        %\field{sortkey}
+      %}
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort{
+        \field{sortkey}
+      }
+      \sort{%[direction=descending]
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field[padside=left,padwidth=4,padchar=0]{volume}%3.7版是\field{volume}
+        \literal{0000}%3.7版是\literal{0}
+      }
+    }
 
+    %降序的nyt
+    \DeclareSortingScheme{gbnytd}{
+      \sort{
+        \field{presort}
+      }
+      %\sort[final]{
+        %\field{sortkey}
+      %}
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort[direction=descending]{
+        \field{sortkey}
+      }
+      \sort[direction=descending]{
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field[padside=left,padwidth=4,padchar=0]{volume}%3.7版是\field{volume}
+        \literal{0000}%3.7版是\literal{0}
+      }
+    }
+
+    %降序的ynt
+    \DeclareSortingScheme{gbyntd}{
+      \sort{
+        \field{presort}
+      }
+      %\sort[final]{
+        %\field{sortkey}
+      %}
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort[direction=descending]{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sortkey}
+      }
+      \sort{
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field[padside=left,padwidth=4,padchar=0]{volume}%3.7版是\field{volume}
+        \literal{0000}%3.7版是\literal{0}
+      }
+    }
+
+    %升序的ynt
+    \DeclareSortingScheme{gbynta}{
+      \sort{
+        \field{presort}
+      }
+      %\sort[final]{
+        %\field{sortkey}
+      %}
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sortkey}
+      }
+      \sort{
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field[padside=left,padwidth=4,padchar=0]{volume}%3.7版是\field{volume}
+        \literal{0000}%3.7版是\literal{0}
+      }
+    }
+}
+
+
+%
+%   排序格式，用降序，及userb域，针对biblatex3.8及以上版本
+%
+\defversion{3.8}{sort}{
+    \DeclareSortingTemplate{gb7714-2015}{
+      \sort{
+        \field{presort}
+      }
+      %\sort[final]{
+        %\field{sortkey}
+      %}
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort{
+        \field{sortkey}
+      }
+      \sort{%[direction=descending]
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field{volume}
+        \literal{0}
+      }
+    }
+
+    %降序的nyt
+    \DeclareSortingTemplate{gbnytd}{
+      \sort{
+        \field{presort}
+      }
+%      \sort[final]{
+%        \field{sortkey}
+%      }
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort[direction=descending]{
+        \field{sortkey}
+      }
+      \sort[direction=descending]{%
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field{volume}
+        \literal{0}
+      }
+    }
+
+    %降序的ynt
+    \DeclareSortingTemplate{gbyntd}{
+      \sort{
+        \field{presort}
+      }
+%      \sort[final]{
+%        \field{sortkey}
+%      }
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort[direction=descending]{
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sortkey}
+      }
+      \sort{%
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field{volume}
+        \literal{0}
+      }
+    }
+
+    %升序的ynt
+    \DeclareSortingTemplate{gbynta}{
+      \sort{
+        \field{presort}
+      }
+%      \sort[final]{
+%        \field{sortkey}
+%      }
+      \sort{
+    	\field{lansortorder}%language
+    	}
+      \sort{%[direction=ascending]
+        \field{sortyear}
+        \field{year}
+      }
+      \sort{
+        \field{sortkey}
+      }
+      \sort{%
+        \field{sortname}
+        \field{author}
+        \field{editor}
+        \field{translator}
+      }
+      \sort{
+        \field{sorttitle}
+        \field{title}
+      }
+      \sort{
+        \field{volume}
+        \literal{0}
+      }
+    }
+}
+
+
+\ifboolexpr{
+test {\iftoggle{iftlfive}}
+or
+test {\iftoggle{iftlsix}}
+or
+test {\iftoggle{iftlseven}}%biblatex<=3.7
+}{\switchversion{3.7}{sort}}{\switchversion{3.8}{sort}}%3.8<=biblatex
 
 %=====================================================================
 %   参考文献表环境
@@ -1589,9 +1970,12 @@
 %
 %   增加一个\bibitemindent尺寸用于控制list环境的itemindent
 %   v1.0l，20180615，hzz
+%   v1.0t,20200319,hzz,增加尺寸\biblabelextend使某些字体下标签宽度不足时可增加标签宽度
 \setlength{\bibhang}{\biblabelsep}%
 \newlength{\bibitemindent}
 \setlength{\bibitemindent}{0pt}
+\newlength{\biblabelextend}
+\setlength{\biblabelextend}{0pt}
 
 
 \defbibenvironment{bibliography}
@@ -1599,7 +1983,8 @@
      {\printtext[labelnumberwidth]{%
         \printfield{labelprefix}%
         \printfield{labelnumber}}}
-     {\setlength{\labelwidth}{\labelnumberwidth}%
+     {\addtolength{\labelnumberwidth}{\biblabelextend}%
+     \setlength{\labelwidth}{\labelnumberwidth}%
       \setlength{\labelsep}{\biblabelsep}%
       \setlength{\leftmargin}{\bibhang}%
       \addtolength{\leftmargin}{\labelnumberwidth}%
@@ -1708,7 +2093,8 @@
 %   而[]中间的内容，从4.6.2节的例子看也是可以分割的，因此内部的nobreak也可以去掉
 %
 \DeclareFieldFormat{gbtypeflag}{%
-\iftoggle{bbx:url}%
+\iftoggle{bbx:gbmedium}%
+{\iftoggle{bbx:url}%
     {\iffieldundef{url}%当存在url时，增加一个OL标识符
         {\nobreak\printtext{[}\nobreak#1\nobreak\printtext{\iffieldundef{medium}{}{\texttt{/}\thefield{medium}}]}}%
         {\nobreak\printtext{[}\nobreak#1\nobreak\printtext{\texttt{/}OL]}}%
@@ -1716,31 +2102,36 @@
     {\ifentrytype{online}%
         {\nobreak\printtext{[}\nobreak#1\nobreak\printtext{\texttt{/}OL]}}%
         {\nobreak\printtext{[}\nobreak#1\nobreak\printtext{\iffieldundef{medium}{}{\texttt{/}\thefield{medium}}]}}%
-    }%
+    }}%
+    {\nobreak\printtext{[}\nobreak#1\nobreak\printtext{]}}%
 }
 
 %
 %   新增用于报纸的文献类型标识符的格式
 %
 \DeclareFieldFormat{gbtypeflagn}{%用于报纸newspaper
-\iftoggle{bbx:url}%
+\iftoggle{bbx:gbmedium}%
+{\iftoggle{bbx:url}%
     {\iffieldundef{url}%当存在url时，增加一个OL标识符
         {\nobreak\printtext{[}\nobreak N\printtext{\iffieldundef{medium}{}{\texttt{/}\thefield{medium}}]}\nobreak}%
         {\nobreak\printtext{[}\nobreak N\printtext{\texttt{/}OL]}\nobreak}%
     }%
     {\nobreak\printtext{[}\nobreak N\printtext{\iffieldundef{medium}{}{\texttt{/}\thefield{medium}}]}\nobreak}%
+}{\nobreak\printtext{[}\nobreak N\printtext{]}\nobreak}%
 }
 
 %
 %   新增用于标准的文献类型标识符的格式
 %
 \DeclareFieldFormat{gbtypeflags}{%用于标准standard
-\iftoggle{bbx:url}%
+\iftoggle{bbx:gbmedium}%
+{\iftoggle{bbx:url}%
     {\iffieldundef{url}%当存在url时，增加一个OL标识符
         {\nobreak\printtext{[}\nobreak S\printtext{\iffieldundef{medium}{}{\texttt{/}\thefield{medium}}]}\nobreak}%
         {\nobreak\printtext{[}\nobreak S\printtext{\texttt{/}OL]}\nobreak}%
     }%
     {\nobreak\printtext{[}\nobreak S\printtext{\iffieldundef{medium}{}{\texttt{/}\thefield{medium}}]}\nobreak}%
+}{\nobreak\printtext{[}\nobreak S\printtext{]}\nobreak}%
 }
 
 %
@@ -3110,7 +3501,8 @@ incollection,proceedings,inproceedings]{number}{%
   \usebibmacro{note+pages}%
   \iffieldequalstr{note}{news}{}{%当是新闻时不输出修改或更新日期
   \iffieldundef{url}{}{%当没有网址时也不输出
-  \usebibmacro{modifydate}}}%带括号的修改或更新日期，
+  \iftoggle{bbx:url}{%当url选项为false时，也不输出
+  \usebibmacro{modifydate}}{}}}%带括号的修改或更新日期，
   \usebibmacro{doi+eprint+url}%从后面移上来，调整url和页码之间的位置
   \newunit\newblock
   \iftoggle{bbx:isbn}
