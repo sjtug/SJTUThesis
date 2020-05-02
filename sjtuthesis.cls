@@ -7,7 +7,7 @@
 %% sjtuthesis.dtx  (with options: `class')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
-%%           (C) 2018-2019 by SJTUG
+%%           (C) 2018-2020 by SJTUG
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -96,6 +96,7 @@
   \RequirePackage{unicode-math}
 \fi
 \RequirePackage{anyfontsize}
+\RequirePackage{xeCJKfntef}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{array}
