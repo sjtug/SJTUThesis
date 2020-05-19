@@ -1,5 +1,9 @@
 # Latexmk configuration file.
 
+# Set environment variables.
+$ENV{'TZ'}='Asia/Shanghai';
+$ENV{'TEXINPUTS'}='./texmf//:' . $ENV{'TEXINPUTS'}; 
+
 # Use xelatex with latexmk.
 $pdf_mode = 5;
 $postscript_mode = $dvi_mode = 0;
