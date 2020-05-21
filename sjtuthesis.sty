@@ -33,6 +33,8 @@
 
 % 代码环境宏包
 \RequirePackage{listings}
+\lstnewenvironment{codeblock}[1][]
+  {\lstset{style=lstStyleCode,#1}}{}
 
 % 国际单位制宏包
 \RequirePackage{siunitx}
