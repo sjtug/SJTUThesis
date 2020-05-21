@@ -140,16 +140,18 @@
 \NewDocumentEnvironment{enabstract}{}{%
   \cleardoublepage
   \chapter*{%
-    \MakeUppercase\sjtu@value@entitle \vskip 2ex
+    \MakeUppercase\sjtu@value@entitle \vskip 1 \ccwd
     \begingroup
+      \vskip 1 \ccwd
       \zihao{4}
       \MakeUppercase\sjtu@label@abstractEng
+      \vskip 1 \ccwd
     \endgroup
   }
   \@mkboth{\sjtu@label@abstractEng}%
           {\sjtu@label@abstractEng}%
 }{%
-  \vskip 3ex \noindent
+  \vskip 4ex \noindent
   \begingroup
     \zihao{-4}\bfseries
     \sjtu@label@keywordsEng
