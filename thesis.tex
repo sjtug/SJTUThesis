@@ -16,14 +16,14 @@
 \usepackage{sjtuthesis}
 
 % 定义图片文件目录与扩展名
-\graphicspath{{figure/}}
+\graphicspath{{figures/}}
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 
 % 导入参考文献数据库
-\addbibresource{bib/thesis.bib}
+\addbibresource{bibdata/thesis.bib}
 
 % 信息录入，必须在导言区进行！
-\input{tex/info}
+\input{contents/info}
 
 % 自定义项目标签名称
 % \sjtuSetLabel{
@@ -35,14 +35,14 @@
 
 % 无编号内容：中英文论文封面、授权页
 \maketitle
-\makeDeclareOriginality[pdf/originality.pdf]
+\makeDeclareOriginality[scans/originality.pdf]
 \makeDeclareAuthorization
 
 % 使用罗马数字对前言编号
 \frontmatter
 
 % 摘要
-\input{tex/abstract}
+\input{contents/abstract}
 
 % 目录、插图目录、表格目录
 \tableofcontents
@@ -51,23 +51,23 @@
 \listofalgorithms
 
 % 主要符号、缩略词对照表
-\input{tex/nomenclature}
+\input{contents/nomenclature}
 
 % 使用阿拉伯数字对正文编号
 \mainmatter
 
 % 正文内容
-\input{tex/intro}
-\input{tex/floats}
-\input{tex/math_and_citations}
-\input{tex/summary}
+\input{contents/intro}
+\input{contents/floats}
+\input{contents/math_and_citations}
+\input{contents/summary}
 
 % 使用英文字母对附录编号
 \appendix
 
 % 附录内容，本科学位论文可以用翻译的文献替代。
-\input{tex/app_maxwell_equations}
-\input{tex/app_flow_chart}
+\input{contents/app_maxwell_equations}
+\input{contents/app_flow_chart}
 
 % 文后无编号部分
 \backmatter
@@ -78,16 +78,16 @@
 % 用于盲审的论文需隐去致谢、发表论文、参与项目、申请专利、简历
 
 % 致谢
-\input{tex/acknowledgements}
+\input{contents/acknowledgements}
 
 % 发表论文、参与项目、申请专利、简历
 % 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
-\input{tex/publications}
-\input{tex/projects}
-\input{tex/patents}
-\input{tex/resume}
+\input{contents/publications}
+\input{contents/projects}
+\input{contents/patents}
+\input{contents/resume}
 
 % 中文学士学位论文要求在最后有一个英文大摘要，单独编页码，英文学士学位论文不需要
-\input{tex/end_english_abstract}
+\input{contents/end_english_abstract}
 
 \end{document}
