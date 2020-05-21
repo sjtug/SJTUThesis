@@ -61,14 +61,14 @@
     \parbox[b]{0.75\textwidth}{%
       \raggedleft\nouppercase{\footnotesize\heiti\sjtu@titlemark}}}
   \newcommand{\sjtu@fancyfoot}[2]{%
-    \small --~~Page~~{\bfseries{#1}}~~of~~{\bfseries{#2}}~~--}
+    \small --~~Page~~{ {#1} }~~of~~{ {#2} }~~--}
 \else
   \def\sjtu@titlemark{\sjtu@value@title}
   \newcommand{\sjtu@fancyhead}{%
     \parbox[b]{0.75\textwidth}{%
       \raggedleft\nouppercase{\small\heiti\sjtu@titlemark}}}
   \newcommand{\sjtu@fancyfoot}[2]{%
-    \small 第~{\bfseries{#1}}~页\,共~{\bfseries{#2}}~页}
+    \small 第~{ {#1} }~页\,共~{ {#2} }~页}
 \fi
 \fancypagestyle{sjtu@front}{%
   \fancyhf{}
