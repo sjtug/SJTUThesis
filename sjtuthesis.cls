@@ -884,8 +884,6 @@
     texcl=true,
     mathescape=true
   }
-  \lstnewenvironment{codeblock}[1][]
-    {\lstset{style=lstStyleCode,#1}}{}
 }
 \sjtu@atendpackage{tikz}{
   \usetikzlibrary{shapes.geometric, arrows}
