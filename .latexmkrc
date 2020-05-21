@@ -2,7 +2,12 @@
 
 # Set environment variables.
 $ENV{'TZ'}='Asia/Shanghai';
-$ENV{'TEXINPUTS'}='./texmf//:' . $ENV{'TEXINPUTS'}; 
+
+if ( $^O =~ /MSWin32/ ) {
+  $ENV{'TEXINPUTS'}='./texmf//;' . $ENV{'TEXINPUTS'};
+} else {
+  $ENV{'TEXINPUTS'}='./texmf//:' . $ENV{'TEXINPUTS'}; 
+};
 
 # Use xelatex with latexmk.
 $pdf_mode = 5;
