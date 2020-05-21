@@ -1,8 +1,12 @@
 # Latexmk configuration file.
 
 # Set environment variables.
+
+# Set timezone.
 $ENV{'TZ'}='Asia/Shanghai';
-$ENV{'TEXINPUTS'}='./texmf//:' . $ENV{'TEXINPUTS'}; 
+
+# Ensure './texmf//' is in '$TEXINPUTS'.
+ensure_path( 'TEXINPUTS', './texmf//' );
 
 # Use xelatex with latexmk.
 $pdf_mode = 5;
