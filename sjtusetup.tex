@@ -1,0 +1,174 @@
+% !TEX root = ./thesis.tex
+
+%TC:ignore
+
+\sjtusetup{
+  %
+  %******************************
+  % 注意：
+  %   1. 配置里面不要出现空行
+  %   2. 不需要的配置信息可以删除
+  %******************************
+  %
+  % 信息录入
+  %
+  info = {%
+    %
+    % 标题
+    %   可使用“\\”命令手动控制换行
+    %
+    title           = {上海交通大学学位论文 \LaTeX{} 模板示例文档},
+    title*          = {A Sample Document for \LaTeX-based SJTU Thesis Template},
+    %
+    % 关键词
+    %
+    keywords        = {上海交大, 饮水思源, 爱国荣校},
+    keywords*       = {SJTU, master thesis, XeTeX/LaTeX template},
+    %
+    % 姓名
+    %
+    author          = {某\quad{}某},
+    author*         = {Mo Mo},
+    %
+    % 指导教师
+    %
+    supervisor      = {某某教授},
+    supervisor*     = {Prof. Mou Mou},
+    %
+    % 副指导教师
+    %
+    % assisupervisor  = {某某教授},
+    % assisupervisor* = {Prof. Uom Uom},
+    %
+    % 学号
+    %
+    id              = {0010900990},
+    %
+    % 学位
+    %   本科生不需要填写
+    %
+    degree          = {工学硕士},
+    degree*         = {Master of Engineering},
+    %
+    % 专业
+    %
+    major           = {某某专业},
+    major*          = {A Very Important Major},
+    %
+    % 所属院系
+    %
+    department      = {某某系},
+    department*     = {Depart of XXX},
+    %
+    % 课程名称
+    %   仅课程论文适用
+    %
+    coursename      = {某某课程},
+    %
+    % 答辩日期
+    %   使用 ISO 格式；默认为当前时间
+    %
+    % date            = {2014-12-17},
+    %
+    % 资助基金
+    %
+    % fund  = {
+    %           {国家 973 项目 (No. 2025CB000000)},
+    %           {国家自然科学基金 (No. 81120250000)},
+    %         },
+    % fund* = {
+    %           {National Basic Research Program of China (Grant No. 2025CB000000)},
+    %           {National Natural Science Foundation of China (Grant No. 81120250000)},
+    %         },
+  },
+  %
+  % 格式设置
+  %
+  format = {%
+    %
+    % 本科论文页眉 logo 颜色
+    %   默认为黑色
+    %
+    % header-logo-color = red,
+  },
+  %
+  % 名称设置
+  %
+  name = {%
+    % publications      = {攻读学位期间完成的论文},
+  },
+}
+
+% 参考文献支持宏包
+\usepackage[backend=biber,style=gb7714-2015,gbpub=false,gbpunctin=false]{biblatex}
+% 导入参考文献数据库
+\addbibresource{bibdata/thesis.bib}
+
+% 定义图片文件目录与扩展名
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
+
+% 确定浮动对象的位置，可以使用 [H]，强制将浮动对象放到这里（可能效果很差）
+% \usepackage{float}
+
+% 固定宽度的表格
+% \usepackage{tabularx}
+
+% 表格中支持跨行
+\usepackage{multirow}
+
+% 表格中数字按小数点对齐
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+% 附带脚注的表格
+\usepackage{threeparttable}
+
+% 算法环境宏包
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+% \usepackage{algorithm}
+
+% 代码环境宏包
+\usepackage{listings}
+\lstnewenvironment{codeblock}[1][]
+  {\lstset{style=lstStyleCode,#1}}{}
+
+% 国际单位制宏包
+\usepackage{siunitx}
+
+% 定理环境宏包
+\usepackage{ntheorem}
+% \usepackage{amsthm}
+
+% 绘图宏包
+\usepackage{tikz}
+
+% 一些文档中用到的 logo
+\usepackage{hologo}
+\newcommand{\XeTeX}{\hologo{XeTeX}}
+\newcommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
+
+% 借用 ltxdoc 里面的几个命令。
+\def\cmd#1{\cs{\expandafter\cmd@to@cs\string#1}}
+\def\cmd@to@cs#1#2{\char\number`#2\relax}
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+
+\newcommand*{\meta}[1]{{%
+  \ensuremath{\langle}\rmfamily\itshape#1\/\ensuremath{\rangle}}}
+\providecommand\marg[1]{%
+  {\ttfamily\char`\{}\meta{#1}{\ttfamily\char`\}}}
+\providecommand\oarg[1]{%
+  {\ttfamily[}\meta{#1}{\ttfamily]}}
+\providecommand\parg[1]{%
+  {\ttfamily(}\meta{#1}{\ttfamily)}}
+\providecommand\pkg[1]{{\sffamily#1}}
+
+% 自定义命令
+
+% E-mail
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+% hyperref 宏包在最后调用
+\usepackage{hyperref}
+
+%TC:endignore
