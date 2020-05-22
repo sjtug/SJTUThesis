@@ -260,6 +260,10 @@
     default = {--},
   },
 }
+\sjtu@set@family@bool@handler{sjtu@format}
+\sjtu@define@bool{sjtu@format}{
+  indent-headings = { name = indent@headings },
+}
 \kv@define@key{sjtu}{info}{
   \kvsetkeys{sjtu@info}{#1}
 }
@@ -737,7 +741,7 @@
   \@mainmatterfalse
 }
 \ctexset{%
-  chapter={%
+  chapter = {%
     format       = \zihao{3}\bfseries\heiti\centering,
     nameformat   = {},
     titleformat  = {},
@@ -746,27 +750,56 @@
     beforeskip   = 1ex,
     afterskip    = 2ex
   },
-  section={%
+  section = {%
     format       = \zihao{4}\bfseries\heiti,
     afterindent  = true,
     afterskip    = 1ex \@plus .2ex
   },
-  subsection={%
+  subsection = {%
     format       = \zihao{-4}\bfseries\heiti,
     afterindent  = true,
     afterskip    = 1ex \@plus .2ex
   },
-  subsubsection={%
+  subsubsection = {%
     format       = \zihao{-4}\normalfont,
     afterindent  = true,
     afterskip    = 1ex \@plus .2ex
   },
   paragraph/afterindent    = true,
-  subparagraph/afterindent = true}
+  subparagraph/afterindent = true,
+}
+\newcommand\sjtu@format@set@indent@headings{%
+  \ifsjtu@format@indent@headings
+    \ctexset{%
+      section/indent       = 2\ccwd,
+      subsection/indent    = 2\ccwd,
+      subsubsection/indent = 2\ccwd,
+    }
+    \ifsjtu@degree@graduate\relax\else
+      \ctexset{%
+        subsubsection/name   = {(,)},
+        subsubsection/number = \arabic{subsubsection},
+      }
+    \fi
+  \else
+    \ctexset{%
+      section/indent       = 0pt,
+      subsection/indent    = 0pt,
+      subsubsection/indent = 0pt,
+      subsubsection/name   = {},
+      subsubsection/number = \thesubsubsection,
+    }
+  \fi
+}
+\sjtu@format@set@indent@headings
+\sjtu@option@hook{sjtu@format}{indent-headings}{%
+  \sjtu@format@set@indent@headings
+}
 \ctexset{%
   punct          = quanjiao,
   space          = auto,
-  autoindent     = true}
+  autoindent     = true,
+}
 \AtEndOfClass{\sloppy}
 \setlist{nosep}
 \setlist*{leftmargin=*}
