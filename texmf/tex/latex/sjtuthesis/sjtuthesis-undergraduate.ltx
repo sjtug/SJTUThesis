@@ -1,0 +1,147 @@
+%%
+%% This is file `sjtuthesis-undergraduate.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuthesis.dtx  (with options: `undergraduate')
+%% 
+%% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
+%%           (C) 2018-2020 by SJTUG
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This file has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Alexara Wu.
+%% 
+\ProvidesFile{sjtuthesis-undergraduate.ltx}
+  [2019/06/16 1.0.0rc Shanghai Jiao Tong University Thesis Template]
+\geometry{%
+  paper      = a4paper,
+  vmargin    = {84bp, 72bp},
+  hmargin    = 90bp,
+  headheight = 60bp,
+  headsep    = 12bp,
+}
+\ctexset{%
+  subsection/format = \zihao{-4}\normalfont,
+}
+\renewcommand\cftchapfont{\normalfont}
+\renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
+\renewcommand\cftchappagefont{\normalfont}
+\NewDocumentEnvironment{abstract}{}{%
+  \sjtu@chapter*[\sjtu@name@abstract@zh]{%
+    \sjtu@info@title@zh \vskip 2ex
+    \begingroup
+      \zihao{4}
+      \sjtu@name@abstract@zh
+    \endgroup
+  }[\sjtu@name@abstract]%
+}{%
+  \vskip 3ex \noindent
+  \begingroup
+    \zihao{-4}
+    \heiti\sjtu@name@keywords@zh
+  \endgroup
+  \begingroup
+    \zihao{5}
+    \sjtu@info@keywords@zh
+  \endgroup
+}
+\NewDocumentEnvironment{abstract*}{}{%
+  \sjtu@chapter*[\sjtu@name@abstract@en]{%
+    \MakeUppercase\sjtu@info@title@en \vskip 2ex
+    \begingroup
+      \zihao{4}
+      \MakeUppercase\sjtu@name@abstract@en
+    \endgroup
+  }[]
+}{%
+  \vskip 3ex \noindent
+  \begingroup
+    \zihao{-4}\bfseries
+    \sjtu@name@keywords@en
+  \endgroup
+  \begingroup
+    \zihao{5}
+    \sjtu@info@keywords@en
+  \endgroup
+}
+\newcommand\sjtu@digest[1]{\long\gdef\sjtu@digest@body{#1}}
+\NewDocumentEnvironment{digest}{}{%
+  \Collect@Body\sjtu@digest
+}{%
+  \ifsjtu@degree@course\relax\else
+    \ifsjtu@language@english\relax\else
+      \AtEndDocument{%
+        \if@openright\cleardoublepage\else\clearpage\fi%
+        \pagenumbering{roman}
+        \def\sjtu@thepage{\theCurrentPageLocal}
+        \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
+        \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@en}
+        \sjtu@digest@body
+      }
+    \fi
+  \fi
+}
+\NewDocumentCommand{\maketitlepage}{}{%
+  \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}
+  \sjtu@make@titlepage@zh%
+}
+\newcommand\sjtu@make@titlepage@zh{%
+  \if@openright\cleardoublepage\else\clearpage\fi%
+  \thispagestyle{empty}
+  \begin{center}
+    \kaishu
+    \vspace*{48pt}
+    \includegraphics[height=96pt]{sjtu-vi-name-\sjtu@format@title@logo@color.pdf}
+    \vskip 28pt
+    {\fontsize{32}{32}\sjtu@name@subject@zh}
+    \vskip 16pt
+    {\zihao{-2}\MakeUppercase\sjtu@name@subject@en}
+    \vskip 16pt
+    \includegraphics[height=86pt]{sjtu-vi-badge-\sjtu@format@title@logo@color.pdf}
+    \vskip \stretch{2}
+    \begingroup
+      \zihao{2}
+      \begin{tabular}{r@{：}l}
+        论文题目 &
+        \begin{minipage}[t]{280pt}
+          \zihao{-2}
+          \begin{center}
+            \sjtu@uline\sjtu@info@title@zh
+          \end{center}
+        \end{minipage}
+      \end{tabular}
+    \endgroup
+    \vskip \stretch{1}
+    \begingroup
+      \zihao{3}
+      \def\arraystretch{1.1}
+      \begin{tabular}
+        {>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
+        \sjtu@name@author@zh       & \sjtu@info@author@zh      \\ \cline{2-2}
+        \sjtu@name@id@zh           & \makebox[180pt]{\sjtu@info@id} \\
+          \cline{2-2}
+        \ifsjtu@degree@course
+          \sjtu@name@coursename@zh & \sjtu@info@coursename@zh  \\ \cline{2-2}
+        \else
+          \sjtu@name@major@zh      & \sjtu@info@major@zh       \\ \cline{2-2}
+        \fi
+        \sjtu@name@supervisor@zh   & \sjtu@info@supervisor@zh  \\ \cline{2-2}
+        \sjtu@name@department@zh   & \sjtu@info@department@zh  \\ \cline{2-2}
+      \end{tabular}
+    \endgroup
+    \vskip 40pt
+  \end{center}
+}
+\endinput
+%%
+%% End of file `sjtuthesis-undergraduate.ltx'.

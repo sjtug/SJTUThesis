@@ -59,7 +59,7 @@ We are hearing from:
 
 ## License
 
-The copyright of image sources including SJTU logo (`sjtu-logo.pdf` etc.)
+The copyright of image sources including SJTU logo (`sjtu-vi-logo-blue.pdf` etc.)
 belongs to Shanghai Jiao Tong University.
 
 `sjtuthesis.cls` document class with related files, and `biblatex-gb7714-2015` biblatex style files is under [LPPL](https://www.latex-project.org/lppl.txt).

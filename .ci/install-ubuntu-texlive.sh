@@ -20,7 +20,6 @@ fi
 tlmgr install           \
   algorithm2e           \
   alphalph              \
-  anyfontsize           \
   biber                 \
   biblatex              \
   biblatex-gb7714-2015  \
@@ -34,6 +33,7 @@ tlmgr install           \
   eso-pic               \
   etoolbox              \
   fandol                \
+  filehook              \
   fontspec              \
   footmisc              \
   hologo                \
