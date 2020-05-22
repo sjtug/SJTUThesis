@@ -90,7 +90,7 @@ make wordcount                # 论文字数统计
 
 ## 软件许可证
 
-上海交通大学校徽校名图片（`sjtu-logo.pdf` 等）的版权归上海交通大学所有。
+上海交通大学校徽校名图片（`sjtu-vi-logo-blue.pdf` 等）的版权归上海交通大学所有。
 
 `sjtuthesis.cls` 文档类与相关附属文件，以及 `biblatex-gb7714-2015` 样式文件使用 [LPPL](https://www.latex-project.org/lppl.txt) 授权。
 

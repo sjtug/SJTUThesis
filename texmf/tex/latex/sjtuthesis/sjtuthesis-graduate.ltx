@@ -7,7 +7,7 @@
 %% sjtuthesis.dtx  (with options: `graduate')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
-%%           (C) 2018-2019 by SJTUG
+%%           (C) 2018-2020 by SJTUG
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -23,42 +23,6 @@
 %% 
 \ProvidesFile{sjtuthesis-graduate.ltx}
   [2019/06/16 1.0.0rc Shanghai Jiao Tong University Thesis Template]
-\ifsjtu@degree@doctor
-  \sjtu@def@label{degreetypeChi}{博士}
-  \sjtu@def@label{degreetypeEng}{Doctor}
-\else
-  \sjtu@def@label{degreetypeChi}{硕士}
-  \sjtu@def@label{degreetypeEng}{Master}
-\fi
-\sjtu@def@label{authorChi}{\sjtu@label@degreetypeChi 研究生}
-\sjtu@def@label{authorEng}{Candidate}
-\sjtu@def@label{studentidChi}{学号}
-\sjtu@def@label{studentidEng}{Student ID}
-\sjtu@def@label{supervisorChi}{导师}
-\sjtu@def@label{supervisorEng}{Supervisor}
-\sjtu@def@label{assisupervisorChi}{副导师}
-\sjtu@def@label{assisupervisorEng}{Assistant Supervisor}
-\sjtu@def@label{degreeChi}{申请学位}
-\sjtu@def@label{degreeEng}{Academic Degree Applied for}
-\sjtu@def@label{majorChi}{学科}
-\sjtu@def@label{majorEng}{Speciality}
-\sjtu@def@label{departmentChi}{所在单位}
-\sjtu@def@label{departmentEng}{Affiliation}
-\sjtu@def@label{defenddateChi}{答辩日期}
-\sjtu@def@label{defenddateEng}{Date of Defence}
-\sjtu@def@label{conferringChi}{授予学位单位}
-\sjtu@def@label{conferringEng}{Degree-Conferring-Institution}
-\sjtu@def@label{fundChi}{资助基金}
-\sjtu@def@label{fundEng}{Funded by}
-\sjtu@def@label{thesiscat}{学位论文}
-\def\sjtu@label@thesistype{\sjtu@label@thesiscat}
-\sjtu@def@label{subjectChi}{%
-  \sjtu@label@schoolChi\sjtu@label@degreetypeChi\sjtu@label@thesiscat
-}
-\sjtu@def@label{subjectEng}{%
-  Dissertation Submitted to \sjtu@label@schoolEng \\%
-  for the Degree of \sjtu@label@degreetypeEng
-}
 \geometry{%
   paper      = a4paper,
   top        = 3.5cm,
@@ -68,176 +32,120 @@
   headheight = 1.0cm,
   headsep    = 0.5cm,
 }
-\newcommand{\sjtu@fancyfoot}[2]{
-  \ifsjtu@review\relax\else
-    \ifx#2\@empty\else
-      \zihao{-5}{\bfseries #1}\\{#2}
-    \fi
-  \fi
-}
-\fancypagestyle{sjtu@title}{%
-  \fancyhf{}
-  \fancyfoot[C]{\sjtu@fancyfoot{\sjtu@label@fundChi}{\sjtu@value@fund}}
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0pt}
-}
-\fancypagestyle{sjtu@entitle}{%
-  \fancyhf{}
-  \fancyfoot[C]{\sjtu@fancyfoot{\sjtu@label@fundEng}{\sjtu@value@enfund}}
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0pt}
-}
-\fancypagestyle{sjtu@plain}{%
-  \fancyhf{}
-  \fancyhead[C]{\zihao{-5}\sjtu@label@subjectChi}
-  \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
-  \renewcommand{\headrule}{%
-    \hrule\@height2.25\p@\@width\headwidth
-    \vskip 0.75\p@
-    \hrule\@height0.75\p@\@width\headwidth
-    \vskip -2.75\p@
-  }
-}
-\renewcommand{\frontmatter}{%
-  \cleardoublepage
-  \@mainmatterfalse
-  \pagenumbering{Roman}
-  \pagestyle{sjtu@plain}
-}
-\renewcommand{\mainmatter}{%
-  \cleardoublepage
-  \@mainmattertrue
-  \sjtu@setfloatfonttrue
-  \pagenumbering{arabic}
-  \pagestyle{sjtu@plain}
-}
-\renewcommand{\backmatter}{%
-  \cleardoublepage
-  \@mainmatterfalse
-}
-\renewcommand{\cftchapfont}{\bfseries\heiti}
-\renewcommand{\cftchapleader}{\normalfont\cftdotfill{\cftdotsep}}
+\renewcommand\cftchapfont{\bfseries\heiti}
+\renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \NewDocumentEnvironment{abstract}{}{%
-  \cleardoublepage
-  \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
-  \chapter*{%
-    \sjtu@value@title \vskip 2ex
+  \sjtu@chapter*[\sjtu@name@abstract@zh]{%
+    \sjtu@info@title@zh \vskip 2ex
     \begingroup
-      \sjtu@label@abstractChi
+      \sjtu@name@abstract@zh
     \endgroup
-  }
-  \@mkboth{\sjtu@label@abstractChi}%
-          {\sjtu@label@abstractChi}%
+  }[\sjtu@name@abstract]%
   \zihao{4}
 }{%
   \vskip 3ex \noindent
   \begingroup
-    \heiti\sjtu@label@keywordsChi
+    \heiti\sjtu@name@keywords@zh
   \endgroup
   \begingroup
-    \sjtu@value@keywords
+    \sjtu@info@keywords@zh
   \endgroup
 }
-\NewDocumentEnvironment{enabstract}{}{%
-  \cleardoublepage
-  \chapter*{%
-    \MakeUppercase\sjtu@value@entitle \vskip 2ex
+\NewDocumentEnvironment{abstract*}{}{%
+  \sjtu@chapter*[\sjtu@name@abstract@en]{%
+    \MakeUppercase\sjtu@info@title@en \vskip 2ex
     \begingroup
-      \MakeUppercase\sjtu@label@abstractEng
+      \MakeUppercase\sjtu@name@abstract@en
     \endgroup
-  }
-  \@mkboth{\sjtu@label@abstractEng}%
-          {\sjtu@label@abstractEng}%
+  }[]
   \zihao{4}
 }{%
   \vskip 3ex \noindent
   \begingroup
     \bfseries\MakeUppercase
-    \sjtu@label@keywordsEng
+    \sjtu@name@keywords@en
   \endgroup
   \begingroup
-    \sjtu@value@enkeywords
+    \sjtu@info@keywords@en
   \endgroup
 }
-\newcommand{\sjtu@bigabstract}[1]{\long\gdef\sjtu@bigabstract@body{#1}}
-\NewDocumentEnvironment{bigabstract}{}{%
-  \Collect@Body\sjtu@bigabstract
+\newcommand\sjtu@digest[1]{\long\gdef\sjtu@digest@body{#1}}
+\NewDocumentEnvironment{digest}{}{%
+  \Collect@Body\sjtu@digest
 }{%
   \relax
 }
-\RenewDocumentCommand\maketitle{}{%
-  \pdfbookmark[0]{\sjtu@label@titlepage}{titlepage}
-  \sjtu@makechinesetitle%
-  \sjtu@makeenglishtitle%
+\NewDocumentCommand{\maketitlepage}{}{%
+  \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}
+  \sjtu@make@titlepage@zh%
+  \sjtu@make@titlepage@en%
 }
-\newcommand{\sjtu@makechinesetitle}{%
-  \cleardoublepage
+\newcommand\sjtu@make@titlepage@zh{%
+  \if@openright\cleardoublepage\else\clearpage\fi%
+  \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@zh}{\par}}
   \thispagestyle{sjtu@title}
   \begin{center}
-    \vspace*{40bp}
-    {\zihao{-2}\sjtu@label@subjectChi}
+    \vspace*{40pt}
+    {\zihao{-2}\sjtu@name@subject@zh}
     \vskip \stretch{4}
-    {\zihao{2}\heiti\sjtu@value@title \vskip 1bp}
+    {\zihao{2}\heiti\sjtu@info@title@zh \vskip 1pt}
     \vskip \stretch{5}
     \begingroup
       \zihao{4}
-      \def\tabcolsep{1bp}
+      \def\tabcolsep{1pt}
       \def\arraystretch{1.25}
       \begin{tabular}
         {>{\begin{CJKfilltwosides}[t]{6.5\ccwd}\heiti}r<{\end{CJKfilltwosides}}
           @{：}l}
-        \sjtu@label@authorChi           & \sjtu@value@author         \\
-        \sjtu@label@studentidChi        & \sjtu@value@studentid      \\
-        \sjtu@label@supervisorChi       & \sjtu@value@supervisor     \\
-        \ifx\sjtu@value@assisupervisor\@empty\else
-          \sjtu@label@assisupervisorChi & \sjtu@value@assisupervisor \\
+        \sjtu@name@author@zh           & \sjtu@info@author@zh         \\
+        \sjtu@name@id@zh               & \sjtu@info@id                \\
+        \sjtu@name@supervisor@zh       & \sjtu@info@supervisor@zh     \\
+        \ifx\sjtu@info@assisupervisor@zh\@empty\else
+          \sjtu@name@assisupervisor@zh & \sjtu@info@assisupervisor@zh \\
         \fi
-        \sjtu@label@degreeChi           & \sjtu@value@degree         \\
-        \sjtu@label@majorChi            & \sjtu@value@major          \\
-        \ifx\sjtu@value@department\@empty\else
-        \sjtu@label@departmentChi       & \sjtu@value@department     \\
-		\fi
-        \sjtu@label@defenddateChi       & \sjtu@value@date           \\
-        \sjtu@label@conferringChi       & \sjtu@label@schoolChi      \\
+        \sjtu@name@degree@zh           & \sjtu@info@degree@zh         \\
+        \sjtu@name@major@zh            & \sjtu@info@major@zh          \\
+        \sjtu@name@department@zh       & \sjtu@info@department@zh     \\
+        \sjtu@name@defenddate@zh       &
+          \sjtu@date{\sjtu@date@format@zh}{\sjtu@info@date}           \\
+        \sjtu@name@conferring@zh       & \sjtu@name@school@zh         \\
       \end{tabular}
     \endgroup
-    \vskip 26bp
+    \vskip 26pt
   \end{center}
-  \cleardoublepage
 }
-\newcommand{\sjtu@makeenglishtitle}{%
-  \cleardoublepage
-  \thispagestyle{sjtu@entitle}
+\newcommand\sjtu@make@titlepage@en{%
+  \if@openright\cleardoublepage\else\clearpage\fi%
+  \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@en}{\par}}
+  \thispagestyle{sjtu@title}
   \begin{center}
-    \vspace*{28bp}
-    {\zihao{-2}\sjtu@label@subjectEng \vskip 1bp}
+    \vspace*{28pt}
+    {\zihao{-2}\sjtu@name@subject@en \vskip 1pt}
     \vskip \stretch{4}
-    {\zihao{2}\bfseries\MakeUppercase\sjtu@value@entitle \vskip 1bp}
+    {\zihao{2}\bfseries\MakeUppercase\sjtu@info@title@en \vskip 1pt}
     \vskip \stretch{5}
     \begingroup
       \zihao{4}
-      \def\tabcolsep{1bp}
+      \def\tabcolsep{1pt}
       \def\arraystretch{1.3}
       \begin{tabular}
         {>{\bfseries}l<{:~}p{.45\textwidth}}
-        \sjtu@label@authorEng           & \sjtu@value@enauthor         \\
-        \sjtu@label@studentidEng        & \sjtu@value@studentid        \\
-        \sjtu@label@supervisorEng       & \sjtu@value@ensupervisor     \\
-        \ifx\sjtu@value@enassisupervisor\@empty\else
-          \sjtu@label@assisupervisorEng & \sjtu@value@enassisupervisor \\
+        \sjtu@name@author@en           & \sjtu@info@author@en         \\
+        \sjtu@name@id@en               & \sjtu@info@id                \\
+        \sjtu@name@supervisor@en       & \sjtu@info@supervisor@en     \\
+        \ifx\sjtu@info@assisupervisor@en\@empty\else
+          \sjtu@name@assisupervisor@en & \sjtu@info@assisupervisor@en \\
         \fi
-        \sjtu@label@degreeEng           & \sjtu@value@endegree         \\
-        \sjtu@label@majorEng            & \sjtu@value@enmajor          \\
-        \ifx\sjtu@value@departmentEng\@empty\else
-        \sjtu@label@departmentEng       & \sjtu@value@endepartment     \\
-		\fi
-        \sjtu@label@defenddateEng       & \sjtu@value@endate           \\
-        \sjtu@label@conferringEng       & \sjtu@label@schoolEng        \\
+        \sjtu@name@degree@en           & \sjtu@info@degree@en         \\
+        \sjtu@name@major@en            & \sjtu@info@major@en          \\
+        \sjtu@name@department@en       & \sjtu@info@department@en     \\
+        \sjtu@name@defenddate@en       &
+          \sjtu@date{\sjtu@date@format@en}{\sjtu@info@date}           \\
+        \sjtu@name@conferring@en       & \sjtu@name@school@en         \\
       \end{tabular}
     \endgroup
-    \vskip 26bp
+    \vskip 26pt
   \end{center}
-  \cleardoublepage
 }
 \endinput
 %%
