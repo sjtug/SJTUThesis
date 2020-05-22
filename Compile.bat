@@ -1,5 +1,8 @@
 @echo off
+
 chcp 65001 >nul
+
+call :setESC
 
 set THESIS=thesis
 
@@ -12,11 +15,13 @@ if %flag%x == thesisx (
 	call :cleanall
 	call :thesis	
 	if ERRORLEVEL 1 (
-		echo Error! Please check the 'thesis.log' for more details...
+		echo.
+		echo %ESC%[31mError! Please check the %ESC%[7m'%THESIS%.log'%ESC%[0;31m for more details . . .%ESC%[0m
 		pause
 	) else (
 		call :clean
-		echo Finished!
+		echo %ESC%[32mFinished!%ESC%[0m
+		pause
 	)
 	goto :EOF
 )
@@ -37,7 +42,7 @@ if %flag%x == wordcountx (
 )
 
 :help
-	echo This is the compile batch script for SJTUThesis.
+	echo %ESC%[33mThis is the compile batch script for SJTUThesis.
 	echo Usage:
 	echo     compile.bat [option]
 	echo options:
@@ -45,26 +50,24 @@ if %flag%x == wordcountx (
 	echo   clean     Clean all work files
 	echo   cleanall  Clean all work files and thesis.pdf
 	echo   wordcount Count words in thesis.pdf
-	echo   help      Print this help message
+	echo   help      Print this help message%ESC%[0m
 goto :EOF
 
 :thesis
-	echo Compile...
-	latexmk -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode thesis >nul 2>nul
+	echo %ESC%[33mCompile . . .%ESC%[0m
+	latexmk -quiet -file-line-error -halt-on-error -interaction=nonstopmode %THESIS% 2>nul
 goto :EOF
 
 :clean
-	echo Clean files...
-	latexmk -c -silent 2>nul
-	del tex\*.aux >nul 2>nul
+	echo %ESC%[33mClean files . . .%ESC%[0m
+	latexmk -quiet -c %THESIS% 2>nul
 goto :EOF
 
 :cleanall
-	echo Clean files...
-	latexmk -C -silent 2>nul
-	del tex\*.aux >nul 2>nul
-	if exist thesis.pdf (
-		echo Close the file: thesis.pdf!
+	echo %ESC%[33mClean files . . .%ESC%[0m
+	latexmk -quiet -C %THESIS% 2>nul
+	if exist %THESIS%.pdf (
+		echo %ESC%[31mClose the file: %ESC%[7m'%THESIS%.pdf'%ESC%[0;31m!%ESC%[0m
 		pause
 		call :cleanall
 	)
@@ -78,7 +81,7 @@ goto :EOF
 	if %errorlevel% equ 0 (
 		for /f "delims=" %%i in ('texcount %THESIS%.tex -inc -char-only  2^>nul') do (
 			if !found! equ 1 (
-				echo 英文字符数:		!%%i!
+				echo %ESC%[33m英文字符数			:%ESC%[36m!%%i!%ESC%[0m
 				goto :total
 			)
 			echo %%i | findstr "total" > nul && set found=1
@@ -86,7 +89,7 @@ goto :EOF
 	) else (
 		for /f "delims=" %%i in ('texcount %THESIS%.tex -inc -ch-only  2^>nul') do (
 			if !found! equ 1 (
-				echo 纯中文字数:		!%%i!
+				echo %ESC%[33m纯中文字数			:%ESC%[36m!%%i!%ESC%[0m
 				goto :total
 			)
 			echo %%i | findstr "total" > nul && set found=1
@@ -97,9 +100,16 @@ goto :EOF
 	set found=0
 	for /f "delims=" %%i in ('texcount %THESIS%.tex -inc -chinese 2^>nul') do (
 		if !found! equ 1 (
-			echo 总字数^(英文单词+中文字^):!%%i!
+			echo %ESC%[33m总字数（英文单词 + 中文字）	:%ESC%[36m!%%i!%ESC%[0m
 			goto :EOF
 		)
 		echo %%i | findstr "total" > nul && set found=1
 	)
 goto :EOF
+
+:setESC
+for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
+	set ESC=%%b
+	exit /B 0
+)
+exit /B 0

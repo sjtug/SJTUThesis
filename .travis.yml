@@ -18,7 +18,7 @@ before_script:
   - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' thesis.tex
 
 script:
-  - latexmk -quiet -halt-on-error -time -xelatex thesis.tex
+  - latexmk -quiet -halt-on-error -time thesis.tex
 
 after_failure:
   - cat thesis.log
