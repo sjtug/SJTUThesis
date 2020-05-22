@@ -4,7 +4,7 @@
 THESIS = thesis
 
 # Option for latexmk
-LATEXMK_OPT = -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode
+LATEXMK_OPT = -quiet -file-line-error -halt-on-error -interaction=nonstopmode
 LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
 
 # make deletion work on Windows
