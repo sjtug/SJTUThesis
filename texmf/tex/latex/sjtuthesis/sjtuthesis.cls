@@ -710,6 +710,7 @@
     \fancyfoot[C]{%
       \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
     }
+    \renewcommand\headrulewidth{0.75\p@}
   }
 \fi
 \patchcmd\cleardoublepage%
