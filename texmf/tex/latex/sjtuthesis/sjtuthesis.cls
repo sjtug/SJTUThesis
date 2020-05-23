@@ -63,7 +63,7 @@
         \@ifundefined{%
           if#1@\@nameuse{#1@##1@@name}@\@nameuse{#1@\@nameuse{#1@##1@@name}}%
         }{%
-          \sjtu@error{Invalid value "##1 = \@nameuse{#1@\@nameuse{#1@##1@@name}}"}%
+          \sjtu@error{Invalid value `##1 = \@nameuse{#1@\@nameuse{#1@##1@@name}}'}%
         }%
         \@nameuse{#1@##1@@reset}%
         \@nameuse{#1@\@nameuse{#1@##1@@name}@\@nameuse{#1@\@nameuse{#1@##1@@name}}true}%
@@ -117,7 +117,7 @@
         #1@\@nameuse{#1@##1@@name}####1%
       }{%
         \sjtu@warning{%
-          Cannot set boolean option to `####1',\MessageBreak
+          Cannot set boolean option `##1' to `####1',\MessageBreak
           use `true' or `false', now using `\@nameuse{#1@##1@@init}'%
         }%
       }{%
