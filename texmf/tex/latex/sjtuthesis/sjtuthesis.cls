@@ -710,6 +710,7 @@
     \fancyfoot[C]{%
       \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
     }
+    \renewcommand\headrulewidth{0.75\p@}
   }
 \fi
 \patchcmd\cleardoublepage%
@@ -747,23 +748,23 @@
     titleformat  = {},
     aftername    = \quad,
     afterindent  = true,
-    beforeskip   = 1ex,
-    afterskip    = 2ex
+    beforeskip   = {\ifsjtu@degree@graduate 0pt\else 1ex\fi},
+    afterskip    = {\ifsjtu@degree@graduate 3ex\else 4ex\fi},
   },
   section = {%
     format       = \zihao{4}\bfseries\heiti,
     afterindent  = true,
-    afterskip    = 1ex \@plus .2ex
+    afterskip    = {1ex \@plus .2ex},
   },
   subsection = {%
     format       = \zihao{-4}\bfseries\heiti,
     afterindent  = true,
-    afterskip    = 1ex \@plus .2ex
+    afterskip    = {1ex \@plus .2ex},
   },
   subsubsection = {%
     format       = \zihao{-4}\normalfont,
     afterindent  = true,
-    afterskip    = 1ex \@plus .2ex
+    afterskip    = {1ex \@plus .2ex},
   },
   paragraph/afterindent    = true,
   subparagraph/afterindent = true,
