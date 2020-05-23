@@ -161,6 +161,10 @@
       stix,
       step,
       termes,
+      pagella,
+      cambria,
+      libertinus,
+      lm,
       none,
     },
   },
@@ -217,7 +221,7 @@
 \RequirePackage{filehook}
 \newcommand\sjtu@package@conflict[2]{
   \AtBeginOfPackageFile*{#2}{
-    \sjtu@error{The "#2" package is incompatible with required "#1"}
+    \sjtu@error{The `#2' package is incompatible with required `#1'}
   }
 }
 \sjtu@package@conflict{unicode-math}{amscd}
@@ -518,6 +522,28 @@
     }%
   \fi
 }
+\let\sjtu@font@family@libertinus\@empty
+\newcommand\sjtu@font@set@libertinus@names{%
+  \ifx\sjtu@font@family@libertinus\@empty
+    \IfFontExistsTF{LibertinusSerif-Regular.otf}{%
+      \gdef\sjtu@font@family@libertinus@serif{LibertinusSerif}%
+      \gdef\sjtu@font@family@libertinus@sans{LibertinusSans}%
+      \gdef\sjtu@font@name@libertinus@math{LibertinusMath-Regular}%
+      \gdef\sjtu@font@style@libertinus@rm{Regular}%
+      \gdef\sjtu@font@style@libertinus@bf{Bold}%
+      \gdef\sjtu@font@style@libertinus@it{Italic}%
+      \gdef\sjtu@font@style@libertinus@bfit{BoldItalic}%
+    }{%
+      \gdef\sjtu@font@family@libertinus@serif{libertinusserif}%
+      \gdef\sjtu@font@family@libertinus@sans{libertinussans}%
+      \gdef\sjtu@font@name@libertinus@math{libertinusmath-regular}%
+      \gdef\sjtu@font@style@libertinus@rm{regular}%
+      \gdef\sjtu@font@style@libertinus@bf{bold}%
+      \gdef\sjtu@font@style@libertinus@it{italic}%
+      \gdef\sjtu@font@style@libertinus@bfit{bolditalic}%
+    }%
+  \fi
+}
 \newcommand\sjtu@set@font@xits{%
   \sjtu@font@set@xits@names
   \setmainfont{\sjtu@font@family@xits}[
@@ -529,13 +555,9 @@
   ]
 }
 \newcommand\sjtu@set@font@times{%
-  \setmainfont{Times New Roman}
+  \setmainfont{Times New Roman}[Ligatures = Rare]
   \setsansfont{Arial}
-  \IfFileExists{/System/Library/Fonts/Menlo.ttc}{%
-    \setmonofont{Menlo}[Scale = MatchLowercase]
-  }{%
-    \setmonofont{Consolas}[Scale = MatchLowercase]
-  }
+  \setmonofont{Courier New}[Scale = MatchLowercase]
 }
 \newcommand\sjtu@set@font@stix{%
   \setmainfont{STIX2Text}[
@@ -555,8 +577,34 @@
     BoldItalicFont = *-BoldItalic,
   ]
 }
+\newcommand\sjtu@set@font@source@sans@mono{%
+  \setsansfont{SourceSansPro}[
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+  ]
+  \setmonofont{SourceCodePro}[
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+    Scale          = MatchLowercase,
+  ]
+}
 \newcommand\sjtu@set@font@termes{%
   \setmainfont{texgyretermes}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+}
+\newcommand\sjtu@set@font@pagella{%
+  \setmainfont{texgyrepagella}[
     Extension      = .otf,
     UprightFont    = *-regular,
     BoldFont       = *-bold,
@@ -580,9 +628,56 @@
     BoldItalicFont = *-bolditalic,
   ]%
 }
-\newcommand\sjtu@set@font@source@sans@mono{%
-  \RequirePackage[opentype,scaled=.9]{sourcesanspro}
-  \RequirePackage[opentype,scaled=.9]{sourcecodepro}
+\newcommand\sjtu@set@font@cambria{%
+  \setmainfont{Cambria}
+  \setsansfont{Calibri}
+  \setmonofont{Consolas}[Scale = MatchLowercase]
+}
+\newcommand\sjtu@set@font@libertinus{%
+  \sjtu@font@set@libertinus@names
+  \setmainfont{\sjtu@font@family@libertinus@serif}[
+    Extension      = .otf,
+    UprightFont    = *-\sjtu@font@style@libertinus@rm,
+    BoldFont       = *-\sjtu@font@style@libertinus@bf,
+    ItalicFont     = *-\sjtu@font@style@libertinus@it,
+    BoldItalicFont = *-\sjtu@font@style@libertinus@bfit,
+  ]%
+  \setsansfont{\sjtu@font@family@libertinus@sans}[
+    Extension      = .otf,
+    UprightFont    = *-\sjtu@font@style@libertinus@rm,
+    BoldFont       = *-\sjtu@font@style@libertinus@bf,
+    ItalicFont     = *-\sjtu@font@style@libertinus@it,
+  ]%
+  \setmonofont{lmmonolt10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]%
+}
+\newcommand\sjtu@set@font@lm{%
+  \setmainfont{lmroman10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+  \setsansfont{lmsans10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]%
+  \setmonofont{lmmonolt10}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]%
 }
 \unimathsetup{
   math-style = ISO,
@@ -631,6 +726,19 @@
 \newcommand\sjtu@set@math@font@termes{%
   \setmathfont{texgyretermes-math.otf}
 }
+\newcommand\sjtu@set@math@font@pagella{%
+  \setmathfont{texgyrepagella-math.otf}
+}
+\newcommand\sjtu@set@math@font@cambria{%
+  \setmathfont{Cambria Math}
+}
+\newcommand\sjtu@set@math@font@libertinus{%
+  \sjtu@font@set@libertinus@names
+  \setmathfont{\sjtu@font@name@libertinus@math .otf}%
+}
+\newcommand\sjtu@set@math@font@lm{%
+  \setmathfont{latinmodern-math.otf}%
+}
 \newcommand\sjtu@load@fontset@xits{%
   \sjtu@set@font@xits
   \sjtu@set@font@source@sans@mono
@@ -654,6 +762,23 @@
   \sjtu@set@font@termes
   \sjtu@set@font@texgyre@sans@mono
   \sjtu@set@math@font@termes
+}
+\newcommand\sjtu@load@fontset@pagella{%
+  \sjtu@set@font@pagella
+  \sjtu@set@font@texgyre@sans@mono
+  \sjtu@set@math@font@pagella
+}
+\newcommand\sjtu@load@fontset@cambria{%
+  \sjtu@set@font@cambria
+  \sjtu@set@math@font@cambria
+}
+\newcommand\sjtu@load@fontset@libertinus{%
+  \sjtu@set@font@libertinus
+  \sjtu@set@math@font@libertinus
+}
+\newcommand\sjtu@load@fontset@lm{%
+  \sjtu@set@font@lm
+  \sjtu@set@math@font@lm
 }
 \newcommand\sjtu@load@fontset@none{\relax}
 \newcommand\sjtu@load@fontset{%
