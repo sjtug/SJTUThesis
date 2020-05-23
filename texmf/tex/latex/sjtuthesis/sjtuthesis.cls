@@ -216,11 +216,11 @@
     },
     default = black,
   },
-  float-numbering-separator = {
+  float-number-separator = {
     name = fl@num@sep,
     default = {--},
   },
-  equation-numbering-separator = {
+  equation-number-separator = {
     name = eq@num@sep,
     default = {--},
   },
