@@ -46,16 +46,17 @@
 \newcommand\sjtu@define@key[2]{%
   \kvsetkeys{#1@key}{#2}%
 }
-\newcommand\sjtu@set@family@key@handler[1]{%
+\newcommand\sjtu@set@family@handler[1]{%
   \kv@set@family@handler{#1@key}{%
-    \@namedef{#1@##1@@name}{##1}%
-    \def\sjtu@@default{}%
+    \def\sjtu@@initial{}%
     \def\sjtu@@choices{}%
+    \@namedef{#1@##1@@default}{}%
+    \@namedef{#1@##1@@check}{}%
+    \@namedef{#1@##1@@code}{}%
+    \@namedef{#1@##1@@name}{##1}%
     \kv@define@key{#1@value}{name}{%
       \@namedef{#1@##1@@name}{####1}%
     }%
-    \@namedef{#1@##1@@check}{}%
-    \@namedef{#1@##1@@code}{}%
     \kv@define@key{#1@value}{choices}{%
       \def\sjtu@@choices{####1}%
       \@namedef{#1@##1@@reset}{}%
@@ -69,14 +70,23 @@
         \@nameuse{#1@\@nameuse{#1@##1@@name}@\@nameuse{#1@\@nameuse{#1@##1@@name}}true}%
       }%
     }%
+    \kv@define@key{#1@value}{initial}{%
+      \def\sjtu@@initial{####1}%
+      \expandafter\ifx\csname #1@##1@@default\endcsname\@empty
+        \@namedef{#1@##1@@default}{####1}%
+      \fi
+    }%
     \kv@define@key{#1@value}{default}{%
-      \def\sjtu@@default{####1}%
+      \@namedef{#1@##1@@default}{####1}%
     }%
     \kvsetkeys{#1@value}{##2}%
     \@namedef{#1@\@nameuse{#1@##1@@name}}{}%
     \kv@set@family@handler{#1@choice}{%
-      \ifx\sjtu@@default\@empty
-        \def\sjtu@@default{####1}%
+      \ifx\sjtu@@initial\@empty
+        \def\sjtu@@initial{####1}%
+      \fi
+      \expandafter\ifx\csname #1@##1@@default\endcsname\@empty
+        \@namedef{#1@##1@@default}{####1}%
       \fi
       \expandafter\newif\csname if#1@\@nameuse{#1@##1@@name}@####1\endcsname
       \expandafter\g@addto@macro\csname #1@##1@@reset\endcsname{%
@@ -84,45 +94,13 @@
       }%
     }%
     \kvsetkeys@expandafter{#1@choice}{\sjtu@@choices}%
-    \expandafter\let\csname #1@\@nameuse{#1@##1@@name}\endcsname\sjtu@@default
+    \expandafter\let\csname #1@\@nameuse{#1@##1@@name}\endcsname\sjtu@@initial
     \expandafter\ifx\csname #1@\@nameuse{#1@##1@@name}\endcsname\@empty\else
       \@nameuse{#1@##1@@check}%
     \fi
-    \kv@define@key{#1}{##1}{%
+    \kv@define@key{#1}{##1}[\@nameuse{#1@##1@@default}]{%
       \@namedef{#1@\@nameuse{#1@##1@@name}}{####1}%
       \@nameuse{#1@##1@@check}%
-      \@nameuse{#1@##1@@code}%
-    }%
-  }
-}
-\newcommand\sjtu@define@bool[2]{%
-  \kvsetkeys{#1@bool}{#2}%
-}
-\newcommand\sjtu@set@family@bool@handler[1]{%
-  \kv@set@family@handler{#1@bool}{%
-    \@namedef{#1@##1@@name}{##1}%
-    \@namedef{#1@##1@@init}{false}%
-    \kv@define@key{#1@value}{name}{%
-      \@namedef{#1@##1@@name}{####1}%
-    }%
-    \kv@define@key{#1@value}{init}{%
-      \@namedef{#1@##1@@init}{####1}%
-    }%
-    \@namedef{#1@##1@@code}{}%
-    \kvsetkeys{#1@value}{##2}%
-    \expandafter\newif\csname if#1@\@nameuse{#1@##1@@name}\endcsname
-    \@nameuse{#1@\@nameuse{#1@##1@@name}\@nameuse{#1@##1@@init}}%
-    \kv@define@key{#1}{##1}[true]{%
-      \@ifundefined{%
-        #1@\@nameuse{#1@##1@@name}####1%
-      }{%
-        \sjtu@warning{%
-          Cannot set boolean option `##1' to `####1',\MessageBreak
-          use `true' or `false', now using `\@nameuse{#1@##1@@init}'%
-        }%
-      }{%
-        \@nameuse{#1@\@nameuse{#1@##1@@name}####1}%
-      }
       \@nameuse{#1@##1@@code}%
     }%
   }
@@ -130,7 +108,7 @@
 \newcommand\sjtu@option@hook[3]{%
   \expandafter\g@addto@macro\csname #1@#2@@code\endcsname{#3}%
 }
-\sjtu@set@family@key@handler{sjtu}
+\sjtu@set@family@handler{sjtu}
 \sjtu@define@key{sjtu}{
   degree = {
     choices = {
@@ -139,7 +117,6 @@
       bachelor,
       course,
     },
-    default = doctor,
   },
   language = {
     choices = {
@@ -152,7 +129,7 @@
       -4,
       5,
     },
-    default = 5,
+    initial = 5,
   },
   latinfontset = {
     choices = {
@@ -235,8 +212,17 @@
 \kv@define@key{sjtu}{format}{
   \kvsetkeys{sjtu@format}{#1}
 }
-\sjtu@set@family@key@handler{sjtu@format}
+\sjtu@set@family@handler{sjtu@format}
 \sjtu@define@key{sjtu@format}{
+  indent-headings = {
+    name = indent@headings,
+    choices = {
+      true,
+      false,
+    },
+    initial = false,
+    default = true,
+  },
   title-logo-color = {
     name = title@logo@color,
     choices = {
@@ -244,7 +230,7 @@
       blue,
       black,
     },
-    default = blue,
+    initial = blue,
   },
   header-logo-color = {
     name = header@logo@color,
@@ -253,25 +239,21 @@
       blue,
       black,
     },
-    default = black,
+    initial = black,
   },
   float-number-separator = {
     name = fl@num@sep,
-    default = {--},
+    initial = {--},
   },
   equation-number-separator = {
     name = eq@num@sep,
-    default = {--},
+    initial = {--},
   },
-}
-\sjtu@set@family@bool@handler{sjtu@format}
-\sjtu@define@bool{sjtu@format}{
-  indent-headings = { name = indent@headings },
 }
 \kv@define@key{sjtu}{info}{
   \kvsetkeys{sjtu@info}{#1}
 }
-\sjtu@set@family@key@handler{sjtu@info}
+\sjtu@set@family@handler{sjtu@info}
 \sjtu@define@key{sjtu@info}{
   title           = { name = title@zh },
   title*          = { name = title@en },
@@ -295,7 +277,7 @@
   fund            = { name = fund@zh },
   fund*           = { name = fund@en },
   date            = {%
-    default = {\the\year-\two@digits{\month}-\two@digits{\day}},
+    initial = {\the\year-\two@digits{\month}-\two@digits{\day}},
   },
 }
 \newcommand\sjtu@nopar[1]{%
@@ -342,7 +324,7 @@
 \kv@define@key{sjtu}{name}{
   \kvsetkeys{sjtu@name}{#1}
 }
-\sjtu@set@family@key@handler{sjtu@name}
+\sjtu@set@family@handler{sjtu@name}
 \sjtu@define@key{sjtu@name}{
   appendix          = { default = Appendix },
   contents          = { default = Contents },
@@ -895,7 +877,7 @@
   subparagraph/afterindent = true,
 }
 \newcommand\sjtu@format@set@indent@headings{%
-  \ifsjtu@format@indent@headings
+  \ifsjtu@format@indent@headings@true
     \ctexset{%
       section/indent       = 2\ccwd,
       subsection/indent    = 2\ccwd,
