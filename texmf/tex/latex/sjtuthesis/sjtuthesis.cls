@@ -968,6 +968,10 @@
 }
 \renewcommand\listoffigures{\sjtu@listof{figure}}
 \renewcommand\listoftables{\sjtu@listof{table}}
+\ifsjtu@language@chinese
+  \renewcommand\cftdot{\textperiodcentered}
+\fi
+\renewcommand\cftdotsep{1}
 \renewcommand\cftfigpresnum{\sjtu@name@figure~}
 \renewcommand\cfttabpresnum{\sjtu@name@table~}
 \AtEndPreamble{%
