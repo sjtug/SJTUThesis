@@ -219,6 +219,7 @@
     choices = {
       true,
       false,
+      fixed,
     },
     initial = false,
     default = true,
@@ -876,12 +877,20 @@
   paragraph/afterindent    = true,
   subparagraph/afterindent = true,
 }
+\newlength{\sjtu@indent@headings@fixed@width}
+\setlength{\sjtu@indent@headings@fixed@width}{2\ccwd}
 \newcommand\sjtu@format@set@indent@headings{%
+  \ifsjtu@format@indent@headings@fixed
+    \sjtu@format@indent@headings@truetrue
+    \def\sjtu@indent@headings@width{\sjtu@indent@headings@fixed@width}
+  \else
+    \def\sjtu@indent@headings@width{2\ccwd}
+  \fi
   \ifsjtu@format@indent@headings@true
     \ctexset{%
-      section/indent       = 2\ccwd,
-      subsection/indent    = 2\ccwd,
-      subsubsection/indent = 2\ccwd,
+      section/indent       = \sjtu@indent@headings@width,
+      subsection/indent    = \sjtu@indent@headings@width,
+      subsubsection/indent = \sjtu@indent@headings@width,
     }
     \ifsjtu@degree@graduate\relax\else
       \ctexset{%
