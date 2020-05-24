@@ -128,8 +128,9 @@
     choices = {
       -4,
       5,
+      auto,
     },
-    initial = 5,
+    initial = auto,
   },
   latinfontset = {
     choices = {
@@ -156,13 +157,20 @@
     \sjtu@degree@graduatetrue
   \fi
 }
-\sjtu@set@graduate
-\sjtu@option@hook{sjtu}{degree}{%
-  \sjtu@set@graduate
+\newcommand\sjtu@set@zihao{%
+  \ifsjtu@zihao@auto
+    \ifsjtu@degree@graduate
+      \def\sjtu@zihao{-4}
+    \else
+      \def\sjtu@zihao{5}
+    \fi
+  \fi
 }
 \DeclareBoolOption{review}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
+\sjtu@set@graduate
+\sjtu@set@zihao
 \PassOptionsToPackage{no-math}{fontspec}
 \LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3,zihao=\sjtu@zihao]{ctexbook}[2018/04/01]
 \AtEndOfClass{
