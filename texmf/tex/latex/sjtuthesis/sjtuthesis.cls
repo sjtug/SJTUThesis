@@ -968,6 +968,10 @@
 }
 \renewcommand\listoffigures{\sjtu@listof{figure}}
 \renewcommand\listoftables{\sjtu@listof{table}}
+\ifsjtu@language@chinese
+  \renewcommand\cftdot{\textperiodcentered}
+\fi
+\renewcommand\cftdotsep{1}
 \renewcommand\cftfigpresnum{\sjtu@name@figure~}
 \renewcommand\cfttabpresnum{\sjtu@name@table~}
 \AtEndPreamble{%
@@ -1369,19 +1373,15 @@
                    {\sjtu@name@listalgorithm}
   \SetAlgoCaptionSeparator{~}
   \def\listalgocfname{\listalgorithmcfname}
-  \def\cftalgpresnum{\sjtu@name@algorithm~}
+  \newlistof{alg}{loa}{\listalgocfname}
+  \let\l@algocf\l@alg
+  \setlength{\cftalgindent}{1.5em}
+  \setlength{\cftalgnumwidth}{2.3em}
+  \renewcommand\cftalgpresnum{\sjtu@name@algorithm~}
   \AtEndPreamble{%
-    \newlength{\cftalgindent}
-      \setlength{\cftalgindent}{1.5em}
-    \newlength{\cftalgnumwidth}
-      \setlength{\cftalgnumwidth}{2.3em}
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
     \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
-  }
-  \renewcommand*{\l@algocf}{%
-    \let\@cftbsnum \cftalgpresnum
-    \@dottedtocline{1}{\cftalgindent}{\cftalgnumwidth}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algocf}}
   \AtBeginDocument{%
@@ -1398,19 +1398,15 @@
       \if@twocolumn}
     {}{}
   \def\listalgorithmname{\sjtu@name@listalgorithm}
-  \def\cftalgpresnum{\sjtu@name@algorithm~}
+  \newlistof{alg}{loa}{\listalgorithmname}
+  \let\l@algorithm\l@alg
+  \setlength{\cftalgindent}{1.5em}
+  \setlength{\cftalgnumwidth}{2.3em}
+  \renewcommand\cftalgpresnum{\sjtu@name@algorithm~}
   \AtEndPreamble{%
-    \newlength{\cftalgindent}
-      \setlength{\cftalgindent}{1.5em}
-    \newlength{\cftalgnumwidth}
-      \setlength{\cftalgnumwidth}{2.3em}
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
     \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
-  }
-  \newcommand*{\l@algorithm}{%
-    \let\@cftbsnum \cftalgpresnum
-    \@dottedtocline{1}{\cftalgindent}{\cftalgnumwidth}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algorithm}}
   \AtBeginDocument{%
