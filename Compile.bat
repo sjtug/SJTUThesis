@@ -4,7 +4,7 @@ chcp 65001 >nul
 
 call :setESC
 
-set THESIS=thesis
+set THESIS=main
 
 set flag=%1
 if %flag%x == x (
@@ -48,8 +48,8 @@ if %flag%x == wordcountx (
 	echo options:
 	echo   thesis    Compile the thesis (default)
 	echo   clean     Clean all work files
-	echo   cleanall  Clean all work files and thesis.pdf
-	echo   wordcount Count words in thesis.pdf
+	echo   cleanall  Clean all work files and main.pdf
+	echo   wordcount Count words in main.pdf
 	echo   help      Print this help message%ESC%[0m
 goto :EOF
 
