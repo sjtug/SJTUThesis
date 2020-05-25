@@ -4,12 +4,12 @@ language: shell
 
 matrix:
   include:
-    - install: source .ci/install-ubuntu-texlive.sh
+    - install: source .github/ci/install-ubuntu-texlive.sh
       cache:
         directories:
           - /tmp/texlive
           - $HOME/.texlive
-    - install: source .ci/install-ubuntu-miktex.sh
+    - install: source .github/ci/install-ubuntu-miktex.sh
       cache:
         directories:
           - $HOME/.miktex

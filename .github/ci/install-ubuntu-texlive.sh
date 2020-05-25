@@ -12,7 +12,7 @@ if ! command -v texlua > /dev/null; then
   cd install-tl-20*
 
   # Install a minimal system
-  ./install-tl --profile ../.ci/texlive-ubuntu.profile --repository $REPO
+  ./install-tl --profile ../.github/ci/texlive-ubuntu.profile --repository $REPO
   cd ..
 fi
 
