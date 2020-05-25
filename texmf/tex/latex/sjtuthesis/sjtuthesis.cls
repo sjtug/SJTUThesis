@@ -218,11 +218,11 @@
 \sjtu@package@conflict{unicode-math}{eucal}
 \sjtu@package@conflict{unicode-math}{eufrak}
 \sjtu@package@conflict{unicode-math}{mathrsfs}
-\kv@define@key{sjtu}{format}{
-  \kvsetkeys{sjtu@format}{#1}
+\kv@define@key{sjtu}{style}{
+  \kvsetkeys{sjtu@style}{#1}
 }
-\sjtu@set@family@handler{sjtu@format}
-\sjtu@define@key{sjtu@format}{
+\sjtu@set@family@handler{sjtu@style}
+\sjtu@define@key{sjtu@style}{
   indent-headings = {
     name = indent@headings,
     choices = {
@@ -817,7 +817,7 @@
     \fancyhf{}
     \fancyhead[L]{%
       \includegraphics[height=32pt]%
-        {sjtu-vi-logo-\sjtu@format@header@logo@color.pdf}%
+        {sjtu-vi-logo-\sjtu@style@header@logo@color.pdf}%
     }
     \fancyhead[R]{%
       \parbox[b]{0.75\textwidth}{%
@@ -888,14 +888,14 @@
 }
 \newlength{\sjtu@indent@headings@fixed@width}
 \setlength{\sjtu@indent@headings@fixed@width}{2\ccwd}
-\newcommand\sjtu@format@set@indent@headings{%
-  \ifsjtu@format@indent@headings@fixed
-    \sjtu@format@indent@headings@truetrue
+\newcommand\sjtu@style@set@indent@headings{%
+  \ifsjtu@style@indent@headings@fixed
+    \sjtu@style@indent@headings@truetrue
     \def\sjtu@indent@headings@width{\sjtu@indent@headings@fixed@width}
   \else
     \def\sjtu@indent@headings@width{2\ccwd}
   \fi
-  \ifsjtu@format@indent@headings@true
+  \ifsjtu@style@indent@headings@true
     \ctexset{%
       section/indent       = \sjtu@indent@headings@width,
       subsection/indent    = \sjtu@indent@headings@width,
@@ -917,9 +917,9 @@
     }
   \fi
 }
-\sjtu@format@set@indent@headings
-\sjtu@option@hook{sjtu@format}{indent-headings}{%
-  \sjtu@format@set@indent@headings
+\sjtu@style@set@indent@headings
+\sjtu@option@hook{sjtu@style}{indent-headings}{%
+  \sjtu@style@set@indent@headings
 }
 \ctexset{%
   punct          = quanjiao,
@@ -987,10 +987,10 @@
 \renewcommand\bottomfraction{0.65}
 \renewcommand\floatpagefraction{0.60}
 \AtBeginDocument{%
-  \renewcommand\thefigure{\thechapter\sjtu@format@fl@num@sep\arabic{figure}}
+  \renewcommand\thefigure{\thechapter\sjtu@style@fl@num@sep\arabic{figure}}
   \renewcommand\p@subfigure{\thefigure}
-  \renewcommand\thetable{\thechapter\sjtu@format@fl@num@sep\arabic{table}}
-  \renewcommand\theequation{\thechapter\sjtu@format@eq@num@sep\arabic{equation}}
+  \renewcommand\thetable{\thechapter\sjtu@style@fl@num@sep\arabic{table}}
+  \renewcommand\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
 \newif\ifsjtu@setfloatfont
 \renewcommand\@floatboxreset{%
@@ -1380,7 +1380,7 @@
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algocf}}
   \AtBeginDocument{%
-   \renewcommand\thealgocf{\thechapter\sjtu@format@fl@num@sep\@arabic\c@algocf}
+   \renewcommand\thealgocf{\thechapter\sjtu@style@fl@num@sep\@arabic\c@algocf}
   }
 }
 \AtEndOfPackageFile*{algorithm}{
@@ -1405,7 +1405,7 @@
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algorithm}}
   \AtBeginDocument{%
-    \renewcommand\thealgorithm{\thechapter\sjtu@format@fl@num@sep\arabic{algorithm}}
+    \renewcommand\thealgorithm{\thechapter\sjtu@style@fl@num@sep\arabic{algorithm}}
   }
 }
 \AtEndOfPackageFile*{listings}{
