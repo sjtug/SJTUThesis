@@ -21,4 +21,4 @@ script:
   - latexmk -quiet -halt-on-error -time main.tex
 
 after_failure:
-  - cat thesis.log
+  - cat main.log

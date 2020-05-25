@@ -33,7 +33,7 @@ If you are an [Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) user, yo
 It is recommended to use GNU make utility with `Makefile` provided in template.
 
 ```bash
-make all                      # compile and generate Thesis.pdf
+make all                      # compile and generate main.pdf
 make clean                    # remove useless files
 make cleanall                 # remove everything produced by make all
 make wordcount                # count the words of the thesis
@@ -44,7 +44,7 @@ make wordcount                # count the words of the thesis
 We also provided a batch script `Compile.bat` for Windows users. You can double-click the batch file to complie instantly, or use it in a cmd console to access extra features.
 
 ```bash
-.\Compile.bat thesis          # compile and generate Thesis.pdf
+.\Compile.bat thesis          # compile and generate main.pdf
 .\Compile.bat clean           # remove useless files
 .\Compile.bat cleanall        # remove everything produced by make all
 .\Compile.bat wordcount       # count the words of the thesis
