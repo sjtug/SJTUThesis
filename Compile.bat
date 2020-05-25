@@ -4,7 +4,7 @@ chcp 65001 >nul
 
 call :setESC
 
-set THESIS=thesis
+set THESIS=main
 
 set flag=%1
 if %flag%x == x (
