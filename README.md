@@ -36,9 +36,9 @@ git clone https://github.com/sjtug/SJTUThesis.git
 推荐使用模版提供的 `Makefile` 进行编译，具体来说我们提供了如下几条可用的命令：
 
 ```bash
-make all                      # 编译生成 thesis.pdf
+make all                      # 编译生成 main.pdf
 make clean                    # 删除编译所产生的中间文件
-make cleanall                 # 删除 thesis.pdf 和所有中间文件
+make cleanall                 # 删除 main.pdf 和所有中间文件
 make wordcount                # 论文字数统计
 ```
 
@@ -47,9 +47,9 @@ make wordcount                # 论文字数统计
 对于 Windows 用户，我们也提供了编译脚本 `Compile.bat`。可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
 
 ```bash
-.\Compile.bat thesis          # 编译生成 thesis.pdf
+.\Compile.bat thesis          # 编译生成 main.pdf
 .\Compile.bat clean           # 删除编译所产生的中间文件
-.\Compile.bat cleanall        # 删除 thesis.pdf 和所有中间文件
+.\Compile.bat cleanall        # 删除 main.pdf 和所有中间文件
 .\Compile.bat wordcount       # 论文字数统计
 ```
 

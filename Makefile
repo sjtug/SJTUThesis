@@ -1,7 +1,7 @@
 # Makefile for SJTUThesis
 
 # Basename of thesis
-THESIS = thesis
+THESIS = main
 
 # Option for latexmk
 LATEXMK_OPT = -quiet -file-line-error -halt-on-error -interaction=nonstopmode
@@ -33,14 +33,12 @@ wordcount : $(THESIS).tex
 	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \
 		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
 	else \
-		texcount $< -inc -ch-only | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
+		texcount $< -inc -ch-only   | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
 	fi
 	@texcount $< -inc -chinese | awk '/total/ {getline; print "总字数（英文单词 + 中文字）\t:",$$4}'
 
 clean :
 	-@latexmk -c -silent $(THESIS).tex 2> /dev/null
-	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
 
 cleanall :
 	-@latexmk -C -silent $(THESIS).tex 2> /dev/null
-	-@rm -f $(TEX_DIR)/*.aux 2> /dev/null || true
