@@ -1113,6 +1113,7 @@
     }
   \fi
 }
+\newcommand\sjtu@save@env@body[1]{\long\gdef\sjtu@saved@env@body{#1}}
 \NewDocumentEnvironment{nomenclature}{}{%
   \sjtu@chapter{\sjtu@name@nomenclature}
 }{}
@@ -1122,13 +1123,12 @@
 \NewDocumentEnvironment{summary}{}{%
   \sjtu@chapter{\sjtu@name@summary}
 }{}
-\newcommand\sjtu@acknowledgements[1]{\long\gdef\sjtu@acknowledgements@body{#1}}
 \NewDocumentEnvironment{acknowledgements}{}{%
-  \Collect@Body\sjtu@acknowledgements
+  \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
     \sjtu@chapter{\sjtu@name@acknowledgements}
-    \sjtu@acknowledgements@body
+    \sjtu@saved@env@body
   \fi
 }
 \newenvironment{sjtu@bibliolist}[2]{%
@@ -1151,53 +1151,48 @@
     {\@latex@warning{Empty `bibliolist' environment}}%
   \endlist
 }
-\newcommand\sjtu@publications[1]{\long\gdef\sjtu@publications@body{#1}}
 \NewDocumentEnvironment{publications}{O{99}}{%
-  \Collect@Body\sjtu@publications
+  \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
     \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
-      \sjtu@publications@body
+      \sjtu@saved@env@body
     \end{sjtu@bibliolist}
   \fi
 }
-\newcommand\sjtu@@publications[1]{\long\gdef\sjtu@@publications@body{#1}}
 \NewDocumentEnvironment{publications*}{O{99}}{%
-  \Collect@Body\sjtu@@publications
+  \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review
     \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
-      \sjtu@@publications@body
+      \sjtu@saved@env@body
     \end{sjtu@bibliolist}
   \fi
 }
-\newcommand\sjtu@achievements[1]{\long\gdef\sjtu@achievements@body{#1}}
 \NewDocumentEnvironment{achievements}{O{99}}{%
-  \Collect@Body\sjtu@achievements
+  \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
     \begin{sjtu@bibliolist}{#1}{\sjtu@name@achievements}
-      \sjtu@achievements@body
+      \sjtu@saved@env@body
     \end{sjtu@bibliolist}
   \fi
 }
-\newcommand\sjtu@@achievements[1]{\long\gdef\sjtu@@achievements@body{#1}}
 \NewDocumentEnvironment{achievements*}{O{99}}{%
-  \Collect@Body\sjtu@@achievements
+  \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review
     \begin{sjtu@bibliolist}{#1}{\sjtu@name@achievements}
-      \sjtu@@achievements@body
+      \sjtu@saved@env@body
     \end{sjtu@bibliolist}
   \fi
 }
-\newcommand\sjtu@resume[1]{\long\gdef\sjtu@resume@body{#1}}
 \NewDocumentEnvironment{resume}{}{%
-  \Collect@Body\sjtu@resume
+  \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
     \sjtu@chapter{\sjtu@name@resume}
-    \sjtu@resume@body
+    \sjtu@saved@env@body
   \fi
 }
 \AtEndPreamble{
