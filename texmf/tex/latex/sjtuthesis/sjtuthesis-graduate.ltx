@@ -69,9 +69,8 @@
     \sjtu@info@keywords@en
   \endgroup
 }
-\newcommand\sjtu@digest[1]{\long\gdef\sjtu@digest@body{#1}}
 \NewDocumentEnvironment{digest}{}{%
-  \Collect@Body\sjtu@digest
+  \Collect@Body\sjtu@save@env@body
 }{%
   \relax
 }
