@@ -60,7 +60,7 @@
   \endgroup
   \begingroup
     \zihao{5}
-    \sjtu@info@keywords@zh
+    \sjtu@clist@use{\sjtu@info@keywords@zh}{，}
   \endgroup
 }
 \NewDocumentEnvironment{abstract*}{}{%
@@ -79,7 +79,7 @@
   \endgroup
   \begingroup
     \zihao{5}
-    \sjtu@info@keywords@en
+  \sjtu@clist@use{\sjtu@info@keywords@en}{, }
   \endgroup
 }
 \NewDocumentEnvironment{digest}{}{%
@@ -88,7 +88,7 @@
   \ifsjtu@degree@course\relax\else
     \ifsjtu@language@english\relax\else
       \AtEndDocument{%
-        \if@openright\cleardoublepage\else\clearpage\fi%
+        \cleardoublepage
         \pagenumbering{roman}
         \def\sjtu@thepage{\theCurrentPageLocal}
         \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
@@ -100,12 +100,12 @@
     \fi
   \fi
 }
-\NewDocumentCommand{\maketitlepage}{}{%
+\RenewDocumentCommand{\maketitle}{}{%
   \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}
   \sjtu@make@titlepage@zh%
 }
 \newcommand\sjtu@make@titlepage@zh{%
-  \if@openright\cleardoublepage\else\clearpage\fi%
+  \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
     \kaishu
