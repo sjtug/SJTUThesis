@@ -36,6 +36,14 @@
 \renewcommand\cftchapfont{\normalfont}
 \renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \renewcommand\cftchappagefont{\normalfont}
+\ifsjtu@degree@bachelor
+  \sjtusetup{
+    style = {
+      frontmatter-numbering = false,
+      indent-headings = fixed,
+    },
+  }
+\fi
 \NewDocumentEnvironment{abstract}{}{%
   \sjtu@chapter*[\sjtu@name@abstract@zh]{%
     \sjtu@info@title@zh \vskip 2ex
