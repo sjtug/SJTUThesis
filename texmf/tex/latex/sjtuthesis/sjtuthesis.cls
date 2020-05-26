@@ -226,12 +226,12 @@
   indent-headings = {
     name = indent@headings,
     choices = {
-      true,
-      false,
       fixed,
+      auto,
+      false,
     },
     initial = false,
-    default = true,
+    default = fixed,
   },
   title-logo-color = {
     name = title@logo@color,
@@ -890,12 +890,12 @@
 \setlength{\sjtu@indent@headings@fixed@width}{2\ccwd}
 \newcommand\sjtu@style@set@indent@headings{%
   \ifsjtu@style@indent@headings@fixed
-    \sjtu@style@indent@headings@truetrue
+    \sjtu@style@indent@headings@autotrue
     \def\sjtu@indent@headings@width{\sjtu@indent@headings@fixed@width}
   \else
     \def\sjtu@indent@headings@width{2\ccwd}
   \fi
-  \ifsjtu@style@indent@headings@true
+  \ifsjtu@style@indent@headings@auto
     \ctexset{%
       section/indent       = \sjtu@indent@headings@width,
       subsection/indent    = \sjtu@indent@headings@width,
@@ -917,6 +917,9 @@
     }
   \fi
 }
+\ifsjtu@degree@graduate\relax\else
+  \sjtusetup{ style = { indent-headings = fixed } }
+\fi
 \sjtu@style@set@indent@headings
 \sjtu@option@hook{sjtu@style}{indent-headings}{%
   \sjtu@style@set@indent@headings
