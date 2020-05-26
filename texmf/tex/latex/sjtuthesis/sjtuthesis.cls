@@ -223,6 +223,13 @@
 }
 \sjtu@set@family@handler{sjtu@style}
 \sjtu@define@key{sjtu@style}{
+  frontmatter-numbering = {
+    name = frontmatter@numbering,
+    choices = {
+      true,
+      false,
+    }
+  },
   indent-headings = {
     name = indent@headings,
     choices = {
@@ -782,6 +789,7 @@
 }
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
+\newif\ifsjtu@pagenumbering \sjtu@pagenumberingtrue
 \ifsjtu@degree@graduate
   \newcommand\sjtu@thepage@format[2]{---~{\bfseries{#1}}~---}
 \else
@@ -803,7 +811,9 @@
     \fancyhf{}
     \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
     \fancyfoot[C]{%
-      \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
+      \ifsjtu@pagenumbering
+        \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
+      \fi
     }
     \renewcommand\headrule{%
       \hrule\@height2.25\p@\@width\headwidth
@@ -825,7 +835,9 @@
       }
     }
     \fancyfoot[C]{%
-      \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
+      \ifsjtu@pagenumbering
+        \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
+      \fi
     }
     \renewcommand\headrulewidth{0.75\p@}
   }
@@ -842,6 +854,9 @@
 \renewcommand\frontmatter{%
   \if@openright\cleardoublepage\else\clearpage\fi%
   \@mainmatterfalse
+  \ifsjtu@style@frontmatter@numbering@false
+    \sjtu@pagenumberingfalse
+  \fi
   \pagenumbering{Roman}
   \def\sjtu@thepage{\thepage}
   \def\sjtu@lastpageref{\lastpageref{pagesLTS.Roman}}
@@ -850,6 +865,7 @@
 \renewcommand\mainmatter{%
   \if@openright\cleardoublepage\else\clearpage\fi%
   \@mainmattertrue
+  \sjtu@pagenumberingtrue
   \sjtu@setfloatfonttrue
   \pagenumbering{arabic}
   \def\sjtu@lastpageref{\lastpageref{pagesLTS.arabic}}
@@ -917,9 +933,6 @@
     }
   \fi
 }
-\ifsjtu@degree@graduate\relax\else
-  \sjtusetup{ style = { indent-headings = fixed } }
-\fi
 \sjtu@style@set@indent@headings
 \sjtu@option@hook{sjtu@style}{indent-headings}{%
   \sjtu@style@set@indent@headings
