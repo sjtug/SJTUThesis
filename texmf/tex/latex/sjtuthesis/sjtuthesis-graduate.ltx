@@ -48,7 +48,7 @@
     \heiti\sjtu@name@keywords@zh
   \endgroup
   \begingroup
-    \sjtu@info@keywords@zh
+    \sjtu@clist@use{\sjtu@info@keywords@zh}{，}
   \endgroup
 }
 \NewDocumentEnvironment{abstract*}{}{%
@@ -66,7 +66,7 @@
     \sjtu@name@keywords@en
   \endgroup
   \begingroup
-    \sjtu@info@keywords@en
+  \sjtu@clist@use{\sjtu@info@keywords@en}{, }
   \endgroup
 }
 \NewDocumentEnvironment{digest}{}{%
@@ -74,13 +74,13 @@
 }{%
   \relax
 }
-\NewDocumentCommand{\maketitlepage}{}{%
+\RenewDocumentCommand{\maketitle}{}{%
   \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}
   \sjtu@make@titlepage@zh%
   \sjtu@make@titlepage@en%
 }
 \newcommand\sjtu@make@titlepage@zh{%
-  \if@openright\cleardoublepage\else\clearpage\fi%
+  \cleardoublepage
   \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@zh}{\par}}
   \thispagestyle{sjtu@title}
   \begin{center}
@@ -114,7 +114,7 @@
   \end{center}
 }
 \newcommand\sjtu@make@titlepage@en{%
-  \if@openright\cleardoublepage\else\clearpage\fi%
+  \cleardoublepage
   \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@en}{\par}}
   \thispagestyle{sjtu@title}
   \begin{center}

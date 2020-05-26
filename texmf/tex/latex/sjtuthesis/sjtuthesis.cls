@@ -302,7 +302,7 @@
 }
 \newcommand\sjtu@clist@use[2]{%
   \def\sjtu@@tmp{}%
-  \kv@set@family@handler{sjtu@clist}{%
+  \def\sjtu@clist@processor##1{%
     \ifx\sjtu@@tmp\@empty
       \def\sjtu@@tmp{#2}%
     \else
@@ -310,7 +310,7 @@
     \fi
     ##1%
   }%
-  \kvsetkeys@expandafter{sjtu@clist}{#1}%
+  \expandafter\comma@parse\expandafter{#1}{\sjtu@clist@processor}%
 }
 \ifsjtu@language@chinese
   \def\sjtu@info@title{\sjtu@info@title@zh}
@@ -852,7 +852,7 @@
   \pagenumbering{Alph}
   \pagestyle{empty}}
 \renewcommand\frontmatter{%
-  \if@openright\cleardoublepage\else\clearpage\fi%
+  \cleardoublepage
   \@mainmatterfalse
   \ifsjtu@style@frontmatter@numbering@false
     \sjtu@pagenumberingfalse
@@ -863,7 +863,7 @@
   \pagestyle{sjtu@plain}
 }
 \renewcommand\mainmatter{%
-  \if@openright\cleardoublepage\else\clearpage\fi%
+  \cleardoublepage
   \@mainmattertrue
   \sjtu@pagenumberingtrue
   \sjtu@setfloatfonttrue
@@ -871,7 +871,7 @@
   \def\sjtu@lastpageref{\lastpageref{pagesLTS.arabic}}
 }
 \renewcommand\backmatter{%
-  \if@openright\cleardoublepage\else\clearpage\fi%
+  \cleardoublepage
   \@mainmatterfalse
 }
 \ctexset{%
@@ -1077,6 +1077,7 @@
 }
 \NewDocumentCommand{\makeorigpage}{s o}{%
   \ifsjtu@review\relax\else
+    \cleardoublepage
     \IfNoValueTF{#2}{%
       \thispagestyle{empty}
       \sjtu@chapter*[\sjtu@name@orig@subtitle]{%
@@ -1096,7 +1097,6 @@
         \end{minipage}
       \endgroup
     }{%
-      \if@openright\cleardoublepage\else\clearpage\fi%
       \sjtu@pdfbookmark{0}{\sjtu@name@orig@subtitle}%
       \includepdf[pagecommand={\thispagestyle{empty}}]{#1}
     }
@@ -1104,6 +1104,7 @@
 }
 \NewDocumentCommand{\makeauthpage}{o}{%
   \ifsjtu@review\relax\else
+    \cleardoublepage
     \IfNoValueTF{#1}{%
       \thispagestyle{empty}
       \sjtu@chapter*[\sjtu@name@auth@subtitle]{%
@@ -1123,7 +1124,6 @@
         \end{minipage}
       \endgroup
     }{%
-      \if@openright\cleardoublepage\else\clearpage\fi%
       \sjtu@pdfbookmark{0}{\sjtu@name@auth@subtitle}%
       \includepdf[pagecommand={\thispagestyle{empty}}]{#1}
     }
