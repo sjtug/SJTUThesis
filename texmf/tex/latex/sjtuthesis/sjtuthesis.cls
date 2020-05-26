@@ -200,7 +200,7 @@
 \RequirePackage{subcaption}
 \RequirePackage[titles]{tocloft}
 \RequirePackage[inline]{enumitem}
-\RequirePackage[perpage, bottom]{footmisc}
+\RequirePackage[perpage, bottom, hang]{footmisc}
 \RequirePackage{pdfpages}
 \includepdfset{fitpaper=true}
 \RequirePackage{url}
@@ -946,6 +946,22 @@
 \setlist{nosep}
 \setlist*{leftmargin=*}
 \setlist[1]{labelindent=\parindent}
+\def\sjtu@enclosed@number#1{%
+  \ifnum\value{#1} >10%
+    \sjtu@error{%
+      Too many footnotes in this page.
+      Keep footnote no more than 10%
+    }%
+  \fi
+  {\CJKfamily+{}\symbol{\the\numexpr\value{#1}+"245F\relax}}%
+}
+\renewcommand{\thefootnote}{\sjtu@enclosed@number{footnote}}
+\renewcommand{\thempfootnote}{\sjtu@enclosed@number{mpfootnote}}
+\footnotemargin1.5em\relax
+\let\sjtu@makefnmark\@makefnmark
+\def\sjtu@@makefnmark{\hbox{{\normalfont\@thefnmark}}}
+\pretocmd{\@makefntext}{\let\@makefnmark\sjtu@@makefnmark}{}{}
+\apptocmd{\@makefntext}{\let\@makefnmark\sjtu@makefnmark}{}{}
 \urlstyle{same}
 \g@addto@macro\UrlBreaks{%
   \do0\do1\do2\do3\do4\do5\do6\do7\do8\do9%
@@ -1056,7 +1072,7 @@
 \renewcommand\boldsymbol{\symbf}
 \newcommand\square{\mdlgwhtsquare}
 \newcommand\sjtu@square{%
-  \begingroup\CJKfamily+{zhsong}\symbol{"25A1}\endgroup
+  \begingroup\CJKfamily+{}\symbol{"25A1}\endgroup
 }
 \newcommand\sjtu@authconf{%
   \par\hspace{7em}%
