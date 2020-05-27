@@ -902,21 +902,14 @@
   paragraph/afterindent    = true,
   subparagraph/afterindent = true,
 }
-\newlength{\sjtu@indent@headings@fixed@width}
-\setlength{\sjtu@indent@headings@fixed@width}{2\ccwd}
 \newcommand\sjtu@style@set@indent@headings{%
   \ifsjtu@style@indent@headings@fixed
     \sjtu@style@indent@headings@autotrue
-    \def\sjtu@indent@headings@width{\sjtu@indent@headings@fixed@width}
+    \gdef\sjtu@indent@headings@width{\parindent}
   \else
-    \def\sjtu@indent@headings@width{2\ccwd}
+    \gdef\sjtu@indent@headings@width{2\ccwd}
   \fi
   \ifsjtu@style@indent@headings@auto
-    \ctexset{%
-      section/indent       = \sjtu@indent@headings@width,
-      subsection/indent    = \sjtu@indent@headings@width,
-      subsubsection/indent = \sjtu@indent@headings@width,
-    }
     \ifsjtu@degree@graduate\relax\else
       \ctexset{%
         subsubsection/name   = {(,)},
@@ -924,14 +917,17 @@
       }
     \fi
   \else
+    \gdef\sjtu@indent@headings@width{\z@}
     \ctexset{%
-      section/indent       = 0pt,
-      subsection/indent    = 0pt,
-      subsubsection/indent = 0pt,
       subsubsection/name   = {},
       subsubsection/number = \thesubsubsection,
     }
   \fi
+  \ctexset{%
+    section/indent       = \sjtu@indent@headings@width,
+    subsection/indent    = \sjtu@indent@headings@width,
+    subsubsection/indent = \sjtu@indent@headings@width,
+  }
 }
 \sjtu@style@set@indent@headings
 \sjtu@option@hook{sjtu@style}{indent-headings}{%
@@ -973,7 +969,7 @@
 \Urlmuskip=0mu plus 0.1mu
 \newcommand\sjtu@pdfbookmark[2]{}
 \newcommand\sjtu@phantomsection{}
-\NewDocumentCommand\sjtu@chapter{s O{#3} m O{#2}}{
+\NewDocumentCommand{\sjtu@chapter}{s O{#3} m O{#2}}{
   \if@openright\cleardoublepage\else\clearpage\fi%
   \IfBooleanTF{#1}{%
     \ifthenelse{\equal{#4}{}}{\relax}{%
@@ -1075,11 +1071,11 @@
   \begingroup\CJKfamily+{}\symbol{"25A1}\endgroup
 }
 \newcommand\sjtu@authconf{%
-  \par\hspace{7em}%
-  {\heiti 保\quad 密}~\sjtu@square，在 \uline{\hspace{3em}}
+  \par\hspace{7\ccwd}%
+  {\heiti 保\hspace{1\ccwd}密}~\sjtu@square，在 \uline{\hspace{3em}}
   年解密后适用本授权书。\par
   本\sjtu@name@thesis@type 属于
-  \par\hspace{7em}%
+  \par\hspace{7\ccwd}%
   {\heiti 不保密}~\sjtu@square。
   \vskip 1ex
   （请在以上方框内打“$\checkmark$”）
@@ -1363,7 +1359,7 @@
 \PassOptionsToPackage{amsmath,thmmarks,hyperref}{ntheorem}
 \AtEndOfPackageFile*{ntheorem}{
   \sjtu@def@theorem@name
-  \theoremheaderfont{\bfseries\heiti}
+  \theoremheaderfont{\hspace*{\sjtu@indent@headings@width}\bfseries\heiti}
   \theorembodyfont{\normalfont}
   \theoremseparator{\enskip}
   \theoremsymbol{\ensuremath{\square}}
@@ -1374,6 +1370,8 @@
 }
 \AtEndOfPackageFile*{amsthm}{
   \sjtu@def@theorem@name
+  \let\sjtu@thmhead\thmhead@plain
+  \def\thmhead@plain{\hspace*{\sjtu@indent@headings@width}\sjtu@thmhead}
   \newtheoremstyle{sjtuplain}
     {}{}
     {\normalfont}{}
@@ -1387,7 +1385,7 @@
     \normalfont \topsep6\p@\@plus6\p@\relax
     \trivlist
     \item\relax
-      {\bfseries\heiti #1~}
+      {\hspace*{\sjtu@indent@headings@width}\bfseries\heiti #1~}
       \hspace\labelsep\ignorespaces
   }{%
     \popQED\endtrivlist\@endpefalse
