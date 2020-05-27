@@ -148,32 +148,27 @@
     },
   },
 }
-\newif\ifsjtu@degree@graduate
-\newcommand\sjtu@set@graduate{%
-  \sjtu@degree@graduatefalse
-  \ifsjtu@degree@doctor
-    \sjtu@degree@graduatetrue
-  \fi
-  \ifsjtu@degree@master
-    \sjtu@degree@graduatetrue
-  \fi
-}
-\newcommand\sjtu@set@zihao{%
-  \ifsjtu@zihao@auto
-    \ifsjtu@degree@graduate
-      \def\sjtu@zihao{-4}
-    \else
-      \def\sjtu@zihao{5}
-    \fi
-  \fi
-}
 \DeclareBoolOption{review}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
-\sjtu@set@graduate
-\sjtu@set@zihao
+\newif\ifsjtu@degree@graduate
+\sjtu@degree@graduatefalse
+\ifsjtu@degree@doctor
+  \sjtu@degree@graduatetrue
+\fi
+\ifsjtu@degree@master
+  \sjtu@degree@graduatetrue
+\fi
+\ifsjtu@zihao@auto
+  \ifsjtu@degree@graduate
+    \def\sjtu@zihao{-4}
+  \else
+    \def\sjtu@zihao{5}
+  \fi
+\fi
+\PassOptionsToClass{zihao=\sjtu@zihao}{ctexbook}
 \PassOptionsToPackage{no-math}{fontspec}
-\LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3,zihao=\sjtu@zihao]{ctexbook}[2018/04/01]
+\LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3]{ctexbook}[2018/04/01]
 \AtEndOfClass{
   \ifsjtu@degree@graduate
     \input{sjtuthesis-graduate.ltx}
