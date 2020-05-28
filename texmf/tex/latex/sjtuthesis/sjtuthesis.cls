@@ -149,6 +149,7 @@
   },
 }
 \DeclareBoolOption{review}
+\DeclareBoolOption[false]{continuous}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
 \newif\ifsjtu@degree@graduate
@@ -193,6 +194,7 @@
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
 \RequirePackage{subcaption}
+\RequirePackage{chngcntr}
 \RequirePackage[titles]{tocloft}
 \RequirePackage[inline]{enumitem}
 \RequirePackage[perpage, bottom, hang]{footmisc}
@@ -1009,11 +1011,36 @@
 \renewcommand\topfraction{0.85}
 \renewcommand\bottomfraction{0.65}
 \renewcommand\floatpagefraction{0.60}
+\newcommand\sjtu@def@thefloats{
+  \def\thefigure{\thechapter\sjtu@style@fl@num@sep\arabic{figure}}
+  \def\p@subfigure{\thefigure}
+  \def\thetable{\thechapter\sjtu@style@fl@num@sep\arabic{table}}
+}
+\newcommand\sjtu@counter@without@chapter{
+  \counterwithout{figure}{chapter}
+  \setcounter{figure}{0}
+  \counterwithout{table}{chapter}
+  \setcounter{table}{0}
+}
+\newcommand\sjtu@counter@within@chapter{
+  \counterwithin*{figure}{chapter}
+  \counterwithin*{table}{chapter}
+  \sjtu@def@thefloats
+}
+\ifsjtu@continuous
+  \apptocmd{\mainmatter}{%
+    \sjtu@counter@without@chapter
+  }{}{}
+  \apptocmd{\appendix}{%
+    \sjtu@counter@within@chapter
+  }{}{}
+\else
+  \AtBeginDocument{%
+    \sjtu@def@thefloats
+  }
+\fi
 \AtBeginDocument{%
-  \renewcommand\thefigure{\thechapter\sjtu@style@fl@num@sep\arabic{figure}}
-  \renewcommand\p@subfigure{\thefigure}
-  \renewcommand\thetable{\thechapter\sjtu@style@fl@num@sep\arabic{table}}
-  \renewcommand\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
+  \def\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
 \newif\ifsjtu@setfloatfont
 \renewcommand\@floatboxreset{%
@@ -1033,10 +1060,11 @@
 \NewDocumentCommand{\sjtuSetFloatFontOff}{}{\sjtu@setfloatfontfalse}
 \DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
 \DeclareCaptionFont{sjtu@subcaption@font}{\zihao{5}\normalfont}
+\DeclareCaptionLabelSeparator{enskip}{\enskip}
 \captionsetup{%
   format        = plain,
   labelformat   = simple,
-  labelsep      = space,
+  labelsep      = enskip,
   justification = centering,
   font          = sjtu@caption@font
 }
@@ -1398,15 +1426,27 @@
   \setlength{\cftalgindent}{1.5em}
   \setlength{\cftalgnumwidth}{2.3em}
   \renewcommand\cftalgpresnum{\sjtu@name@algorithm~}
+  \apptocmd{\sjtu@counter@without@chapter}{%
+    \counterwithout{algocf}{chapter}
+    \setcounter{algocf}{0}
+  }{}{}
+  \pretocmd{\sjtu@counter@within@chapter}{%
+    \counterwithin*{algocf}{chapter}
+  }{}{}
+  \apptocmd{\sjtu@def@thefloats}{%
+    \def\thealgocf{\thechapter\sjtu@style@fl@num@sep\arabic{algocf}}
+  }{}{}
+  \patchcmd{\algocf@latexcaption}{\addcontentsline}{%
+    \caption@iflist
+      {\addcontentsline}
+      {\@gobblethree}
+  }{}{}
   \AtEndPreamble{%
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
     \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algocf}}
-  \AtBeginDocument{%
-   \renewcommand\thealgocf{\thechapter\sjtu@style@fl@num@sep\@arabic\c@algocf}
-  }
 }
 \AtEndOfPackageFile*{algorithm}{
   \RequirePackage{algorithmicx, algpseudocode}
@@ -1423,15 +1463,22 @@
   \setlength{\cftalgindent}{1.5em}
   \setlength{\cftalgnumwidth}{2.3em}
   \renewcommand\cftalgpresnum{\sjtu@name@algorithm~}
+  \apptocmd{\sjtu@counter@without@chapter}{%
+    \counterwithout{algorithm}{chapter}
+    \setcounter{algorithm}{0}
+  }{}{}
+  \pretocmd{\sjtu@counter@within@chapter}{%
+    \counterwithin*{algorithm}{chapter}
+  }{}{}
+  \apptocmd{\sjtu@def@thefloats}{%
+    \def\thealgorithm{\thechapter\sjtu@style@fl@num@sep\arabic{algorithm}}
+  }{}{}
   \AtEndPreamble{%
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
     \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algorithm}}
-  \AtBeginDocument{%
-    \renewcommand\thealgorithm{\thechapter\sjtu@style@fl@num@sep\arabic{algorithm}}
-  }
 }
 \AtEndOfPackageFile*{listings}{
   \lstdefinestyle{lstStyleCode}{
