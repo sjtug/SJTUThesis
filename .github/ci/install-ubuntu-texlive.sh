@@ -26,6 +26,7 @@ tlmgr install           \
   bitset                \
   booktabs              \
   caption               \
+  chngcntr              \
   cjk                   \
   ctex                  \
   enumitem              \
