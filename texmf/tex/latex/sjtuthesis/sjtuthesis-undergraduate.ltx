@@ -93,8 +93,9 @@
         \def\sjtu@thepage{\theCurrentPageLocal}
         \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
         \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@en}
-        \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-        \renewcommand\thesection{\arabic{section}}
+        \counterwithout{section}{chapter}
+        \sjtu@counter@without@chapter
+        \let\addcontentsline\@gobblethree
         \sjtu@saved@env@body
       }
     \fi
