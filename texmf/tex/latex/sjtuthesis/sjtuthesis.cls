@@ -786,7 +786,7 @@
 }
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
-\newif\ifsjtu@pagenumbering \sjtu@pagenumberingtrue
+\newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
 \ifsjtu@degree@graduate
   \newcommand\sjtu@thepage@format[2]{---~{\bfseries{#1}}~---}
 \else
@@ -808,7 +808,7 @@
     \fancyhf{}
     \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
     \fancyfoot[C]{%
-      \ifsjtu@pagenumbering
+      \ifsjtu@page@numbering
         \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
       \fi
     }
@@ -832,7 +832,7 @@
       }
     }
     \fancyfoot[C]{%
-      \ifsjtu@pagenumbering
+      \ifsjtu@page@numbering
         \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
       \fi
     }
@@ -852,7 +852,7 @@
   \cleardoublepage
   \@mainmatterfalse
   \ifsjtu@style@frontmatter@numbering@false
-    \sjtu@pagenumberingfalse
+    \sjtu@page@numberingfalse
   \fi
   \pagenumbering{Roman}
   \def\sjtu@thepage{\thepage}
@@ -862,8 +862,8 @@
 \renewcommand\mainmatter{%
   \cleardoublepage
   \@mainmattertrue
-  \sjtu@pagenumberingtrue
-  \sjtu@setfloatfonttrue
+  \sjtu@page@numberingtrue
+  \sjtu@set@float@fontsizetrue
   \pagenumbering{arabic}
   \def\sjtu@lastpageref{\lastpageref{pagesLTS.arabic}}
 }
@@ -939,7 +939,7 @@
 \setlist{nosep}
 \setlist*{leftmargin=*}
 \setlist[1]{labelindent=\parindent}
-\def\sjtu@enclosed@number#1{%
+\def\sjtu@textcircled#1{%
   \ifnum\value{#1} >10%
     \sjtu@error{%
       Too many footnotes in this page.
@@ -948,8 +948,8 @@
   \fi
   {\CJKfamily+{}\symbol{\the\numexpr\value{#1}+"245F\relax}}%
 }
-\renewcommand{\thefootnote}{\sjtu@enclosed@number{footnote}}
-\renewcommand{\thempfootnote}{\sjtu@enclosed@number{mpfootnote}}
+\renewcommand{\thefootnote}{\sjtu@textcircled{footnote}}
+\renewcommand{\thempfootnote}{\sjtu@textcircled{mpfootnote}}
 \footnotemargin1.5em\relax
 \let\sjtu@makefnmark\@makefnmark
 \def\sjtu@@makefnmark{\hbox{{\normalfont\@thefnmark}}}
@@ -1042,10 +1042,10 @@
 \AtBeginDocument{%
   \def\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
-\newif\ifsjtu@setfloatfont
+\newif\ifsjtu@set@float@fontsize \sjtu@set@float@fontsizefalse
 \renewcommand\@floatboxreset{%
   \reset@font
-  \ifsjtu@setfloatfont
+  \ifsjtu@set@float@fontsize
     \zihao{5}
   \else
     \normalsize
@@ -1053,11 +1053,11 @@
   \@setminipage
 }
 \BeforeBeginEnvironment{longtable}
-  {\begingroup\ifsjtu@setfloatfont\zihao{5}\fi}
+  {\begingroup\ifsjtu@set@float@fontsize\zihao{5}\fi}
 \AfterEndEnvironment{longtable}
   {\endgroup}
-\NewDocumentCommand{\sjtuSetFloatFontOn}{}{\sjtu@setfloatfonttrue}
-\NewDocumentCommand{\sjtuSetFloatFontOff}{}{\sjtu@setfloatfontfalse}
+\NewDocumentCommand{\SJTUsetfloatfontsize}{}{\sjtu@set@float@fontsizetrue}
+\NewDocumentCommand{\SJTUunsetfloatfontsize}{}{\sjtu@set@float@fontsizefalse}
 \DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
 \DeclareCaptionFont{sjtu@subcaption@font}{\zihao{5}\normalfont}
 \DeclareCaptionLabelSeparator{enskip}{\enskip}
@@ -1090,9 +1090,7 @@
 \newcommand\bm{\symbf}
 \renewcommand\boldsymbol{\symbf}
 \newcommand\square{\mdlgwhtsquare}
-\newcommand\sjtu@square{%
-  \begingroup\CJKfamily+{}\symbol{"25A1}\endgroup
-}
+\newcommand\sjtu@square{{\CJKfamily+{}\symbol{"25A1}}}
 \newcommand\sjtu@authconf{%
   \par\hspace{7\ccwd}%
   {\heiti 保\hspace{1\ccwd}密}~\sjtu@square，在 \uline{\hspace{3em}}
