@@ -1,7 +1,7 @@
 # Sample Template of SJTUThesis
 
 [![Build Status](https://travis-ci.org/sjtug/SJTUThesis.svg?branch=master)](https://travis-ci.org/sjtug/SJTUThesis)
-[![SJTUTeX](https://img.shields.io/badge/SJTUTheis-v1.0.0rc4-green.svg)](https://github.com/sjtug/SJTUTeX) 
+[![SJTUTeX](https://img.shields.io/badge/SJTUTheis-v1.0.0rc5-green.svg)](https://github.com/sjtug/SJTUTeX) 
 [![Join the chat at https://gitter.im/sjtug/SJTUThesis](https://badges.gitter.im/sjtug/SJTUThesis.svg)](https://gitter.im/sjtug/SJTUThesis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Welcome to LaTeX thesis template for Shanghai Jiao Tong University
