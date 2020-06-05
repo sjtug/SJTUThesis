@@ -899,12 +899,14 @@
   paragraph/afterindent    = true,
   subparagraph/afterindent = true,
 }
+\newlength{\sjtu@headings@indent@fixed}
+\setlength{\sjtu@headings@indent@fixed}{2\ccwd}
 \newcommand\sjtu@style@set@indent@headings{%
   \ifsjtu@style@indent@headings@fixed
     \sjtu@style@indent@headings@autotrue
-    \gdef\sjtu@indent@headings@width{\parindent}
+    \gdef\sjtu@headings@indent{\sjtu@headings@indent@fixed}
   \else
-    \gdef\sjtu@indent@headings@width{2\ccwd}
+    \gdef\sjtu@headings@indent{2\ccwd}
   \fi
   \ifsjtu@style@indent@headings@auto
     \ifsjtu@degree@graduate\relax\else
@@ -914,21 +916,24 @@
       }
     \fi
   \else
-    \gdef\sjtu@indent@headings@width{\z@}
+    \gdef\sjtu@headings@indent{\z@}
     \ctexset{%
       subsubsection/name   = {},
       subsubsection/number = \thesubsubsection,
     }
   \fi
   \ctexset{%
-    section/indent       = \sjtu@indent@headings@width,
-    subsection/indent    = \sjtu@indent@headings@width,
-    subsubsection/indent = \sjtu@indent@headings@width,
+    section/indent       = \sjtu@headings@indent,
+    subsection/indent    = \sjtu@headings@indent,
+    subsubsection/indent = \sjtu@headings@indent,
   }
 }
 \sjtu@style@set@indent@headings
 \sjtu@option@hook{sjtu@style}{indent-headings}{%
   \sjtu@style@set@indent@headings
+}
+\newcommand\sjtu@indent@box{%
+  \hspace*{\ifsjtu@style@indent@headings@auto 2\ccwd\else\z@\fi}%
 }
 \ctexset{%
   punct          = quanjiao,
@@ -1380,7 +1385,7 @@
 \PassOptionsToPackage{amsmath,thmmarks,hyperref}{ntheorem}
 \AtEndOfPackageFile*{ntheorem}{
   \sjtu@def@theorem@name
-  \theoremheaderfont{\hspace*{\sjtu@indent@headings@width}\bfseries\heiti}
+  \theoremheaderfont{\sjtu@indent@box\bfseries\heiti}
   \theorembodyfont{\normalfont}
   \theoremseparator{\enskip}
   \theoremsymbol{\ensuremath{\square}}
@@ -1392,7 +1397,7 @@
 \AtEndOfPackageFile*{amsthm}{
   \sjtu@def@theorem@name
   \let\sjtu@thmhead\thmhead@plain
-  \def\thmhead@plain{\hspace*{\sjtu@indent@headings@width}\sjtu@thmhead}
+  \def\thmhead@plain{\sjtu@indent@box\sjtu@thmhead}
   \newtheoremstyle{sjtuplain}
     {}{}
     {\normalfont}{}
@@ -1406,7 +1411,7 @@
     \normalfont \topsep6\p@\@plus6\p@\relax
     \trivlist
     \item\relax
-      {\hspace*{\sjtu@indent@headings@width}\bfseries\heiti #1~}
+      {\sjtu@indent@box\bfseries\heiti #1~}
       \hspace\labelsep\ignorespaces
   }{%
     \popQED\endtrivlist\@endpefalse
