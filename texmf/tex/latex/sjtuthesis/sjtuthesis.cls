@@ -334,7 +334,7 @@
     July\or August\or September\or October\or November\or December%
   \fi
 }
-\newcommand\sjtu@date@format@en[3]{\sjtu@date@month@en{#2} #3, #1}
+\newcommand\sjtu@date@format@en[3]{\sjtu@date@month@en{#2} \number#3, #1}
 \kv@define@key{sjtu}{name}{
   \kvsetkeys{sjtu@name}{#1}
 }
