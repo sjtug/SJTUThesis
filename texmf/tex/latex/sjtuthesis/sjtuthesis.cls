@@ -110,7 +110,7 @@
 }
 \sjtu@set@family@handler{sjtu}
 \sjtu@define@key{sjtu}{
-  degree = {
+  type = {
     choices = {
       doctor,
       master,
@@ -152,16 +152,16 @@
 \DeclareBoolOption[false]{continuous}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
-\newif\ifsjtu@degree@graduate
-\sjtu@degree@graduatefalse
-\ifsjtu@degree@doctor
-  \sjtu@degree@graduatetrue
+\newif\ifsjtu@type@graduate
+\sjtu@type@graduatefalse
+\ifsjtu@type@doctor
+  \sjtu@type@graduatetrue
 \fi
-\ifsjtu@degree@master
-  \sjtu@degree@graduatetrue
+\ifsjtu@type@master
+  \sjtu@type@graduatetrue
 \fi
 \ifsjtu@zihao@auto
-  \ifsjtu@degree@graduate
+  \ifsjtu@type@graduate
     \def\sjtu@zihao{-4}
   \else
     \def\sjtu@zihao{5}
@@ -171,7 +171,7 @@
 \PassOptionsToPackage{no-math}{fontspec}
 \LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3]{ctexbook}[2018/04/01]
 \AtEndOfClass{
-  \ifsjtu@degree@graduate
+  \ifsjtu@type@graduate
     \input{sjtuthesis-graduate.ltx}
   \else
     \input{sjtuthesis-undergraduate.ltx}
@@ -286,8 +286,8 @@
   department*     = { name = department@en },
   major           = { name = major@zh },
   major*          = { name = major@en },
-  coursename      = { name = coursename@zh },
-  coursename*     = { name = coursename@en },
+  course          = { name = course@zh },
+  course*         = { name = course@en },
   fund            = { name = fund@zh },
   fund*           = { name = fund@en },
   date            = {%
@@ -364,8 +364,8 @@
 }
 \sjtu@name@def{school@zh}{上海交通大学}
 \sjtu@name@def{school@en}{Shanghai Jiao Tong University}
-\ifsjtu@degree@graduate
-  \ifsjtu@degree@doctor
+\ifsjtu@type@graduate
+  \ifsjtu@type@doctor
     \sjtu@name@def{degree@type@zh}{博士}
     \sjtu@name@def{degree@type@en}{Doctor}
   \else
@@ -400,7 +400,7 @@
     for the Degree of \sjtu@name@degree@type@en
   }
 \else
-  \ifsjtu@degree@course
+  \ifsjtu@type@course
     \sjtu@name@def{degree@type@zh}{}
     \sjtu@name@def{degree@type@en}{}
     \sjtu@name@def{thesis@type}{课程论文}
@@ -418,7 +418,7 @@
   \sjtu@name@def{author@zh}{学生姓名}
   \sjtu@name@def{id@zh}{学生学号}
   \sjtu@name@def{supervisor@zh}{指导教师}
-  \sjtu@name@def{coursename@zh}{课程名称}
+  \sjtu@name@def{course@zh}{课程名称}
   \sjtu@name@def{major@zh}{专业}
   \sjtu@name@def{department@zh}{学院(系)}
   \sjtu@name@def{digest}{英文大摘要}
@@ -787,7 +787,7 @@
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
 \newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
-\ifsjtu@degree@graduate
+\ifsjtu@type@graduate
   \newcommand\sjtu@thepage@format[2]{---~{\bfseries{#1}}~---}
 \else
   \ifsjtu@language@chinese
@@ -803,7 +803,7 @@
   \renewcommand\headrulewidth{0pt}
   \renewcommand\footrulewidth{0pt}
 }
-\ifsjtu@degree@graduate
+\ifsjtu@type@graduate
   \fancypagestyle{sjtu@plain}{%
     \fancyhf{}
     \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
@@ -878,8 +878,8 @@
     titleformat  = {},
     aftername    = \quad,
     afterindent  = true,
-    beforeskip   = {\ifsjtu@degree@graduate 0pt\else 1ex\fi},
-    afterskip    = {\ifsjtu@degree@graduate 3ex\else 4ex\fi},
+    beforeskip   = {\ifsjtu@type@graduate 0pt\else 1ex\fi},
+    afterskip    = {\ifsjtu@type@graduate 3ex\else 4ex\fi},
   },
   section = {%
     format       = \zihao{4}\bfseries\heiti,
@@ -909,7 +909,7 @@
     \gdef\sjtu@headings@indent{2\ccwd}
   \fi
   \ifsjtu@style@indent@headings@auto
-    \ifsjtu@degree@graduate\relax\else
+    \ifsjtu@type@graduate\relax\else
       \ctexset{%
         subsubsection/name   = {(,)},
         subsubsection/number = \arabic{subsubsection},
