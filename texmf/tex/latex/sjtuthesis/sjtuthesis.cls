@@ -168,7 +168,7 @@
   \fi
 \fi
 \PassOptionsToClass{zihao=\sjtu@zihao}{ctexbook}
-\PassOptionsToPackage{no-math}{fontspec}
+\PassOptionsToPackage{no-math,quiet}{fontspec}
 \LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3]{ctexbook}[2018/04/01]
 \AtEndOfClass{
   \ifsjtu@type@graduate
