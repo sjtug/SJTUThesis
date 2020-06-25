@@ -36,7 +36,7 @@
 \renewcommand\cftchapfont{\normalfont}
 \renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \renewcommand\cftchappagefont{\normalfont}
-\ifsjtu@degree@bachelor
+\ifsjtu@type@bachelor
   \sjtusetup{
     style = {
       frontmatter-numbering = false,
@@ -85,7 +85,7 @@
 \NewDocumentEnvironment{digest}{}{%
   \Collect@Body\sjtu@save@env@body
 }{%
-  \ifsjtu@degree@course\relax\else
+  \ifsjtu@type@course\relax\else
     \ifsjtu@language@english\relax\else
       \AtEndDocument{%
         \cleardoublepage
@@ -137,16 +137,15 @@
       \def\arraystretch{1.1}
       \begin{tabular}
         {>{\begin{CJKfilltwosides}{4\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
-        \sjtu@name@author@zh       & \sjtu@info@author@zh      \\ \cline{2-2}
-        \sjtu@name@id@zh           & \makebox[180pt]{\sjtu@info@id} \\
-          \cline{2-2}
-        \ifsjtu@degree@course
-          \sjtu@name@coursename@zh & \sjtu@info@coursename@zh  \\ \cline{2-2}
+        \sjtu@name@author@zh      & \sjtu@info@author@zh      \\\cline{2-2}
+        \sjtu@name@id@zh          & \makebox[180pt]{\sjtu@info@id} \\\cline{2-2}
+        \ifsjtu@type@course
+          \sjtu@name@course@zh    & \sjtu@info@course@zh      \\\cline{2-2}
         \else
-          \sjtu@name@major@zh      & \sjtu@info@major@zh       \\ \cline{2-2}
+          \sjtu@name@major@zh     & \sjtu@info@major@zh       \\\cline{2-2}
         \fi
-        \sjtu@name@supervisor@zh   & \sjtu@info@supervisor@zh  \\ \cline{2-2}
-        \sjtu@name@department@zh   & \sjtu@info@department@zh  \\ \cline{2-2}
+        \sjtu@name@supervisor@zh  & \sjtu@info@supervisor@zh  \\\cline{2-2}
+        \sjtu@name@department@zh  & \sjtu@info@department@zh  \\\cline{2-2}
       \end{tabular}
     \endgroup
     \vskip 40pt
