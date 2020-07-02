@@ -5,7 +5,7 @@ THESIS = main
 
 # Option for latexmk
 LATEXMK_OPT = -quiet -file-line-error -halt-on-error -interaction=nonstopmode
-LATEXMK_OPT_PVC = $(LATEXMK_OPT_BASE) -pvc
+LATEXMK_OPT_PVC = $(LATEXMK_OPT) -pvc
 
 # make deletion work on Windows
 ifdef SystemRoot
