@@ -30,6 +30,30 @@
   headheight = 60bp,
   headsep    = 12bp,
 }
+\pagestyle{fancy}
+\ifsjtu@language@chinese
+  \newcommand\sjtu@thepage@format[2]{第~{#1}~页\,共~{#2}~页}
+\else
+  \newcommand\sjtu@thepage@format[2]{--~~Page~~{#1}~~of~~{#2}~~--}
+\fi
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{%
+    \includegraphics[height=32pt]%
+      {sjtu-vi-logo-\sjtu@style@header@logo@color.pdf}
+  }
+  \fancyhead[R]{%
+    \parbox[b]{0.7\textwidth}{%
+      \raggedleft\zihao{-5}\heiti\MakeUppercase{\sjtu@info@title}
+    }
+  }
+  \fancyfoot[C]{%
+    \ifsjtu@page@numbering
+      \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
+    \fi
+  }
+  \renewcommand\headrulewidth{0.75pt}
+}
 \ctexset{%
   subsection/format = \zihao{-4}\normalfont,
 }
@@ -81,25 +105,6 @@
     \zihao{5}
     \sjtu@clist@use{\sjtu@info@keywords@en}{, }
   \endgroup
-}
-\NewDocumentEnvironment{digest}{}{%
-  \Collect@Body\sjtu@save@env@body
-}{%
-  \ifsjtu@type@course\relax\else
-    \ifsjtu@language@english\relax\else
-      \AtEndDocument{%
-        \cleardoublepage
-        \pagenumbering{roman}
-        \def\sjtu@thepage{\theCurrentPageLocal}
-        \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
-        \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@en}
-        \counterwithout{section}{chapter}
-        \sjtu@counter@without@chapter
-        \let\addcontentsline\@gobblethree
-        \sjtu@saved@env@body
-      }
-    \fi
-  \fi
 }
 \RenewDocumentCommand{\maketitle}{}{%
   \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}
