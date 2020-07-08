@@ -225,7 +225,7 @@
     choices = {
       true,
       false,
-    }
+    },
   },
   indent-headings = {
     name = indent@headings,
@@ -236,6 +236,12 @@
     },
     initial = false,
     default = fixed,
+  },
+  header = {
+    choices = {
+      single,
+      double,
+    },
   },
   title-logo-color = {
     name = title@logo@color,
@@ -787,67 +793,16 @@
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
 \newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
-\ifsjtu@type@graduate
-  \newcommand\sjtu@thepage@format[2]{---~{\bfseries{#1}}~---}
-\else
-  \ifsjtu@language@chinese
-    \newcommand\sjtu@thepage@format[2]{第~{#1}~页\,共~{#2}~页}
-  \else
-    \newcommand\sjtu@thepage@format[2]{--~~Page~~{#1}~~of~~{#2}~~--}
-  \fi
-\fi
-\def\sjtu@info@fund{}
-\fancypagestyle{sjtu@title}{%
-  \fancyhf{}
-  \fancyfoot[L]{\ifsjtu@review\relax\else\sjtu@info@fund\fi}
-  \renewcommand\headrulewidth{0pt}
-  \renewcommand\footrulewidth{0pt}
-}
-\ifsjtu@type@graduate
-  \fancypagestyle{sjtu@plain}{%
-    \fancyhf{}
-    \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
-    \fancyfoot[C]{%
-      \ifsjtu@page@numbering
-        \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
-      \fi
-    }
-    \renewcommand\headrule{%
-      \hrule\@height2.25\p@\@width\headwidth
-      \vskip 0.75\p@
-      \hrule\@height0.75\p@\@width\headwidth
-      \vskip -2.75\p@
-    }
-  }
-\else
-  \fancypagestyle{sjtu@plain}{%
-    \fancyhf{}
-    \fancyhead[L]{%
-      \includegraphics[height=32pt]%
-        {sjtu-vi-logo-\sjtu@style@header@logo@color.pdf}%
-    }
-    \fancyhead[R]{%
-      \parbox[b]{0.75\textwidth}{%
-        \raggedleft\nouppercase{\zihao{-5}\heiti\sjtu@info@title}%
-      }
-    }
-    \fancyfoot[C]{%
-      \ifsjtu@page@numbering
-        \zihao{-5}\sjtu@thepage@format{\sjtu@thepage}{\sjtu@lastpageref}%
-      \fi
-    }
-    \renewcommand\headrulewidth{0.75\p@}
-  }
-\fi
 \patchcmd\cleardoublepage%
   {\newpage}{\thispagestyle{empty}\newpage}
   {}{}
 \patchcmd\chapter%
-  {\thispagestyle{\CTEX@chapter@pagestyle}}{}
+  {\thispagestyle}{\@gobble}
   {}{}
 \AtBeginDocument{%
   \pagenumbering{Alph}
-  \pagestyle{empty}}
+  \pagestyle{empty}
+}
 \renewcommand\frontmatter{%
   \cleardoublepage
   \@mainmatterfalse
@@ -857,7 +812,7 @@
   \pagenumbering{Roman}
   \def\sjtu@thepage{\thepage}
   \def\sjtu@lastpageref{\lastpageref{pagesLTS.Roman}}
-  \pagestyle{sjtu@plain}
+  \pagestyle{plain}
 }
 \renewcommand\mainmatter{%
   \cleardoublepage
@@ -982,7 +937,7 @@
     \addcontentsline{toc}{chapter}{#4}%
   }%%
   \chapter*{#3}%
-  \@mkboth{#2}{#2}%
+  \@mkboth{\MakeUppercase{#2}}{\MakeUppercase{#2}}%
 }
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
@@ -1247,6 +1202,25 @@
   \ifsjtu@review\relax\else
     \sjtu@chapter{\sjtu@name@resume}
     \sjtu@saved@env@body
+  \fi
+}
+\NewDocumentEnvironment{digest}{}{%
+  \Collect@Body\sjtu@save@env@body
+}{%
+  \ifsjtu@type@bachelor
+    \ifsjtu@language@chinese
+      \AtEndDocument{%
+        \cleardoublepage
+        \pagenumbering{roman}
+        \def\sjtu@thepage{\theCurrentPageLocal}
+        \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
+        \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@en}
+        \counterwithout{section}{chapter}
+        \sjtu@counter@without@chapter
+        \let\addcontentsline\@gobblethree
+        \sjtu@saved@env@body
+      }
+    \fi
   \fi
 }
 \AtEndPreamble{
