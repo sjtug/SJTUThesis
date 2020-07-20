@@ -190,7 +190,6 @@
 \RequirePackage{graphicx}
 \RequirePackage{array}
 \RequirePackage{booktabs}
-\RequirePackage{longtable}
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
 \RequirePackage{subcaption}
@@ -1012,10 +1011,6 @@
   \fi
   \@setminipage
 }
-\BeforeBeginEnvironment{longtable}
-  {\begingroup\ifsjtu@set@float@fontsize\zihao{5}\fi}
-\AfterEndEnvironment{longtable}
-  {\endgroup}
 \NewDocumentCommand{\SJTUsetfloatfontsize}{}{\sjtu@set@float@fontsizetrue}
 \NewDocumentCommand{\SJTUunsetfloatfontsize}{}{\sjtu@set@float@fontsizefalse}
 \DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
@@ -1302,6 +1297,12 @@
 }
 \AtEndOfPackageFile*{threeparttable}{
   \appto\TPTnoteSettings{\footnotesize}
+}
+\AtEndOfPackageFile*{longtable}{
+  \BeforeBeginEnvironment{longtable}
+    {\begingroup\ifsjtu@set@float@fontsize\zihao{5}\fi}
+  \AfterEndEnvironment{longtable}
+    {\endgroup}
 }
 \AtEndOfPackageFile*{siunitx}{
   \sisetup{
