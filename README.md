@@ -65,6 +65,7 @@ make wordcount                # 论文字数统计
 如果这些不能解决你的问题，建议通过以下方式进行反馈（按推荐顺序排序）：
 
 * [在 GitHub 项目主页开 issue](https://github.com/sjtug/SJTUThesis/issues) (推荐)
+* [在水源社区对应板块发帖](https://dev.bbs.sjtu.edu.cn/c/36-category/40-category/40)
 * [在水源 BBS TeX_LaTeX 版发帖](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
 
 另外也可以在我们的 [Gitter](https://gitter.im/sjtug/SJTUThesis) 在线聊天频道讨论任何有关与模版的话题。
