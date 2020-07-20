@@ -1,4 +1,4 @@
-dist: xenial
+dist: bionic
 
 language: shell
 
@@ -13,9 +13,6 @@ matrix:
       cache:
         directories:
           - $HOME/.miktex
-
-before_script:
-  - sed -i 's/documentclass\[/documentclass[fontset=fandol, /' main.tex
 
 script:
   - latexmk -quiet -halt-on-error -time main.tex
