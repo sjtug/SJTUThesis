@@ -5,7 +5,7 @@ export REPO=https://mirrors.rit.edu/CTAN/systems/win32/miktex
 
 # Install MiKTeX
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889
-echo "deb ${REPO}/setup/deb/ xenial universe" | sudo tee /etc/apt/sources.list.d/miktex.list
+echo "deb ${REPO}/setup/deb/ bionic universe" | sudo tee /etc/apt/sources.list.d/miktex.list
 sudo apt-get update -qq
 sudo apt-get install -y --no-install-recommends ghostscript miktex
 
