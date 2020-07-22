@@ -3,7 +3,7 @@
 % 载入 SJTUThesis 模版
 \documentclass[type=master]{sjtuthesis}
 % 选项
-%   type=[doctor|master|bachelor|course],     % 可选（默认：doctor），学位类型
+%   type=[doctor|master|bachelor|course],     % 可选（默认：doctor），论文类型
 %   zihao=[-4|5],                             % 可选（研究生默认：-4，本科默认：5），正文字号大小
 %   language=[chinese|english],               % 可选（默认：chinese），论文的主要语言
 %   review,                                   % 可选（默认：关闭），盲审模式
@@ -16,24 +16,28 @@
 
 %TC:ignore
 
-% 无编号内容：中英文论文封面、授权页
+% 无编号内容
+
+% 论文标题页
 \maketitle
+
+% 原创性声明、版权授权页
 \originalitypage*
 \copyrightpage[scans/copyright.pdf]
 
-% 使用罗马数字对前言编号
+% 使用罗马数字对前文编号
 \frontmatter
 
 % 摘要
 \input{contents/abstract}
 
-% 目录、插图目录、表格目录
+% 目录、插图索引、表格索引、算法索引
 \tableofcontents
 \listoffigures*
 \listoftables*
 \listofalgorithms*
 
-% 主要符号、缩略词对照表
+% 主要符号对照表
 \input{contents/nomenclature}
 
 %TC:endignore
@@ -52,23 +56,23 @@
 % 使用英文字母对附录编号
 \appendix
 
-% 附录内容，本科学位论文可以用翻译的文献替代。
+% 附录内容
 \input{contents/app_maxwell_equations}
 \input{contents/app_flow_chart}
 
-% 文后无编号部分
+% 后文部分无编号
 \backmatter
 
-% 参考资料
+% 参考文献
 \printbibliography[heading=bibintoc]
 
-% 用于盲审的论文需隐去致谢、发表论文、参与项目、申请专利、简历
+% 用于盲审的论文需隐去致谢、发表论文、科研成果、简历
 
 % 致谢
 \input{contents/acknowledgements}
 
-% 发表论文、参与项目、申请专利、简历
-% 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
+% 发表论文、科研成果、简历
+% 盲审论文中，发表论文及科研成果等仅以第几作者注明即可，不要出现作者或他人姓名
 \input{contents/publications}
 \input{contents/achievements}
 \input{contents/resume}
