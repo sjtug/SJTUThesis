@@ -430,10 +430,10 @@
 \fi
 \sjtu@name@def{orig@subtitle@zh}{原创性声明}
 \sjtu@name@def{orig@subtitle@en}{Declaration of Originality}
-\sjtu@name@def{auth@subtitle@zh}{版权使用授权书}
-\sjtu@name@def{auth@subtitle@en}{Declaration of Authorization}
+\sjtu@name@def{copr@subtitle@zh}{版权使用授权书}
+\sjtu@name@def{copr@subtitle@en}{Copyright Authorization}
 \sjtu@name@def{orig@title}{\sjtu@name@thesis@kind\sjtu@name@orig@subtitle@zh}
-\sjtu@name@def{auth@title}{\sjtu@name@thesis@kind\sjtu@name@auth@subtitle@zh}
+\sjtu@name@def{copr@title}{\sjtu@name@thesis@kind\sjtu@name@copr@subtitle@zh}
 \sjtu@name@def{title@qouted}{《\sjtu@nopar\sjtu@info@title@zh》}
 \sjtu@name@def{origbody}{%
   本人郑重声明：所呈交的\sjtu@name@thesis@kind \sjtu@name@title@qouted，
@@ -441,7 +441,7 @@
   的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对
   本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全
   意识到本声明的法律结果由本人承担。}
-\sjtu@name@def{authbody}{%
+\sjtu@name@def{coprbody}{%
   本\sjtu@name@thesis@kind 作者
   完全了解学校有关保留、使用\sjtu@name@thesis@kind 的规定，同意学校保留
   并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。
@@ -482,13 +482,13 @@
   \sjtu@name@def{titlepage}{扉页}
   \sjtu@name@def{subject}{\sjtu@name@subject@zh}
   \sjtu@name@def{orig@subtitle}{\sjtu@name@orig@subtitle@zh}
-  \sjtu@name@def{auth@subtitle}{\sjtu@name@auth@subtitle@zh}
+  \sjtu@name@def{copr@subtitle}{\sjtu@name@copr@subtitle@zh}
   \sjtu@name@def{abstract}{\sjtu@name@abstract@zh}
 \else
   \sjtu@name@def{titlepage}{Title Page}
   \sjtu@name@def{subject}{\sjtu@name@subject@en}
   \sjtu@name@def{orig@subtitle}{\sjtu@name@orig@subtitle@en}
-  \sjtu@name@def{auth@subtitle}{\sjtu@name@auth@subtitle@en}
+  \sjtu@name@def{copr@subtitle}{\sjtu@name@copr@subtitle@en}
   \sjtu@name@def{abstract}{\sjtu@name@abstract@en}
 \fi
 \ctexset{%
@@ -1046,7 +1046,7 @@
 \renewcommand\boldsymbol{\symbf}
 \newcommand\square{\mdlgwhtsquare}
 \newcommand\sjtu@square{{\CJKfamily+{}\symbol{"25A1}}}
-\newcommand\sjtu@authconf{%
+\newcommand\sjtu@copr@addon{%
   \par\hspace{7\ccwd}%
   {\heiti 保\hspace{1\ccwd}密}~\sjtu@square，在 \uline{\hspace{3em}}
   年解密后适用本授权书。\par
@@ -1063,10 +1063,10 @@
     \hspace{\stretch{2}} 月 \hspace{\stretch{2}} 日%
   }
 }
-\NewDocumentCommand{\makeorigpage}{s o}{%
+\NewDocumentCommand{\originalitypage}{s O{}}{%
   \ifsjtu@review\relax\else
     \cleardoublepage
-    \IfNoValueTF{#2}{%
+    \ifblank{#2}{%
       \thispagestyle{empty}
       \sjtu@chapter*[\sjtu@name@orig@subtitle]{%
         \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@orig@title
@@ -1086,23 +1086,23 @@
       \endgroup
     }{%
       \sjtu@pdfbookmark{0}{\sjtu@name@orig@subtitle}%
-      \includepdf[pagecommand={\thispagestyle{empty}}]{#1}
+      \includepdf[pagecommand={\thispagestyle{empty}}]{#2}
     }
   \fi
 }
-\NewDocumentCommand{\makeauthpage}{o}{%
+\NewDocumentCommand{\copyrightpage}{O{}}{%
   \ifsjtu@review\relax\else
     \cleardoublepage
-    \IfNoValueTF{#1}{%
+    \ifblank{#1}{%
       \thispagestyle{empty}
-      \sjtu@chapter*[\sjtu@name@auth@subtitle]{%
-        \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@auth@title
+      \sjtu@chapter*[\sjtu@name@copr@subtitle]{%
+        \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@copr@title
       }
       \begingroup
         \zihao{4}
-        \sjtu@name@authbody
+        \sjtu@name@coprbody
         \vskip 1ex
-        \sjtu@authconf
+        \sjtu@copr@addon
         \vskip 16ex
         \noindent
         \begin{minipage}{\textwidth}
@@ -1112,7 +1112,7 @@
         \end{minipage}
       \endgroup
     }{%
-      \sjtu@pdfbookmark{0}{\sjtu@name@auth@subtitle}%
+      \sjtu@pdfbookmark{0}{\sjtu@name@copr@subtitle}%
       \includepdf[pagecommand={\thispagestyle{empty}}]{#1}
     }
   \fi
