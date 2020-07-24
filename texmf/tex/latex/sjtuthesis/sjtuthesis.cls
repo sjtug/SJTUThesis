@@ -148,7 +148,7 @@
     },
   },
 }
-\DeclareBoolOption{review}
+\DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
@@ -1278,7 +1278,7 @@
     \phantomsection
   }
   \pdfstringdefDisableCommands{%
-    \let\\\@empty 
+    \let\\\@empty
     \let\quad\@empty
     \let\hspace\@gobble
   }
@@ -1320,42 +1320,51 @@
 }
 \newcommand\sjtu@def@theorem@name{%
   \ifsjtu@language@chinese
-    \sjtu@name@def{assertion}{断言}
     \sjtu@name@def{assumption}{假设}
     \sjtu@name@def{axiom}{公理}
+    \sjtu@name@def{conjecture}{猜想}
     \sjtu@name@def{corollary}{推论}
     \sjtu@name@def{definition}{定义}
     \sjtu@name@def{example}{例}
+    \sjtu@name@def{exercise}{练习}
     \sjtu@name@def{lemma}{引理}
+    \sjtu@name@def{problem}{问题}
     \sjtu@name@def{proof}{证明}
     \sjtu@name@def{proposition}{命题}
     \sjtu@name@def{remark}{注}
+    \sjtu@name@def{solution}{解}
     \sjtu@name@def{theorem}{定理}
   \else
-    \sjtu@name@def{assertion}{Assertion}
     \sjtu@name@def{assumption}{Assumption}
     \sjtu@name@def{axiom}{Axiom}
+    \sjtu@name@def{conjecture}{Conjecture}
     \sjtu@name@def{corollary}{Corollary}
     \sjtu@name@def{definition}{Definition}
     \sjtu@name@def{example}{Example}
+    \sjtu@name@def{exercise}{Exercise}
     \sjtu@name@def{lemma}{Lemma}
+    \sjtu@name@def{problem}{Problem}
     \sjtu@name@def{proof}{Proof}
     \sjtu@name@def{proposition}{Proposition}
     \sjtu@name@def{remark}{Remark}
+    \sjtu@name@def{solution}{Solution}
     \sjtu@name@def{theorem}{Theorem}
   \fi
 }
 \newcommand\sjtu@def@theorem{%
-  \newtheorem{theorem}             {\sjtu@name@theorem}    [chapter]
-  \newtheorem{assertion}  [theorem]{\sjtu@name@assertion}
-  \newtheorem{axiom}      [theorem]{\sjtu@name@axiom}
-  \newtheorem{corollary}  [theorem]{\sjtu@name@corollary}
-  \newtheorem{lemma}      [theorem]{\sjtu@name@lemma}
-  \newtheorem{proposition}[theorem]{\sjtu@name@proposition}
-  \newtheorem{assumption}          {\sjtu@name@assumption} [chapter]
-  \newtheorem{definition}          {\sjtu@name@definition} [chapter]
-  \newtheorem{example}             {\sjtu@name@example}    [chapter]
-  \newtheorem*{remark}             {\sjtu@name@remark}
+  \newtheorem{assumption} {\sjtu@name@assumption} [chapter]
+  \newtheorem{axiom}      {\sjtu@name@axiom}      [chapter]
+  \newtheorem{conjecture} {\sjtu@name@conjecture} [chapter]
+  \newtheorem{corollary}  {\sjtu@name@corollary}  [chapter]
+  \newtheorem{definition} {\sjtu@name@definition} [chapter]
+  \newtheorem{example}    {\sjtu@name@example}    [chapter]
+  \newtheorem{exercise}   {\sjtu@name@exercise}   [chapter]
+  \newtheorem{lemma}      {\sjtu@name@lemma}      [chapter]
+  \newtheorem{problem}    {\sjtu@name@problem}    [chapter]
+  \newtheorem{proposition}{\sjtu@name@proposition}[chapter]
+  \newtheorem{theorem}    {\sjtu@name@theorem}    [chapter]
+  \newtheorem*{remark}    {\sjtu@name@remark}
+  \newtheorem*{solution}  {\sjtu@name@solution}
 }
 \PassOptionsToPackage{amsmath,thmmarks,hyperref}{ntheorem}
 \AtEndOfPackageFile*{ntheorem}{
