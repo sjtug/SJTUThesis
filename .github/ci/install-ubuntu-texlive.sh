@@ -23,7 +23,6 @@ tlmgr install           \
   biber                 \
   biblatex              \
   biblatex-gb7714-2015  \
-  bitset                \
   booktabs              \
   caption               \
   chngcntr              \
@@ -39,18 +38,13 @@ tlmgr install           \
   footmisc              \
   hologo                \
   ifoddpage             \
-  l3backend             \
-  l3kernel              \
-  l3packages            \
   latexmk               \
-  letltxmacro           \
   listings              \
   logreq                \
   ms                    \
   multirow              \
   ntheorem              \
   pageslts              \
-  pdfescape             \
   pdflscape             \
   pdfpages              \
   pgf                   \
