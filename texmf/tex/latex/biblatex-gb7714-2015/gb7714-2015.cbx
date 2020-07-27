@@ -7,7 +7,7 @@
 %% Released under the LaTeX Project Public License v1.3c or later
 %% ---------------------------------------------------------------
 %%
-\def\versionofgbtstyle{2020/03/20 v1.0u}
+\def\versionofgbtstyle{2020/07/21 v1.0v}
 \ProvidesFile{gb7714-2015.cbx}[\versionofgbtstyle biblatex citation style]
 
 %
@@ -29,6 +29,27 @@
 
 %textcite标注命令中的标点设置
 %\DeclareDelimFormat[textcite]{andothersdelim}{\addspace}%
+
+%
+%将连续3篇文献压缩改为连续2篇文献压缩
+%
+%该宏的目的是抛弃压缩内部的编号，而仅输出最后一个编号，主要通过cbx@tempcnta来控制
+%一般情况下cbx@tempcnta为0，所以该宏不输出任何内容。当cbx@tempcnta在cite:comp:comp宏中更改变大后
+%说明开始进入需要压缩的范围，当到压缩终点时，cbx@tempcnta必然大于1，则输出内容。
+%修改第二行的数字1为0即可将默认的3个开始压缩变为2个开始压缩。
+\renewbibmacro*{cite:dump}{%
+  \ifnumgreater{\value{cbx@tempcnta}}{0}%
+    {\ifnumgreater{\value{cbx@tempcnta}}{0}%1改为0，可以将压缩起始3个编号改为2个编号
+       {\bibrangedash}%
+       {\multicitedelim}%
+     \bibhyperref[\cbx@lastkey]{%
+       \ifdef\cbx@lastprefix%
+         {\printtext[labelprefix]{\cbx@lastprefix}}%
+         {}%
+       \printtext[labelnumber]{\cbx@lastnumber}}}%
+    {}%
+  \setcounter{cbx@tempcnta}{0}%
+  \global\undef\cbx@lastprefix}
 
 %
 %   定义一个上标方括号wrapper
@@ -159,14 +180,90 @@
 %   20190409，v1.0r，hzz
 %   方法:利用newcommand或newrobustcmd命令进行定义
 %   注意\citet和\citep命令之所以不用newrobustcmd，是为避免加载natbib模块后产生冲突
-\DeclareCiteCommand{\citet}%
-  {\usebibmacro{prenote}}
-  {\iffieldequalstr{userf}{cn}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
-  {\renewcommand*{\andothersdelim}{\addspace}}%
-  \printnames{labelname}\mkbibsuperscript{\mkbibbrackets{\usebibmacro{citeindex}%
-   \usebibmacro{cite}}}}
-  {\multicitedelim}
-  {\mkbibsuperscript{\printfield{postnote}}}
+%\DeclareCiteCommand{\citet}%
+%  {\usebibmacro{prenote}}
+%  {\iffieldequalstr{userf}{cn}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
+%  {\renewcommand*{\andothersdelim}{\addspace}}%
+%  \printnames{labelname}\mkbibsuperscript{\mkbibbrackets{\usebibmacro{citeindex}%
+%   \usebibmacro{cite}}}}
+%  {\multicitedelim}
+%  {\mkbibsuperscript{\printfield{postnote}}}
+
+%
+%   重定义citet，因为前面与\authornumcite同定义的命令无法正确处理多个bibtexkey同时给出的压缩情况
+%   20200721，v1.0v，hzz
+%   方法:利用textcite命令进行定义
+%   基本利用textcite命令来写citet，仅利用bool{cbx:incitet}做判断，进而处理不同的上标和页码形式
+\newbool{cbx:incitet}
+\global\booltrue{cbx:incitet}
+
+\newbibmacro*{citet}{%
+  \iffieldequals{namehash}{\cbx@lasthash}%
+    {\usebibmacro{cite:comp}}%
+    {\usebibmacro{cite:dump}%
+     \ifbool{cbx:parens}%
+       {\mkbibsuperscript{\printtext{\bibclosebracket}}\global\boolfalse{cbx:parens}}%
+       {}%
+     \iffirstcitekey
+       {}
+       {\textcitedelim}%
+     \usebibmacro{cite:init}%
+     \ifnameundef{labelname}
+       {\printfield[citetitle]{labeltitle}}
+       {\printnames{labelname}}%
+     \setunit*{\printdelim{namelabeldelim}}%
+     \mkbibsuperscript{\printtext{\bibopenbracket}\global\booltrue{cbx:parens}%
+     \ifnumequal{\value{citecount}}{1}
+       {\usebibmacro{prenote}}%
+       {}%
+     \usebibmacro{cite:comp}%
+     \stepcounter{textcitecount}%
+     \savefield{namehash}{\cbx@lasthash}}}}
+
+\DeclareCiteCommand{\cbx@textcite}%
+  {\usebibmacro{cite:init}}%
+  {\usebibmacro{citeindex}%
+   \ifbool{cbx:incitet}{\usebibmacro{citet}}{\usebibmacro{textcite}}%
+   }%
+  {}%
+  {\ifbool{cbx:incitet}{\mkbibsuperscript{\usebibmacro{cite:dump}\usebibmacro{postnote}}}%
+        {\usebibmacro{cite:dump}\usebibmacro{postnote}}%
+   \ifbool{cbx:parens}%
+     {\ifbool{cbx:incitet}{\mkbibsuperscript{\bibclosebracket}}{\bibclosebracket}%
+     \global\boolfalse{cbx:parens}}%
+     {}}
+
+  \newrobustcmd{\cbx@citet@init}[2]{%
+  \global\booltrue{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+  \renewrobustcmd{\cbx@textcite@init}[2]{%
+  \global\boolfalse{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+\DeclareCiteCommand{\citet}[\cbx@citet@init\cbx@textcite]
+  {\gdef\cbx@savedkeys{}%
+   \citetrackerfalse%
+   \pagetrackerfalse%
+   \DeferNextCitekeyHook%
+   \usebibmacro{cite:init}}
+  {\ifthenelse{\iffirstcitekey\AND\value{multicitetotal}>0}
+     {\protected@xappto\cbx@savedcites{()(\thefield{multipostnote})}%
+      \global\clearfield{multipostnote}}
+     {}%
+   \xappto\cbx@savedkeys{\thefield{entrykey},}%
+   \iffieldequals{namehash}{\cbx@lasthash}
+     {}
+     {\stepcounter{textcitetotal}%
+      \savefield{namehash}{\cbx@lasthash}}}
+  {}
+  {\protected@xappto\cbx@savedcites{%
+     [\thefield{prenote}][\thefield{postnote}]{\cbx@savedkeys}}}
+
 
 
 \DeclareCiteCommand{\citep}[\mkbibsuperscript]%利用mkbibsuperbracket添加方括号
