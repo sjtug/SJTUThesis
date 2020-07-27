@@ -49,6 +49,7 @@ tlmgr install           \
   pdfpages              \
   pgf                   \
   relsize               \
+  silence               \
   siunitx               \
   sourcecodepro         \
   sourcesanspro         \
