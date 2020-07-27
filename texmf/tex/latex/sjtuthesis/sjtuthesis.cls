@@ -214,6 +214,8 @@
 \sjtu@package@conflict{unicode-math}{eucal}
 \sjtu@package@conflict{unicode-math}{eufrak}
 \sjtu@package@conflict{unicode-math}{mathrsfs}
+\RequirePackage{silence}
+\WarningFilter{pageslts}{Package pdfpages detected}
 \kv@define@key{sjtu}{style}{
   \kvsetkeys{sjtu@style}{#1}
 }
