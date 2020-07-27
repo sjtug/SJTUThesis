@@ -177,8 +177,9 @@
     \input{sjtuthesis-undergraduate.ltx}
   \fi
 }
-\RequirePackage{etoolbox}
 \RequirePackage{xparse}
+\RequirePackage{etoolbox}
+\RequirePackage{filehook}
 \RequirePackage{environ}
 \RequirePackage{geometry}
 \RequirePackage{fancyhdr}
@@ -200,7 +201,8 @@
 \RequirePackage{pdfpages}
 \includepdfset{fitpaper=true}
 \RequirePackage{url}
-\RequirePackage{filehook}
+\RequirePackage{silence}
+\WarningFilter{pageslts}{Package pdfpages detected}
 \newcommand\sjtu@package@conflict[2]{
   \AtBeginOfPackageFile*{#2}{
     \sjtu@error{The `#2' package is incompatible with required `#1'}
@@ -214,8 +216,10 @@
 \sjtu@package@conflict{unicode-math}{eucal}
 \sjtu@package@conflict{unicode-math}{eufrak}
 \sjtu@package@conflict{unicode-math}{mathrsfs}
-\RequirePackage{silence}
-\WarningFilter{pageslts}{Package pdfpages detected}
+\newcommand\sjtu@patchcmd[3]{%
+  \patchcmd{#1}{#2}{#3}{}%
+    {\sjtu@warning{Oops! Command `\protect#1' is NOT patchable.}}
+}
 \kv@define@key{sjtu}{style}{
   \kvsetkeys{sjtu@style}{#1}
 }
@@ -794,12 +798,10 @@
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
 \newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
-\patchcmd\cleardoublepage%
+\sjtu@patchcmd\cleardoublepage%
   {\newpage}{\thispagestyle{empty}\newpage}
-  {}{}
-\patchcmd\chapter%
+\sjtu@patchcmd\chapter%
   {\thispagestyle}{\@gobble}
-  {}{}
 \AtBeginDocument{%
   \pagenumbering{Alph}
   \pagestyle{empty}
@@ -1004,15 +1006,9 @@
   \def\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
 \newif\ifsjtu@set@float@fontsize \sjtu@set@float@fontsizefalse
-\renewcommand\@floatboxreset{%
-  \reset@font
-  \ifsjtu@set@float@fontsize
-    \zihao{5}
-  \else
-    \normalsize
-  \fi
-  \@setminipage
-}
+\sjtu@patchcmd\@floatboxreset%
+  {\normalsize}
+  {\ifsjtu@set@float@fontsize\zihao{5}\else\normalsize\fi}
 \NewDocumentCommand{\SJTUsetfloatfontsize}{}{\sjtu@set@float@fontsizetrue}
 \NewDocumentCommand{\SJTUunsetfloatfontsize}{}{\sjtu@set@float@fontsizefalse}
 \DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
@@ -1425,11 +1421,9 @@
   \apptocmd{\sjtu@def@thefloats}{%
     \def\thealgocf{\thechapter\sjtu@style@fl@num@sep\arabic{algocf}}
   }{}{}
-  \patchcmd{\algocf@latexcaption}{\addcontentsline}{%
-    \caption@iflist
-      {\addcontentsline}
-      {\@gobblethree}
-  }{}{}
+  \sjtu@patchcmd\algocf@latexcaption%
+    {\addcontentsline}
+    {\caption@iflist{\addcontentsline}{\@gobblethree}}
   \AtEndPreamble{%
     \newlength{\sjtu@cftalgnumwidth@tmp}
       \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
@@ -1441,11 +1435,10 @@
   \RequirePackage{algorithmicx, algpseudocode}
   \floatname{algorithm}{\sjtu@name@algorithm}
   \@addtoreset{algorithm}{chapter}
-  \patchcmd\@chapter%
+  \sjtu@patchcmd\@chapter%
     {\if@twocolumn}
     {\addtocontents{loa}{\protect\addvspace{10\p@}}%
-      \if@twocolumn}
-    {}{}
+     \if@twocolumn}
   \def\listalgorithmname{\sjtu@name@listalgorithm}
   \newlistof{alg}{loa}{\listalgorithmname}
   \let\l@algorithm\l@alg
