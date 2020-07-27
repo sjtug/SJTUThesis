@@ -11,7 +11,7 @@
 %
 %   版本和时间信息
 %
-\def\versionofgbtstyle{2020/03/20 v1.0u}
+\def\versionofgbtstyle{2020/07/21 v1.0v}
 \def\versionofbiblatex{\abx@version}
 \ProvidesFile{gb7714-2015.bbx}[\versionofgbtstyle biblatex bibliography style]
 %\RequireBiber[3]%显式指定用biber后端，当用bibtex时会报错，但其实不会影响编译，只是采用bibtex后无法达成格式需求
@@ -454,6 +454,7 @@
     \def\str@references{参考文献}
     \def\str@bytranslator{译}
     \def\str@andotherscn{等}
+    \def\str@andcn{和}
     \def\str@backrefpage{引用页}
     \def\str@backrefpages{引用页}
     \def\str@noaddress{出版地不详}
@@ -522,6 +523,11 @@
         }
 	}{}}
 
+    %
+    %   增加一个处理佚名或noauthor的控制选项
+    %
+    %   原理方法:在顺序编码制中不需要使用,为与作者年制的兼容性考虑,这里也增加避免报错
+    \DeclareBibliographyOption{gbnoauthor}[true]{}%
 
 
     %
@@ -556,11 +562,7 @@
     \ExecuteBibliographyOptions{gbpunctin}
 
 
-    %
-    %   增加一个处理佚名或noauthor的控制选项
-    %
-    %   原理方法:在顺序编码制中不需要使用,为与作者年制的兼容性考虑,这里也增加避免报错
-    \DeclareBibliographyOption{gbnoauthor}[true]{}%
+
 
 
     %
@@ -850,7 +852,7 @@
         bytranslator= {\str@bytranslator},%\addperiod，%将trans. by 改成 译\addcomma\
         and         = {\addcomma},%将第2和3人名间的and符号改成逗号，用\finalnamedelim命令也可以定义，参见3.9.1节
         andcn       = {\addcomma},%and本地化字符串的中文对应词
-        andincitecn = {\addcomma},%将标注中的分开，便于与文献表中的区分
+        andincitecn = {\str@andcn},%将标注中的分开，便于与文献表中的区分
         andincite   = {\addcomma},
         %andothers   = {et al.},%将超过3个人名的省略，et al.改成为 等
         andotherscn   = {\str@andotherscn},%将超过3个人名的省略，et al.改成为 等
@@ -1283,6 +1285,8 @@
             \step[fieldset=userd,origfieldval]
             }
         \map{%当文献给出language域时，设置文献要使用的本地化字符串的语言
+            %biblatex 3.11及以下版本仅有match是区分大小写的，而3.12版开始用matchi来区分大小，而match不区分
+            %这里为兼容3.11及以下版本，所以用一个复杂一点的正则表达式
             \step[fieldsource=language,match=\regexp{(e|E)(n|N)(g|G)(l|L)(i|I)(s|S)(h|H)},final]
             \step[fieldset=langid,fieldvalue={english}]
             \step[fieldset=lansortorder,fieldvalue=\lanenorder]
@@ -2257,7 +2261,6 @@ test {\iftoggle{iftlseven}}%biblatex<=3.7
 }}
 
 
-%
 %   修改省略作者后的本地化字符串，比如et al.
 %   v1.0o,20190103,hzz
 %
@@ -2266,6 +2269,26 @@ test {\iftoggle{iftlseven}}%biblatex<=3.7
 %   首先设置全局的，然后设置文献表中的，这一等价于将所有的cite命令环境都设置过了
 %   而不用对每一个引用命令单独设置，比如cite，parancite，textcite都设置
 \DeclareDelimFormat{strandothersdelim}{%
+  \edef\userfieldabcde{userd}%这里使用\iffieldequalstr{labelnamesource}替代ifcurrentname因为标注中使用ifcurrentname无效
+  \iffieldequalstr{labelnamesource}{translator}{\edef\userfieldabcde{usere}}{}%
+  \iffieldequalstr{labelnamesource}{editor}{\edef\userfieldabcde{userc}}{}%
+  \iffieldequalstr{labelnamesource}{author}{\edef\userfieldabcde{userf}}{}%
+  \iffieldequalstr{labelnamesource}{bookauthor}{\edef\userfieldabcde{userb}}{}%
+  \ifcase\value{gbcitelocalcase}%
+    \iffieldequalstr{\userfieldabcde}{chinese}{\ifbibstring{andothersincitecn}{\bibstring{andothersincitecn}}{\bibstring{andothers}}}{}%中文已经通过english本地化字符串定义
+    \iffieldequalstr{\userfieldabcde}{korean}{\ifbibstring{andotherskr}{\bibstring{andotherskr}}{\bibstring{andothers}}}{}%韩语未定义，所以与bib中一致
+    \iffieldequalstr{\userfieldabcde}{japanese}{\ifbibstring{andothersjp}{\bibstring{andothersjp}}{\bibstring{andothers}}}{}%日与同韩语
+    \iffieldequalstr{\userfieldabcde}{english}{\ifbibstring{andothersincite}{\bibstring{andothersincite}}{\bibstring{andothers}}}{}%英语已定义
+    \iffieldequalstr{\userfieldabcde}{french}{\bibstring{andothers}}{}%法语未定义，若要定义需要针对french本地化字符串定义
+    \iffieldequalstr{\userfieldabcde}{russian}{\bibstring{andothers}}{}%俄语未定义，若要定义需要针对russian本地化字符串定义
+  \or%
+  \bibstring{andothersincitecn}%
+  \or%
+  \bibstring{andothersincite}%
+  \fi}
+
+
+\DeclareDelimFormat[bib,biblist]{strandothersdelim}{%
   \edef\userfieldabcde{userd}%
   \ifcurrentname{translator}{\edef\userfieldabcde{usere}}{}%
   \ifcurrentname{editor}{\edef\userfieldabcde{userc}}{}%
@@ -2293,6 +2316,28 @@ test {\iftoggle{iftlseven}}%biblatex<=3.7
 %   首先设置全局的，然后设置文献表中的，这一等价于将所有的cite命令环境都设置过了
 %   而不用对每一个引用命令单独设置，比如cite，parancite，textcite都设置
 \DeclareDelimFormat{finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+%  \addspace%
+  \edef\userfieldabcde{userd}%
+  \ifcurrentname{translator}{\edef\userfieldabcde{usere}}{}%
+  \ifcurrentname{editor}{\edef\userfieldabcde{userc}}{}%
+  \ifcurrentname{author}{\edef\userfieldabcde{userf}}{}%
+  \ifcurrentname{bookauthor}{\edef\userfieldabcde{userb}}{}%
+  \ifcase\value{gbcitelocalcase}%
+    \iffieldequalstr{\userfieldabcde}{chinese}{\bibstring{andincitecn}}{}%
+    \iffieldequalstr{\userfieldabcde}{korean}{\bibstring{andkr}}{}%
+    \iffieldequalstr{\userfieldabcde}{japanese}{\bibstring{andjp}}{}%
+    \iffieldequalstr{\userfieldabcde}{english}{\space\bibstring{andincite}\space}{}%
+    \iffieldequalstr{\userfieldabcde}{french}{\space\bibstring{and}\space}{}%
+    \iffieldequalstr{\userfieldabcde}{russian}{\space\bibstring{and}\space}{}%
+%\space%
+  \or%
+  \bibstring{andincitecn}%\space%
+  \or%
+\space\bibstring{andincite}\space%
+  \fi}
+
+\DeclareDelimFormat[bib,biblist]{finalnamedelim}{%
   \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
   \addspace%
   \edef\userfieldabcde{userd}%
