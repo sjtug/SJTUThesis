@@ -23,10 +23,10 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sjtuthesis}
-  [2020/07/20 1.0.0rc6 Shanghai Jiao Tong University Thesis Template]
+  [2020/07/31 1.0.0rc7 Shanghai Jiao Tong University Thesis Template]
 \hyphenation{SJTU-Thesis}
 \def\sjtuthesis{SJTU\textsc{Thesis}}
-\def\version{1.0.0rc6}
+\def\version{1.0.0rc7}
 \newcommand\sjtu@error[1]{%
   \ClassError{sjtuthesis}{#1}{}%
 }
