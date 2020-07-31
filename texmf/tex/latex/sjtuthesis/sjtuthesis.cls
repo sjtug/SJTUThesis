@@ -442,7 +442,7 @@
 \sjtu@name@def{copr@title}{\sjtu@name@thesis@kind\sjtu@name@copr@subtitle@zh}
 \sjtu@name@def{title@qouted}{《\sjtu@nopar\sjtu@info@title@zh》}
 \sjtu@name@def{origbody}{%
-  本人郑重声明：所呈交的\sjtu@name@thesis@kind \sjtu@name@title@qouted，
+  本人郑重声明：所呈交的\sjtu@name@thesis@kind\sjtu@name@title@qouted ，
   是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用
   的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对
   本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全
@@ -1049,9 +1049,9 @@
   \begingroup
     \linespread{1}\selectfont
     本\sjtu@name@thesis@type 属于\parbox[c]{20\ccwd}{%
-      {\heiti 保\hspace{1\ccwd}密}~\sjtu@square，
-      在 \uline{\hspace{3em}}年解密后适用本授权书。\\\\
-      {\heiti 不保密}~\sjtu@square。
+      {\heiti 保\hspace{1\ccwd}密}~\sjtu@square ，
+      在\uline{\hspace{3em}}年解密后适用本授权书。\\\\
+      {\heiti 不保密}~\sjtu@square 。
     }\par
   \endgroup
   \vskip 2ex
@@ -1059,9 +1059,8 @@
 }
 \newcommand\sjtu@signbox[1]{%
   \parbox{.45\textwidth}{%
-    #1 签名： \vskip 4em%
-    日期： \hspace{\stretch{3}} 年%
-    \hspace{\stretch{2}} 月 \hspace{\stretch{2}} 日%
+    #1 签名：\vskip 4em
+    日期：\hspace{\stretch{3}}年\hspace{\stretch{2}}月\hspace{\stretch{2}}日
   }
 }
 \NewDocumentCommand{\originalitypage}{s O{}}{%
@@ -1087,10 +1086,12 @@
           \hfill
           \sjtu@signbox{\sjtu@name@thesis@type 作者}
         \end{minipage}
+        \par
       \endgroup
     }{%
-      \sjtu@pdfbookmark{0}{\sjtu@name@orig@subtitle}%
-      \includepdf[pagecommand={\thispagestyle{empty}}]{#2}
+      \includepdf[pagecommand={%
+        \sjtu@pdfbookmark{0}{\sjtu@name@orig@subtitle}%
+      }]{#2}
     }
   \fi
 }
@@ -1116,10 +1117,12 @@
           \hfill
           \sjtu@signbox{指导教师}
         \end{minipage}
+        \par
       \endgroup
     }{%
-      \sjtu@pdfbookmark{0}{\sjtu@name@copr@subtitle}%
-      \includepdf[pagecommand={\thispagestyle{empty}}]{#1}
+      \includepdf[pagecommand={%
+        \sjtu@pdfbookmark{0}{\sjtu@name@copr@subtitle}%
+      }]{#1}
     }
   \fi
 }
