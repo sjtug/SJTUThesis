@@ -108,14 +108,13 @@
   \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@zh}{\par}}
   \thispagestyle{title}
   \begin{center}
-    \vspace*{40pt}
-    {\zihao{-2}\sjtu@name@subject@zh}
+    \vspace*{28pt}
+    {\zihao{-2}\sjtu@name@subject@zh\par}
     \vskip \stretch{4}
-    {\zihao{2}\heiti\sjtu@info@title@zh \vskip 1pt}
+    {\zihao{2}\heiti\sjtu@info@title@zh\par}
     \vskip \stretch{5}
     \begingroup
       \zihao{4}
-      \def\tabcolsep{1pt}
       \def\arraystretch{1.25}
       \begin{tabular}
         {>{\begin{CJKfilltwosides}[t]{6.5\ccwd}\heiti}r<{\end{CJKfilltwosides}}
@@ -133,6 +132,7 @@
           \sjtu@date{\sjtu@date@format@zh}{\sjtu@info@date}           \\
         \sjtu@name@conferring@zh       & \sjtu@name@school@zh         \\
       \end{tabular}
+      \par
     \endgroup
     \vskip 26pt
   \end{center}
@@ -143,14 +143,13 @@
   \thispagestyle{title}
   \begin{center}
     \vspace*{28pt}
-    {\zihao{-2}\sjtu@name@subject@en \vskip 1pt}
+    {\zihao{-2}\sjtu@name@subject@en\par}
     \vskip \stretch{4}
-    {\zihao{2}\bfseries\MakeUppercase\sjtu@info@title@en \vskip 1pt}
+    {\zihao{2}\bfseries\MakeUppercase\sjtu@info@title@en\par}
     \vskip \stretch{5}
     \begingroup
       \zihao{4}
-      \def\tabcolsep{1pt}
-      \def\arraystretch{1.3}
+      \def\arraystretch{1.25}
       \begin{tabular}
         {>{\bfseries}l<{:~}p{.45\textwidth}}
         \sjtu@name@author@en           & \sjtu@info@author@en         \\
@@ -166,6 +165,7 @@
           \sjtu@date{\sjtu@date@format@en}{\sjtu@info@date}           \\
         \sjtu@name@conferring@en       & \sjtu@name@school@en         \\
       \end{tabular}
+      \par
     \endgroup
     \vskip 26pt
   \end{center}
