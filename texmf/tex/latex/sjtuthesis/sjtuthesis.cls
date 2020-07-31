@@ -1045,13 +1045,16 @@
 \newcommand\square{\mdlgwhtsquare}
 \newcommand\sjtu@square{{\CJKfamily+{}\symbol{"25A1}}}
 \newcommand\sjtu@copr@addon{%
-  \par\hspace{7\ccwd}%
-  {\heiti 保\hspace{1\ccwd}密}~\sjtu@square，在 \uline{\hspace{3em}}
-  年解密后适用本授权书。\par
-  本\sjtu@name@thesis@type 属于
-  \par\hspace{7\ccwd}%
-  {\heiti 不保密}~\sjtu@square。
-  \vskip 1ex
+  \vskip 2ex
+  \begingroup
+    \linespread{1}\selectfont
+    本\sjtu@name@thesis@type 属于\parbox[c]{20\ccwd}{%
+      {\heiti 保\hspace{1\ccwd}密}~\sjtu@square，
+      在 \uline{\hspace{3em}}年解密后适用本授权书。\\\\
+      {\heiti 不保密}~\sjtu@square。
+    }\par
+  \endgroup
+  \vskip 2ex
   （请在以上方框内打“$\checkmark$”）
 }
 \newcommand\sjtu@signbox[1]{%
@@ -1074,7 +1077,10 @@
       }
       \begingroup
         \zihao{4}
-        \sjtu@name@origbody
+        \begingroup
+          \linespread{1.5}\selectfont
+          \sjtu@name@origbody\par
+        \endgroup
         \vskip 16ex
         \noindent
         \begin{minipage}{\textwidth}
@@ -1098,9 +1104,11 @@
       }
       \begingroup
         \zihao{4}
-        \sjtu@name@coprbody
-        \vskip 1ex
-        \sjtu@copr@addon
+        \begingroup
+          \linespread{1.5}\selectfont
+          \sjtu@name@coprbody\par
+          \sjtu@copr@addon\par
+        \endgroup
         \vskip 16ex
         \noindent
         \begin{minipage}{\textwidth}
