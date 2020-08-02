@@ -798,6 +798,10 @@
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
 \newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
+\AtEndOfClass{%
+  \sloppy
+  \raggedbottom
+}
 \sjtu@patchcmd\cleardoublepage%
   {\newpage}{\thispagestyle{empty}\newpage}
 \sjtu@patchcmd\chapter%
@@ -898,7 +902,6 @@
   space          = auto,
   autoindent     = true,
 }
-\AtEndOfClass{\sloppy}
 \setlist{nosep}
 \setlist*{leftmargin=*}
 \setlist[1]{labelindent=\parindent}
@@ -1029,7 +1032,8 @@
 }
 \DeclareCaptionOption{bi-second}[]{%
   \def\tablename{\sjtu@name@table@second}
-  \def\figurename{\sjtu@name@figure@second}}
+  \def\figurename{\sjtu@name@figure@second}
+}
 \captionsetup[bi-second]{bi-second}
 \let\mathellipsis\cdots
 \AtBeginDocument{%
