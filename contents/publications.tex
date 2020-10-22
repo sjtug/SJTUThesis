@@ -1,11 +1,22 @@
 % !TEX root = ../main.tex
 
-\begin{publications}
+% 如果用biblatex，可自动生成发表论文
+% 如果不用biblatex，请注释以下publications环境
+\begin{publications}[biblatex]
 	\begin{refsection}
+		% 在nocite中添加发表的论文
 		\nocite{jiang2008reflections,chen2007act,chen2007ewi}
 		\printbibliography[heading=none]
 	\end{refsection}
 \end{publications}
+
+% 如果不用biblatex，请取消注释以下publications环境
+% 并手工填写发表论文
+% \begin{publications}
+% 	\item Jiang Z~M. Reflections on energy issues in China[J]. Journal of Shanghai Jiaotong University (Science), 2008, 13(3): 257-274.
+% 	\item Chen H, Chan C~T. Acoustic cloaking in three dimensions using acoustic metamaterials[J]. Applied Physics Letters, 2007, 91:183518.
+% 	\item Chen H, Wu B~I, Zhang B, et al. Electromagnetic Wave Interactions with a Metamaterial Cloak[J]. Physical Review Letters, 2007, 99(6):63903.
+% \end{publications}
 
 \begin{publications*}
 	\item 第一作者. 上海交通大学学报, 2008.

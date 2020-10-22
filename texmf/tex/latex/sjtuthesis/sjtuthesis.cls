@@ -1168,14 +1168,18 @@
     {\@latex@warning{Empty `bibliolist' environment}}%
   \endlist
 }
-\NewDocumentEnvironment{publications}{O{99}}{%
+\NewDocumentEnvironment{publications}{o O{99}}{%
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
-    % \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
+    \IfNoValueTF{#1}{
+      \begin{sjtu@bibliolist}{#2}{\sjtu@name@publications}
+        \sjtu@saved@env@body
+      \end{sjtu@bibliolist}
+    }{
       \sjtu@chapter{\sjtu@name@publications}
       \sjtu@saved@env@body
-    % \end{sjtu@bibliolist}
+    }
   \fi
 }
 \NewDocumentEnvironment{publications*}{O{99}}{%
