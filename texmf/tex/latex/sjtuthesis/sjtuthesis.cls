@@ -1172,9 +1172,10 @@
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
-    \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
+    % \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
+      \sjtu@chapter{\sjtu@name@publications}
       \sjtu@saved@env@body
-    \end{sjtu@bibliolist}
+    % \end{sjtu@bibliolist}
   \fi
 }
 \NewDocumentEnvironment{publications*}{O{99}}{%
