@@ -112,6 +112,7 @@
 \sjtu@define@key{sjtu}{
   type = {
     choices = {
+      postdoctor,
       doctor,
       master,
       bachelor,
@@ -154,6 +155,9 @@
 \ProcessKeyvalOptions*
 \newif\ifsjtu@type@graduate
 \sjtu@type@graduatefalse
+\ifsjtu@type@postdoctor
+  \sjtu@type@graduatetrue
+\fi
 \ifsjtu@type@doctor
   \sjtu@type@graduatetrue
 \fi
@@ -172,7 +176,11 @@
 \LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3]{ctexbook}[2018/04/01]
 \AtEndOfClass{
   \ifsjtu@type@graduate
-    \input{sjtuthesis-graduate.ltx}
+    \ifsjtu@type@postdoctor
+      \input{sjtuthesis-postdoctor.ltx}
+    \else
+      \input{sjtuthesis-graduate.ltx}
+    \fi
   \else
     \input{sjtuthesis-undergraduate.ltx}
   \fi
@@ -304,6 +312,14 @@
   date            = {%
     initial = {\the\year-\two@digits{\month}-\two@digits{\day}},
   },
+  discipline      = { name = discipline@zh },
+  subdiscipline   = { name = subdiscipline@zh },
+  begindate       = {%
+    initial = {\the\year-\two@digits{\month}-\two@digits{\day}},
+  },
+  enddate         = {%
+    initial = {\the\year-\two@digits{\month}-\two@digits{\day}},
+  },
 }
 \newcommand\sjtu@nopar[1]{%
   \begingroup\let\\\@empty#1\endgroup%
@@ -376,40 +392,56 @@
 \sjtu@name@def{school@zh}{上海交通大学}
 \sjtu@name@def{school@en}{Shanghai Jiao Tong University}
 \ifsjtu@type@graduate
-  \ifsjtu@type@doctor
-    \sjtu@name@def{degree@type@zh}{博士}
-    \sjtu@name@def{degree@type@en}{Doctor}
+  \ifsjtu@type@postdoctor
+    \sjtu@name@def{author@zh}{博士后姓名}
+    \sjtu@name@def{discipline@zh}{流动站（一级学科）}
+    \sjtu@name@def{subdiscipline@zh}{专　业（二级学科）}
+    \sjtu@name@def{begindate@zh}{研究工作起始时间}
+    \sjtu@name@def{enddate@zh}{研究工作期满时间}
+    \sjtu@name@def{position@zh}{博士后}
+    \sjtu@name@def{thesis@type}{研究工作报告}
+    \sjtu@name@def{subject@zh}{%
+      \sjtu@name@school@zh\sjtu@name@position@zh\sjtu@name@thesis@type
+    }
+    \sjtu@name@def{subject@en}{%
+      \sjtu@name@school@zh\sjtu@name@position@zh\sjtu@name@thesis@type
+    }
   \else
-    \sjtu@name@def{degree@type@zh}{硕士}
-    \sjtu@name@def{degree@type@en}{Master}
+    \ifsjtu@type@doctor
+      \sjtu@name@def{degree@type@zh}{博士}
+      \sjtu@name@def{degree@type@en}{Doctor}
+    \else
+      \sjtu@name@def{degree@type@zh}{硕士}
+      \sjtu@name@def{degree@type@en}{Master}
+    \fi
+    \sjtu@name@def{author@zh}{\sjtu@name@degree@type@zh 研究生}
+    \sjtu@name@def{author@en}{Candidate}
+    \sjtu@name@def{id@zh}{学号}
+    \sjtu@name@def{id@en}{Student ID}
+    \sjtu@name@def{supervisor@zh}{导师}
+    \sjtu@name@def{supervisor@en}{Supervisor}
+    \sjtu@name@def{assisupervisor@zh}{副导师}
+    \sjtu@name@def{assisupervisor@en}{Assistant Supervisor}
+    \sjtu@name@def{degree@zh}{申请学位}
+    \sjtu@name@def{degree@en}{Academic Degree Applied for}
+    \sjtu@name@def{major@zh}{学科}
+    \sjtu@name@def{major@en}{Speciality}
+    \sjtu@name@def{department@zh}{所在单位}
+    \sjtu@name@def{department@en}{Affiliation}
+    \sjtu@name@def{defenddate@zh}{答辩日期}
+    \sjtu@name@def{defenddate@en}{Date of Defence}
+    \sjtu@name@def{conferring@zh}{授予学位单位}
+    \sjtu@name@def{conferring@en}{Degree-Conferring-Institution}
+    \sjtu@name@def{thesis@type}{学位论文}
+    \sjtu@name@def{thesis@kind}{\sjtu@name@thesis@type}
+    \sjtu@name@def{subject@zh}{%
+      \sjtu@name@school@zh\sjtu@name@degree@type@zh\sjtu@name@thesis@type
+    }
+    \sjtu@name@def{subject@en}{%
+      Dissertation Submitted to \sjtu@name@school@en \\
+      for the Degree of \sjtu@name@degree@type@en
+    }
   \fi
-  \sjtu@name@def{author@zh}{\sjtu@name@degree@type@zh 研究生}
-  \sjtu@name@def{author@en}{Candidate}
-  \sjtu@name@def{id@zh}{学号}
-  \sjtu@name@def{id@en}{Student ID}
-  \sjtu@name@def{supervisor@zh}{导师}
-  \sjtu@name@def{supervisor@en}{Supervisor}
-  \sjtu@name@def{assisupervisor@zh}{副导师}
-  \sjtu@name@def{assisupervisor@en}{Assistant Supervisor}
-  \sjtu@name@def{degree@zh}{申请学位}
-  \sjtu@name@def{degree@en}{Academic Degree Applied for}
-  \sjtu@name@def{major@zh}{学科}
-  \sjtu@name@def{major@en}{Speciality}
-  \sjtu@name@def{department@zh}{所在单位}
-  \sjtu@name@def{department@en}{Affiliation}
-  \sjtu@name@def{defenddate@zh}{答辩日期}
-  \sjtu@name@def{defenddate@en}{Date of Defence}
-  \sjtu@name@def{conferring@zh}{授予学位单位}
-  \sjtu@name@def{conferring@en}{Degree-Conferring-Institution}
-  \sjtu@name@def{thesis@type}{学位论文}
-  \sjtu@name@def{thesis@kind}{\sjtu@name@thesis@type}
-  \sjtu@name@def{subject@zh}{%
-    \sjtu@name@school@zh\sjtu@name@degree@type@zh\sjtu@name@thesis@type
-  }
-  \sjtu@name@def{subject@en}{%
-    Dissertation Submitted to \sjtu@name@school@en \\
-    for the Degree of \sjtu@name@degree@type@en
-  }
 \else
   \ifsjtu@type@course
     \sjtu@name@def{degree@type@zh}{}
@@ -1177,7 +1209,7 @@
         \sjtu@saved@env@body
       \end{sjtu@bibliolist}
     }{
-      \sjtu@chapter{\sjtu@name@publications}
+      \sjtu@chapter{#1}
       \sjtu@saved@env@body
     }
   \fi
