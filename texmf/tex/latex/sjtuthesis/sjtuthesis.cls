@@ -150,6 +150,7 @@
   },
 }
 \DeclareBoolOption[false]{review}
+\DeclareBoolOption[false]{predefence}
 \DeclareBoolOption[false]{continuous}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
@@ -428,8 +429,13 @@
     \sjtu@name@def{major@en}{Speciality}
     \sjtu@name@def{department@zh}{所在单位}
     \sjtu@name@def{department@en}{Affiliation}
-    \sjtu@name@def{defenddate@zh}{答辩日期}
-    \sjtu@name@def{defenddate@en}{Date of Defence}
+    \ifsjtu@predefence
+      \sjtu@name@def{defenddate@zh}{预答辩日期}
+      \sjtu@name@def{defenddate@en}{Date of Pre-defence}
+    \else
+      \sjtu@name@def{defenddate@zh}{答辩日期}
+      \sjtu@name@def{defenddate@en}{Date of Defence}
+    \fi
     \sjtu@name@def{conferring@zh}{授予学位单位}
     \sjtu@name@def{conferring@en}{Degree-Conferring-Institution}
     \sjtu@name@def{thesis@type}{学位论文}
