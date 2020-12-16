@@ -356,6 +356,7 @@
   \fi
 }
 \newcommand\sjtu@date@format@zh[3]{#1 年 \number#2 月 \number#3 日}
+\newcommand\sjtu@date@yearmonthformat@zh[3]{#1 年 \number#2 月}
 \newcommand\sjtu@date@month@en[1]{%
   \ifcase\number#1\or
     January\or February\or March\or April\or May\or June\or
@@ -394,9 +395,9 @@
 \sjtu@name@def{school@en}{Shanghai Jiao Tong University}
 \ifsjtu@type@graduate
   \ifsjtu@type@postdoctor
-    \sjtu@name@def{author@zh}{博士后姓名}
-    \sjtu@name@def{discipline@zh}{流动站（一级学科）}
-    \sjtu@name@def{subdiscipline@zh}{专　业（二级学科）}
+    \sjtu@name@def{author@zh}{博士后姓名　　}
+    \sjtu@name@def{discipline@zh}{流动站（一级学科）名称}
+    \sjtu@name@def{subdiscipline@zh}{专　业（二级学科）名称}
     \sjtu@name@def{begindate@zh}{研究工作起始时间}
     \sjtu@name@def{enddate@zh}{研究工作期满时间}
     \sjtu@name@def{position@zh}{博士后}
@@ -492,15 +493,25 @@
   本人授权\sjtu@name@school@zh 可以将本\sjtu@name@thesis@kind 的全部或部
   分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和
   汇编本\sjtu@name@thesis@kind 。}
-\sjtu@name@def{abstract@zh}{摘\hspace{\ccwd}要}
+\ifsjtu@type@postdoctor
+  \sjtu@name@def{abstract@zh}{内\hspace{\ccwd}容\hspace{\ccwd}摘\hspace{\ccwd}要}
+\else
+  \sjtu@name@def{abstract@zh}{摘\hspace{\ccwd}要}
+\fi
 \sjtu@name@def{abstract@en}{Abstract}
 \sjtu@name@def{keywords@zh}{关键词：}
 \sjtu@name@def{keywords@en}{Key words:~}
 \ifsjtu@language@chinese
+  \ifsjtu@type@postdoctor
+    \sjtu@name@def{contents}{目\hspace{\ccwd}次}
+    \sjtu@name@def{nomenclature}{符号表}
+  \else
+    \sjtu@name@def{contents}{目\hspace{\ccwd}录}
+    \sjtu@name@def{nomenclature}{主要符号对照表}
+  \fi
   \sjtusetup{
     name = {
       appendix          = {附录},
-      contents          = {目\hspace{\ccwd}录},
       listfigure        = {插图索引},
       listtable         = {表格索引},
       listalgorithm     = {算法索引},
@@ -509,7 +520,6 @@
       table             = {表},
       table*            = {Table},
       algorithm         = {算法},
-      nomenclature      = {主要符号对照表},
       summary           = {全文总结},
       bib               = {参考文献},
       index             = {索\hspace{\ccwd}引},
