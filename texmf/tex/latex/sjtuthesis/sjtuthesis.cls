@@ -7,7 +7,7 @@
 %% sjtuthesis.dtx  (with options: `class')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
-%%           (C) 2018-2020 by SJTUG
+%%           (C) 2018-2021 by SJTUG
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -842,6 +842,8 @@
     afterindent  = true,
     beforeskip   = {\ifsjtu@type@graduate 0pt\else 1ex\fi},
     afterskip    = {\ifsjtu@type@graduate 3ex\else 4ex\fi},
+    lofskip      = 0pt,
+    lotskip      = 0pt,
   },
   section = {%
     format       = \zihao{4}\bfseries\heiti,
@@ -1415,7 +1417,11 @@
   }
 }
 \PassOptionsToPackage{algochapter}{algorithm2e}
+\AtBeginOfPackageFile*{algorithm2e}{
+  \let\old@chapter\@chapter
+}
 \AtEndOfPackageFile*{algorithm2e}{
+  \let\@chapter\old@chapter
   \SetAlgorithmName{\sjtu@name@algorithm}%
                    {\sjtu@name@algorithm}%
                    {\sjtu@name@listalgorithm}
@@ -1450,10 +1456,6 @@
   \RequirePackage{algorithmicx, algpseudocode}
   \floatname{algorithm}{\sjtu@name@algorithm}
   \@addtoreset{algorithm}{chapter}
-  \sjtu@patchcmd\@chapter%
-    {\if@twocolumn}
-    {\addtocontents{loa}{\protect\addvspace{10\p@}}%
-     \if@twocolumn}
   \def\listalgorithmname{\sjtu@name@listalgorithm}
   \newlistof{alg}{loa}{\listalgorithmname}
   \let\l@algorithm\l@alg
