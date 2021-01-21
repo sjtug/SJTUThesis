@@ -1,0 +1,77 @@
+%%
+%% This is file `sjtu-latin-fontset-xits.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuthesis.dtx  (with options: `latinfontset,xits')
+%% 
+%% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
+%%           (C) 2018-2021 by SJTUG
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This file has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Alexara Wu.
+%% 
+\ProvidesFile{sjtu-latin-fontset-xits.def}
+  [2020/07/31 1.0.0rc7 XITS latin fonts definition (SJTUThesis)]
+\sjtu@unimathtrue
+  \RequirePackage{unicode-math}
+  \IfFontExistsTF{XITSMath-Regular.otf}{
+    \setmathfont{XITSMath-Regular}[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 8
+    ]
+    \setmathfont{XITSMath-Regular.otf}[range={cal,bfcal},StylisticSet=1]
+  }{
+    \setmathfont{xits-math}[
+      Extension    = .otf,
+      BoldFont     = *bold,
+      StylisticSet = 8
+    ]
+    \setmathfont{xits-math.otf}[range={cal,bfcal},StylisticSet=1]
+  }
+\IfFontExistsTF{XITS-Regular.otf}{
+  \setmainfont{XITS}[
+    Extension          = .otf,
+    UprightFont        = *-Regular,
+    BoldFont           = *-Bold,
+    ItalicFont         = *-Italic,
+    BoldItalicFont     = *-BoldItalic,
+  ]
+}{
+  \setmainfont{xits}[
+    Extension          = .otf,
+    UprightFont        = *-regular,
+    BoldFont           = *-bold,
+    ItalicFont         = *-italic,
+    BoldItalicFont     = *-bolditalic,
+  ]
+}
+\setsansfont{SourceSansPro}[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+]
+\setmonofont{SourceCodePro}[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+  Scale          = MatchLowercase,
+]
+\endinput
+%%
+%% End of file `sjtu-latin-fontset-xits.def'.
