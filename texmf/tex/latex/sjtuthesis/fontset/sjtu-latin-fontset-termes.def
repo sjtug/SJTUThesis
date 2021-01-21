@@ -1,0 +1,72 @@
+%%
+%% This is file `sjtu-latin-fontset-termes.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuthesis.dtx  (with options: `latinfontset,termes')
+%% 
+%% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
+%%           (C) 2018-2021 by SJTUG
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This file has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Alexara Wu.
+%% 
+\ProvidesFile{sjtu-latin-fontset-termes.def}
+  [2020/07/31 1.0.0rc7 Termes latin fonts definition (SJTUThesis)]
+\ifsjtu@unimath
+  \RequirePackage{unicode-math}
+  \setmathfont{texgyretermes-math.otf}
+\else
+  \RequirePackage{amssymb}
+  \RequirePackage{upgreek}
+  \let\oldencodingdefault\encodingdefault
+  \let\oldrmdefault\rmdefault
+  \let\oldsfdefault\sfdefault
+  \let\oldttdefault\ttdefault
+  \RequirePackage[T1]{fontenc}
+  \renewcommand{\rmdefault}{ntxtlf}
+  \renewcommand{\sfdefault}{qhv}
+  \renewcommand{\ttdefault}{ntxtt}
+  \RequirePackage[upint]{newtxmath}
+  \let\encodingdefault\oldencodingdefault
+  \let\rmdefault\oldrmdefault
+  \let\sfdefault\oldsfdefault
+  \let\ttdefault\oldttdefault
+  \RequirePackage{bm}
+\fi
+\setmainfont{texgyretermes}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\setsansfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\setmonofont{texgyrecursor}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Scale          = MatchLowercase,
+  Ligatures      = CommonOff,
+]
+\endinput
+%%
+%% End of file `sjtu-latin-fontset-termes.def'.

@@ -133,21 +133,9 @@
     },
     initial = auto,
   },
-  latinfontset = {
-    choices = {
-      xits,
-      times,
-      stix,
-      step,
-      termes,
-      pagella,
-      cambria,
-      libertinus,
-      lm,
-      none,
-    },
-  },
 }
+\DeclareStringOption[termes]{latinfontset}
+\DeclareBoolOption[false]{unimath}
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
@@ -185,7 +173,6 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{pageslts}
 \RequirePackage{amsmath}
-\RequirePackage{unicode-math}
 \RequirePackage{xeCJKfntef}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
@@ -208,14 +195,6 @@
     \sjtu@error{The `#2' package is incompatible with required `#1'}
   }
 }
-\sjtu@package@conflict{unicode-math}{amscd}
-\sjtu@package@conflict{unicode-math}{amsfonts}
-\sjtu@package@conflict{unicode-math}{amssymb}
-\sjtu@package@conflict{unicode-math}{bbm}
-\sjtu@package@conflict{unicode-math}{bm}
-\sjtu@package@conflict{unicode-math}{eucal}
-\sjtu@package@conflict{unicode-math}{eufrak}
-\sjtu@package@conflict{unicode-math}{mathrsfs}
 \newcommand\sjtu@patchcmd[3]{%
   \patchcmd{#1}{#2}{#3}{}%
     {\sjtu@warning{Oops! Command `\protect#1' is NOT patchable.}}
@@ -507,293 +486,15 @@
   bibname        = \sjtu@name@bib,
   indexname      = \sjtu@name@index,
 }
-\let\sjtu@font@family@xits\@empty
-\newcommand\sjtu@font@set@xits@names{%
-  \ifx\sjtu@font@family@xits\@empty
-    \IfFontExistsTF{XITSMath-Regular.otf}{%
-      \gdef\sjtu@font@family@xits{XITS}%
-      \gdef\sjtu@font@style@xits@rm{Regular}%
-      \gdef\sjtu@font@style@xits@bf{Bold}%
-      \gdef\sjtu@font@style@xits@it{Italic}%
-      \gdef\sjtu@font@style@xits@bfit{BoldItalic}%
-      \gdef\sjtu@font@name@xits@math@rm{XITSMath-Regular}%
-      \gdef\sjtu@font@name@xits@math@bf{XITSMath-Bold}%
-    }{%
-      \gdef\sjtu@font@family@xits{xits}%
-      \gdef\sjtu@font@style@xits@rm{regular}%
-      \gdef\sjtu@font@style@xits@bf{bold}%
-      \gdef\sjtu@font@style@xits@it{italic}%
-      \gdef\sjtu@font@style@xits@bfit{bolditalic}%
-      \gdef\sjtu@font@name@xits@math@rm{xits-math}%
-      \gdef\sjtu@font@name@xits@math@bf{xits-mathbold}%
-    }%
-  \fi
-}
-\let\sjtu@font@family@libertinus\@empty
-\newcommand\sjtu@font@set@libertinus@names{%
-  \ifx\sjtu@font@family@libertinus\@empty
-    \IfFontExistsTF{LibertinusSerif-Regular.otf}{%
-      \gdef\sjtu@font@family@libertinus@serif{LibertinusSerif}%
-      \gdef\sjtu@font@family@libertinus@sans{LibertinusSans}%
-      \gdef\sjtu@font@name@libertinus@math{LibertinusMath-Regular}%
-      \gdef\sjtu@font@style@libertinus@rm{Regular}%
-      \gdef\sjtu@font@style@libertinus@bf{Bold}%
-      \gdef\sjtu@font@style@libertinus@it{Italic}%
-      \gdef\sjtu@font@style@libertinus@bfit{BoldItalic}%
-    }{%
-      \gdef\sjtu@font@family@libertinus@serif{libertinusserif}%
-      \gdef\sjtu@font@family@libertinus@sans{libertinussans}%
-      \gdef\sjtu@font@name@libertinus@math{libertinusmath-regular}%
-      \gdef\sjtu@font@style@libertinus@rm{regular}%
-      \gdef\sjtu@font@style@libertinus@bf{bold}%
-      \gdef\sjtu@font@style@libertinus@it{italic}%
-      \gdef\sjtu@font@style@libertinus@bfit{bolditalic}%
-    }%
-  \fi
-}
-\newcommand\sjtu@set@font@xits{%
-  \sjtu@font@set@xits@names
-  \setmainfont{\sjtu@font@family@xits}[
-    Extension      = .otf,
-    UprightFont    = *-\sjtu@font@style@xits@rm,
-    BoldFont       = *-\sjtu@font@style@xits@bf,
-    ItalicFont     = *-\sjtu@font@style@xits@it,
-    BoldItalicFont = *-\sjtu@font@style@xits@bfit,
-  ]
-}
-\newcommand\sjtu@set@font@times{%
-  \setmainfont{Times New Roman}[Ligatures = Rare]
-  \setsansfont{Arial}
-  \setmonofont{Courier New}[Scale = MatchLowercase]
-}
-\newcommand\sjtu@set@font@stix{%
-  \setmainfont{STIX2Text}[
-    Extension      = .otf,
-    UprightFont    = *-Regular,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Italic,
-    BoldItalicFont = *-BoldItalic,
-  ]
-}
-\newcommand\sjtu@set@font@step{%
-  \setmainfont{STEP}[
-    Extension      = .otf,
-    UprightFont    = *-Regular,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Italic,
-    BoldItalicFont = *-BoldItalic,
-  ]
-}
-\newcommand\sjtu@set@font@source@sans@mono{%
-  \setsansfont{SourceSansPro}[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-  ]
-  \setmonofont{SourceCodePro}[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-    Scale          = MatchLowercase,
-  ]
-}
-\newcommand\sjtu@set@font@termes{%
-  \setmainfont{texgyretermes}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]%
-}
-\newcommand\sjtu@set@font@pagella{%
-  \setmainfont{texgyrepagella}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]%
-}
-\newcommand\sjtu@set@font@texgyre@sans@mono{%
-  \setsansfont{texgyreheros}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]%
-  \setmonofont{texgyrecursor}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]%
-}
-\newcommand\sjtu@set@font@cambria{%
-  \setmainfont{Cambria}
-  \setsansfont{Calibri}
-  \setmonofont{Consolas}[Scale = MatchLowercase]
-}
-\newcommand\sjtu@set@font@libertinus{%
-  \sjtu@font@set@libertinus@names
-  \setmainfont{\sjtu@font@family@libertinus@serif}[
-    Extension      = .otf,
-    UprightFont    = *-\sjtu@font@style@libertinus@rm,
-    BoldFont       = *-\sjtu@font@style@libertinus@bf,
-    ItalicFont     = *-\sjtu@font@style@libertinus@it,
-    BoldItalicFont = *-\sjtu@font@style@libertinus@bfit,
-  ]%
-  \setsansfont{\sjtu@font@family@libertinus@sans}[
-    Extension      = .otf,
-    UprightFont    = *-\sjtu@font@style@libertinus@rm,
-    BoldFont       = *-\sjtu@font@style@libertinus@bf,
-    ItalicFont     = *-\sjtu@font@style@libertinus@it,
-  ]%
-  \setmonofont{lmmonolt10}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-oblique,
-    BoldItalicFont = *-boldoblique,
-  ]%
-}
-\newcommand\sjtu@set@font@lm{%
-  \setmainfont{lmroman10}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]%
-  \setsansfont{lmsans10}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-oblique,
-    BoldItalicFont = *-boldoblique,
-  ]%
-  \setmonofont{lmmonolt10}[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-oblique,
-    BoldItalicFont = *-boldoblique,
-  ]%
-}
-\unimathsetup{
-  math-style = ISO,
-  bold-style = ISO,
-  nabla      = upright,
-  partial    = upright,
-}
-\newcommand\sjtu@set@math@font@xits{%
-  \sjtu@font@set@xits@names
-  \setmathfont{\sjtu@font@name@xits@math@rm}[
-    Extension    = .otf,
-    BoldFont     = \sjtu@font@name@xits@math@bf,
-    StylisticSet = 8,
-  ]%
-  \setmathfont{\sjtu@font@name@xits@math@rm}[
-    Extension    = .otf,
-    BoldFont     = \sjtu@font@name@xits@math@bf,
-    StylisticSet = 1,
-    range        = {cal,bfcal},
-  ]%
-}
-\newcommand\sjtu@set@math@font@stix{%
-  \setmathfont{STIX2Math}[
-    Extension    = .otf,
-    StylisticSet = 8,
-  ]%
-  \setmathfont{STIX2Math}[
-    Extension    = .otf,
-    StylisticSet = 1,
-    range        = {cal,bfcal},
-  ]%
-}
-\newcommand\sjtu@set@math@font@step{%
-  \setmathfont{STEPMath-Regular}[
-    Extension    = .otf,
-    BoldFont     = STEPMath-Bold,
-    StylisticSet = 8,
-  ]%
-  \setmathfont{STEPMath-Regular}[
-    Extension    = .otf,
-    BoldFont     = STEPMath-Bold,
-    StylisticSet = 1,
-    range        = {cal,bfcal},
-  ]%
-}
-\newcommand\sjtu@set@math@font@termes{%
-  \setmathfont{texgyretermes-math.otf}
-}
-\newcommand\sjtu@set@math@font@pagella{%
-  \setmathfont{texgyrepagella-math.otf}
-}
-\newcommand\sjtu@set@math@font@cambria{%
-  \setmathfont{Cambria Math}
-}
-\newcommand\sjtu@set@math@font@libertinus{%
-  \sjtu@font@set@libertinus@names
-  \setmathfont{\sjtu@font@name@libertinus@math .otf}%
-}
-\newcommand\sjtu@set@math@font@lm{%
-  \setmathfont{latinmodern-math.otf}%
-}
-\newcommand\sjtu@load@fontset@xits{%
-  \sjtu@set@font@xits
-  \sjtu@set@font@source@sans@mono
-  \sjtu@set@math@font@xits
-}
-\newcommand\sjtu@load@fontset@times{%
-  \sjtu@set@font@times
-  \sjtu@set@math@font@xits
-}
-\newcommand\sjtu@load@fontset@stix{%
-  \sjtu@set@font@stix
-  \sjtu@set@font@source@sans@mono
-  \sjtu@set@math@font@stix
-}
-\newcommand\sjtu@load@fontset@step{%
-  \sjtu@set@font@step
-  \sjtu@set@font@source@sans@mono
-  \sjtu@set@math@font@step
-}
-\newcommand\sjtu@load@fontset@termes{%
-  \sjtu@set@font@termes
-  \sjtu@set@font@texgyre@sans@mono
-  \sjtu@set@math@font@termes
-}
-\newcommand\sjtu@load@fontset@pagella{%
-  \sjtu@set@font@pagella
-  \sjtu@set@font@texgyre@sans@mono
-  \sjtu@set@math@font@pagella
-}
-\newcommand\sjtu@load@fontset@cambria{%
-  \sjtu@set@font@cambria
-  \sjtu@set@math@font@cambria
-}
-\newcommand\sjtu@load@fontset@libertinus{%
-  \sjtu@set@font@libertinus
-  \sjtu@set@math@font@libertinus
-}
-\newcommand\sjtu@load@fontset@lm{%
-  \sjtu@set@font@lm
-  \sjtu@set@math@font@lm
-}
-\newcommand\sjtu@load@fontset@none{\relax}
-\newcommand\sjtu@load@fontset{%
-  \@nameuse{sjtu@load@fontset@\sjtu@latinfontset}
-}
-\sjtu@load@fontset
-\sjtu@option@hook{sjtu}{latinfontset}{%
-  \sjtu@load@fontset
+\ifthenelse{\equal{\sjtu@latinfontset}{none}}{\relax}{%
+  \InputIfFileExists{sjtu-latin-fontset-\sjtu@latinfontset .def}{\relax}{%
+    \sjtu@warning{%
+      Invalid value `latinfontset = \sjtu@latinfontset'! \MessageBreak
+      Using `termes' instead.
+    }
+    \def\sjtu@latinfontset{termes}
+    \input{sjtu-latin-fontset-\sjtu@latinfontset .def}
+  }
 }
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
@@ -1046,9 +747,6 @@
 \newcommand\upi{\mathrm{i}}
 \newcommand\upj{\mathrm{j}}
 \newcommand\dif{\mathop{}\!\mathrm{d}}
-\newcommand\bm{\symbf}
-\renewcommand\boldsymbol{\symbf}
-\newcommand\square{\mdlgwhtsquare}
 \newcommand\sjtu@square{{\CJKfamily+{}\symbol{"25A1}}}
 \newcommand\sjtu@copr@addon{%
   \vskip 2ex
@@ -1319,6 +1017,24 @@
   \AfterEndEnvironment{longtable}
     {\endgroup}
 }
+\AtEndOfPackageFile*{unicode-math}{
+  \unimathsetup{
+    math-style = ISO,
+    bold-style = ISO,
+    nabla      = upright,
+  }
+  \newcommand{\bm}{\symbf}
+  \renewcommand{\boldsymbol}{\symbf}
+  \newcommand{\square}{\mdlgwhtsquare}
+  \sjtu@package@conflict{unicode-math}{amscd}
+  \sjtu@package@conflict{unicode-math}{amsfonts}
+  \sjtu@package@conflict{unicode-math}{amssymb}
+  \sjtu@package@conflict{unicode-math}{bbm}
+  \sjtu@package@conflict{unicode-math}{bm}
+  \sjtu@package@conflict{unicode-math}{eucal}
+  \sjtu@package@conflict{unicode-math}{eufrak}
+  \sjtu@package@conflict{unicode-math}{mathrsfs}
+}
 \AtEndOfPackageFile*{siunitx}{
   \sisetup{
     group-minimum-digits = 4,
@@ -1393,7 +1109,20 @@
   \theoremsymbol{}
   \sjtu@def@theorem
 }
+\AtBeginOfPackageFile*{amsthm}{
+  \newif\ifsjtu@openbox@defined
+  \@ifundefined{openbox}{
+    \sjtu@openbox@definedfalse
+  }{
+    \sjtu@openbox@definedtrue
+    \let\oldopenbox\openbox
+    \let\openbox\@undefined
+  }
+}
 \AtEndOfPackageFile*{amsthm}{
+  \ifsjtu@openbox@defined
+    \let\openbox\oldopenbox
+  \fi
   \sjtu@def@theorem@name
   \let\sjtu@thmhead\thmhead@plain
   \def\thmhead@plain{\sjtu@indent@box\sjtu@thmhead}
