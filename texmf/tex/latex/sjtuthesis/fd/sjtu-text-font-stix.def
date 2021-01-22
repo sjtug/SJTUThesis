@@ -1,0 +1,50 @@
+%%
+%% This is file `sjtu-text-font-stix.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuthesis.dtx  (with options: `textfont,stix')
+%% 
+%% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
+%%           (C) 2018-2021 by SJTUG
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This file has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Alexara Wu.
+%% 
+\ProvidesFile{sjtu-text-font-stix.def}
+  [2020/07/31 1.0.0rc7 STIX text font definition (SJTUThesis)]
+  \setmainfont[
+    Extension      = .otf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]{STIX2Text}
+  \setsansfont[
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+  ]{SourceSansPro}
+  \setmonofont[
+    Scale          = MatchLowercase,
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+  ]{SourceCodePro}
+\endinput
+%%
+%% End of file `sjtu-text-font-stix.def'.

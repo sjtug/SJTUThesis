@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-latin-fontset-cambria.def',
+%% This is file `sjtu-text-font-times.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `latinfontset,cambria')
+%% sjtuthesis.dtx  (with options: `textfont,times')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -21,14 +21,11 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-latin-fontset-cambria.def}
-  [2020/07/31 1.0.0rc7 Cambria latin fonts definition (SJTUThesis)]
-\sjtu@unimathtrue
-  \RequirePackage{unicode-math}
-\setmathfont{Cambria Math}
-\setmainfont{Cambria}
-\setsansfont{Calibri}
-\setmonofont{Consolas}[Scale = MatchLowercase]
+\ProvidesFile{sjtu-text-font-times.def}
+  [2020/07/31 1.0.0rc7 Times text font definition (SJTUThesis)]
+\setmainfont{Times New Roman}[Ligatures = Rare]
+\setsansfont{Arial}
+\setmonofont{Courier New}[Scale = MatchLowercase]
 \endinput
 %%
-%% End of file `sjtu-latin-fontset-cambria.def'.
+%% End of file `sjtu-text-font-times.def'.
