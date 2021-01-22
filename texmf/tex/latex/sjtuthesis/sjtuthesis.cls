@@ -134,7 +134,8 @@
     initial = auto,
   },
 }
-\DeclareStringOption[termes]{latinfontset}
+\DeclareStringOption[termes]{textfont}
+\DeclareStringOption[auto]{mathfont}
 \DeclareBoolOption[false]{unimath}
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
@@ -486,14 +487,30 @@
   bibname        = \sjtu@name@bib,
   indexname      = \sjtu@name@index,
 }
-\ifthenelse{\equal{\sjtu@latinfontset}{none}}{\relax}{%
-  \InputIfFileExists{sjtu-latin-fontset-\sjtu@latinfontset .def}{\relax}{%
+\ifsjtu@unimath
+  \RequirePackage{unicode-math}
+\fi
+\ifthenelse{\equal{\sjtu@mathfont}{auto}}{
+  \let\sjtu@mathfont\sjtu@textfont
+}{\relax}
+\ifthenelse{\equal{\sjtu@mathfont}{none}}{\relax}{%
+  \InputIfFileExists{sjtu-math-font-\sjtu@mathfont .def}{\relax}{%
     \sjtu@warning{%
-      Invalid value `latinfontset = \sjtu@latinfontset'! \MessageBreak
+      Invalid value `mathfont = \sjtu@mathfont'! \MessageBreak
       Using `termes' instead.
     }
-    \def\sjtu@latinfontset{termes}
-    \input{sjtu-latin-fontset-\sjtu@latinfontset .def}
+    \def\sjtu@mathfont{termes}
+    \input{sjtu-math-font-\sjtu@mathfont .def}
+  }
+}
+\ifthenelse{\equal{\sjtu@textfont}{none}}{\relax}{%
+  \InputIfFileExists{sjtu-text-font-\sjtu@textfont .def}{\relax}{%
+    \sjtu@warning{%
+      Invalid value `textfont = \sjtu@textfont'! \MessageBreak
+      Using `termes' instead.
+    }
+    \def\sjtu@textfont{termes}
+    \input{sjtu-text-font-\sjtu@textfont .def}
   }
 }
 \def\sjtu@thepage{}

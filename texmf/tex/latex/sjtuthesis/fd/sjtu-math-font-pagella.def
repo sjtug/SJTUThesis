@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-latin-fontset-times.def',
+%% This is file `sjtu-math-font-pagella.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `latinfontset,times')
+%% sjtuthesis.dtx  (with options: `mathfont,pagellamath')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -21,25 +21,33 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-latin-fontset-times.def}
-  [2020/07/31 1.0.0rc7 Times latin fonts definition (SJTUThesis)]
+\ProvidesFile{sjtu-math-font-pagella.def}
+  [2020/07/31 1.0.0rc7 Pagella math font definition (SJTUThesis)]
 \ifsjtu@unimath
-  \RequirePackage{unicode-math}
-  \IfFontExistsTF{XITSMath-Regular.otf}{
-    \setmathfont{XITSMath-Regular}[
-      Extension    = .otf,
-      BoldFont     = XITSMath-Bold,
-      StylisticSet = 8
-    ]
-    \setmathfont{XITSMath-Regular.otf}[range={cal,bfcal},StylisticSet=1]
-  }{
-    \setmathfont{xits-math}[
-      Extension    = .otf,
-      BoldFont     = *bold,
-      StylisticSet = 8
-    ]
-    \setmathfont{xits-math.otf}[range={cal,bfcal},StylisticSet=1]
-  }
+  \setmathfont{texgyrepagella-math.otf}
+  \setmathrm[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyrepagella}
+  \setmathsf[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyreheros}
+  \setmathtt[
+    Scale          = MatchLowercase,
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Ligatures      = CommonOff,
+  ]{texgyrecursor}
 \else
   \RequirePackage{amssymb}
   \RequirePackage{upgreek}
@@ -48,19 +56,16 @@
   \let\oldsfdefault\sfdefault
   \let\oldttdefault\ttdefault
   \RequirePackage[T1]{fontenc}
-  \renewcommand{\rmdefault}{ntxtlf}
+  \renewcommand{\rmdefault}{zpltlf}
   \renewcommand{\sfdefault}{qhv}
   \renewcommand{\ttdefault}{ntxtt}
-  \RequirePackage[upint]{newtxmath}
+  \RequirePackage[upint]{newpxmath}
   \let\encodingdefault\oldencodingdefault
   \let\rmdefault\oldrmdefault
   \let\sfdefault\oldsfdefault
   \let\ttdefault\oldttdefault
   \RequirePackage{bm}
 \fi
-\setmainfont{Times New Roman}[Ligatures = Rare]
-\setsansfont{Arial}
-\setmonofont{Courier New}[Scale = MatchLowercase]
 \endinput
 %%
-%% End of file `sjtu-latin-fontset-times.def'.
+%% End of file `sjtu-math-font-pagella.def'.

@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-latin-fontset-termes.def',
+%% This is file `sjtu-math-font-stix.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `latinfontset,termes')
+%% sjtuthesis.dtx  (with options: `mathfont,stixmath')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -21,11 +21,40 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-latin-fontset-termes.def}
-  [2020/07/31 1.0.0rc7 Termes latin fonts definition (SJTUThesis)]
+\ProvidesFile{sjtu-math-font-stix.def}
+  [2020/07/31 1.0.0rc7 STIX math font definition (SJTUThesis)]
 \ifsjtu@unimath
-  \RequirePackage{unicode-math}
-  \setmathfont{texgyretermes-math.otf}
+  \setmathfont{STIX2Math}[
+    Extension    = .otf,
+    StylisticSet = 8,
+  ]
+  \setmathfont{STIX2Math}[
+    Extension    = .otf,
+    StylisticSet = 1,
+    range        = {scr,bfscr},
+  ]
+  \setmathrm[
+    Extension      = .otf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]{STIX2Text}
+  \setmathsf[
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+  ]{SourceSansPro}
+  \setmathtt[
+    Scale          = MatchLowercase,
+    Extension      = .otf,
+    UprightFont    = *-Regular ,
+    ItalicFont     = *-RegularIt ,
+    BoldFont       = *-Bold ,
+    BoldItalicFont = *-BoldIt,
+  ]{SourceCodePro}
 \else
   \RequirePackage{amssymb}
   \RequirePackage{upgreek}
@@ -34,39 +63,13 @@
   \let\oldsfdefault\sfdefault
   \let\oldttdefault\ttdefault
   \RequirePackage[T1]{fontenc}
-  \renewcommand{\rmdefault}{ntxtlf}
-  \renewcommand{\sfdefault}{qhv}
-  \renewcommand{\ttdefault}{ntxtt}
-  \RequirePackage[upint]{newtxmath}
+  \RequirePackage[notext,notextcomp,upint]{stix}
   \let\encodingdefault\oldencodingdefault
   \let\rmdefault\oldrmdefault
   \let\sfdefault\oldsfdefault
   \let\ttdefault\oldttdefault
   \RequirePackage{bm}
 \fi
-\setmainfont{texgyretermes}[
-  Extension      = .otf,
-  UprightFont    = *-regular,
-  BoldFont       = *-bold,
-  ItalicFont     = *-italic,
-  BoldItalicFont = *-bolditalic,
-]
-\setsansfont{texgyreheros}[
-  Extension      = .otf,
-  UprightFont    = *-regular,
-  BoldFont       = *-bold,
-  ItalicFont     = *-italic,
-  BoldItalicFont = *-bolditalic,
-]
-\setmonofont{texgyrecursor}[
-  Extension      = .otf,
-  UprightFont    = *-regular,
-  BoldFont       = *-bold,
-  ItalicFont     = *-italic,
-  BoldItalicFont = *-bolditalic,
-  Scale          = MatchLowercase,
-  Ligatures      = CommonOff,
-]
 \endinput
 %%
-%% End of file `sjtu-latin-fontset-termes.def'.
+%% End of file `sjtu-math-font-stix.def'.
