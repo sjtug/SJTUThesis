@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-latin-fontset-pagella.def',
+%% This is file `sjtu-math-font-lm.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `latinfontset,pagella')
+%% sjtuthesis.dtx  (with options: `mathfont,lmmath')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -21,11 +21,31 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-latin-fontset-pagella.def}
-  [2020/07/31 1.0.0rc7 Pagella latin fonts definition (SJTUThesis)]
+\ProvidesFile{sjtu-math-font-lm.def}
+  [2020/07/31 1.0.0rc7 Latin Modern math font definition (SJTUThesis)]
 \ifsjtu@unimath
-  \RequirePackage{unicode-math}
-  \setmathfont{texgyrepagella-math.otf}
+  \setmathfont{latinmodern-math.otf}
+  \setmathrm[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{lmroman10}
+  \setmathsf[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]{lmsans10}
+  \setmathtt[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-oblique,
+    BoldItalicFont = *-boldoblique,
+  ]{lmmonolt10}
 \else
   \RequirePackage{amssymb}
   \RequirePackage{upgreek}
@@ -34,39 +54,14 @@
   \let\oldsfdefault\sfdefault
   \let\oldttdefault\ttdefault
   \RequirePackage[T1]{fontenc}
-  \renewcommand{\rmdefault}{zpltlf}
-  \renewcommand{\sfdefault}{qhv}
-  \renewcommand{\ttdefault}{ntxtt}
-  \RequirePackage[upint]{newpxmath}
+  \RequirePackage{lmodern}
+  \IfFileExists{cmupint.sty}{\RequirePackage[nolimits]{cmupint}}{\relax}
   \let\encodingdefault\oldencodingdefault
   \let\rmdefault\oldrmdefault
   \let\sfdefault\oldsfdefault
   \let\ttdefault\oldttdefault
   \RequirePackage{bm}
 \fi
-\setmainfont{texgyrepagella}[
-  Extension      = .otf,
-  UprightFont    = *-regular,
-  BoldFont       = *-bold,
-  ItalicFont     = *-italic,
-  BoldItalicFont = *-bolditalic,
-]
-\setsansfont{texgyreheros}[
-  Extension      = .otf,
-  UprightFont    = *-regular,
-  BoldFont       = *-bold,
-  ItalicFont     = *-italic,
-  BoldItalicFont = *-bolditalic,
-]
-\setmonofont{texgyrecursor}[
-  Extension      = .otf,
-  UprightFont    = *-regular,
-  BoldFont       = *-bold,
-  ItalicFont     = *-italic,
-  BoldItalicFont = *-bolditalic,
-  Scale          = MatchLowercase,
-  Ligatures      = CommonOff,
-]
 \endinput
 %%
-%% End of file `sjtu-latin-fontset-pagella.def'.
+%% End of file `sjtu-math-font-lm.def'.
