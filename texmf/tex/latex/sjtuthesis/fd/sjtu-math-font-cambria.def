@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `mathfont,cambriamath')
+%% sjtuthesis.dtx  (with options: `mathfont,cambria')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-math-font-cambria.def}
-  [2020/07/31 1.0.0rc7 Cambria math font definition (SJTUThesis)]
+  [2020/07/31 1.0.0rc7 Cambria math fonts definition (SJTUThesis)]
 \sjtu@unimathtrue
 \RequirePackage{unicode-math}
 \setmathfont{Cambria Math}

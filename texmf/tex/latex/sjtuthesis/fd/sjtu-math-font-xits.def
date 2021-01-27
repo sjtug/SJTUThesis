@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `mathfont,xitsmath')
+%% sjtuthesis.dtx  (with options: `mathfont,xits')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-math-font-xits.def}
-  [2020/07/31 1.0.0rc7 XITS math font definition (SJTUThesis)]
+  [2020/07/31 1.0.0rc7 XITS math fonts definition (SJTUThesis)]
 \sjtu@unimathtrue
 \RequirePackage{unicode-math}
 \IfFontExistsTF{XITSMath-Regular.otf}{
@@ -71,12 +71,12 @@
     BoldItalicFont = *-BoldIt,
   ]{SourceSansPro}
   \setmathtt[
-    Scale          = MatchLowercase,
     Extension      = .otf,
     UprightFont    = *-Regular ,
     ItalicFont     = *-RegularIt ,
     BoldFont       = *-Bold ,
     BoldItalicFont = *-BoldIt,
+    Scale          = MatchLowercase,
   ]{SourceCodePro}
 \endinput
 %%
