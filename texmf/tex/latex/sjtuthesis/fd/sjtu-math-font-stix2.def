@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-text-font-stix.def',
+%% This is file `sjtu-math-font-stix2.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `textfont,stix')
+%% sjtuthesis.dtx  (with options: `mathfont,stix2')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -21,30 +21,55 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-text-font-stix.def}
-  [2020/07/31 1.0.0rc7 STIX text font definition (SJTUThesis)]
-  \setmainfont[
+\ProvidesFile{sjtu-math-font-stix2.def}
+  [2020/07/31 1.0.0rc7 STIX Two math fonts definition (SJTUThesis)]
+\ifsjtu@unimath
+  \setmathfont{STIX2Math}[
+    Extension    = .otf,
+    StylisticSet = 8,
+  ]
+  \setmathfont{STIX2Math}[
+    Extension    = .otf,
+    StylisticSet = 1,
+    range        = {scr,bfscr},
+  ]
+  \setmathrm[
     Extension      = .otf,
     UprightFont    = *-Regular,
     BoldFont       = *-Bold,
     ItalicFont     = *-Italic,
     BoldItalicFont = *-BoldItalic,
   ]{STIX2Text}
-  \setsansfont[
+  \setmathsf[
     Extension      = .otf,
     UprightFont    = *-Regular ,
     ItalicFont     = *-RegularIt ,
     BoldFont       = *-Bold ,
     BoldItalicFont = *-BoldIt,
   ]{SourceSansPro}
-  \setmonofont[
-    Scale          = MatchLowercase,
+  \setmathtt[
     Extension      = .otf,
     UprightFont    = *-Regular ,
     ItalicFont     = *-RegularIt ,
     BoldFont       = *-Bold ,
     BoldItalicFont = *-BoldIt,
+    Scale          = MatchLowercase,
   ]{SourceCodePro}
+\else
+  \RequirePackage{amssymb}
+  \RequirePackage{upgreek}
+  \let\oldencodingdefault\encodingdefault
+  \let\oldrmdefault\rmdefault
+  \let\oldsfdefault\sfdefault
+  \let\oldttdefault\ttdefault
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[notext,notextcomp,upint]{stix2}
+  \let\encodingdefault\oldencodingdefault
+  \let\rmdefault\oldrmdefault
+  \let\sfdefault\oldsfdefault
+  \let\ttdefault\oldttdefault
+  \RequirePackage{bm}
+\fi
 \endinput
 %%
-%% End of file `sjtu-text-font-stix.def'.
+%% End of file `sjtu-math-font-stix2.def'.

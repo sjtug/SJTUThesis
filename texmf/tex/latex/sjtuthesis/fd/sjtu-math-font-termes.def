@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `mathfont,termesmath')
+%% sjtuthesis.dtx  (with options: `mathfont,termes')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-math-font-termes.def}
-  [2020/07/31 1.0.0rc7 Termes math font definition (SJTUThesis)]
+  [2020/07/31 1.0.0rc7 Termes math fonts definition (SJTUThesis)]
 \ifsjtu@unimath
   \setmathfont{texgyretermes-math.otf}
   \setmathrm[
@@ -40,7 +40,6 @@
     BoldItalicFont = *-bolditalic,
   ]{texgyreheros}
   \setmathtt[
-    Scale          = MatchLowercase,
     Extension      = .otf,
     UprightFont    = *-regular,
     BoldFont       = *-bold,

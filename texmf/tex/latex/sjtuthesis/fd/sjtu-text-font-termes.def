@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-text-font-termes.def}
-  [2020/07/31 1.0.0rc7 Termes text font definition (SJTUThesis)]
+  [2020/07/31 1.0.0rc7 Termes text fonts definition (SJTUThesis)]
   \setmainfont[
     Extension      = .otf,
     UprightFont    = *-regular,
@@ -38,7 +38,6 @@
     BoldItalicFont = *-bolditalic,
   ]{texgyreheros}
   \setmonofont[
-    Scale          = MatchLowercase,
     Extension      = .otf,
     UprightFont    = *-regular,
     BoldFont       = *-bold,
