@@ -23,9 +23,9 @@
 %% 
 \ProvidesFile{sjtu-text-font-times.def}
   [2020/07/31 1.0.0rc7 Times text fonts definition (SJTUThesis)]
-\setmainfont[Ligatures = Rare]{Times New Roman}
+\setmainfont[Ligatures=Rare]{Times New Roman}
 \setsansfont{Arial}
-\setmonofont[Scale = MatchLowercase]{Courier New}
+\setmonofont[Scale=MatchLowercase]{Courier New}
 \endinput
 %%
 %% End of file `sjtu-text-font-times.def'.

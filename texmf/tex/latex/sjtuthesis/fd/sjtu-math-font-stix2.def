@@ -23,16 +23,24 @@
 %% 
 \ProvidesFile{sjtu-math-font-stix2.def}
   [2020/07/31 1.0.0rc7 STIX Two math fonts definition (SJTUThesis)]
-\ifsjtu@unimath
-  \setmathfont{STIX2Math}[
-    Extension    = .otf,
-    StylisticSet = 8,
-  ]
-  \setmathfont{STIX2Math}[
-    Extension    = .otf,
-    StylisticSet = 1,
-    range        = {scr,bfscr},
-  ]
+\sjtu@unimathtrue
+\RequirePackage{unicode-math}
+\IfFontExistsTF{STIXTwoMath-Regular.otf}{
+  \setmathfont[StylisticSet=8]{STIXTwoMath-Regular.otf}
+  \setmathfont[range={scr,bfscr},StylisticSet=1]{STIXTwoMath-Regular.otf}
+}{
+  \setmathfont[StylisticSet=8]{STIX2Math.otf}
+  \setmathfont[range={scr,bfscr},StylisticSet=1]{STIX2Math.otf}
+}
+\IfFontExistsTF{STIXTwoText-Regular.otf}{
+  \setmathrm[
+    Extension      = .otf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]{STIXTwoText}
+}{
   \setmathrm[
     Extension      = .otf,
     UprightFont    = *-Regular,
@@ -40,36 +48,22 @@
     ItalicFont     = *-Italic,
     BoldItalicFont = *-BoldItalic,
   ]{STIX2Text}
-  \setmathsf[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-  ]{SourceSansPro}
-  \setmathtt[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-    Scale          = MatchLowercase,
-  ]{SourceCodePro}
-\else
-  \RequirePackage{amssymb}
-  \RequirePackage{upgreek}
-  \let\oldencodingdefault\encodingdefault
-  \let\oldrmdefault\rmdefault
-  \let\oldsfdefault\sfdefault
-  \let\oldttdefault\ttdefault
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage[notext,notextcomp,upint]{stix2}
-  \let\encodingdefault\oldencodingdefault
-  \let\rmdefault\oldrmdefault
-  \let\sfdefault\oldsfdefault
-  \let\ttdefault\oldttdefault
-  \RequirePackage{bm}
-\fi
+}
+\setmathsf[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+]{SourceSansPro}
+\setmathtt[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+  Scale          = MatchLowercase,
+]{SourceCodePro}
 \endinput
 %%
 %% End of file `sjtu-math-font-stix2.def'.
