@@ -1051,6 +1051,7 @@
   \sjtu@package@conflict{unicode-math}{eucal}
   \sjtu@package@conflict{unicode-math}{eufrak}
   \sjtu@package@conflict{unicode-math}{mathrsfs}
+  \sjtu@package@conflict{unicode-math}{upgreek}
 }
 \AtEndOfPackageFile*{siunitx}{
   \sisetup{

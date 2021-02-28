@@ -48,8 +48,6 @@
     Ligatures      = CommonOff,
   ]{texgyrecursor}
 \else
-  \RequirePackage{amssymb}
-  \RequirePackage{upgreek}
   \let\oldencodingdefault\encodingdefault
   \let\oldrmdefault\rmdefault
   \let\oldsfdefault\sfdefault

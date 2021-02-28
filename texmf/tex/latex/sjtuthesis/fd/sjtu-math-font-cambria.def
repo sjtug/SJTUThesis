@@ -28,7 +28,7 @@
 \setmathfont{Cambria Math}
 \setmathrm{Cambria}
 \setmathsf{Calibri}
-\setmathtt[Scale = MatchLowercase]{Consolas}
+\setmathtt[Scale=MatchLowercase]{Consolas}
 \endinput
 %%
 %% End of file `sjtu-math-font-cambria.def'.
