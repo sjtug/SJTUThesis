@@ -23,6 +23,15 @@
 %% 
 \ProvidesFile{sjtu-text-font-stix2.def}
   [2020/07/31 1.0.0rc7 STIX Two text fonts definition (SJTUThesis)]
+\IfFontExistsTF{STIXTwoText-Regular.otf}{
+  \setmainfont[
+    Extension      = .otf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]{STIXTwoText}
+}{
   \setmainfont[
     Extension      = .otf,
     UprightFont    = *-Regular,
@@ -30,21 +39,22 @@
     ItalicFont     = *-Italic,
     BoldItalicFont = *-BoldItalic,
   ]{STIX2Text}
-  \setsansfont[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-  ]{SourceSansPro}
-  \setmonofont[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-    Scale          = MatchLowercase,
-  ]{SourceCodePro}
+}
+\setsansfont[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+]{SourceSansPro}
+\setmonofont[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+  Scale          = MatchLowercase,
+]{SourceCodePro}
 \endinput
 %%
 %% End of file `sjtu-text-font-stix2.def'.

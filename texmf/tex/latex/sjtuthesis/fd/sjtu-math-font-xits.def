@@ -31,20 +31,14 @@
     BoldFont     = XITSMath-Bold,
     StylisticSet = 8,
   ]{XITSMath-Regular}
-  \setmathfont[
-    range        = {cal,bfcal},
-    StylisticSet = 1,
-  ]{XITSMath-Regular.otf}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
 }{
   \setmathfont[
     Extension    = .otf,
     BoldFont     = *bold,
     StylisticSet = 8,
   ]{xits-math}
-  \setmathfont[
-    range        = {cal,bfcal},
-    StylisticSet = 1,
-  ]{xits-math.otf}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
 }
 \IfFontExistsTF{XITS-Regular.otf}{
   \setmathrm[
@@ -63,21 +57,21 @@
     BoldItalicFont = *-bolditalic,
   ]{xits}
 }
-  \setmathsf[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-  ]{SourceSansPro}
-  \setmathtt[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-    Scale          = MatchLowercase,
-  ]{SourceCodePro}
+\setmathsf[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+]{SourceSansPro}
+\setmathtt[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+  Scale          = MatchLowercase,
+]{SourceCodePro}
 \endinput
 %%
 %% End of file `sjtu-math-font-xits.def'.

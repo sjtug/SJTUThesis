@@ -40,21 +40,21 @@
     BoldItalicFont = *-bolditalic,
   ]{xits}
 }
-  \setsansfont[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-  ]{SourceSansPro}
-  \setmonofont[
-    Extension      = .otf,
-    UprightFont    = *-Regular ,
-    ItalicFont     = *-RegularIt ,
-    BoldFont       = *-Bold ,
-    BoldItalicFont = *-BoldIt,
-    Scale          = MatchLowercase,
-  ]{SourceCodePro}
+\setsansfont[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+]{SourceSansPro}
+\setmonofont[
+  Extension      = .otf,
+  UprightFont    = *-Regular ,
+  ItalicFont     = *-RegularIt ,
+  BoldFont       = *-Bold ,
+  BoldItalicFont = *-BoldIt,
+  Scale          = MatchLowercase,
+]{SourceCodePro}
 \endinput
 %%
 %% End of file `sjtu-text-font-xits.def'.

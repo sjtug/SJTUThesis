@@ -25,7 +25,7 @@
   [2020/07/31 1.0.0rc7 Cambria text fonts definition (SJTUThesis)]
 \setmainfont{Cambria}
 \setsansfont{Calibri}
-\setmonofont[Scale = MatchLowercase]{Consolas}
+\setmonofont[Scale=MatchLowercase]{Consolas}
 \endinput
 %%
 %% End of file `sjtu-text-font-cambria.def'.
