@@ -55,7 +55,6 @@
   \let\oldttdefault\ttdefault
   \RequirePackage[T1]{fontenc}
   \RequirePackage{lmodern}
-  \IfFileExists{cmupint.sty}{\RequirePackage[nolimits]{cmupint}}{\relax}
   \let\encodingdefault\oldencodingdefault
   \let\rmdefault\oldrmdefault
   \let\sfdefault\oldsfdefault
