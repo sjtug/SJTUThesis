@@ -755,15 +755,6 @@
   \def\figurename{\sjtu@name@figure@second}
 }
 \captionsetup[bi-second]{bi-second}
-\let\mathellipsis\cdots
-\AtBeginDocument{%
-  \renewcommand\Re{\operatorname{Re}}%
-  \renewcommand\Im{\operatorname{Im}}%
-}
-\newcommand\upe{\mathrm{e}}
-\newcommand\upi{\mathrm{i}}
-\newcommand\upj{\mathrm{j}}
-\newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand\sjtu@square{{\CJKfamily+{}\symbol{"25A1}}}
 \newcommand\sjtu@copr@addon{%
   \vskip 2ex
@@ -1052,6 +1043,18 @@
   \sjtu@package@conflict{unicode-math}{eufrak}
   \sjtu@package@conflict{unicode-math}{mathrsfs}
   \sjtu@package@conflict{unicode-math}{upgreek}
+}
+\AtEndOfPackageFile*{physics}{
+  \@ifundefined{updelta}{\relax}{
+    \DeclareDocumentCommand\variation{o g d()}{
+      \IfNoValueTF{#2}{
+        \IfNoValueTF{#3}
+          {\updelta \IfNoValueTF{#1}{}{^{#1}}}
+          {\mathinner{\updelta \IfNoValueTF{#1}{}{^{#1}}\argopen(#3\argclose)}}
+        }
+        {\mathinner{\updelta \IfNoValueTF{#1}{}{^{#1}}#2} \IfNoValueTF{#3}{}{(#3)}}
+    }
+  }
 }
 \AtEndOfPackageFile*{siunitx}{
   \sisetup{
