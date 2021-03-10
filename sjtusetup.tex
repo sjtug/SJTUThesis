@@ -138,6 +138,9 @@
 \lstnewenvironment{codeblock}[1][]
   {\lstset{style=lstStyleCode,#1}}{}
 
+% 物理科学和技术中使用的数学符号
+\usepackage{physics}
+
 % 国际单位制宏包
 \usepackage{siunitx}
 
@@ -158,6 +161,11 @@
 \providecommand\pkg[1]{{\sffamily#1}}
 
 % 自定义命令
+
+% 直立体数学符号
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
 
 % E-mail
 \newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
