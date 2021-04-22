@@ -21,7 +21,6 @@ jobs:
         with:
           path: |
             /tmp/texlive
-            ~/.texlive
           key: ${{ runner.os }}-texlive
       - run: .github/ci/install-ubuntu-texlive.sh
         name: install texlive
