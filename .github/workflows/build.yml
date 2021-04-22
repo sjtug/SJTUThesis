@@ -22,7 +22,7 @@ jobs:
           path: |
             /tmp/texlive
             ~/.texlive
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          key: ${{ runner.os }}-texlive
       - run: .github/ci/install-ubuntu-texlive.sh
         name: install texlive
       - run: latexmk -quiet -halt-on-error -time main.tex
@@ -32,6 +32,28 @@ jobs:
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          name: main.pdf
+          path: main.pdf
+        name: upload build artifacts
+
+  build-miktex:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - name: cache miktex installation
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.miktex
+          key: ${{ runner.os }}-miktex
+      - run: .github/ci/install-ubuntu-miktex.sh
+        name: install miktex
+      - run: latexmk -quiet -halt-on-error -time main.tex
+        name: build
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - uses: actions/upload-artifact@v2
+        with:
           path: main.pdf
         name: upload build artifacts
