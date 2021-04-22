@@ -1,0 +1,58 @@
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+name: Build
+
+jobs:
+  build-texlive:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - name: cache texlive installation
+        uses: actions/cache@v2
+        with:
+          path: |
+            /tmp/texlive
+          key: ${{ runner.os }}-texlive
+      - run: .github/ci/install-ubuntu-texlive.sh
+        name: install texlive
+      - run: latexmk -quiet -halt-on-error -time main.tex
+        name: build
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: main.pdf
+        name: upload build artifacts
+
+  build-miktex:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - name: cache miktex installation
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.miktex
+          key: ${{ runner.os }}-miktex
+      - run: .github/ci/install-ubuntu-miktex.sh
+        name: install miktex
+      - run: latexmk -quiet -halt-on-error -time main.tex
+        name: build
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: main.pdf
+        name: upload build artifacts

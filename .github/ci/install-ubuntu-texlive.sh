@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Change default package repository
 export REPO=https://mirrors.rit.edu/CTAN/systems/texlive/tlnet
 
 # See if there is a cached version of TeX Live available
 export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+echo "/tmp/texlive/bin/x86_64-linux" >> $GITHUB_PATH
+
 if ! command -v texlua > /dev/null; then
   # Obtain TeX Live
   wget $REPO/install-tl-unx.tar.gz
@@ -32,6 +36,7 @@ tlmgr install           \
   environ               \
   eso-pic               \
   etoolbox              \
+  everysel              \
   fandol                \
   filehook              \
   fontspec              \
@@ -68,9 +73,6 @@ tlmgr install           \
   xkeyval               \
   xstring               \
   zhnumber
-
-# Keep no backups (not required, simply makes cache bigger)
-tlmgr option -- autobackup 0
 
 # Update TeX Live install but add nothing new
 tlmgr update --self --all --no-auto-install
