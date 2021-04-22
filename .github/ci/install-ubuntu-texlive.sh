@@ -5,6 +5,8 @@ export REPO=https://mirrors.rit.edu/CTAN/systems/texlive/tlnet
 
 # See if there is a cached version of TeX Live available
 export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+echo "/tmp/texlive/bin/x86_64-linux" >> $GITHUB_PATH
+
 if ! command -v texlua > /dev/null; then
   # Obtain TeX Live
   wget $REPO/install-tl-unx.tar.gz
@@ -32,6 +34,7 @@ tlmgr install           \
   environ               \
   eso-pic               \
   etoolbox              \
+  everysel              \
   fandol                \
   filehook              \
   fontspec              \
