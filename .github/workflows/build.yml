@@ -40,12 +40,12 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
-      - name: cache miktex installation
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.miktex
-          key: ${{ runner.os }}-miktex
+      # - name: cache miktex installation
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       ~/.miktex
+      #     key: ${{ runner.os }}-miktex
       - run: .github/ci/install-ubuntu-miktex.sh
         name: install miktex
       - run: latexmk -quiet -halt-on-error -time main.tex
