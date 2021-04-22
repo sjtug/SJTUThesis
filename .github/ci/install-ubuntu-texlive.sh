@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Change default package repository
-export REPO=https://mirrors.rit.edu/CTAN/systems/texlive/tlnet
+# export REPO=https://mirrors.rit.edu/CTAN/systems/texlive/tlnet
 
 # See if there is a cached version of TeX Live available
 export PATH=/tmp/texlive/bin/x86_64-linux:$PATH

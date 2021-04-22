@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Change default package repository
-export REPO=https://mirrors.rit.edu/CTAN/systems/win32/miktex
+export REPO=https://www.ctan.org/tex-archive/systems/win32/miktex
 
 # Install MiKTeX
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889
