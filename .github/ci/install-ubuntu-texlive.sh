@@ -74,8 +74,5 @@ tlmgr install           \
   xstring               \
   zhnumber
 
-# Keep no backups (not required, simply makes cache bigger)
-tlmgr option -- autobackup 0
-
 # Update TeX Live install but add nothing new
 tlmgr update --self --all --no-auto-install
