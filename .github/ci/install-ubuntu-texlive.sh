@@ -51,8 +51,8 @@ tlmgr install           \
   latexmk               \
   listings              \
   logreq                \
-  ms                    \
   multirow              \
+  newtx                 \
   ntheorem              \
   pageslts              \
   pdflscape             \
@@ -61,8 +61,6 @@ tlmgr install           \
   relsize               \
   silence               \
   siunitx               \
-  sourcecodepro         \
-  sourcesanspro         \
   tex-gyre              \
   threeparttable        \
   threeparttablex       \
@@ -72,11 +70,9 @@ tlmgr install           \
   ulem                  \
   undolabl              \
   unicode-math          \
-  upgreek               \
   xcolor                \
   xecjk                 \
   xetex                 \
-  xits                  \
   xkeyval               \
   xstring               \
   zhnumber
