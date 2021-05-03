@@ -43,6 +43,7 @@
     BoldFont       = *-bold,
     ItalicFont     = *-italic,
     BoldItalicFont = *-bolditalic,
+    Scale          = MatchLowercase,
     Ligatures      = CommonOff,
   ]{texgyrecursor}
 \endinput

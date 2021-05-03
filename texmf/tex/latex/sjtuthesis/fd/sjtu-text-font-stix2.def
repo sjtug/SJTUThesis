@@ -40,21 +40,22 @@
     BoldItalicFont = *-BoldItalic,
   ]{STIX2Text}
 }
-\setsansfont[
-  Extension      = .otf,
-  UprightFont    = *-Regular ,
-  ItalicFont     = *-RegularIt ,
-  BoldFont       = *-Bold ,
-  BoldItalicFont = *-BoldIt,
-]{SourceSansPro}
-\setmonofont[
-  Extension      = .otf,
-  UprightFont    = *-Regular ,
-  ItalicFont     = *-RegularIt ,
-  BoldFont       = *-Bold ,
-  BoldItalicFont = *-BoldIt,
-  Scale          = MatchLowercase,
-]{SourceCodePro}
+  \setsansfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyreheros}
+  \setmonofont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Scale          = MatchLowercase,
+    Ligatures      = CommonOff,
+  ]{texgyrecursor}
 \endinput
 %%
 %% End of file `sjtu-text-font-stix2.def'.
