@@ -33,6 +33,16 @@
 \newcommand\sjtu@warning[1]{%
   \ClassWarning{sjtuthesis}{#1}{}%
 }
+\RequirePackage{iftex}
+\ifXeTeX\else
+  \ifLuaTeX\else
+    \sjtu@error{%
+      The SJTUThesis class requires either XeTeX or LuaTeX.\\\\
+      You must change your typesetting engine to, e.g.,
+      "xelatex" or "lualatex" instead of "latex" or "pdflatex".
+    }
+  \fi
+\fi
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
@@ -174,7 +184,6 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{pageslts}
 \RequirePackage{amsmath}
-\RequirePackage{xeCJKfntef}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{array}
@@ -192,10 +201,26 @@
 \RequirePackage{silence}
 \WarningFilter{pageslts}{Package pdfpages detected}
 \newcommand\sjtu@package@conflict[2]{
-  \AtBeginOfPackageFile*{#2}{
-    \sjtu@error{The `#2' package is incompatible with required `#1'}
+  \AtEndOfPackageFile*{#1}{%
+    \AtBeginOfPackageFile*{#2}{%
+      \sjtu@error{The "#2" package is incompatible with "#1"}%
+    }
   }
 }
+\sjtu@package@conflict{unicode-math}{amscd}
+\sjtu@package@conflict{unicode-math}{amsfonts}
+\sjtu@package@conflict{unicode-math}{amssymb}
+\sjtu@package@conflict{unicode-math}{bbm}
+\sjtu@package@conflict{unicode-math}{bm}
+\sjtu@package@conflict{unicode-math}{eucal}
+\sjtu@package@conflict{unicode-math}{eufrak}
+\sjtu@package@conflict{unicode-math}{mathrsfs}
+\sjtu@package@conflict{unicode-math}{newtxmath}
+\sjtu@package@conflict{unicode-math}{upgreek}
+\sjtu@package@conflict{newtxmath}{amsfonts}
+\sjtu@package@conflict{newtxmath}{amssymb}
+\sjtu@package@conflict{newtxmath}{unicode-math}
+\sjtu@package@conflict{newtxmath}{upgreek}
 \newcommand\sjtu@patchcmd[3]{%
   \patchcmd{#1}{#2}{#3}{}%
     {\sjtu@warning{Oops! Command `\protect#1' is NOT patchable.}}
@@ -513,6 +538,25 @@
     \input{sjtu-text-font-\sjtu@textfont .def}
   }
 }
+\ifXeTeX
+  \xeCJKDeclareCharClass{CJK}{"2460->"2473,"25A1}
+\fi
+\ifLuaTeX
+  \ltjdefcharrange{100}{"2460-"2473,"25A1}
+  \ltjsetparameter{jacharrange={+100}}
+\fi
+\ifXeTeX
+  \RequirePackage{xeCJKfntef}
+\fi
+\ifLuaTeX
+\NewDocumentEnvironment{CJKfilltwosides}{O{c} m}{%
+  \minipage[#1]{#2}%
+  \ltjsetparameter{kanjiskip=\z@ plus 1filll}%
+}{%
+  \endminipage%
+  \ignorespacesafterend%
+}
+\fi
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
 \newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
@@ -625,14 +669,15 @@
 \setlist{nosep}
 \setlist*{leftmargin=*}
 \setlist[1]{labelindent=\parindent}
+\newcommand\footnotemarkfont{}
 \def\sjtu@textcircled#1{%
-  \ifnum\value{#1} >10%
-    \sjtu@error{%
-      Too many footnotes in this page.
-      Keep footnote no more than 10%
-    }%
-  \fi
-  {\CJKfamily+{}\symbol{\the\numexpr\value{#1}+"245F\relax}}%
+  \ifnum\value{#1} <21%
+    {\footnotemarkfont\symbol{\the\numexpr\value{#1}+"245F\relax}}%
+  \else\ifnum\value{#1} <36%
+    {\footnotemarkfont\symbol{\the\numexpr\value{#1}+"323C\relax}}%
+  \else\ifnum\value{#1} <51%
+    {\footnotemarkfont\symbol{\the\numexpr\value{#1}+"328D\relax}}%
+  \fi\fi\fi
 }
 \renewcommand{\thefootnote}{\sjtu@textcircled{footnote}}
 \renewcommand{\thempfootnote}{\sjtu@textcircled{mpfootnote}}
@@ -755,7 +800,7 @@
   \def\figurename{\sjtu@name@figure@second}
 }
 \captionsetup[bi-second]{bi-second}
-\newcommand\sjtu@square{{\CJKfamily+{}\symbol{"25A1}}}
+\newcommand\sjtu@square{\symbol{"25A1}}
 \newcommand\sjtu@copr@addon{%
   \vskip 2ex
   \begingroup
@@ -1034,15 +1079,6 @@
   \newcommand{\bm}{\symbf}
   \renewcommand{\boldsymbol}{\symbf}
   \newcommand{\square}{\mdlgwhtsquare}
-  \sjtu@package@conflict{unicode-math}{amscd}
-  \sjtu@package@conflict{unicode-math}{amsfonts}
-  \sjtu@package@conflict{unicode-math}{amssymb}
-  \sjtu@package@conflict{unicode-math}{bbm}
-  \sjtu@package@conflict{unicode-math}{bm}
-  \sjtu@package@conflict{unicode-math}{eucal}
-  \sjtu@package@conflict{unicode-math}{eufrak}
-  \sjtu@package@conflict{unicode-math}{mathrsfs}
-  \sjtu@package@conflict{unicode-math}{upgreek}
 }
 \AtEndOfPackageFile*{physics}{
   \@ifundefined{updelta}{\relax}{
@@ -1202,10 +1238,9 @@
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algocf}}
 }
+\PassOptionsToPackage{chapter}{algorithm}
 \AtEndOfPackageFile*{algorithm}{
-  \RequirePackage{algorithmicx, algpseudocode}
   \floatname{algorithm}{\sjtu@name@algorithm}
-  \@addtoreset{algorithm}{chapter}
   \def\listalgorithmname{\sjtu@name@listalgorithm}
   \newlistof{alg}{loa}{\listalgorithmname}
   \let\l@algorithm\l@alg

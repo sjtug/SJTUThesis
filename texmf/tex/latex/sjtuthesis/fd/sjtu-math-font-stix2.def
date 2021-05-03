@@ -49,21 +49,22 @@
     BoldItalicFont = *-BoldItalic,
   ]{STIX2Text}
 }
-\setmathsf[
-  Extension      = .otf,
-  UprightFont    = *-Regular ,
-  ItalicFont     = *-RegularIt ,
-  BoldFont       = *-Bold ,
-  BoldItalicFont = *-BoldIt,
-]{SourceSansPro}
-\setmathtt[
-  Extension      = .otf,
-  UprightFont    = *-Regular ,
-  ItalicFont     = *-RegularIt ,
-  BoldFont       = *-Bold ,
-  BoldItalicFont = *-BoldIt,
-  Scale          = MatchLowercase,
-]{SourceCodePro}
+  \setmathsf[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyreheros}
+  \setmathtt[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Scale          = MatchLowercase,
+    Ligatures      = CommonOff,
+  ]{texgyrecursor}
 \endinput
 %%
 %% End of file `sjtu-math-font-stix2.def'.
