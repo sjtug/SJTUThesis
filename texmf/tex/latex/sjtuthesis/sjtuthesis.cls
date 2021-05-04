@@ -545,18 +545,8 @@
   \ltjdefcharrange{100}{"2460-"2473,"25A1}
   \ltjsetparameter{jacharrange={+100}}
 \fi
-\ifXeTeX
-  \RequirePackage{xeCJKfntef}
-\fi
-\ifLuaTeX
-\NewDocumentEnvironment{CJKfilltwosides}{O{c} m}{%
-  \minipage[#1]{#2}%
-  \ltjsetparameter{kanjiskip=\z@ plus 1filll}%
-}{%
-  \endminipage%
-  \ignorespacesafterend%
-}
-\fi
+\newcommand\sjtu@square{\symbol{"25A1}}
+\newcommand\sjtu@colon{\makebox[1\ccwd]{\symbol{"FF1A}}}
 \def\sjtu@thepage{}
 \def\sjtu@lastpageref{}
 \newif\ifsjtu@page@numbering \sjtu@page@numberingtrue
@@ -800,7 +790,6 @@
   \def\figurename{\sjtu@name@figure@second}
 }
 \captionsetup[bi-second]{bi-second}
-\newcommand\sjtu@square{\symbol{"25A1}}
 \newcommand\sjtu@copr@addon{%
   \vskip 2ex
   \begingroup
@@ -1020,6 +1009,15 @@
     \repeat
   \endgroup
 }
+\newcolumntype{F}[2]{%
+  >{\minipage[#1]{#2}%
+    \ifXeTeX\def\CJKglue{\hskip \z@ plus 1filll}\fi%
+    \ifLuaTeX\ltjsetparameter{kanjiskip=\z@ plus 1filll}\fi%
+    \begingroup}%
+    c%
+  <{\endgroup%
+    \endminipage%
+    \ignorespacesafterend}}
 \AtEndOfPackageFile*{hyperref}{
   \hypersetup{
     linktoc            = all,

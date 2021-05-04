@@ -133,7 +133,7 @@
     \vskip \stretch{2}
     \begingroup
       \zihao{2}
-      \begin{tabular}{r@{：}l}
+      \begin{tabular}{@{}r@{\sjtu@colon}l@{}}
         论文题目 &
         \parbox[t]{280pt}{\centering\zihao{-2}\sjtu@uline\sjtu@info@title@zh}
       \end{tabular}
@@ -142,8 +142,7 @@
     \vskip \stretch{1}
     \begingroup
       \zihao{3}
-      \begin{tabular}
-        {>{\begin{CJKfilltwosides}{4.2\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
+      \begin{tabular}{@{}F{t}{4.2\ccwd}@{\sjtu@colon}c@{}}
         \sjtu@name@author@zh      & \sjtu@info@author@zh      \\\cline{2-2}
         \sjtu@name@id@zh          & \makebox[180pt]{\sjtu@info@id} \\\cline{2-2}
         \ifsjtu@type@course
