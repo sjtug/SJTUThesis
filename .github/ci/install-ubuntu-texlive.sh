@@ -30,7 +30,6 @@ tlmgr install           \
   biber                 \
   biblatex              \
   biblatex-gb7714-2015  \
-  bm                    \
   booktabs              \
   caption               \
   chngcntr              \
@@ -57,6 +56,7 @@ tlmgr install           \
   pdflscape             \
   pdfpages              \
   pgf                   \
+  physics               \
   relsize               \
   silence               \
   siunitx               \
@@ -65,9 +65,8 @@ tlmgr install           \
   tocloft               \
   translator            \
   trimspaces            \
-  ulem                  \
+  txfonts               \
   undolabl              \
-  unicode-math          \
   xcolor                \
   xecjk                 \
   xetex                 \
