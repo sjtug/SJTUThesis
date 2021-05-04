@@ -116,9 +116,7 @@
     \begingroup
       \zihao{4}
       \def\arraystretch{1.25}
-      \begin{tabular}
-        {>{\begin{CJKfilltwosides}[t]{6.5\ccwd}\heiti}r<{\end{CJKfilltwosides}}
-          @{：}l}
+      \begin{tabular}{@{}>{\heiti}F{t}{6.5\ccwd}@{\sjtu@colon}l@{}}
         \sjtu@name@author@zh           & \sjtu@info@author@zh         \\
         \sjtu@name@id@zh               & \sjtu@info@id                \\
         \sjtu@name@supervisor@zh       & \sjtu@info@supervisor@zh     \\
@@ -150,8 +148,7 @@
     \begingroup
       \zihao{4}
       \def\arraystretch{1.25}
-      \begin{tabular}
-        {>{\bfseries}l<{:~}p{.45\textwidth}}
+      \begin{tabular}{@{}>{\bfseries}l<{:~}@{}p{.45\textwidth}@{}}
         \sjtu@name@author@en           & \sjtu@info@author@en         \\
         \sjtu@name@id@en               & \sjtu@info@id                \\
         \sjtu@name@supervisor@en       & \sjtu@info@supervisor@en     \\
