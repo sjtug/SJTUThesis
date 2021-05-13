@@ -61,23 +61,23 @@ make wordcount                # 论文字数统计
 
 ### 反馈问题
 
-如果在使用上有任何问题，建议先查阅项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)。
-如果这些不能解决你的问题，建议通过以下方式进行反馈（按推荐顺序排序）：
+如果在使用上有任何问题，建议先查阅项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)，并使用左上角的搜索功能进行搜索。
+如果以上方法不能解决你的问题，建议通过以下方式进行反馈（按推荐顺序排序）：
 
-* [在 GitHub 项目主页开 issue](https://github.com/sjtug/SJTUThesis/issues) (推荐)
-* [在水源社区对应板块发帖](https://dev.bbs.sjtu.edu.cn/c/36-category/40-category/40)
-* [在水源 BBS TeX_LaTeX 版发帖](https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX)
-
-另外也可以在我们的 [Gitter](https://gitter.im/sjtug/SJTUThesis) 在线聊天频道讨论任何有关与模版的话题。
+* 如遇不会使用、编译错误等问题，请至 [在 GitHub 项目讨论区提问](https://github.com/sjtug/SJTUThesis/discussions) (推荐)
+* 如遇模版 BUG，或有新的需求，请至 [在 GitHub 项目中提 issue](https://github.com/sjtug/SJTUThesis/issues)
+* 您也可以加入 SJTUG 的 QQ 群和 Telegram 群即时讨论。
+    * QQ 群群号 715273806。
+    * Telegram 群。首先，关注 [SJTUG 镜像站的通知频道](https://t.me/sjtug_mirrors_news)。而后，加入频道关联的群组。
 
 ### 成为贡献者
 
 这个仓库是面向用户的**示例模版**，如果你有很好的排版示例，可以提交到此仓库与大家分享。如果你想要为 SJTUThesis 文档类贡献代码，可移步 [SJTUTeX](https://github.com/sjtug/SJTUTeX)。在贡献之前，你可以从[这些问题](https://github.com/sjtug/SJTUThesis/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue)开始熟悉贡献代码的流程。除了提交 Pull Request 之外，还有以下方式可以进行贡献：
 
-* 帮助我们解答同学们的[问题](https://github.com/sjtug/SJTUThesis/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Atype%2Fquestion+)，这些问题你也可能遇到过并且知道如何解决；
+* 帮助我们解答同学们的[问题](https://github.com/sjtug/SJTUThesis/discussions)，这些问题你也可能遇到过并且知道如何解决；
 * 与我们一起维护项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)，Wiki 任何人都可以直接编辑；
 * 向周围同学安利 SJTUThesis，让更多的同学使用我们维护的模板；
-* 在我们的[在线聊天频道](https://gitter.im/sjtug/SJTUThesis)上告诉我们你的使用体验，以及吐槽。如果你也想成为项目的长期维护者，也可以通过在线频道告诉我们。:-)
+* 在我们的讨论组中分享你的使用体验，以及吐槽。如果你也想成为项目的长期维护者，也可以通过讨论组告诉我们。:-)
 
 
 ## 致谢
