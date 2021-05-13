@@ -1,5 +1,7 @@
-<!-- 如果你是在使用过程中遇到了技术问题, 请按照下面的模板提交 issue -->
-<!-- 如果你是想请求新的功能, 请无视下面的模板 -->
+---
+name: BUG 反馈
+about: 反馈 SJTUThesis 模版中的 Bug。
+---
 
 **问题描述**:
 
@@ -12,3 +14,13 @@
 **日志信息**:
 
 <!-- 请在 https://pastebin.ubuntu.com/ 中的 Content 处粘贴上 `thesis.log` 内全部内容, 并将生成的链接附在此处, 如 https://pastebin.ubuntu.com/26345571/ -->
+<!-- 或者将日志粘贴在代码块中，比如：
+
+```
+This is my log.
+This is my log.
+This is my log.
+This is my log.
+```
+
+-->
