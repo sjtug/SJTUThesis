@@ -1054,7 +1054,7 @@
     \linespread{1}\selectfont
     本\sjtu@name@thesis@type 属于\parbox[c]{20\ccwd}{%
       {\heiti 保\hspace{1\ccwd}密}~\sjtu@square ，
-      在\uline{\hspace{2\ccwd}}年解密后适用本授权书。\bigbreak
+      在\underline{\hspace{2\ccwd}}年解密后适用本授权书。\bigbreak
       {\heiti 不保密}~\sjtu@square 。
     }\par
   \endgroup
