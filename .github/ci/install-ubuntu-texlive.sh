@@ -20,6 +20,8 @@ if ! command -v texlua > /dev/null; then
   cd ..
 fi
 
+tlmgr update --self
+
 # Install TeX Live packages
 tlmgr install           \
   algorithm2e           \
