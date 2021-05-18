@@ -255,7 +255,7 @@
       blue,
       black,
     },
-    initial = blue,
+    initial = red,
   },
   header-logo-color = {
     name = header@logo@color,
@@ -264,7 +264,7 @@
       blue,
       black,
     },
-    initial = black,
+    initial = red,
   },
   float-number-separator = {
     name = fl@num@sep,
@@ -475,7 +475,7 @@
       summary           = {全文总结},
       bib               = {参考文献},
       index             = {索\hspace{\ccwd}引},
-      acknowledgements  = {谢\hspace{\ccwd}辞},
+      acknowledgements  = {致\hspace{\ccwd}谢},
       publications      = {攻读学位期间发表（或录用）的学术论文},
       achievements      = {攻读学位期间获得的科研成果},
       resume            = {个人简历},
