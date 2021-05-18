@@ -422,9 +422,9 @@
     \sjtu@name@def{degree@type@zh}{学士}
     \sjtu@name@def{degree@type@en}{Bachelor}
     \sjtu@name@def{thesis@type}{学位论文}
-    \sjtu@name@def{thesis@kind}{毕业设计（论文）}
+    \sjtu@name@def{thesis@kind}{学位论文}
     \sjtu@name@def{subject@zh}{\sjtu@name@degree@type@zh\sjtu@name@thesis@type}
-    \sjtu@name@def{subject@en}{Thesis of \sjtu@name@degree@type@en}
+    \sjtu@name@def{subject@en}{\sjtu@name@degree@type@en's Thesis}
   \fi
   \sjtu@name@def{author@zh}{学生姓名}
   \sjtu@name@def{id@zh}{学生学号}
@@ -475,7 +475,7 @@
       summary           = {全文总结},
       bib               = {参考文献},
       index             = {索\hspace{\ccwd}引},
-      acknowledgements  = {致\hspace{\ccwd}谢},
+      acknowledgements  = {谢\hspace{\ccwd}辞},
       publications      = {攻读学位期间发表（或录用）的学术论文},
       achievements      = {攻读学位期间获得的科研成果},
       resume            = {个人简历},
@@ -1081,7 +1081,7 @@
       \begingroup
         \zihao{4}
         \begingroup
-          \linespread{1.5}\selectfont
+          \linespread{2.0}\selectfont
           \sjtu@name@origbody\par
         \endgroup
         \vskip 16ex
