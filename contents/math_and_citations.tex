@@ -9,9 +9,15 @@
 宏包 \pkg{siunitx} 提供了更好的数字和单位支持：
 \begin{itemize}
   \item \num{12345.67890}
-  \item \num{1+-2i}
+  % For TeXLive 2021, siunitx >= 3.0
+  % \item \complexnum{1+-2i}
+  % For siunitx < 3.0
+  % \item \num{1+-2i}
   \item \num{.3e45}
-  \item \num{1.654 x 2.34 x 3.430}
+  % For TeXLive 2021, siunitx >= 3.0
+  % \item \numproduct{1.654 x 2.34 x 3.430}
+  % For siunitx < 3.0
+  % \item \num{1.654 x 2.34 x 3.430}
   \item \si{kg.m.s^{-1}}
   \item \si{\micro\meter} $\si{\micro\meter}$
   \item \si{\ohm} $\si{\ohm}$
