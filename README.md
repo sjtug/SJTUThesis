@@ -23,9 +23,11 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 ### Overleaf
 
-[Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) 用户可以从下面的模版链接创建自己的项目。
+[Overleaf](https://www.overleaf.com?r=b3b31f49&rm=d&rs=b) 用户可以从下面的模版链接创建自己的项目，当然这个模版不是最新版。
 
-[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=b3b31f49&rm=d&rs=b) 
+[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=b3b31f49&rm=d&rs=b)
+
+如果需要使用最新版 SJTUThesis，可以先下载 [压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至 Overleaf 平台。Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
 
 ## 模板使用
 
