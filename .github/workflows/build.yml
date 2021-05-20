@@ -25,12 +25,12 @@ jobs:
       - run: .github/ci/install-ubuntu-texlive.sh
         name: install texlive
       - run: make clean && latexmk -quiet -halt-on-error -time main.tex && cp main.pdf main-xelatex.pdf
-        name: build
+        name: build with XeLaTeX
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
       - run: make clean && latexmk -quiet -halt-on-error -time main.tex && cp main.pdf main-lualatex.pdf
-        name: build
+        name: build with LuaLaTeX
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
@@ -54,12 +54,19 @@ jobs:
           key: ${{ runner.os }}-miktex
       - run: .github/ci/install-ubuntu-miktex.sh
         name: install miktex
-      - run: latexmk -quiet -halt-on-error -time main.tex
-        name: build
+      - run: make clean && latexmk -quiet -halt-on-error -time main.tex && cp main.pdf main-xelatex.pdf
+        name: build with XeLaTeX
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - run: make clean && latexmk -quiet -halt-on-error -time main.tex && cp main.pdf main-lualatex.pdf
+        name: build with LuaLaTeX
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
+          path: |
+            main-xelatex.pdf
+            main-lualatex.pdf
         name: upload build artifacts
