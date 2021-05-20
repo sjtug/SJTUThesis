@@ -146,6 +146,7 @@
 }
 \DeclareStringOption[termes]{textfont}
 \DeclareStringOption[auto]{mathfont}
+\DeclareStringOption[auto]{cjkfont}
 \DeclareBoolOption[false]{unimath}
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
@@ -168,7 +169,7 @@
 \fi
 \PassOptionsToClass{zihao=\sjtu@zihao}{ctexbook}
 \PassOptionsToPackage{no-math,quiet}{fontspec}
-\LoadClass[a4paper,UTF8,scheme=plain,linespread=1.3]{ctexbook}[2018/04/01]
+\LoadClass[a4paper,UTF8,scheme=plain,fontset=none,linespread=1.3]{ctexbook}[2018/04/01]
 \AtEndOfClass{
   \ifsjtu@type@graduate
     \input{sjtuthesis-graduate.ltx}
@@ -517,25 +518,50 @@
 \fi
 \ifthenelse{\equal{\sjtu@mathfont}{auto}}{
   \let\sjtu@mathfont\sjtu@textfont
-}{\relax}
-\ifthenelse{\equal{\sjtu@mathfont}{none}}{\relax}{%
-  \InputIfFileExists{sjtu-math-font-\sjtu@mathfont .def}{\relax}{%
+}{}
+\ifthenelse{\equal{\sjtu@mathfont}{none}}{}{%
+  \InputIfFileExists{sjtu-math-font-\sjtu@mathfont.def}{}{%
     \sjtu@warning{%
       Invalid value `mathfont = \sjtu@mathfont'! \MessageBreak
       Using `termes' instead.
     }
     \def\sjtu@mathfont{termes}
-    \input{sjtu-math-font-\sjtu@mathfont .def}
+    \input{sjtu-math-font-\sjtu@mathfont.def}
   }
 }
-\ifthenelse{\equal{\sjtu@textfont}{none}}{\relax}{%
-  \InputIfFileExists{sjtu-text-font-\sjtu@textfont .def}{\relax}{%
+\ifthenelse{\equal{\sjtu@textfont}{none}}{}{%
+  \InputIfFileExists{sjtu-text-font-\sjtu@textfont.def}{}{%
     \sjtu@warning{%
       Invalid value `textfont = \sjtu@textfont'! \MessageBreak
       Using `termes' instead.
     }
     \def\sjtu@textfont{termes}
-    \input{sjtu-text-font-\sjtu@textfont .def}
+    \input{sjtu-text-font-\sjtu@textfont.def}
+  }
+}
+\ifthenelse{\equal{\sjtu@cjkfont}{auto}}{
+  \IfFontExistsTF{SimSun}{
+    \def\sjtu@cjkfont{windows}
+  }{
+    \IfFileExists{/System/Library/Fonts/Menlo.ttc}{
+      \def\sjtu@cjkfont{mac}
+    }{
+      \IfFontExistsTF{Noto Serif CJK SC}{
+        \def\sjtu@cjkfont{ubuntu}
+      }{
+        \def\sjtu@cjkfont{fandol}
+      }
+    }
+  }
+}{}
+\ifthenelse{\equal{\sjtu@cjkfont}{none}}{}{%
+  \InputIfFileExists{sjtu-cjk-font-\sjtu@cjkfont.def}{}{%
+    \sjtu@warning{%
+      Invalid value `cjkfont = \sjtu@cjkfont'! \MessageBreak
+      Using `fandol' instead.
+    }
+    \def\sjtu@cjkfont{fandol}
+    \input{sjtu-cjk-font-\sjtu@cjkfont.def}
   }
 }
 \ifXeTeX
