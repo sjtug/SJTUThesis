@@ -39,6 +39,7 @@ jobs:
           path: |
             main-xelatex.pdf
             main-lualatex.pdf
+          name: texlive-build
         name: upload build artifacts
 
   build-miktex:
@@ -69,4 +70,5 @@ jobs:
           path: |
             main-xelatex.pdf
             main-lualatex.pdf
+          name: miktex-build
         name: upload build artifacts
