@@ -26,11 +26,21 @@
 \sjtu@unimathtrue
 \RequirePackage{unicode-math}
 \IfFontExistsTF{STIXTwoMath-Regular.otf}{
-  \setmathfont[StylisticSet=8]{STIXTwoMath-Regular.otf}
-  \setmathfont[range={scr,bfscr},StylisticSet=1]{STIXTwoMath-Regular.otf}
+  \setmathfont[
+    StylisticSet = 8
+  ]{STIXTwoMath-Regular.otf}
+  \setmathfont[
+    range        = {scr, bfscr},
+    StylisticSet = 1
+  ]{STIXTwoMath-Regular.otf}
 }{
-  \setmathfont[StylisticSet=8]{STIX2Math.otf}
-  \setmathfont[range={scr,bfscr},StylisticSet=1]{STIX2Math.otf}
+  \setmathfont[
+    StylisticSet = 8
+  ]{STIX2Math.otf}
+  \setmathfont[
+    range        = {scr, bfscr},
+    StylisticSet = 1
+  ]{STIX2Math.otf}
 }
 \IfFontExistsTF{STIXTwoText-Regular.otf}{
   \setmathrm[

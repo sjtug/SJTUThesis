@@ -25,8 +25,13 @@
   [2020/07/31 1.0.0rc7 New Computer Modern math fonts definition (SJTUThesis)]
 \sjtu@unimathtrue
 \RequirePackage{unicode-math}
-\setmathfont[StylisticSet=2]{NewCMMath-Book.otf}
-\setmathfont[range={scr,bfscr},StylisticSet=1]{NewCMMath-Book.otf}
+\setmathfont[
+  StylisticSet = 2
+]{NewCMMath-Book.otf}
+\setmathfont[
+  range        = {scr, bfscr},
+  StylisticSet = 1
+]{NewCMMath-Book.otf}
 \setmathrm[
   Extension      = .otf,
   UprightFont    = *-Book,

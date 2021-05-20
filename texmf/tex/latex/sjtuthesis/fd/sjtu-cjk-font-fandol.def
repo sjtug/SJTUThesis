@@ -1,0 +1,65 @@
+%%
+%% This is file `sjtu-cjk-font-fandol.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuthesis.dtx  (with options: `cjkfont,fandol')
+%% 
+%% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
+%%           (C) 2018-2021 by SJTUG
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This file has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Alexara Wu.
+%% 
+\ProvidesFile{sjtu-cjk-font-fandol.def}
+  [2020/07/31 1.0.0rc7 Fandol CJK fonts definition (SJTUThesis)]
+\setCJKmainfont{FandolSong}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+  ItalicFont  = FandolKai-Regular,
+]
+\setCJKsansfont{FandolHei}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+]
+\setCJKmonofont{FandolFang}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+]
+\setCJKfamilyfont{zhsong}{FandolSong}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+]
+\setCJKfamilyfont{zhhei}{FandolHei}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+]
+\setCJKfamilyfont{zhfs}{FandolFang}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+]
+\setCJKfamilyfont{zhkai}{FandolKai}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+]
+\NewDocumentCommand\songti{}{\CJKfamily{zhsong}}
+\NewDocumentCommand\heiti{}{\CJKfamily{zhhei}}
+\NewDocumentCommand\fangsong{}{\CJKfamily{zhfs}}
+\NewDocumentCommand\kaishu{}{\CJKfamily{zhkai}}
+\endinput
+%%
+%% End of file `sjtu-cjk-font-fandol.def'.
