@@ -24,6 +24,11 @@ jobs:
           key: ${{ runner.os }}-texlive
       - run: .github/ci/install-ubuntu-texlive.sh
         name: install texlive
+      - run: |
+          for i in simhei.ttf simkai.ttf simsun.ttc simsunb.ttf simfang.ttf; do wget -P fonts/ https://xugr.keybase.pub/static/fonts/$i; done
+          mkdir -p ~/.local/share/fonts && cp -r fonts/* ~/.local/share/fonts/
+          fc-cache -rv
+        name: install SimSun (CI workaround)
       - run: latexmk -quiet -halt-on-error -time main.tex
         name: build
       - run: cat main.log
@@ -47,6 +52,11 @@ jobs:
           key: ${{ runner.os }}-miktex
       - run: .github/ci/install-ubuntu-miktex.sh
         name: install miktex
+      - run: |
+          for i in simhei.ttf simkai.ttf simsun.ttc simsunb.ttf simfang.ttf; do wget -P fonts/ https://xugr.keybase.pub/static/fonts/$i; done
+          mkdir -p ~/.local/share/fonts && cp -r fonts/* ~/.local/share/fonts/
+          fc-cache -rv
+        name: install SimSun (CI workaround)
       - run: latexmk -quiet -halt-on-error -time main.tex
         name: build
       - run: cat main.log
