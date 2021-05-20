@@ -24,14 +24,21 @@ jobs:
           key: ${{ runner.os }}-texlive
       - run: .github/ci/install-ubuntu-texlive.sh
         name: install texlive
-      - run: latexmk -quiet -halt-on-error -time main.tex
+      - run: make clean && latexmk -quiet -halt-on-error -time main.tex && cp main.pdf main-xelatex.pdf
+        name: build
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - run: make clean && latexmk -quiet -halt-on-error -time main.tex && cp main.pdf main-lualatex.pdf
         name: build
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
+          path: |
+            main-xelatex.pdf
+            main-lualatex.pdf
         name: upload build artifacts
 
   build-miktex:
