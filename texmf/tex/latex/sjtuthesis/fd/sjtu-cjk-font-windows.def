@@ -27,13 +27,13 @@
   AutoFakeBold = 3,
   ItalicFont   = KaiTi,
 ]
-\setCJKsansfont{SimHei}[AutoFakeBold=3]
+\setCJKsansfont{SimHei}[BoldFont=*]
 \setCJKmonofont{FangSong}
 \setCJKfamilyfont{zhsong}{SimSun}[
   AutoFakeBold = 3,
   ItalicFont   = KaiTi,
 ]
-\setCJKfamilyfont{zhhei}{SimHei}[AutoFakeBold=3]
+\setCJKfamilyfont{zhhei}{SimHei}[BoldFont=*]
 \setCJKfamilyfont{zhkai}{KaiTi}
 \setCJKfamilyfont{zhfs}{FangSong}
 \NewDocumentCommand\songti{}{\CJKfamily{zhsong}}

@@ -27,13 +27,13 @@
   AutoFakeBold = 3,
   ItalicFont   = FZKai-Z03,
 ]
-\setCJKsansfont{FZHei-B01}[AutoFakeBold=3]
+\setCJKsansfont{FZHei-B01}[BoldFont=*]
 \setCJKmonofont{FZFangSong-Z02}
 \setCJKfamilyfont{zhsong}{FZShuSong-Z01}[
   AutoFakeBold = 3,
   ItalicFont   = FZKai-Z03,
 ]
-\setCJKfamilyfont{zhhei}{FZHei-B01}[AutoFakeBold=3]
+\setCJKfamilyfont{zhhei}{FZHei-B01}[BoldFont=*]
 \setCJKfamilyfont{zhkai}{FZKai-Z03}
 \setCJKfamilyfont{zhfs}{FZFangSong-Z02}
 \NewDocumentCommand\songti{}{\CJKfamily{zhsong}}

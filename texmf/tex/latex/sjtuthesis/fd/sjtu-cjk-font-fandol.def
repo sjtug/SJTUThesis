@@ -32,7 +32,7 @@
 \setCJKsansfont{FandolHei}[
   Extension   = .otf,
   UprightFont = *-Regular,
-  BoldFont    = *-Bold,
+  BoldFont    = *-Regular,
 ]
 \setCJKmonofont{FandolFang}[
   Extension   = .otf,
@@ -46,7 +46,7 @@
 \setCJKfamilyfont{zhhei}{FandolHei}[
   Extension   = .otf,
   UprightFont = *-Regular,
-  BoldFont    = *-Bold,
+  BoldFont    = *-Regular,
 ]
 \setCJKfamilyfont{zhfs}{FandolFang}[
   Extension   = .otf,
