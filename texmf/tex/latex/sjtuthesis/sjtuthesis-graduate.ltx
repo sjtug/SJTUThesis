@@ -43,11 +43,21 @@
 }
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \ifsjtu@style@header@single
-    \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
+  \if@twoside
+    \ifsjtu@style@header@single
+      \fancyhead[CO]{\zihao{-5}\sjtu@name@subject@zh}
+      \fancyhead[CE]{\zihao{-5}\leftmark}
+    \else
+      \fancyhead[RE,LO]{\zihao{-5}\sjtu@name@subject@zh}
+      \fancyhead[RO,LE]{\zihao{-5}\leftmark}
+    \fi
   \else
-    \fancyhead[RE,LO]{\zihao{-5}\sjtu@name@subject@zh}
-    \fancyhead[RO,LE]{\zihao{-5}\leftmark}
+    \ifsjtu@style@header@single
+      \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
+    \else
+      \fancyhead[L]{\zihao{-5}\sjtu@name@subject@zh}
+      \fancyhead[R]{\zihao{-5}\leftmark}
+    \fi
   \fi
   \fancyfoot[C]{%
     \ifsjtu@page@numbering
@@ -111,7 +121,7 @@
     \vspace*{28pt}
     {\zihao{-2}\sjtu@name@subject@zh\par}
     \vskip \stretch{4}
-    {\zihao{2}\heiti\sjtu@info@title@zh\par}
+    {\zihao{2}\heiti\sjtu@info@display@title@zh\par}
     \vskip \stretch{5}
     \begingroup
       \zihao{4}
@@ -143,7 +153,7 @@
     \vspace*{28pt}
     {\zihao{-2}\sjtu@name@subject@en\par}
     \vskip \stretch{4}
-    {\zihao{2}\bfseries\MakeUppercase\sjtu@info@title@en\par}
+    {\zihao{2}\bfseries\MakeUppercase\sjtu@info@display@title@en\par}
     \vskip \stretch{5}
     \begingroup
       \zihao{4}
