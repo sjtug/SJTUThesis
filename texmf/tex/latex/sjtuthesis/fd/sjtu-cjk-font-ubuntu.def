@@ -29,6 +29,7 @@
   ItalicFont  = AR PL UKai CN,
 ]
 \setCJKsansfont{Noto Sans CJK SC}[
+  UprightFont = * Medium,
   BoldFont    = * Medium,
 ]
 \setCJKmonofont{Noto Sans Mono CJK SC}
@@ -38,6 +39,7 @@
   ItalicFont  = AR PL UKai CN,
 ]
 \setCJKfamilyfont{zhhei}{Noto Sans CJK SC}[
+  UprightFont = * Medium,
   BoldFont    = * Medium,
 ]
 \setCJKfamilyfont{zhkai}{AR PL UKai CN}

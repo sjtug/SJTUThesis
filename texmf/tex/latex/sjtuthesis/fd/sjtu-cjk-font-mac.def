@@ -30,8 +30,8 @@
   BoldItalicFont = Kaiti SC Bold,
 ]
 \setCJKsansfont{Heiti SC}[
-  AutoFakeBold   = 3,
   UprightFont    = * Medium,
+  BoldFont       = * Medium,
 ]%
 \setCJKmonofont{STFangsong}
 \setCJKfamilyfont{zhsong}{Songti SC}[
@@ -39,8 +39,8 @@
   BoldFont       = * Bold,
 ]
 \setCJKfamilyfont{zhhei}{Heiti SC}[
-  AutoFakeBold   = 3,
   UprightFont    = * Medium,
+  BoldFont       = * Medium,
 ]
 \setCJKfamilyfont{zhfs}{STFangsong}
 \setCJKfamilyfont{zhkai}{Kaiti SC}[
