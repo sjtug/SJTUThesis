@@ -288,6 +288,10 @@
 \sjtu@define@key{sjtu@info}{
   title           = { name = title@zh },
   title*          = { name = title@en },
+  display-title   = { name = display@title@zh },
+  display-title*  = { name = display@title@en },
+  running-title   = { name = running@title@zh },
+  running-title*  = { name = running@title@en },
   keywords        = { name = keywords@zh },
   keywords*       = { name = keywords@en },
   author          = { name = author@zh },
@@ -311,8 +315,21 @@
     initial = {\the\year-\two@digits{\month}-\two@digits{\day}},
   },
 }
-\newcommand\sjtu@nopar[1]{%
-  \begingroup\let\\\@empty#1\endgroup%
+\sjtu@option@hook{sjtu@info}{title}{%
+  \ifx\sjtu@info@display@title@zh\@empty
+    \global\let\sjtu@info@display@title@zh\sjtu@info@title@zh
+  \fi
+  \ifx\sjtu@info@running@title@zh\@empty
+    \global\let\sjtu@info@running@title@zh\sjtu@info@title@zh
+  \fi
+}
+\sjtu@option@hook{sjtu@info}{title*}{%
+  \ifx\sjtu@info@display@title@en\@empty
+    \global\let\sjtu@info@display@title@en\sjtu@info@title@en
+  \fi
+  \ifx\sjtu@info@running@title@en\@empty
+    \global\let\sjtu@info@running@title@en\sjtu@info@title@en
+  \fi
 }
 \newcommand\sjtu@clist@use[2]{%
   \def\sjtu@@tmp{}%
@@ -328,10 +345,14 @@
 }
 \ifsjtu@language@chinese
   \def\sjtu@info@title{\sjtu@info@title@zh}
+  \def\sjtu@info@display@title{\sjtu@info@display@title@zh}
+  \def\sjtu@info@running@title{\sjtu@info@running@title@zh}
   \def\sjtu@info@keywords{\sjtu@info@keywords@zh}
   \def\sjtu@info@author{\sjtu@info@author@zh}
 \else
   \def\sjtu@info@title{\sjtu@info@title@en}
+  \def\sjtu@info@display@title{\sjtu@info@display@title@en}
+  \def\sjtu@info@running@title{\sjtu@info@running@title@en}
   \def\sjtu@info@keywords{\sjtu@info@keywords@en}
   \def\sjtu@info@author{\sjtu@info@author@en}
 \fi
@@ -408,7 +429,6 @@
   \sjtu@name@def{conferring@zh}{授予学位单位}
   \sjtu@name@def{conferring@en}{Degree-Conferring-Institution}
   \sjtu@name@def{thesis@type}{学位论文}
-  \sjtu@name@def{thesis@kind}{\sjtu@name@thesis@type}
   \sjtu@name@def{subject@zh}{%
     \sjtu@name@school@zh\sjtu@name@degree@type@zh\sjtu@name@thesis@type
   }
@@ -421,14 +441,12 @@
     \sjtu@name@def{degree@type@zh}{}
     \sjtu@name@def{degree@type@en}{}
     \sjtu@name@def{thesis@type}{课程论文}
-    \sjtu@name@def{thesis@kind}{\sjtu@name@thesis@type}
     \sjtu@name@def{subject@zh}{\sjtu@name@thesis@type}
     \sjtu@name@def{subject@en}{Course Paper}
   \else
     \sjtu@name@def{degree@type@zh}{学士}
     \sjtu@name@def{degree@type@en}{Bachelor}
     \sjtu@name@def{thesis@type}{学位论文}
-    \sjtu@name@def{thesis@kind}{学位论文}
     \sjtu@name@def{subject@zh}{\sjtu@name@degree@type@zh\sjtu@name@thesis@type}
     \sjtu@name@def{subject@en}{\sjtu@name@degree@type@en's Thesis}
   \fi
@@ -444,22 +462,21 @@
 \sjtu@name@def{orig@subtitle@en}{Declaration of Originality}
 \sjtu@name@def{copr@subtitle@zh}{版权使用授权书}
 \sjtu@name@def{copr@subtitle@en}{Copyright Authorization}
-\sjtu@name@def{orig@title}{\sjtu@name@thesis@kind\sjtu@name@orig@subtitle@zh}
-\sjtu@name@def{copr@title}{\sjtu@name@thesis@kind\sjtu@name@copr@subtitle@zh}
-\sjtu@name@def{title@qouted}{《\sjtu@nopar\sjtu@info@title@zh》}
+\sjtu@name@def{orig@title}{\sjtu@name@thesis@type\sjtu@name@orig@subtitle@zh}
+\sjtu@name@def{copr@title}{\sjtu@name@thesis@type\sjtu@name@copr@subtitle@zh}
 \sjtu@name@def{origbody}{%
-  本人郑重声明：所呈交的\sjtu@name@thesis@kind\sjtu@name@title@qouted ，
+  本人郑重声明：所呈交的\sjtu@name@thesis@type《\sjtu@info@title@zh》，
   是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用
   的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对
   本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全
   意识到本声明的法律结果由本人承担。}
 \sjtu@name@def{coprbody}{%
-  本\sjtu@name@thesis@kind 作者
-  完全了解学校有关保留、使用\sjtu@name@thesis@kind 的规定，同意学校保留
+  本\sjtu@name@thesis@type 作者
+  完全了解学校有关保留、使用\sjtu@name@thesis@type 的规定，同意学校保留
   并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。
-  本人授权\sjtu@name@school@zh 可以将本\sjtu@name@thesis@kind 的全部或部
+  本人授权\sjtu@name@school@zh 可以将本\sjtu@name@thesis@type 的全部或部
   分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和
-  汇编本\sjtu@name@thesis@kind 。}
+  汇编本\sjtu@name@thesis@type 。}
 \sjtu@name@def{abstract@zh}{摘\hspace{\ccwd}要}
 \sjtu@name@def{abstract@en}{Abstract}
 \sjtu@name@def{keywords@zh}{关键词：}
@@ -817,34 +834,27 @@
 }
 \captionsetup[bi-second]{bi-second}
 \newcommand\sjtu@copr@addon{%
-  \vskip 2ex
-  \begingroup
-    \linespread{1}\selectfont
-    本\sjtu@name@thesis@type 属于\parbox[c]{20\ccwd}{%
-      {\heiti 保\hspace{1\ccwd}密}~\sjtu@square ，
-      在\underline{\hspace{2\ccwd}}年解密后适用本授权书。\bigbreak
-      {\heiti 不保密}~\sjtu@square 。
-    }\par
-  \endgroup
-  \vskip 2ex
+  \phantom{本\sjtu@name@thesis@type 属于}%
+    {\bfseries 保\hspace{1\ccwd}密}~\sjtu@square ，%
+    在\underline{\hspace{2\ccwd}}年解密后适用本授权书。\par
+  本\sjtu@name@thesis@type 属于\par
+  \phantom{本\sjtu@name@thesis@type 属于}%
+    {\bfseries 不保密}~\sjtu@square 。\par
   （请在以上方框内打“$\checkmark$”）
 }
 \newcommand\sjtu@signbox[1]{%
   \parbox{.45\textwidth}{%
-    #1 签名：\vskip 4em
+    {#1}签名：\vskip 4em
     日期：\hspace{\stretch{3}}年\hspace{\stretch{2}}月\hspace{\stretch{2}}日
   }
 }
-\NewDocumentCommand{\originalitypage}{s O{}}{%
+\NewDocumentCommand{\originalitypage}{O{}}{%
   \ifsjtu@review\relax\else
     \cleardoublepage
-    \ifblank{#2}{%
+    \ifblank{#1}{%
       \thispagestyle{empty}
       \sjtu@chapter*[\sjtu@name@orig@subtitle]{%
-        \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@orig@title
-      }
-      \IfBooleanT{#1}{%
-        \let\sjtu@name@title@qouted\@empty
+        \zihao{-2}\sjtu@name@school@zh\\[6pt]\sjtu@name@orig@title
       }
       \begingroup
         \zihao{4}
@@ -863,7 +873,7 @@
     }{%
       \includepdf[pagecommand={%
         \sjtu@pdfbookmark{0}{\sjtu@name@orig@subtitle}%
-      }]{#2}
+      }]{#1}
     }
   \fi
 }
@@ -873,7 +883,7 @@
     \ifblank{#1}{%
       \thispagestyle{empty}
       \sjtu@chapter*[\sjtu@name@copr@subtitle]{%
-        \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@copr@title
+        \zihao{-2}\sjtu@name@school@zh\\[6pt]\sjtu@name@copr@title
       }
       \begingroup
         \zihao{4}
@@ -1021,19 +1031,30 @@
     {#1}
   \fi
 }
-\newcommand\sjtu@uline[1]{%
-  \begingroup
-    \setbox0=\vbox{\strut #1\strut}%
-    \dimen0=0pt
-    \loop\ifdim\ht0>0pt
-      \dimen1=\dimexpr\ht0 - \baselineskip\relax
-      \setbox1=\vsplit0 to \ht\strutbox
-      \advance\dimen1 by -\ht0
-      \noindent\raisebox{-\dimen0}[\ht\strutbox][\dp\strutbox]{\box1}%
-      \advance\dimen0 by \dimen1
-      \vspace{-0.2ex}\hrule\vskip 0.2ex
-    \repeat
-  \endgroup
+\newcommand\sjtu@title@box[2][]{%
+  \def\sjtu@@title@uline{\rule[-1ex]{#1}{.5pt}}%
+  \def\sjtu@@title@box##1{\parbox[t]{#1}{##1}}%
+  \newlength\sjtu@@title@temp@ht
+  \settototalheight\sjtu@@title@temp@ht{\sjtu@@title@box{#2}}%
+  \ifdim\sjtu@@title@temp@ht=0pt%
+    \sjtu@@title@uline%
+  \else
+    \leavevmode%
+    \ifdim\sjtu@@title@temp@ht>\normalbaselineskip
+      \rlap{\smash{\sjtu@@title@box{%
+        \@whiledim\sjtu@@title@temp@ht>0pt%
+        \leavevmode%
+        \do{%
+          \rlap{\sjtu@@title@uline}\\%
+          \addtolength\sjtu@@title@temp@ht{-\normalbaselineskip}%
+        }%
+      }}}%
+      \sjtu@@title@box{\centering #2}%
+    \else
+      \rlap{\sjtu@@title@uline}%
+      \sjtu@@title@box{\centering #2}%
+    \fi
+  \fi
 }
 \newcolumntype{F}[2]{%
   >{\minipage[#1]{#2}%

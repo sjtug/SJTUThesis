@@ -44,7 +44,7 @@
   }
   \fancyhead[R]{%
     \parbox[b]{0.7\textwidth}{%
-      \raggedleft\zihao{-5}\heiti\MakeUppercase{\sjtu@info@title}
+      \raggedleft\zihao{-5}\heiti\MakeUppercase{\sjtu@info@running@title}
     }
   }
   \fancyfoot[C]{%
@@ -117,7 +117,7 @@
     \kaishu
     \vspace*{48pt}
     \begingroup
-      \includegraphics[height=96pt]%
+      \includegraphics[height=105pt]%
         {sjtu-vi-name-\sjtu@style@title@logo@color.pdf}
       \par
     \endgroup
@@ -126,16 +126,15 @@
     {\zihao{-2}\MakeUppercase\sjtu@name@subject@en\par}
     \vskip 16pt
     \begingroup
-      \includegraphics[height=86pt]%
+      \includegraphics[height=75pt]%
         {sjtu-vi-badge-\sjtu@style@title@logo@color.pdf}
       \par
     \endgroup
     \vskip \stretch{2}
     \begingroup
-      \zihao{2}
+      \zihao{-2}
       \begin{tabular}{@{}r@{\sjtu@colon}l@{}}
-        论文题目 &
-        \parbox[t]{280pt}{\centering\zihao{-2}\sjtu@uline\sjtu@info@title@zh}
+        论文题目 & \sjtu@title@box[300pt]{\sjtu@info@display@title@zh}
       \end{tabular}
       \par
     \endgroup
@@ -155,7 +154,7 @@
       \end{tabular}
       \par
     \endgroup
-    \vskip 32pt
+    \vskip 64pt
   \end{center}
 }
 \endinput
