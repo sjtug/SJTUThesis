@@ -25,10 +25,12 @@
   [2020/07/31 1.0.0rc7 Shanghai Jiao Tong University Thesis Template]
 \geometry{%
   paper      = a4paper,
-  vmargin    = {84bp, 72bp},
-  hmargin    = 90bp,
+  top        = 84bp,
+  bottom     = 72bp,
+  left       = 90bp,
+  right      = 90bp,
   headheight = 60bp,
-  headsep    = 12bp,
+  headsep    = 8bp,
 }
 \pagestyle{fancy}
 \ifsjtu@language@chinese
@@ -60,6 +62,7 @@
 \renewcommand\cftchapfont{\normalfont}
 \renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \renewcommand\cftchappagefont{\normalfont}
+\DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\bfseries}
 \ifsjtu@type@bachelor
   \sjtusetup{
     style = {
@@ -77,7 +80,7 @@
     \endgroup
   }[\sjtu@name@abstract]%
 }{%
-  \vskip 3ex \noindent
+  \vskip \baselineskip \noindent
   \begingroup
     \zihao{-4}
     \heiti\sjtu@name@keywords@zh

@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-math-font-stix2.def',
+%% This is file `sjtu-text-font-stixtwo.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `mathfont,stix2')
+%% sjtuthesis.dtx  (with options: `textfont,stixtwo')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2021 by SJTUG
@@ -21,29 +21,10 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-math-font-stix2.def}
-  [2020/07/31 1.0.0rc7 STIX Two math fonts definition (SJTUThesis)]
-\sjtu@unimathtrue
-\RequirePackage{unicode-math}
-\IfFontExistsTF{STIXTwoMath-Regular.otf}{
-  \setmathfont[
-    StylisticSet = 8
-  ]{STIXTwoMath-Regular.otf}
-  \setmathfont[
-    range        = {scr, bfscr},
-    StylisticSet = 1
-  ]{STIXTwoMath-Regular.otf}
-}{
-  \setmathfont[
-    StylisticSet = 8
-  ]{STIX2Math.otf}
-  \setmathfont[
-    range        = {scr, bfscr},
-    StylisticSet = 1
-  ]{STIX2Math.otf}
-}
+\ProvidesFile{sjtu-text-font-stixtwo.def}
+  [2020/07/31 1.0.0rc7 STIX Two text fonts definition (SJTUThesis)]
 \IfFontExistsTF{STIXTwoText-Regular.otf}{
-  \setmathrm[
+  \setmainfont[
     Extension      = .otf,
     UprightFont    = *-Regular,
     BoldFont       = *-Bold,
@@ -51,7 +32,7 @@
     BoldItalicFont = *-BoldItalic,
   ]{STIXTwoText}
 }{
-  \setmathrm[
+  \setmainfont[
     Extension      = .otf,
     UprightFont    = *-Regular,
     BoldFont       = *-Bold,
@@ -59,14 +40,14 @@
     BoldItalicFont = *-BoldItalic,
   ]{STIX2Text}
 }
-  \setmathsf[
+  \setsansfont[
     Extension      = .otf,
     UprightFont    = *-regular,
     BoldFont       = *-bold,
     ItalicFont     = *-italic,
     BoldItalicFont = *-bolditalic,
   ]{texgyreheros}
-  \setmathtt[
+  \setmonofont[
     Extension      = .otf,
     UprightFont    = *-regular,
     BoldFont       = *-bold,
@@ -77,4 +58,4 @@
   ]{texgyrecursor}
 \endinput
 %%
-%% End of file `sjtu-math-font-stix2.def'.
+%% End of file `sjtu-text-font-stixtwo.def'.

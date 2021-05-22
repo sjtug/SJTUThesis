@@ -8,6 +8,8 @@ $ENV{'TZ'}='Asia/Shanghai';
 # Ensure './texmf//' is in '$TEXINPUTS'.
 ensure_path( 'TEXINPUTS', './texmf//' );
 
+# Use lualatex with latexmk.
+# $pdf_mode = 4;
 # Use xelatex with latexmk.
 $pdf_mode = 5;
 $postscript_mode = $dvi_mode = 0;

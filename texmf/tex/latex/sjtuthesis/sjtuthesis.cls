@@ -345,12 +345,14 @@
 }
 \ifsjtu@language@chinese
   \def\sjtu@info@title{\sjtu@info@title@zh}
+  \def\sjtu@info@title@sec{\sjtu@info@title@en}
   \def\sjtu@info@display@title{\sjtu@info@display@title@zh}
   \def\sjtu@info@running@title{\sjtu@info@running@title@zh}
   \def\sjtu@info@keywords{\sjtu@info@keywords@zh}
   \def\sjtu@info@author{\sjtu@info@author@zh}
 \else
   \def\sjtu@info@title{\sjtu@info@title@en}
+  \def\sjtu@info@title@sec{\sjtu@info@title@zh}
   \def\sjtu@info@display@title{\sjtu@info@display@title@en}
   \def\sjtu@info@running@title{\sjtu@info@running@title@en}
   \def\sjtu@info@keywords{\sjtu@info@keywords@en}
@@ -388,6 +390,7 @@
   table             = { initial = Table },
   table*            = { name = table@second, initial = 表 },
   algorithm         = { initial = Algorithm },
+  abbreviation      = { initial = Abbreviation },
   nomenclature      = { initial = Nomenclature },
   summary           = { initial = Summary },
   bib               = { initial = Bibliography },
@@ -396,6 +399,7 @@
   publications      = { initial = Publications },
   achievements      = { initial = Research Achievements },
   resume            = { initial = Resume },
+  digest            = { initial = Digest },
 }
 \newcommand\sjtu@name@def[2]{%
   \@namedef{sjtu@name@#1}{#2}
@@ -456,7 +460,6 @@
   \sjtu@name@def{course@zh}{课程名称}
   \sjtu@name@def{major@zh}{专业}
   \sjtu@name@def{department@zh}{学院(系)}
-  \sjtu@name@def{digest}{英文大摘要}
 \fi
 \sjtu@name@def{orig@subtitle@zh}{原创性声明}
 \sjtu@name@def{orig@subtitle@en}{Declaration of Originality}
@@ -494,7 +497,8 @@
       table             = {表},
       table*            = {Table},
       algorithm         = {算法},
-      nomenclature      = {主要符号对照表},
+      abbreviation      = {缩略语对照表},
+      nomenclature      = {符号对照表},
       summary           = {全文总结},
       bib               = {参考文献},
       index             = {索\hspace{\ccwd}引},
@@ -502,6 +506,7 @@
       publications      = {攻读学位期间发表（或录用）的学术论文},
       achievements      = {攻读学位期间获得的科研成果},
       resume            = {个人简历},
+      digest            = {大摘要},
     }
   }
   \ctexset{
@@ -625,7 +630,7 @@
   \def\sjtu@lastpageref{\lastpageref{pagesLTS.arabic}}
 }
 \renewcommand\backmatter{%
-  \cleardoublepage
+  \if@openright\cleardoublepage\else\clearpage\fi%
   \@mainmatterfalse
 }
 \ctexset{%
@@ -633,25 +638,29 @@
     format       = \zihao{3}\bfseries\heiti\centering,
     nameformat   = {},
     titleformat  = {},
-    aftername    = \quad,
+    aftername    = \enskip,
     afterindent  = true,
-    beforeskip   = {\ifsjtu@type@graduate 0pt\else 1ex\fi},
-    afterskip    = {\ifsjtu@type@graduate 3ex\else 4ex\fi},
+    fixskip      = true,
+    beforeskip   = 24pt,
+    afterskip    = 24pt,
     lofskip      = 0pt,
     lotskip      = 0pt,
   },
   section = {%
     format       = \zihao{4}\bfseries\heiti,
+    aftername    = \enskip,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
   subsection = {%
     format       = \zihao{-4}\bfseries\heiti,
+    aftername    = \enskip,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
   subsubsection = {%
     format       = \zihao{-4}\normalfont,
+    aftername    = \enskip,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
@@ -844,7 +853,7 @@
 }
 \newcommand\sjtu@signbox[1]{%
   \parbox{.45\textwidth}{%
-    {#1}签名：\vskip 4em
+    {#1}签名：\vskip 1.5\baselineskip
     日期：\hspace{\stretch{3}}年\hspace{\stretch{2}}月\hspace{\stretch{2}}日
   }
 }
@@ -853,22 +862,20 @@
     \cleardoublepage
     \ifblank{#1}{%
       \thispagestyle{empty}
-      \sjtu@chapter*[\sjtu@name@orig@subtitle]{%
-        \zihao{-2}\sjtu@name@school@zh\\[6pt]\sjtu@name@orig@title
-      }
       \begingroup
+        \linespread{1.7}\selectfont
+        \sjtu@chapter*[\sjtu@name@orig@subtitle]{%
+          \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@orig@title
+        }
         \zihao{4}
-        \begingroup
-          \linespread{2.0}\selectfont
-          \sjtu@name@origbody\par
-        \endgroup
-        \vskip 16ex
+        \vskip \baselineskip
+        \sjtu@name@origbody\par
+        \vskip 4\baselineskip
         \noindent
         \begin{minipage}{\textwidth}
           \hfill
           \sjtu@signbox{\sjtu@name@thesis@type 作者}
-        \end{minipage}
-        \par
+        \end{minipage}\par
       \endgroup
     }{%
       \includepdf[pagecommand={%
@@ -882,24 +889,22 @@
     \cleardoublepage
     \ifblank{#1}{%
       \thispagestyle{empty}
-      \sjtu@chapter*[\sjtu@name@copr@subtitle]{%
-        \zihao{-2}\sjtu@name@school@zh\\[6pt]\sjtu@name@copr@title
-      }
       \begingroup
+        \linespread{1.7}\selectfont
+        \sjtu@chapter*[\sjtu@name@copr@subtitle]{%
+          \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@copr@title
+        }
         \zihao{4}
-        \begingroup
-          \linespread{1.5}\selectfont
-          \sjtu@name@coprbody\par
-          \sjtu@copr@addon\par
-        \endgroup
-        \vskip 16ex
+        \vskip \baselineskip
+        \sjtu@name@coprbody\par
+        \sjtu@copr@addon\par
+        \vskip 4\baselineskip
         \noindent
         \begin{minipage}{\textwidth}
           \sjtu@signbox{\sjtu@name@thesis@type 作者}
           \hfill
           \sjtu@signbox{指导教师}
-        \end{minipage}
-        \par
+        \end{minipage}\par
       \endgroup
     }{%
       \includepdf[pagecommand={%
@@ -909,6 +914,12 @@
   \fi
 }
 \newcommand\sjtu@save@env@body[1]{\long\gdef\sjtu@saved@env@body{#1}}
+\NewDocumentEnvironment{abbreviation}{}{%
+  \sjtu@chapter{\sjtu@name@abbreviation}
+}{}
+\NewDocumentEnvironment{abbreviation*}{}{%
+  \sjtu@chapter*{\sjtu@name@abbreviation}
+}{}
 \NewDocumentEnvironment{nomenclature}{}{%
   \sjtu@chapter{\sjtu@name@nomenclature}
 }{}
@@ -994,19 +1005,17 @@
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@type@bachelor
-    \ifsjtu@language@chinese
-      \AtEndDocument{%
-        \cleardoublepage
-        \pagenumbering{roman}
-        \def\sjtu@thepage{\theCurrentPageLocal}
-        \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
-        \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@en}
-        \counterwithout{section}{chapter}
-        \sjtu@counter@without@chapter
-        \let\addcontentsline\@gobblethree
-        \sjtu@saved@env@body
-      }
-    \fi
+    \AtEndDocument{%
+      \cleardoublepage
+      \pagenumbering{roman}
+      \def\sjtu@thepage{\theCurrentPageLocal}
+      \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
+      \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@sec}
+      \counterwithout{section}{chapter}
+      \sjtu@counter@without@chapter
+      \let\addcontentsline\@gobblethree
+      \sjtu@saved@env@body
+    }
   \fi
 }
 \AtEndPreamble{
