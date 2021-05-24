@@ -63,6 +63,7 @@ tlmgr install           \
   sourcesanspro         \
   tex-gyre              \
   threeparttable        \
+  threeparttablex       \
   tocloft               \
   translator            \
   trimspaces            \
