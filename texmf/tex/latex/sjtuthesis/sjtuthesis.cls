@@ -181,6 +181,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{filehook}
 \RequirePackage{environ}
+\RequirePackage{calc}
 \RequirePackage{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{pageslts}
@@ -769,12 +770,8 @@
 \renewcommand\cftfigpresnum{\sjtu@name@figure~}
 \renewcommand\cfttabpresnum{\sjtu@name@table~}
 \AtEndPreamble{%
-  \newlength{\sjtu@cftfignumwidth@tmp}
-    \settowidth{\sjtu@cftfignumwidth@tmp}{\cftfigpresnum}
-  \addtolength{\cftfignumwidth}{\sjtu@cftfignumwidth@tmp}
-  \newlength{\sjtu@cfttabnumwidth@tmp}
-    \settowidth{\sjtu@cfttabnumwidth@tmp}{\cfttabpresnum}
-  \addtolength{\cfttabnumwidth}{\sjtu@cfttabnumwidth@tmp}
+  \addtolength{\cftfignumwidth}{\widthof{\cftfigpresnum}}
+  \addtolength{\cfttabnumwidth}{\widthof{\cfttabpresnum}}
 }
 \renewcommand\textfraction{0.15}
 \renewcommand\topfraction{0.85}
@@ -1274,9 +1271,7 @@
     {\addcontentsline}
     {\caption@iflist{\addcontentsline}{\@gobblethree}}
   \AtEndPreamble{%
-    \newlength{\sjtu@cftalgnumwidth@tmp}
-      \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
-    \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
+    \addtolength{\cftalgnumwidth}{\widthof{\cftalgpresnum}}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algocf}}
 }
@@ -1300,9 +1295,7 @@
     \def\thealgorithm{\thechapter\sjtu@style@fl@num@sep\arabic{algorithm}}
   }{}{}
   \AtEndPreamble{%
-    \newlength{\sjtu@cftalgnumwidth@tmp}
-      \settowidth{\sjtu@cftalgnumwidth@tmp}{\cftalgpresnum}
-    \addtolength{\cftalgnumwidth}{\sjtu@cftalgnumwidth@tmp}
+    \addtolength{\cftalgnumwidth}{\widthof{\cftalgpresnum}}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algorithm}}
 }
