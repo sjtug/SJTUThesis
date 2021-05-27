@@ -144,9 +144,12 @@
     initial = auto,
   },
 }
-\DeclareStringOption[termes]{textfont}
-\DeclareStringOption[auto]{mathfont}
-\DeclareStringOption[auto]{cjkfont}
+\DeclareStringOption[termes]{text-font}
+\@namedef{\KVO@prefix text@font}{\csname\KVO@prefix text-font\endcsname}
+\DeclareStringOption[auto]{math-font}
+\@namedef{\KVO@prefix math@font}{\csname\KVO@prefix math-font\endcsname}
+\DeclareStringOption[auto]{cjk-font}
+\@namedef{\KVO@prefix cjk@font}{\csname\KVO@prefix cjk-font\endcsname}
 \DeclareBoolOption[false]{unimath}
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
@@ -531,52 +534,52 @@
 \ifsjtu@unimath
   \RequirePackage{unicode-math}
 \fi
-\ifthenelse{\equal{\sjtu@mathfont}{auto}}{
-  \let\sjtu@mathfont\sjtu@textfont
+\ifthenelse{\equal{\sjtu@math@font}{auto}}{
+  \let\sjtu@math@font\sjtu@text@font
 }{}
-\ifthenelse{\equal{\sjtu@mathfont}{none}}{}{%
-  \InputIfFileExists{sjtu-math-font-\sjtu@mathfont.def}{}{%
+\ifthenelse{\equal{\sjtu@math@font}{none}}{}{%
+  \InputIfFileExists{sjtu-math-font-\sjtu@math@font.def}{}{%
     \sjtu@warning{%
-      Invalid value `mathfont = \sjtu@mathfont'! \MessageBreak
+      Invalid value `math-font = \sjtu@math@font'! \MessageBreak
       Using `termes' instead.
     }
-    \def\sjtu@mathfont{termes}
-    \input{sjtu-math-font-\sjtu@mathfont.def}
+    \def\sjtu@math@font{termes}
+    \input{sjtu-math-font-\sjtu@math@font.def}
   }
 }
-\ifthenelse{\equal{\sjtu@textfont}{none}}{}{%
-  \InputIfFileExists{sjtu-text-font-\sjtu@textfont.def}{}{%
+\ifthenelse{\equal{\sjtu@text@font}{none}}{}{%
+  \InputIfFileExists{sjtu-text-font-\sjtu@text@font.def}{}{%
     \sjtu@warning{%
-      Invalid value `textfont = \sjtu@textfont'! \MessageBreak
+      Invalid value `text-font = \sjtu@text@font'! \MessageBreak
       Using `termes' instead.
     }
-    \def\sjtu@textfont{termes}
-    \input{sjtu-text-font-\sjtu@textfont.def}
+    \def\sjtu@text@font{termes}
+    \input{sjtu-text-font-\sjtu@text@font.def}
   }
 }
-\ifthenelse{\equal{\sjtu@cjkfont}{auto}}{
+\ifthenelse{\equal{\sjtu@cjk@font}{auto}}{
   \IfFontExistsTF{SimSun}{
-    \def\sjtu@cjkfont{windows}
+    \def\sjtu@cjk@font{windows}
   }{
     \IfFileExists{/System/Library/Fonts/Menlo.ttc}{
-      \def\sjtu@cjkfont{mac}
+      \def\sjtu@cjk@font{mac}
     }{
       \IfFontExistsTF{Noto Serif CJK SC}{
-        \def\sjtu@cjkfont{ubuntu}
+        \def\sjtu@cjk@font{ubuntu}
       }{
-        \def\sjtu@cjkfont{fandol}
+        \def\sjtu@cjk@font{fandol}
       }
     }
   }
 }{}
-\ifthenelse{\equal{\sjtu@cjkfont}{none}}{}{%
-  \InputIfFileExists{sjtu-cjk-font-\sjtu@cjkfont.def}{}{%
+\ifthenelse{\equal{\sjtu@cjk@font}{none}}{}{%
+  \InputIfFileExists{sjtu-cjk-font-\sjtu@cjk@font.def}{}{%
     \sjtu@warning{%
-      Invalid value `cjkfont = \sjtu@cjkfont'! \MessageBreak
+      Invalid value `cjk-font = \sjtu@cjk@font'! \MessageBreak
       Using `fandol' instead.
     }
-    \def\sjtu@cjkfont{fandol}
-    \input{sjtu-cjk-font-\sjtu@cjkfont.def}
+    \def\sjtu@cjk@font{fandol}
+    \input{sjtu-cjk-font-\sjtu@cjk@font.def}
   }
 }
 \ifXeTeX
@@ -737,7 +740,7 @@
 \NewDocumentCommand{\sjtu@chapter}{s O{#3} m O{#2}}{
   \if@openright\cleardoublepage\else\clearpage\fi%
   \IfBooleanTF{#1}{%
-    \ifthenelse{\equal{#4}{}}{\relax}{%
+    \ifthenelse{\equal{#4}{}}{}{%
       \sjtu@pdfbookmark{0}{#4}%
     }
   }{%
@@ -1120,7 +1123,7 @@
   \newcommand{\square}{\mdlgwhtsquare}
 }
 \AtEndOfPackageFile*{physics}{
-  \@ifundefined{updelta}{\relax}{
+  \@ifundefined{updelta}{}{
     \DeclareDocumentCommand\variation{o g d()}{
       \IfNoValueTF{#2}{
         \IfNoValueTF{#3}
