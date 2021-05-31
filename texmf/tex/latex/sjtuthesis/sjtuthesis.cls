@@ -1313,7 +1313,7 @@
   \lstdefinestyle{lstStyleCode}{
     aboveskip=\medskipamount,
     belowskip=\medskipamount,
-    basicstyle=\footnotesize\ttfamily,
+    basicstyle=\ttfamily\zihao{-5},
     commentstyle=\slshape\color{black!60},
     stringstyle=\color{green!40!black!100},
     keywordstyle=\bfseries\color{blue!50!black},
@@ -1323,8 +1323,7 @@
     showstringspaces=false,
     xleftmargin=1em,
     xrightmargin=1em,
-    breaklines=true,
-    breakindent=2em,
+    breaklines=false,
     framexleftmargin=1em,
     framexrightmargin=1em,
     backgroundcolor=\color{gray!10},
