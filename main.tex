@@ -1,7 +1,7 @@
 % !TeX encoding = UTF-8
 
 % 载入 SJTUThesis 模版
-\documentclass[type=master]{sjtuthesis}
+\documentclass[type=bachelor]{sjtuthesis}
 % 选项
 %   type=[doctor|master|bachelor|course],     % 可选（默认：doctor），论文类型
 %   zihao=[-4|5],                             % 可选（研究生默认：-4，本科默认：5），正文字号大小
@@ -16,34 +16,35 @@
 
 %TC:ignore
 
-% 无编号内容
-
-% 论文标题页
+% 标题页
 \maketitle
 
 % 原创性声明及使用授权书
 \copyrightpage
-% 插入原创性声明及使用授权书
+% 插入外置原创性声明及使用授权书
 % \copyrightpage[scans/sample-copyright-old.pdf]
 
-% 使用罗马数字对前文编号
+% 前置部分
 \frontmatter
 
 % 摘要
 \input{contents/abstract}
 
-% 目录、插图索引、表格索引、算法索引
+% 目录
 \tableofcontents
+% 插图索引
 \listoffigures*
+% 表格索引
 \listoftables*
+% 算法索引
 \listofalgorithms*
 
-% 主要符号对照表
+% 符号对照表
 \input{contents/nomenclature}
 
 %TC:endignore
 
-% 使用阿拉伯数字对正文编号
+% 主体部分
 \mainmatter
 
 % 正文内容
@@ -54,28 +55,30 @@
 
 %TC:ignore
 
-% 使用英文字母对附录编号
+% 参考文献
+\printbibliography[heading=bibintoc]
+
+% 附录
 \appendix
 
 % 附录内容
 \input{contents/app_maxwell_equations}
 \input{contents/app_flow_chart}
 
-% 后文部分无编号
+% 结尾部分
 \backmatter
-
-% 参考文献
-\printbibliography[heading=bibintoc]
 
 % 用于盲审的论文需隐去致谢、发表论文、科研成果、简历
 
 % 致谢
 \input{contents/acknowledgements}
 
-% 发表论文、科研成果、简历
+% 发表论文、科研成果
 % 盲审论文中，发表论文及科研成果等仅以第几作者注明即可，不要出现作者或他人姓名
 \input{contents/publications}
 \input{contents/achievements}
+
+% 简历
 \input{contents/resume}
 
 % 学士学位论文要求在最后有一个大摘要，单独编页码
