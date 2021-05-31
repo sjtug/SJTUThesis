@@ -641,7 +641,7 @@
     format       = \zihao{3}\bfseries\heiti\centering,
     nameformat   = {},
     titleformat  = {},
-    aftername    = \enskip,
+    aftername    = \quad,
     afterindent  = true,
     fixskip      = true,
     beforeskip   = 24pt,
@@ -651,19 +651,16 @@
   },
   section = {%
     format       = \zihao{4}\bfseries\heiti,
-    aftername    = \enskip,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
   subsection = {%
     format       = \zihao{-4}\bfseries\heiti,
-    aftername    = \enskip,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
   subsubsection = {%
     format       = \zihao{-4}\normalfont,
-    aftername    = \enskip,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
