@@ -1334,40 +1334,6 @@
     mathescape=true
   }
 }
-\AtEndOfPackageFile*{tikz}{
-  \usetikzlibrary{shapes.geometric, arrows}
-  \tikzstyle{startstop} = [
-    rectangle,
-    rounded corners,
-    minimum width=2cm,
-    minimum height=1cm,
-    text centered,
-    draw=black
-  ]
-  \tikzstyle{io} = [
-    trapezium,
-    trapezium left angle=75,
-    trapezium right angle=105,
-    minimum width=1cm,
-    minimum height=1cm,
-    text centered,
-    draw=black
-  ]
-  \tikzstyle{process} = [
-    rectangle,
-    minimum width=2cm,
-    minimum height=1cm,
-    text centered,
-    draw=black
-  ]
-  \tikzstyle{decision} = [
-    diamond,
-    minimum width=2cm,
-    minimum height=1cm,
-    text centered,
-    draw=black]
-  \tikzstyle{arrow} = [thick, ->, >=stealth]
-}
 \endinput
 %%
 %% End of file `sjtuthesis.cls'.
