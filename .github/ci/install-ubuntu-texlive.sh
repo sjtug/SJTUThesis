@@ -35,7 +35,6 @@ tlmgr install           \
   chngcntr              \
   cjk                   \
   ctex                  \
-  dirtree               \
   enumitem              \
   environ               \
   eso-pic               \
