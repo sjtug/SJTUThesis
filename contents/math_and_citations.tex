@@ -31,9 +31,9 @@
 \subsection{数学符号和公式}
 
 按照国标 GB/T 3102.11—1993《物理科学和技术中使用的数学符号》，
-微分符号 $\dd$ 应使用直立体。示例使用了 \pkg{physics} 提供的 \cs{dd} 命令。
-除此之外，数学常数也应使用直立体：
+微分符号 $\dd$ 应使用直立体。除此之外，数学常数也应使用直立体：
 \begin{itemize}
+  \item 微分符号 $\dd$：\cs{dd}
   \item 圆周率 $\uppi$：\cs{uppi}
   \item 自然对数的底 $\ee$：\cs{ee}
   \item 虚数单位 $\ii$, $\jj$：\cs{ii} \cs{jj}
@@ -44,7 +44,7 @@
   \ee^{\ii\uppi} + 1 = 0,
 \end{equation}
 \begin{equation}
-  \dv[2]{u}{t} = \int f(x) \dd x.
+  \frac{\dd^2 u}{\dd t^2} = \int f(x) \dd x.
 \end{equation}
 
 公式末尾是需要添加标点符号的，至于用逗号还是句号，取决于公式下面一句是接着公式说的，还是另起一句。
@@ -64,7 +64,7 @@
   = & I (X_1; X_3; X_4) - I (X_3; X_4 \mid \tilde{X}_2).
 \end{align}
 
-如果在等号处转行难以实现，也可在 $+$、$-$、$\times$、$\divisionsymbol$ 运算符号处转行，转行
+如果在等号处转行难以实现，也可在 $+$、$-$、$\times$、$\div$ 运算符号处转行，转行
 时运算符号仅书写于转行式前，不重复书写。
 \begin{multline}
   \frac{1}{2} \Delta (f_{ij} f^{ij}) =
