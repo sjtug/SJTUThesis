@@ -153,6 +153,8 @@
 \DeclareBoolOption[false]{unimath}
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{continuous}
+\DeclareBoolOption[false]{openright}
+\DeclareComplementaryOption{openany}{openright}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
 \newif\ifsjtu@type@graduate
@@ -171,6 +173,11 @@
   \fi
 \fi
 \PassOptionsToClass{zihao=\sjtu@zihao}{ctexbook}
+\ifsjtu@openright
+  \PassOptionsToClass{openright}{book}
+\else
+  \PassOptionsToClass{openany}{book}
+\fi
 \PassOptionsToPackage{no-math,quiet}{fontspec}
 \LoadClass[a4paper,UTF8,scheme=plain,fontset=none,linespread=1.3]{ctexbook}[2018/04/01]
 \AtEndOfClass{
