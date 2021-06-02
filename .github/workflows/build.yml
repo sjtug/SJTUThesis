@@ -11,48 +11,39 @@ on:
 name: Build
 
 jobs:
-  build-texlive:
+  build-xelatex:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
-      - name: cache texlive installation
-        uses: actions/cache@v2
+      - uses: xu-cheng/texlive-action/full@v1
         with:
-          path: |
-            /tmp/texlive
-          key: ${{ runner.os }}-texlive
-      - run: .github/ci/install-ubuntu-texlive.sh
-        name: install texlive
-      - run: latexmk -quiet -halt-on-error -time main.tex
-        name: build
-      - run: cat main.log
+          run: |
+            .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
+        name: build with XeLaTeX
+      - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
+          path: build/build-*.pdf
+          name: build-xelatex
         name: upload build artifacts
-
-  build-miktex:
+  build-lualatex:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
-      - name: cache miktex installation
-        uses: actions/cache@v2
+      - uses: xu-cheng/texlive-action/full@v1
         with:
-          path: |
-            ~/.miktex
-          key: ${{ runner.os }}-miktex
-      - run: .github/ci/install-ubuntu-miktex.sh
-        name: install miktex
-      - run: latexmk -quiet -halt-on-error -time main.tex
-        name: build
-      - run: cat main.log
+          run: |
+            .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
+        name: build with LuaLaTeX
+      - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
+          path: build/build-*.pdf
+          name: build-lualatex
         name: upload build artifacts
