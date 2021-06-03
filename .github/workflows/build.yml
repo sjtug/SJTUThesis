@@ -29,21 +29,21 @@ jobs:
           path: build/build-*.pdf
           name: build-xelatex
         name: upload build artifacts
-  # build-lualatex:
-  #   runs-on: ubuntu-latest
-  #   steps: 
-  #     - uses: actions/checkout@v2
-  #       name: checkout code
-  #     - uses: xu-cheng/texlive-action/full@v1
-  #       with:
-  #         run: |
-  #           .github/ci/build_variants.sh -halt-on-error -time -quiet -lualatex
-  #       name: build with LuaLaTeX
-  #     - run: cat build/build-*.log
-  #       name: display build log
-  #       if: ${{ failure() || success() }}
-  #     - uses: actions/upload-artifact@v2
-  #       with:
-  #         path: build/build-*.pdf
-  #         name: build-lualatex
-  #       name: upload build artifacts
+  build-lualatex:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            .github/ci/build_variants.sh -halt-on-error -time -quiet -lualatex
+        name: build with LuaLaTeX
+      - run: cat build/build-*.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: build/build-*.pdf
+          name: build-lualatex
+        name: upload build artifacts
