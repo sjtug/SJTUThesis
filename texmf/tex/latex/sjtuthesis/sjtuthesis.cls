@@ -208,7 +208,7 @@
 \RequirePackage{subcaption}
 \RequirePackage[titles]{tocloft}
 \RequirePackage[inline]{enumitem}
-\RequirePackage[perpage, bottom, hang]{footmisc}
+\RequirePackage[perpage,bottom]{footmisc}
 \RequirePackage{pdfpages}
 \includepdfset{fitpaper=true}
 \RequirePackage{url}
@@ -244,6 +244,12 @@
 }
 \sjtu@set@family@handler{sjtu@style}
 \sjtu@define@key{sjtu@style}{
+  header = {
+    choices = {
+      single,
+      double,
+    },
+  },
   frontmatter-numbering = {
     name = frontmatter@numbering,
     choices = {
@@ -261,10 +267,10 @@
     initial = false,
     default = fixed,
   },
-  header = {
+  footnote = {
     choices = {
-      single,
-      double,
+      indent,
+      hang,
     },
   },
   title-logo-color = {
@@ -345,7 +351,7 @@
   \fi
 }
 \newcommand\sjtu@clist@use[2]{%
-  \def\sjtu@@tmp{}%
+  \let\sjtu@@tmp\@empty%
   \def\sjtu@clist@processor##1{%
     \ifx\sjtu@@tmp\@empty
       \def\sjtu@@tmp{#2}%
@@ -741,25 +747,52 @@
 \setlist{nosep}
 \setlist*{leftmargin=*}
 \setlist[1]{labelindent=\parindent}
-\newcommand\footnotemarkfont{}
-\def\sjtu@textcircled#1{%
-  \ifnum\value{#1} <21%
-    {\footnotemarkfont\symbol{\the\numexpr\value{#1}+"245F\relax}}%
-  \else\ifnum\value{#1} <36%
-    {\footnotemarkfont\symbol{\the\numexpr\value{#1}+"323C\relax}}%
-  \else\ifnum\value{#1} <51%
-    {\footnotemarkfont\symbol{\the\numexpr\value{#1}+"328D\relax}}%
+\let\footnotemarkfont\@empty
+\def\sjtu@num@circled#1{%
+  \ifnum#1 <21%
+    {\footnotemarkfont\symbol{\the\numexpr#1+"245F\relax}}%
+  \else\ifnum#1 <36%
+    {\footnotemarkfont\symbol{\the\numexpr#1+"323C\relax}}%
+  \else\ifnum#1 <51%
+    {\footnotemarkfont\symbol{\the\numexpr#1+"328D\relax}}%
   \else
     \sjtu@warning{Too many footnotes in this page.}%
   \fi\fi\fi
 }
-\renewcommand{\thefootnote}{\sjtu@textcircled{footnote}}
-\renewcommand{\thempfootnote}{\sjtu@textcircled{mpfootnote}}
+\renewcommand{\thefootnote}{\sjtu@num@circled{\c@footnote}}
+\renewcommand{\thempfootnote}{\sjtu@num@circled{\c@mpfootnote}}
 \footnotemargin1.5em\relax
-\let\sjtu@makefnmark\@makefnmark
-\def\sjtu@@makefnmark{\hbox{{\normalfont\@thefnmark}}}
-\pretocmd{\@makefntext}{\let\@makefnmark\sjtu@@makefnmark}{}{}
-\apptocmd{\@makefntext}{\let\@makefnmark\sjtu@makefnmark}{}{}
+\long\def\@makefntext#1{%
+  \ifsjtu@style@footnote@hang
+    \bgroup
+    \def\@makefnmark{\hbox{\normalfont\@thefnmark}}%
+    \setbox\@tempboxa\hbox{%
+      \ifdim\footnotemargin>\z@
+        \hb@xt@\footnotemargin{\@makefnmark\hss}%
+      \else
+        \@makefnmark
+      \fi
+    }%
+    \leftmargin\wd\@tempboxa
+    \rightmargin\z@
+    \linewidth \columnwidth
+    \advance \linewidth -\leftmargin
+    \parshape \@ne \leftmargin \linewidth
+    \footnotesize
+    \@setpar{{\@@par}}%
+    \leavevmode
+    \llap{\box\@tempboxa}%
+    \parskip\hangfootparskip\relax
+    \parindent\hangfootparindent\relax
+  \else
+    \parindent 2\ccwd%
+    {\normalfont\@thefnmark}
+  \fi
+  \footnotelayout#1%
+  \ifsjtu@style@footnote@hang
+    \par\egroup
+  \fi
+}
 \urlstyle{same}
 \g@addto@macro\UrlBreaks{%
   \do0\do1\do2\do3\do4\do5\do6\do7\do8\do9%
@@ -1285,7 +1318,7 @@
   \lstdefinestyle{lstStyleCode}{
     aboveskip=\medskipamount,
     belowskip=\medskipamount,
-    basicstyle=\ttfamily\zihao{-5},
+    basicstyle=\ttfamily\zihao{6},
     commentstyle=\slshape\color{black!60},
     stringstyle=\color{green!40!black!100},
     keywordstyle=\bfseries\color{blue!50!black},
