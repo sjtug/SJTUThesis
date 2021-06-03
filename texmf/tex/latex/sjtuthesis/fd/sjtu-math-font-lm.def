@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-math-font-lm.def}
-  [2020/07/31 1.0.0rc7 Latin Modern math fonts definition (SJTUThesis)]
+  [2021/06/03 1.1.0rc1 Latin Modern math fonts definition (SJTUThesis)]
 \ifsjtu@unimath
   \setmathfont{latinmodern-math.otf}
   \setmathrm[

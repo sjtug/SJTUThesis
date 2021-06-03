@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-text-font-stixtwo.def}
-  [2020/07/31 1.0.0rc7 STIX Two text fonts definition (SJTUThesis)]
+  [2021/06/03 1.1.0rc1 STIX Two text fonts definition (SJTUThesis)]
 \IfFontExistsTF{STIXTwoText-Regular.otf}{
   \setmainfont[
     Extension      = .otf,

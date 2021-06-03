@@ -23,10 +23,10 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sjtuthesis}
-  [2020/07/31 1.0.0rc7 Shanghai Jiao Tong University Thesis Template]
+  [2021/06/03 1.1.0rc1 Shanghai Jiao Tong University Thesis Template]
 \hyphenation{SJTU-Thesis}
 \def\sjtuthesis{SJTU\textsc{Thesis}}
-\def\version{1.0.0rc7}
+\def\version{1.1.0rc1}
 \newcommand\sjtu@error[1]{%
   \ClassError{sjtuthesis}{#1}{}%
 }
@@ -145,14 +145,14 @@
   },
 }
 \DeclareStringOption[termes]{text-font}
-\@namedef{\KVO@prefix text@font}{\csname\KVO@prefix text-font\endcsname}
+\@namedef{sjtu@text@font}{\csname sjtu@text-font\endcsname}
 \DeclareStringOption[auto]{math-font}
-\@namedef{\KVO@prefix math@font}{\csname\KVO@prefix math-font\endcsname}
+\@namedef{sjtu@math@font}{\csname sjtu@math-font\endcsname}
 \DeclareStringOption[auto]{cjk-font}
-\@namedef{\KVO@prefix cjk@font}{\csname\KVO@prefix cjk-font\endcsname}
+\@namedef{sjtu@cjk@font}{\csname sjtu@cjk-font\endcsname}
 \DeclareBoolOption[false]{unimath}
+\DeclareBoolOption[false]{nothm}
 \DeclareBoolOption[false]{review}
-\DeclareBoolOption[false]{continuous}
 \DeclareBoolOption[false]{openright}
 \DeclareComplementaryOption{openany}{openright}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
@@ -177,6 +177,9 @@
   \PassOptionsToClass{openright}{book}
 \else
   \PassOptionsToClass{openany}{book}
+\fi
+\ifsjtu@type@graduate\else
+  \PassOptionsToClass{oneside}{book}
 \fi
 \PassOptionsToPackage{no-math,quiet}{fontspec}
 \LoadClass[a4paper,UTF8,scheme=plain,fontset=none,linespread=1.3]{ctexbook}[2018/04/01]
@@ -203,7 +206,6 @@
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
 \RequirePackage{subcaption}
-\RequirePackage{chngcntr}
 \RequirePackage[titles]{tocloft}
 \RequirePackage[inline]{enumitem}
 \RequirePackage[perpage, bottom, hang]{footmisc}
@@ -522,11 +524,39 @@
   \sjtu@name@def{subject}{\sjtu@name@subject@zh}
   \sjtu@name@def{copr@mk}{\sjtu@name@orig@title@zh 及\sjtu@name@copr@title@zh}
   \sjtu@name@def{abstract}{\sjtu@name@abstract@zh}
+  \sjtu@name@def{assumption}{假设}
+  \sjtu@name@def{axiom}{公理}
+  \sjtu@name@def{conjecture}{猜想}
+  \sjtu@name@def{corollary}{推论}
+  \sjtu@name@def{definition}{定义}
+  \sjtu@name@def{example}{例}
+  \sjtu@name@def{exercise}{练习}
+  \sjtu@name@def{lemma}{引理}
+  \sjtu@name@def{problem}{问题}
+  \sjtu@name@def{proof}{证明}
+  \sjtu@name@def{proposition}{命题}
+  \sjtu@name@def{remark}{注}
+  \sjtu@name@def{solution}{解}
+  \sjtu@name@def{theorem}{定理}
 \else
   \sjtu@name@def{titlepage}{Title Page}
   \sjtu@name@def{subject}{\sjtu@name@subject@en}
   \sjtu@name@def{copr@mk}{\sjtu@name@orig@title@en and \sjtu@name@copr@title@en}
   \sjtu@name@def{abstract}{\sjtu@name@abstract@en}
+  \sjtu@name@def{assumption}{Assumption}
+  \sjtu@name@def{axiom}{Axiom}
+  \sjtu@name@def{conjecture}{Conjecture}
+  \sjtu@name@def{corollary}{Corollary}
+  \sjtu@name@def{definition}{Definition}
+  \sjtu@name@def{example}{Example}
+  \sjtu@name@def{exercise}{Exercise}
+  \sjtu@name@def{lemma}{Lemma}
+  \sjtu@name@def{problem}{Problem}
+  \sjtu@name@def{proof}{Proof}
+  \sjtu@name@def{proposition}{Proposition}
+  \sjtu@name@def{remark}{Remark}
+  \sjtu@name@def{solution}{Solution}
+  \sjtu@name@def{theorem}{Theorem}
 \fi
 \ctexset{%
   appendixname   = \sjtu@name@appendix,
@@ -784,36 +814,19 @@
 \renewcommand\topfraction{0.85}
 \renewcommand\bottomfraction{0.65}
 \renewcommand\floatpagefraction{0.60}
-\newcommand\sjtu@def@thefloats{
+\AtBeginDocument{%
   \def\thefigure{\thechapter\sjtu@style@fl@num@sep\arabic{figure}}
   \def\p@subfigure{\thefigure}
   \def\thetable{\thechapter\sjtu@style@fl@num@sep\arabic{table}}
+  \def\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
 \newcommand\sjtu@counter@without@chapter{
+  \counterwithout{section}{chapter}
+  \setcounter{section}{0}
   \counterwithout{figure}{chapter}
   \setcounter{figure}{0}
   \counterwithout{table}{chapter}
   \setcounter{table}{0}
-}
-\newcommand\sjtu@counter@within@chapter{
-  \counterwithin*{figure}{chapter}
-  \counterwithin*{table}{chapter}
-  \sjtu@def@thefloats
-}
-\ifsjtu@continuous
-  \apptocmd{\mainmatter}{%
-    \sjtu@counter@without@chapter
-  }{}{}
-  \apptocmd{\appendix}{%
-    \sjtu@counter@within@chapter
-  }{}{}
-\else
-  \AtBeginDocument{%
-    \sjtu@def@thefloats
-  }
-\fi
-\AtBeginDocument{%
-  \def\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
 \newif\ifsjtu@set@float@fontsize \sjtu@set@float@fontsizefalse
 \sjtu@patchcmd\@floatboxreset%
@@ -1003,7 +1016,6 @@
       \def\sjtu@thepage{\theCurrentPageLocal}
       \def\sjtu@lastpageref{\lastpageref{pagesLTS.roman.local}}
       \sjtu@chapter*[\sjtu@name@digest]{\MakeUppercase\sjtu@info@title@sec}
-      \counterwithout{section}{chapter}
       \sjtu@counter@without@chapter
       \let\addcontentsline\@gobblethree
       \sjtu@saved@env@body
@@ -1152,39 +1164,6 @@
     }
   \fi
 }
-\newcommand\sjtu@def@theorem@name{%
-  \ifsjtu@language@chinese
-    \sjtu@name@def{assumption}{假设}
-    \sjtu@name@def{axiom}{公理}
-    \sjtu@name@def{conjecture}{猜想}
-    \sjtu@name@def{corollary}{推论}
-    \sjtu@name@def{definition}{定义}
-    \sjtu@name@def{example}{例}
-    \sjtu@name@def{exercise}{练习}
-    \sjtu@name@def{lemma}{引理}
-    \sjtu@name@def{problem}{问题}
-    \sjtu@name@def{proof}{证明}
-    \sjtu@name@def{proposition}{命题}
-    \sjtu@name@def{remark}{注}
-    \sjtu@name@def{solution}{解}
-    \sjtu@name@def{theorem}{定理}
-  \else
-    \sjtu@name@def{assumption}{Assumption}
-    \sjtu@name@def{axiom}{Axiom}
-    \sjtu@name@def{conjecture}{Conjecture}
-    \sjtu@name@def{corollary}{Corollary}
-    \sjtu@name@def{definition}{Definition}
-    \sjtu@name@def{example}{Example}
-    \sjtu@name@def{exercise}{Exercise}
-    \sjtu@name@def{lemma}{Lemma}
-    \sjtu@name@def{problem}{Problem}
-    \sjtu@name@def{proof}{Proof}
-    \sjtu@name@def{proposition}{Proposition}
-    \sjtu@name@def{remark}{Remark}
-    \sjtu@name@def{solution}{Solution}
-    \sjtu@name@def{theorem}{Theorem}
-  \fi
-}
 \newcommand\sjtu@def@theorem{%
   \newtheorem{assumption} {\sjtu@name@assumption} [chapter]
   \newtheorem{axiom}      {\sjtu@name@axiom}      [chapter]
@@ -1202,7 +1181,6 @@
 }
 \PassOptionsToPackage{amsmath,thmmarks,hyperref}{ntheorem}
 \AtEndOfPackageFile*{ntheorem}{
-  \sjtu@def@theorem@name
   \theoremheaderfont{\sjtu@indent@box\bfseries\heiti}
   \theorembodyfont{\normalfont}
   \theoremseparator{\enskip}
@@ -1210,7 +1188,9 @@
   \newtheorem*{proof}{\sjtu@name@proof}
   \theoremstyle{plain}
   \theoremsymbol{}
-  \sjtu@def@theorem
+  \ifsjtu@nothm\else
+    \sjtu@def@theorem
+  \fi
 }
 \AtBeginOfPackageFile*{amsthm}{
   \newif\ifsjtu@openbox@defined
@@ -1226,7 +1206,6 @@
   \ifsjtu@openbox@defined
     \let\openbox\oldopenbox
   \fi
-  \sjtu@def@theorem@name
   \let\sjtu@thmhead\thmhead@plain
   \def\thmhead@plain{\sjtu@indent@box\sjtu@thmhead}
   \newtheoremstyle{sjtuplain}
@@ -1235,7 +1214,9 @@
     {\bfseries\heiti}{}
     {\ccwd}{}
   \theoremstyle{sjtuplain}
-  \sjtu@def@theorem
+  \ifsjtu@nothm\else
+    \sjtu@def@theorem
+  \fi
   \renewcommand\proofname\sjtu@name@proof
   \renewenvironment{proof}[1][\proofname]{\par
     \pushQED{\qed}%
@@ -1268,12 +1249,6 @@
     \counterwithout{algocf}{chapter}
     \setcounter{algocf}{0}
   }{}{}
-  \pretocmd{\sjtu@counter@within@chapter}{%
-    \counterwithin*{algocf}{chapter}
-  }{}{}
-  \apptocmd{\sjtu@def@thefloats}{%
-    \def\thealgocf{\thechapter\sjtu@style@fl@num@sep\arabic{algocf}}
-  }{}{}
   \sjtu@patchcmd\algocf@latexcaption%
     {\addcontentsline}
     {\caption@iflist{\addcontentsline}{\@gobblethree}}
@@ -1281,6 +1256,9 @@
     \addtolength{\cftalgnumwidth}{\widthof{\cftalgpresnum}}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algocf}}
+  \AtBeginDocument{%
+    \def\thealgocf{\thechapter\sjtu@style@fl@num@sep\arabic{algocf}}
+  }
 }
 \PassOptionsToPackage{chapter}{algorithm}
 \AtEndOfPackageFile*{algorithm}{
@@ -1295,16 +1273,13 @@
     \counterwithout{algorithm}{chapter}
     \setcounter{algorithm}{0}
   }{}{}
-  \pretocmd{\sjtu@counter@within@chapter}{%
-    \counterwithin*{algorithm}{chapter}
-  }{}{}
-  \apptocmd{\sjtu@def@thefloats}{%
-    \def\thealgorithm{\thechapter\sjtu@style@fl@num@sep\arabic{algorithm}}
-  }{}{}
   \AtEndPreamble{%
     \addtolength{\cftalgnumwidth}{\widthof{\cftalgpresnum}}
   }
   \renewcommand\listofalgorithms{\sjtu@listof{algorithm}}
+  \AtBeginDocument{%
+    \def\thealgorithm{\thechapter\sjtu@style@fl@num@sep\arabic{algorithm}}
+  }
 }
 \AtEndOfPackageFile*{listings}{
   \lstdefinestyle{lstStyleCode}{

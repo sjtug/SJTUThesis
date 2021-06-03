@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-cjk-font-adobe.def}
-  [2020/07/31 1.0.0rc7 Adobe CJK fonts definition (SJTUThesis)]
+  [2021/06/03 1.1.0rc1 Adobe CJK fonts definition (SJTUThesis)]
 \setCJKmainfont{AdobeSongStd-Light}[
   AutoFakeBold = 3,
   ItalicFont   = AdobeKaitiStd-Regular,

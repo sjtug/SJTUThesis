@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-text-font-times.def}
-  [2020/07/31 1.0.0rc7 Times text fonts definition (SJTUThesis)]
+  [2021/06/03 1.1.0rc1 Times text fonts definition (SJTUThesis)]
 \setmainfont[Ligatures=Rare]{Times New Roman}
 \setsansfont{Arial}
 \setmonofont[Scale=MatchLowercase]{Courier New}
