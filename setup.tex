@@ -13,10 +13,20 @@
   info = {%
     %
     % 标题
-    %   可使用“\\”命令手动控制换行
     %
     title           = {上海交通大学学位论文 \LaTeX{} 模板示例文档},
     title*          = {A Sample Document for \LaTeX-based SJTU Thesis Template},
+    %
+    % 标题页标题
+    %   可使用“\\”命令手动控制换行
+    %
+    % display-title   = {上海交通大学学位论文\\ \LaTeX{} 模板示例文档},
+    % display-title*  = {A Sample Document \\ for \LaTeX-based SJTU Thesis Template},
+    %
+    % 页眉标题
+    %
+    % running-title   = {示例文档},
+    % running-title*  = {Sample Document},
     %
     % 关键词
     %
@@ -86,18 +96,15 @@
     %
     % 本科论文页眉 logo 颜色 (red/blue/black)
     %
-    % header-logo-color = red,
-    %
-    % 本科论文封面 logo 颜色 (red/blue/black)
-    %
-    % title-logo-color = red
+    % header-logo-color = black,
   },
   %
   % 名称设置
   %
   name = {
+    % bib               = {References},
+    % acknowledgements  = {谢\hspace{\ccwd}辞},
     % publications      = {攻读学位期间完成的论文},
-    % acknowledgements = {谢\hspace{\ccwd}辞},
   },
 }
 
@@ -134,12 +141,21 @@
 
 % 算法环境宏包
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-% \usepackage{algorithm}
+% \usepackage{algorithm, algorithmicx, algpseudocode}
 
 % 代码环境宏包
 \usepackage{listings}
-\lstnewenvironment{codeblock}[1][]
+\lstnewenvironment{codeblock}[1][]%
   {\lstset{style=lstStyleCode,#1}}{}
+
+% 物理科学和技术中使用的数学符号，定义了 \qty 命令，与 siunitx 3.0 有冲突
+% \usepackage{physics}
+
+% 直立体数学符号
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
 
 % 国际单位制宏包
 \usepackage{siunitx}
@@ -150,9 +166,7 @@
 
 % 绘图宏包
 \usepackage{tikz}
-
-% 目录树宏包
-\usepackage{dirtree}
+\usetikzlibrary{shapes.geometric, arrows}
 
 % 一些文档中用到的 logo
 \usepackage{hologo}

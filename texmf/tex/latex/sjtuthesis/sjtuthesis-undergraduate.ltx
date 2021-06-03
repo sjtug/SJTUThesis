@@ -7,7 +7,7 @@
 %% sjtuthesis.dtx  (with options: `undergraduate')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
-%%           (C) 2018-2020 by SJTUG
+%%           (C) 2018-2021 by SJTUG
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -22,13 +22,15 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtuthesis-undergraduate.ltx}
-  [2020/07/31 1.0.0rc7 Shanghai Jiao Tong University Thesis Template]
+  [2021/06/03 1.1.0rc1 Shanghai Jiao Tong University Thesis Template]
 \geometry{%
   paper      = a4paper,
-  vmargin    = {84bp, 72bp},
-  hmargin    = 90bp,
+  top        = 84bp,
+  bottom     = 72bp,
+  left       = 90bp,
+  right      = 90bp,
   headheight = 60bp,
-  headsep    = 12bp,
+  headsep    = 8bp,
 }
 \pagestyle{fancy}
 \ifsjtu@language@chinese
@@ -44,7 +46,7 @@
   }
   \fancyhead[R]{%
     \parbox[b]{0.7\textwidth}{%
-      \raggedleft\zihao{-5}\heiti\MakeUppercase{\sjtu@info@title}
+      \raggedleft\zihao{-5}\heiti\MakeUppercase{\sjtu@info@running@title}
     }
   }
   \fancyfoot[C]{%
@@ -60,6 +62,7 @@
 \renewcommand\cftchapfont{\normalfont}
 \renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \renewcommand\cftchappagefont{\normalfont}
+\DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\bfseries}
 \ifsjtu@type@bachelor
   \sjtusetup{
     style = {
@@ -77,7 +80,7 @@
     \endgroup
   }[\sjtu@name@abstract]%
 }{%
-  \vskip 3ex \noindent
+  \vskip \baselineskip \noindent
   \begingroup
     \zihao{-4}
     \heiti\sjtu@name@keywords@zh
@@ -117,7 +120,7 @@
     \kaishu
     \vspace*{48pt}
     \begingroup
-      \includegraphics[height=96pt]%
+      \includegraphics[height=105pt]%
         {sjtu-vi-name-\sjtu@style@title@logo@color.pdf}
       \par
     \endgroup
@@ -126,24 +129,22 @@
     {\zihao{-2}\MakeUppercase\sjtu@name@subject@en\par}
     \vskip 16pt
     \begingroup
-      \includegraphics[height=86pt]%
+      \includegraphics[height=75pt]%
         {sjtu-vi-badge-\sjtu@style@title@logo@color.pdf}
       \par
     \endgroup
     \vskip \stretch{2}
     \begingroup
-      \zihao{2}
-      \begin{tabular}{r@{：}l}
-        论文题目 &
-        \parbox[t]{280pt}{\centering\zihao{-2}\sjtu@uline\sjtu@info@title@zh}
+      \zihao{-2}
+      \begin{tabular}{@{}r@{\sjtu@colon}l@{}}
+        论文题目 & \sjtu@title@box[300pt]{\sjtu@info@display@title@zh}
       \end{tabular}
       \par
     \endgroup
     \vskip \stretch{1}
     \begingroup
       \zihao{3}
-      \begin{tabular}
-        {>{\begin{CJKfilltwosides}{4.2\ccwd}}r<{\end{CJKfilltwosides}}@{：}c}
+      \begin{tabular}{@{}F{t}{4.2\ccwd}@{\sjtu@colon}c@{}}
         \sjtu@name@author@zh      & \sjtu@info@author@zh      \\\cline{2-2}
         \sjtu@name@id@zh          & \makebox[180pt]{\sjtu@info@id} \\\cline{2-2}
         \ifsjtu@type@course
@@ -156,7 +157,7 @@
       \end{tabular}
       \par
     \endgroup
-    \vskip 32pt
+    \vskip 64pt
   \end{center}
 }
 \endinput

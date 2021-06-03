@@ -30,26 +30,27 @@
 
 \subsection{数学符号和公式}
 
-微分符号 $\dif$ 应使用正体，本模板提供了 \cs{dif} 命令。除此之外，模板还提供了一
-些命令方便使用:
+按照国标 GB/T 3102.11—1993《物理科学和技术中使用的数学符号》，
+微分符号 $\dd$ 应使用直立体。除此之外，数学常数也应使用直立体：
 \begin{itemize}
-  \item 圆周率 $\uppi$：\verb|\uppi|
-  \item 自然对数的底 $\upe$：\verb|\upe|
-  \item 虚数单位 $\upi$, $\upj$：\verb|\upi| \verb|\upj|
+  \item 微分符号 $\dd$：\cs{dd}
+  \item 圆周率 $\uppi$：\cs{uppi}
+  \item 自然对数的底 $\ee$：\cs{ee}
+  \item 虚数单位 $\ii$, $\jj$：\cs{ii} \cs{jj}
 \end{itemize}
 
 公式应另起一行居中排版。公式后应注明编号，按章顺序编排，编号右端对齐。
 \begin{equation}
-  \upe^{\upi\uppi} + 1 = 0,
+  \ee^{\ii\uppi} + 1 = 0,
 \end{equation}
 \begin{equation}
-  \frac{\dif^2 u}{\dif t^2} = \int f(x) \dif x.
+  \frac{\dd^2 u}{\dd t^2} = \int f(x) \dd x.
 \end{equation}
 
 公式末尾是需要添加标点符号的，至于用逗号还是句号，取决于公式下面一句是接着公式说的，还是另起一句。
 \begin{equation}
 		\frac{2h}{\pi}\int_{0}^{\infty}\frac{\sin\left( \omega\delta \right)}{\omega}
-		\cos\left( \omega x \right) \dif\omega = 
+		\cos\left( \omega x \right) \dd\omega = 
 		\begin{cases}
 				h, \ \left| x \right| < \delta, \\
 				\frac{h}{2}, \ x = \pm \delta, \\
@@ -63,7 +64,7 @@
   = & I (X_1; X_3; X_4) - I (X_3; X_4 \mid \tilde{X}_2).
 \end{align}
 
-如果在等号处转行难以实现，也可在 $+$、$-$、$\times$、$\div$运算符号处转行，转行
+如果在等号处转行难以实现，也可在 $+$、$-$、$\times$、$\div$ 运算符号处转行，转行
 时运算符号仅书写于转行式前，不重复书写。
 \begin{multline}
   \frac{1}{2} \Delta (f_{ij} f^{ij}) =
@@ -89,14 +90,14 @@
 
   \begin{equation}
     \label{eq:res}
-    \ointop_\gamma f(z)\, \dif z = 2\uppi \upi \sum_{k=1}^n \operatorname{I}(\gamma, a_k) \operatorname{Res}(f, a_k).
+    \oint\limits_\gamma f(z)\, \dd z = 2\uppi \ii \sum_{k=1}^n \operatorname{I}(\gamma, a_k) \operatorname{Res}(f, a_k).
   \end{equation}
 
   如果 $\gamma$ 是若尔当曲线，那么 $\operatorname{I}(\gamma, a_k) = 1$，因此：
 
   \begin{equation}
     \label{eq:resthm}
-    \ointop_\gamma f(z)\, \dif z = 2\uppi \upi \sum_{k=1}^n \operatorname{Res}(f, a_k).
+    \oint\limits_\gamma f(z)\, \dd z = 2\uppi \ii \sum_{k=1}^n \operatorname{Res}(f, a_k).
   \end{equation}
 
   在这里，$\operatorname{Res}(f, a_k)$ 表示 $f$ 在点 $a_k$ 的留数，

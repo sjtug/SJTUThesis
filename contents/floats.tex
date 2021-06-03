@@ -323,19 +323,3 @@ int main() {
   return 0;
 }
 \end{codeblock}
-
-\section{目录树环境}
-可以在正文中用dirtree包来表示代码目录树，还有一种做法是先在代码目录下用tree命令打印目录树再以文本形式复制到正文中。每一行表示一个条目，可以是文件或文件夹，第一个序号表示当前的条目的目录树深度，随后是条目名称，每一行以.结尾。还有三个特殊命令（1）\textbackslash DTstyle：定义节点文本的命令，当你在LATEX中它的默认值是\textbackslash ttfamily。在TeX中默认值是\textbackslash tt，可以重定义这个命令（2）\textbackslash DTcomment：允许将文本放在某一级右侧，用法是：\textbackslash DTcomment{comment text}（3）\textbackslash DTstylecomment：右侧文本的风格用这个命令用来定义，在LATEX下默认值是\textbackslash rmfamilly ，TeX中默认值是\textbackslash rm。一个综合上述三个命令的例子：
-\renewcommand*\DTstylecomment{\rmfamily\color{green}\textsc} \renewcommand*\DTstyle{\ttfamily\textcolor{red}} 
-\dirtree{%
-.1 /. 
-.2 bin.
-.2 home. 
-.3 jeancome. 
-.4 texmf.
-.5 tex.
-.3 jeancomeson\DTcomment{Guillaume}. 
-.3 jeancomedaughter\DTcomment{Mathilde}. 
-.2 usr.
-.3 bin.
-}
