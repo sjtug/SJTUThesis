@@ -15,17 +15,13 @@
 
 ### 下载模版
 
-普通用户可以直接 `clone` 或者在 [Github](https://github.com/sjtug/SJTUThesis) 页面下载仓库代码。
+普通用户可以直接 `clone` 或者下载 [master.zip](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)。
 
 ```bash
 git clone https://github.com/sjtug/SJTUThesis.git
 ```
 
-可以在 develop 分支使用开发预览版。
-
-```bash
-git clone https://github.com/sjtug/SJTUThesis.git -b develop
-```
+稳定版可以在 [v1.0.0 发布页](https://github.com/sjtug/SJTUThesis/releases/tag/v1.0.0) 下载。
 
 ### Overleaf
 
@@ -33,7 +29,7 @@ git clone https://github.com/sjtug/SJTUThesis.git -b develop
 
 [![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=b3b31f49&rm=d&rs=b)
 
-如果需要使用最新版 SJTUThesis，可以先下载 [正式版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip) [开发预览版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/develop.zip)，然后上传至 Overleaf 平台。Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
+如果需要使用最新版 SJTUThesis，可以先下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip) 或 [v1.0.0](https://github.com/sjtug/SJTUThesis/releases/tag/v1.0.0)，然后上传至 Overleaf 平台。Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
 
 ## 模板使用
 
