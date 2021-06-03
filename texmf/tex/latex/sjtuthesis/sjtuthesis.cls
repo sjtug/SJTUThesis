@@ -867,7 +867,11 @@
   {\ifsjtu@set@float@fontsize\zihao{5}\else\normalsize\fi}
 \NewDocumentCommand{\SJTUsetfloatfontsize}{}{\sjtu@set@float@fontsizetrue}
 \NewDocumentCommand{\SJTUunsetfloatfontsize}{}{\sjtu@set@float@fontsizefalse}
-\DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
+\ifsjtu@type@graduate
+  \DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
+\else
+  \DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\bfseries}
+\fi
 \DeclareCaptionFont{sjtu@subcaption@font}{\zihao{5}\normalfont}
 \DeclareCaptionLabelSeparator{enskip}{\enskip}
 \captionsetup{%
