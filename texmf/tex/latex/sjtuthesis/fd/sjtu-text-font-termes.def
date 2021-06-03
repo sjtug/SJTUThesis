@@ -22,7 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-text-font-termes.def}
-  [2020/07/31 1.0.0rc7 Termes text fonts definition (SJTUThesis)]
+  [2021/06/03 1.1.0rc1 Termes text fonts definition (SJTUThesis)]
   \setmainfont[
     Extension      = .otf,
     UprightFont    = *-regular,
