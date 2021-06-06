@@ -35,6 +35,18 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。
 
+### VSCode 用户
+
+安装“LaTeX Workshop”插件后，选择“Recipe: latexmk (latexmkrc)”编译。您可以在插件设置中设置
+
+```json
+{
+  "latex-workshop.latex.recipe.default": "lastUsed"
+}
+```
+
+从而在每次保存时自动使用这个 Recipe 进行编译。
+
 ### Linux 与 macOS 用户
 
 推荐使用模版提供的 `Makefile` 进行编译，具体来说我们提供了如下几条可用的命令：
