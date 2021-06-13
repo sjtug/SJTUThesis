@@ -480,19 +480,25 @@
   \sjtu@name@def{major@zh}{专业}
   \sjtu@name@def{department@zh}{学院(系)}
 \fi
-\sjtu@name@def{orig@title@zh}{原创性声明}
-\sjtu@name@def{orig@title@en}{Statement of Originality}
-\sjtu@name@def{copr@title@zh}{使用授权书}
-\sjtu@name@def{copr@title@en}{Copyright Permission}
-\sjtu@name@def{orig@body}{%
-  本人郑重声明：所呈交的\sjtu@name@thesis@type ，是本人在导师的指导下，独立进行
-  研究工作所取得的成果。除文中已经注明引用的内容外，本论文不包含任何其他个人或集
-  体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中
-  以明确方式标明。本人完全意识到本声明的法律结果由本人承担。}
-\sjtu@name@def{copr@body}{%
-  本\sjtu@name@thesis@type 作者完全了解学校有关保留、使用\sjtu@name@thesis@type
-  的规定，同意学校保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被
-  查阅和借阅。}
+\sjtu@name@def{orig@subtitle@zh}{原创性声明}
+\sjtu@name@def{orig@subtitle@en}{Declaration of Originality}
+\sjtu@name@def{copr@subtitle@zh}{版权使用授权书}
+\sjtu@name@def{copr@subtitle@en}{Copyright Authorization}
+\sjtu@name@def{orig@title}{\sjtu@name@thesis@type\sjtu@name@orig@subtitle@zh}
+\sjtu@name@def{copr@title}{\sjtu@name@thesis@type\sjtu@name@copr@subtitle@zh}
+\sjtu@name@def{origbody}{%
+  本人郑重声明：所呈交的\sjtu@name@thesis@type《\sjtu@info@title@zh》，
+  是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用
+  的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对
+  本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全
+  意识到本声明的法律结果由本人承担。}
+\sjtu@name@def{coprbody}{%
+  本\sjtu@name@thesis@type 作者
+  完全了解学校有关保留、使用\sjtu@name@thesis@type 的规定，同意学校保留
+  并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。
+  本人授权\sjtu@name@school@zh 可以将本\sjtu@name@thesis@type 的全部或部
+  分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和
+  汇编本\sjtu@name@thesis@type 。}
 \sjtu@name@def{abstract@zh}{摘\hspace{\ccwd}要}
 \sjtu@name@def{abstract@en}{Abstract}
 \sjtu@name@def{keywords@zh}{关键词：}
@@ -528,7 +534,8 @@
   }
   \sjtu@name@def{titlepage}{扉页}
   \sjtu@name@def{subject}{\sjtu@name@subject@zh}
-  \sjtu@name@def{copr@mk}{\sjtu@name@orig@title@zh 及\sjtu@name@copr@title@zh}
+  \sjtu@name@def{orig@subtitle}{\sjtu@name@orig@subtitle@zh}
+  \sjtu@name@def{copr@subtitle}{\sjtu@name@copr@subtitle@zh}
   \sjtu@name@def{abstract}{\sjtu@name@abstract@zh}
   \sjtu@name@def{assumption}{假设}
   \sjtu@name@def{axiom}{公理}
@@ -547,7 +554,8 @@
 \else
   \sjtu@name@def{titlepage}{Title Page}
   \sjtu@name@def{subject}{\sjtu@name@subject@en}
-  \sjtu@name@def{copr@mk}{\sjtu@name@orig@title@en and \sjtu@name@copr@title@en}
+  \sjtu@name@def{orig@subtitle}{\sjtu@name@orig@subtitle@en}
+  \sjtu@name@def{copr@subtitle}{\sjtu@name@copr@subtitle@en}
   \sjtu@name@def{abstract}{\sjtu@name@abstract@en}
   \sjtu@name@def{assumption}{Assumption}
   \sjtu@name@def{axiom}{Axiom}
@@ -626,10 +634,10 @@
   }
 }
 \ifXeTeX
-  \xeCJKDeclareCharClass{CJK}{"24EA,"2460->"2473,"3251->"32BF,"25A1}
+  \xeCJKDeclareCharClass{CJK}{"2460->"2473,"25A1}
 \fi
 \ifLuaTeX
-  \ltjdefcharrange{100}{"24EA,"2460-"2473,"3251-"32BF,"25A1}
+  \ltjdefcharrange{100}{"2460-"2473,"25A1}
   \ltjsetparameter{jacharrange={+100}}
 \fi
 \newcommand\sjtu@square{\symbol{"25A1}}
@@ -826,10 +834,8 @@
 \def\sjtu@listof#1{% #1: float type
   \setcounter{tocdepth}{2} % restore tocdepth in case being modified
   \@ifstar
-    {\sjtu@chapter*{\csname list#1name\endcsname}
-     \@starttoc{\csname ext@#1\endcsname}}%
-    {\sjtu@chapter{\csname list#1name\endcsname}
-     \@starttoc{\csname ext@#1\endcsname}}%
+    {\sjtu@chapter*{\csname list#1name\endcsname}\@starttoc{\csname ext@#1\endcsname}}%
+    {\sjtu@chapter{\csname list#1name\endcsname}\@starttoc{\csname ext@#1\endcsname}}%
 }
 \renewcommand\listoffigures{\sjtu@listof{figure}}
 \renewcommand\listoftables{\sjtu@listof{table}}
@@ -896,66 +902,74 @@
 }
 \captionsetup[bi-second]{bi-second}
 \newcommand\sjtu@copr@addon{%
-  \noindent
-  本\sjtu@name@thesis@type 属于\enskip
-  \begin{minipage}[t]{28\ccwd}
-    \sjtu@square{\bfseries 公开论文} \par
-    \sjtu@square{\bfseries 内部论文}，%
-      \sjtu@square 1 年/\sjtu@square 2 年/\sjtu@square 3 年\quad%
-      解密后适用本授权书。\par
-    \sjtu@square{\bfseries 秘密论文}，\underline{\hspace{2\ccwd}}年%
-      （不超过10年）解密后适用本授权书。\par
-    \sjtu@square{\bfseries 机密论文}，\underline{\hspace{2\ccwd}}年%
-      （不超过20年）解密后适用本授权书。\par
-    （请在以上方框内打“$\checkmark$”）
-  \end{minipage}
+  \phantom{本\sjtu@name@thesis@type 属于}%
+    {\bfseries 保\hspace{1\ccwd}密}~\sjtu@square ，%
+    在\underline{\hspace{2\ccwd}}年解密后适用本授权书。\par
+  本\sjtu@name@thesis@type 属于\par
+  \phantom{本\sjtu@name@thesis@type 属于}%
+    {\bfseries 不保密}~\sjtu@square 。\par
+  （请在以上方框内打“$\checkmark$”）
 }
 \newcommand\sjtu@signbox[1]{%
-  \begingroup
-  \zihao{4}
-  \parbox[t]{64mm}{%
-    {#1}签名：\\[6pt]
+  \parbox{.45\textwidth}{%
+    {#1}签名：\vskip 1.5\baselineskip
     日期：\hspace{\stretch{3}}年\hspace{\stretch{2}}月\hspace{\stretch{2}}日
   }
-  \endgroup
+}
+\NewDocumentCommand{\originalitypage}{O{}}{%
+  \ifsjtu@review\relax\else
+    \cleardoublepage
+    \ifblank{#1}{%
+      \thispagestyle{empty}
+      \begingroup
+        \linespread{1.7}\selectfont
+        \sjtu@chapter*[\sjtu@name@orig@subtitle]{%
+          \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@orig@title
+        }
+        \zihao{4}
+        \vskip \baselineskip
+        \sjtu@name@origbody\par
+        \vskip 4\baselineskip
+        \noindent
+        \begin{minipage}{\textwidth}
+          \hfill
+          \sjtu@signbox{\sjtu@name@thesis@type 作者}
+        \end{minipage}\par
+      \endgroup
+    }{%
+      \includepdf[pagecommand={%
+        \sjtu@pdfbookmark{0}{\sjtu@name@orig@subtitle}%
+      }]{#1}
+    }
+  \fi
 }
 \NewDocumentCommand{\copyrightpage}{O{}}{%
   \ifsjtu@review\relax\else
     \cleardoublepage
-    \sjtu@pdfbookmark{0}{\sjtu@name@copr@mk}%
     \ifblank{#1}{%
-      \newgeometry{
-        vmargin = 3cm,
-        left    = 3cm,
-        right   = 2.5cm,
-      }%
       \thispagestyle{empty}
       \begingroup
-        \zihao{-4}\linespread{1.73}\selectfont
-        \begin{center}
-          \heiti\zihao{3}
-          \sjtu@name@school@zh\par
-          \sjtu@name@thesis@type\sjtu@name@orig@title@zh
-        \end{center}\par
-        \sjtu@name@orig@body\par
-        \vskip \baselineskip \hfill
-        \sjtu@signbox{\sjtu@name@thesis@type 作者}
-        \hspace*{20mm}\par
-        \vskip 2\baselineskip
-        \begin{center}
-          \heiti\zihao{3}
-          \sjtu@name@school@zh\par
-          \sjtu@name@thesis@type\sjtu@name@copr@title@zh
-        \end{center}\par
-        \sjtu@name@copr@body\par
+        \linespread{1.7}\selectfont
+        \sjtu@chapter*[\sjtu@name@copr@subtitle]{%
+          \zihao{-2}\sjtu@name@school@zh\\\sjtu@name@copr@title
+        }
+        \zihao{4}
         \vskip \baselineskip
+        \sjtu@name@coprbody\par
         \sjtu@copr@addon\par
-        \vskip 1.5\baselineskip
-        \sjtu@signbox{\sjtu@name@thesis@type 作者}\hfill
-        \sjtu@signbox{指导教师}\par
-        \endgroup
-      \restoregeometry
-    }{\includepdf[pages=-]{#1}}
+        \vskip 4\baselineskip
+        \noindent
+        \begin{minipage}{\textwidth}
+          \sjtu@signbox{\sjtu@name@thesis@type 作者}
+          \hfill
+          \sjtu@signbox{指导教师}
+        \end{minipage}\par
+      \endgroup
+    }{%
+      \includepdf[pagecommand={%
+        \sjtu@pdfbookmark{0}{\sjtu@name@copr@subtitle}%
+      }]{#1}
+    }
   \fi
 }
 \newcommand\sjtu@save@env@body[1]{\long\gdef\sjtu@saved@env@body{#1}}
