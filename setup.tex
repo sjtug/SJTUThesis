@@ -108,8 +108,15 @@
   },
 }
 
-% 参考文献支持宏包
-\usepackage[backend=biber,style=gb7714-2015,gbnamefmt=lowercase,gbpub=false,gbpunctin=false]{biblatex}
+% 使用 BibLaTeX 处理参考文献
+%   biblatex-gb7714-2015 常用选项
+%     gbnamefmt=lowercase     姓名大小写由输入信息确定
+%     gbpub=false             禁用出版信息缺失处理
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+% 文献表字体
+% \renewcommand{\bibfont}{\zihao{-5}}
+% 文献表条目间的间距
+\setlength{\bibitemsep}{0pt}
 % 导入参考文献数据库
 \addbibresource{bibdata/thesis.bib}
 
