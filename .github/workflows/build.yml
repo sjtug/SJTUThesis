@@ -24,7 +24,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: |
-            src/build/distrib/tds/
+            sjtuthesis/build/distrib/tds/
           name: sjtuthesis.tds
         name: upload build artifacts
   check-format:
