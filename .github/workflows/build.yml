@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+name: Build
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            cd sjtuthesis && l3build ctan
+        name: build package with l3build
+      - name: prepare upload artifacts
+        run: rm sjtuthesis/build/distrib/tds/sjtuthesis.tds.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          path: |
+            src/build/distrib/tds/
+          name: sjtuthesis.tds
+        name: upload build artifacts
+  check-format:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            apk add diffutils git make
+            make format-dev
+      - name: check if generated files are of latest version
+        run: |
+          git diff --exit-code
