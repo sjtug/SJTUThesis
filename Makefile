@@ -46,6 +46,6 @@ build-dev:
 
 # Generate `.sty` files and copy resources
 generate:
-	cd sjtuthesis/source && xetex sjtuthesis.dtx -output-directory=../../$(BUILD_DIR)/sjtuthesis
+	cd sjtuthesis/source && l3build unpack && cd ..
 
 .PHONY: build format clean
