@@ -1,0 +1,1195 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2018--2021 by Alexara Wu <alexarawu@outlook.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3c of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Alexara Wu.
+%
+%<*internal>
+\iffalse
+%</internal>
+%
+%<*internal>
+\fi
+\begingroup
+  \def\NameOfLaTeXe{LaTeX2e}
+\expandafter\endgroup\ifx\NameOfLaTeXe\fmtname\else
+\csname fi\endcsname
+%</internal>
+%
+%<*install>
+\input l3docstrip.tex
+\keepsilent
+\askforoverwritefalse
+
+\preamble
+
+    Copyright (C) 2018--2021 by Alexara Wu <alexarawu@outlook.com>
+
+    This work may be distributed and/or modified under the
+    conditions of the LaTeX Project Public License, either
+    version 1.3c of this license or (at your option) any later
+    version. The latest version of this license is in:
+
+      http://www.latex-project.org/lppl.txt
+
+    and version 1.3 or later is part of all distributions of
+    LaTeX version 2005/12/01 or later.
+
+    This work has the LPPL maintenance status `maintained'.
+
+    The Current Maintainer of this work is Alexara Wu.
+
+\endpreamble
+
+\generate{
+  \usedir{tex/latex/sjtuthesis}
+    \file{\jobname.cls}                 {\from{\jobname.dtx}{entry}}
+    \file{\jobname-postgraduate-zh.cls} {\from{\jobname.dtx}{class,pg,zh}}
+    \file{\jobname-postgraduate-en.cls} {\from{\jobname.dtx}{class,pg,en}}
+    \file{\jobname-undergraduate-zh.cls}{\from{\jobname.dtx}{class,ug,zh}}
+    \file{\jobname-undergraduate-en.cls}{\from{\jobname.dtx}{class,ug,en}}
+    \file{\jobname-name.cfg}            {\from{\jobname.dtx}{name}}
+    \file{sjtu-text-font-termes.def}    {\from{\jobname.dtx}{textfont,termes}}
+    \file{sjtu-text-font-pagella.def}   {\from{\jobname.dtx}{textfont,pagella}}
+    \file{sjtu-text-font-lm.def}        {\from{\jobname.dtx}{textfont,lm}}
+    \file{sjtu-text-font-stixtwo.def}   {\from{\jobname.dtx}{textfont,stixtwo}}
+    \file{sjtu-text-font-xits.def}      {\from{\jobname.dtx}{textfont,xits}}
+    \file{sjtu-text-font-newcm.def}     {\from{\jobname.dtx}{textfont,newcm}}
+    \file{sjtu-text-font-cambria.def}   {\from{\jobname.dtx}{textfont,cambria}}
+    \file{sjtu-text-font-times.def}     {\from{\jobname.dtx}{textfont,times}}
+    \file{sjtu-math-font-termes.def}    {\from{\jobname.dtx}{mathfont,termes}}
+    \file{sjtu-math-font-pagella.def}   {\from{\jobname.dtx}{mathfont,pagella}}
+    \file{sjtu-math-font-lm.def}        {\from{\jobname.dtx}{mathfont,lm}}
+    \file{sjtu-math-font-stixtwo.def}   {\from{\jobname.dtx}{mathfont,stixtwo}}
+    \file{sjtu-math-font-xits.def}      {\from{\jobname.dtx}{mathfont,xits}}
+    \file{sjtu-math-font-newcm.def}     {\from{\jobname.dtx}{mathfont,newcm}}
+    \file{sjtu-math-font-cambria.def}   {\from{\jobname.dtx}{mathfont,cambria}}
+    \file{sjtu-cjk-font-windows.def}    {\from{\jobname.dtx}{cjkfont,windows}}
+    \file{sjtu-cjk-font-mac.def}        {\from{\jobname.dtx}{cjkfont,mac}}
+    \file{sjtu-cjk-font-ubuntu.def}     {\from{\jobname.dtx}{cjkfont,ubuntu}}
+    \file{sjtu-cjk-font-adobe.def}      {\from{\jobname.dtx}{cjkfont,adobe}}
+    \file{sjtu-cjk-font-fandol.def}     {\from{\jobname.dtx}{cjkfont,fandol}}
+    \file{sjtu-cjk-font-founder.def}    {\from{\jobname.dtx}{cjkfont,founder}}
+%</install>
+%<*internal>
+  \usedir{source/latex/sjtuthesis}
+    \file{\jobname.ins}                 {\from{\jobname.dtx}{install}}
+%</internal>
+%<*install>
+}
+
+\obeyspaces
+\Msg{*************************************************************}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to move the following *}
+\Msg{* files into a directory searched by TeX:                   *}
+\Msg{*                                                           *}
+\Msg{* The recommended directory is TDS:tex/latex/sjtuthesis     *}
+\Msg{*                                                           *}
+\Msg{*     sjtuthesis.cls                                        *}
+\Msg{*                                                           *}
+\Msg{* To produce the documentation, run the file sjtuthesis.dtx *}
+\Msg{* through XeLaTeX.                                          *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
+\Msg{*                                                           *}
+\Msg{*************************************************************}
+
+\endbatchfile
+%</install>
+%
+%<*internal>
+\fi
+%</internal>
+%
+%<entry|class>\NeedsTeXFormat{LaTeX2e}
+%<entry|class>\RequirePackage{expl3}
+%<*!(driver|install)>
+%<+!driver>\GetIdInfo$Id$
+%<entry>  {Thesis template for Shanghai Jiao Tong University}
+%<entry>\ProvidesExplClass{sjtuthesis}
+%<pg&zh>  {Thesis template for Shanghai Jiao Tong University (for postgraduates)}
+%<pg&zh>\ProvidesExplClass{sjtuthesis-postgraduate-zh}
+%<pg&en>  {Thesis template for Shanghai Jiao Tong University (for postgraduates)}
+%<pg&en>\ProvidesExplClass{sjtuthesis-postgraduate-en}
+%<ug&zh>  {Thesis template for Shanghai Jiao Tong University (for undergraduates)}
+%<ug&zh>\ProvidesExplClass{sjtuthesis-undergraduate-zh}
+%<ug&en>  {Thesis template for Shanghai Jiao Tong University (for undergraduates)}
+%<ug&en>\ProvidesExplClass{sjtuthesis-undergraduate-en}
+%<name>  {Names definition (SJTUThesis)}
+%<name>\ProvidesExplFile{sjtuthesis-name.cfg}
+%<textfont&termes>  {Termes text fonts definition (SJTUThesis)}
+%<textfont&termes>\ProvidesExplFile{sjtu-text-font-termes.def}
+%<textfont&pagella>  {Pagella text fonts definition (SJTUThesis)}
+%<textfont&pagella>\ProvidesExplFile{sjtu-text-font-pagella.def}
+%<textfont&stixtwo>  {STIX Two text fonts definition (SJTUThesis)}
+%<textfont&stixtwo>\ProvidesExplFile{sjtu-text-font-stixtwo.def}
+%<textfont&xits>  {XITS text fonts definition (SJTUThesis)}
+%<textfont&xits>\ProvidesExplFile{sjtu-text-font-xits.def}
+%<textfont&lm>  {Latin Modern text fonts definition (SJTUThesis)}
+%<textfont&lm>\ProvidesExplFile{sjtu-text-font-lm.def}
+%<textfont&newcm>  {New Computer Modern text fonts definition (SJTUThesis)}
+%<textfont&newcm>\ProvidesExplFile{sjtu-text-font-newcm.def}
+%<textfont&cambria>  {Cambria text fonts definition (SJTUThesis)}
+%<textfont&cambria>\ProvidesExplFile{sjtu-text-font-cambria.def}
+%<textfont&times>  {Times text fonts definition (SJTUThesis)}
+%<textfont&times>\ProvidesExplFile{sjtu-text-font-times.def}
+%<mathfont&termes>  {Termes math fonts definition (SJTUThesis)}
+%<mathfont&termes>\ProvidesExplFile{sjtu-math-font-termes.def}
+%<mathfont&pagella>  {Pagella math fonts definition (SJTUThesis)}
+%<mathfont&pagella>\ProvidesExplFile{sjtu-math-font-pagella.def}
+%<mathfont&stixtwo>  {STIX Two math fonts definition (SJTUThesis)}
+%<mathfont&stixtwo>\ProvidesExplFile{sjtu-math-font-stixtwo.def}
+%<mathfont&xits>  {XITS math fonts definition (SJTUThesis)}
+%<mathfont&xits>\ProvidesExplFile{sjtu-math-font-xits.def}
+%<mathfont&lm>  {Latin Modern math fonts definition (SJTUThesis)}
+%<mathfont&lm>\ProvidesExplFile{sjtu-math-font-lm.def}
+%<mathfont&newcm>  {New Computer Modern math fonts definition (SJTUThesis)}
+%<mathfont&newcm>\ProvidesExplFile{sjtu-math-font-newcm.def}
+%<mathfont&cambria>  {Cambria math fonts definition (SJTUThesis)}
+%<mathfont&cambria>\ProvidesExplFile{sjtu-math-font-cambria.def}
+%<cjkfont&windows>  {Windows CJK fonts definition (SJTUThesis)}
+%<cjkfont&windows>\ProvidesExplFile{sjtu-cjk-font-windows.def}
+%<cjkfont&mac>  {macOS CJK fonts definition (SJTUThesis)}
+%<cjkfont&mac>\ProvidesExplFile{sjtu-cjk-font-mac.def}
+%<cjkfont&ubuntu>  {Ubuntu CJK fonts definition (SJTUThesis)}
+%<cjkfont&ubuntu>\ProvidesExplFile{sjtu-cjk-font-ubuntu.def}
+%<cjkfont&adobe>  {Adobe CJK fonts definition (SJTUThesis)}
+%<cjkfont&adobe>\ProvidesExplFile{sjtu-cjk-font-adobe.def}
+%<cjkfont&fandol>  {Fandol CJK fonts definition (SJTUThesis)}
+%<cjkfont&fandol>\ProvidesExplFile{sjtu-cjk-font-fandol.def}
+%<cjkfont&founder>  {Founder CJK fonts definition (SJTUThesis)}
+%<cjkfont&founder>\ProvidesExplFile{sjtu-cjk-font-founder.def}
+%<!driver>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%</!(driver|install)>
+%
+%<*driver>
+\PassOptionsToPackage{fontset=ubuntu}{ctex}
+\documentclass{ctxdoc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+  \IndexLayout
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{\jobname.dtx}
+%
+% \begin{documentation}
+%
+% \section{介绍}
+%
+% Hello, world! 你好，世界！
+%
+% \end{documentation}
+%
+% \begin{implementation}
+%
+% \clearpage
+% \section{代码实现}
+%
+%    \begin{macrocode}
+%<@@=sjtu_ent>
+%<*entry>
+\RequirePackage { l3keys2e }
+\int_new:N \g_@@_thesis_type_int
+\int_new:N \g_@@_thesis_lang_int
+%    \end{macrocode}
+%
+% 定义 |sjtu/diversion| 键值类。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / diversion }
+  {
+    type .choice: ,
+    type .value_required:n = true ,
+    type .choices:nn =
+      { doctor, master, bachelor, course }
+      { \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int } ,
+    type .initial:n = { master } ,
+    lang .choice: ,
+    lang .value_required:n = true ,
+    lang .choices:nn =
+      { zh, en }
+      { \int_set_eq:NN \g_@@_thesis_lang_int \l_keys_choice_int } ,
+    lang .initial:n = { zh } ,
+    unknown .code:n = { }
+  }
+\ProcessKeysOptions { sjtu / diversion }
+\int_compare:nTF { \g_@@_thesis_type_int < 3 }
+  {
+    \int_compare:nTF { \g_@@_thesis_lang_int = 1 }
+      { \LoadClassWithOptions { sjtuthesis-postgraduate-zh } }
+      { \LoadClassWithOptions { sjtuthesis-postgraduate-en } }
+  }
+  {
+    \int_compare:nTF { \g_@@_thesis_lang_int = 1 }
+      { \LoadClassWithOptions { sjtuthesis-undergraduate-zh } }
+      { \LoadClassWithOptions { sjtuthesis-undergraduate-en } }
+  }
+%</entry>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<@@=sjtu>
+%<*class>
+%    \end{macrocode}
+%
+% \section{实现细节}
+%
+% 本模板使用 \LaTeX3 语法编写，依赖 \pkg{expl3} 环境，
+% 并需调用 \pkg{l3packages} 中的相关宏包。
+%
+% \subsection{准备}
+%
+% 检查 \LaTeXiii{} 编程环境。
+%    \begin{macrocode}
+\RequirePackage { xparse, xtemplate, l3keys2e }
+\clist_map_inline:nn { expl3, xparse, xtemplate, l3keys2e }
+  {
+    \@ifpackagelater {#1} { 2018/05/12 }
+      { } { \msg_error:nnn { sjtuthesis } { l3-too-old } {#1} }
+  }
+\msg_new:nnn { sjtuthesis } { l3-too-old }
+  {
+    Package~ "#1"~ is~ too~ old. \\\\
+    Please~ update~ an~ up-to-date~ version~ of~ the~ bundles \\
+    "l3kernel"~ and~ "l3packages"~ using~ your~ TeX~ package \\
+    manager~ or~ from~ CTAN.
+  }
+%    \end{macrocode}
+%
+% 目前 \cls{sjtuthesis} 仅支持 \XeTeX{} 和 \LuaTeX{}。
+%    \begin{macrocode}
+\sys_if_engine_xetex:F
+  {
+    \sys_if_engine_luatex:F
+      {
+        \msg_fatal:nnx { sjtuthesis } { unsupported-engine }
+          { \c_sys_engine_str }
+      }
+  }
+\msg_new:nnn { sjtuthesis } { unsupported-engine }
+  {
+    The~ sjtuthesis~ class~ requires~ either~ XeTeX~ or~ LuaTeX. \\\\
+    "#1"~ is~ not~ supported~ at~ present.~ You~ must~ change \\
+    your~ typesetting~ engine~ to~ "xelatex"~ or~ "lualatex".
+  }
+%    \end{macrocode}
+%
+% \subsubsection{内部变量}
+%
+% \begin{variable}{\g_@@_thesis_type_tl,\g_@@_thesis_type_int}
+% 论文类型。
+%    \begin{macrocode}
+\tl_new:N  \g_@@_thesis_type_tl
+\int_new:N \g_@@_thesis_type_int
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\g_@@_lang_tl}
+% 论文语言。
+%    \begin{macrocode}
+\tl_new:N  \g_@@_lang_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\g_@@_font_size_tl,\g_@@_line_spread_fp}
+% 字号大小与行距倍数。
+%    \begin{macrocode}
+\tl_new:N \g_@@_font_size_tl
+\fp_new:N \g_@@_line_spread_fp
+%    \end{macrocode}
+% \end{variable}
+%
+%    \begin{macrocode}
+\fp_const:Nn \c_@@_xiaosi_line_spread_fp { 20 / ( 12   * 1.2 ) }
+\fp_const:Nn \c_@@_wuhao_line_spread_fp  { 17 / ( 10.5 * 1.2 ) }
+%    \end{macrocode}
+%
+% \begin{variable}
+%   {\g_@@_text_font_tl,\g_@@_math_font_tl,\g_@@_cjk_font_tl}
+% 字体配置。
+%    \begin{macrocode}
+\tl_new:N \g_@@_text_font_tl
+\tl_new:N \g_@@_math_font_tl
+\tl_new:N \g_@@_cjk_font_tl
+\tl_new:N \g_@@_save_encodingdefault_tl
+\tl_new:N \g_@@_save_rmdefault_tl
+\tl_new:N \g_@@_save_sfdefault_tl
+\tl_new:N \g_@@_save_ttdefault_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\g_@@_unimath_bool}
+% 是否偏好使用 \pkg{unicode-math}。
+%    \begin{macrocode}
+\bool_new:N \g_@@_unimath_bool
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}
+%  {\g_@@_ctex_options_clist,\g_@@_hyperref_options_clist}
+% 分别保存由 \cls{sjtuthesis} 传入 \cls{ctex} 文档类和
+% \pkg{hyperref} 宏包的选项列表。
+%    \begin{macrocode}
+\clist_new:N \g_@@_ctex_options_clist
+\clist_new:N \g_@@_hyperref_options_clist
+%    \end{macrocode}
+% \end{variable}
+%
+% \subsubsection{内部函数}
+%
+% \begin{macro}{\@@_define_name:nn,\@@_define_name:nnn}
+% 用来定义默认名称的辅助函数。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_define_name:nn #1#2
+  { \tl_const:cn { c_@@_name_ #1 _zh_tl } {#2} }
+\cs_new_protected:Npn \@@_define_name:nnn #1#2#3
+  {
+    \tl_const:cn { c_@@_name_ #1 _zh_tl } {#2}
+    \tl_const:cn { c_@@_name_ #1 _en_tl } {#3}
+    \tl_const:cx { c_@@_name_ #1 _tl }
+      { \use:c { c_@@_name_ #1 _ \g_@@_lang_tl _tl } }
+  }
+\cs_new_protected:Npn \@@_define_name_list:Nnn  #1#2#3
+  {
+    \clist_const:cn { c_@@_name_ #2 _zh_clist } {#3}
+    \tl_const:cx { c_@@_name_ #2 _zh_tl }
+      { \clist_item:cn { c_@@_name_ #2 _zh_clist } {#1} }
+  }
+\cs_new_protected:Npn \@@_define_name_list:Nnnn #1#2#3#4
+  {
+    \clist_const:cn { c_@@_name_ #2 _zh_clist } {#3}
+    \clist_const:cn { c_@@_name_ #2 _en_clist } {#4}
+    \tl_const:cx { c_@@_name_ #2 _zh_tl }
+      { \clist_item:cn { c_@@_name_ #2 _zh_clist } {#1} }
+    \tl_const:cx { c_@@_name_ #2 _en_tl }
+      { \clist_item:cn { c_@@_name_ #2 _en_clist } {#1} }
+    \tl_const:cx { c_@@_name_ #2 _tl }
+      { \use:c { c_@@_name_ #2 _ \g_@@_lang_tl _tl } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_patch_cmd:Nnn,\@@_appto_cmd:Nn}
+% 补丁工具，来自 \pkg{ctexpatch} 宏包。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_patch_cmd:Nnn #1#2#3
+  {
+    \ctex_patch_cmd_once:NnnnTF #1 { } {#2} {#3}
+      { } { \ctex_patch_failure:N #1 }
+  }
+\cs_new_protected:Npn \@@_appto_cmd:Nn #1#2
+  {
+    \ctex_appto_cmd:NnnTF #1 { } {#2}
+      { } { \ctex_patch_failure:N #1 }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{选项处理}
+%
+% 定义 |sjtu/option| 键值类。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / option }
+  {
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+    type .choice: ,
+    type .value_required:n = true ,
+    type .choices:nn =
+      { doctor, master, bachelor, course }
+      { \int_gset_eq:NN \g_@@_thesis_type_int \l_keys_choice_int } ,
+%<pg>    type .initial:n = { master   } ,
+%<ug>    type .initial:n = { bachelor } ,
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
+    lang .choice: ,
+    lang .value_required:n = true ,
+    lang .choices:nn =
+      { zh, en }
+      { \tl_gset_eq:NN \g_@@_lang_tl \l_keys_choice_tl } ,
+    lang .initial:n = { zh } ,
+%    \end{macrocode}
+%
+% 字号大小。
+%    \begin{macrocode}
+    zihao .choice: ,
+    zihao .value_required:n = true ,
+    zihao / -4 .code:n =
+      {
+        \tl_gset:Nn    \g_@@_font_size_tl   { -4 }
+        \fp_gset_eq:NN \g_@@_line_spread_fp \c_@@_xiaosi_line_spread_fp
+      } ,
+    zihao /  5 .code:n =
+      {
+        \tl_gset:Nn    \g_@@_font_size_tl   {  5 }
+        \fp_gset_eq:NN \g_@@_line_spread_fp \c_@@_wuhao_line_spread_fp
+      } ,
+%<pg>    zihao .initial:n = { -4 } ,
+%<ug>    zihao .initial:n = {  5 } ,
+%    \end{macrocode}
+%
+% 字体配置。
+%    \begin{macrocode}
+    text-font .tl_gset:N = \g_@@_text_font_tl ,
+    text-font .initial:n = { termes } ,
+    math-font .tl_gset:N = \g_@@_math_font_tl ,
+    cjk-font  .tl_gset:N = \g_@@_cjk_font_tl ,
+%    \end{macrocode}
+%
+% \pkg{unicode-math}。
+%    \begin{macrocode}
+    unimath .bool_gset:N = \g_@@_unimath_bool ,
+    unimath .initial:n = false ,
+%    \end{macrocode}
+%
+% 处理未知选项。
+%    \begin{macrocode}
+    unknown .code:n = { \msg_error:nn { sjtuthesis } { unknown-option } }
+  }
+\msg_new:nnn { sjtuthesis } { unknown-option }
+  { Class~ option~ "\l_keys_key_tl"~ is~ unknown. }
+%    \end{macrocode}
+%
+% 将文档类选项传给 |sjtu/option|。
+%    \begin{macrocode}
+\ProcessKeysOptions { sjtu / option }
+%    \end{macrocode}
+%
+% 载入配置文件。
+%    \begin{macrocode}
+\file_input:n { sjtuthesis-name.cfg }
+%    \end{macrocode}
+%
+% \subsection{载入宏包、文档类}
+%
+% 将选项传入 \pkg{ctex} 文档类。
+%    \begin{macrocode}
+\PassOptionsToClass
+  {
+    UTF8,
+%<en>    scheme = plain,
+    fontset = none,
+    zihao = \g_@@_font_size_tl,
+    linespread = \g_@@_line_spread_fp,
+    \g_@@_ctex_options_clist
+  }
+%<pg>  { ctexbook }
+%<ug>  { ctexrep  }
+%    \end{macrocode}
+%
+% 传入各宏包选项。
+%    \begin{macrocode}
+\clist_map_inline:nn
+  {
+    { no-math         } { fontspec     },
+    { titles          } { tocloft      },
+    { perpage, bottom } { footmisc     },
+    { list = off      } { bicaption    },
+    { warnings-off = 
+      { 
+        mathtools-overbracket,
+        mathtools-colon
+      } 
+    }                   { unicode-math }
+  }
+  { \PassOptionsToPackage #1 }
+%    \end{macrocode}
+%
+% 载入 \cls{ctexbook} 文档类。
+% 在使用 \XeLaTeX{} 编译时，\cls{ctexbook} 的底层将调用 \pkg{xeCJK}
+% 宏包；而在使用 \LuaLaTeX{} 编译时，则将调用 \pkg{LuaTeX-ja} 宏包。
+% 两种情况下 \cls{ctexbook} 均会调用 \pkg{fontspec} 宏包。
+%    \begin{macrocode}
+%<pg>\LoadClass { ctexbook }
+%<ug>\LoadClass { ctexrep  }
+%    \end{macrocode}
+%
+% 载入各宏包。
+%    \begin{macrocode}
+\RequirePackage
+  {
+    mathtools,
+    geometry,
+    fancyhdr, 
+    tocloft,
+    footmisc,
+    graphicx,
+    caption,
+    bicaption,
+    subcaption,
+    xcolor
+  }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\msg_new:nnn { sjtuthesis } { invalid-font }
+  {
+    Invalid~ value~ `#1-font~ =~ \use:c{ g_@@_ #1 _font_tl }~ '! \\\\
+    Using~ `#2'~ instead.
+  }
+\tl_if_empty:NT \g_@@_math_font_tl
+  { \tl_gset_eq:NN \g_@@_math_font_tl \g_@@_text_font_tl }
+\tl_if_empty:NT \g_@@_cjk_font_tl
+  {
+    \fontspec_font_if_exist:nTF { SimSun }
+      { \tl_gset:Nn \g_@@_cjk_font_tl { windows } }
+      {
+        \ctex_if_platform_macos:TF
+          { \tl_gset:Nn \g_@@_cjk_font_tl { mac } }
+          {
+            \fontspec_font_if_exist:nTF { Noto~Serif~CJK~SC }
+              { \tl_gset:Nn \g_@@_cjk_font_tl { ubuntu } }
+              { \tl_gset:Nn \g_@@_cjk_font_tl { fandol } }
+          }
+      }
+  }
+\cs_new_protected:Npn \@@_load_font:nn #1#2
+  {
+    \str_if_eq:onF { \use:c{ g_@@_ #1 _font_tl } } { none }
+      {
+        \ctex_push_file:
+          \file_if_exist_input:nF
+            { sjtu- #1 -font- \use:c{ g_@@_ #1 _font_tl } .def }
+            {
+              \msg_warning:nnnn { sjtuthesis } { invalid-font } {#1} {#2}
+              \tl_gset:cn { g_@@_ #1 _font_tl } {#2}
+              \file_input:n
+                { sjtu- #1 -font- \use:c{ g_@@_ #1 _font_tl } .def }
+            }
+        \ctex_pop_file:
+      }
+  }
+\cs_new_protected:Npn \@@_load_fontset:
+  {
+    \clist_map_inline:nn
+      {
+        { math } { termes },
+        { text } { termes },
+        { cjk  } { fandol }
+      }
+      { \@@_load_font:nn ##1 }
+  }
+\@onlypreamble \@@_load_font:nn
+\@onlypreamble \@@_load_fontset:
+\@@_load_fontset:
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</class>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*mathfont>
+%<termes|pagella|lm>\bool_if:NTF \g_@@_unimath_bool 
+%<termes|pagella|lm>  {
+%<stixtwo|xits|newcm|cambria>\bool_set_true:N \g_@@_unimath_bool
+    \RequirePackage { unicode-math }
+%<termes>    \setmathfont { texgyretermes-math.otf }
+%<pagella>    \setmathfont { texgyrepagella-math.otf }
+%<*stixtwo>
+\fontspec_font_if_exist:nTF { STIXTwoMath-Regular.otf }
+  {
+    \setmathfont { STIXTwoMath-Regular.otf }
+      [ StylisticSet = 8 ]
+    \setmathfont { STIXTwoMath-Regular.otf }
+      [
+        range        = {scr, bfscr},
+        StylisticSet = 1
+      ]
+  }
+  {
+    \setmathfont { STIX2Math.otf }
+      [ StylisticSet = 8 ]
+    \setmathfont { STIX2Math.otf }
+      [
+        range        = {scr, bfscr},
+        StylisticSet = 1
+      ]
+  }
+%</stixtwo>
+%<*xits>
+\fontspec_font_if_exist:nTF { XITSMath-Regular.otf }
+  {
+    \setmathfont { XITSMath-Regular }
+      [
+        Extension    = .otf,
+        BoldFont     = XITSMath-Bold,
+        StylisticSet = 8
+      ]
+    \setmathfont { XITSMath-Regular.otf }
+      [
+        range        = {cal, bfcal},
+        StylisticSet = 1
+      ]
+  }
+  {
+    \setmathfont { xits-math }
+      [
+        Extension    = .otf,
+        BoldFont     = *bold,
+        StylisticSet = 8
+      ]
+    \setmathfont { xits-math.otf }
+      [
+        range        = {cal, bfcal},
+        StylisticSet = 1
+      ]
+  }
+%</xits>
+%<lm>    \setmathfont { latinmodern-math.otf }
+%<*newcm>
+\setmathfont { NewCMMath-Book.otf }
+  [ StylisticSet = 2 ]
+\setmathfont { NewCMMath-Book.otf }
+  [
+    range        = {scr, bfscr},
+    StylisticSet = 1
+  ]
+%</newcm>
+%<cambria>\setmathfont { Cambria~Math }
+%</mathfont>
+%<*termes|pagella>
+%<mathfont>    \setmathrm
+%<textfont>    \setmainfont
+%<termes>      { texgyretermes }
+%<pagella>      { texgyrepagella }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic,
+      ]
+%</termes|pagella>
+%<*stixtwo>
+\fontspec_font_if_exist:nTF { STIXTwoText-Regular.otf }
+  {
+%<mathfont>    \setmathrm
+%<textfont>    \setmainfont
+      { STIXTwoText }
+      [
+        Extension      = .otf,
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
+      ]
+  }
+  {
+%<mathfont>    \setmathrm
+%<textfont>    \setmainfont
+      { STIX2Text }
+      [
+        Extension      = .otf,
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
+      ]
+  }
+%</stixtwo>
+%<*xits>
+\fontspec_font_if_exist:nTF { XITS-Regular.otf }
+  {
+%<mathfont>    \setmathrm
+%<textfont>    \setmainfont
+      { XITS }
+      [
+        Extension      = .otf,
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
+      ]
+  }
+  {
+%<mathfont>    \setmathrm
+%<textfont>    \setmainfont
+      { xits }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic
+      ]
+  }
+%</xits>
+%<*termes|pagella|stixtwo|xits>
+%<mathfont>    \setmathsf
+%<textfont>    \setsansfont
+      { texgyreheros }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic
+      ]
+%<mathfont>    \setmathtt
+%<textfont>    \setmonofont
+      { texgyrecursor }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic,
+        Scale          = MatchLowercase,
+        Ligatures      = CommonOff
+      ]
+%</termes|pagella|stixtwo|xits>
+%<*lm>
+%<mathfont>    \setmathrm
+%<textfont>    \setmainfont
+      { lmroman10 }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic
+      ]
+%<mathfont>    \setmathsf
+%<textfont>    \setsansfont
+      { lmsans10 }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-oblique,
+        BoldItalicFont = *-boldoblique
+      ]
+%<mathfont>    \setmathtt
+%<textfont>    \setmonofont
+      { lmmonolt10 }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-oblique,
+        BoldItalicFont = *-boldoblique
+      ]
+%</lm>
+%<*newcm>
+%<mathfont>\setmathrm
+%<textfont>\setmainfont
+  { NewCM10 }
+  [
+    Extension      = .otf,
+    UprightFont    = *-Book,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-BookItalic,
+    BoldItalicFont = *-BoldItalic
+  ]
+%<mathfont>\setmathsf
+%<textfont>\setsansfont
+  { NewCMSans10 }
+  [
+    Extension      = .otf,
+    UprightFont    = *-Book,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-BookOblique,
+    BoldItalicFont = *-BoldOblique
+  ]
+%<mathfont>\setmathtt
+%<textfont>\setmonofont
+  { NewCMMono10 }
+  [
+    Extension      = .otf,
+    UprightFont    = *-Book,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-BookItalic,
+    BoldItalicFont = *-BoldOblique
+  ]
+%</newcm>
+%<*cambria>
+%<*mathfont>
+\setmathrm { Cambria }
+\setmathsf { Calibri }
+\setmathtt { Consolas } [ Scale = MatchLowercase ]
+%</mathfont>
+%<*textfont>
+\setmainfont { Cambria }
+\setsansfont { Calibri }
+\setmonofont { Consolas } [ Scale = MatchLowercase ]
+%</textfont>
+%</cambria>
+%<*times>
+\setmainfont { Times~New~Roman } [ Ligatures = Rare ]
+\setsansfont { Arial }
+\setmonofont { Courier~New } [ Scale = MatchLowercase ]
+%</times>
+%<*mathfont&(termes|pagella|lm)>
+  }
+  {
+%<lm>    \RequirePackage { amssymb, upgreek }
+    \tl_set_eq:NN \g_@@_save_encodingdefault_tl \encodingdefault
+    \tl_set_eq:NN \g_@@_save_rmdefault_tl \rmdefault
+    \tl_set_eq:NN \g_@@_save_sfdefault_tl \sfdefault
+    \tl_set_eq:NN \g_@@_save_ttdefault_tl \ttdefault
+    \RequirePackage [ T1 ] { fontenc }
+%<termes>    \tl_set:Nn \rmdefault { ntxtlf }
+%<pagella>    \tl_set:Nn \rmdefault { zpltlf }
+%<termes|pagella>    \tl_set:Nn \sfdefault { qhv }
+%<termes|pagella>    \tl_set:Nn \ttdefault { ntxtt }
+%<termes>    \RequirePackage [ upint ] { newtxmath }
+%<pagella>    \RequirePackage [ upint ] { newpxmath }
+%<lm>    \RequirePackage { lmodern }
+    \tl_set_eq:NN \encodingdefault \g_@@_save_encodingdefault_tl
+    \tl_set_eq:NN \rmdefault \g_@@_save_rmdefault_tl
+    \tl_set_eq:NN \sfdefault \g_@@_save_sfdefault_tl
+    \tl_set_eq:NN \ttdefault \g_@@_save_ttdefault_tl
+    \RequirePackage { bm }
+  }
+%</mathfont&(termes|pagella|lm)>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*cjkfont>
+%<*windows>
+\setCJKmainfont { SimSun   }
+  [ AutoFakeBold = 3, ItalicFont = KaiTi ]
+\setCJKsansfont { SimHei   } [ BoldFont = * ]
+\setCJKmonofont { FangSong }
+\setCJKfamilyfont { zhsong } { SimSun   }
+  [ AutoFakeBold = 3, ItalicFont = KaiTi ]
+\setCJKfamilyfont { zhhei  } { SimHei   } [ BoldFont = * ]
+\setCJKfamilyfont { zhkai  } { KaiTi    }
+\setCJKfamilyfont { zhfs   } { FangSong }
+%</windows>
+%<*mac>
+\setCJKmainfont { Songti~SC  }
+  [
+    UprightFont    = *~Light,
+    BoldFont       = *~Bold,
+    ItalicFont     = Kaiti~SC~Regular,
+    BoldItalicFont = Kaiti~SC~Bold
+  ]
+\setCJKsansfont { Heiti~SC   }
+  [
+    UprightFont    = *~Medium,
+    BoldFont       = *~Medium
+  ]
+\setCJKmonofont { STFangsong }
+\setCJKfamilyfont { zhsong } { Songti~SC  }
+  [
+    UprightFont    = *~Light,
+    BoldFont       = *~Bold
+  ]
+\setCJKfamilyfont { zhhei  } { Heiti~SC   }
+  [
+    UprightFont    = *~Medium,
+    BoldFont       = *~Medium
+  ]
+\setCJKfamilyfont { zhfs   } { STFangsong }
+\setCJKfamilyfont { zhkai  } { Kaiti~SC   }
+  [
+    UprightFont    = *~Regular,
+    BoldFont       = *~Bold
+  ]
+%</mac>
+%<*ubuntu>
+\setCJKmainfont { Noto~Serif~CJK~SC     }
+  [
+    UprightFont = *~Light,
+    BoldFont    = *~Bold,
+    ItalicFont  = AR~PL~UKai~CN
+  ]
+\setCJKsansfont { Noto~Sans~CJK~SC      }
+  [
+    UprightFont = *~Medium,
+    BoldFont    = *~Medium
+  ]
+\setCJKmonofont { Noto~Sans~Mono~CJK~SC }
+\setCJKfamilyfont { zhsong } { Noto~Serif~CJK~SC }
+  [
+    UprightFont = *~Light,
+    BoldFont    = *~Bold,
+    ItalicFont  = AR~PL~UKai~CN
+  ]
+\setCJKfamilyfont { zhhei  } { Noto~Sans~CJK~SC  }
+  [
+    UprightFont = *~Medium,
+    BoldFont    = *~Medium
+  ]
+\setCJKfamilyfont { zhkai  } { AR~PL~UKai~CN     }
+%</ubuntu>
+%<*adobe>
+\setCJKmainfont { AdobeSongStd-Light       }
+  [ AutoFakeBold = 3, ItalicFont = AdobeKaitiStd-Regular ]
+\setCJKsansfont { AdobeHeitiStd-Regular    } [ BoldFont = * ]
+\setCJKmonofont { AdobeFangsongStd-Regular }
+\setCJKfamilyfont { zhsong } { AdobeSongStd-Light       }
+  [ AutoFakeBold = 3, ItalicFont = AdobeKaitiStd-Regular ]
+\setCJKfamilyfont { zhhei  } { AdobeHeitiStd-Regular    } [ BoldFont = * ]
+\setCJKfamilyfont { zhfs   } { AdobeFangsongStd-Regular }
+\setCJKfamilyfont { zhkai  } { AdobeKaitiStd-Regular    }
+%</adobe>
+%<*fandol>
+\setCJKmainfont { FandolSong }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular,
+    BoldFont    = *-Bold,
+    ItalicFont  = FandolKai-Regular
+  ]
+\setCJKsansfont { FandolHei  }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular,
+    BoldFont    = *-Regular,
+  ]
+\setCJKmonofont { FandolFang }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular,
+  ]
+\setCJKfamilyfont { zhsong } { FandolSong }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular,
+    BoldFont    = *-Bold
+  ]
+\setCJKfamilyfont { zhhei  } { FandolHei  }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular,
+    BoldFont    = *-Regular
+  ]
+\setCJKfamilyfont { zhfs   } { FandolFang }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular
+  ]
+\setCJKfamilyfont { zhkai  } { FandolKai  }
+  [
+    Extension   = .otf,
+    UprightFont = *-Regular
+  ]
+%</fandol>
+%<*founder>
+\setCJKmainfont { FZShuSong-Z01  } 
+  [ AutoFakeBold = 3, ItalicFont = FZKai-Z03 ]
+\setCJKsansfont { FZHei-B01      } [ BoldFont = * ]
+\setCJKmonofont { FZFangSong-Z02 }
+\setCJKfamilyfont { zhsong } { FZShuSong-Z01  }
+  [ AutoFakeBold = 3, ItalicFont = FZKai-Z03 ]
+\setCJKfamilyfont { zhhei  } { FZHei-B01      } [ BoldFont = * ]
+\setCJKfamilyfont { zhkai  } { FZKai-Z03      }
+\setCJKfamilyfont { zhfs   } { FZFangSong-Z02 }
+%</founder>
+\NewDocumentCommand \songti   { } { \CJKfamily { zhsong  } }
+\NewDocumentCommand \heiti    { } { \CJKfamily { zhhei   } }
+%<!ubuntu>\NewDocumentCommand \fangsong { } { \CJKfamily { zhfs    } }
+\NewDocumentCommand \kaishu   { } { \CJKfamily { zhkai   } }
+%</cjkfont>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*class>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\geometry
+  {
+    paper      = a4paper,
+%<*pg>
+    top        = 3.5 cm,
+    bottom     = 4.0 cm,
+    left       = 3.3 cm,
+    right      = 2.8 cm,
+    headheight = 1.0 cm,
+    headsep    = 0.5 cm,
+    footskip   = 1.0 cm
+%</pg>
+%<*ug>
+    vmargin    = 2.54 cm,
+    hmargin    = 3.18 cm,
+    headheight = 15 bp
+%</ug>
+  }
+%    \end{macrocode}
+%
+% \pkg{ctex} 宏包使用 \opt{heading} 选项后，会把页面格式设置为 |headings|。
+% 因此必须在 \pkg{ctex} 调用之后重新设置 \cs{pagestyle} 为 |fancy|。
+%    \begin{macrocode}
+\pagestyle { fancy }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ctex_set:nn { chapter }
+  {
+    fixskip     = true ,
+    beforeskip  = 24 bp ,
+    afterskip   = 18 bp ,
+    lofskip     = \z@ ,
+    lotskip     = \z@ ,
+    format      = \zihao { 3 } \bfseries \heiti \centering ,
+    nameformat  = ,
+    titleformat = ,
+    aftername   = \quad ,
+    afterindent = true
+  }
+\ctex_set:nn { section }
+  {
+    beforeskip  = 24 bp ,
+    afterskip   =  6 bp ,
+    format      = \zihao { 4 } \bfseries \heiti ,
+    afterindent = true
+  }
+\ctex_set:nn { subsection }
+  {
+    beforeskip  = 12 bp ,
+    afterskip   =  6 bp ,
+    format      = \zihao { -4 } \bfseries \heiti ,
+    afterindent = true
+  }
+\ctex_set:nn { subsubsection }
+  {
+%<ug>    name        = { ( , ) } ,
+%<ug>    number      = \arabic { subsubsection } ,
+    beforeskip  =  6 bp ,
+    afterskip   =  6 bp ,
+    format      = \zihao { -4 } \normalfont ,
+    afterindent = true
+  }
+\ctex_set:nn { paragraph }
+  { afterindent = true }
+\ctex_set:nn { subparagraph }
+  { afterindent = true }
+\ctex_if_autoindent_touched:F
+  { \ctex_set:n { autoindent = true } }
+\@@_patch_cmd:Nnn \chapter
+  { \thispagestyle } { \@gobble }
+%    \end{macrocode}
+%
+% 设置目录目录格式。
+%    \begin{macrocode}
+%<zh>\tl_set:Nn \cftdot { \textperiodcentered }
+\tl_set:Nn \cftdotsep { 1 }
+%<ug>\dim_zero:N \cftbeforechapskip
+\cs_set:Npn \cftchappagefont { \normalfont }
+\cs_set:Npn \cftchapleader { \normalfont \cftdotfill { \cftdotsep } }
+%<pg>\cs_set:Npn \cftchapfont { \bfseries \heiti }
+%<ug>\cs_set:Npn \cftchapfont { \normalfont }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\fancyhf { }
+\fancyhead[RE,LO]{\c_@@_name_univ_zh_tl \c_@@_name_degree_level_zh_tl 论文}
+\fancyhead[RO,LE]{\leftmark}
+\NewDocumentCommand \sjtusetup { } { \keys_set:nn { sjtu } }
+\keys_define:nn { sjtu }
+  {
+    name                  .meta:nn = { sjtu / name } {#1} ,
+    name / contents      .tl_set:N = \contentsname ,
+    name / listfigure    .tl_set:N = \listfigurename ,
+    name / listtable     .tl_set:N = \listtablename ,
+    name / listalgorithm .tl_set:N = \listalgorithmname ,
+    name / figure        .tl_set:N = \figurename ,
+    name / table         .tl_set:N = \tablename ,
+    name / abstract      .tl_set:N = \abstractname ,
+    name / index         .tl_set:N = \indexname ,
+    name / appendix      .tl_set:N = \appendixname ,
+    name / proof         .tl_set:N = \proofname ,
+    name / bib           .tl_set:N = \bibname
+  }
+%</class>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*name>
+\@@_define_name:nnn { univ }
+  { 上海交通大学 }
+  { Shanghai~Jiao~Tong~University }
+\@@_define_name_list:Nnnn \g_@@_thesis_type_int { degree_level }
+  { 博士  , 硕士  , 学士    ,  }
+  { Doctor, Master, Bachelor,  }
+\tl_const:Nn \c_@@_orig_decl_text_tl
+  {
+    本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立进行研究工
+    作所取得的成果。除文中已经注明引用的内容外，本论文不包含任何其他个人
+    或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集
+    体，均已在文中以明确方式标明。本人完全意识到本声明的法律结果由本人承
+    担。
+  }
+\tl_const:Nn \c_@@_auth_decl_text_tl
+  {
+    本学位论文作者完全了解学校有关保留、使用学位论文的规定，同意学校保留
+    并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借
+    阅。
+  }
+\clist_map_inline:nn
+  {
+    { appendix      } { 附录         } { Appendix           } ,
+    { contents      } { 目 \quad 录  } { Contents           } ,
+    { listfigure    } { 插图索引     } { List of Figures    } ,
+    { listtable     } { 表格索引     } { List of Tables     } ,
+    { listalgorithm } { 算法索引     } { List of Algorithms } ,
+    { figure        } { 图           } { Figure             } ,
+    { figure_second } { Figure       } { 图                 } ,
+    { table         } { 表           } { Table              } ,
+    { table_second  } { Table        } { 表                 } ,
+    { algorithm     } { 算法         } { Algorithm          } ,
+    { nom           } { 符号对照表   } { Abbreviation       } ,
+    { abbr          } { 缩略语对照表 } { Nomenclature       } ,
+    { bib           } { 参考文献     } { Bibliography       } ,
+    { index         } { 索 \quad 引  } { Index              } ,
+    { ack           } { 致 \quad 谢  } { Acknowledgements   } ,
+    { resume        } { 个人简历     } { Publications       } ,
+    { digest        } { 大摘要       } { Digest             } ,
+    { publications  }
+      { 攻读学位期间发表（或录用）的学术论文 } { Publications          } ,
+    { achievements  }
+      { 攻读学位期间获得的科研成果           } { Research Achievements }
+  }
+  { \@@_define_name:nnn #1 }
+\clist_map_inline:nn
+  { 
+    { assumption  } { 假设 } { Assumption  } ,
+    { axiom       } { 公理 } { Axiom       } ,
+    { conjecture  } { 猜想 } { Conjecture  } ,
+    { corollary   } { 推论 } { Corollary   } ,
+    { definition  } { 定义 } { Definition  } ,
+    { example     } { 例   } { Example     } ,
+    { exercise    } { 练习 } { Exercise    } ,
+    { lemma       } { 引理 } { Lemma       } ,
+    { problem     } { 问题 } { Problem     } ,
+    { proof       } { 证明 } { Proof       } ,
+    { proposition } { 命题 } { Proposition } ,
+    { remark      } { 注   } { Remark      } ,
+    { solution    } { 解   } { Solution    } ,
+    { theorem     } { 定理 } { Theorem     } ,
+  }
+  { \@@_define_name:nnn #1 }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</name>
+%    \end{macrocode}
+%
+% \end{implementation}
+%
+% \Finale
+%
+\endinput
