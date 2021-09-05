@@ -547,6 +547,11 @@
   }
 \tl_if_empty:NT \g_@@_math_font_tl
   { \tl_gset_eq:NN \g_@@_math_font_tl \g_@@_text_font_tl }
+%    \end{macrocode}
+% 由于 ctex 自带字体描述文件对于 AutoFakeBold 的支持不太好，SJTUThesis 改写了 ctex
+% 的字体描述文件，使得 LaTeX 可以使用系统字体生成加粗效果看得过去的文本。由此满足了学校
+% 对于论文表题图题加粗的规定。
+%    \begin{macrocode}
 \tl_if_empty:NT \g_@@_cjk_font_tl
   {
     \fontspec_font_if_exist:nTF { SimSun }
