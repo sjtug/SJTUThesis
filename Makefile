@@ -5,6 +5,7 @@
 BUILD_DIR=build
 LATEXINDENT_ARGS=-l latexindent.yaml -c $(BUILD_DIR)
 LATEXMK_ARGS=-halt-on-error -time -xelatex -outdir=build -shell-escape
+SOURCE_DIR=sjtuthesis
 
 all: build
 
@@ -31,8 +32,8 @@ format-dev:
 
 # Clean all temporary files and generated files
 clean-dev:
-	latexmk -C
-	cd src && l3build clean
+	# latexmk -C
+	cd $(SOURCE_DIR) && l3build clean
 	git clean -dfX
 
 # Build all covers to `cover.pdf`
@@ -42,10 +43,10 @@ build-cover:
 
 # Build sjtuthesis package
 build-dev:
-	cd src && l3build ctan
+	cd $(SOURCE_DIR) && l3build ctan
 
 # Generate `.sty` files and copy resources
 generate:
-	cd sjtuthesis/source && l3build unpack && cd ..
+	cd $(SOURCE_DIR)/source && l3build unpack && cd ..
 
 .PHONY: build format clean
