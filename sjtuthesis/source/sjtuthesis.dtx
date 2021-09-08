@@ -1291,7 +1291,19 @@
 %    \begin{macrocode}
 %</name>
 %    \end{macrocode}
-% 定义摘要环境
+%
+%    \begin{macrocode}
+%<*pg>
+\NewDocumentEnvironment{abstract}{}{
+  \chapter* [ \l_@@_name_abstract_tl ] {
+    \title \vskip 2ex
+    \begingroup
+%<ug>\zihao{4}
+    \endgroup
+  }
+}{}
+%</pg>
+%    \end{macrocode}
 % \end{implementation}
 %
 % \Finale
