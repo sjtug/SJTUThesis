@@ -4,13 +4,16 @@ module           = "sjtuthesis"
 
 sourcefiledir    = "source"
 sourcefiles      = {"sjtuthesis.dtx"}
-installfiles     = {"*.sty"}
+installfiles     = {"*.cls","*.def","*.cfg","*.dtx","*.pdf"}
 
--- docfiledir       = "doc"
+docfiledir       = "doc"
 
 typesetexe       = "xelatex"
+typesetfiles     = {"sjtuthesisuserguide.tex","sjtuthesis.dtx"}
+typesetdemofiles = {}
 bibtexexe        = "bibtex"
 
 unpackexe        = "xetex"
-unpackopts       = "--interaction=batchmode"
 unpackfiles      = {"sjtuthesis.dtx"}
+
+packtdszip       = true
