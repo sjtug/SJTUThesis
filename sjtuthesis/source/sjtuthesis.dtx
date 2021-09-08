@@ -487,7 +487,7 @@
 %
 % 计算行距倍数。
 %    \begin{macrocode}
-\dim_compare:nNnF \g_@@_line_skip_dim > \c_zero_dim
+\dim_compare:nNnT \g_@@_line_skip_dim < \g_@@_font_size_dim
   { \dim_set_eq:NN \g_@@_line_skip_dim \g_@@_default_line_skip_dim }
 \fp_set:Nn \g_@@_line_spread_fp
   { \dim_ratio:nn { \g_@@_line_skip_dim } { \g_@@_font_size_dim } / 1.2 }
