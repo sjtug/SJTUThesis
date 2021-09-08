@@ -1118,21 +1118,125 @@
 \fancyhead[RE,LO]{\c_@@_name_univ_zh_tl \c_@@_name_degree_level_zh_tl 论文}
 \fancyhead[RO,LE]{\leftmark}
 \NewDocumentCommand \sjtusetup { } { \keys_set:nn { sjtu } }
+%    \end{macrocode}
+% 
+% 定义 |sjtu/name| 键值类。
+%    \begin{macrocode}
 \keys_define:nn { sjtu }
+  { name .meta:nn = { sjtu / name } {#1} }
+%    \end{macrocode}
+%
+% 设置标准文档类中已定义的名称。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / name }
   {
-    name                  .meta:nn = { sjtu / name } {#1} ,
-    name / contents      .tl_set:N = \contentsname ,
-    name / listfigure    .tl_set:N = \listfigurename ,
-    name / listtable     .tl_set:N = \listtablename ,
-    name / listalgorithm .tl_set:N = \listalgorithmname ,
-    name / figure        .tl_set:N = \figurename ,
-    name / table         .tl_set:N = \tablename ,
-    name / abstract      .tl_set:N = \abstractname ,
-    name / index         .tl_set:N = \indexname ,
-    name / appendix      .tl_set:N = \appendixname ,
-    name / proof         .tl_set:N = \proofname ,
-    name / bib           .tl_set:N = \bibname
+    contents       .tl_set:N = \contentsname ,
+    listfigure     .tl_set:N = \listfigurename ,
+    listtable      .tl_set:N = \listtablename ,
+    figure         .tl_set:N = \figurename ,
+    table          .tl_set:N = \tablename ,
+    index          .tl_set:N = \indexname ,
+    appendix       .tl_set:N = \appendixname ,
+    bib            .tl_set:N = \bibname
   }
+%    \end{macrocode}
+%
+% 标准文档类中未定义的名称。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / name }
+  {
+    figure*        .tl_set:N = \l_@@_name_figure_second_tl ,
+%<zh>    figure*       .initial:n = { Figure       } ,
+%<en>    figure*       .initial:n = { 图                    } ,
+    table*         .tl_set:N = \l_@@_name_table_second_tl ,
+%<zh>    table*        .initial:n = { Table        } ,
+%<en>    table*        .initial:n = { 表                    } ,
+    algorithm      .tl_set:N = \l_@@_name_algorithm_tl ,
+%<zh>    algorithm     .initial:n = { 算法         } ,
+%<en>    algorithm     .initial:n = { Algorithm             } ,
+    listalgorithm  .tl_set:N = \l_@@_name_listalgorithm_tl ,
+%<zh>    listalgorithm .initial:n = { 算法         } ,
+%<en>    listalgorithm .initial:n = { List of Algorithms    } ,
+    abbr           .tl_set:N = \l_@@_name_abbr_tl ,
+%<zh>    abbr          .initial:n = { 缩略语对照表 } ,
+%<en>    abbr          .initial:n = { Abbreviations         } ,
+    nom            .tl_set:N = \l_@@_name_nom_tl ,
+%<zh>    nom           .initial:n = { 符号对照表   } ,
+%<en>    nom           .initial:n = { Nomenclature          } ,
+    ack            .tl_set:N = \l_@@_name_ack_tl ,
+%<zh>    ack           .initial:n = { 致 \quad 谢  } ,
+%<en>    ack           .initial:n = { Acknowledgements      } ,
+    resume         .tl_set:N = \l_@@_name_resume_tl ,
+%<zh>    resume        .initial:n = { 个人简历     } ,
+%<en>    resume        .initial:n = { Resume                } ,
+    digest         .tl_set:N = \l_@@_name_digest_tl ,
+%<zh>    digest        .initial:n = { 大摘要       } ,
+%<en>    digest        .initial:n = { Digest                } ,
+    publ           .tl_set:N = \l_@@_name_publ_tl ,
+%<zh>    publ          .initial:n = { 攻读学位期间发表（或录用）的学术论文 } ,
+%<en>    publ          .initial:n = { Publications          } ,
+    achv           .tl_set:N = \l_@@_name_achv_tl ,
+%<zh>    achv          .initial:n = { 攻读学位期间获得的科研成果           } ,
+%<en>    achv          .initial:n = { Research Achievements } ,
+  }
+%    \end{macrocode}
+%
+% 定义 |sjtu/info| 键值类。
+%    \begin{macrocode}
+\keys_define:nn { sjtu }
+  { info .meta:nn = { sjtu / info } {#1} }
+\clist_map_inline:nn
+  {
+    title, display_title, running_title, author, supervisor,
+    assoc_supervisor, degree, department, major
+  }
+  {
+    \tl_new:c { l_@@_info_ #1 _zh_tl }
+    \tl_new:c { l_@@_info_ #1 _en_tl }
+  }
+\clist_map_inline:nn
+  { keywords, fund }
+  {
+    \clist_new:c { l_@@_info_ #1 _zh_clist }
+    \clist_new:c { l_@@_info_ #1 _en_clist }
+  }
+\tl_new:N \l_@@_info_id_tl
+\keys_define:nn { sjtu / info }
+  {
+    title             .tl_set:N = \l_@@_info_title_zh_tl ,
+    title*            .tl_set:N = \l_@@_info_title_en_tl ,
+    display-title     .tl_set:N = \l_@@_info_display_title_zh_tl ,
+    display-title*    .tl_set:N = \l_@@_info_display_title_en_tl ,
+    running-title     .tl_set:N = \l_@@_info_running_title_zh_tl ,
+    running-title*    .tl_set:N = \l_@@_info_running_title_en_tl ,
+    keywords       .clist_set:N = \l_@@_info_keywords_zh_clist ,
+    keywords*      .clist_set:N = \l_@@_info_keywords_en_clist ,
+    author            .tl_set:N = \l_@@_info_author_zh_tl ,
+    author*           .tl_set:N = \l_@@_info_author_en_tl ,
+    id                .tl_set:N = \l_@@_info_id_tl ,
+    supervisor        .tl_set:N = \l_@@_info_supervisor_zh_tl ,
+    supervisor*       .tl_set:N = \l_@@_info_supervisor_en_tl ,
+    assoc-supervisor  .tl_set:N = \l_@@_info_assoc_supervisor_zh_tl ,
+    assoc-supervisor* .tl_set:N = \l_@@_info_assoc_supervisor_en_tl ,
+    degree            .tl_set:N = \l_@@_info_degree_zh_tl ,
+    degree*           .tl_set:N = \l_@@_info_degree_en_tl ,
+    department        .tl_set:N = \l_@@_info_department_zh_tl ,
+    department*       .tl_set:N = \l_@@_info_department_en_tl ,
+    major             .tl_set:N = \l_@@_info_major_zh_tl ,
+    major*            .tl_set:N = \l_@@_info_major_en_tl ,
+    fund           .clist_set:N = \l_@@_info_fund_zh_clist ,
+    fund*          .clist_set:N = \l_@@_info_fund_en_clist
+  }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\captionsetup [ figure ] [ bi-second ]
+  { name = \l_@@_name_figure_second_tl }
+\captionsetup [ table  ] [ bi-second ]
+  { name = \l_@@_name_table_second_tl  }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 %</class>
 %    \end{macrocode}
 %
@@ -1158,31 +1262,6 @@
     并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借
     阅。
   }
-\clist_map_inline:nn
-  {
-    { appendix      } { 附录         } { Appendix           } ,
-    { contents      } { 目 \quad 录  } { Contents           } ,
-    { listfigure    } { 插图索引     } { List of Figures    } ,
-    { listtable     } { 表格索引     } { List of Tables     } ,
-    { listalgorithm } { 算法索引     } { List of Algorithms } ,
-    { figure        } { 图           } { Figure             } ,
-    { figure_second } { Figure       } { 图                 } ,
-    { table         } { 表           } { Table              } ,
-    { table_second  } { Table        } { 表                 } ,
-    { algorithm     } { 算法         } { Algorithm          } ,
-    { nom           } { 符号对照表   } { Abbreviation       } ,
-    { abbr          } { 缩略语对照表 } { Nomenclature       } ,
-    { bib           } { 参考文献     } { Bibliography       } ,
-    { index         } { 索 \quad 引  } { Index              } ,
-    { ack           } { 致 \quad 谢  } { Acknowledgements   } ,
-    { resume        } { 个人简历     } { Publications       } ,
-    { digest        } { 大摘要       } { Digest             } ,
-    { publications  }
-      { 攻读学位期间发表（或录用）的学术论文 } { Publications          } ,
-    { achievements  }
-      { 攻读学位期间获得的科研成果           } { Research Achievements }
-  }
-  { \@@_define_name:nnn #1 }
 \clist_map_inline:nn
   { 
     { assumption  } { 假设 } { Assumption  } ,
