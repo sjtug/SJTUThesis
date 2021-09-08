@@ -216,7 +216,7 @@
     type .choice: ,
     type .value_required:n = true ,
     type .choices:nn =
-      { doctor, master, bachelor, course }
+      { doctor, master, bachelor }
       { \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int } ,
     type .initial:n = { master } ,
     lang .choice: ,
@@ -412,7 +412,7 @@
     type .choice: ,
     type .value_required:n = true ,
     type .choices:nn =
-      { doctor, master, bachelor, course }
+      { doctor, master, bachelor }
       { \int_gset_eq:NN \g_@@_thesis_type_int \l_keys_choice_int } ,
 %<pg>    type .initial:n = { master   } ,
 %<ug>    type .initial:n = { bachelor } ,
@@ -1127,8 +1127,8 @@
   { 上海交通大学 }
   { Shanghai~Jiao~Tong~University }
 \@@_define_name_list:Nnnn \g_@@_thesis_type_int { degree_level }
-  { 博士  , 硕士  , 学士    ,  }
-  { Doctor, Master, Bachelor,  }
+  { 博士  , 硕士  , 学士     }
+  { Doctor, Master, Bachelor }
 \tl_const:Nn \c_@@_orig_decl_text_tl
   {
     本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立进行研究工
