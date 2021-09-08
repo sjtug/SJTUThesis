@@ -306,18 +306,18 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\g_@@_font_size_tl,\g_@@_line_spread_fp}
-% 字号大小与行距倍数。
+% \begin{variable}
+%   {\g_@@_zihao_tl,\g_@@_font_size_dim,\g_@@_line_skip_dim,
+%    \g_@@_default_line_skip_dim,\g_@@_line_spread_fp}
+% 字号大小与行距。
 %    \begin{macrocode}
-\tl_new:N \g_@@_font_size_tl
+\tl_new:N \g_@@_zihao_tl
+\dim_new:N \g_@@_font_size_dim
+\dim_new:N \g_@@_line_skip_dim
+\dim_new:N \g_@@_default_line_skip_dim
 \fp_new:N \g_@@_line_spread_fp
 %    \end{macrocode}
 % \end{variable}
-%
-%    \begin{macrocode}
-\fp_const:Nn \c_@@_xiaosi_line_spread_fp { 20 / ( 12   * 1.2 ) }
-\fp_const:Nn \c_@@_wuhao_line_spread_fp  { 17 / ( 10.5 * 1.2 ) }
-%    \end{macrocode}
 %
 % \begin{variable}
 %   {\g_@@_text_font_tl,\g_@@_math_font_tl,\g_@@_cjk_font_tl}
@@ -434,16 +434,23 @@
     zihao .value_required:n = true ,
     zihao / -4 .code:n =
       {
-        \tl_gset:Nn    \g_@@_font_size_tl   { -4 }
-        \fp_gset_eq:NN \g_@@_line_spread_fp \c_@@_xiaosi_line_spread_fp
+        \tl_gset:Nn  \g_@@_zihao_tl { -4 }
+        \dim_gset:Nn \g_@@_font_size_dim         { 12   bp }
+        \dim_gset:Nn \g_@@_default_line_skip_dim { 20   bp }
       } ,
     zihao /  5 .code:n =
       {
-        \tl_gset:Nn    \g_@@_font_size_tl   {  5 }
-        \fp_gset_eq:NN \g_@@_line_spread_fp \c_@@_wuhao_line_spread_fp
+        \tl_gset:Nn  \g_@@_zihao_tl {  5 }
+        \dim_gset:Nn \g_@@_font_size_dim         { 10.5 bp }
+        \dim_gset:Nn \g_@@_default_line_skip_dim { 15.6 bp }
       } ,
 %<pg>    zihao .initial:n = { -4 } ,
 %<ug>    zihao .initial:n = {  5 } ,
+%    \end{macrocode}
+%
+% 行间距。
+%    \begin{macrocode}
+    lineskip .dim_gset:N = \g_@@_line_skip_dim ,
 %    \end{macrocode}
 %
 % 字体配置。
@@ -478,6 +485,14 @@
 \file_input:n { sjtuthesis-name.cfg }
 %    \end{macrocode}
 %
+% 计算行距倍数。
+%    \begin{macrocode}
+\dim_compare:nNnF \g_@@_line_skip_dim > \c_zero_dim
+  { \dim_set_eq:NN \g_@@_line_skip_dim \g_@@_default_line_skip_dim }
+\fp_set:Nn \g_@@_line_spread_fp
+  { \dim_ratio:nn { \g_@@_line_skip_dim } { \g_@@_font_size_dim } / 1.2 }
+%    \end{macrocode}
+%
 % \subsection{载入宏包、文档类}
 %
 % 将选项传入 \pkg{ctex} 文档类。
@@ -487,7 +502,7 @@
     UTF8,
 %<en>    scheme = plain,
     fontset = none,
-    zihao = \g_@@_font_size_tl,
+    zihao = \g_@@_zihao_tl,
     linespread = \g_@@_line_spread_fp,
     \g_@@_ctex_options_clist
   }
