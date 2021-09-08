@@ -9,8 +9,7 @@ installfiles     = {"*.cls","*.def","*.cfg","*.dtx","*.pdf"}
 docfiledir       = "doc"
 
 typesetexe       = "xelatex"
-typesetfiles     = {"sjtuthesisuserguide.tex","sjtuthesis.dtx"}
-typesetdemofiles = {}
+typesetfiles     = {"sample-*.tex","sjtuthesis.dtx"}
 bibtexexe        = "bibtex"
 
 unpackexe        = "xetex"
