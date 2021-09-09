@@ -554,33 +554,31 @@
   }
 %    \end{macrocode}
 %
+% \subsection{字体配置}
+%
+% 如果没有指定数学字体，则根据西文字体设置匹配的数字字体。
 %    \begin{macrocode}
-\msg_new:nnn { sjtuthesis } { invalid-font }
-  {
-    Invalid~ value~ `#1-font~ =~ \use:c{ g_@@_ #1 _font_tl }~ '! \\\\
-    Using~ `#2'~ instead.
-  }
 \tl_if_empty:NT \g_@@_math_font_tl
   { \tl_gset_eq:NN \g_@@_math_font_tl \g_@@_text_font_tl }
 %    \end{macrocode}
-% 由于 ctex 自带字体描述文件对于 AutoFakeBold 的支持不太好，SJTUThesis 改写了 ctex
-% 的字体描述文件，使得 LaTeX 可以使用系统字体生成加粗效果看得过去的文本。由此满足了学校
-% 对于论文表题图题加粗的规定。
+%
+% 根据操作系统判断默认中文字体配置。
 %    \begin{macrocode}
 \tl_if_empty:NT \g_@@_cjk_font_tl
   {
-    \fontspec_font_if_exist:nTF { SimSun }
+    \sys_if_platform_windows:TF
       { \tl_gset:Nn \g_@@_cjk_font_tl { windows } }
       {
         \ctex_if_platform_macos:TF
-          { \tl_gset:Nn \g_@@_cjk_font_tl { mac } }
-          {
-            \fontspec_font_if_exist:nTF { Noto~Serif~CJK~SC }
-              { \tl_gset:Nn \g_@@_cjk_font_tl { ubuntu } }
-              { \tl_gset:Nn \g_@@_cjk_font_tl { fandol } }
-          }
+          { \tl_gset:Nn \g_@@_cjk_font_tl { mac    } }
+          { \tl_gset:Nn \g_@@_cjk_font_tl { fandol } }
       }
   }
+%    \end{macrocode}
+%
+% \begin{macro}[int]{\@@_load_font:nn,\@@_load_fontset:}
+% 载入字体配置。如果字体配置文件不存在，则载入默认值，并给出警告。
+%    \begin{macrocode}
 \cs_new_protected:Npn \@@_load_font:nn #1#2
   {
     \str_if_eq:onF { \use:c{ g_@@_ #1 _font_tl } } { none }
@@ -597,6 +595,11 @@
         \ctex_pop_file:
       }
   }
+\msg_new:nnn { sjtuthesis } { invalid-font }
+  {
+    Invalid~ value~ `#1-font~ =~ \use:c{ g_@@_ #1 _font_tl }~ '! \\\\
+    Using~ `#2'~ instead.
+  }
 \cs_new_protected:Npn \@@_load_fontset:
   {
     \clist_map_inline:nn
@@ -611,11 +614,13 @@
 \@onlypreamble \@@_load_fontset:
 \@@_load_fontset:
 %    \end{macrocode}
+% \end{macro}
 %
 %    \begin{macrocode}
 %</class>
 %    \end{macrocode}
 %
+% 西文与数学字体配置。
 %    \begin{macrocode}
 %<*mathfont>
 %<termes|pagella|lm>\bool_if:NTF \g_@@_unimath_bool 
@@ -883,6 +888,7 @@
 %</mathfont&(termes|pagella|lm)>
 %    \end{macrocode}
 %
+% 中文字体配置，在字体未提供对应粗体的情况下，允许使用伪粗。
 %    \begin{macrocode}
 %<*cjkfont>
 %<*windows>
