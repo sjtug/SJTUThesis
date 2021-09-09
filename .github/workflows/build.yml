@@ -20,7 +20,9 @@ jobs:
             cd sjtuthesis && l3build ctan
         name: build package with l3build
       - name: prepare upload artifacts
-        run: sudo rm sjtuthesis/build/distrib/tds/sjtuthesis.tds.zip
+        run: |
+          unzip -l sjtuthesis/build/distrib/tds/sjtuthesis.tds.zip
+          sudo rm sjtuthesis/build/distrib/tds/sjtuthesis.tds.zip
       - uses: actions/upload-artifact@v2
         with:
           path: |
