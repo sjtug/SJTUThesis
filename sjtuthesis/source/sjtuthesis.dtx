@@ -249,7 +249,7 @@
 %
 % \section{实现细节}
 %
-% 本模板使用 \LaTeX3 语法编写，依赖 \pkg{expl3} 环境，
+% 本模板使用 \LaTeXiii{} 语法编写，依赖 \pkg{expl3} 环境，
 % 并需调用 \pkg{l3packages} 中的相关宏包。
 %
 % \subsection{准备}
@@ -352,6 +352,13 @@
 %
 % \subsubsection{内部函数}
 %
+% \begin{macro}{\tl_const:co}
+% \LaTeXiii{} 函数变体。
+%    \begin{macrocode}
+\cs_generate_variant:Nn \tl_const:Nn { co }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\@@_define_name:nn,\@@_define_name:nnn}
 % 用来定义默认名称的辅助函数。
 %    \begin{macrocode}
@@ -361,24 +368,24 @@
   {
     \tl_const:cn { c_@@_name_ #1 _zh_tl } {#2}
     \tl_const:cn { c_@@_name_ #1 _en_tl } {#3}
-    \tl_const:cx { c_@@_name_ #1 _tl }
+    \tl_const:co { c_@@_name_ #1 _tl }
       { \use:c { c_@@_name_ #1 _ \g_@@_lang_tl _tl } }
   }
 \cs_new_protected:Npn \@@_define_name_list:Nnn  #1#2#3
   {
     \clist_const:cn { c_@@_name_ #2 _zh_clist } {#3}
-    \tl_const:cx { c_@@_name_ #2 _zh_tl }
+    \tl_const:co { c_@@_name_ #2 _zh_tl }
       { \clist_item:cn { c_@@_name_ #2 _zh_clist } {#1} }
   }
 \cs_new_protected:Npn \@@_define_name_list:Nnnn #1#2#3#4
   {
     \clist_const:cn { c_@@_name_ #2 _zh_clist } {#3}
     \clist_const:cn { c_@@_name_ #2 _en_clist } {#4}
-    \tl_const:cx { c_@@_name_ #2 _zh_tl }
+    \tl_const:co { c_@@_name_ #2 _zh_tl }
       { \clist_item:cn { c_@@_name_ #2 _zh_clist } {#1} }
-    \tl_const:cx { c_@@_name_ #2 _en_tl }
+    \tl_const:co { c_@@_name_ #2 _en_tl }
       { \clist_item:cn { c_@@_name_ #2 _en_clist } {#1} }
-    \tl_const:cx { c_@@_name_ #2 _tl }
+    \tl_const:co { c_@@_name_ #2 _tl }
       { \use:c { c_@@_name_ #2 _ \g_@@_lang_tl _tl } }
   }
 %    \end{macrocode}
@@ -1055,12 +1062,15 @@
   }
 %    \end{macrocode}
 %
+% \subsection{章节标题结构}
+%
 % \pkg{ctex} 宏包使用 \opt{heading} 选项后，会把页面格式设置为 |headings|。
 % 因此必须在 \pkg{ctex} 调用之后重新设置 \cs{pagestyle} 为 |fancy|。
 %    \begin{macrocode}
 \pagestyle { fancy }
 %    \end{macrocode}
 %
+% 设置章节标题样式。
 %    \begin{macrocode}
 \ctex_set:nn { chapter }
   {
@@ -1104,8 +1114,53 @@
   { afterindent = true }
 \ctex_if_autoindent_touched:F
   { \ctex_set:n { autoindent = true } }
+%    \end{macrocode}
+% 
+% 清除章首页的页面格式。
+%    \begin{macrocode}
 \@@_patch_cmd:Nnn \chapter
   { \thispagestyle } { \@gobble }
+%    \end{macrocode}
+%
+% \begin{macro}{\SJTU@chapter,\@@_pdf_bookmark:nn,\@@_phantom_section:}
+% 定义一个灵活的章标题命令专门处理不同的需求。
+%    \begin{macrocode}
+\NewDocumentCommand \SJTU@chapter { s O{#3} m O{#2} }
+  {
+    \if@openright \cleardoublepage \else \clearpage \fi
+    \IfBooleanTF {#1}
+      { \tl_if_empty:nF {#4} { \@@_pdf_bookmark:nn { 0 } {#4} } }
+      {
+        \@@_phantom_section:
+        \addcontentsline { toc } { chapter } {#4}
+      }
+    \chapter* {#3}
+    \@mkboth { \MakeUppercase {#2} } { \MakeUppercase {#2} }
+  }
+\cs_new_eq:NN \@@_pdf_bookmark:nn \use_none:nn
+\cs_new_eq:NN \@@_phantom_section: \prg_do_nothing:
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{各种环境}
+%
+% 摘要环境。
+%    \begin{macrocode}
+%<pg>\NewDocumentEnvironment { abstract } { }
+%<ug>\RenewDocumentEnvironment { abstract } { }
+  { \SJTU@chapter* { \c_@@_name_abstract_zh_tl } [ \c_@@_name_abstract_tl ] }
+  {
+    \par \mode_leave_vertical: \par \noindent
+    { \heiti    \c_@@_name_keywords_zh_tl }
+    \clist_use:Nn \l_@@_info_keywords_zh_clist { ， }
+  }
+\NewDocumentEnvironment { abstract* } { }
+  { \SJTU@chapter* { \c_@@_name_abstract_en_tl } [ ] }
+  {
+    \par \mode_leave_vertical: \par \noindent
+    { \bfseries \c_@@_name_keywords_en_tl }
+    \clist_use:Nn \l_@@_info_keywords_en_clist { ,~ }
+  }
 %    \end{macrocode}
 %
 % 设置目录目录格式。
@@ -1242,6 +1297,34 @@
   { name = \l_@@_name_table_second_tl  }
 %    \end{macrocode}
 %
+% \subsection{其他宏包的设置}
+%
+% 这些宏包并非格式要求，但是为了方便同学们使用，在这里进行简单设置。
+%
+% \subsubsection{\pkg{hyperref} 宏包}
+%
+%    \begin{macrocode}
+\ctex_at_end_package:nn { hyperref }
+  {
+    \int_new:N \g_@@_bookmark_int
+    \cs_gset_protected:Npn \@@_pdf_bookmark:nn #1#2 
+      {
+        \phantomsection
+        \int_gincr:N \g_@@_bookmark_int
+        \pdfbookmark [#1] {#2}
+          { sjtuchapter. \int_use:N \g_@@_bookmark_int }
+      }
+    \cs_gset_eq:NN \@@_phantom_section: \phantomsection
+    \pdfstringdefDisableCommands
+      {
+        \cs_set_eq:NN \\       \prg_do_nothing:
+        \cs_set_eq:NN \quad    \c_empty_tl
+        \cs_set_eq:NN \qquad   \c_empty_tl
+        \cs_set_eq:NN \hspace  \use_none:n
+      }
+  }
+%    \end{macrocode}
+%
 %    \begin{macrocode}
 %</class>
 %    \end{macrocode}
@@ -1268,6 +1351,12 @@
     并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借
     阅。
   }
+\clist_map_inline:nn
+  { 
+    { abstract } { 摘 \quad 要 } { Abstract    } ,
+    { keywords } { 关键词：    } { Key~words:~ }
+  }
+  { \@@_define_name:nnn #1 }
 \clist_map_inline:nn
   { 
     { assumption  } { 假设 } { Assumption  } ,
