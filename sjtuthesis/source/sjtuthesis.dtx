@@ -1239,12 +1239,6 @@
     achv           .tl_set:N = \l_@@_name_achv_tl ,
 %<zh>    achv          .initial:n = { 攻读学位期间获得的科研成果           } ,
 %<en>    achv          .initial:n = { Research Achievements } ,
-    abstract       .tl_set:N = \l_@@_name_abstract_tl ,
-%<zh>    abstract      .initial:n = { 摘要       } ,
-%<en>    abstract      .initial:n = { Abstract                } ,
-    keywords       .tl_set:N = \l_@@_name_keywords_tl ,
-%<zh>    keywords      .initial:n = { 关键词       } ,
-%<en>    keywords      .initial:n = { Keywords                } ,
   }
 %    \end{macrocode}
 %
@@ -1387,18 +1381,6 @@
 %</name>
 %    \end{macrocode}
 %
-%    \begin{macrocode}
-%<*pg>
-\NewDocumentEnvironment{abstract}{}{
-  \chapter* [ \l_@@_name_abstract_tl ] {
-    \title \vskip 2ex
-    \begingroup
-%<ug>\zihao{4}
-    \endgroup
-  }
-}{}
-%</pg>
-%    \end{macrocode}
 % \end{implementation}
 %
 % \Finale
