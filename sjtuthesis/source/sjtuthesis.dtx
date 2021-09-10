@@ -1195,6 +1195,58 @@
   }
 %    \end{macrocode}
 %
+% \subsection{绘制封面}
+%    \begin{macrocode}
+%<*(ug|pg)>
+\RenewDocumentCommand{\maketitle}{}{
+%<zh>  \SJTU@make@titlepage@zh
+%<en>  \SJTU@make@titlepage@en
+}
+%</(ug|pg)>
+%    \end{macrocode}
+% 绘制本科生英文封面
+%    \begin{macrocode}
+%<*ug>
+\newcommand\SJTU@make@titlepage@zh{
+  \cleardoublepage
+  \thispagestyle{empty}
+  这里什么也没有
+}
+%</ug>
+%    \end{macrocode}
+%
+% 绘制本科生英文封面
+%    \begin{macrocode}
+%<*ug>
+\newcommand\SJTU@make@titlepage@en{
+  \cleardoublepage
+  \thispagestyle{empty}
+  这里什么也没有
+}
+%</ug>
+%    \end{macrocode}
+%
+% 绘制研究生中文封面
+%    \begin{macrocode}
+%<*pg>
+\newcommand\SJTU@make@titlepage@zh{
+  \cleardoublepage
+  \thispagestyle{empty}
+  这里什么也没有
+}
+%</pg>
+%    \end{macrocode}
+%
+% 绘制研究生英文封面
+%    \begin{macrocode}
+%<*pg>
+\newcommand\SJTU@make@titlepage@en{
+  \cleardoublepage
+  \thispagestyle{empty}
+  这里什么也没有
+}
+%</pg>
+%    \end{macrocode}
 %
 % \subsection{页眉页脚}
 %
@@ -1294,20 +1346,34 @@
 %    \end{macrocode}
 %
 % \subsection{摘要}
+% “摘要”为四号黑字体居中(摘要后空一行)，摘要内容为五号宋体字，首行缩进二个字，单倍行距;
+% 摘要内容后空一行顶格输入“关键词”(小四号黑体字)，其后为关键词(五号宋体字)，各关键词之间用逗
+% 号分开，最后一个关键词后面无标点符号。
 %
+% 英文“ABSTRACT”为四号 Times New Roman 居中加黑, 摘要内容为五号 Times New Roman，首行缩进二个字，
+% 单倍行距;“Key words”小四号 Times New Roman 加黑，顶格书写，关键词五号 Times New Roman，
+% 各关键词之间逗号分开。中英文摘要不需编页码。
 %    \begin{macrocode}
 \DeclareDocumentEnvironment { abstract  } { }
   { \SJTU@chapter* { \c_@@_name_abstract_zh_tl } [ \c_@@_name_abstract_tl ] }
   {
     \par \mode_leave_vertical: \par \noindent
-    { \heiti    \c_@@_name_keywords_zh_tl }
+    { 
+      \heiti
+%<ug>  \zihao{-4}
+      \c_@@_name_keywords_zh_tl 
+    }
     \clist_use:Nn \l_@@_info_keywords_zh_clist { ， }
   }
 \DeclareDocumentEnvironment { abstract* } { }
   { \SJTU@chapter* { \c_@@_name_abstract_en_tl } [ ] }
   {
     \par \mode_leave_vertical: \par \noindent
-    { \bfseries \c_@@_name_keywords_en_tl }
+    { 
+      \bfseries
+%<ug>  \zihao{-4}
+      \c_@@_name_keywords_en_tl 
+    }
     \clist_use:Nn \l_@@_info_keywords_en_clist { ,~ }
   }
 %    \end{macrocode}
@@ -1380,7 +1446,7 @@
   }
 \clist_map_inline:nn
   { 
-    { abstract } { 摘 \quad 要 } { Abstract    } ,
+    { abstract } { 摘 \quad 要 } { ABSTRACT    } ,
     { keywords } { 关键词：    } { Key~words:~ }
   }
   { \@@_define_name:nnn #1 }
