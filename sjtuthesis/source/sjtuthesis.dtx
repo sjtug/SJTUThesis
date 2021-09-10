@@ -200,7 +200,13 @@
 %
 % \clearpage
 % \section{代码实现}
+% 
+% 本模板使用 \LaTeXiii{} 语法编写，依赖 \pkg{expl3} 环境，
+% 并需调用 \pkg{l3packages} 中的相关宏包。
 %
+% \subsection{模板入口}
+%
+% 根据选项载入相应的子类。
 %    \begin{macrocode}
 %<@@=sjtu_ent>
 %<*entry>
@@ -242,20 +248,12 @@
 %</entry>
 %    \end{macrocode}
 %
-%    \begin{macrocode}
-%<@@=sjtu>
-%<*class>
-%    \end{macrocode}
-%
-% \section{实现细节}
-%
-% 本模板使用 \LaTeXiii{} 语法编写，依赖 \pkg{expl3} 环境，
-% 并需调用 \pkg{l3packages} 中的相关宏包。
-%
 % \subsection{准备}
 %
 % 检查 \LaTeXiii{} 编程环境。
 %    \begin{macrocode}
+%<@@=sjtu>
+%<*class>
 \RequirePackage { xparse, xtemplate, l3keys2e }
 \clist_map_inline:nn { expl3, xparse, xtemplate, l3keys2e }
   {
@@ -535,10 +533,12 @@
   { \PassOptionsToPackage #1 }
 %    \end{macrocode}
 %
-% 载入 \cls{ctexbook} 文档类。
-% 在使用 \XeLaTeX{} 编译时，\cls{ctexbook} 的底层将调用 \pkg{xeCJK}
+% 载入 \pkg{ctex} 文档类。
+% 博士和硕士论文使用 \cls{ctexbook}，学士论文使用 \cls{ctexrep}
+%
+% 在使用 \XeLaTeX{} 编译时，\pkg{ctex} 的底层将调用 \pkg{xeCJK}
 % 宏包；而在使用 \LuaLaTeX{} 编译时，则将调用 \pkg{LuaTeX-ja} 宏包。
-% 两种情况下 \cls{ctexbook} 均会调用 \pkg{fontspec} 宏包。
+% 两种情况下 \pkg{ctex} 均会调用 \pkg{fontspec} 宏包。
 %    \begin{macrocode}
 %<pg>\LoadClass { ctexbook }
 %<ug>\LoadClass { ctexrep  }
@@ -558,6 +558,136 @@
     bicaption,
     subcaption,
     xcolor
+  }
+%    \end{macrocode}
+%
+% \subsection{用户接口}
+%
+% \begin{macro}{\sjtusetup}
+% 用户设置接口。
+%    \begin{macrocode}
+\NewDocumentCommand \sjtusetup { } { \keys_set:nn { sjtu } }
+%    \end{macrocode}
+% \end{macro}
+%
+% 定义元（meta）键值对。
+%    \begin{macrocode}
+\keys_define:nn { sjtu }
+  {
+    info  .meta:nn = { sjtu / info  } {#1} ,
+    style .meta:nn = { sjtu / style } {#1} ,
+    name  .meta:nn = { sjtu / name  } {#1}
+  }
+%    \end{macrocode}
+%
+% \subsubsection{信息录入}
+%
+% 定义字段。
+%    \begin{macrocode}
+\clist_map_inline:nn
+  {
+    title, display_title, running_title, author, supervisor,
+    assoc_supervisor, degree, department, major
+  }
+  {
+    \tl_new:c { l_@@_info_ #1 _zh_tl }
+    \tl_new:c { l_@@_info_ #1 _en_tl }
+  }
+\clist_map_inline:nn
+  { keywords, fund }
+  {
+    \clist_new:c { l_@@_info_ #1 _zh_clist }
+    \clist_new:c { l_@@_info_ #1 _en_clist }
+  }
+\tl_new:N \l_@@_info_id_tl
+%    \end{macrocode}
+%
+% 定义 |sjtu/info| 键值类。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / info }
+  {
+    title             .tl_set:N = \l_@@_info_title_zh_tl ,
+    title*            .tl_set:N = \l_@@_info_title_en_tl ,
+    display-title     .tl_set:N = \l_@@_info_display_title_zh_tl ,
+    display-title*    .tl_set:N = \l_@@_info_display_title_en_tl ,
+    running-title     .tl_set:N = \l_@@_info_running_title_zh_tl ,
+    running-title*    .tl_set:N = \l_@@_info_running_title_en_tl ,
+    keywords       .clist_set:N = \l_@@_info_keywords_zh_clist ,
+    keywords*      .clist_set:N = \l_@@_info_keywords_en_clist ,
+    author            .tl_set:N = \l_@@_info_author_zh_tl ,
+    author*           .tl_set:N = \l_@@_info_author_en_tl ,
+    id                .tl_set:N = \l_@@_info_id_tl ,
+    supervisor        .tl_set:N = \l_@@_info_supervisor_zh_tl ,
+    supervisor*       .tl_set:N = \l_@@_info_supervisor_en_tl ,
+    assoc-supervisor  .tl_set:N = \l_@@_info_assoc_supervisor_zh_tl ,
+    assoc-supervisor* .tl_set:N = \l_@@_info_assoc_supervisor_en_tl ,
+    degree            .tl_set:N = \l_@@_info_degree_zh_tl ,
+    degree*           .tl_set:N = \l_@@_info_degree_en_tl ,
+    department        .tl_set:N = \l_@@_info_department_zh_tl ,
+    department*       .tl_set:N = \l_@@_info_department_en_tl ,
+    major             .tl_set:N = \l_@@_info_major_zh_tl ,
+    major*            .tl_set:N = \l_@@_info_major_en_tl ,
+    fund           .clist_set:N = \l_@@_info_fund_zh_clist ,
+    fund*          .clist_set:N = \l_@@_info_fund_en_clist
+  }
+%    \end{macrocode}
+%
+% \subsubsection{名称设置}
+%
+% 定义 |sjtu/name| 键值类。
+%
+% 设置标准文档类中已定义的名称。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / name }
+  {
+    contents       .tl_set:N = \contentsname ,
+    listfigure     .tl_set:N = \listfigurename ,
+    listtable      .tl_set:N = \listtablename ,
+    figure         .tl_set:N = \figurename ,
+    table          .tl_set:N = \tablename ,
+    index          .tl_set:N = \indexname ,
+    appendix       .tl_set:N = \appendixname ,
+    bib            .tl_set:N = \bibname
+  }
+%    \end{macrocode}
+%
+% 标准文档类中未定义的名称。
+%    \begin{macrocode}
+\keys_define:nn { sjtu / name }
+  {
+    figure*        .tl_set:N = \l_@@_name_figure_second_tl ,
+%<zh>    figure*       .initial:n = { Figure       } ,
+%<en>    figure*       .initial:n = { 图                    } ,
+    table*         .tl_set:N = \l_@@_name_table_second_tl ,
+%<zh>    table*        .initial:n = { Table        } ,
+%<en>    table*        .initial:n = { 表                    } ,
+    algorithm      .tl_set:N = \l_@@_name_algorithm_tl ,
+%<zh>    algorithm     .initial:n = { 算法         } ,
+%<en>    algorithm     .initial:n = { Algorithm             } ,
+    listalgorithm  .tl_set:N = \l_@@_name_listalgorithm_tl ,
+%<zh>    listalgorithm .initial:n = { 算法         } ,
+%<en>    listalgorithm .initial:n = { List of Algorithms    } ,
+    abbr           .tl_set:N = \l_@@_name_abbr_tl ,
+%<zh>    abbr          .initial:n = { 缩略语对照表 } ,
+%<en>    abbr          .initial:n = { Abbreviations         } ,
+    nom            .tl_set:N = \l_@@_name_nom_tl ,
+%<zh>    nom           .initial:n = { 符号对照表   } ,
+%<en>    nom           .initial:n = { Nomenclature          } ,
+    ack            .tl_set:N = \l_@@_name_ack_tl ,
+%<zh>    ack           .initial:n = { 致 \quad 谢  } ,
+%<en>    ack           .initial:n = { Acknowledgements      } ,
+    resume         .tl_set:N = \l_@@_name_resume_tl ,
+%<zh>    resume        .initial:n = { 个人简历     } ,
+%<en>    resume        .initial:n = { Resume                } ,
+    digest         .tl_set:N = \l_@@_name_digest_tl ,
+%<zh>    digest        .initial:n = { 大摘要       } ,
+%<en>    digest        .initial:n = { Digest                } ,
+    publ           .tl_set:N = \l_@@_name_publ_tl ,
+%<zh>    publ          .initial:n = { 攻读学位期间发表（或录用）的学术论文 } ,
+%<en>    publ          .initial:n = { Publications          } ,
+    achv           .tl_set:N = \l_@@_name_achv_tl ,
+%<zh>    achv          .initial:n = { 攻读学位期间获得的科研成果           } ,
+%<en>    achv          .initial:n = { Research Achievements } ,
   }
 %    \end{macrocode}
 %
@@ -1041,6 +1171,9 @@
 %<*class>
 %    \end{macrocode}
 %
+% \subsection{页面布局}
+%
+% 利用 \pkg{geometry} 宏包设置纸张大小、页面边距以及页眉高度。
 %    \begin{macrocode}
 \geometry
   {
@@ -1060,6 +1193,15 @@
     headheight = 15 bp
 %</ug>
   }
+%    \end{macrocode}
+%
+%
+% \subsection{页眉页脚}
+%
+%    \begin{macrocode}
+\fancyhf { }
+\fancyhead[RE,LO]{\c_@@_name_univ_zh_tl \c_@@_name_degree_level_zh_tl 论文}
+\fancyhead[RO,LE]{\leftmark}
 %    \end{macrocode}
 %
 % \subsection{章节标题结构}
@@ -1142,19 +1284,26 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{各种环境}
+% \subsection{浮动体}
 %
-% 摘要环境。
 %    \begin{macrocode}
-%<pg>\NewDocumentEnvironment { abstract } { }
-%<ug>\RenewDocumentEnvironment { abstract } { }
+\captionsetup [ figure ] [ bi-second ]
+  { name = \l_@@_name_figure_second_tl }
+\captionsetup [ table  ] [ bi-second ]
+  { name = \l_@@_name_table_second_tl  }
+%    \end{macrocode}
+%
+% \subsection{摘要}
+%
+%    \begin{macrocode}
+\DeclareDocumentEnvironment { abstract  } { }
   { \SJTU@chapter* { \c_@@_name_abstract_zh_tl } [ \c_@@_name_abstract_tl ] }
   {
     \par \mode_leave_vertical: \par \noindent
     { \heiti    \c_@@_name_keywords_zh_tl }
     \clist_use:Nn \l_@@_info_keywords_zh_clist { ， }
   }
-\NewDocumentEnvironment { abstract* } { }
+\DeclareDocumentEnvironment { abstract* } { }
   { \SJTU@chapter* { \c_@@_name_abstract_en_tl } [ ] }
   {
     \par \mode_leave_vertical: \par \noindent
@@ -1163,7 +1312,8 @@
   }
 %    \end{macrocode}
 %
-% 设置目录目录格式。
+% \subsection{目录}
+%
 %    \begin{macrocode}
 %<zh>\tl_set:Nn \cftdot { \textperiodcentered }
 \tl_set:Nn \cftdotsep { 1 }
@@ -1172,129 +1322,6 @@
 \cs_set:Npn \cftchapleader { \normalfont \cftdotfill { \cftdotsep } }
 %<pg>\cs_set:Npn \cftchapfont { \bfseries \heiti }
 %<ug>\cs_set:Npn \cftchapfont { \normalfont }
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\fancyhf { }
-\fancyhead[RE,LO]{\c_@@_name_univ_zh_tl \c_@@_name_degree_level_zh_tl 论文}
-\fancyhead[RO,LE]{\leftmark}
-\NewDocumentCommand \sjtusetup { } { \keys_set:nn { sjtu } }
-%    \end{macrocode}
-% 
-% 定义 |sjtu/name| 键值类。
-%    \begin{macrocode}
-\keys_define:nn { sjtu }
-  { name .meta:nn = { sjtu / name } {#1} }
-%    \end{macrocode}
-%
-% 设置标准文档类中已定义的名称。
-%    \begin{macrocode}
-\keys_define:nn { sjtu / name }
-  {
-    contents       .tl_set:N = \contentsname ,
-    listfigure     .tl_set:N = \listfigurename ,
-    listtable      .tl_set:N = \listtablename ,
-    figure         .tl_set:N = \figurename ,
-    table          .tl_set:N = \tablename ,
-    index          .tl_set:N = \indexname ,
-    appendix       .tl_set:N = \appendixname ,
-    bib            .tl_set:N = \bibname
-  }
-%    \end{macrocode}
-%
-% 标准文档类中未定义的名称。
-%    \begin{macrocode}
-\keys_define:nn { sjtu / name }
-  {
-    figure*        .tl_set:N = \l_@@_name_figure_second_tl ,
-%<zh>    figure*       .initial:n = { Figure       } ,
-%<en>    figure*       .initial:n = { 图                    } ,
-    table*         .tl_set:N = \l_@@_name_table_second_tl ,
-%<zh>    table*        .initial:n = { Table        } ,
-%<en>    table*        .initial:n = { 表                    } ,
-    algorithm      .tl_set:N = \l_@@_name_algorithm_tl ,
-%<zh>    algorithm     .initial:n = { 算法         } ,
-%<en>    algorithm     .initial:n = { Algorithm             } ,
-    listalgorithm  .tl_set:N = \l_@@_name_listalgorithm_tl ,
-%<zh>    listalgorithm .initial:n = { 算法         } ,
-%<en>    listalgorithm .initial:n = { List of Algorithms    } ,
-    abbr           .tl_set:N = \l_@@_name_abbr_tl ,
-%<zh>    abbr          .initial:n = { 缩略语对照表 } ,
-%<en>    abbr          .initial:n = { Abbreviations         } ,
-    nom            .tl_set:N = \l_@@_name_nom_tl ,
-%<zh>    nom           .initial:n = { 符号对照表   } ,
-%<en>    nom           .initial:n = { Nomenclature          } ,
-    ack            .tl_set:N = \l_@@_name_ack_tl ,
-%<zh>    ack           .initial:n = { 致 \quad 谢  } ,
-%<en>    ack           .initial:n = { Acknowledgements      } ,
-    resume         .tl_set:N = \l_@@_name_resume_tl ,
-%<zh>    resume        .initial:n = { 个人简历     } ,
-%<en>    resume        .initial:n = { Resume                } ,
-    digest         .tl_set:N = \l_@@_name_digest_tl ,
-%<zh>    digest        .initial:n = { 大摘要       } ,
-%<en>    digest        .initial:n = { Digest                } ,
-    publ           .tl_set:N = \l_@@_name_publ_tl ,
-%<zh>    publ          .initial:n = { 攻读学位期间发表（或录用）的学术论文 } ,
-%<en>    publ          .initial:n = { Publications          } ,
-    achv           .tl_set:N = \l_@@_name_achv_tl ,
-%<zh>    achv          .initial:n = { 攻读学位期间获得的科研成果           } ,
-%<en>    achv          .initial:n = { Research Achievements } ,
-  }
-%    \end{macrocode}
-%
-% 定义 |sjtu/info| 键值类。
-%    \begin{macrocode}
-\keys_define:nn { sjtu }
-  { info .meta:nn = { sjtu / info } {#1} }
-\clist_map_inline:nn
-  {
-    title, display_title, running_title, author, supervisor,
-    assoc_supervisor, degree, department, major
-  }
-  {
-    \tl_new:c { l_@@_info_ #1 _zh_tl }
-    \tl_new:c { l_@@_info_ #1 _en_tl }
-  }
-\clist_map_inline:nn
-  { keywords, fund }
-  {
-    \clist_new:c { l_@@_info_ #1 _zh_clist }
-    \clist_new:c { l_@@_info_ #1 _en_clist }
-  }
-\tl_new:N \l_@@_info_id_tl
-\keys_define:nn { sjtu / info }
-  {
-    title             .tl_set:N = \l_@@_info_title_zh_tl ,
-    title*            .tl_set:N = \l_@@_info_title_en_tl ,
-    display-title     .tl_set:N = \l_@@_info_display_title_zh_tl ,
-    display-title*    .tl_set:N = \l_@@_info_display_title_en_tl ,
-    running-title     .tl_set:N = \l_@@_info_running_title_zh_tl ,
-    running-title*    .tl_set:N = \l_@@_info_running_title_en_tl ,
-    keywords       .clist_set:N = \l_@@_info_keywords_zh_clist ,
-    keywords*      .clist_set:N = \l_@@_info_keywords_en_clist ,
-    author            .tl_set:N = \l_@@_info_author_zh_tl ,
-    author*           .tl_set:N = \l_@@_info_author_en_tl ,
-    id                .tl_set:N = \l_@@_info_id_tl ,
-    supervisor        .tl_set:N = \l_@@_info_supervisor_zh_tl ,
-    supervisor*       .tl_set:N = \l_@@_info_supervisor_en_tl ,
-    assoc-supervisor  .tl_set:N = \l_@@_info_assoc_supervisor_zh_tl ,
-    assoc-supervisor* .tl_set:N = \l_@@_info_assoc_supervisor_en_tl ,
-    degree            .tl_set:N = \l_@@_info_degree_zh_tl ,
-    degree*           .tl_set:N = \l_@@_info_degree_en_tl ,
-    department        .tl_set:N = \l_@@_info_department_zh_tl ,
-    department*       .tl_set:N = \l_@@_info_department_en_tl ,
-    major             .tl_set:N = \l_@@_info_major_zh_tl ,
-    major*            .tl_set:N = \l_@@_info_major_en_tl ,
-    fund           .clist_set:N = \l_@@_info_fund_zh_clist ,
-    fund*          .clist_set:N = \l_@@_info_fund_en_clist
-  }
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\captionsetup [ figure ] [ bi-second ]
-  { name = \l_@@_name_figure_second_tl }
-\captionsetup [ table  ] [ bi-second ]
-  { name = \l_@@_name_table_second_tl  }
 %    \end{macrocode}
 %
 % \subsection{其他宏包的设置}
