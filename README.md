@@ -19,6 +19,8 @@
 
 ```bash
 git clone https://github.com/sjtug/SJTUThesis.git
+# ...or with SJTUG mirror
+git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 ```
 
 稳定版可以在 [v1.0.0 发布页](https://github.com/sjtug/SJTUThesis/releases/tag/v1.0.0) 下载。
