@@ -55,7 +55,7 @@ goto :EOF
 
 :thesis
 	echo %ESC%[33mCompile . . .%ESC%[0m
-	latexmk -quiet -file-line-error -halt-on-error -interaction=nonstopmode %THESIS% 2>nul
+	latexmk -quiet -xelatex -file-line-error -halt-on-error -interaction=nonstopmode %THESIS% 2>nul
 goto :EOF
 
 :clean
