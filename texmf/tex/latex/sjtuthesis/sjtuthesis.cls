@@ -837,6 +837,9 @@
   \renewcommand\cftdot{\textperiodcentered}
 \fi
 \renewcommand\cftdotsep{1}
+\setlength{\cftbeforechapskip}{0pt}
+\renewcommand\cftchappagefont{\normalfont}
+\renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \renewcommand\cftfigpresnum{\sjtu@name@figure~}
 \renewcommand\cfttabpresnum{\sjtu@name@table~}
 \AtEndPreamble{%
