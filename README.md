@@ -102,7 +102,15 @@ make wordcount                # 论文字数统计
 
 ### 成为贡献者
 
-这个仓库是面向用户的**示例模版**，如果你有很好的排版示例，可以提交到此仓库与大家分享。如果你想要为 SJTUThesis 文档类贡献代码，可移步 [SJTUTeX](https://github.com/sjtug/SJTUTeX)。在贡献之前，你可以从[这些问题](https://github.com/sjtug/SJTUThesis/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue)开始熟悉贡献代码的流程。除了提交 Pull Request 之外，还有以下方式可以进行贡献：
+这个仓库是面向用户的**示例模版**，如果你有很好的排版示例，可以提交到此仓库与大家分享。如果你想要为 SJTUThesis 文档类贡献代码，可移步 [SJTUTeX (v1)](https://github.com/sjtug/SJTUTeX/tree/v1)。
+
+我们正在开发基于 LaTeX3 的新文档类 SJTUTeX v2，本仓库的示例模版对应 SJTUTeX v1。
+
+`texmf/tex/latex/sjtuthesis` 目录下的内容都是通过 SJTUTeX v1 的 `sjtuthesis.dtx` 文件自动生成的。如果您需要修改文档类的内容，应该修改 SJTUTeX 仓库中的 `sjtuthesis.dtx`，而非直接修改 cls 文件。您可以使用 `build_v1.sh` 一键搭建开发环境。这个脚本会下载 SJTUTeX v1 的代码，编译 `.dtx` 文件，并把生成的文件拷贝到 SJTUThesis 的 `texmf` 目录下。
+
+因此，如果您修改了 `sjtuthesis` 模版类，应该先给 `SJTUTeX` 的 `v1` branch 发 PR，然后再将更新同步到本仓库。
+
+在贡献之前，你可以从[这些问题](https://github.com/sjtug/SJTUThesis/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue)开始熟悉贡献代码的流程。除了提交 Pull Request 之外，还有以下方式可以进行贡献：
 
 * 帮助我们解答同学们的[问题](https://github.com/sjtug/SJTUThesis/discussions)，这些问题你也可能遇到过并且知道如何解决；
 * 与我们一起维护项目的 [Wiki 文档](https://github.com/sjtug/SJTUThesis/wiki)，Wiki 任何人都可以直接编辑；

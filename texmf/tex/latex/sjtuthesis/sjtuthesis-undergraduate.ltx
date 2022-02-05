@@ -7,7 +7,7 @@
 %% sjtuthesis.dtx  (with options: `undergraduate')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
-%%           (C) 2018-2021 by SJTUG
+%%           (C) 2018-2022 by SJTUG
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -60,6 +60,8 @@
   subsection/format = \zihao{-4}\normalfont,
 }
 \renewcommand\cftchapfont{\normalfont}
+\renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
+\renewcommand\cftchappagefont{\normalfont}
 \ifsjtu@type@bachelor
   \sjtusetup{
     style = {

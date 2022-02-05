@@ -7,7 +7,7 @@
 %% sjtuthesis.dtx  (with options: `class')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
-%%           (C) 2018-2021 by SJTUG
+%%           (C) 2018-2022 by SJTUG
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -837,9 +837,6 @@
   \renewcommand\cftdot{\textperiodcentered}
 \fi
 \renewcommand\cftdotsep{1}
-\setlength{\cftbeforechapskip}{0pt}
-\renewcommand\cftchappagefont{\normalfont}
-\renewcommand\cftchapleader{\normalfont\cftdotfill{\cftdotsep}}
 \renewcommand\cftfigpresnum{\sjtu@name@figure~}
 \renewcommand\cfttabpresnum{\sjtu@name@table~}
 \AtEndPreamble{%
