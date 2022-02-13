@@ -5,6 +5,8 @@
 % 载入 SJTUThesis 模版
 \documentclass[type=bachelor]{sjtuthesis}
 
+\title{上海交通大学学位论文 \LaTeX{} 模板示例文档}
+
 \sjtusetup{
   info = {
     title           = {上海交通大学学位论文 \LaTeX{} 模板示例文档},
@@ -72,6 +74,9 @@
 
 % 附带脚注的长表格
 \usepackage{threeparttablex}
+
+% 使用三线表：toprule，midrule，bottomrule。
+\usepackage{booktabs}
 
 % 算法环境宏包
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
@@ -156,9 +161,9 @@
 
 % 正文内容
 \input{contents/intro}
-% \input{contents/math_and_citations}
-% \input{contents/floats}
-% \input{contents/summary}
+\input{contents/math_and_citations}
+\input{contents/floats}
+\input{contents/summary}
 
 %TC:ignore
 
@@ -192,7 +197,7 @@
 % \input{contents/resume}
 
 % 学士学位论文要求在最后有一个大摘要，单独编页码
-\input{contents/digest}
+% \input{contents/digest}
 
 %TC:endignore
 
