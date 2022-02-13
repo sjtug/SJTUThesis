@@ -35,19 +35,47 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 ## 模板使用
 
-如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。
+如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。在编译前，需要安装最新版的 TeXLive 发行版。
 
 ### VSCode 用户
 
-安装“LaTeX Workshop”插件后，选择“Recipe: latexmk (latexmkrc)”编译。您可以在插件设置中设置
+安装 “LaTeX Workshop” 后，编辑 `.vscode/settings.json`
+
+<details>
+
+<summary>展开 json 配置</summary>
 
 ```json
 {
-  "latex-workshop.latex.recipe.default": "lastUsed"
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk-sjtuthesis",
+            "tools": [
+                "latexmk"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-halt-on-error",
+                "-time",
+                "%DOC%"
+            ]
+        }
+    ],
 }
 ```
 
-从而在每次保存时自动使用这个 Recipe 进行编译。
+</details>
+
+即可使用 `latexmk-sjtuthesis` recipe 编译。
 
 ### TexStudio 用户
 
@@ -57,9 +85,15 @@ Commands-Latexmk一项修改为`latexmk.exe -silent -synctex=1 -xelatex %`
 
 Build-Default Compiler一项修改为`txs:///latexmk`
 
+<details>
+
+<summary>展开配置</summary>
+
 <img src="https://user-images.githubusercontent.com/84025388/142163308-3d31f905-af78-40cb-bff1-851cdab04c87.png" width=500px/>
 
 <img src="https://user-images.githubusercontent.com/84025388/142163346-63ec7b7e-932f-44c5-90c4-3b35e435545d.png" width=500px/>
+
+</details>
 
 ### Linux 与 macOS 用户
 
