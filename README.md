@@ -23,19 +23,15 @@ git clone https://github.com/sjtug/SJTUThesis.git
 git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 ```
 
-稳定版可以在 [v1.0.0 发布页](https://github.com/sjtug/SJTUThesis/releases/tag/v1.0.0) 下载。
+模版更新频繁，且只维护最新版。如有问题，可以先尝试升级模版，而后根据“反馈问题”一栏进行反馈。
 
 ### Overleaf
 
-[Overleaf](https://www.overleaf.com?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b) 用户可以从下面的模版链接创建自己的项目，当然这个模版不是最新版。
-
-[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b)
-
-如果需要使用最新版 SJTUThesis，可以先下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip) 或 [v1.0.0](https://github.com/sjtug/SJTUThesis/releases/tag/v1.0.0)，然后上传至 Overleaf 平台。Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
+如果需要使用最新版 SJTUThesis，可以先下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至 Overleaf 平台。Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
 
 ## 模板使用
 
-如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。在编译前，需要安装最新版的 TeXLive 发行版。
+如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。在编译前，需要安装最新的 TeXLive 发行版。
 
 ### VSCode 用户
 
