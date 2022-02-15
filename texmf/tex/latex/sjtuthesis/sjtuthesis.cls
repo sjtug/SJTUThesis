@@ -128,10 +128,10 @@
       course,
     },
   },
-  language = {
+  lang = {
     choices = {
-      chinese,
-      english,
+      zh,
+      en,
     },
   },
   zihao = {
@@ -202,7 +202,6 @@
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{array}
-\RequirePackage{booktabs}
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
 \RequirePackage{subcaption}
@@ -362,7 +361,7 @@
   }%
   \expandafter\comma@parse\expandafter{#1}{\sjtu@clist@processor}%
 }
-\ifsjtu@language@chinese
+\ifsjtu@lang@zh
   \def\sjtu@info@title{\sjtu@info@title@zh}
   \def\sjtu@info@title@sec{\sjtu@info@title@en}
   \def\sjtu@info@display@title{\sjtu@info@display@title@zh}
@@ -409,14 +408,13 @@
   table             = { initial = Table },
   table*            = { name = table@second, initial = 表 },
   algorithm         = { initial = Algorithm },
-  abbreviation      = { initial = Abbreviation },
-  nomenclature      = { initial = Nomenclature },
+  abbr              = { initial = Abbreviation },
+  nom               = { initial = Nomenclature },
   summary           = { initial = Summary },
   bib               = { initial = Bibliography },
   index             = { initial = Index },
-  acknowledgements  = { initial = Acknowledgements },
-  publications      = { initial = Publications },
-  achievements      = { initial = Research Achievements },
+  ack               = { initial = Acknowledgements },
+  achv              = { initial = Research Achievements },
   resume            = { initial = Resume },
   digest            = { initial = Digest },
 }
@@ -497,7 +495,7 @@
 \sjtu@name@def{abstract@en}{Abstract}
 \sjtu@name@def{keywords@zh}{关键词：}
 \sjtu@name@def{keywords@en}{Key words:~}
-\ifsjtu@language@chinese
+\ifsjtu@lang@zh
   \sjtusetup{
     name = {
       appendix          = {附录},
@@ -510,14 +508,13 @@
       table             = {表},
       table*            = {Table},
       algorithm         = {算法},
-      abbreviation      = {缩略语对照表},
-      nomenclature      = {符号对照表},
+      abbr              = {缩略语对照表},
+      nom               = {符号对照表},
       summary           = {全文总结},
       bib               = {参考文献},
       index             = {索\hspace{\ccwd}引},
-      acknowledgements  = {致\hspace{\ccwd}谢},
-      publications      = {攻读学位期间发表（或录用）的学术论文},
-      achievements      = {攻读学位期间获得的科研成果},
+      ack               = {致\hspace{\ccwd}谢},
+      achv              = {学术论文和科研成果目录},
       resume            = {个人简历},
       digest            = {大摘要},
     }
@@ -833,7 +830,7 @@
 }
 \renewcommand\listoffigures{\sjtu@listof{figure}}
 \renewcommand\listoftables{\sjtu@listof{table}}
-\ifsjtu@language@chinese
+\ifsjtu@lang@zh
   \renewcommand\cftdot{\textperiodcentered}
 \fi
 \renewcommand\cftdotsep{1}
@@ -966,10 +963,10 @@
   \sjtu@chapter*{\sjtu@name@abbreviation}
 }{}
 \NewDocumentEnvironment{nomenclature}{}{%
-  \sjtu@chapter{\sjtu@name@nomenclature}
+  \sjtu@chapter{\sjtu@name@nom}
 }{}
 \NewDocumentEnvironment{nomenclature*}{}{%
-  \sjtu@chapter*{\sjtu@name@nomenclature}
+  \sjtu@chapter*{\sjtu@name@nom}
 }{}
 \NewDocumentEnvironment{summary}{}{%
   \sjtu@chapter{\sjtu@name@summary}
@@ -978,20 +975,20 @@
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
-    \sjtu@chapter{\sjtu@name@acknowledgements}
+    \sjtu@chapter{\sjtu@name@ack}
     \sjtu@saved@env@body
   \fi
 }
-\newenvironment{sjtu@bibliolist}[2]{%
-  \sjtu@chapter{#2}
-  \list{\@biblabel{\@arabic\c@enumiv}}%
+\newcounter{sjtu@bib}
+\NewDocumentEnvironment{@bibliolist}{m}{%
+  \list{\@biblabel{\@arabic\c@sjtu@bib}}%
        {\settowidth\labelwidth{\@biblabel{#1}}%
         \leftmargin\labelwidth
         \advance\leftmargin\labelsep
-        \@openbib@code
-        \usecounter{enumiv}%
-        \let\p@enumiv\@empty
-        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+        \@nmbrlisttrue
+        \def\@listctr{sjtu@bib}
+        \let\p@sjtu@bib\@empty
+        \renewcommand\thesjtu@bib{\@arabic\c@sjtu@bib}}%
   \sloppy
   \clubpenalty4000
   \@clubpenalty \clubpenalty
@@ -1002,42 +999,27 @@
     {\@latex@warning{Empty `bibliolist' environment}}%
   \endlist
 }
-\NewDocumentEnvironment{publications}{O{99}}{%
+\NewDocumentEnvironment{bibliolist}{m}{%
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
-    \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
+    \begin{@bibliolist}{#1}
       \sjtu@saved@env@body
-    \end{sjtu@bibliolist}
+    \end{@bibliolist}
   \fi
 }
-\NewDocumentEnvironment{publications*}{O{99}}{%
+\NewDocumentEnvironment{bibliolist*}{m}{%
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review
-    \begin{sjtu@bibliolist}{#1}{\sjtu@name@publications}
+    \begin{@bibliolist}{#1}
       \sjtu@saved@env@body
-    \end{sjtu@bibliolist}
+    \end{@bibliolist}
   \fi
 }
-\NewDocumentEnvironment{achievements}{O{99}}{%
-  \Collect@Body\sjtu@save@env@body
-}{%
-  \ifsjtu@review\relax\else
-    \begin{sjtu@bibliolist}{#1}{\sjtu@name@achievements}
-      \sjtu@saved@env@body
-    \end{sjtu@bibliolist}
-  \fi
-}
-\NewDocumentEnvironment{achievements*}{O{99}}{%
-  \Collect@Body\sjtu@save@env@body
-}{%
-  \ifsjtu@review
-    \begin{sjtu@bibliolist}{#1}{\sjtu@name@achievements}
-      \sjtu@saved@env@body
-    \end{sjtu@bibliolist}
-  \fi
-}
+\NewDocumentEnvironment{achievements}{}{%
+  \sjtu@chapter{\sjtu@name@achv}
+}{}
 \NewDocumentEnvironment{resume}{}{%
   \Collect@Body\sjtu@save@env@body
 }{%
@@ -1196,7 +1178,7 @@
     separate-uncertainty = true,
     inter-unit-product   = \ensuremath{{}\cdot{}},
   }
-  \ifsjtu@language@chinese
+  \ifsjtu@lang@zh
     \sisetup{
       list-final-separator = { 和 },
       list-pair-separator  = { 和 },
