@@ -35,43 +35,7 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 ### VSCode 用户
 
-安装 “LaTeX Workshop” 后，编辑 `.vscode/settings.json`
-
-<details>
-
-<summary>展开 json 配置</summary>
-
-```json
-{
-    "latex-workshop.latex.recipes": [
-        {
-            "name": "latexmk-sjtuthesis",
-            "tools": [
-                "latexmk"
-            ]
-        }
-    ],
-    "latex-workshop.latex.tools": [
-        {
-            "name": "latexmk",
-            "command": "latexmk",
-            "args": [
-                "-xelatex",
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-halt-on-error",
-                "-time",
-                "%DOC%"
-            ]
-        }
-    ],
-}
-```
-
-</details>
-
-即可使用 `latexmk-sjtuthesis` recipe 编译。
+安装 “LaTeX Workshop” 后，选择 `Recipe: latexmk (xelatex)` 编译即可。
 
 ### TexStudio 用户
 
