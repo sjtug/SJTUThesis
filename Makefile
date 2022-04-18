@@ -30,7 +30,7 @@ view : $(THESIS).pdf
 	$(OPEN) $<
 
 wordcount : $(THESIS).tex
-	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*english'; then \
+	@if grep -v ^% $< | grep -q '\\documentclass\[[^\[]*en'; then \
 		texcount $< -inc -char-only | awk '/total/ {getline; print "英文字符数\t\t\t:",$$4}'; \
 	else \
 		texcount $< -inc -ch-only   | awk '/total/ {getline; print "纯中文字数\t\t\t:",$$4}'; \
