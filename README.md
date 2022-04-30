@@ -39,7 +39,7 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 ### VSCode 用户
 
-安装 “LaTeX Workshop” 后，选择 `Recipe: latexmk (xelatex)` 编译即可，并在设置中将 `latex-workshop.latex.recipe.default` 改为 `LastUsed` 以一直使用该选项编译。
+安装 “LaTeX Workshop” 后，选择 `Recipe: latexmk (xelatex)` 编译即可，并在设置中将 `latex-workshop.latex.recipe.default` 改为 `lastUsed` 以一直使用该选项编译。
 
 ### TexStudio 用户
 
