@@ -290,6 +290,14 @@
     },
     initial = red,
   },
+  header-include-major = {
+    name = header@include@major,
+    choices = {
+      true,
+      false,
+    },
+    initial = false,
+  },
   float-number-separator = {
     name = fl@num@sep,
     initial = {--},
@@ -456,6 +464,13 @@
   \sjtu@name@def{subject@en}{%
     Dissertation Submitted to \sjtu@name@school@en \\
     for the Degree of \sjtu@name@degree@type@en
+  }
+  \sjtu@name@def{subjectmajor@zh}{%
+    \sjtu@name@school@zh\sjtu@info@major@zh\sjtu@name@degree@type@zh\sjtu@name@thesis@type
+  }
+  \sjtu@name@def{subjectmajor@en}{%
+    Dissertation Submitted to \sjtu@name@school@en \\
+    for the Degree of \sjtu@name@degree@type@en of \sjtu@info@major@en
   }
 \else
   \ifsjtu@type@course

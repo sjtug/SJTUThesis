@@ -45,17 +45,33 @@
   \fancyhf{}
   \if@twoside
     \ifsjtu@style@header@single
-      \fancyhead[CO]{\zihao{-5}\sjtu@name@subject@zh}
+      \ifsjtu@style@header@include@major@true
+        \fancyhead[CO]{\zihao{-5}\sjtu@name@subjectmajor@zh}
+      \else
+        \fancyhead[CO]{\zihao{-5}\sjtu@name@subject@zh}
+      \fi
       \fancyhead[CE]{\zihao{-5}\leftmark}
     \else
-      \fancyhead[RE,LO]{\zihao{-5}\sjtu@name@subject@zh}
+      \ifsjtu@style@header@include@major@true
+        \fancyhead[RE,LO]{\zihao{-5}\sjtu@name@subjectmajor@zh}
+      \else
+        \fancyhead[RE,LO]{\zihao{-5}\sjtu@name@subject@zh}
+      \fi
       \fancyhead[RO,LE]{\zihao{-5}\leftmark}
     \fi
   \else
     \ifsjtu@style@header@single
-      \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
+      \ifsjtu@style@header@include@major@true
+        \fancyhead[C]{\zihao{-5}\sjtu@name@subjectmajor@zh}
+      \else
+        \fancyhead[C]{\zihao{-5}\sjtu@name@subject@zh}
+      \fi
     \else
-      \fancyhead[L]{\zihao{-5}\sjtu@name@subject@zh}
+      \ifsjtu@style@header@include@major@true
+        \fancyhead[L]{\zihao{-5}\sjtu@name@subjectmajor@zh}
+      \else
+        \fancyhead[L]{\zihao{-5}\sjtu@name@subject@zh}
+      \fi
       \fancyhead[R]{\zihao{-5}\leftmark}
     \fi
   \fi
