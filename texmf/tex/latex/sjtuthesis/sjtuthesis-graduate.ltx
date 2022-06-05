@@ -1,4 +1,4 @@
-%%
+﻿%%
 %% This is file `sjtuthesis-graduate.ltx',
 %% generated with the docstrip utility.
 %%
@@ -81,8 +81,11 @@
     \fi
   }
   \renewcommand\headrule{%
-    \hrule\@height2.25pt\@width\headwidth
-    \vskip 0.75pt
+    \ifsjtu@style@header@rule@type@doublerule  
+      \hrule\@height2.25pt\@width\headwidth
+      \vskip 0.75pt
+    \fi
+    
     \hrule\@height0.75pt\@width\headwidth
     \vskip-3.75pt
   }
@@ -123,9 +126,15 @@
   \endgroup
 }
 \RenewDocumentCommand{\maketitle}{}{%
-  \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}
-  \sjtu@make@titlepage@zh%
-  \sjtu@make@titlepage@en%
+  \sjtu@pdfbookmark{0}{\sjtu@name@titlepage}    
+  % Use title page form MEM of SEIEE if specified, or use normal title page
+  \ifsjtu@titlepage@memofseiee
+    \sjtu@make@titlepageemseiee@zh
+    \sjtu@make@titlepageemseiee@en
+  \else
+    \sjtu@make@titlepage@zh
+    \sjtu@make@titlepage@en%
+  \fi  
 }
 \newcommand\sjtu@make@titlepage@zh{%
   \cleardoublepage
@@ -191,6 +200,76 @@
     \vskip 26pt
   \end{center}
 }
+
+% Title page for master of Engineering Management (SEIEE) - zh
+\newcommand\sjtu@make@titlepageemseiee@zh{%
+  \cleardoublepage
+  \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@zh}{\par}}
+  \thispagestyle{title}
+  \begin{center}
+    {\zihao{-3}\songti{\sjtu@name@apply@zh \sjtu@name@subjectmajor@zh}\par}
+    \vskip \stretch{2}
+    {\zihao{-1}\heiti\sjtu@info@display@title@zh\par}
+    \vskip \stretch{3}
+    \begingroup
+      \zihao{4}
+      \def\arraystretch{1.25}
+      \begin{tabular}{@{}>{\heiti}F{t}{6.5\ccwd}@{\sjtu@colon}l@{}}
+        \sjtu@name@departmentalias@zh  & \sjtu@info@department@zh     \\
+        \sjtu@name@engineeringfield@zh & \sjtu@info@major@zh          \\
+        \sjtu@name@sjtusupervisor@zh   & \sjtu@info@supervisor@zh     \\
+        \sjtu@name@entsupervisor@zh    & \sjtu@info@assisupervisor@zh \\
+        \sjtu@name@mem@zh              & \sjtu@info@author@zh         \\
+        \sjtu@name@id@zh               & \sjtu@info@id                \\
+      \end{tabular}
+      \par
+    \endgroup
+    \vskip \stretch{3}
+    {\zihao{4}\songti\sjtu@info@department@zh}    \\
+    \sjtu@date{\sjtu@date@format@zh}{\sjtu@info@date}
+  \end{center}
+}
+
+% Title page for master of Engineering Management (SEIEE) - en
+\newcommand\sjtu@make@titlepageemseiee@en{%
+  \cleardoublepage
+  \def\sjtu@info@fund{\zihao{-5}\sjtu@clist@use{\sjtu@info@fund@en}{\par}}
+  \thispagestyle{title}
+  \begin{center}
+    {\zihao{-3}\sjtu@name@subjectmajor@en\par}
+    \vskip \stretch{3}
+    {\zihao{3}\bfseries\MakeUppercase\sjtu@info@display@title@en\par}
+    \vskip \stretch{4}
+    \begingroup
+      \zihao{-3}
+      \def\arraystretch{1.25}
+      \begin{tabular}{@{}>{\bfseries}l<{:~}@{}p{.45\textwidth}@{}}
+        \sjtu@name@mdcandidate@en   & \sjtu@info@author@en         \\
+        \sjtu@name@supervisor@en(\uppercase\expandafter{\romannumeral1})             
+                                    & \sjtu@info@supervisor@en     \\
+        \sjtu@name@supervisor@en(\uppercase\expandafter{\romannumeral2})
+                                    & \sjtu@info@assisupervisor@en\\
+        \sjtu@name@major@en            & \sjtu@info@major@en     \\ 
+      \end{tabular}
+      \par
+      
+    \endgroup
+    \vskip \stretch{7}
+
+    \begingroup
+      \zihao{-3}\linespread{1.0}\selectfont
+      School of Electronic, Information and Electrical Engineering \\
+      \vskip 10pt
+      ShanghaiJiaoTongUniversity \\
+      \vskip 10pt
+      Shanghai,P.R.China \\
+      \vskip 10pt
+      \text{\sjtu@date{\sjtu@date@format@en}{\sjtu@info@date}}
+    \endgroup
+
+  \end{center}
+}
+
 \endinput
 %%
 %% End of file `sjtuthesis-graduate.ltx'.

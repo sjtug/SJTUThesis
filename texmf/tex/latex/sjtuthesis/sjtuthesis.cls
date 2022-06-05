@@ -1,4 +1,4 @@
-%%
+﻿%%
 %% This is file `sjtuthesis.cls',
 %% generated with the docstrip utility.
 %%
@@ -142,6 +142,13 @@
       false,
     },
     initial = auto,
+  },
+  titlepage = {
+    choices = {
+      normal,      % Regular title page for all
+      memofseiee,  % Title page for MEM of SEIEE
+    },
+    initial = normal,
   },
 }
 \DeclareStringOption[termes]{text-font}
@@ -306,6 +313,14 @@
     name = eq@num@sep,
     initial = {--},
   },
+  header-rule-type = {
+    name = header@rule@type,
+    choices = {
+      singlerule,
+      doublerule,
+    },
+    initial = doublerule,
+  },
 }
 \kv@define@key{sjtu}{info}{
   \kvsetkeys{sjtu@info}{#1}
@@ -469,9 +484,17 @@
     \sjtu@name@school@zh\sjtu@info@major@zh\sjtu@name@degree@type@zh\sjtu@name@thesis@type
   }
   \sjtu@name@def{subjectmajor@en}{%
-    Dissertation Submitted to \sjtu@name@school@en \\
-    for the Degree of \sjtu@name@degree@type@en of \sjtu@info@major@en
+    Thesis Submitted to \sjtu@name@school@en \\
+    for the Degree of \sjtu@name@degree@type@en \ of \sjtu@info@major@en
   }
+  % Define the names for MEM of SEIEE 
+  \sjtu@name@def{departmentalias@zh}{院系}
+  \sjtu@name@def{engineeringfield@zh}{工程领域}
+  \sjtu@name@def{sjtusupervisor@zh}{交大导师}
+  \sjtu@name@def{entsupervisor@zh}{企业导师}
+  \sjtu@name@def{mem@zh}{工程管理硕士}
+  \sjtu@name@def{apply@zh} {申请}
+  \sjtu@name@def{mdcandidate@en}{M.D. Candidate}
 \else
   \ifsjtu@type@course
     \sjtu@name@def{degree@type@zh}{}
@@ -908,7 +931,6 @@
 }
 \captionsetup[bi-second]{bi-second}
 \newcommand\sjtu@copr@addon{%
-  \noindent
   本\sjtu@name@thesis@type 属于\enskip
   \begin{minipage}[t]{28\ccwd}
     \sjtu@square{\bfseries 公开论文} \par
@@ -919,15 +941,16 @@
       （不超过10年）解密后适用本授权书。\par
     \sjtu@square{\bfseries 机密论文}，\underline{\hspace{2\ccwd}}年%
       （不超过20年）解密后适用本授权书。\par
-    （请在以上方框内打“$\checkmark$”）
+    
+    \hspace{1.5cm}（请在以上方框内打“$\checkmark$”）  
   \end{minipage}
 }
 \newcommand\sjtu@signbox[1]{%
   \begingroup
   \zihao{4}
-  \parbox[t]{64mm}{%
-    {#1}签名：\\[6pt]
-    日期：\hspace{\stretch{3}}年\hspace{\stretch{2}}月\hspace{\stretch{2}}日
+  \parbox[t]{75mm}{%
+    {#1}签名：\\[30pt]
+    日期：\hspace{1.5cm}年\hspace{1cm}月\hspace{1cm}日
   }
   \endgroup
 }
@@ -943,27 +966,26 @@
       }%
       \thispagestyle{empty}
       \begingroup
-        \zihao{-4}\linespread{1.73}\selectfont
+        \zihao{-4}\linespread{1.25}\selectfont
         \begin{center}
           \heiti\zihao{3}
           \sjtu@name@school@zh\par
           \sjtu@name@thesis@type\sjtu@name@orig@title@zh
         \end{center}\par
-        \sjtu@name@orig@body\par
+        {\fangsong\zihao{-4}\sjtu@name@orig@body} \par
         \vskip \baselineskip \hfill
         \sjtu@signbox{\sjtu@name@thesis@type 作者}
-        \hspace*{20mm}\par
-        \vskip 2\baselineskip
         \begin{center}
           \heiti\zihao{3}
           \sjtu@name@school@zh\par
           \sjtu@name@thesis@type\sjtu@name@copr@title@zh
         \end{center}\par
-        \sjtu@name@copr@body\par
+        {\fangsong\zihao{-4}\sjtu@name@copr@body}\par
         \vskip \baselineskip
         \sjtu@copr@addon\par
         \vskip 1.5\baselineskip
-        \sjtu@signbox{\sjtu@name@thesis@type 作者}\hfill
+        \noindent
+        \sjtu@signbox{\sjtu@name@thesis@type 作者}\hspace*{1cm}\hfill
         \sjtu@signbox{指导教师}\par
         \endgroup
       \restoregeometry
