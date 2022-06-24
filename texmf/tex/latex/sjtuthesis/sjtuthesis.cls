@@ -957,10 +957,10 @@
 }
 \newcommand\sjtu@save@env@body[1]{\long\gdef\sjtu@saved@env@body{#1}}
 \NewDocumentEnvironment{abbreviation}{}{%
-  \sjtu@chapter{\sjtu@name@abbreviation}
+  \sjtu@chapter{\sjtu@name@abbr}
 }{}
 \NewDocumentEnvironment{abbreviation*}{}{%
-  \sjtu@chapter*{\sjtu@name@abbreviation}
+  \sjtu@chapter*{\sjtu@name@abbr}
 }{}
 \NewDocumentEnvironment{nomenclature}{}{%
   \sjtu@chapter{\sjtu@name@nom}
