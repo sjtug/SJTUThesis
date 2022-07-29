@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-math-font-stixtwo.def',
+%% This is file `sjtu-text-font-newtx.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `mathfont,stixtwo')
+%% sjtuthesis.dtx  (with options: `textfont,newtx')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2022 by SJTUG
@@ -21,51 +21,23 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-math-font-stixtwo.def}
-  [2022/07/29 1.1.1 STIX Two math fonts definition (SJTUThesis)]
-\RequirePackage{unicode-math}
-\IfFontExistsTF{STIXTwoMath-Regular.otf}{
-  \setmathfont[
-    StylisticSet = 8
-  ]{STIXTwoMath-Regular.otf}
-  \setmathfont[
-    range        = {scr, bfscr},
-    StylisticSet = 1
-  ]{STIXTwoMath-Regular.otf}
-}{
-  \setmathfont[
-    StylisticSet = 8
-  ]{STIX2Math.otf}
-  \setmathfont[
-    range        = {scr, bfscr},
-    StylisticSet = 1
-  ]{STIX2Math.otf}
-}
-\IfFontExistsTF{STIXTwoText-Regular.otf}{
-  \setmathrm[
-    Extension      = .otf,
-    UprightFont    = *-Regular,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Italic,
-    BoldItalicFont = *-BoldItalic,
-  ]{STIXTwoText}
-}{
-  \setmathrm[
-    Extension      = .otf,
-    UprightFont    = *-Regular,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Italic,
-    BoldItalicFont = *-BoldItalic,
-  ]{STIX2Text}
-}
-\setmathsf[
+\ProvidesFile{sjtu-text-font-newtx.def}
+  [2022/07/29 1.1.1 NewTX text fonts definition (SJTUThesis)]
+\setmainfont[
+  Extension       = .otf,
+  UprightFont     = *-Regular,
+  BoldFont        = *-Bold,
+  ItalicFont      = *-Italic,
+  BoldItalicFont  = *-BoldItalic
+]{TeXGyreTermesX}
+\setsansfont[
   Extension      = .otf,
   UprightFont    = *-regular,
   BoldFont       = *-bold,
   ItalicFont     = *-italic,
   BoldItalicFont = *-bolditalic,
 ]{texgyreheros}
-\setmathtt[
+\setmonofont[
   Extension      = .otf,
   UprightFont    = *-regular,
   BoldFont       = *-bold,
@@ -76,4 +48,4 @@
 ]{texgyrecursor}
 \endinput
 %%
-%% End of file `sjtu-math-font-stixtwo.def'.
+%% End of file `sjtu-text-font-newtx.def'.

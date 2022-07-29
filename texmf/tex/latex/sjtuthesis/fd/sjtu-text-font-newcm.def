@@ -22,27 +22,54 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-text-font-newcm.def}
-  [2021/06/03 1.1.0rc1 New Computer Modern text fonts definition (SJTUThesis)]
+  [2022/07/29 1.1.1 New Computer Modern text fonts definition (SJTUThesis)]
 \setmainfont[
-  Extension      = .otf,
-  UprightFont    = *-Book,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-BookItalic,
-  BoldItalicFont = *-BoldItalic,
+  Extension    = .otf,
+  SizeFeatures =
+    {
+      {
+        Size        = -9,
+        Font        = NewCM08-Book,
+        ItalicFont  = NewCM08-BookItalic,
+        SlantedFont = NewCM08-Book,
+      },
+      { Size        = 9- }
+    },
+  UprightFont         = *-Book,
+  BoldFont            = *-Bold,
+  ItalicFont          = *-BookItalic,
+  BoldItalicFont      = *-BoldItalic,
+  SlantedFont         = *-Book,
+  BoldSlantedFont     = *-Bold,
+  SlantedFeatures     = {FakeSlant=0.25},
+  BoldSlantedFeatures = {FakeSlant=0.25}
 ]{NewCM10}
 \setsansfont[
-  Extension      = .otf,
+  Extension    = .otf,
+  SizeFeatures =
+    {
+      {
+        Size       = -9,
+        Font       = NewCMSans08-Book,
+        ItalicFont = NewCMSans08-BookOblique,
+      },
+      { Size       = 9- }
+    },
   UprightFont    = *-Book,
   BoldFont       = *-Bold,
   ItalicFont     = *-BookOblique,
-  BoldItalicFont = *-BoldOblique,
+  BoldItalicFont = *-BoldOblique
 ]{NewCMSans10}
 \setmonofont[
-  Extension      = .otf,
-  UprightFont    = *-Book,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-BookItalic,
-  BoldItalicFont = *-BoldOblique,
+  Extension           = .otf,
+  UprightFont         = *-Book,
+  BoldFont            = *-Bold,
+  ItalicFont          = *-BookItalic,
+  BoldItalicFont      = *-BoldOblique,
+  SlantedFont         = *-Book,
+  SlantedFeatures     = {FakeSlant = 0.25},
+  BoldSlantedFont     = *-Bold,
+  BoldSlantedFeatures = {FakeSlant = 0.25}
 ]{NewCMMono10}
 \endinput
 %%

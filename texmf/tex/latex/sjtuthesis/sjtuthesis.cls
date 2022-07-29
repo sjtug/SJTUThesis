@@ -23,10 +23,10 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sjtuthesis}
-  [2021/06/03 1.1.0rc1 Shanghai Jiao Tong University Thesis Template]
+  [2022/07/29 1.1.1 Shanghai Jiao Tong University Thesis Template]
 \hyphenation{SJTU-Thesis}
 \def\sjtuthesis{SJTU\textsc{Thesis}}
-\def\version{1.1.0rc1}
+\def\version{1.1.1}
 \newcommand\sjtu@error[1]{%
   \ClassError{sjtuthesis}{#1}{}%
 }
@@ -144,13 +144,12 @@
     initial = auto,
   },
 }
-\DeclareStringOption[termes]{text-font}
+\DeclareStringOption[newtx]{text-font}
 \@namedef{sjtu@text@font}{\csname sjtu@text-font\endcsname}
 \DeclareStringOption[auto]{math-font}
 \@namedef{sjtu@math@font}{\csname sjtu@math-font\endcsname}
 \DeclareStringOption[auto]{cjk-font}
 \@namedef{sjtu@cjk@font}{\csname sjtu@cjk-font\endcsname}
-\DeclareBoolOption[false]{unimath}
 \DeclareBoolOption[false]{nothm}
 \DeclareBoolOption[false]{review}
 \DeclareBoolOption[false]{openright}
@@ -172,7 +171,8 @@
     \def\sjtu@zihao{5}
   \fi
 \fi
-\PassOptionsToClass{zihao=\sjtu@zihao}{ctexbook}
+\edef\sjtu@opt@zihao{{zihao=\sjtu@zihao}}
+\expandafter\PassOptionsToClass\sjtu@opt@zihao{ctexbook}
 \ifsjtu@openright
   \PassOptionsToClass{openright}{book}
 \else
@@ -571,9 +571,6 @@
   bibname        = \sjtu@name@bib,
   indexname      = \sjtu@name@index,
 }
-\ifsjtu@unimath
-  \RequirePackage{unicode-math}
-\fi
 \ifthenelse{\equal{\sjtu@math@font}{auto}}{
   \let\sjtu@math@font\sjtu@text@font
 }{}
@@ -581,9 +578,9 @@
   \InputIfFileExists{sjtu-math-font-\sjtu@math@font.def}{}{%
     \sjtu@warning{%
       Invalid value `math-font = \sjtu@math@font'! \MessageBreak
-      Using `termes' instead.
+      Using `newtx' instead.
     }
-    \def\sjtu@math@font{termes}
+    \def\sjtu@math@font{newtx}
     \input{sjtu-math-font-\sjtu@math@font.def}
   }
 }
@@ -591,9 +588,9 @@
   \InputIfFileExists{sjtu-text-font-\sjtu@text@font.def}{}{%
     \sjtu@warning{%
       Invalid value `text-font = \sjtu@text@font'! \MessageBreak
-      Using `termes' instead.
+      Using `newtx' instead.
     }
-    \def\sjtu@text@font{termes}
+    \def\sjtu@text@font{newtx}
     \input{sjtu-text-font-\sjtu@text@font.def}
   }
 }
@@ -640,8 +637,8 @@
 }
 \sjtu@patchcmd\cleardoublepage%
   {\newpage}{\thispagestyle{empty}\newpage}
-\sjtu@patchcmd\chapter%
-  {\thispagestyle}{\@gobble}
+\def\ps@chapter{}
+\ctexset{chapter/pagestyle = chapter}
 \AtBeginDocument{%
   \pagenumbering{Alph}
   \pagestyle{empty}
@@ -957,10 +954,10 @@
 }
 \newcommand\sjtu@save@env@body[1]{\long\gdef\sjtu@saved@env@body{#1}}
 \NewDocumentEnvironment{abbreviation}{}{%
-  \sjtu@chapter{\sjtu@name@abbreviation}
+  \sjtu@chapter{\sjtu@name@abbr}
 }{}
 \NewDocumentEnvironment{abbreviation*}{}{%
-  \sjtu@chapter*{\sjtu@name@abbreviation}
+  \sjtu@chapter*{\sjtu@name@abbr}
 }{}
 \NewDocumentEnvironment{nomenclature}{}{%
   \sjtu@chapter{\sjtu@name@nom}

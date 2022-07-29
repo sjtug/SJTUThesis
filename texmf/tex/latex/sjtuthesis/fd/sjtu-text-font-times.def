@@ -22,10 +22,10 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-text-font-times.def}
-  [2021/06/03 1.1.0rc1 Times text fonts definition (SJTUThesis)]
-\setmainfont[Ligatures=Rare]{Times New Roman}
+  [2022/07/29 1.1.1 Times text fonts definition (SJTUThesis)]
+\setmainfont{Times New Roman}[Ligatures=Rare]
 \setsansfont{Arial}
-\setmonofont[Scale=MatchLowercase]{Courier New}
+\setmonofont{Courier New}[Scale=MatchLowercase]
 \endinput
 %%
 %% End of file `sjtu-text-font-times.def'.

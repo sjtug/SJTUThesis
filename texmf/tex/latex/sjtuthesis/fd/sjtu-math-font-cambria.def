@@ -22,13 +22,12 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-math-font-cambria.def}
-  [2021/06/03 1.1.0rc1 Cambria math fonts definition (SJTUThesis)]
-\sjtu@unimathtrue
+  [2022/07/29 1.1.1 Cambria math fonts definition (SJTUThesis)]
 \RequirePackage{unicode-math}
 \setmathfont{Cambria Math}
 \setmathrm{Cambria}
 \setmathsf{Calibri}
-\setmathtt[Scale=MatchLowercase]{Consolas}
+\setmathtt{Consolas}[Scale=MatchLowercase]
 \endinput
 %%
 %% End of file `sjtu-math-font-cambria.def'.

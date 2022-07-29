@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-math-font-lm.def',
+%% This is file `sjtu-math-font-newpx.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuthesis.dtx  (with options: `mathfont,lm')
+%% sjtuthesis.dtx  (with options: `mathfont,newpx')
 %% 
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2022 by SJTUG
@@ -21,16 +21,17 @@
 %% 
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
-\ProvidesFile{sjtu-math-font-lm.def}
-  [2022/07/29 1.1.1 Latin Modern math fonts definition (SJTUThesis)]
-\RequirePackage{amssymb}
-\RequirePackage{upgreek}
+\ProvidesFile{sjtu-math-font-newpx.def}
+  [2022/07/29 1.1.1 NewPX math fonts definition (SJTUThesis)]
 \let\sjtu@save@encodingdefault\encodingdefault
 \let\sjtu@save@rmdefault\rmdefault
 \let\sjtu@save@sfdefault\sfdefault
 \let\sjtu@save@ttdefault\ttdefault
 \def\encodingdefault{T1}
-\RequirePackage{lmodern}
+\def\rmdefault{zpltlf}
+\def\sfdefault{qhv}
+\def\ttdefault{ntxtt}
+\RequirePackage[upint]{newpxmath}
 \RequirePackage{bm}
 \let\encodingdefault\sjtu@save@encodingdefault
 \let\rmdefault\sjtu@save@rmdefault
@@ -38,4 +39,4 @@
 \let\ttdefault\sjtu@save@ttdefault
 \endinput
 %%
-%% End of file `sjtu-math-font-lm.def'.
+%% End of file `sjtu-math-font-newpx.def'.

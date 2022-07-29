@@ -22,8 +22,7 @@
 %% The Current Maintainer of this work is Alexara Wu.
 %% 
 \ProvidesFile{sjtu-math-font-xits.def}
-  [2021/06/03 1.1.0rc1 XITS math fonts definition (SJTUThesis)]
-\sjtu@unimathtrue
+  [2022/07/29 1.1.1 XITS math fonts definition (SJTUThesis)]
 \RequirePackage{unicode-math}
 \IfFontExistsTF{XITSMath-Regular.otf}{
   \setmathfont[
@@ -63,22 +62,22 @@
     BoldItalicFont = *-bolditalic,
   ]{xits}
 }
-  \setmathsf[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]{texgyreheros}
-  \setmathtt[
-    Extension      = .otf,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-    Scale          = MatchLowercase,
-    Ligatures      = CommonOff,
-  ]{texgyrecursor}
+\setmathsf[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]{texgyreheros}
+\setmathtt[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Scale          = MatchLowercase,
+  Ligatures      = CommonOff,
+]{texgyrecursor}
 \endinput
 %%
 %% End of file `sjtu-math-font-xits.def'.
