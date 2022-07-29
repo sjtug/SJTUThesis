@@ -162,10 +162,10 @@
 % \usepackage{physics}
 
 % 直立体数学符号
-\newcommand{\dd}{\mathop{}\!\mathrm{d}}
-\newcommand{\ee}{\mathrm{e}}
-\newcommand{\ii}{\mathrm{i}}
-\newcommand{\jj}{\mathrm{j}}
+\providecommand{\dd}{\mathop{}\!\mathrm{d}}
+\providecommand{\ee}{\mathrm{e}}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\jj}{\mathrm{j}}
 
 % 国际单位制宏包
 \usepackage{siunitx}[=v2]
@@ -180,8 +180,8 @@
 
 % 一些文档中用到的 logo
 \usepackage{hologo}
-\newcommand{\XeTeX}{\hologo{XeTeX}}
-\newcommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
+\providecommand{\XeTeX}{\hologo{XeTeX}}
+\providecommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
 
 % 借用 ltxdoc 里面的几个命令方便写文档
 \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
