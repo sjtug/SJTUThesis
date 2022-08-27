@@ -8,6 +8,10 @@ indent_style = space
 insert_final_newline = true
 tab_width = 2
 
+[Makefile]
+indent_style = tab
+tab_width = 4
+
 [{*.bat,*.cmd}]
 end_of_line = crlf
 indent_style = tab
