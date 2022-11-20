@@ -124,9 +124,6 @@
 \graphicspath{{figures/}}
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 
-% 子 figure 支持
-% \usepackage{subcaption}
-
 % 确定浮动对象的位置，可以使用 [H]，强制将浮动对象放到这里（可能效果很差）
 % \usepackage{float}
 
@@ -172,9 +169,6 @@
 \def\minted{\vspace{-0.4cm}\oldminted}
 \let\oldendminted\endminted
 \def\endminted{\oldendminted\vspace{-0.4cm}}
-
-% 允许 text 模式直接使用下划线，从而可以写 \texttt{foo_bar} 而无需 \texttt{foo\_bar}
-% \usepackage{underscore}
 
 % 物理科学和技术中使用的数学符号，定义了 \qty 命令，与 siunitx 3.0 有冲突
 % \usepackage{physics}
