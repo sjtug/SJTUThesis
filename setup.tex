@@ -156,19 +156,10 @@
 % 代码环境宏包
 \usepackage{listings}
 \lstnewenvironment{codeblock}[1][]%
-{\lstset{style=lstStyleCode,#1}}{}
-% 代码高亮（需要 PATH 中包含 pygmentize 命令）
-\usepackage[chapter,newfloat]{minted}
-% 调整代码清单标题和标号
-\renewcommand{\thelisting}{\thechapter-\arabic{listing}}
-\captionsetup[listing]{name={代码清单}}
-% 设置 minted 环境显示效果
-\setminted{autogobble,baselinestretch=1,breaklines,frame=lines,framesep=3mm,style=vs,stripnl,tabsize=4}
-% 移除 minted 环境前后过多空白
-\let\oldminted\minted
-\def\minted{\vspace{-0.4cm}\oldminted}
-\let\oldendminted\endminted
-\def\endminted{\oldendminted\vspace{-0.4cm}}
+  {\lstset{style=lstStyleCode,#1}}{}
+
+% 代码高亮宏包（需要 PATH 中包含 pygmentize 命令，且构建环境允许添加 -shell-escape 参数）
+% \usepackage{minted}
 
 % 物理科学和技术中使用的数学符号，定义了 \qty 命令，与 siunitx 3.0 有冲突
 % \usepackage{physics}

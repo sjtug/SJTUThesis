@@ -5,10 +5,10 @@
 %% The original source files were:
 %%
 %% sjtuthesis.dtx  (with options: `class')
-%% 
+%%
 %% Copyright (C) 2009-2017 by weijianwen <weijianwen@gmail.com>
 %%           (C) 2018-2022 by SJTUG
-%% 
+%%
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
 %% of this license or (at your option) any later version.
@@ -16,11 +16,11 @@
 %%     https://www.latex-project.org/lppl.txt
 %% and version 1.3c or later is part of all distributions of LaTeX
 %% version 2005/12/01 or later.
-%% 
+%%
 %% This file has the LPPL maintenance status "maintained".
-%% 
+%%
 %% The Current Maintainer of this work is Alexara Wu.
-%% 
+%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sjtuthesis}
   [2022/07/29 1.1.1 Shanghai Jiao Tong University Thesis Template]
@@ -407,6 +407,8 @@
   figure*           = { name = figure@second, initial = 图 },
   table             = { initial = Table },
   table*            = { name = table@second, initial = 表 },
+  listing           = { initial = Listing },
+  listing*          = { name = listing@second, initial = 代码清单 },
   algorithm         = { initial = Algorithm },
   abbr              = { initial = Abbreviation },
   nom               = { initial = Nomenclature },
@@ -507,6 +509,8 @@
       figure*           = {Figure},
       table             = {表},
       table*            = {Table},
+      listing           = {代码清单},
+      listing*          = {Listing},
       algorithm         = {算法},
       abbr              = {缩略语对照表},
       nom               = {符号对照表},
@@ -848,6 +852,7 @@
   \def\thefigure{\thechapter\sjtu@style@fl@num@sep\arabic{figure}}
   \def\p@subfigure{\thefigure}
   \def\thetable{\thechapter\sjtu@style@fl@num@sep\arabic{table}}
+  \def\thelisting{\thechapter\sjtu@style@fl@num@sep\arabic{listing}}
   \def\theequation{\thechapter\sjtu@style@eq@num@sep\arabic{equation}}
 }
 \newcommand\sjtu@counter@without@chapter{
@@ -857,6 +862,8 @@
   \setcounter{figure}{0}
   \counterwithout{table}{chapter}
   \setcounter{table}{0}
+  \counterwithout{listing}{chapter}
+  \setcounter{listing}{0}
 }
 \newif\ifsjtu@set@float@fontsize \sjtu@set@float@fontsizefalse
 \sjtu@patchcmd\@floatboxreset%
@@ -1323,6 +1330,19 @@
     texcl=true,
     mathescape=true
   }
+}
+\PassOptionsToPackage{chapter,newfloat}{minted}
+\AtEndOfPackageFile*{minted}{
+  \captionsetup[listing]{name=\sjtu@name@listing}
+  \captionsetup[listing][bi-first]{name=\sjtu@name@listing}
+  \captionsetup[listing][bi-second]{name=\sjtu@name@listing@second}
+  % Set the display style of minted enviroment
+  \setminted{autogobble,baselinestretch=1,breaklines,frame=lines,framesep=3mm,style=vs,stripnl,tabsize=4}
+  % Remove redundant vertical space around minted listings
+  \let\oldminted\minted
+  \def\minted{\vspace{-0.4cm}\oldminted}
+  \let\oldendminted\endminted
+  \def\endminted{\oldendminted\vspace{-0.4cm}}
 }
 \endinput
 %%
