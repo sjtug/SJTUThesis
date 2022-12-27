@@ -9,14 +9,12 @@ $ENV{'TZ'}='Asia/Shanghai';
 # Ensure './texmf//' is in '$TEXINPUTS'.
 ensure_path( 'TEXINPUTS', './texmf//' );
 
-# Use lualatex with latexmk.
-# $pdf_mode = 4;
-
-# Use xelatex with latexmk.
+# PDF generate method
+#   - 1 pdfTeX
+#   - 3 LaTeX + DVIPDFMx
+#   - 4 LuaLaTeX
+#   - 5 XeLaTeX
 $pdf_mode = 5;
-
-# Disable postscript and dvi output.
-$postscript_mode = $dvi_mode = 0;
 
 # Add common patterns for tex engines.
 set_tex_cmds( '-synctex=1 %O %S' );

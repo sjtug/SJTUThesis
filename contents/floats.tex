@@ -30,13 +30,6 @@
  \label{fig:cn_100t}
 \end{figure}
 
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
-
 \subsection{多个图形}
 
 简单插入多个图形的例子如图~\ref{fig:SRR} 所示。这两个水平并列放置的子图共用一个
@@ -69,37 +62,12 @@ culpa qui officia deserunt mollit anim id est laborum.
 \end{minipage}
 \end{figure}
 
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
-
 如果要为共用一个计数器的多个子图添加子图题，建议使用较新的 \pkg{subcaption}宏
 包，不建议使用 \pkg{subfigure} 或 \pkg{subfig} 等宏包。
 
 推荐使用 \pkg{subcaption} 宏包的 \cs{subcaptionbox} 并排子图，子图题置于子图之
 下，子图号用 a)、b) 等表示。也可以使用 \pkg{subcaption} 宏包的 \cs{subcaption}
 （放在 minipage中，用法同 \cs{caption}）。
-
-搭配 \pkg{bicaption} 宏包时，可以启用 \cs{subcaptionbox} 和 \cs{subcaption} 的双
-语变种 \cs{bisubcaptionbox} 和 \cs{bisubcaption}，如图~\ref{fig:bisubcaptionbox}
-所示。
-
-\begin{figure}[!hbtp]
-  \centering
-  \bisubcaptionbox{$R_3 = 1.5\text{mm}$ 时轴承的压力分布云图}%
-                  {Pressure contour of bearing when $R_3 = 1.5\text{mm}$}%
-                  [6.4cm]{\includegraphics[height=2.5cm]{pressure15.jpg}}
-  \hspace{1cm}
-  \bisubcaptionbox{$R_3 = 2.5\text{mm}$ 时轴承的压力分布云图}%
-                  {Pressure contour of bearing when $R_3 = 2.5\text{mm}$}%
-                  [6.4cm]{\includegraphics[height=2.5cm]{/pressure25.jpg}}
-  \bicaption{包含子图题的范例（使用 subcaptionbox）}
-            {Example with subcaptionbox}
-  \label{fig:bisubcaptionbox}
-\end{figure}
 
 \pkg{subcaption} 宏包也提供了 \pkg{subfigure} 和 \pkg{subtable} 环境，如
 图~\ref{fig:subfigure}。
@@ -121,12 +89,24 @@ culpa qui officia deserunt mollit anim id est laborum.
   \label{fig:subfigure}
 \end{figure}
 
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+搭配 \pkg{bicaption} 宏包时，可以启用 \cs{subcaptionbox} 和 \cs{subcaption} 的双
+语变种 \cs{bisubcaptionbox} 和 \cs{bisubcaption}，如图~\ref{fig:bisubcaptionbox}
+所示。
+
+\begin{figure}[!hbtp]
+  \centering
+  \bisubcaptionbox{$R_3 = 1.5\text{mm}$ 时轴承的压力分布云图}%
+                  {Pressure contour of bearing when $R_3 = 1.5\text{mm}$}%
+                  [6.4cm]{\includegraphics[height=3cm]{example-image-a.pdf}}
+  \hspace{1cm}
+  \bisubcaptionbox{$R_3 = 2.5\text{mm}$ 时轴承的压力分布云图}%
+                  {Pressure contour of bearing when $R_3 = 2.5\text{mm}$}%
+                  [6.4cm]{\includegraphics[height=3cm]{example-image-b.pdf}}
+  \bicaption{包含子图题的范例（使用 subcaptionbox）}
+            {Example with subcaptionbox}
+  \label{fig:bisubcaptionbox}
+\end{figure}
+
 
 \section{表格}
 
@@ -187,13 +167,6 @@ culpa qui officia deserunt mollit anim id est laborum.
     \end{tablenotes}
   \end{threeparttable}
 \end{table}
-
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
 
 如某个表需要转页接排，可以用 \pkg{longtable} 实现。接排时表题省略，表头应重复书
 写，并在右上方写“续表 xx”，如表~\ref{tab:performance}。

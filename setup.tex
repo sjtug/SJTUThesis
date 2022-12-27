@@ -45,8 +45,8 @@
     %
     % 副指导教师
     %
-    % assisupervisor  = {某某教授},
-    % assisupervisor* = {Prof. Uom Uom},
+    % assoc-supervisor  = {某某教授},
+    % assoc-supervisor* = {Prof. Uom Uom},
     %
     % 学号
     %
@@ -67,11 +67,6 @@
     %
     department      = {某某系},
     department*     = {Depart of XXX},
-    %
-    % 课程名称
-    %   仅课程论文适用
-    %
-    course          = {某某课程},
     %
     % 答辩日期
     %   使用 ISO 格式 (yyyy-mm-dd)；默认为当前时间
@@ -119,6 +114,9 @@
 \setlength{\bibitemsep}{0pt}
 % 导入参考文献数据库
 \addbibresource{bibdata/thesis.bib}
+
+% 脚注格式
+\usepackage[perpage,bottom,hang]{footmisc}
 
 % 定义图片文件目录与扩展名
 \graphicspath{{figures/}}
