@@ -162,8 +162,8 @@
       \bottomrule
     \end{tabular}
     \begin{tablenotes}
-    \item [a] the first note.% or \item [a]
-    \item [b] the second note.% or \item [b]
+    \item [a] the first note.
+    \item [b] the second note.
     \end{tablenotes}
   \end{threeparttable}
 \end{table}
@@ -188,7 +188,8 @@
       & \multicolumn{1}{c}{时间 (s)} &  文件（KB）\\
     \midrule
     \endfirsthead
-    \multicolumn{7}{r}{续表~\thetable} \\
+    \multicolumn{7}{l}{\textbf{续表~\thetable}} \\
+    % 英语论文：\multicolumn{7}{r}{\textbf{Table~\thetable~(continued)}} \\
     \toprule
     测试程序 & \multicolumn{1}{c}{正常运行} & \multicolumn{1}{c}{同步}
       & \multicolumn{1}{c}{检查点} & \multicolumn{1}{c}{卷回恢复}
