@@ -1,7 +1,7 @@
 # SJTUThesis 示例模板
 
 [![Build Status](https://github.com/sjtug/SJTUThesis/actions/workflows/build.yml/badge.svg)](https://github.com/sjtug/SJTUThesis/actions)
-[![SJTUTeX](https://img.shields.io/badge/SJTUTheis-v1.0.0rc7-green.svg)](https://github.com/sjtug/SJTUTeX) 
+[![SJTUTeX](https://img.shields.io/badge/SJTUThesis-v2.0-green.svg)](https://github.com/sjtug/SJTUTeX) 
 [![Join Discussions](https://img.shields.io/github/discussions/sjtug/SJTUThesis)](https://github.com/sjtug/SJTUThesis/discussions)
 
 ## 欢迎使用上海交通大学论文模板
