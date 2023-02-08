@@ -7,8 +7,8 @@
 %% sjtutex.dtx  (with options: `cjkfont,adobe')
 %% 
 %%     Copyright (C) SJTUG
-%%       2018--2022 Alexara Wu   <alexarawu@outlook.com>
-%%       2022       Log Creative <logcreative@outlook.com>
+%%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
+%%       2022--2023 Log Creative <logcreative@outlook.com>
 %% 
 %%     This work may be distributed and/or modified under the
 %%     conditions of the LaTeX Project Public License, either
@@ -22,9 +22,9 @@
 %% 
 %%     This work has the LPPL maintenance status `maintained'.
 %% 
-%%     TThe Current Maintainers of this work are Alexara Wu and Log Creative.
+%%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-alpha 2022-12-27 18:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
   {Adobe CJK fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-cjk-font-adobe.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}

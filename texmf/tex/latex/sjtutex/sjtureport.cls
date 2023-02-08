@@ -7,8 +7,8 @@
 %% sjtutex.dtx  (with options: `class,report')
 %% 
 %%     Copyright (C) SJTUG
-%%       2018--2022 Alexara Wu   <alexarawu@outlook.com>
-%%       2022       Log Creative <logcreative@outlook.com>
+%%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
+%%       2022--2023 Log Creative <logcreative@outlook.com>
 %% 
 %%     This work may be distributed and/or modified under the
 %%     conditions of the LaTeX Project Public License, either
@@ -22,11 +22,11 @@
 %% 
 %%     This work has the LPPL maintenance status `maintained'.
 %% 
-%%     TThe Current Maintainers of this work are Alexara Wu and Log Creative.
+%%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\GetIdInfo $Id: sjtutex.dtx 2.0-alpha 2022-12-27 18:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
   {Report template for Shanghai Jiao Tong University}
 \ProvidesExplClass{sjtureport}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -39,8 +39,7 @@
     manager~ or~ from~ CTAN.
   }
 \@ifpackagelater { expl3 } { 2020/04/06 } { }
-  { \msg_error:nnn { sjtutex } { l3-too-old } {#1} }
-\NewDocumentCommand \sjtuthesis { } { SJTU \textsc{ Thesis } }
+  { \msg_error:nnn { sjtutex } { l3-too-old } { expl3 } }
 \bool_new:N \l__sjtu_tmpa_bool
 \int_new:N \l__sjtu_tmpa_int
 \tl_new:N \l__sjtu_tmpa_tl
@@ -66,14 +65,12 @@
 \tl_new:N \g__sjtu_save_rmdefault_tl
 \tl_new:N \g__sjtu_save_sfdefault_tl
 \tl_new:N \g__sjtu_save_ttdefault_tl
-\int_new:N \g__sjtu_math_style_int
-\bool_new:N \g__sjtu_intlimits_bool
-\bool_set_false:N \g__sjtu_intlimits_bool
-\bool_new:N \g__sjtu_slint_bool
-\bool_set_false:N \g__sjtu_slint_bool
+\bool_new:N \g__sjtu_slanted_uppercase_greek_bool
+\bool_new:N \g__sjtu_upright_integral_bool
+\bool_new:N \g__sjtu_integral_limits_bool
 \clist_new:N \g__sjtu_options_to_ctex_class_clist
 \clist_set:Nn \g__sjtu_options_to_ctex_class_clist
-  { UTF8, scheme = plain, fontset = none }
+  { a4paper, UTF8, scheme = plain, fontset = none }
 \clist_new:N \g__sjtu_options_to_packages_clist
 \bool_new:N \g__sjtu_twoside_bool
 \bool_set_false:N \g__sjtu_twoside_bool
@@ -82,6 +79,15 @@
 \bool_new:N \g__sjtu_titlepage_bool
 \bool_set_true:N \g__sjtu_titlepage_bool
 \bool_new:N \g__sjtu_draft_bool
+\cs_new_protected:Npn \__sjtu_deprecated_option:n
+  { \msg_warning:nnn { sjtutex } { deprecated-option } }
+\cs_new_protected:Npn \__sjtu_set_deprecated_option:n #1
+  {
+    \__sjtu_deprecated_option:n { Option~ `#1'~ is~ set. }
+    \keys_set:nn { sjtu / option } {#1}
+  }
+\msg_new:nnn { sjtutex } { deprecated-option }
+  { Option~ `\l_keys_key_tl'~ is~ deprecated. \\ #1 }
 \keys_define:nn { sjtu / option }
   {
     lang .choice: ,
@@ -114,48 +120,64 @@
     text-font .initial:n = { newtx } ,
     math-font .tl_gset:N = \g__sjtu_math_font_tl ,
     cjk-font  .tl_gset:N = \g__sjtu_cjk_font_tl ,
+    fontset .code:n = { \__sjtu_set_deprecated_option:n { cjk-font = #1 } } ,
     math-style .choice: ,
-    math-style .value_required: n = true,
-    math-style .choices:nn =
-      { TeX, ISO, GB }
-      { \int_gset_eq:NN \g__sjtu_math_style_int \l_keys_choice_int } ,
-    math-style .initial:n = { TeX } ,
-    nointlimits .value_forbidden:n = true,
-    intlimits   .value_forbidden:n = true,
-    nointlimits .code:n =
-      { \bool_set_false:N \g__sjtu_intlimits_bool },
-    intlimits   .code:n =
-      { \bool_set_true:N  \g__sjtu_intlimits_bool },
-    upint .value_forbidden:n = true,
-    slint .value_forbidden:n = true,
-    upint .code:n =
-      { \bool_set_false:N \g__sjtu_slint_bool },
-    slint .code:n =
-      { \bool_set_true:N  \g__sjtu_slint_bool },
+    math-style .value_required:n = true,
+    math-style / TeX .code:n =
+      {
+        \bool_gset_false:N \g__sjtu_slanted_uppercase_greek_bool
+        \bool_gset_false:N \g__sjtu_upright_integral_bool
+        \bool_gset_false:N \g__sjtu_integral_limits_bool
+      } ,
+    math-style / ISO .code:n =
+      {
+        \bool_gset_true:N \g__sjtu_slanted_uppercase_greek_bool
+        \bool_gset_true:N \g__sjtu_upright_integral_bool
+        \bool_gset_true:N \g__sjtu_integral_limits_bool
+      } ,
+    math-style .initial:n = { ISO } ,
+    uppercase-greek .choice: ,
+    uppercase-greek .value_required:n = true ,
+    uppercase-greek / slanted .code:n =
+      { \bool_gset_true:N  \g__sjtu_slanted_uppercase_greek_bool } ,
+    uppercase-greek / upright .code:n =
+      { \bool_gset_false:N \g__sjtu_slanted_uppercase_greek_bool } ,
+    integral .choice: ,
+    integral .value_required:n = true ,
+    integral / slanted .code:n =
+      { \bool_gset_false:N \g__sjtu_upright_integral_bool } ,
+    integral / upright .code:n =
+      { \bool_gset_true:N  \g__sjtu_upright_integral_bool } ,
+    integral-limits .choice: ,
+    integral-limits .value_required:n = true ,
+    integral-limits / false .code:n =
+      { \bool_gset_false:N \g__sjtu_integral_limits_bool } ,
+    integral-limits / true  .code:n =
+      { \bool_gset_true:N  \g__sjtu_integral_limits_bool } ,
     oneside .value_forbidden:n = true,
     twoside .value_forbidden:n = true,
     oneside .code:n =
-      { \bool_set_false:N \g__sjtu_twoside_bool } ,
+      { \bool_gset_false:N \g__sjtu_twoside_bool } ,
     twoside .code:n =
-      { \bool_set_true:N  \g__sjtu_twoside_bool } ,
+      { \bool_gset_true:N  \g__sjtu_twoside_bool } ,
     openany   .value_forbidden:n = true,
     openright .value_forbidden:n = true,
     openany   .code:n =
-      { \bool_set_false:N \g__sjtu_openright_bool } ,
+      { \bool_gset_false:N \g__sjtu_openright_bool } ,
     openright .code:n =
-      { \bool_set_true:N  \g__sjtu_openright_bool } ,
+      { \bool_gset_true:N  \g__sjtu_openright_bool } ,
     titlepage   .value_forbidden:n = true,
     notitlepage .value_forbidden:n = true,
     titlepage   .code:n =
-      { \bool_set_true:N  \g__sjtu_titlepage_bool } ,
+      { \bool_gset_true:N  \g__sjtu_titlepage_bool } ,
     notitlepage .code:n =
-      { \bool_set_false:N \g__sjtu_titlepage_bool } ,
+      { \bool_gset_false:N \g__sjtu_titlepage_bool } ,
     draft .value_forbidden:n = true,
     final .value_forbidden:n = true,
     draft .code:n =
-      { \bool_set_true:N  \g__sjtu_draft_bool },
+      { \bool_gset_true:N  \g__sjtu_draft_bool } ,
     final .code:n =
-      { \bool_set_false:N \g__sjtu_draft_bool },
+      { \bool_gset_false:N \g__sjtu_draft_bool } ,
     unknown .code:n = { \msg_error:nn { sjtutex } { unknown-option } }
   }
 \msg_new:nnn { sjtutex } { unknown-option }
@@ -170,6 +192,16 @@
   { \dim_set_eq:NN \g__sjtu_line_skip_dim \g__sjtu_default_line_skip_dim }
 \fp_set:Nn \g__sjtu_line_spread_fp
   { \dim_ratio:nn { \g__sjtu_line_skip_dim } { \g__sjtu_font_size_dim } / 1.2 }
+\clist_put_right:Nx \@classoptionslist
+  {
+    a4paper ,
+    \bool_if:NT \g__sjtu_slanted_uppercase_greek_bool
+      { slantedGreek } ,
+    \bool_if:NT \g__sjtu_upright_integral_bool
+      { upint } ,
+    \bool_if:NT \g__sjtu_integral_limits_bool
+      { intlimits }
+  }
 \clist_put_right:Nx \g__sjtu_options_to_ctex_class_clist
   {
     zihao      = \g__sjtu_zihao_tl ,
@@ -186,54 +218,25 @@
 \exp_args:No \PassOptionsToClass
   { \g__sjtu_options_to_ctex_class_clist }
   { ctexrep }
-\clist_set:Nn \g__sjtu_options_to_packages_clist
+\clist_set:Nx \g__sjtu_options_to_packages_clist
   {
-    { no-math           } { fontspec     },
-    { titles            } { tocloft      },
-    { perpage, bottom   } { footmisc     },
-    { list = off        } { bicaption    },
+    { no-math           } { fontspec     } ,
+    { titles            } { tocloft      } ,
+    { perpage, bottom   } { footmisc     } ,
+    { list = off        } { bicaption    } ,
     { warnings-off =
       {
         mathtools-overbracket,
         mathtools-colon
       }
-    }                     { unicode-math },
-    { amsmath, thmmarks } { ntheorem     },
-    { chapter           } { algorithm    },
-    { algochapter       } { algorithm2e  }
-  }
-\int_compare:nNnT { \g__sjtu_math_style_int } > { 1 }
-  {
-    \clist_put_right:Nn \g__sjtu_options_to_packages_clist
-      {
-        { slantedGreek } { newtxmath },
-        { slantedGreek } { newpxmath },
-        { slantedGreek } { mathptmx  }
-      }
-  }
-\bool_if:NTF \g__sjtu_intlimits_bool
-  {
-    \clist_put_right:Nn \g__sjtu_options_to_packages_clist
-      {
-        { intlimits     } { amsmath },
-        { displaylimits } { cmupint }
-      }
-  }
-  {
-    \clist_put_right:Nn \g__sjtu_options_to_packages_clist
-      {
-        { nointlimits   } { amsmath },
-        { nolimits      } { cmupint }
-      }
-  }
-\bool_if:NF \g__sjtu_slint_bool
-  {
-    \clist_put_right:Nn \g__sjtu_options_to_packages_clist
-      {
-        { upint } { newtxmath },
-        { upint } { newpxmath },
-        { upint } { stix2     }
-      }
+    }                     { unicode-math } ,
+    { amsmath, thmmarks } { ntheorem     } ,
+    { chapter           } { algorithm    } ,
+    { algochapter       } { algorithm2e  } ,
+    {
+      \bool_if:NTF \g__sjtu_integral_limits_bool
+        { displaylimits } { nolimits }
+    }                     { cmupint      }
   }
 \clist_map_inline:Nn \g__sjtu_options_to_packages_clist
   { \PassOptionsToPackage #1 }
@@ -623,7 +626,7 @@
         \cs_set_eq:cc { up ##1 } {     ##1 }
         \cs_set_eq:cc { it ##1 } { var ##1 }
       }
-    \int_compare:nNnT { \g__sjtu_math_style_int } > { 1 }
+    \bool_if:NT \g__sjtu_slanted_uppercase_greek_bool
       {
         \clist_map_inline:Nn \c__sjtu_uppercase_greek_clist
           { \cs_set_eq:cc { ##1 } { it ##1 } }
@@ -684,9 +687,18 @@
       { { \symbf {#1} } }
     \DeclareDocumentCommand \boldsymbol { m }
       { { \symbf {#1} } }
-    \int_compare:nNnTF { \g__sjtu_math_style_int } > { 1 }
+    \bool_if:NTF \g__sjtu_slanted_uppercase_greek_bool
       { \keys_set:nn { unicode-math } { math-style = ISO } }
       { \keys_set:nn { unicode-math } { math-style = TeX } }
+    \bool_if:NTF \g__sjtu_integral_limits_bool
+      { \removenolimits } { \addnolimits }
+      {
+        \int\iint\iiint\iiiint\oint\oiint\oiiint
+        \intclockwise\varointclockwise\ointctrclockwise\sumint
+        \intbar\intBar\fint\cirfnint\awint\rppolint
+        \scpolint\npolint\pointint\sqint\intlarhk\intx
+        \intcap\intcup\upint\lowint
+      }
   }
 \__sjtu_unicode_engine_case:nn
   {
@@ -700,7 +712,6 @@
   }
 \geometry
   {
-    paper         = a4paper,
     top           = 3.5 cm,
     bottom        = 4.0 cm,
     left          = 2.5 cm,
