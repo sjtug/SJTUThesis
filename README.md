@@ -1,7 +1,7 @@
 # SJTUThesis 示例模板
 
 [![Build Status](https://github.com/sjtug/SJTUThesis/actions/workflows/build.yml/badge.svg)](https://github.com/sjtug/SJTUThesis/actions)
-[![SJTUTeX](https://img.shields.io/badge/SJTUTheis-v1.0.0rc7-green.svg)](https://github.com/sjtug/SJTUTeX) 
+[![SJTUTeX](https://img.shields.io/badge/SJTUThesis-v2.0-green.svg)](https://github.com/sjtug/SJTUTeX) 
 [![Join Discussions](https://img.shields.io/github/discussions/sjtug/SJTUThesis)](https://github.com/sjtug/SJTUThesis/discussions)
 
 ## 欢迎使用上海交通大学论文模板
@@ -9,7 +9,7 @@
 本示例模板是应用上海交通大学学位论文（非官方）LaTeX 文档类 SJTUThesis 的一个完整实现。演示了排版中常用的例子，包括公式、表格、算法、参考文献等。
 用户可以参考或者直接基于此示例文档撰写论文。
 
-请注意 SJTUThesis 目前仅支持 XeTeX 引擎，字符编码仅支持 UTF-8。
+SJTUThesis 支持 XeTeX 引擎，字符编码仅支持 UTF-8。
 
 ## 获取模板
 
@@ -31,7 +31,7 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 点击 [链接](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b) 即可直接使用。
 
-如果需要在其他在线 LaTeX 平台上使用（比如 latex.sjtu.edu.cn），您可以下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至相应平台。请注意，Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
+如果需要在其他在线 LaTeX 平台上使用（比如 [latex.sjtu.edu.cn](https://latex.sjtu.edu.cn)），您可以下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至相应平台。请注意，Overleaf 默认使用 pdflatex 编译，您需要设置使用 XeLaTeX 编译器。
 
 ## 模板使用
 
@@ -41,11 +41,11 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 安装 “LaTeX Workshop” 后，选择 `Recipe: latexmk (xelatex)` 编译即可，并在设置中将 `latex-workshop.latex.recipe.default` 改为 `lastUsed` 以一直使用该选项编译。
 
-### TexStudio 用户
+### TeXStudio 用户
 
 在TexStudio的菜单栏中，Options-Configure TeXstudio界面中，修改以下两处：
 
-Commands-Latexmk一项修改为`latexmk.exe -silent -synctex=1 -xelatex %`
+Commands-Latexmk一项修改为`latexmk -silent -synctex=1 -xelatex %`
 
 Build-Default Compiler一项修改为`txs:///latexmk`
 
@@ -100,13 +100,11 @@ make wordcount                # 论文字数统计
 
 ### 成为贡献者
 
-这个仓库是面向用户的**示例模版**，如果你有很好的排版示例，可以提交到此仓库与大家分享。如果你想要为 SJTUThesis 文档类贡献代码，可移步 [SJTUTeX (v1)](https://github.com/sjtug/SJTUTeX/tree/v1)。
+这个仓库是面向用户的**示例模版**，如果你有很好的排版示例，可以提交到此仓库与大家分享。如果你想要为 SJTUThesis 文档类贡献代码，可移步 [SJTUTeX](https://github.com/sjtug/SJTUTeX)。
 
-我们正在开发基于 LaTeX3 的新文档类 SJTUTeX v2，本仓库的示例模版对应 SJTUTeX v1。
+`texmf/tex/latex/sjtuthesis` 目录下的内容都是通过 SJTUTeX 的 `sjtuthesis.dtx` 文件自动生成的。如果您需要修改文档类的内容，应该修改 SJTUTeX 仓库中的 `sjtuthesis.dtx`，而非直接修改 cls 文件。
 
-`texmf/tex/latex/sjtuthesis` 目录下的内容都是通过 SJTUTeX v1 的 `sjtuthesis.dtx` 文件自动生成的。如果您需要修改文档类的内容，应该修改 SJTUTeX 仓库中的 `sjtuthesis.dtx`，而非直接修改 cls 文件。您可以使用 `build_v1.sh` 一键搭建开发环境。这个脚本会下载 SJTUTeX v1 的代码，编译 `.dtx` 文件，并把生成的文件拷贝到 SJTUThesis 的 `texmf` 目录下。
-
-因此，如果您修改了 `sjtuthesis` 模版类，应该先给 `SJTUTeX` 的 `v1` branch 发 PR，然后再将更新同步到本仓库。
+因此，如果您修改了 `sjtuthesis` 模版类，应该先给 `SJTUTeX` 发 PR，然后再将更新同步到本仓库。
 
 在贡献之前，你可以从[这些问题](https://github.com/sjtug/SJTUThesis/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue)开始熟悉贡献代码的流程。除了提交 Pull Request 之外，还有以下方式可以进行贡献：
 
