@@ -151,6 +151,9 @@
 \lstnewenvironment{codeblock}[1][]%
   {\lstset{style=lstStyleCode,#1}}{}
 
+% 代码高亮宏包（需要 PATH 中包含 pygmentize 命令，且构建环境允许添加 -shell-escape 参数）
+% \usepackage{minted}
+
 % 物理科学和技术中使用的数学符号，定义了 \qty 命令，与 siunitx 3.0 有冲突
 % \usepackage{physics}
 
@@ -204,3 +207,4 @@
 \def\subparagraphautorefname{子段落}
 \def\FancyVerbLineautorefname{行}
 \def\theoremautorefname{定理}
+\def\listingautorefname{代码清单}

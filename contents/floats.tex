@@ -266,8 +266,9 @@
 
 \section{代码环境}
 
-我们可以在论文中插入算法，但是不建议插入大段的代码。如果确实需要插入代码，建议使
-用 \pkg{listings} 宏包。
+我们可以在论文中插入算法，但是不建议插入大段的代码。如果确实需要插入代码，可以使用 \pkg{listings} 或 \pkg{minted} 宏包。
+
+下面展示了使用 \pkg{listings} 宏包的代码块例子：
 
 \begin{codeblock}[language=C]
 #include <stdio.h>
@@ -297,3 +298,14 @@ int main() {
   return 0;
 }
 \end{codeblock}
+
+若要使用更美观以及支持代码高亮的 \pkg{minted} 宏包，请确保 \texttt{PATH} 中包含 \texttt{pygmentize} 命令，并参考下面注释掉的内容及 \pkg{minted} 宏包文档。
+
+% \begin{listing}[!hpt]
+%   \bicaption{代码示例}{Code Example}
+%   \label{code:codelisting}
+%   \begin{minted}{python}
+%     def hello():
+%         foo = bar()
+%   \end{minted}
+% \end{listing}
