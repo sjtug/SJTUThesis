@@ -8,7 +8,7 @@
 
 This sample template is a full implementation of SJTUThesis document class which is an *unofficial* LaTeX class for preparing degree theses or course papers at Shanghai Jiao Tong University.
 
-Please note that `sjtuthesis` supports XeTeX engine, `sjtuthesis` only allows UTF-8 character encoding.
+Please note that `sjtuthesis` supports both XeTeX and LuaTeX engine, `sjtuthesis` only allows UTF-8 character encoding.
 
 ## Obtain Template
 
