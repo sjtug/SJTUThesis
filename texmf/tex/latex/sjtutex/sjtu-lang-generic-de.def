@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-cjk-font-adobe.def',
+%% This is file `sjtu-lang-generic-de.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `font,cjk,adobe,und')
+%% sjtutex.dtx  (with options: `lang,generic,de')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -25,12 +25,28 @@
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
 \GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
-  {Adobe CJK fonts definition (SJTUTeX)}
-\ProvidesExplFile{sjtu-cjk-font-adobe.def}
+  {German specific definition for generic (SJTUTeX)}
+\ProvidesExplFile{sjtu-lang-generic-de.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\tl_if_eq:NNTF \g__sjtu_lang_tl \c__sjtu_lang_ja_tl
-  { \ctex_file_input:n { sjtu-cjk-font-adobe-ja.def } }
-  { \ctex_file_input:n { sjtu-cjk-font-adobe-zh.def } }
+\cs_new:Npn \__sjtu_date_aux_de:nnn #1#2#3
+  {
+    \clist_item:Nn \c__sjtu_name_month_de_clist {#2} ~
+    {#3} ,~ \int_to_arabic:n {#1}
+  }
+\cs_new:Npn \__sjtu_date_aux_de:w #1-#2-#3 \q_stop
+  { \__sjtu_date_aux_de:nnn {#1} {#2} {#3} }
+\cs_new:Npn \__sjtu_date_aux_short_de:nn #1#2
+  {
+    \clist_item:Nn \c__sjtu_name_month_de_clist {#2} ,~
+    \int_to_arabic:n {#1}
+  }
+\cs_new:Npn \__sjtu_date_aux_short_de:w #1-#2 \q_stop
+  { \__sjtu_date_aux_short_de:nn {#1} {#2} }
+\cs_new_protected:Nn \__sjtu_set_language_de:
+  {
+    \ctex_set:n { autoindent = 1.5 em }
+    \normalfont
+  }
 \endinput
 %%
-%% End of file `sjtu-cjk-font-adobe.def'.
+%% End of file `sjtu-lang-generic-de.def'.

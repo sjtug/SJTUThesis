@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `cjkfont,mac')
+%% sjtutex.dtx  (with options: `font,cjk,mac,und')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,55 +24,13 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {macOS CJK fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-cjk-font-mac.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\__sjtu_fontset_case:nnn
-  { \__sjtu_fontset_error:nn { cjk } { mac } }
-  {
-    \ctex_load_zhmap:nnnn { zhsong } { zhhei } { zhfs } { mac }
-    \ctex_punct_set:n { mac }
-    \ctex_punct_map_family:nn   { \CJKrmdefault } { zhsong }
-    \ctex_punct_map_family:nn   { \CJKsfdefault } { zhpf   }
-    \ctex_punct_map_bfseries:nn { \CJKrmdefault } { zhpf   }
-    \ctex_punct_map_itshape:nn  { \CJKrmdefault } { zhkai  }
-  }
-  {
-    \setCJKmainfont { Songti~SC  }
-      [
-        UprightFont    = *~Light,
-        BoldFont       = *~Bold,
-        ItalicFont     = Kaiti~SC~Regular,
-        BoldItalicFont = Kaiti~SC~Bold
-      ]
-    \setCJKsansfont { Heiti~SC   }
-      [
-        UprightFont    = *~Medium,
-        BoldFont       = *~Medium
-      ]
-    \setCJKmonofont { STFangsong }
-    \setCJKfamilyfont { zhsong } { Songti~SC  }
-      [
-        UprightFont    = *~Light,
-        BoldFont       = *~Bold
-      ]
-    \setCJKfamilyfont { zhhei  } { Heiti~SC   }
-      [
-        UprightFont    = *~Medium,
-        BoldFont       = *~Medium
-      ]
-    \setCJKfamilyfont { zhfs   } { STFangsong }
-    \setCJKfamilyfont { zhkai  } { Kaiti~SC   }
-      [
-        UprightFont    = *~Regular,
-        BoldFont       = *~Bold
-      ]
-  }
-\NewDocumentCommand \songti   { } { \CJKfamily { zhsong  } }
-\NewDocumentCommand \heiti    { } { \CJKfamily { zhhei   } }
-\NewDocumentCommand \fangsong { } { \CJKfamily { zhfs    } }
-\NewDocumentCommand \kaishu   { } { \CJKfamily { zhkai   } }
+\tl_if_eq:NNTF \g__sjtu_lang_tl \c__sjtu_lang_ja_tl
+  { \ctex_file_input:n { sjtu-cjk-font-mac-ja.def } }
+  { \ctex_file_input:n { sjtu-cjk-font-mac-zh.def } }
 \endinput
 %%
 %% End of file `sjtu-cjk-font-mac.def'.

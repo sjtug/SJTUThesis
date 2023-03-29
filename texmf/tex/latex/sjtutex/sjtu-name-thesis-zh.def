@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-name-thesis.cfg',
+%% This is file `sjtu-name-thesis-zh.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `name,thesis')
+%% sjtutex.dtx  (with options: `name,thesis,zh')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,58 +24,45 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
-  {Name config for thesis template (SJTUTeX)}
-\ProvidesExplFile{sjtu-name-thesis.cfg}
+\GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
+  {Chinese name config for thesis (SJTUTeX)}
+\ProvidesExplFile{sjtu-name-thesis-zh.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\clist_map_inline:nn
+  {
+    { year  } { 年 } ,
+    { month } { 月 } ,
+    { day   } { 日 }
+  }
+  { \__sjtu_define_name:nnn { zh } #1 }
 \__sjtu_define_symbol:nn { white_square } { "25A1 }
-\__sjtu_define_name_from_clist:nNnn { degree_level }
-  \g__sjtu_thesis_type_int
-  { 学士    , 硕士  , 博士   }
-  { Bachelor, Master, Doctor }
+\__sjtu_define_name_from_clist:nnnn { zh }
+  { degree_level } { \g__sjtu_thesis_type_int }
+  { 学士, 硕士, 博士 }
 \clist_map_inline:nn
   {
-    { id               } { 学号         } ,
-    { department       } { 院系         } ,
-    { major            } { 学科 / 专业  } ,
-    { degree           } { 申请学位     } ,
-    { thesis           } { 学位论文     } ,
-    { decl_author      } { 学位论文作者 } ,
-    { decl_supervisor  } { 指导教师     }
+    { univ             } { 上海交通大学           } ,
+    { author           } { 姓名                   } ,
+    { id               } { 学号                   } ,
+    { supervisor       } { 导师                   } ,
+    { assoc_supervisor } { 副导师                 } ,
+    { department       } { 院系                   } ,
+    { co_supervisor    } { 联合导师               } ,
+    { major            } { 学科 / 专业            } ,
+    { degree           } { 申请学位               } ,
+    { thesis           } { 学位论文               } ,
+    { title_page       } { 题名页                 } ,
+    { declaration      } { 原创性声明及使用授权书 } ,
+    { orig_decl        } { 原创性声明             } ,
+    { auth_decl        } { 使用授权书             } ,
+    { decl_author      } { 学位论文作者           } ,
+    { decl_supervisor  } { 指导教师               } ,
+    { abstract         } { 摘 \quad 要            } ,
+    { keywords         } { 关键词                 } ,
+    { info_sep         } { ：                     } ,
+    { item_sep         } { ，                     }
   }
-  { \__sjtu_define_name:nn #1 }
-\clist_map_inline:nn
-  {
-    { author           } { 姓名     } { Author             } ,
-    { supervisor       } { 导师     } { Supervisor         } ,
-    { assoc_supervisor } { 副导师   } { Assoc.~ Supervisor } ,
-    { co_supervisor    } { 联合导师 } { Co-supervisor      }
-  }
-  { \__sjtu_define_name:nnn #1 }
-\clist_map_inline:nn
-  {
-    { univ       } { 上海交通大学    } { Shanghai~ Jiao~ Tong~ University } ,
-    { address    } { 中国 \quad 上海 } { Shanghai,~ P.R.~ China           } ,
-    { title_page } { 题名页          } { Title~ Page                } ,
-    { orig_decl  } { 原创性声明      } { Statement~ of~ Originality } ,
-    { auth_decl  } { 使用授权书      } { Copyright~ Permission      } ,
-    { decl       }
-      {
-        \c__sjtu_name_orig_decl_zh_tl
-        及
-        \c__sjtu_name_auth_decl_zh_tl
-      }
-      {
-        { \c__sjtu_name_orig_decl_en_tl }~
-        and~
-        { \c__sjtu_name_auth_decl_en_tl }
-      } ,
-    { abstract } { 摘 \quad 要 } { Abstract    } ,
-    { keywords } { 关键词：    } { Key~words:~ } ,
-    { info_sep } { ： } { :~ } ,
-    { item_sep } { ， } { ,~ }
-  }
-  { \__sjtu_define_name_g:nnn #1 }
+  { \__sjtu_define_name:nnn { zh } #1 }
 \tl_const:Nn \c__sjtu_orig_decl_text_zh_tl
   {
     本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立进行研究工
@@ -114,4 +101,4 @@
   }
 \endinput
 %%
-%% End of file `sjtu-name-thesis.cfg'.
+%% End of file `sjtu-name-thesis-zh.def'.

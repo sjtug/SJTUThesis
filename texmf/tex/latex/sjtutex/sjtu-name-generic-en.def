@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-cjk-font-adobe.def',
+%% This is file `sjtu-name-generic-en.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `font,cjk,adobe,und')
+%% sjtutex.dtx  (with options: `name,generic,en')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -25,12 +25,21 @@
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
 \GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
-  {Adobe CJK fonts definition (SJTUTeX)}
-\ProvidesExplFile{sjtu-cjk-font-adobe.def}
+  {English name config for generic (SJTUTeX)}
+\ProvidesExplFile{sjtu-name-generic-en.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\tl_if_eq:NNTF \g__sjtu_lang_tl \c__sjtu_lang_ja_tl
-  { \ctex_file_input:n { sjtu-cjk-font-adobe-ja.def } }
-  { \ctex_file_input:n { sjtu-cjk-font-adobe-zh.def } }
+\clist_const:Nn \c__sjtu_name_month_en_clist
+  {
+    January, February, March, April, May, June,
+    July, August, September, October, November, December
+  }
+\clist_map_inline:nn
+  {
+    { keywords         } { Key~words                        } ,
+    { info_sep         } { :~                               } ,
+    { item_sep         } { ,~                               }
+  }
+  { \__sjtu_define_name:nn #1 }
 \endinput
 %%
-%% End of file `sjtu-cjk-font-adobe.def'.
+%% End of file `sjtu-name-generic-en.def'.

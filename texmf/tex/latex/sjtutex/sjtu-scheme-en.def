@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-cjk-font-adobe.def',
+%% This is file `sjtu-scheme-en.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `font,cjk,adobe,und')
+%% sjtutex.dtx  (with options: `scheme,en')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -25,12 +25,31 @@
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
 \GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
-  {Adobe CJK fonts definition (SJTUTeX)}
-\ProvidesExplFile{sjtu-cjk-font-adobe.def}
+  {English scheme (SJTUTeX)}
+\ProvidesExplFile{sjtu-scheme-en.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\tl_if_eq:NNTF \g__sjtu_lang_tl \c__sjtu_lang_ja_tl
-  { \ctex_file_input:n { sjtu-cjk-font-adobe-ja.def } }
-  { \ctex_file_input:n { sjtu-cjk-font-adobe-zh.def } }
+\ctex_if_autoindent_touched:F
+  { \ctex_set:n { autoindent = 1.5 em } }
+\ctex_patch_cmd:Nnn \quotation { 1.5em } { \parindent }
+\keys_set:nn { sjtu / style }
+  { fnmark-style = plain   }
+\clist_map_inline:nn
+  {
+    { assumption  } { Assumption  } ,
+    { axiom       } { Axiom       } ,
+    { conjecture  } { Conjecture  } ,
+    { corollary   } { Corollary   } ,
+    { definition  } { Definition  } ,
+    { example     } { Example     } ,
+    { exercise    } { Exercise    } ,
+    { lemma       } { Lemma       } ,
+    { problem     } { Problem     } ,
+    { proposition } { Proposition } ,
+    { remark      } { Remark      } ,
+    { solution    } { Solution    } ,
+    { theorem     } { Theorem     }
+  }
+  { \__sjtu_define_name:nn #1 }
 \endinput
 %%
-%% End of file `sjtu-cjk-font-adobe.def'.
+%% End of file `sjtu-scheme-en.def'.

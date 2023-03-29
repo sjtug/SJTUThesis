@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `mathfont,newtx')
+%% sjtutex.dtx  (with options: `font,math,newtx')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,7 +24,7 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {New TX math fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-math-font-newtx.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -34,8 +34,9 @@
 \tl_set_eq:NN \g__sjtu_save_ttdefault_tl \ttdefault
 \tl_set:Nn \encodingdefault { OT1 }
 \tl_set:Nn \rmdefault { ntxtlf }
+\tl_set:Nn \qhv@scale { 0.94 }
 \tl_set:Nn \sfdefault { qhv }
-\tl_set:Nn \ttdefault { ntxtt }
+\tl_set:Nn \ttdefault { qcr }
 \RequirePackage { newtxmath }
 \RequirePackage { bm }
 \tl_set_eq:NN \encodingdefault \g__sjtu_save_encodingdefault_tl

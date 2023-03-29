@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-lang-thesis-en.cfg',
+%% This is file `sjtu-name-generic-de.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `lang,thesis,en')
+%% sjtutex.dtx  (with options: `name,generic,de')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,40 +24,22 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
-  {SJTUThesis English config (SJTUTeX)}
-\ProvidesExplFile{sjtu-lang-thesis-en.cfg}
+\GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
+  {German name config for generic (SJTUTeX)}
+\ProvidesExplFile{sjtu-name-generic-de.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\clist_const:Nn \c__sjtu_name_month_de_clist
+  {
+    Januar, Februar, März, April, Mai, Juni,
+    Juli, August, September, Oktober, November, Dezember
+  }
 \clist_map_inline:nn
   {
-    { assumption  }
-    { Assumption  } ,
-    { axiom       }
-    { Axiom       } ,
-    { conjecture  }
-    { Conjecture  } ,
-    { corollary   }
-    { Corollary   } ,
-    { definition  }
-    { Definition  } ,
-    { example     }
-    { Example     } ,
-    { exercise    }
-    { Exercise    } ,
-    { lemma       }
-    { Lemma       } ,
-    { problem     }
-    { Problem     } ,
-    { proposition }
-    { Proposition } ,
-    { remark      }
-    { Remark      } ,
-    { solution    }
-    { Solution    } ,
-    { theorem     }
-    { Theorem     } ,
+    { keywords         } { Schlüsselwörter                   } ,
+    { info_sep         } { :~                                } ,
+    { item_sep         } { ,~                                }
   }
-  { \__sjtu_define_name_g:nn #1 }
+  { \__sjtu_define_name:nn #1 }
 \endinput
 %%
-%% End of file `sjtu-lang-thesis-en.cfg'.
+%% End of file `sjtu-name-generic-de.def'.
