@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.1 2023-03-31 16:45:00Z Alexara Wu <alexarawu@outlook.com> $
   {Report template for Shanghai Jiao Tong University}
 \ProvidesExplClass{sjtureport}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -493,7 +493,7 @@
     listalgorithm  .tl_set:N = \SJTU@listalgorithmname ,
     listalgorithm .initial:n = { List~of~Algorithms } ,
   }
- \file_input:n { sjtu-name-generic- \g__sjtu_lang_tl .def }
+\file_input:n { sjtu-name-generic- \g__sjtu_lang_tl .def }
 \geometry
   {
     top           = 3.5 cm,
@@ -861,15 +861,23 @@
   { \SJTU@listof { \listtablename  } { table  } }
 \tl_set:Nn \cftdotsep { 1 }
 \tl_set:Nn \cftchapleader { \normalfont \cftdotfill { \cftdotsep } }
-\cs_new_protected:Nn \__sjtu_update_cft_presnum:
+\clist_set:Nn \l__sjtu_cft_presnum_clist
   {
-    \tl_set:Nn \cftfigpresnum { \figurename \c_space_tl }
-    \__sjtu_dim_add_to_wd:Nn \cftfignumwidth { \cftfigpresnum }
-    \tl_set:Nn \cfttabpresnum { \tablename  \c_space_tl }
-    \__sjtu_dim_add_to_wd:Nn \cfttabnumwidth { \cftfigpresnum }
+    { fig } { \figurename } ,
+    { tab } { \tablename  }
+  }
+\cs_new:Npn \__sjtu_update_cft_presnum:nn #1#2
+  {
+    \tl_set:cn { cft #1 presnum } { #2 \c_space_tl }
+    \dim_zero:c { cft #1 indent }
+    \dim_set:cn { cft #1 numwidth } { 2.8 em }
+    \__sjtu_dim_add_to_wd:cv { cft #1 numwidth } { cft #1 presnum }
   }
 \ctex_at_end_preamble:n
-  { \__sjtu_update_cft_presnum: }
+  {
+    \clist_map_inline:Nn \l__sjtu_cft_presnum_clist
+      { \__sjtu_update_cft_presnum:nn #1 }
+  }
 \NewDocumentCommand \sjtusetup { } { \keys_set:nn { sjtu } }
 \keys_define:nn { sjtu }
   {
@@ -987,18 +995,11 @@
     \exp_args:Nnv \newlistentry {#2} { ext@ #3 } { 0 }
     \exp_args:Ne \newcounter { \tl_use:c { ext@ #3 } depth }
     \exp_args:Ne \setcounter { \tl_use:c { ext@ #3 } depth } { 1 }
-    \dim_set:cn { cft #2 indent   } { 1.5 em }
-    \dim_set:cn { cft #2 numwidth } { 2.3 em }
+    \clist_put_right:Nn \l__sjtu_cft_presnum_clist { {#2} {#4} }
     \cs_set_eq:cc { l@ #3 } { l@ #2 }
-    \__sjtu_appto_cmd:Nn \__sjtu_update_cft_presnum:
-      {
-        \tl_set:cn { cft #2 presnum } { #4 \c_space_tl }
-        \__sjtu_dim_add_to_wd:cv { cft #2 numwidth } { cft #2 presnum }
-      }
     \exp_args:Nc \DeclareDocumentCommand { listof #1 s } { }
       { \SJTU@listof {#5} {#3} }
-    \cs_set:cpn { the #3 }
-      { \thechapter \l__sjtu_style_fl_num_sep_tl \arabic {#3} }
+    \SJTU@counterwithin { #3 } { chapter }
   }
 \ctex_at_end_package:nn { algorithm }
   {

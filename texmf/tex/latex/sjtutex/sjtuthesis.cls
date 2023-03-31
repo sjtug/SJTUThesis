@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\GetIdInfo $Id: sjtutex.dtx 2.0 2023-03-29 23:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.1 2023-03-31 16:45:00Z Alexara Wu <alexarawu@outlook.com> $
   {Thesis template for Shanghai Jiao Tong University}
 \ProvidesExplClass{sjtuthesis}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -808,15 +808,8 @@
 \SJTU@counterwithin { figure } { chapter }
 \SJTU@counterwithin { table  } { chapter }
 \SJTU@counterwithin [ \l__sjtu_style_eq_num_sep_tl ] { equation } { chapter }
-\cs_new_protected:Nn \__sjtu_counter_without_chapter:
-  {
-    \counterwithout { section } { chapter }
-    \setcounter     { section } { 0 }
-    \counterwithout { figure  } { chapter }
-    \setcounter     { figure  } { 0 }
-    \counterwithout { table   } { chapter }
-    \setcounter     { table   } { 0 }
-  }
+\clist_set:Nn \l__sjtu_counter_without_chapter_clist
+  { section, figure, table, equation }
 \cs_set_eq:NN \__sjtu_makefnmark_plain: \@makefnmark
 \cs_set_eq:NN \__sjtu_thefootnote_plain: \thefootnote
 \cs_set_eq:NN \__sjtu_thempfootnote_plain: \thempfootnote
@@ -1256,15 +1249,23 @@
   { \SJTU@listof { \listtablename  } { table  } }
 \tl_set:Nn \cftdotsep { 1 }
 \tl_set:Nn \cftchapleader { \normalfont \cftdotfill { \cftdotsep } }
-\cs_new_protected:Nn \__sjtu_update_cft_presnum:
+\clist_set:Nn \l__sjtu_cft_presnum_clist
   {
-    \tl_set:Nn \cftfigpresnum { \figurename \c_space_tl }
-    \__sjtu_dim_add_to_wd:Nn \cftfignumwidth { \cftfigpresnum }
-    \tl_set:Nn \cfttabpresnum { \tablename  \c_space_tl }
-    \__sjtu_dim_add_to_wd:Nn \cfttabnumwidth { \cftfigpresnum }
+    { fig } { \figurename } ,
+    { tab } { \tablename  }
+  }
+\cs_new:Npn \__sjtu_update_cft_presnum:nn #1#2
+  {
+    \tl_set:cn { cft #1 presnum } { #2 \c_space_tl }
+    \dim_zero:c { cft #1 indent }
+    \dim_set:cn { cft #1 numwidth } { 2.8 em }
+    \__sjtu_dim_add_to_wd:cv { cft #1 numwidth } { cft #1 presnum }
   }
 \ctex_at_end_preamble:n
-  { \__sjtu_update_cft_presnum: }
+  {
+    \clist_map_inline:Nn \l__sjtu_cft_presnum_clist
+      { \__sjtu_update_cft_presnum:nn #1 }
+  }
 \NewDocumentEnvironment { abbreviation  } { O{ \SJTU@abbrname } }
   {
     \chapter {#1}
@@ -1406,7 +1407,11 @@
             \pagenumbering { roman }
             \cs_gset:Nn \__sjtu_thepage: { \arabic { page } }
             \cs_gset_eq:NN \addcontentsline \use_none:nnn
-            \__sjtu_counter_without_chapter:
+            \clist_map_inline:Nn \l__sjtu_counter_without_chapter_clist
+              {
+                \counterwithout {##1} { chapter }
+                \setcounter     {##1} { 0 }
+              }
             \__sjtu_head_auxb_s:nx { \SJTU@digestname }
               {
                 \exp_not:N \MakeUppercase
@@ -1567,23 +1572,12 @@
     \exp_args:Nnv \newlistentry {#2} { ext@ #3 } { 0 }
     \exp_args:Ne \newcounter { \tl_use:c { ext@ #3 } depth }
     \exp_args:Ne \setcounter { \tl_use:c { ext@ #3 } depth } { 1 }
-    \dim_set:cn { cft #2 indent   } { 1.5 em }
-    \dim_set:cn { cft #2 numwidth } { 2.3 em }
+    \clist_put_right:Nn \l__sjtu_cft_presnum_clist { {#2} {#4} }
     \cs_set_eq:cc { l@ #3 } { l@ #2 }
-    \__sjtu_appto_cmd:Nn \__sjtu_update_cft_presnum:
-      {
-        \tl_set:cn { cft #2 presnum } { #4 \c_space_tl }
-        \__sjtu_dim_add_to_wd:cv { cft #2 numwidth } { cft #2 presnum }
-      }
     \exp_args:Nc \DeclareDocumentCommand { listof #1 s } { }
       { \SJTU@listof {#5} {#3} }
-    \cs_set:cpn { the #3 }
-      { \thechapter \l__sjtu_style_fl_num_sep_tl \arabic {#3} }
-    \__sjtu_appto_cmd:Nn \__sjtu_counter_without_chapter:
-      {
-        \counterwithout {#3} { chapter }
-        \setcounter     {#3} { 0 }
-      }
+    \SJTU@counterwithin { #3 } { chapter }
+    \clist_put_right:Nn \l__sjtu_counter_without_chapter_clist {#3}
   }
 \ctex_at_end_package:nn { algorithm }
   {
