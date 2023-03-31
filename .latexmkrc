@@ -10,7 +10,7 @@ $ENV{'TZ'}='Asia/Shanghai';
 ensure_path( 'TEXINPUTS', './texmf//' );
 
 # PDF generate method
-#   - 1 pdfTeX
+#   - 1 pdfLaTeX
 #   - 3 LaTeX + DVIPDFMx
 #   - 4 LuaLaTeX
 #   - 5 XeLaTeX

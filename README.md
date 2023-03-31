@@ -1,7 +1,7 @@
 # SJTUThesis 示例模板
 
 [![Build Status](https://github.com/sjtug/SJTUThesis/actions/workflows/build.yml/badge.svg)](https://github.com/sjtug/SJTUThesis/actions)
-[![SJTUTeX](https://img.shields.io/badge/SJTUThesis-v2.0-green.svg)](https://github.com/sjtug/SJTUTeX) 
+[![SJTUTeX](https://img.shields.io/github/v/release/sjtug/SJTUTeX?label=SJTUTeX)](https://github.com/sjtug/SJTUTeX) 
 [![Join Discussions](https://img.shields.io/github/discussions/sjtug/SJTUThesis)](https://github.com/sjtug/SJTUThesis/discussions)
 
 ## 欢迎使用上海交通大学论文模板
@@ -27,7 +27,7 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 ### Overleaf
 
-[![Overleaf](https://img.shields.io/badge/overleaf-sjtuthesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b)
+[![Overleaf](https://img.shields.io/badge/Overleaf-SJTUThesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b)
 
 点击 [链接](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b) 即可直接使用。
 
@@ -117,16 +117,16 @@ make wordcount                # 论文字数统计
 ## 致谢
 
 * 感谢 [CTeX-kit](https://github.com/CTeX-org/ctex-kit) 提供了 LaTeX 的中文支持；
-* 感谢那位最先制作出博士学位论文 LaTeX 模板的交大物理系同学；
-* 感谢 William Wang 同学对模板移植做出的巨大贡献；
-* 感谢 [@weijianwen](https://github.com/weijianwen) 学长一直以来的开发和维护工作；
-* 感谢 [@sjtug](https://github.com/sjtug) 以及 [@dyweb](https://github.com/dyweb) 对 0.9.5 之后版本的开发和维护工作；
+* 感谢那位最先制作出博士学位论文 LaTeX 模板的物理系同学；
+* 感谢 William Wang 同学对模板移植做出的贡献；
+* 感谢 [@weijianwen](https://github.com/weijianwen) 学长开创性的工作；
+* 感谢 [@sjtug](https://github.com/sjtug) 对 0.10 及之后版本的开发和维护工作；
 * 感谢所有为模板贡献过代码的[同学们](https://github.com/sjtug/SJTUThesis/graphs/contributors)，以及所有测试和使用模板的各位同学。
 
 ## 软件许可证
 
 上海交通大学校徽校名图片（`sjtu-vi-logo-blue.pdf` 等）的版权归上海交通大学所有。
 
-`sjtuthesis.cls` 文档类与相关附属文件，以及 `biblatex-gb7714-2015` 样式文件使用 [LPPL](https://www.latex-project.org/lppl.txt) 授权。
+`sjtuthesis.cls` 文档类与相关附属文件使用 [LPPL](https://www.latex-project.org/lppl.txt) 授权。
 
 其他部分使用 [Apache License 2.0](LICENSE) 授权。
