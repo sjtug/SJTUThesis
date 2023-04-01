@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\GetIdInfo $Id: sjtutex.dtx 2.0.1 2023-03-31 16:45:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {Thesis template for Shanghai Jiao Tong University}
 \ProvidesExplClass{sjtuthesis}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -319,13 +319,13 @@
     \hbox_set:Nn \l__sjtu_tmpa_box {#2}
     \dim_set:Nn #1 { \box_wd:N \l__sjtu_tmpa_box }
   }
-\cs_new:Npn \__sjtu_dim_add_to_wd:Nn #1#2
+\cs_new:Npn \__sjtu_skip_add_to_wd:Nn #1#2
   {
     \hbox_set:Nn \l__sjtu_tmpa_box {#2}
-    \dim_add:Nn #1 { \box_wd:N \l__sjtu_tmpa_box }
+    \skip_add:Nn #1 { \box_wd:N \l__sjtu_tmpa_box }
   }
 \cs_generate_variant:Nn \__sjtu_dim_set_to_wd:Nn { Nv }
-\cs_generate_variant:Nn \__sjtu_dim_add_to_wd:Nn { cv }
+\cs_generate_variant:Nn \__sjtu_skip_add_to_wd:Nn { cv }
 \cs_new:Npn \__sjtu_cs_provide_eq:NN #1#2
   { \cs_if_exist:NF #1 { \cs_set_eq:NN #1 #2 } }
 \cs_generate_variant:Nn \__sjtu_cs_provide_eq:NN { cc }
@@ -523,7 +523,6 @@
   }
 \@onlypreamble \__sjtu_load_font:nn
 \@onlypreamble \__sjtu_load_fontset:
-\__sjtu_load_fontset:
 \ctex_at_end_package:nn { unicode-math }
   {
     \DeclareDocumentCommand \bm { m }
@@ -556,6 +555,7 @@
       { "24EA, "2460-"2473, "3251-"32BF, "25A1 }
     \ltjsetparameter { jacharrange = { +99 } }
   }
+\__sjtu_load_fontset:
 \keys_define:nn { sjtu / name }
   {
     contents        .meta:nn = { ctex } { contentsname   = {#1} } ,
@@ -1257,9 +1257,9 @@
 \cs_new:Npn \__sjtu_update_cft_presnum:nn #1#2
   {
     \tl_set:cn { cft #1 presnum } { #2 \c_space_tl }
-    \dim_zero:c { cft #1 indent }
-    \dim_set:cn { cft #1 numwidth } { 2.8 em }
-    \__sjtu_dim_add_to_wd:cv { cft #1 numwidth } { cft #1 presnum }
+    \skip_zero:c { cft #1 indent }
+    \skip_set:cn { cft #1 numwidth } { 2.8 em }
+    \__sjtu_skip_add_to_wd:cv { cft #1 numwidth } { cft #1 presnum }
   }
 \ctex_at_end_preamble:n
   {
@@ -1307,7 +1307,7 @@
       {
         \tl_if_blank:nTF {#1}
           {
-            \dim_if_exist:NTF \bibhang
+            \skip_if_exist:NTF \bibhang
               { \dim_set_eq:NN \leftmargin \bibhang }
               { \dim_set:Nn    \leftmargin { 1 em } }
             \dim_set:Nn \itemindent { - \leftmargin }
@@ -1317,17 +1317,17 @@
             \dim_set_eq:NN \leftmargin \labelwidth
             \dim_add:Nn    \leftmargin { \labelsep }
           }
-        \dim_if_exist:NTF \bibitemsep
+        \skip_if_exist:NTF \bibitemsep
           {
-            \dim_set_eq:NN \itemsep \bibitemsep
-            \dim_if_exist:NT \bibparsep
-              { \dim_set_eq:NN \parsep \bibparsep }
+            \skip_set_eq:NN \itemsep \bibitemsep
+            \skip_if_exist:NT \bibparsep
+              { \skip_set_eq:NN \parsep \bibparsep }
           }
           {
-            \dim_if_exist:NT \bibsep
+            \skip_if_exist:NT \bibsep
               {
-                \dim_set_eq:NN \itemsep \bibsep
-                \dim_zero:N    \parsep
+                \skip_set_eq:NN \itemsep \bibsep
+                \skip_zero:N    \parsep
               }
           }
         \@nmbrlisttrue
