@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `textfont,stixtwo')
+%% sjtutex.dtx  (with options: `font,text,stixtwo')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,15 +24,17 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {STIX Two text fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-text-font-stixtwo.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 \__sjtu_fontset_case:nn
   {
+    \tl_set:Nn \encodingdefault { T1 }
     \tl_set:Nn \rmdefault { stix2 }
-    \tl_set:Nn \sfdefault { phv }
-    \tl_set:Nn \ttdefault { pcr }
+    \tl_set:Nn \qhv@scale { 0.94 }
+    \tl_set:Nn \sfdefault { qhv }
+    \tl_set:Nn \ttdefault { qcr }
   }
   {
     \setmainfont
@@ -51,7 +53,8 @@
         UprightFont    = *-regular,
         BoldFont       = *-bold,
         ItalicFont     = *-italic,
-        BoldItalicFont = *-bolditalic
+        BoldItalicFont = *-bolditalic,
+        Scale          = 0.94,
       ]
     \setmonofont
       { texgyrecursor }
@@ -61,7 +64,6 @@
         BoldFont       = *-bold,
         ItalicFont     = *-italic,
         BoldItalicFont = *-bolditalic,
-        Scale          = MatchLowercase,
         Ligatures      = CommonOff
       ]
   }

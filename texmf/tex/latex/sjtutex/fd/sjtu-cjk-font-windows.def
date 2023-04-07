@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `cjkfont,windows')
+%% sjtutex.dtx  (with options: `font,cjk,windows,und')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,33 +24,13 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {Windows CJK fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-cjk-font-windows.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\__sjtu_fontset_case:nn
-  {
-    \ctex_load_zhmap:nnnn { zhsong } { zhhei } { zhfs } { windows }
-    \ctex_punct_set:n { windows }
-    \ctex_punct_map_family:nn   { \CJKrmdefault } { zhsong }
-    \ctex_punct_map_bfseries:nn { \CJKrmdefault } { zhhei  }
-    \ctex_punct_map_itshape:nn  { \CJKrmdefault } { zhkai  }
-  }
-  {
-    \setCJKmainfont { SimSun   }
-      [ AutoFakeBold = 3, ItalicFont = KaiTi ]
-    \setCJKsansfont { SimHei   } [ BoldFont = * ]
-    \setCJKmonofont { FangSong }
-    \setCJKfamilyfont { zhsong } { SimSun   }
-      [ AutoFakeBold = 3, ItalicFont = KaiTi ]
-    \setCJKfamilyfont { zhhei  } { SimHei   } [ BoldFont = * ]
-    \setCJKfamilyfont { zhkai  } { KaiTi    }
-    \setCJKfamilyfont { zhfs   } { FangSong }
-  }
-\NewDocumentCommand \songti   { } { \CJKfamily { zhsong  } }
-\NewDocumentCommand \heiti    { } { \CJKfamily { zhhei   } }
-\NewDocumentCommand \fangsong { } { \CJKfamily { zhfs    } }
-\NewDocumentCommand \kaishu   { } { \CJKfamily { zhkai   } }
+\tl_if_eq:NNTF \g__sjtu_lang_tl \c__sjtu_lang_ja_tl
+  { \ctex_file_input:n { sjtu-cjk-font-windows-ja.def } }
+  { \ctex_file_input:n { sjtu-cjk-font-windows-zh.def } }
 \endinput
 %%
 %% End of file `sjtu-cjk-font-windows.def'.

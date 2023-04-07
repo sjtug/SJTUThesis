@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `mathfont,times')
+%% sjtutex.dtx  (with options: `font,math,times')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,7 +24,7 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {Times math fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-math-font-times.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -32,6 +32,7 @@
 \tl_set_eq:NN \g__sjtu_save_rmdefault_tl \rmdefault
   \RequirePackage { mathptmx }
 \tl_set_eq:NN \rmdefault \g__sjtu_save_rmdefault_tl
+\tl_set:Nn \Hv@scale { 0.94 }
 \DeclareMathAlphabet { \mathsf } { OT1 } { phv } { m } { n }
 \DeclareMathAlphabet { \mathtt } { OT1 } { pcr } { m } { n }
 \SetMathAlphabet { \mathsf } { bold } { OT1 } { phv } { b } { n }

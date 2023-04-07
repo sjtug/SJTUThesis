@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `textfont,lm')
+%% sjtutex.dtx  (with options: `font,text,lm')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,13 +24,17 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
   {Latin Modern text fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-text-font-lm.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\tl_set:Nn \rmdefault { lmr  }
-\tl_set:Nn \sfdefault { lmss }
-\tl_set:Nn \ttdefault { lmtt }
+\__sjtu_fontset_case:nn
+  {
+    \tl_set:Nn \encodingdefault { T1 }
+    \tl_set:Nn \rmdefault { lmr  }
+    \tl_set:Nn \sfdefault { lmss }
+    \tl_set:Nn \ttdefault { lmtt }
+  } { }
 \endinput
 %%
 %% End of file `sjtu-text-font-lm.def'.

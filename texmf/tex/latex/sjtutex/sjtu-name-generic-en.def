@@ -1,10 +1,10 @@
 %%
-%% This is file `sjtu-lang-report-en.cfg',
+%% This is file `sjtu-name-generic-en.def',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtutex.dtx  (with options: `lang,report,en')
+%% sjtutex.dtx  (with options: `name,generic,en')
 %% 
 %%     Copyright (C) SJTUG
 %%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
@@ -24,40 +24,22 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0-beta 2023-01-06 17:30:00Z Alexara Wu <alexarawu@outlook.com> $
-  {SJTUReport English config (SJTUTeX)}
-\ProvidesExplFile{sjtu-lang-report-en.cfg}
+\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+  {English name config for generic (SJTUTeX)}
+\ProvidesExplFile{sjtu-name-generic-en.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\clist_const:Nn \c__sjtu_name_month_en_clist
+  {
+    January, February, March, April, May, June,
+    July, August, September, October, November, December
+  }
 \clist_map_inline:nn
   {
-    { assumption  }
-    { Assumption  } ,
-    { axiom       }
-    { Axiom       } ,
-    { conjecture  }
-    { Conjecture  } ,
-    { corollary   }
-    { Corollary   } ,
-    { definition  }
-    { Definition  } ,
-    { example     }
-    { Example     } ,
-    { exercise    }
-    { Exercise    } ,
-    { lemma       }
-    { Lemma       } ,
-    { problem     }
-    { Problem     } ,
-    { proposition }
-    { Proposition } ,
-    { remark      }
-    { Remark      } ,
-    { solution    }
-    { Solution    } ,
-    { theorem     }
-    { Theorem     } ,
+    { keywords         } { Key~words                        } ,
+    { info_sep         } { :~                               } ,
+    { item_sep         } { ,~                               }
   }
-  { \__sjtu_define_name_g:nn #1 }
+  { \__sjtu_define_name:nn #1 }
 \endinput
 %%
-%% End of file `sjtu-lang-report-en.cfg'.
+%% End of file `sjtu-name-generic-en.def'.
