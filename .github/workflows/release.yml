@@ -9,6 +9,8 @@ name: Release
 
 jobs:
   release-xelatex:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
@@ -18,21 +20,12 @@ jobs:
           run: |
             latexmk main.tex -halt-on-error -time -xelatex
         name: build with XeLaTeX
-      - uses: actions/create-release@latest
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: ${{ github.event.head_commit.message }}
-          draft: true
-      - name: add build pdf
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: main.pdf
-          asset_name: sjtuthesis.pdf
-          asset_content_type: application/pdf
+          body: "New release ${{ github.ref }}"
+          draft: false
+          prerelease: false
+          files: |
+            main.pdf
