@@ -24,7 +24,7 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
   {Windows CJK fonts definition for Japanese (SJTUTeX)}
 \ProvidesExplFile{sjtu-cjk-font-windows-ja.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}

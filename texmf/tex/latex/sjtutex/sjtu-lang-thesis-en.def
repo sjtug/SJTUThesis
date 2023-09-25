@@ -24,7 +24,7 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
   {English specific definition for thesis (SJTUTeX)}
 \ProvidesExplFile{sjtu-lang-thesis-en.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -35,7 +35,7 @@
       {
         A~ Dissertation~ Submitted~ to \exp_not:N \\
         { \exp_not:V \c__sjtu_name_univ_en_tl }~ for~
-        { \exp_not:V \c__sjtu_name_degree_level_en_tl }~ Degree
+        { \exp_not:V \c__sjtu_name_degree_level_possessive_en_tl }~ Degree
       }
   }
 \cs_new:Npn \__sjtu_ordinal_en:n #1
@@ -77,6 +77,7 @@
   { \__sjtu_date_aux_short_en:nn {#1} {#2} }
 \cs_new_protected:Nn \__sjtu_set_language_en:
   {
+    \tl_set:Nn \languagename { english }
     \ctex_set:n { autoindent = 1.5 em }
     \normalfont
   }

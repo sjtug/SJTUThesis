@@ -24,7 +24,7 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
   {German specific definition for generic (SJTUTeX)}
 \ProvidesExplFile{sjtu-lang-generic-de.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -44,6 +44,7 @@
   { \__sjtu_date_aux_short_de:nn {#1} {#2} }
 \cs_new_protected:Nn \__sjtu_set_language_de:
   {
+    \tl_set:Nn \languagename { ngerman }
     \ctex_set:n { autoindent = 1.5 em }
     \normalfont
   }

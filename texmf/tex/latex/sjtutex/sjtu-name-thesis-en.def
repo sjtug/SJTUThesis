@@ -24,7 +24,7 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
   {English name config for thesis (SJTUTeX)}
 \ProvidesExplFile{sjtu-name-thesis-en.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -34,8 +34,8 @@
     July, August, September, October, November, December
   }
 \__sjtu_define_name_from_clist:nnnn { en }
-  { degree_level } { \g__sjtu_thesis_type_int }
-  { Bachelor, Master, Doctor }
+  { degree_level_possessive } { \g__sjtu_thesis_type_int }
+  { Bachelor's, Master's, Doctoral }
 \clist_map_inline:nn
   {
     { univ             } { Shanghai~ Jiao~ Tong~ University } ,

@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
   {Report template for Shanghai Jiao Tong University}
 \ProvidesExplClass{sjtureport}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -68,6 +68,7 @@
 \bool_new:N \g__sjtu_slanted_uppercase_greek_bool
 \bool_new:N \g__sjtu_upright_integral_bool
 \bool_new:N \g__sjtu_integral_limits_bool
+\clist_new:N \g__sjtu_math_font_options_clist
 \clist_set:Nn \g__sjtu_options_to_ctex_class_clist
   { a4paper, UTF8, scheme = plain, fontset = none }
 \clist_new:N \g__sjtu_options_to_packages_clist
@@ -189,17 +190,21 @@
   { \dim_set_eq:NN \g__sjtu_line_skip_dim \g__sjtu_default_line_skip_dim }
 \fp_set:Nn \g__sjtu_line_spread_fp
   { \dim_ratio:nn { \g__sjtu_line_skip_dim } { \g__sjtu_font_size_dim } / 1.2 }
-\clist_put_right:Nx \@classoptionslist
+\clist_set:Nx \g__sjtu_math_font_options_clist
   {
-    a4paper ,
     \bool_if:NT \g__sjtu_slanted_uppercase_greek_bool
       { slantedGreek } ,
     \bool_if:NT \g__sjtu_upright_integral_bool
-      { upint } ,
+      { upint }
+  }
+\clist_put_right:Nx \@classoptionslist
+  {
+    a4paper ,
+    \tl_if_eq:NNT \g__sjtu_lang_tl \c__sjtu_lang_de_tl
+      { german, ngerman } ,
     \bool_if:NT \g__sjtu_integral_limits_bool
       { intlimits } ,
-    \tl_if_eq:NNT \g__sjtu_lang_tl \c__sjtu_lang_de_tl
-      { german, ngerman }
+    \g__sjtu_math_font_options_clist
   }
 \clist_put_right:Nx \g__sjtu_options_to_ctex_class_clist
   {
@@ -221,7 +226,6 @@
   {
     { no-math           } { fontspec     } ,
     { titles            } { tocloft      } ,
-    { perpage, bottom   } { footmisc     } ,
     { list = off        } { bicaption    } ,
     { warnings-off =
       {
@@ -455,6 +459,11 @@
         \scpolint\npolint\pointint\sqint\intlarhk\intx
         \intcap\intcup\upint\lowint
       }
+  }
+\ctex_at_end_preamble:n
+  {
+    \@ifpackageloaded { unicode-math }
+      { } { \RequirePackage { bm } }
   }
 \NewDocumentCommand \CJKrmfamily { } { \CJKfamily { \CJKrmdefault } }
 \NewDocumentCommand \CJKsffamily { } { \CJKfamily { \CJKsfdefault } }
@@ -1023,34 +1032,23 @@
       { \addcontentsline }
       { \caption@iflist { \addcontentsline } { \@gobblethree } }
   }
-\ctex_at_end_package:nn { listings }
-  {
-    \lstdefinestyle { lstStyleCode }
-      {
-        aboveskip         = \medskipamount ,
-        belowskip         = \medskipamount ,
-        basicstyle        = \ttfamily \zihao { 6 } ,
-        commentstyle      = \slshape \color { black!60 } ,
-        stringstyle       = \color { green!40!black!100 } ,
-        keywordstyle      = \bfseries \color { blue!50!black } ,
-        extendedchars     = false ,
-        upquote           = true ,
-        tabsize           = 2 ,
-        showstringspaces  = false ,
-        xleftmargin       = 1 em ,
-        xrightmargin      = 1 em ,
-        breaklines        = false ,
-        framexleftmargin  = 1 em ,
-        framexrightmargin = 1 em ,
-        backgroundcolor   = \color { gray!10 } ,
-        columns           = flexible ,
-        keepspaces        = true ,
-        texcl             = true ,
-        mathescape        = true
-      }
-  }
 \ctex_at_end_package:nn { nomencl }
   { \tl_set:Nn \nomname { \SJTU@nomname } }
+\ctex_at_end_package:nn { translations }
+  {
+    \DeclareLanguage { chinese }
+    \DeclareLanguageAlias { Chinese } { chinese }
+  }
+\ctex_at_end_package:nn { siunitx }
+  {
+    \@ifpackageloaded { translations }
+      {
+        \DeclareTranslation { Chinese  } { and } { 和 }
+        \DeclareTranslation { Japanese } { and } { と }
+        \DeclareTranslation { Chinese  } { to~(numerical~range) } { \textasciitilde }
+        \DeclareTranslation { Japanese } { to~(numerical~range) } { \textasciitilde }
+      } { }
+  }
 \endinput
 %%
 %% End of file `sjtureport.cls'.

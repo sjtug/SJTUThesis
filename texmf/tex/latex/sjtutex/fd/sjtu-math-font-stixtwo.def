@@ -24,14 +24,14 @@
 %% 
 %%     The Current Maintainers of this work are Alexara Wu and Log Creative.
 %% 
-\GetIdInfo $Id: sjtutex.dtx 2.0.2 2023-04-01 13:00:00Z Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
   {STIX Two math fonts definition (SJTUTeX)}
 \ProvidesExplFile{sjtu-math-font-stixtwo.def}
   {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 \__sjtu_fontset_case:nn
   {
     \PassOptionsToPackage { notext } { stix2 }
-    \RequirePackage { upgreek, stix2, bm }
+    \RequirePackage { upgreek, stix2 }
     \__sjtu_set_slanted_greek:
   }
   {
