@@ -25,7 +25,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           body: "New release ${{ github.ref }}"
-          draft: false
+          draft: true
           prerelease: false
           files: |
             main.pdf
