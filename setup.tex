@@ -113,7 +113,7 @@
 % 文献表条目间的间距
 \setlength{\bibitemsep}{0pt}
 % 导入参考文献数据库
-\addbibresource{bibdata/thesis.bib}
+\addbibresource{refs.bib}
 
 % 脚注格式
 \usepackage[perpage,bottom,hang]{footmisc}
@@ -153,11 +153,30 @@
 
 % 代码环境宏包
 \usepackage{listings}
-\lstnewenvironment{codeblock}[1][]%
-  {\lstset{style=lstStyleCode,#1}}{}
-
-% 物理科学和技术中使用的数学符号，定义了 \qty 命令，与 siunitx 3.0 有冲突
-% \usepackage{physics}
+\lstdefinestyle{lstStyleCode}{%
+  aboveskip         = \medskipamount,
+  belowskip         = \medskipamount,
+  basicstyle        = \ttfamily\zihao{6},
+  commentstyle      = \slshape\color{black!60},
+  stringstyle       = \color{green!40!black!100},
+  keywordstyle      = \bfseries\color{blue!50!black},
+  extendedchars     = false,
+  upquote           = true,
+  tabsize           = 2,
+  showstringspaces  = false,
+  xleftmargin       = 1em,
+  xrightmargin      = 1em,
+  breaklines        = false,
+  framexleftmargin  = 1em,
+  framexrightmargin = 1em,
+  backgroundcolor   = \color{gray!10},
+  columns           = flexible,
+  keepspaces        = true,
+  texcl             = true,
+  mathescape        = true
+}
+\lstnewenvironment{codeblock}[1][]{%
+  \lstset{style=lstStyleCode,#1}}{}
 
 % 直立体数学符号
 \providecommand{\dd}{\mathop{}\!\mathrm{d}}
@@ -166,7 +185,7 @@
 \providecommand{\jj}{\mathrm{j}}
 
 % 国际单位制宏包
-\usepackage{siunitx}[=v2]
+\usepackage{siunitx}
 
 % 定理环境宏包
 \usepackage{ntheorem}
@@ -174,7 +193,7 @@
 
 % 绘图宏包
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta, shapes.geometric}
 
 % 一些文档中用到的 logo
 \usepackage{hologo}
@@ -185,27 +204,8 @@
 \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
 \providecommand\pkg[1]{{\sffamily#1}}
 
-% 自定义命令
-
-% E-mail
-\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
-
 % hyperref 宏包在最后调用
 \usepackage{hyperref}
 
-% 自动引用题注更正为中文
-\def\equationautorefname{式}
-\def\footnoteautorefname{脚注}
-\def\itemautorefname{项}
-\def\figureautorefname{图}
-\def\tableautorefname{表}
-\def\partautorefname{篇}
-\def\appendixautorefname{附录}
-\def\chapterautorefname{章}
-\def\sectionautorefname{节}
-\def\subsectionautorefname{小节}
-\def\subsubsectionautorefname{小节}
-\def\paragraphautorefname{段落}
-\def\subparagraphautorefname{子段落}
-\def\FancyVerbLineautorefname{行}
-\def\theoremautorefname{定理}
+% E-mail
+\providecommand{\email}[1]{\href{mailto:#1}{\urlstyle{tt}\nolinkurl{#1}}}

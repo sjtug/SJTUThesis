@@ -27,7 +27,7 @@
     {单个图形示例\cite{He1999}。如果表格的标题很长，那么在表格索引中就会很不美观。可
       以在前面用中括号写一个简短的标题，这个标题会出现在索引中。}
     {Stay hungry, stay foolish.}
- \label{fig:cn_100t}
+  \label{fig:cn_100t}
 \end{figure}
 
 \subsection{多个图形}
@@ -48,18 +48,19 @@
 \texttt{parbox} 就可以，如图~\ref{fig:parallel1} 与图~\ref{fig:parallel2}。
 
 \begin{figure}[!htp]
-\begin{minipage}{0.48\textwidth}
   \centering
-  \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
-  \caption{并排第一个图}
-  \label{fig:parallel1}
-\end{minipage}\hfill
-\begin{minipage}{0.48\textwidth}
-  \centering
-  \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
-  \caption{并排第二个图}
-  \label{fig:parallel2}
-\end{minipage}
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
+    \caption{并排第一个图}
+    \label{fig:parallel1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
+    \caption{并排第二个图}
+    \label{fig:parallel2}
+  \end{minipage}
 \end{figure}
 
 如果要为共用一个计数器的多个子图添加子图题，建议使用较新的 \pkg{subcaption}宏

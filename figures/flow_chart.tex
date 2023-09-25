@@ -3,61 +3,62 @@
 \tikzstyle{startstop} = [
   rectangle,
   rounded corners,
-  minimum width=2cm,
-  minimum height=1cm,
+  minimum width=4em,
   text centered,
-  draw=black
+  inner sep=1.5ex,
+  draw
 ]
 \tikzstyle{io} = [
   trapezium,
   trapezium left angle=75,
   trapezium right angle=105,
-  minimum width=1cm,
-  minimum height=1cm,
+  minimum width=4em,
   text centered,
-  draw=black
+  inner sep=1.5ex,
+  draw
 ]
 \tikzstyle{process} = [
   rectangle,
-  minimum width=2cm,
-  minimum height=1cm,
+  minimum width=4em,
   text centered,
-  draw=black
+  inner sep=1.5ex,
+  draw
 ]
 \tikzstyle{decision} = [
   diamond,
-  minimum width=2cm,
-  minimum height=1cm,
+  minimum width=4em,
+  aspect=2,
   text centered,
-  draw=black]
-\tikzstyle{arrow} = [thick, ->, >=stealth]
+  draw
+]
+\tikzstyle{arrow} = [-{LaTeX}]
 
-\begin{tikzpicture}[node distance=2cm]
+\begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\footnotesize}]
   % 设置节点
-  \node (pic) [startstop] {待测图片};
-  \node (bg) [io, below of=pic] {读取背景};
-  \node (pair) [process, below of=bg] {匹配特征点对};
-  \node (threshold) [decision, below of=pair, yshift=-0.5cm] {多于阈值};
-  \node (clear) [decision, right of=threshold, xshift=3cm] {清晰？};
-  \node (capture) [process, right of=pair, xshift=3cm, yshift=0.5cm] {重采};
-  \node (matrix_p) [process, below of=threshold, yshift=-0.8cm] {透视变换矩阵};
-  \node (matrix_a) [process, right of=matrix_p, xshift=3cm] {仿射变换矩阵};
-  \node (reg) [process, below of=matrix_p] {图像修正};
-  \node (return) [startstop, below of=reg] {配准结果};
+  \node[startstop] (pic) {待测图片};
+  \node[io, below of=pic] (bg) {读取背景};
+  \node[process, below of=bg] (pair) {匹配特征点对};
+  \node[decision, below of=pair, yshift=-2ex] (threshold) {多于阈值};
+  \node[decision, right of=threshold, xshift=3cm] (clear) {清晰？};
+  \node[process, right of=pair, xshift=3cm] (capture) {重采};
+  \node[process, below of=threshold, yshift=-2ex] (matrix_p) {透视变换矩阵};
+  \node[process, right of=matrix_p, xshift=3cm] (matrix_a) {仿射变换矩阵};
+  \node[process, below of=matrix_p] (reg) {图像修正};
+  \node[startstop, below of=reg] (return) {配准结果};
     
   % 连接节点
-  \draw [arrow](pic) -- (bg);
-  \draw [arrow](bg) -- (pair);
-  \draw [arrow](pair) -- (threshold);
+  \draw[arrow] (pic) -- (bg);
+  \draw[arrow] (bg) -- (pair);
+  \draw[arrow] (pair) -- (threshold);
 
-  \draw [arrow](threshold) -- node[anchor=south] {否} (clear);
+  \draw[arrow] (threshold) -- node[above] {否} (clear);
 
-  \draw [arrow](clear) -- node[anchor=west] {否} (capture);
-  \draw [arrow](capture) |- (pic);
-  \draw [arrow](clear) -- node[anchor=west] {是} (matrix_a);
-  \draw [arrow](matrix_a) |- (reg);
+  \draw[arrow] (clear) -- node[right] {否} (capture);
+  \draw[arrow] (capture) |- (pic);
+  \draw[arrow] (clear) -- node[right] {是} (matrix_a);
+  \draw[arrow] (matrix_a) |- (reg);
 
-  \draw [arrow](threshold) -- node[anchor=east] {是} (matrix_p);
-  \draw [arrow](matrix_p) -- (reg);
-  \draw [arrow](reg) -- (return);
+  \draw[arrow] (threshold) -- node[left] {是} (matrix_p);
+  \draw[arrow] (matrix_p) -- (reg);
+  \draw[arrow] (reg) -- (return);
 \end{tikzpicture}

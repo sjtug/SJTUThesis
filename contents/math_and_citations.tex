@@ -9,23 +9,17 @@
 宏包 \pkg{siunitx} 提供了更好的数字和单位支持：
 \begin{itemize}
   \item \num{12345.67890}
-  % For TeXLive 2021, siunitx >= 3.0
-  % \item \complexnum{1+-2i}
-  % For siunitx < 3.0
-  % \item \num{1+-2i}
+  \item \complexnum{1+-2i}
   \item \num{.3e45}
-  % For TeXLive 2021, siunitx >= 3.0
-  % \item \numproduct{1.654 x 2.34 x 3.430}
-  % For siunitx < 3.0
-  % \item \num{1.654 x 2.34 x 3.430}
-  \item \si{kg.m.s^{-1}}
-  \item \si{\micro\meter} $\si{\micro\meter}$
-  \item \si{\ohm} $\si{\ohm}$
+  \item \numproduct{1.654 x 2.34 x 3.430}
+  \item \unit{kg.m.s^{-1}}
+  \item \unit{\micro\meter} $\unit{\micro\meter}$
+  \item \unit{\ohm} $\unit{\ohm}$
   \item \numlist{10;20}
   \item \numlist{10;20;30}
-  \item \SIlist{0.13;0.67;0.80}{\milli\metre}
+  \item \qtylist{0.13;0.67;0.80}{\milli\metre}
   \item \numrange{10}{20}
-  \item \SIrange{10}{20}{\degreeCelsius}
+  \item \qtyrange{10}{20}{\degreeCelsius}
 \end{itemize}
 
 \subsection{数学符号和公式}
@@ -49,13 +43,13 @@
 
 公式末尾是需要添加标点符号的，至于用逗号还是句号，取决于公式下面一句是接着公式说的，还是另起一句。
 \begin{equation}
-		\frac{2h}{\pi}\int_{0}^{\infty}\frac{\sin\left( \omega\delta \right)}{\omega}
-		\cos\left( \omega x \right) \dd\omega = 
-		\begin{cases}
-				h, \ \left| x \right| < \delta, \\
-				\frac{h}{2}, \ x = \pm \delta, \\
-				0, \ \left| x \right| > \delta.
-		\end{cases}
+  \frac{2h}{\pi}\int_{0}^{\infty}\frac{\sin\left( \omega\delta \right)}{\omega}
+  \cos\left( \omega x \right) \dd\omega = 
+  \begin{cases}
+    h, & \left| x \right| < \delta, \\
+    \frac{h}{2}, & x = \pm \delta, \\
+    0, & \left| x \right| > \delta.
+  \end{cases}
 \end{equation}
 公式较长时最好在等号“$=$”处转行。
 \begin{align}
