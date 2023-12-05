@@ -57,9 +57,9 @@
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[height=2cm]{sjtu-vi-badge-blue.pdf}
+  \includegraphics[height=2cm]{sjtu-vi-badge-red.pdf}
   \hspace{1cm}
-  \includegraphics[height=2cm]{sjtu-vi-badge-blue.pdf}
+  \includegraphics[height=2cm]{sjtu-vi-badge-red.pdf}
   \bicaption{中文题图}{English caption}
   \label{fig:SRR}
 \end{figure}
@@ -71,19 +71,19 @@
   \centering
   \begin{minipage}{0.48\textwidth}
     \centering
-    \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
+    \includegraphics[height=1.7cm]{sjtu-vi-name-red.pdf}
     \caption{并排第一个图}
     \label{fig:parallel1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
-    \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
+    \includegraphics[height=1.7cm]{sjtu-vi-name-red.pdf}
     \caption{并排第二个图}
     \label{fig:parallel2}
   \end{minipage}
 \end{figure}
 
-如果要为共用一个计数器的多个子图添加子图题，建议使用较新的 \pkg{subcaption}宏
+如果要为共用一个计数器的多个子图添加子图题，建议使用较新的 \pkg{subcaption} 宏
 包，不建议使用 \pkg{subfigure} 或 \pkg{subfig} 等宏包。
 
 推荐使用 \pkg{subcaption} 宏包的 \cs{subcaptionbox} 并排子图，子图题置于子图之
@@ -97,13 +97,13 @@
   \centering
   \begin{subfigure}{0.3\textwidth}
     \centering
-    \includegraphics[height=2cm]{sjtu-vi-badge-blue.pdf}
+    \includegraphics[height=2cm]{sjtu-vi-badge-red.pdf}
     \caption{校徽}
   \end{subfigure}
   \hspace{1cm}
   \begin{subfigure}{0.4\textwidth}
     \centering
-    \includegraphics[height=1.5cm]{sjtu-vi-name-blue.pdf}
+    \includegraphics[height=1.7cm]{sjtu-vi-name-red.pdf}
     \caption{校名。注意这个图略矮些，subfigure 中同一行的子图在顶端对齐。}
   \end{subfigure}
   \caption{包含子图题的范例（使用 subfigure）}
