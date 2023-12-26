@@ -15,19 +15,36 @@
 \subsection{单个图形}
 
 图要有图题，研究生图题采用中英文对照，并置于图的编号之后，图的编号和图题应置于图
-下方的居中位置。引用图应在图题右上角标出文献来源。当插图中组成部件由数字或字母等
-编号表示时，可在插图下方添加图注进行说明，如图~\ref{fig:cn_100t} 所示。
+下方的居中位置。引用图应在图题右上角标出文献来源。文中必须有关于本插图的提示，如
+“见图~\ref{fig:energy-distrib}”、“如图~\ref{fig:energy-distrib} 所示”等。该页空
+白不够排写该图整体时，则可将其后文字部分提前排写，将图移到次页。
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=4cm]{cn_100t.png} \\
-    1.立柱 2.提升释放机构 3.标准冲击加速度计 \\
-    4.导轨 5.重锤 6.被校力传感器 7.底座 \\
-  \bicaption[出现在插图索引中]
-    {单个图形示例\cite{He1999}。如果表格的标题很长，那么在表格索引中就会很不美观。可
-      以在前面用中括号写一个简短的标题，这个标题会出现在索引中。}
-    {Stay hungry, stay foolish.}
-  \label{fig:cn_100t}
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=10cm,
+      height=8cm,
+      xmin=0, xmax=7,
+      xlabel={$r$ (\unit{\milli\metre})},
+      ymin=-1000, ymax=11000,
+      ylabel={Energy (\unit[per-mode=symbol]{\watt\per\cubic\metre})},
+      scaled ticks=false,
+      tick label style={
+        /pgf/number format/1000 sep=,
+        font={\zihao{-5}},
+      },
+      minor tick num=1,
+    ]
+      \addplot [only marks,mark=square*,mark size=1.5pt] 
+        table [x={radial}, y={energy}, col sep=comma] 
+        {./assets/energy-distrib.csv};
+      \node at (2,6000) 
+        {$q_{v}=\dfrac{\sigma\omega^{2}|\mathbf{A}|^{2}}{2}$};
+    \end{axis}
+  \end{tikzpicture}
+  \bicaption{内热源沿径向的分布}{Energy distribution along radial}
+  \label{fig:energy-distrib}
 \end{figure}
 
 \subsection{多个图形}
