@@ -36,12 +36,12 @@
     % 指导教师
     %
     zh / supervisor      = {某某教授},
-    en / supervisor      = {Prof. Mou Mou},
+    en / supervisor      = {Prof.\ Mou Mou},
     %
     % 副指导教师
     %
-    % assoc-supervisor  = {某某教授},
-    % assoc-supervisor* = {Prof. Uom Uom},
+    % zh / assoc-supervisor  = {某某教授},
+    % en / assoc-supervisor  = {Prof.\ Uom Uom},
     %
     % 学号
     %
@@ -76,12 +76,12 @@
     % 资助基金
     %
     % zh / fund  = {
-    %                {国家 973 项目 (No. 2025CB000000)},
-    %                {国家自然科学基金 (No. 81120250000)},
+    %                {国家 973 项目 (No.\ 2025CB000000)},
+    %                {国家自然科学基金 (No.\ 81120250000)},
     %              },
     % en / fund  = {
-    %                {National Basic Research Program of China (Grant No. 2025CB000000)},
-    %                {National Natural Science Foundation of China (Grant No. 81120250000)},
+    %                {National Basic Research Program of China (Grant No.\ 2025CB000000)},
+    %                {National Natural Science Foundation of China (Grant No.\ 81120250000)},
     %              },
   },
   %
@@ -89,9 +89,9 @@
   %
   style = {%
     %
-    % 论文标题页 logo 颜色 (red/blue/black)
+    % 关键词首行悬挂
     %
-    % title-logo-color = black,
+    % keywords-format = hang,
   },
   %
   % 名称设置
@@ -109,9 +109,9 @@
 %     gbpub=false             禁用出版信息缺失处理
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 % 文献表字体
-% \renewcommand{\bibfont}{\zihao{5}\fixedlineskip{15.6bp}}
+\renewcommand{\bibfont}{\zihao{5}\setbaselineskip{16bp}}
 % 文献表条目间的间距
-\setlength{\bibitemsep}{0pt}
+\setlength{\bibitemsep}{3bp plus 1pt}
 % 导入参考文献数据库
 \addbibresource{refs.bib}
 
@@ -156,7 +156,7 @@
 \lstdefinestyle{lstStyleCode}{%
   aboveskip         = \medskipamount,
   belowskip         = \medskipamount,
-  basicstyle        = \ttfamily\zihao{6},
+  basicstyle        = \ttfamily\zihao{-5}\setbaselineskip{12bp},
   commentstyle      = \slshape\color{black!60},
   stringstyle       = \color{green!40!black!100},
   keywordstyle      = \bfseries\color{blue!50!black},
@@ -188,8 +188,8 @@
 \usepackage{siunitx}
 
 % 定理环境宏包
-\usepackage{ntheorem}
-% \usepackage{amsthm}
+\usepackage{amsthm}
+% \usepackage{ntheorem}
 
 % 绘图宏包
 \usepackage{tikz}
