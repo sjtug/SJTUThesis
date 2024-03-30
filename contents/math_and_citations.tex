@@ -34,16 +34,14 @@
 \end{itemize}
 
 公式应另起一行居中排版。公式后应注明编号，按章顺序编排，编号右端对齐。
-\begin{equation}
-  \ee^{\ii\uppi} + 1 = 0,
-\end{equation}
-\begin{equation}
+\begin{gather}
+  \ee^{\ii\uppi} + 1 = 0, \\
   \frac{\dd^2 u}{\dd t^2} = \int f(x) \dd x.
-\end{equation}
+\end{gather}
 
 公式末尾是需要添加标点符号的，至于用逗号还是句号，取决于公式下面一句是接着公式说的，还是另起一句。
 \begin{equation}
-  \frac{2h}{\pi}\int_{0}^{\infty}\frac{\sin\left( \omega\delta \right)}{\omega}
+  \frac{2h}{\uppi}\int_{0}^{\infty}\frac{\sin\left( \omega\delta \right)}{\omega}
   \cos\left( \omega x \right) \dd\omega = 
   \begin{cases}
     h, & \left| x \right| < \delta, \\
@@ -71,8 +69,8 @@
 
 \subsection{定理环境}
 
-示例文件中使用 \pkg{ntheorem} 宏包配置了定理、引理和证明等环境。用户也可以使用
-\pkg{amsthm} 宏包。
+示例文件中使用 \pkg{amsthm} 宏包配置了定理、引理和证明等环境。用户也可以使用
+\pkg{ntheorem} 宏包。
 
 这里举一个“定理”和“证明”的例子。
 \begin{theorem}[留数定理]
@@ -81,14 +79,12 @@
   $f$ 是定义在 $U \backslash \{a_1, \ldots, a_n\}$ 上的全纯函数，如果 $\gamma$
   是一条把 $a_1, \ldots, a_n$ 包围起来的可求长曲线，但不经过任何一个 $a_k$，并且
   其起点与终点重合，那么：
-
   \begin{equation}
     \label{eq:res}
     \oint\limits_\gamma f(z)\, \dd z = 2\uppi \ii \sum_{k=1}^n \operatorname{I}(\gamma, a_k) \operatorname{Res}(f, a_k).
   \end{equation}
 
   如果 $\gamma$ 是若尔当曲线，那么 $\operatorname{I}(\gamma, a_k) = 1$，因此：
-
   \begin{equation}
     \label{eq:resthm}
     \oint\limits_\gamma f(z)\, \dd z = 2\uppi \ii \sum_{k=1}^n \operatorname{Res}(f, a_k).
