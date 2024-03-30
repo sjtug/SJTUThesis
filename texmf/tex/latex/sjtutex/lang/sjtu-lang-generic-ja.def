@@ -1,0 +1,57 @@
+%%
+%% This is file `sjtu-lang-generic-ja.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtutex.dtx  (with options: `lang,generic,ja')
+%% 
+%%     Copyright (C) SJTUG
+%%       2018--2024 Weijian Wu   <alexarawu@outlook.com>
+%%       2022--2024 Zilong Li    <logcreative@outlook.com>
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. The latest version of this license is in:
+%% 
+%%       http://www.latex-project.org/lppl.txt
+%% 
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+  {Japanese specific definition for generic (SJTUTeX)}
+\ProvidesExplFile{sjtu-lang-generic-ja.def}
+  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+\cs_new:Npn \__sjtu_date_aux_ja:nnn #1#2#3
+  {
+    \int_to_arabic:n {#1} ~ { \exp_not:V \c__sjtu_name_year_ja_tl  } ~
+    \int_to_arabic:n {#2} ~ { \exp_not:V \c__sjtu_name_month_ja_tl } ~
+    \int_to_arabic:n {#3} ~ { \exp_not:V \c__sjtu_name_day_ja_tl   }
+  }
+\cs_new:Npn \__sjtu_date_aux_ja:w #1-#2-#3 \q_stop
+  { \__sjtu_date_aux_ja:nnn {#1} {#2} {#3} }
+\cs_new:Npn \__sjtu_date_aux_short_ja:nn #1#2
+  {
+    \int_to_arabic:n {#1} ~ { \exp_not:V \c__sjtu_name_year_ja_tl  } ~
+    \int_to_arabic:n {#2} ~ { \exp_not:V \c__sjtu_name_month_ja_tl }
+  }
+\cs_new:Npn \__sjtu_date_aux_short_ja:w #1-#2 \q_stop
+  { \__sjtu_date_aux_short_ja:nn {#1} {#2} }
+\cs_new:Nn \__sjtu_set_cjk_default_ja:
+  {
+    \tl_set:Nn \CJKrmdefault { jamin  }
+    \tl_set:Nn \CJKsfdefault { jagoth }
+    \tl_set:Nn \CJKttdefault { jagoth }
+  }
+\cs_new_protected:Nn \__sjtu_set_language_ja:
+  {
+    \tl_set:Nn \languagename { japanese }
+    \ctex_set:n { autoindent = 1 }
+    \__sjtu_set_cjk_default_ja:
+    \normalfont
+  }
+\endinput
+%%
+%% End of file `sjtu-lang-generic-ja.def'.

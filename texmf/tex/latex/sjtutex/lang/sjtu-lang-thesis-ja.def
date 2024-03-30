@@ -1,0 +1,124 @@
+%%
+%% This is file `sjtu-lang-thesis-ja.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtutex.dtx  (with options: `lang,thesis,ja')
+%% 
+%%     Copyright (C) SJTUG
+%%       2018--2024 Weijian Wu   <alexarawu@outlook.com>
+%%       2022--2024 Zilong Li    <logcreative@outlook.com>
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. The latest version of this license is in:
+%% 
+%%       http://www.latex-project.org/lppl.txt
+%% 
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+  {Japanese specific definition for thesis (SJTUTeX)}
+\ProvidesExplFile{sjtu-lang-thesis-ja.def}
+  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+\__sjtu_info_keys_define:n { ja }
+\keys_define:nn { sjtu / info / ja }
+  {
+    subject          .initial:x =
+      {
+        \exp_not:V \c__sjtu_name_univ_ja_tl
+        \exp_not:V \c__sjtu_name_degree_level_ja_tl
+        \exp_not:V \c__sjtu_name_thesis_ja_tl
+      }
+  }
+\cs_new:Npn \__sjtu_date_aux_ja:nnn #1#2#3
+  {
+    \int_to_arabic:n {#1} ~ { \exp_not:V \c__sjtu_name_year_ja_tl  } ~
+    \int_to_arabic:n {#2} ~ { \exp_not:V \c__sjtu_name_month_ja_tl } ~
+    \int_to_arabic:n {#3} ~ { \exp_not:V \c__sjtu_name_day_ja_tl   }
+  }
+\cs_new:Npn \__sjtu_date_aux_ja:w #1-#2-#3 \q_stop
+  { \__sjtu_date_aux_ja:nnn {#1} {#2} {#3} }
+\cs_new:Npn \__sjtu_date_aux_short_ja:nn #1#2
+  {
+    \int_to_arabic:n {#1} ~ { \exp_not:V \c__sjtu_name_year_ja_tl  } ~
+    \int_to_arabic:n {#2} ~ { \exp_not:V \c__sjtu_name_month_ja_tl }
+  }
+\cs_new:Npn \__sjtu_date_aux_short_ja:w #1-#2 \q_stop
+  { \__sjtu_date_aux_short_ja:nn {#1} {#2} }
+\cs_new:Nn \__sjtu_set_cjk_default_ja:
+  {
+    \tl_set:Nn \CJKrmdefault { jamin  }
+    \tl_set:Nn \CJKsfdefault { jagoth }
+    \tl_set:Nn \CJKttdefault { jagoth }
+  }
+\cs_new_protected:Nn \__sjtu_set_language_ja:
+  {
+    \tl_set:Nn \languagename { japanese }
+    \ctex_set:n { autoindent = 1 }
+    \__sjtu_set_cjk_default_ja:
+    \normalfont
+  }
+\cs_new:Npn \ps@SJTU@fund@ja
+  {
+    \ps@empty
+    \cs_set:Npn \@oddfoot
+      {
+        \minipage [ t ] { \textwidth }
+          \centering \zihao { - 5 }
+          \clist_use:Nn \l__sjtu_info_fund_ja_clist { \par }
+        \endminipage
+      }
+    \cs_set_eq:NN \@evenfoot \@oddfoot
+  }
+\clist_map_inline:nn
+  {
+    { subject }
+      {
+        format      = \zihao { 4 } \setbaselineskip { 24 bp } \bfseries ,
+        content     = \l__sjtu_info_subject_ja_tl ,
+        bottom-skip = \c_zero_dim plus 1 fill
+      },
+    { title   }
+      {
+        format      = \zihao { -2 } \setbaselineskip { 30 bp } \bfseries ,
+        content     = \l__sjtu_info_display_title_ja_tl ,
+        bottom-skip = \c_zero_dim plus 1 fill
+      },
+    { info    }
+      {
+        format      = \zihao { 3 } \setbaselineskip { 30 bp } \bfseries ,
+        content     =
+          {
+            \__sjtu_title_page_info_i:nxx { ja }
+              {
+                r @ { \exp_not:V \c__sjtu_name_info_sep_ja_tl }
+                >{ \exp_not:N \normalfont } l
+              }
+              { author, \l__sjtu_info_supervisors_clist }
+          } ,
+        bottom-skip = 30 bp plus 1 fill
+      },
+    { date    }
+      {
+        format      = \zihao { 3 } \setbaselineskip { 30 bp } ,
+        content     =
+          { \__sjtu_title_page_info_ii:n { ja } } ,
+      },
+  }
+  {
+    \__sjtu_declare_component:nnn { title / ja } #1
+  }
+\__sjtu_declare_page:nn { title / ja }
+  {
+    style       = SJTU@fund@ja ,
+    format      = \linespread { } \__sjtu_set_language_ja: ,
+    prefix      = title / ja ,
+    components  = { subject, title, info, date }
+  }
+\endinput
+%%
+%% End of file `sjtu-lang-thesis-ja.def'.

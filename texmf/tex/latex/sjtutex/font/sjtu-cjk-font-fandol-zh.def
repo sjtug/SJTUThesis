@@ -1,0 +1,85 @@
+%%
+%% This is file `sjtu-cjk-font-fandol-zh.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtutex.dtx  (with options: `font,cjk,fandol,zh')
+%% 
+%%     Copyright (C) SJTUG
+%%       2018--2024 Weijian Wu   <alexarawu@outlook.com>
+%%       2022--2024 Zilong Li    <logcreative@outlook.com>
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. The latest version of this license is in:
+%% 
+%%       http://www.latex-project.org/lppl.txt
+%% 
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+  {Fandol CJK fonts definition for Chinese (SJTUTeX)}
+\ProvidesExplFile{sjtu-cjk-font-fandol-zh.def}
+  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+\__sjtu_fontset_case:nnn
+  { \__sjtu_fontset_error:nn { cjk } { fandol } }
+  {
+    \ctex_load_zhmap:nnnn { zhsong } { zhhei } { zhfs } { fandol }
+    \ctex_punct_set:n { fandol }
+    \ctex_punct_map_family:nn   { \CJKrmdefault } { zhsong }
+    \ctex_punct_map_bfseries:nn { \CJKrmdefault } { zhhei  }
+    \ctex_punct_map_itshape:nn  { \CJKrmdefault } { zhkai  }
+  }
+  {
+    \setCJKmainfont { FandolSong }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular ,
+        BoldFont    = *-Bold ,
+        ItalicFont  = FandolKai-Regular
+      ]
+    \setCJKsansfont { FandolHei  }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular ,
+        BoldFont    = *-Bold
+      ]
+    \setCJKmonofont { FandolFang }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular
+      ]
+    \setCJKfamilyfont { zhsong } { FandolSong }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular ,
+        BoldFont    = *-Bold ,
+        ItalicFont  = FandolKai-Regular
+      ]
+    \setCJKfamilyfont { zhhei  } { FandolHei  }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular,
+        BoldFont    = *-Bold
+      ]
+    \setCJKfamilyfont { zhfs   } { FandolFang }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular
+      ]
+    \setCJKfamilyfont { zhkai  } { FandolKai  }
+      [
+        Extension   = .otf ,
+        UprightFont = *-Regular
+      ]
+  }
+\NewDocumentCommand \songti   { } { \CJKfamily { zhsong  } }
+\NewDocumentCommand \heiti    { } { \CJKfamily { zhhei   } }
+\NewDocumentCommand \fangsong { } { \CJKfamily { zhfs    } }
+\NewDocumentCommand \kaishu   { } { \CJKfamily { zhkai   } }
+\endinput
+%%
+%% End of file `sjtu-cjk-font-fandol-zh.def'.

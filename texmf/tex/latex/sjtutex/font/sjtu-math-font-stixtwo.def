@@ -1,0 +1,112 @@
+%%
+%% This is file `sjtu-math-font-stixtwo.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtutex.dtx  (with options: `font,math,stixtwo')
+%% 
+%%     Copyright (C) SJTUG
+%%       2018--2024 Weijian Wu   <alexarawu@outlook.com>
+%%       2022--2024 Zilong Li    <logcreative@outlook.com>
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. The latest version of this license is in:
+%% 
+%%       http://www.latex-project.org/lppl.txt
+%% 
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+  {STIX Two math fonts definition (SJTUTeX)}
+\ProvidesExplFile{sjtu-math-font-stixtwo.def}
+  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+\__sjtu_fontset_case:nn
+  {
+    \DeclareSizeFunction { sub } { \sub@sfcnt \@font@info }
+    \PassOptionsToPackage { notext } { stix2 }
+    \RequirePackage { stix2 }
+    \clist_map_inline:nn
+      {
+        \upalpha      { "0B } ,
+        \upbeta       { "0C } ,
+        \upgamma      { "0D } ,
+        \updelta      { "0E } ,
+        \upepsilon    { "0F } ,
+        \upzeta       { "10 } ,
+        \upeta        { "11 } ,
+        \uptheta      { "12 } ,
+        \upiota       { "13 } ,
+        \upkappa      { "14 } ,
+        \uplambda     { "15 } ,
+        \upmu         { "16 } ,
+        \upnu         { "17 } ,
+        \upxi         { "18 } ,
+        \uppi         { "19 } ,
+        \uprho        { "1A } ,
+        \upsigma      { "1B } ,
+        \uptau        { "1C } ,
+        \upupsilon    { "1D } ,
+        \upphi        { "1E } ,
+        \upchi        { "1F } ,
+        \uppsi        { "20 } ,
+        \upomega      { "21 } ,
+        \upvarepsilon { "22 } ,
+        \upvartheta   { "23 } ,
+        \upvarpi      { "24 } ,
+        \upvarrho     { "25 } ,
+        \upvarsigma   { "26 } ,
+        \upvarphi     { "27 }
+      }
+      { \__sjtu_declare_math_symbol:nnNn { \stix@lcgc } { operators } #1 }
+    \__sjtu_set_slanted_greek:
+  }
+  {
+    \RequirePackage { unicode-math }
+    \bool_if:NTF \g__sjtu_upright_integral_bool
+      {
+        \setmathfont { STIXTwoMath-Regular.otf }
+          [ StylisticSet = 8 ]
+      }
+      { \setmathfont { STIXTwoMath-Regular.otf } }
+    \setmathfont { STIXTwoMath-Regular.otf }
+      [
+        range        = { scr, bfscr },
+        StylisticSet = 1
+      ]
+    \setmathrm
+      { STIXTwoText }
+      [
+        Extension      = .otf,
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
+      ]
+    \setmathsf
+      { texgyreheros }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic,
+        Scale          = 0.94,
+      ]
+    \setmathtt
+      { texgyrecursor }
+      [
+        Extension      = .otf,
+        UprightFont    = *-regular,
+        BoldFont       = *-bold,
+        ItalicFont     = *-italic,
+        BoldItalicFont = *-bolditalic,
+        Ligatures      = CommonOff
+      ]
+  }
+\endinput
+%%
+%% End of file `sjtu-math-font-stixtwo.def'.
