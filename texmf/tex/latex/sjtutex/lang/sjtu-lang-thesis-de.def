@@ -1,0 +1,116 @@
+%%
+%% This is file `sjtu-lang-thesis-de.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtutex.dtx  (with options: `lang,thesis,de')
+%% 
+%%     Copyright (C) SJTUG
+%%       2018--2024 Weijian Wu   <alexarawu@outlook.com>
+%%       2022--2024 Zilong Li    <logcreative@outlook.com>
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. The latest version of this license is in:
+%% 
+%%       http://www.latex-project.org/lppl.txt
+%% 
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+  {German specific definition for thesis (SJTUTeX)}
+\ProvidesExplFile{sjtu-lang-thesis-de.def}
+  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+\__sjtu_info_keys_define:n { de }
+\keys_define:nn { sjtu / info / de }
+  {
+    subject          .initial:x =
+      {
+        Eine~ Dissertation~ Eingereicht~ an \exp_not:N \\
+        der~ { \exp_not:V \c__sjtu_name_univ_de_tl }~ für~
+        { \exp_not:V \c__sjtu_name_degree_level_de_tl } titel
+      }
+  }
+\cs_new:Npn \__sjtu_date_aux_de:nnn #1#2#3
+  {
+    \clist_item:Nn \c__sjtu_name_month_de_clist {#2} ~
+    {#3} ,~ \int_to_arabic:n {#1}
+  }
+\cs_new:Npn \__sjtu_date_aux_de:w #1-#2-#3 \q_stop
+  { \__sjtu_date_aux_de:nnn {#1} {#2} {#3} }
+\cs_new:Npn \__sjtu_date_aux_short_de:nn #1#2
+  {
+    \clist_item:Nn \c__sjtu_name_month_de_clist {#2} ,~
+    \int_to_arabic:n {#1}
+  }
+\cs_new:Npn \__sjtu_date_aux_short_de:w #1-#2 \q_stop
+  { \__sjtu_date_aux_short_de:nn {#1} {#2} }
+\cs_new_protected:Nn \__sjtu_set_language_de:
+  {
+    \tl_set:Nn \languagename { ngerman }
+    \ctex_set:n { autoindent = 1.5 em }
+    \normalfont
+  }
+\cs_new:Npn \ps@SJTU@fund@de
+  {
+    \ps@empty
+    \cs_set:Npn \@oddfoot
+      {
+        \minipage [ t ] { \textwidth }
+          \centering \zihao { - 5 }
+          \clist_use:Nn \l__sjtu_info_fund_de_clist { \par }
+        \endminipage
+      }
+    \cs_set_eq:NN \@evenfoot \@oddfoot
+  }
+\clist_map_inline:nn
+  {
+    { subject }
+      {
+        format      = \zihao { 4 } \setbaselineskip { 24 bp } \bfseries ,
+        content     = \l__sjtu_info_subject_de_tl ,
+        bottom-skip = \c_zero_dim plus 1 fill
+      },
+    { title   }
+      {
+        format      = \zihao { -2 } \setbaselineskip { 30 bp } \bfseries ,
+        content     = \MakeUppercase \l__sjtu_info_display_title_de_tl ,
+        bottom-skip = \c_zero_dim plus 1 fill
+      },
+    { info    }
+      {
+        format      = \zihao { 3 } \setbaselineskip { 30 bp } \bfseries ,
+        content     =
+          {
+            \__sjtu_title_page_info_i:nxx { de }
+              {
+                r @ { \exp_not:V \c__sjtu_name_info_sep_de_tl }
+                >{ \exp_not:N \normalfont } l
+              }
+              { author, \l__sjtu_info_supervisors_clist }
+          } ,
+        bottom-skip = 30 bp plus 1 fill
+      },
+    { date    }
+      {
+        format      = \zihao { 3 } \setbaselineskip { 30 bp } ,
+        content     =
+          { \__sjtu_title_page_info_ii:n { de } } ,
+      },
+  }
+  {
+    \__sjtu_declare_component:nnn { title / de } #1
+  }
+\__sjtu_declare_page:nn { title / de }
+  {
+    style       = SJTU@fund@de ,
+    format      = \linespread { } \__sjtu_set_language_de: ,
+    prefix      = title / de ,
+    components  = { subject, title, info, date }
+  }
+\endinput
+%%
+%% End of file `sjtu-lang-thesis-de.def'.

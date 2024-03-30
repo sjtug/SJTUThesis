@@ -7,8 +7,8 @@
 %% sjtutex.dtx  (with options: `class,thesis')
 %% 
 %%     Copyright (C) SJTUG
-%%       2018--2023 Alexara Wu   <alexarawu@outlook.com>
-%%       2022--2023 Log Creative <logcreative@outlook.com>
+%%       2018--2024 Weijian Wu   <alexarawu@outlook.com>
+%%       2022--2024 Zilong Li    <logcreative@outlook.com>
 %% 
 %%     This work may be distributed and/or modified under the
 %%     conditions of the LaTeX Project Public License, either
@@ -20,53 +20,37 @@
 %%     and version 1.3 or later is part of all distributions of
 %%     LaTeX version 2005/12/01 or later.
 %% 
-%%     This work has the LPPL maintenance status `maintained'.
-%% 
-%%     The Current Maintainers of this work are Alexara Wu and Log Creative.
-%% 
-\NeedsTeXFormat{LaTeX2e}
-\RequirePackage{expl3}
-\GetIdInfo $Id: sjtutex.dtx 2.0.3 2023-09-25 19:50:00Z Alexara Wu <alexarawu@outlook.com> $
-  {Thesis template for Shanghai Jiao Tong University}
+\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+\IfFormatAtLeastTF{2020/10/01}{}
+ {\PackageError{sjtutex}
+   {Your LaTeX format is outdated!\MessageBreak\MessageBreak
+    Release `2020/10/01' or newer is required to\MessageBreak
+    compile this document.\MessageBreak\MessageBreak
+    Please update your TeX distribution}{}}
+\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+  {Thesis document class for Shanghai Jiao Tong University (SJTUTeX)}
 \ProvidesExplClass{sjtuthesis}
-  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-\RequirePackage { xparse, xtemplate }
-\msg_new:nnn { sjtutex } { l3-too-old }
-  {
-    Package~ "#1"~ is~ too~ old. \\\\
-    Please~ update~ an~ up-to-date~ version~ of~ the~ bundles \\
-    "l3kernel"~ and~ "l3packages"~ using~ your~ TeX~ package \\
-    manager~ or~ from~ CTAN.
-  }
-\@ifpackagelater { expl3 } { 2020/04/06 } { }
-  { \msg_error:nnn { sjtutex } { l3-too-old } { expl3 } }
-\bool_new:N \l__sjtu_tmpa_bool
-\int_new:N \l__sjtu_tmpa_int
-\tl_new:N \l__sjtu_tmpa_tl
-\tl_new:N \l__sjtu_tmpb_tl
-\clist_new:N \l__sjtu_tmpa_clist
-\clist_new:N \l__sjtu_tmpb_clist
-\dim_new:N \l__sjtu_tmpa_dim
-\dim_new:N \l__sjtu_tmpb_dim
-\skip_new:N \l__sjtu_tmpa_skip
-\box_new:N \l__sjtu_tmpa_box
+  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+\bool_new:N \l__sjtu_tmp_bool
+\clist_new:N \l__sjtu_tmp_clist
+\dim_new:N \l__sjtu_tmp_dim
+\skip_new:N \l__sjtu_tmp_skip
+\box_new:N \l__sjtu_tmp_box
 \int_new:N \g__sjtu_thesis_type_int
 \tl_new:N \g__sjtu_lang_tl
+\clist_set:Nn \g__sjtu_lang_clist { zh, en }
 \tl_const:Nn \c__sjtu_lang_de_tl { de }
 \tl_const:Nn \c__sjtu_lang_ja_tl { ja }
-\clist_set:Nn \g__sjtu_lang_clist { zh, en }
 \tl_new:N \g__sjtu_zihao_tl
+\int_new:N \g__sjtu_font_size_int
 \dim_new:N \g__sjtu_font_size_dim
-\dim_new:N \g__sjtu_line_skip_dim
-\dim_new:N \g__sjtu_default_line_skip_dim
+\dim_new:N \g__sjtu_baseline_skip_dim
+\bool_new:N \g__sjtu_fixed_baselineskip_bool
 \fp_new:N \g__sjtu_line_spread_fp
 \tl_new:N \g__sjtu_text_font_tl
 \tl_new:N \g__sjtu_math_font_tl
 \tl_new:N \g__sjtu_cjk_font_tl
-\tl_new:N \g__sjtu_save_encodingdefault_tl
-\tl_new:N \g__sjtu_save_rmdefault_tl
-\tl_new:N \g__sjtu_save_sfdefault_tl
-\tl_new:N \g__sjtu_save_ttdefault_tl
 \bool_new:N \g__sjtu_slanted_uppercase_greek_bool
 \bool_new:N \g__sjtu_upright_integral_bool
 \bool_new:N \g__sjtu_integral_limits_bool
@@ -109,20 +93,32 @@
     lang .initial:n = { zh } ,
     zihao .choice: ,
     zihao .value_required:n = true ,
-    zihao / -4 .code:n =
-      {
-        \tl_gset:Nn  \g__sjtu_zihao_tl {#1}
-        \dim_gset:Nn \g__sjtu_font_size_dim         { 12   bp }
-        \dim_gset:Nn \g__sjtu_default_line_skip_dim { 20   bp }
-      } ,
     zihao /  5 .code:n =
       {
         \tl_gset:Nn  \g__sjtu_zihao_tl {#1}
-        \dim_gset:Nn \g__sjtu_font_size_dim         { 10.5 bp }
-        \dim_gset:Nn \g__sjtu_default_line_skip_dim { 15.6 bp }
+        \int_gset:Nn \g__sjtu_font_size_int { 1 }
+        \dim_gset:Nn \g__sjtu_font_size_dim { 10.5 bp }
+      } ,
+    zihao / -4 .code:n =
+      {
+        \tl_gset:Nn  \g__sjtu_zihao_tl {#1}
+        \int_gset:Nn \g__sjtu_font_size_int { 2 }
+        \dim_gset:Nn \g__sjtu_font_size_dim { 12   bp }
       } ,
     zihao .initial:n = { -4 } ,
-    lineskip .dim_gset:N = \g__sjtu_line_skip_dim ,
+    linespread .fp_gset:N = \g__sjtu_line_spread_fp ,
+    linespread .initial:n = { \c_nan_fp } ,
+    linespread .value_required:n = true ,
+    baselineskip .choice: ,
+    baselineskip .value_required:n = true ,
+    baselineskip / false   .code:n =
+      { \bool_gset_false:N \g__sjtu_fixed_baselineskip_bool } ,
+    baselineskip / unknown .code:n =
+      {
+        \bool_gset_true:N  \g__sjtu_fixed_baselineskip_bool
+        \dim_gset:Nn \g__sjtu_baseline_skip_dim {#1}
+      } ,
+    baselineskip .initial:n = { 20 bp } ,
     text-font .tl_gset:N = \g__sjtu_text_font_tl ,
     text-font .initial:n = { newtx } ,
     math-font .tl_gset:N = \g__sjtu_math_font_tl ,
@@ -191,10 +187,6 @@
     \RequirePackage { l3keys2e }
     \ProcessKeysOptions { sjtu / option }
   }
-\dim_compare:nNnT \g__sjtu_line_skip_dim < \g__sjtu_font_size_dim
-  { \dim_set_eq:NN \g__sjtu_line_skip_dim \g__sjtu_default_line_skip_dim }
-\fp_set:Nn \g__sjtu_line_spread_fp
-  { \dim_ratio:nn { \g__sjtu_line_skip_dim } { \g__sjtu_font_size_dim } / 1.2 }
 \clist_set:Nx \g__sjtu_math_font_options_clist
   {
     \bool_if:NT \g__sjtu_slanted_uppercase_greek_bool
@@ -214,7 +206,8 @@
 \clist_put_right:Nx \g__sjtu_options_to_ctex_class_clist
   {
     zihao      = \g__sjtu_zihao_tl ,
-    linespread = \fp_use:N \g__sjtu_line_spread_fp ,
+    \fp_if_nan:nF { \g__sjtu_line_spread_fp }
+      { linespread = \fp_use:N \g__sjtu_line_spread_fp } ,
     \bool_if:NTF \g__sjtu_twoside_bool
       { twoside   } { oneside     } ,
     \bool_if:NTF \g__sjtu_openright_bool
@@ -228,7 +221,6 @@
 \clist_set:Nx \g__sjtu_options_to_packages_clist
   {
     { no-math           } { fontspec     } ,
-    { titles            } { tocloft      } ,
     { list = off        } { bicaption    } ,
     { warnings-off =
       {
@@ -249,10 +241,12 @@
 \LoadClass { ctexbook }
 \RequirePackage
   {
+    xtemplate,
+    array,
     mathtools,
     geometry,
     fancyhdr,
-    tocloft,
+    titletoc,
     caption,
     bicaption,
     subcaption,
@@ -300,33 +294,15 @@
       }
   }
   { \cs_new:Npn \__sjtu_unicode_char:n #1 { \tex_Uchar:D #1 \scan_stop: } }
-\cs_new_protected:Npn \__sjtu_preto_cmd:Nn #1#2
-  {
-    \ctex_preto_cmd:NnnTF #1 { } {#2}
-      { } { \ctex_patch_failure:N #1 }
-  }
-\cs_new_protected:Npn \__sjtu_appto_cmd:Nn #1#2
-  {
-    \ctex_appto_cmd:NnnTF #1 { } {#2}
-      { } { \ctex_patch_failure:N #1 }
-  }
-\cs_new:Npn \__sjtu_fixed_line_skip:n #1
-  {
-    \exp_args:Nx \linespread
-      { \fp_to_decimal:n { \dim_ratio:nn { #1 } { \f@size pt } / 1.2 } }
-    \selectfont
-  }
-\NewDocumentCommand \fixedlineskip { m }
-  { \exp_args:Nx \__sjtu_fixed_line_skip:n {#1} \tex_ignorespaces:D }
 \cs_new:Npn \__sjtu_dim_set_to_wd:Nn #1#2
   {
-    \hbox_set:Nn \l__sjtu_tmpa_box {#2}
-    \dim_set:Nn #1 { \box_wd:N \l__sjtu_tmpa_box }
+    \hbox_set:Nn \l__sjtu_tmp_box {#2}
+    \dim_set:Nn #1 { \box_wd:N \l__sjtu_tmp_box }
   }
 \cs_new:Npn \__sjtu_skip_add_to_wd:Nn #1#2
   {
-    \hbox_set:Nn \l__sjtu_tmpa_box {#2}
-    \skip_add:Nn #1 { \box_wd:N \l__sjtu_tmpa_box }
+    \hbox_set:Nn \l__sjtu_tmp_box {#2}
+    \skip_add:Nn #1 { \box_wd:N \l__sjtu_tmp_box }
   }
 \cs_generate_variant:Nn \__sjtu_dim_set_to_wd:Nn { Nv }
 \cs_generate_variant:Nn \__sjtu_skip_add_to_wd:Nn { cv }
@@ -340,22 +316,22 @@
   }
 \cs_new_protected:Npn \__sjtu_vspace:n #1
   {
-    \skip_set:Nn \l__sjtu_tmpa_skip {#1}
-    \__sjtu_vspace:N \l__sjtu_tmpa_skip
+    \skip_set:Nn \l__sjtu_tmp_skip {#1}
+    \__sjtu_vspace:N \l__sjtu_tmp_skip
   }
 \cs_new_protected:Npn \__sjtu_vspace_r:N #1
   {
-    \dim_set_eq:NN \l__sjtu_tmpa_dim \prevdepth
+    \dim_set_eq:NN \l__sjtu_tmp_dim \prevdepth
     \hrule height \c_zero_dim
     \nobreak
     \skip_vertical:N #1
     \skip_vertical:N \c_zero_skip
-    \dim_set_eq:NN \prevdepth \l__sjtu_tmpa_dim
+    \dim_set_eq:NN \prevdepth \l__sjtu_tmp_dim
   }
 \cs_new_protected:Npn \__sjtu_vspace_r:n #1
   {
-    \skip_set:Nn   \l__sjtu_tmpa_skip {#1}
-    \__sjtu_vspace_r:N \l__sjtu_tmpa_skip
+    \skip_set:Nn   \l__sjtu_tmp_skip {#1}
+    \__sjtu_vspace_r:N \l__sjtu_tmp_skip
   }
 \cs_new_protected:Npn \__sjtu_define_name:nn #1#2
   { \tl_const:cn { c__sjtu_name_ #1 _tl } {#2} }
@@ -449,6 +425,44 @@
   { \DeclareInstance { sjtu } {#1/#2} { component } {#3} }
 \cs_new:Npn \__sjtu_declare_page:nn #1#2
   { \DeclareInstance { sjtu } {#1} { page } {#2} }
+\cs_new_protected:Npn \__sjtu_set_font_size:nnNn #1#2#3#4
+  { \cs_set_protected:Npn #3 { \@setfontsize #3 {#1} {#2} #4 } }
+\tl_set:Nx \l__sjtu_font_size_tl
+  {
+    { \dim_to_decimal:n { \g__sjtu_font_size_dim     } }
+    { \dim_to_decimal:n { \g__sjtu_baseline_skip_dim } }
+  }
+\bool_if:NT \g__sjtu_fixed_baselineskip_bool
+  {
+    \int_case:nn { \g__sjtu_font_size_int }
+      {
+        { 1 } {
+                \exp_after:wN \__sjtu_set_font_size:nnNn \l__sjtu_font_size_tl
+                  \normalsize
+                  {
+                    \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+                    \abovedisplayshortskip \z@ \@plus3\p@
+                    \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+                    \belowdisplayskip \abovedisplayskip
+                    \let\@listi\@listI
+                  }
+              }
+        { 2 } {
+                \exp_after:wN \__sjtu_set_font_size:nnNn \l__sjtu_font_size_tl
+                  \normalsize
+                  {
+                    \abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
+                    \abovedisplayshortskip \z@ \@plus3\p@
+                    \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+                    \belowdisplayskip \abovedisplayskip
+                    \let\@listi\@listI
+                  }
+              }
+      }
+    \normalsize
+  }
+\NewDocumentCommand \setbaselineskip { m }
+  { \fontsize { \f@size } {#1} \selectfont }
 \cs_new_protected:Npn \__sjtu_fontset_error:nn #1#2
   { \msg_error:nnnn { sjtutex } { font-unavailable } {#1} {#2} }
 \msg_new:nnn { sjtutex } { font-unavailable }
@@ -459,6 +473,11 @@
     \__sjtu_engine_case:nn
       { \sys_if_output_pdf:TF {#1} {#2} }
       {#3}
+  }
+\cs_new_protected:Nn \__sjtu_declare_math_symbol:nnNn
+  {
+    \cs_undefine:N #3
+    \DeclareMathSymbol {#3} {#1} {#2} {#4}
   }
 \cs_new_protected:Nn \__sjtu_set_slanted_greek:
   {
@@ -578,9 +597,9 @@
     bib             .meta:nn = { ctex } { bibname        = {#1} } ,
     part           .tl_set:N = \partname ,
     chapter        .tl_set:N = \chaptername ,
-    figure*        .tl_set:N = \SJTU@figurename@aux ,
+    figure*        .tl_set:N = \SJTU@figurename@bi@second ,
     figure*       .initial:n = { 图 } ,
-    table*         .tl_set:N = \SJTU@tablename@aux ,
+    table*         .tl_set:N = \SJTU@tablename@bi@second ,
     table*        .initial:n = { 表 } ,
     algorithm      .tl_set:N = \SJTU@algorithmname ,
     algorithm     .initial:n = { Algorithm } ,
@@ -621,9 +640,9 @@
 \keys_define:nn { sjtu / style }
   {
     header-font  .tl_set:N = \l__sjtu_style_header_font_tl ,
-    header-font .initial:n = \zihao { -5 } ,
+    header-font .initial:n = \zihao { -5 } \setbaselineskip { 12 bp } ,
     footer-font  .tl_set:N = \l__sjtu_style_footer_font_tl ,
-    footer-font .initial:n = \zihao { -5 }
+    footer-font .initial:n = \zihao { -5 } \setbaselineskip { 12 bp }
   }
 \fancyheadinit { \l__sjtu_style_header_font_tl }
 \fancyfootinit { \l__sjtu_style_footer_font_tl }
@@ -692,42 +711,54 @@
   {
     pagestyle   = SJTU@null ,
     fixskip     = true ,
-    beforeskip  = 24 bp ,
-    afterskip   = 18 bp ,
-    lofskip     = \c_zero_skip ,
-    lotskip     = \c_zero_skip ,
-    format      = \zihao { 3 } \bfseries \CJKsffamily \centering ,
+    beforeskip  = 27 bp ,
+    afterskip   = 27 bp ,
+    format      = \zihao { 3 } \setbaselineskip{ 20 bp } \bfseries
+                  \CJKsffamily \centering ,
     nameformat  = ,
     titleformat = ,
-    aftername   = \quad ,
-    afterindent = true
+    lofskip     = \c_zero_skip ,
+    lotskip     = \c_zero_skip ,
+    aftername   = \quad
   }
 \ctex_set:nn { section }
   {
     beforeskip  = 24 bp ,
     afterskip   =  6 bp ,
-    format      = \zihao { 4 } \bfseries \CJKsffamily ,
-    afterindent = true
+    format      = \zihao { 4 } \setbaselineskip { 18 bp } \bfseries
+                  \CJKsffamily
   }
 \ctex_set:nn { subsection }
   {
     beforeskip  = 12 bp ,
     afterskip   =  6 bp ,
-    format      = \zihao { -4 } \bfseries \CJKsffamily ,
-    afterindent = true
+    format      = \zihao { -4 } \setbaselineskip { 16 bp } \bfseries
+                  \CJKsffamily
   }
 \ctex_set:nn { subsubsection }
   {
     beforeskip  =  6 bp ,
     afterskip   =  6 bp ,
-    format      = \zihao { -4 } \normalfont ,
-    afterindent = true
+    format      = \zihao { -4 } \setbaselineskip { 16 bp } \normalfont
   }
-\ctex_set:nn { paragraph }
-  { afterindent = true }
-\ctex_set:nn { subparagraph }
-  { afterindent = true }
 \ctex_set:n { secnumdepth = 3 }
+\keys_define:nn { sjtu / style }
+  {
+    indent-first    .choice: ,
+    indent-first   .choices:nn =
+      { true, false }
+      {
+        \clist_map_inline:nn
+          {
+            chapter,
+            section, subsection, subsubsection,
+            paragraph, subparagraph
+          }
+          { \ctex_set:nn {####1} { afterindent = #1 } }
+      } ,
+    indent-first   .default:n = { true } ,
+    indent-first   .initial:n = { true }
+  }
 \NewDocumentCommand \SJTU@head { s O{#3} m O{#2} }
   {
     \CTEX@chapter@break
@@ -743,19 +774,49 @@
     \cs_set_eq:NN \CTEX@gettitle \__sjtu_orig_ctex_gettitle:n
     \@mkboth { \MakeUppercase {#2} } { \MakeUppercase {#2} }
   }
-\cs_new:Npn \__sjtu_head_aux:n   #1
-  { \SJTU@head  {#1} }
-\cs_new:Npn \__sjtu_head_aux_s:n #1
-  { \SJTU@head* {#1} }
-\cs_new:Npn \__sjtu_head_auxa_s:nn #1#2
-  { \SJTU@head* {#1} [#2] }
-\cs_new:Npn \__sjtu_head_auxb_s:nn #1#2
+\cs_new:Npn \__sjtu_head_aux_s:nn #1#2
   { \SJTU@head* [#1] {#2} }
-\cs_generate_variant:Nn \__sjtu_head_auxa_s:nn { xn, xv }
-\cs_generate_variant:Nn \__sjtu_head_auxb_s:nn { nx }
+\cs_generate_variant:Nn \__sjtu_head_aux_s:nn { nx }
 \cs_new_eq:NN \__sjtu_pdf_bookmark:nn \use_none:nn
 \cs_new_eq:NN \__sjtu_phantom_section: \prg_do_nothing:
 \setlist { nosep }
+\keys_define:nn { sjtu / style }
+  {
+    equation-font  .tl_set:N = \SJTU@style@equation@font ,
+    equation-font .initial:x = \exp_not:N \linespread { }
+                               \exp_not:N \zihao { \g__sjtu_zihao_tl }
+  }
+\clist_map_inline:nn
+  {
+    array, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix,
+    matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*,
+    cases, cases*, dcases, dcases*, rcases, rcases*, drcases, drcases*,
+    aligned, alignedat, gathered, multlined, lgathered, rgathered
+  }
+  { \AtBeginEnvironment {#1} { \SJTU@style@equation@font } }
+\clist_map_inline:nn
+  { \start@gather, \start@align, \start@multline }
+  {
+    \ctex_patch_cmd:Nnn #1
+      { \collect@body }
+      {
+        \SJTU@style@equation@font
+        \collect@body
+      }
+  }
+\ctex_patch_cmd:Nnn \gather@split
+  { \spread@equation }
+  {
+    \SJTU@style@equation@font
+    \spread@equation
+  }
+\keys_define:nn { sjtu / style }
+  {
+    theorem-header-font  .tl_set:N = \SJTU@style@thm@header@font ,
+    theorem-header-font .initial:n = \bfseries \CJKsffamily ,
+    theorem-body-font    .tl_set:N = \SJTU@style@thm@body@font ,
+    theorem-body-font   .initial:n = \normalfont ,
+  }
 \tl_set:Nn \textfraction      { 0.15 }
 \tl_set:Nn \topfraction       { 0.85 }
 \tl_set:Nn \bottomfraction    { 0.65 }
@@ -763,47 +824,54 @@
 \keys_define:nn { sjtu / style }
   {
     float-font  .tl_set:N = \SJTU@style@float@font ,
-    float-font .initial:n = \zihao { 5 } \fixedlineskip { 15.6 bp }
+    float-font .initial:n = \zihao { 5 } \setbaselineskip { 14 bp }
   }
 \ctex_patch_cmd:Nnn \@floatboxreset
   { \normalsize } { \SJTU@style@float@font }
 \keys_define:nn { sjtu / style }
   {
     caption-font       .code:n =
-      { \DeclareCaptionFont { SJTU@font     } {#1} } ,
-    caption-font    .initial:n = \zihao { 5 } \bfseries ,
+      { \DeclareCaptionFont { normalsize    } {#1} } ,
+    caption-font    .initial:n = \zihao { 5 } \setbaselineskip { 14 bp }
+                                 \bfseries ,
     subcaption-font    .code:n =
       { \DeclareCaptionFont { SJTU@sub@font } {#1} } ,
-    subcaption-font .initial:n = \zihao { 5 } \normalfont
+    subcaption-font .initial:n = \zihao { 5 } \setbaselineskip { 14 bp }
+                                 \normalfont
   }
-\DeclareCaptionLabelSeparator { enskip } { \enskip }
 \captionsetup
   {
-    labelsep      = enskip ,
-    justification = centering ,
-    font          = SJTU@font
+    bi-slc   = off ,
+    labelsep = quad ,
+    skip     = 6 bp
   }
 \captionsetup [ sub ]
   {
-    format        = hang ,
-    justification = justified ,
-    font          = SJTU@sub@font
+    bi-slc   = on ,
+    font     = SJTU@sub@font ,
+    format   = hang
   }
-\DeclareCaptionOption { aux-names } [ ]
+\DeclareCaptionOption { bi-second-names } [ ]
   {
-    \tl_set:Nn \figurename { \SJTU@figurename@aux }
-    \tl_set:Nn \tablename  { \SJTU@tablename@aux  }
+    \tl_set:Nn \figurename { \SJTU@figurename@bi@second }
+    \tl_set:Nn \tablename  { \SJTU@tablename@bi@second  }
   }
-\captionsetup [ bi-second ] { aux-names }
+\captionsetup [ bi-second ] { bi-second-names }
 \keys_define:nn { sjtu / style }
   {
-    float-num-sep     .tl_set:N = \l__sjtu_style_fl_num_sep_tl ,
-    float-num-sep    .initial:n = { -- } ,
-    equation-num-sep  .tl_set:N = \l__sjtu_style_eq_num_sep_tl ,
-    equation-num-sep .initial:n = { -- }
+    num-sep            .code:n =
+      {
+        \tl_set:Nn \SJTU@style@fl@num@sep {#1}
+        \tl_set:Nn \SJTU@style@eq@num@sep {#1}
+        \tl_set:Nn \@thmcountersep        {#1}
+      } ,
+    num-sep         .initial:n = { . } ,
+    float-num-sep    .tl_set:N = \SJTU@style@fl@num@sep ,
+    equation-num-sep .tl_set:N = \SJTU@style@eq@num@sep ,
+    theorem-num-sep  .tl_set:N = \@thmcountersep
   }
 \NewDocumentCommand \SJTU@counterwithin
-  { s O{ \l__sjtu_style_fl_num_sep_tl } O{ \arabic } m m }
+  { s O{ \SJTU@style@fl@num@sep } O{ \arabic } m m }
   {
     \@ifbothcounters {#4} {#5}
       {
@@ -817,7 +885,7 @@
   }
 \SJTU@counterwithin { figure } { chapter }
 \SJTU@counterwithin { table  } { chapter }
-\SJTU@counterwithin [ \l__sjtu_style_eq_num_sep_tl ] { equation } { chapter }
+\SJTU@counterwithin [ \SJTU@style@eq@num@sep ] { equation } { chapter }
 \clist_set:Nn \l__sjtu_counter_without_chapter_clist
   { section, figure, table, equation }
 \cs_set_eq:NN \__sjtu_makefnmark_plain: \@makefnmark
@@ -986,77 +1054,59 @@
 \tl_set:Nv \today { l__sjtu_info_date_ \g__sjtu_lang_tl _tl }
 \__sjtu_engine_case:nnn
   {
-    \cs_new_protected:Npn \__sjtu_cjk_spread_box:nn #1#2
+    \NewDocumentEnvironment { SJTU@CJK@FTS } { m b }
       {
         \mode_leave_vertical:
-        \group_begin:
-          \bool_set_false:N \l__sjtu_tmpa_bool
-          \cs_set_eq:NN \SJTU@CJK@filltwosidesSymbol \CJKsymbol
-          \cs_set:Npn \CJKsymbol ##1
-            {
-              \bool_if:NTF \l__sjtu_tmpa_bool
-                { \hfil \SJTU@CJK@filltwosidesSymbol { ##1 } }
-                {
-                  \SJTU@CJK@filltwosidesSymbol { ##1 }
-                  \bool_set_true:N \l__sjtu_tmpa_bool
-                }
-            }
-          \hbox_to_wd:nn {#1} {#2}
-        \group_end:
-      }
+        \bool_set_false:N \l__sjtu_tmp_bool
+        \cs_set_eq:NN \SJTU@CJK@FTS@Symbol \CJKsymbol
+        \cs_set:Npn \CJKsymbol ##1
+          {
+            \bool_if:NTF \l__sjtu_tmp_bool
+              { \hfil \SJTU@CJK@FTS@Symbol { ##1 } }
+              {
+                \SJTU@CJK@FTS@Symbol { ##1 }
+                \bool_set_true:N \l__sjtu_tmp_bool
+              }
+          }
+        \hbox_to_wd:nn {#1} {#2}
+      } { }
   }
   {
-    \cs_new_protected:Npn \__sjtu_cjk_spread_box:nn #1#2
+    \NewDocumentEnvironment { SJTU@CJK@FTS } { m b }
       {
         \mode_leave_vertical:
-        \group_begin:
-          \cs_set:Npn \CJKglue
-            { \skip_horizontal:n { \c_zero_dim plus 1 filll } }
-          \hbox_to_wd:nn {#1} {#2}
-        \group_end:
-      }
+        \cs_set:Npn \CJKglue
+          { \skip_horizontal:n { \c_zero_dim plus 1 filll } }
+        \hbox_to_wd:nn {#1} {#2}
+      } { }
   }
   {
-    \cs_new_protected:Npn \__sjtu_cjk_spread_box:nn #1#2
+    \NewDocumentEnvironment { SJTU@CJK@FTS } { m b }
       {
         \mode_leave_vertical:
-        \group_begin:
-          \ltjsetparameter { kanjiskip = { \c_zero_dim plus 1 filll } }
-          \hbox_to_wd:nn {#1} {#2}
-        \group_end:
-      }
+        \ltjsetparameter { kanjiskip = { \c_zero_dim plus 1 filll } }
+        \hbox_to_wd:nn {#1} {#2}
+      } { }
   }
-\cs_new_protected:Npn \__sjtu_left_aligned_box:nn #1#2
-  {
-    \mode_leave_vertical:
-    \hbox_to_wd:nn {#1} { #2 \hfil }
-  }
+\newcolumntype { \SJTU@CT@D } [ 1 ]
+  { >{ \begin { SJTU@CJK@FTS } {#1} } c <{ \end { SJTU@CJK@FTS } } }
 \cs_new:Npn \__sjtu_title_page_info_i:nnn #1#2#3
   {
+    \clist_clear:N \l__sjtu_tmp_clist
+    \clist_map_inline:nn {#3}
+      {
+        \clist_put_right:Nx \l__sjtu_tmp_clist
+          {
+            \exp_not:o { \cs:w c__sjtu_name_ ##1 _ #1 _tl \cs_end: }
+            &
+            \exp_not:o { \cs:w l__sjtu_info_ ##1 _ #1 _tl \cs_end: }
+          }
+      }
     \group_begin:
-      \cs_set:Npn \l__sjtu_info_output_format:NNN ##1##2##3 {#3}
-      \clist_clear:N \l__sjtu_tmpa_clist
-      \clist_clear:N \l__sjtu_tmpb_clist
-      \dim_set:Nn \l__sjtu_tmpb_dim { 5 em }
-      \clist_map_inline:nn {#2}
-        {
-          \clist_put_right:No \l__sjtu_tmpa_clist
-            { \cs:w c__sjtu_name_ ##1 _ #1 _tl \cs_end: }
-          \clist_put_right:No \l__sjtu_tmpb_clist
-            { \cs:w l__sjtu_info_ ##1 _ #1 _tl \cs_end: }
-          \__sjtu_dim_set_to_wd:Nv \l__sjtu_tmpa_dim { l__sjtu_info_ ##1 _ #1 _tl }
-          \dim_set:Nn \l__sjtu_tmpb_dim
-            { \dim_max:nn { \l__sjtu_tmpa_dim } { \l__sjtu_tmpb_dim } }
-        }
-      \bool_until_do:nn
-        { \clist_if_empty_p:N \l__sjtu_tmpa_clist }
-        {
-          \clist_pop:NN \l__sjtu_tmpa_clist \l__sjtu_tmpa_tl
-          \clist_pop:NN \l__sjtu_tmpb_clist \l__sjtu_tmpb_tl
-          \l__sjtu_info_output_format:NNN
-            \l__sjtu_tmpa_tl \l__sjtu_tmpb_dim \l__sjtu_tmpb_tl
-          \skip_vertical:N \c_zero_dim
-        }
+      \tl_set:Nn \arraystretch { 1 }
+      \tabular {#2}
+        \clist_use:Nn \l__sjtu_tmp_clist { \\ }
+      \endtabular
     \group_end:
   }
 \cs_new:Npn \__sjtu_title_page_info_ii:n #1
@@ -1069,15 +1119,7 @@
     \skip_vertical:N \c_zero_skip
     \tl_use:c { l__sjtu_info_date_ #1 _tl }
   }
-\cs_generate_variant:Nn \__sjtu_title_page_info_i:nnn { nxn }
-\keys_define:nn { sjtu / style }
-  {
-    title-logo-color       .choice: ,
-    title-logo-color      .choices:nn =
-      { red, blue, black }
-      { \tl_set_eq:NN \l__sjtu_style_title_logo_color_tl \l_keys_choice_tl } ,
-    title-logo-color       .initial:n = { red }
-  }
+\cs_generate_variant:Nn \__sjtu_title_page_info_i:nnn { nxx }
 \RenewDocumentCommand \maketitle { }
   {
     \clist_map_inline:nn
@@ -1098,7 +1140,8 @@
   {
     { orig / title }
       {
-        format      = \zihao { 3 } \heiti \fixedlineskip { 31.2 bp } ,
+        format      = \zihao { 3 } \setbaselineskip { 30 bp }
+                      \bfseries \heiti ,
         content     =
           {
             \c__sjtu_name_univ_zh_tl
@@ -1106,18 +1149,18 @@
             \c__sjtu_name_thesis_zh_tl
             \c__sjtu_name_orig_decl_zh_tl
           } ,
-        bottom-skip = 15.6 bp
+        bottom-skip = 12 bp
       },
     { orig / text  }
       {
-        format      = \zihao { -4 } \fixedlineskip { 23.4 bp } ,
+        format      = \zihao { -4 } \setbaselineskip { 24 bp } ,
         content     = \c__sjtu_orig_decl_text_zh_tl ,
-        bottom-skip = 15.6 bp ,
+        bottom-skip = 24 bp ,
         align       = normal
       },
     { orig / sign  }
       {
-        format      = \zihao { 4 } \fixedlineskip { 31.2 bp } ,
+        format      = \zihao { 4 } \setbaselineskip { 30 bp } ,
         content     =
           {
             \__sjtu_signature:N \c__sjtu_name_decl_author_zh_tl
@@ -1128,7 +1171,8 @@
       },
     { auth / title }
       {
-        format      = \zihao { 3 } \heiti \fixedlineskip { 31.2 bp } ,
+        format      = \zihao { 3 } \setbaselineskip { 30 bp }
+                      \bfseries \heiti ,
         content     =
           {
             \c__sjtu_name_univ_zh_tl
@@ -1136,23 +1180,24 @@
             \c__sjtu_name_thesis_zh_tl
             \c__sjtu_name_auth_decl_zh_tl
           } ,
-        bottom-skip = 15.6 bp
+        bottom-skip = 12 bp
       },
     { auth / text  }
       {
-        format      = \zihao { -4 } \fixedlineskip { 23.4 bp } ,
+        format      = \zihao { -4 } \setbaselineskip { 24 bp } ,
         content     = \c__sjtu_auth_decl_text_zh_tl ,
-        bottom-skip = 15.6 bp ,
+        bottom-skip = 24 bp ,
         align       = normal
       },
     { auth / sign  }
       {
-        format      = \zihao { 4 } \fixedlineskip { 31.2 bp } ,
+        format      = \zihao { 4 } \setbaselineskip { 30 bp } ,
         content     =
           {
             \__sjtu_signature:N \c__sjtu_name_decl_author_zh_tl
             \hfill
             \__sjtu_signature:N \c__sjtu_name_decl_supervisor_zh_tl
+            \skip_horizontal:n { 2 em } \hbox:n { }
           } ,
         bottom-skip = \c_zero_dim plus 1 fill ,
         align       = normal
@@ -1165,7 +1210,7 @@
   {
     bookmark      = true ,
     bookmark-text = \c__sjtu_name_declaration_tl ,
-    format        = \linespread { 1 } \__sjtu_set_language_zh: ,
+    format        = \linespread { } \__sjtu_set_language_zh: ,
     prefix        = copyright ,
     components    =
       {
@@ -1199,108 +1244,126 @@
           }
       }
   }
-\bool_new:N \l__sjtu_abstract_bookmark_bool
+\keys_define:nn { sjtu / style }
+  {
+    keywords-format       .choice: ,
+    keywords-format / plain .code:n =
+      { \cs_set:Nn \__sjtu_keywords_format:n { \noindent  { \bfseries ##1 } } } ,
+    keywords-format / hang  .code:n =
+      { \cs_set:Nn \__sjtu_keywords_format:n { \@hangfrom { \bfseries ##1 } } } ,
+    keywords-format      .initial:n = { plain }
+  }
 \DeclareDocumentEnvironment { abstract  } { O{ zh } +b }
   {
     \__sjtu_if_lang_valid:nTF {#1}
       {
         \use:c { __sjtu_set_language_ #1 : }
-        \ctex_set:nn { chapter } { format += \sffamily }
-        \bool_if:NTF \l__sjtu_abstract_bookmark_bool
-          {
-            \__sjtu_head_auxa_s:xn
-              {
-                \exp_not:N \MakeUppercase
-                  { \exp_not:v { c__sjtu_name_abstract_ #1 _tl } }
-              }
-              { }
-          }
-          {
-            \__sjtu_head_auxa_s:xv
-              {
-                \exp_not:N \MakeUppercase
-                  { \exp_not:v { c__sjtu_name_abstract_ #1 _tl } }
-              }
-              { c__sjtu_name_abstract_tl }
-            \bool_gset_true:N \l__sjtu_abstract_bookmark_bool
-          }
+        \exp_args:Nv \SJTU@head { c__sjtu_name_abstract_ #1 _tl }
         #2
         \clist_if_empty:cF { l__sjtu_info_keywords_ #1 _clist }
           {
-            \par \mode_leave_vertical: \par \noindent
-            {
-              \bfseries
-              \tl_use:c { c__sjtu_name_keywords_ #1 _tl }
-              \tl_use:c { c__sjtu_name_info_sep_ #1 _tl }
-            }
+            \par \mode_leave_vertical: \par
+            \__sjtu_keywords_format:n
+              {
+                \tl_use:c { c__sjtu_name_keywords_ #1 _tl }
+                \tl_use:c { c__sjtu_name_info_sep_ #1 _tl }
+              }
             \clist_use:cv { l__sjtu_info_keywords_ #1 _clist }
               { c__sjtu_name_item_sep_ #1 _tl }
+            \par
           }
       }
       { \msg_error:nnn { sjtutex } { lang-validation } {#1} }
   } { }
-\DeclareDocumentEnvironment { abstract* } { }
-  { \abstract [ en ] } { \endabstract }
-\DeclareDocumentCommand \tableofcontents { }
+\DeclareDocumentEnvironment { abstract* } { O{ zh } +b }
   {
-    \__sjtu_head_aux_s:n { \contentsname }
+    \__sjtu_if_lang_valid:nTF {#1}
+      {
+        \use:c { __sjtu_set_language_ #1 : }
+        \exp_args:NNv \SJTU@head* { c__sjtu_name_abstract_ #1 _tl }
+        #2
+        \clist_if_empty:cF { l__sjtu_info_keywords_ #1 _clist }
+          {
+            \par \mode_leave_vertical: \par
+            \__sjtu_keywords_format:n
+              {
+                \tl_use:c { c__sjtu_name_keywords_ #1 _tl }
+                \tl_use:c { c__sjtu_name_info_sep_ #1 _tl }
+              }
+            \clist_use:cv { l__sjtu_info_keywords_ #1 _clist }
+              { c__sjtu_name_item_sep_ #1 _tl }
+            \par
+          }
+      }
+      { \msg_error:nnn { sjtutex } { lang-validation } {#1} }
+  } { }
+\DeclareDocumentCommand \tableofcontents { s }
+  {
+    \IfBooleanTF {#1}
+      { \SJTU@head* { \contentsname } }
+      { \SJTU@head  { \contentsname } }
     \@starttoc { toc }
   }
+\tl_set:Nn \SJTU@leaders { \titlerule* [ 4bp ] { . } }
+\contentsmargin [ 2.55 em ] { 0 pt }
+\titlecontents { chapter }
+  [ 0 pt ] { \addvspace { 6 bp } \bfseries }
+  { \contentspush { \thecontentslabel \enskip } } { }
+  { \SJTU@leaders \thecontentspage }
+\titlecontents { section }
+  [ 2 em ] { }
+  { \contentspush { \thecontentslabel \enskip } } { }
+  { \SJTU@leaders \thecontentspage }
+\titlecontents { subsection }
+  [ 4 em ] { }
+  { \contentspush { \thecontentslabel \enskip } } { }
+  { \SJTU@leaders \thecontentspage }
 \NewDocumentCommand \SJTU@listof { m m s }
   {
     \IfBooleanTF {#3}
-      { \__sjtu_head_aux_s:n {#1} }
-      { \__sjtu_head_aux:n   {#1} }
+      { \SJTU@head* {#1} }
+      { \SJTU@head  {#1} }
     \exp_args:Nv \@starttoc { ext@ #2 }
   }
-\DeclareDocumentCommand \listoffigures { }
-  { \SJTU@listof { \listfigurename } { figure } }
-\DeclareDocumentCommand \listoftables  { }
-  { \SJTU@listof { \listtablename  } { table  } }
-\tl_set:Nn \cftdotsep { 1 }
-\tl_set:Nn \cftchapleader { \normalfont \cftdotfill { \cftdotsep } }
-\clist_set:Nn \l__sjtu_cft_presnum_clist
+\cs_new_protected:Npn \__sjtu_new_list_of:Nnnn #1#2#3#4
   {
-    { fig } { \figurename } ,
-    { tab } { \tablename  }
+    \DeclareDocumentCommand #1 { }
+      { \SJTU@listof {#4} {#2} }
+    \titlecontents {#2}
+      [ 0 pt ] { }
+      { \contentspush { #3 \space \thecontentslabel \enskip } } { }
+      { \SJTU@leaders \thecontentspage }
+    \exp_args:Nnv \contentsuse {#2} { ext@ #2 }
   }
-\cs_new:Npn \__sjtu_update_cft_presnum:nn #1#2
-  {
-    \tl_set:cn { cft #1 presnum } { #2 \c_space_tl }
-    \skip_zero:c { cft #1 indent }
-    \skip_set:cn { cft #1 numwidth } { 2.8 em }
-    \__sjtu_skip_add_to_wd:cv { cft #1 numwidth } { cft #1 presnum }
-  }
-\ctex_at_end_preamble:n
-  {
-    \clist_map_inline:Nn \l__sjtu_cft_presnum_clist
-      { \__sjtu_update_cft_presnum:nn #1 }
-  }
+\__sjtu_new_list_of:Nnnn \listoffigures { figure }
+  { \figurename } { \listfigurename }
+\__sjtu_new_list_of:Nnnn \listoftables  { table  }
+  { \tablename  } { \listtablename  }
 \NewDocumentEnvironment { abbreviation  } { O{ \SJTU@abbrname } }
   {
-    \chapter {#1}
+    \chapter    {#1}
     \tl_clear:N \SJTU@style@float@font
   } { }
 \NewDocumentEnvironment { abbreviation* } { O{ \SJTU@abbrname } }
   {
-    \__sjtu_head_aux_s:n {#1}
+    \SJTU@head* {#1}
     \tl_clear:N \SJTU@style@float@font
   } { }
 \NewDocumentEnvironment { nomenclature  } { O{ \SJTU@nomname } }
   {
-    \chapter {#1}
+    \chapter    {#1}
     \tl_clear:N \SJTU@style@float@font
   } { }
 \NewDocumentEnvironment { nomenclature* } { O{ \SJTU@nomname } }
   {
-    \__sjtu_head_aux_s:n {#1}
+    \SJTU@head* {#1}
     \tl_clear:N \SJTU@style@float@font
   } { }
 \NewDocumentEnvironment { acknowledgements } { O{ \SJTU@ackname } +b }
   {
     \bool_if:NF \g__sjtu_review_bool
       {
-        \__sjtu_head_aux:n {#1}
+        \SJTU@head {#1}
         #2
       }
   } { }
@@ -1361,7 +1424,7 @@
 \bool_new:N \l__sjtu_achievements_bool
 \NewDocumentEnvironment { achievements } { O{ \SJTU@achvname } }
   {
-    \__sjtu_head_aux:n {#1}
+    \SJTU@head {#1}
     \setcounter { SJTU@bib } { 0 }
     \bool_set_true:N \l__sjtu_achievements_bool
   } { }
@@ -1401,7 +1464,7 @@
   {
     \bool_if:NF \g__sjtu_review_bool
       {
-        \__sjtu_head_aux:n {#1}
+        \SJTU@head {#1}
         #2
       }
   } { }
@@ -1422,7 +1485,7 @@
                 \counterwithout {##1} { chapter }
                 \setcounter     {##1} { 0 }
               }
-            \__sjtu_head_auxb_s:nx { \SJTU@digestname }
+            \__sjtu_head_aux_s:nx { \SJTU@digestname }
               {
                 \exp_not:N \MakeUppercase
                   { \exp_not:v { l__sjtu_info_title_ #1 _tl } }
@@ -1528,10 +1591,19 @@
         assumption, axiom, conjecture, corollary, definition, example,
         exercise, lemma, problem, proposition, theorem
       }
-      { \exp_args:Nnv  \newtheorem  {##1} { c__sjtu_name_ ##1 _tl } [ chapter ] }
+      {
+        \cs_if_exist:cF {##1}
+          {
+            \exp_args:Nnv  \newtheorem  {##1} { c__sjtu_name_ ##1 _tl }
+              [ chapter ]
+          }
+      }
     \clist_map_inline:nn
       { remark, solution }
-      { \exp_args:NNnv \newtheorem* {##1} { c__sjtu_name_ ##1 _tl } }
+      {
+        \cs_if_exist:cF {##1}
+          { \exp_args:NNnv \newtheorem* {##1} { c__sjtu_name_ ##1 _tl } }
+      }
   }
 \ctex_at_begin_package:nn { amsthm }
   {
@@ -1550,50 +1622,91 @@
     \RenewDocumentEnvironment { proof } { O{ \proofname } }
       {
         \par \pushQED { \qed }
-        \normalfont \dim_zero:N \topsep
+        \SJTU@style@thm@body@font \dim_zero:N \topsep
         \trivlist
         \item
           [
             \skip_horizontal:N \labelsep
-            \bfseries \CJKsffamily #1 \@addpunct { \enskip }
+            \SJTU@style@thm@header@font #1 \@addpunct { \enskip }
           ]
         \ignorespaces
       }
-      { \popQED \endtrivlist \legacy_if_set_false:n { @endpe } }
+      { \popQED \endtrivlist \@endpefalse }
     \newtheoremstyle { sjtu }
-      { } { } { \normalfont } { } { \bfseries \CJKsffamily } { } { \ccwd } { }
-    \theoremstyle { sjtu }
-    \__sjtu_new_theorems:
+      { } { } { \SJTU@style@thm@body@font } { }
+      { \SJTU@style@thm@header@font } { } { \ccwd } { }
   }
-\ctex_at_end_package:nn { ntheorem }
+\ctex_at_end_preamble:n
   {
-    \__sjtu_cs_provide_eq:NN \QED \c_empty_tl
-    \theoremheaderfont { \bfseries \CJKsffamily }
-    \theorembodyfont   { \normalfont }
-    \theoremseparator  { \enskip     }
-    \theoremsymbol { \ensuremath { \QED } }
-    \qedsymbol     { \ensuremath { \QED } }
-    \newtheorem* { proof } { \proofname }
-    \theoremsymbol { }
-    \__sjtu_new_theorems:
+    \@ifpackageloaded { amsthm }
+      {
+        \theoremstyle { sjtu }
+        \__sjtu_new_theorems:
+      }
+      {
+        \@ifpackageloaded { ntheorem }
+          {
+            \__sjtu_cs_provide_eq:NN \QED \c_empty_tl
+            \theoremheaderfont { \SJTU@style@thm@header@font }
+            \theorembodyfont   { \SJTU@style@thm@body@font   }
+            \theoremseparator  { \enskip }
+            \theoremsymbol { \ensuremath { \QED } }
+            \qedsymbol     { \ensuremath { \QED } }
+            \cs_if_exist:NF \proof
+              { \newtheorem* { proof } { \proofname } }
+            \theoremsymbol { }
+            \__sjtu_new_theorems:
+          } { }
+      }
   }
-\cs_new_protected:Npn \__sjtu_newlistof:nnnnn #1#2#3#4#5
+\ctex_at_end_package:nn { thmtools }
   {
-    \exp_args:Nnv \newlistentry {#2} { ext@ #3 } { 0 }
-    \exp_args:Ne \newcounter { \tl_use:c { ext@ #3 } depth }
-    \exp_args:Ne \setcounter { \tl_use:c { ext@ #3 } depth } { 1 }
-    \clist_put_right:Nn \l__sjtu_cft_presnum_clist { {#2} {#4} }
-    \cs_set_eq:cc { l@ #3 } { l@ #2 }
-    \exp_args:Nc \DeclareDocumentCommand { listof #1 s } { }
-      { \SJTU@listof {#5} {#3} }
-    \SJTU@counterwithin { #3 } { chapter }
-    \clist_put_right:Nn \l__sjtu_counter_without_chapter_clist {#3}
+    \cs_set:Npn \thmtlo@newentry
+      {
+        \exp_args:NV \titlecontents \thmt@envname
+          [ \thmt@listnumwidth ] { }
+          { \contentslabel { \thmt@listnumwidth } }
+          { \hspace* { - \thmt@listnumwidth } }
+          { \SJTU@leaders \thecontentspage }
+        \exp_args:NV \contentsuse \thmt@envname { loe }
+      }
+    \cs_set:Npn \thmtlo@chaptervspacehack { }
+    \RenewDocumentCommand \listoftheorems { s O{ } }
+      {
+        \group_begin:
+          \setlisttheoremstyle {#2}
+          \IfBooleanTF {#1}
+            { \SJTU@head* { \listtheoremname } }
+            { \SJTU@head  { \listtheoremname } }
+          \cs_set:Npn \contentsline ##1
+            { \use:c { thmt@contentsline@ ##1 } {##1} }
+          \clist_map_inline:Nn \thmt@allenvs
+            {
+              \tl_set:Nn \thmt@envname {##1}
+              \thmtlo@newentry
+            }
+          \@fileswfalse
+          \AddToHook { enddocument / afterlastpage }
+            {
+              \if@filesw
+                \@ifundefined { tf@loe }
+                  {
+                    \expandafter\newwrite\csname tf@loe\endcsname
+                    \immediate\openout \csname tf@loe\endcsname \jobname.loe\relax
+                  } { }
+              \fi
+            }
+          \@starttoc { loe }
+        \group_end:
+      }
   }
 \ctex_at_end_package:nn { algorithm }
   {
     \tl_set:Nn \fname@algorithm   { \SJTU@algorithmname     }
     \tl_set:Nn \listalgorithmname { \SJTU@listalgorithmname }
-    \__sjtu_newlistof:nnnnn { algorithm } { alg } { algorithm }
+    \SJTU@counterwithin { algorithm } { chapter }
+    \clist_put_right:Nn \l__sjtu_counter_without_chapter_clist { algorithm }
+    \__sjtu_new_list_of:Nnnn \listofalgorithms { algorithm }
       { \fname@algorithm } { \listalgorithmname }
   }
 \ctex_at_begin_package:nn { algorithm2e }
@@ -1605,7 +1718,9 @@
                       { \SJTU@algorithmname     }
                       { \SJTU@listalgorithmname }
     \SetAlgoCaptionSeparator { \enskip }
-    \__sjtu_newlistof:nnnnn { algorithm } { alg } { algocf }
+    \SJTU@counterwithin { algocf } { chapter }
+    \clist_put_right:Nn \l__sjtu_counter_without_chapter_clist { algocf }
+    \__sjtu_new_list_of:Nnnn \listofalgorithms { algocf }
       { \algorithmcfname } { \listalgorithmcfname }
     \ctex_patch_cmd:Nnn \algocf@latexcaption
       { \addcontentsline }
@@ -1620,13 +1735,39 @@
   }
 \ctex_at_end_package:nn { siunitx }
   {
-    \@ifpackageloaded { translations }
+    \RequirePackage { translations }
+    \DeclareTranslation { Chinese  } { and } { 和 }
+    \DeclareTranslation { Japanese } { and } { と }
+    \DeclareTranslation { Chinese  }
+      { to~(numerical~range) } { \textasciitilde }
+    \DeclareTranslation { Japanese }
+      { to~(numerical~range) } { \textasciitilde }
+    \IfPackageAtLeastTF { siunitx } { 2021/05/17 } { }
       {
-        \DeclareTranslation { Chinese  } { and } { 和 }
-        \DeclareTranslation { Japanese } { and } { と }
-        \DeclareTranslation { Chinese  } { to~(numerical~range) } { \textasciitilde }
-        \DeclareTranslation { Japanese } { to~(numerical~range) } { \textasciitilde }
-      } { }
+        \DeclareTranslation { English } { to~(numerical~range) } { to  }
+        \DeclareTranslation { German }  { to~(numerical~range) } { bis }
+        \keys_set:nn { siunitx }
+          {
+            list-final-separator =
+              {
+                \ifmmode \  \else \space \fi
+                \text { \GetTranslation { and } }
+                \ifmmode \  \else \space \fi
+              } ,
+            list-pair-separator  =
+              {
+                \ifmmode \  \else \space \fi
+                \text { \GetTranslation { and } }
+                \ifmmode \  \else \space \fi
+              } ,
+            range-phrase         =
+              {
+                \ifmmode \  \else \space \fi
+                \text { \GetTranslation { to~(numerical~range) } }
+                \ifmmode \  \else \space \fi
+              }
+          }
+      }
   }
 \endinput
 %%
