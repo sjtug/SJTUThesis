@@ -4,12 +4,13 @@
 #
 
 # Set timezone.
-$ENV{'TZ'}='Asia/Shanghai';
+$ENV{'TZ'} = 'Asia/Shanghai';
 
-# Ensure './texmf//' is in '$TEXINPUTS'.
+# Prepended local directories to the search paths.
 ensure_path( 'TEXINPUTS', './texmf//' );
+# ensure_path( 'OSFONTDIR', './texmf/fonts//' );
 
-# PDF generate method
+# PDF generate method:
 #   - 1 pdfLaTeX
 #   - 3 LaTeX + DVIPDFMx
 #   - 4 LuaLaTeX
@@ -19,8 +20,14 @@ $pdf_mode = 5;
 # Add common patterns for tex engines.
 set_tex_cmds( '-synctex=1 %O %S' );
 
-# Always try to embed fonts, ignoring licensing flags, etc.
-$xdvipdfmx = 'xdvipdfmx -E -o %D %O %S';
+# Run bibtex or biber whenever it appears necessary,
+# always delete .bbl files in a cleanup.
+$bibtex_use = 2;
 
-# Files to clean.
-$clean_ext = 'bbl glo gls hd loa run.xml thm xdv';
+# Use dvipdfmx to convert .dvi to .pdf, and xdvipdfmx for .xdv,
+# always try to embed fonts, ignoring licensing flags, etc.
+$dvipdf = 'dvipdfmx -E %O -o %D %S';
+$xdvipdfmx = 'xdvipdfmx -E %O -o %D %S';
+
+# Extra files to clean.
+$clean_ext .= ' loa';
