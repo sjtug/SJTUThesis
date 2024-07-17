@@ -20,11 +20,13 @@ You can `clone` this repository directly or download it from [GitHub](https://gi
 git clone https://github.com/sjtug/SJTUThesis.git 
 ```
 
-### Overleaf
+### Online LaTeX Editor
 
-If you are an [Overleaf](https://www.overleaf.com?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b) user, you can create your own project through the link below.
+[![TeXPage](https://img.shields.io/badge/SJTUThesis-TeXPage-495A80.svg)](https://www.texpage.com/template/542af6f9-f66f-4068-8732-f20fe7bd08ef)
 
-[![Overleaf](https://img.shields.io/badge/Overleaf-SJTUThesis-green.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b) 
+[![Overleaf](https://img.shields.io/badge/SJTUThesis-Overleaf-098842.svg)](https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg)
+
+You can create your own project through the link above.
 
 ## Usage
 
