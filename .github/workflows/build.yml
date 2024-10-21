@@ -21,7 +21,7 @@ jobs:
           run: |
             latexmk main.tex -halt-on-error -time -xelatex
         name: build with XeLaTeX
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           path: main.pdf
           name: build-xelatex
@@ -36,7 +36,7 @@ jobs:
           run: |
             latexmk main.tex -halt-on-error -time -lualatex
         name: build with LuaLaTeX
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           path: main.pdf
           name: build-lualatex
