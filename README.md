@@ -1,7 +1,7 @@
 # SJTUThesis 示例模板
 
 [![Build Status](https://github.com/sjtug/SJTUThesis/actions/workflows/build.yml/badge.svg)](https://github.com/sjtug/SJTUThesis/actions)
-[![SJTUTeX](https://img.shields.io/github/v/release/sjtug/SJTUTeX?label=SJTUTeX)](https://github.com/sjtug/SJTUTeX) 
+[![SJTUTeX](https://img.shields.io/github/v/release/sjtug/SJTUTeX?label=SJTUTeX)](https://github.com/sjtug/SJTUTeX)
 [![Join Discussions](https://img.shields.io/github/discussions/sjtug/SJTUThesis)](https://github.com/sjtug/SJTUThesis/discussions)
 
 ## 欢迎使用上海交通大学论文模板
@@ -42,24 +42,6 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 ### VSCode 用户
 
 安装 “LaTeX Workshop” 后，选择 `Recipe: latexmk (xelatex)` 编译即可，并在设置中将 `latex-workshop.latex.recipe.default` 改为 `lastUsed` 以一直使用该选项编译。
-
-### TeXStudio 用户
-
-在TexStudio的菜单栏中，Options-Configure TeXstudio界面中，修改以下两处：
-
-Commands-Latexmk一项修改为`latexmk -silent -synctex=1 -xelatex %`
-
-Build-Default Compiler一项修改为`txs:///latexmk`
-
-<details>
-
-<summary>展开配置</summary>
-
-<img src="https://user-images.githubusercontent.com/84025388/142163308-3d31f905-af78-40cb-bff1-851cdab04c87.png" width=500px/>
-
-<img src="https://user-images.githubusercontent.com/84025388/142163346-63ec7b7e-932f-44c5-90c4-3b35e435545d.png" width=500px/>
-
-</details>
 
 ### Linux 与 macOS 用户
 
