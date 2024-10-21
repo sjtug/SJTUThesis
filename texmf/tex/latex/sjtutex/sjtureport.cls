@@ -28,10 +28,10 @@
     Release `2020/10/01' or newer is required to\MessageBreak
     compile this document.\MessageBreak\MessageBreak
     Please update your TeX distribution}{}}
-\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo$Id: sjtutex.dtx ce44827 2024-10-21 00:12:31 +0800 Alexara Wu <alexarawu@outlook.com> $
   {Report document class for Shanghai Jiao Tong University (SJTUTeX)}
 \ProvidesExplClass{sjtureport}
-  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+  {\ExplFileDate}{2.1.4}{\ExplFileDescription}
 \dim_new:N \l__sjtu_tmp_dim
 \skip_new:N \l__sjtu_tmp_skip
 \box_new:N \l__sjtu_tmp_box

@@ -20,10 +20,10 @@
 %%     and version 1.3 or later is part of all distributions of
 %%     LaTeX version 2005/12/01 or later.
 %% 
-\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo$Id: sjtutex.dtx ce44827 2024-10-21 00:12:31 +0800 Alexara Wu <alexarawu@outlook.com> $
   {Chinese specific definition for thesis (SJTUTeX)}
 \ProvidesExplFile{sjtu-lang-thesis-zh.def}
-  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+  {\ExplFileDate}{2.1.4}{\ExplFileDescription}
 \__sjtu_info_keys_define:n { zh }
 \keys_define:nn { sjtu / info / zh }
   {
@@ -105,7 +105,7 @@
               {
                 \exp_not:N \SJTU@CT@D { 5 em }
                 @ { \exp_not:V \c__sjtu_name_info_sep_zh_tl }
-                >{ \exp_not:N \normalfont } l
+                > { \exp_not:N \setbaselineskip { 22.5 bp } \exp_not:N \normalfont } l
               }
               {
                 author,

@@ -28,10 +28,10 @@
     Release `2020/10/01' or newer is required to\MessageBreak
     compile this document.\MessageBreak\MessageBreak
     Please update your TeX distribution}{}}
-\GetIdInfo$Id: sjtutex.dtx 78f11bc 2024-06-29 23:01:32 +0800 Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo$Id: sjtutex.dtx ce44827 2024-10-21 00:12:31 +0800 Alexara Wu <alexarawu@outlook.com> $
   {Thesis document class for Shanghai Jiao Tong University (SJTUTeX)}
 \ProvidesExplClass{sjtuthesis}
-  {\ExplFileDate}{2.1.3}{\ExplFileDescription}
+  {\ExplFileDate}{2.1.4}{\ExplFileDescription}
 \bool_new:N \l__sjtu_tmp_bool
 \clist_new:N \l__sjtu_tmp_clist
 \dim_new:N \l__sjtu_tmp_dim
@@ -1089,7 +1089,7 @@
       } { }
   }
 \newcolumntype { \SJTU@CT@D } [ 1 ]
-  { >{ \begin { SJTU@CJK@FTS } {#1} } c <{ \end { SJTU@CJK@FTS } } }
+  { > { \begin { SJTU@CJK@FTS } {#1} } c < { \end { SJTU@CJK@FTS } } }
 \cs_new:Npn \__sjtu_title_page_info_i:nnn #1#2#3
   {
     \clist_clear:N \l__sjtu_tmp_clist
@@ -1099,7 +1099,12 @@
           {
             \exp_not:o { \cs:w c__sjtu_name_ ##1 _ #1 _tl \cs_end: }
             &
-            \exp_not:o { \cs:w l__sjtu_info_ ##1 _ #1 _tl \cs_end: }
+            \exp_not:N \hbox:n
+              {
+                \exp_not:N \tabular [ t ] { @{} l @{} }
+                  \exp_not:o { \cs:w l__sjtu_info_ ##1 _ #1 _tl \cs_end: }
+                \exp_not:N \endtabular
+              }
           }
       }
     \group_begin:
