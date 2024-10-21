@@ -12,8 +12,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v4
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
