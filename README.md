@@ -37,13 +37,21 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 ## 模板使用
 
-如果你不熟悉 LaTeX 的编译流程，请**不要**直接使用编译器进行编译。针对不同的平台，模版提供了相应的编译脚本。在编译前，需要安装最新的 TeXLive 发行版。
+如果你不熟悉 LaTeX 的编译流程，请参考以下说明编译文档。在编译前，需要安装最新的 TeXLive 发行版。
 
-### VSCode 用户
+### 使用编辑器
 
-安装 “LaTeX Workshop” 后，选择 `Recipe: latexmk (xelatex)` 编译即可，并在设置中将 `latex-workshop.latex.recipe.default` 改为 `lastUsed` 以一直使用该选项编译。
+#### VS Code
 
-### Linux 与 macOS 用户
+安装 “LaTeX Workshop” 扩展，选择预设配方 `Recipe: latexmk (xelatex)` 编译即可；也可以在设置中将 `latex-workshop.latex.recipe.default` 改为 `latexmk (xelatex)` 将其设置为默认选项。
+
+#### TeXstudio
+
+模板内置 TeXstudio 魔术注释，可开箱即用。
+
+### 使用脚本
+
+#### Linux 与 macOS
 
 推荐使用模版提供的 `Makefile` 进行编译，具体来说我们提供了如下几条可用的命令：
 
@@ -54,7 +62,7 @@ make cleanall                 # 删除 main.pdf 和所有中间文件
 make wordcount                # 论文字数统计
 ```
 
-### Windows 用户
+#### Windows
 
 对于 Windows 用户，我们也提供了编译脚本 `Compile.bat`。可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
 
@@ -65,7 +73,7 @@ make wordcount                # 论文字数统计
 .\Compile.bat wordcount       # 论文字数统计
 ```
 
-更多关于模板的实现细节以及使用信息，请查看使用文档 `sjtuthesis.pdf`。
+更多关于模板的实现细节以及使用信息，请查看使用文档 [`sjtutex.pdf`](https://mirrors.sjtug.sjtu.edu.cn/ctan/macros/latex/contrib/sjtutex/sjtutex.pdf)。
 
 ## 反馈与贡献
 

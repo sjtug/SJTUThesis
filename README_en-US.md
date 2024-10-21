@@ -1,7 +1,7 @@
 # Sample Template of SJTUThesis
 
 [![Build Status](https://github.com/sjtug/SJTUThesis/actions/workflows/build.yml/badge.svg)](https://github.com/sjtug/SJTUThesis/actions)
-[![SJTUTeX](https://img.shields.io/github/v/release/sjtug/SJTUTeX?label=SJTUTeX)](https://github.com/sjtug/SJTUTeX) 
+[![SJTUTeX](https://img.shields.io/github/v/release/sjtug/SJTUTeX?label=SJTUTeX)](https://github.com/sjtug/SJTUTeX)
 [![Join Discussions](https://img.shields.io/github/discussions/sjtug/SJTUThesis)](https://github.com/sjtug/SJTUThesis/discussions)
 
 ## Welcome to LaTeX thesis template for Shanghai Jiao Tong University
@@ -17,7 +17,7 @@ Please note that `sjtuthesis` supports both XeTeX and LuaTeX engine, `sjtuthesis
 You can `clone` this repository directly or download it from [GitHub](https://github.com/sjtug/SJTUThesis).
 
 ```bash
-git clone https://github.com/sjtug/SJTUThesis.git 
+git clone https://github.com/sjtug/SJTUThesis.git
 ```
 
 ### Online LaTeX Editor
@@ -30,7 +30,21 @@ You can create your own project through the link above.
 
 ## Usage
 
-### Linux & macOS Users
+If you are not familiar with the LaTeX compilation process, please follow the instructions below to compile the document. Before compiling, you need to install the latest TeXLive distribution.
+
+### Compile with Editors
+
+#### VS Code
+
+Install the "LaTeX Workshop" extension, select the preset recipe `Recipe: latexmk (xelatex)` to compile; you can also change `latex-workshop.latex.recipe.default` to `latexmk (xelatex)` in the settings to set it as the default option.
+
+#### TeXstudio
+
+The template has built-in TeXstudio magic comments, can be used out of the box.
+
+### Compile with Scripts
+
+#### Linux & macOS
 
 It is recommended to use GNU make utility with `Makefile` provided in the template.
 
@@ -41,7 +55,7 @@ make cleanall                 # remove everything produced by make all
 make wordcount                # count the words of the thesis
 ```
 
-### Windows Users
+#### Windows
 
 We also provided a batch script `Compile.bat` for Windows users. You can double-click the batch file to compile instantly, or use it in Command Prompt to access extra features.
 
@@ -51,6 +65,8 @@ We also provided a batch script `Compile.bat` for Windows users. You can double-
 .\Compile.bat cleanall        # remove everything produced by make all
 .\Compile.bat wordcount       # count the words of the thesis
 ```
+
+For more information about the implementation and usage of the template, please refer to the document [`sjtutex.pdf`](https://mirrors.sjtug.sjtu.edu.cn/ctan/macros/latex/contrib/sjtutex/sjtutex.pdf).
 
 ## Feedback
 
