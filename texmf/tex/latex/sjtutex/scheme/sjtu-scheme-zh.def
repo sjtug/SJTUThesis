@@ -20,10 +20,10 @@
 %%     and version 1.3 or later is part of all distributions of
 %%     LaTeX version 2005/12/01 or later.
 %% 
-\GetIdInfo$Id: sjtutex.dtx ce44827 2024-10-21 00:12:31 +0800 Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo$Id: sjtutex.dtx 879eea9 2024-11-06 19:54:03 +0800 Alexara Wu <alexarawu@outlook.com> $
   {Chinese scheme (SJTUTeX)}
 \ProvidesExplFile{sjtu-scheme-zh.def}
-  {\ExplFileDate}{2.1.4}{\ExplFileDescription}
+  {\ExplFileDate}{2.1.5}{\ExplFileDescription}
 \keys_set_known:nn { sjtu / name }
   {
     contents      = { 目 \protect \quad 录   } ,

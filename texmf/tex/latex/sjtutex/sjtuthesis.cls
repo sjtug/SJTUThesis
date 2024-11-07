@@ -28,10 +28,10 @@
     Release `2020/10/01' or newer is required to\MessageBreak
     compile this document.\MessageBreak\MessageBreak
     Please update your TeX distribution}{}}
-\GetIdInfo$Id: sjtutex.dtx ce44827 2024-10-21 00:12:31 +0800 Alexara Wu <alexarawu@outlook.com> $
+\GetIdInfo$Id: sjtutex.dtx 879eea9 2024-11-06 19:54:03 +0800 Alexara Wu <alexarawu@outlook.com> $
   {Thesis document class for Shanghai Jiao Tong University (SJTUTeX)}
 \ProvidesExplClass{sjtuthesis}
-  {\ExplFileDate}{2.1.4}{\ExplFileDescription}
+  {\ExplFileDate}{2.1.5}{\ExplFileDescription}
 \bool_new:N \l__sjtu_tmp_bool
 \clist_new:N \l__sjtu_tmp_clist
 \dim_new:N \l__sjtu_tmp_dim
@@ -1054,7 +1054,7 @@
 \tl_set:Nv \today { l__sjtu_info_date_ \g__sjtu_lang_tl _tl }
 \__sjtu_engine_case:nnn
   {
-    \NewDocumentEnvironment { SJTU@CJK@FTS } { m b }
+    \NewDocumentEnvironment { SJTU@CJK@FTS } { m }
       {
         \mode_leave_vertical:
         \bool_set_false:N \l__sjtu_tmp_bool
@@ -1068,25 +1068,31 @@
                 \bool_set_true:N \l__sjtu_tmp_bool
               }
           }
-        \hbox_to_wd:nn {#1} {#2}
-      } { }
+        \use:e { \exp_not:N \tex_hbox:D to \dim_eval:n {#1} }
+        \bgroup \ignorespaces
+      }
+      { \egroup }
   }
   {
-    \NewDocumentEnvironment { SJTU@CJK@FTS } { m b }
+    \NewDocumentEnvironment { SJTU@CJK@FTS } { m }
       {
         \mode_leave_vertical:
         \cs_set:Npn \CJKglue
           { \skip_horizontal:n { \c_zero_dim plus 1 filll } }
-        \hbox_to_wd:nn {#1} {#2}
-      } { }
+        \use:e { \exp_not:N \tex_hbox:D to \dim_eval:n {#1} }
+        \bgroup \ignorespaces
+      }
+      { \egroup }
   }
   {
-    \NewDocumentEnvironment { SJTU@CJK@FTS } { m b }
+    \NewDocumentEnvironment { SJTU@CJK@FTS } { m }
       {
         \mode_leave_vertical:
         \ltjsetparameter { kanjiskip = { \c_zero_dim plus 1 filll } }
-        \hbox_to_wd:nn {#1} {#2}
-      } { }
+        \use:e { \exp_not:N \tex_hbox:D to \dim_eval:n {#1} }
+        \bgroup \ignorespaces
+      }
+      { \egroup }
   }
 \newcolumntype { \SJTU@CT@D } [ 1 ]
   { > { \begin { SJTU@CJK@FTS } {#1} } c < { \end { SJTU@CJK@FTS } } }
