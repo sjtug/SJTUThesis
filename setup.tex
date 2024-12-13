@@ -174,8 +174,8 @@
   backgroundcolor   = \color{gray!10},
   columns           = flexible,
   keepspaces        = true,
-  texcl             = true,
-  mathescape        = true
+  % texcl             = true,  % 代码中的注释部分将会被视为 LaTeX 正文模式内容
+  % mathescape        = true,  % 代码中$..$的部分将会被视为 LaTeX 数学模式内容
 }
 \lstnewenvironment{codeblock}[1][]{%
   \lstset{style=lstStyleCode,#1}}{}
