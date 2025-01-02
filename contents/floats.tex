@@ -57,9 +57,9 @@
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[height=2cm]{sjtu-vi-badge-red.pdf}
-  \hspace{1cm}
-  \includegraphics[height=2cm]{sjtu-vi-badge-red.pdf}
+  \includegraphics[height=2.5cm]{example-image-a.pdf}%
+  \hfil\hfil%
+  \includegraphics[height=2.5cm]{example-image-b.pdf}
   \bicaption{中文题图}{English caption}
   \label{fig:SRR}
 \end{figure}
@@ -69,15 +69,15 @@
 
 \begin{figure}[!htp]
   \centering
-  \begin{minipage}{0.48\textwidth}
+  \begin{minipage}{0.5\textwidth}
     \centering
-    \includegraphics[height=1.7cm]{sjtu-vi-name-red.pdf}
+    \includegraphics[height=2.5cm]{example-image-a.pdf}
     \caption{并排第一个图}
     \label{fig:parallel1}
-  \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
+  \end{minipage}%
+  \begin{minipage}{0.5\textwidth}
     \centering
-    \includegraphics[height=1.7cm]{sjtu-vi-name-red.pdf}
+    \includegraphics[height=2.5cm]{example-image-b.pdf}
     \caption{并排第二个图}
     \label{fig:parallel2}
   \end{minipage}
@@ -95,16 +95,16 @@
 
 \begin{figure}[!htp]
   \centering
-  \begin{subfigure}{0.3\textwidth}
+  \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[height=2cm]{sjtu-vi-badge-red.pdf}
-    \caption{校徽}
-  \end{subfigure}
-  \hspace{1cm}
-  \begin{subfigure}{0.4\textwidth}
+    \includegraphics[height=2.5cm]{example-image-a.pdf}
+    \caption{子图甲}
+  \end{subfigure}%
+  \hfil\hfil%
+  \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[height=1.7cm]{sjtu-vi-name-red.pdf}
-    \caption{校名。注意这个图略矮些，subfigure 中同一行的子图在顶端对齐。}
+    \includegraphics[height=2cm]{example-image-b.pdf}
+    \caption{子图乙。注意这个图略矮些，subfigure 中同一行的子图在顶端对齐。}
   \end{subfigure}
   \caption{包含子图题的范例（使用 subfigure）}
   \label{fig:subfigure}
@@ -118,11 +118,11 @@
   \centering
   \bisubcaptionbox{$R_3 = 1.5\text{mm}$ 时轴承的压力分布云图}%
                   {Pressure contour of bearing when $R_3 = 1.5\text{mm}$}%
-                  [6.4cm]{\includegraphics[height=3cm]{example-image-a.pdf}}
-  \hspace{1cm}
+                  [0.4\textwidth]{\includegraphics[height=2.5cm]{example-image-a.pdf}}%
+  \hfil\hfil%
   \bisubcaptionbox{$R_3 = 2.5\text{mm}$ 时轴承的压力分布云图}%
                   {Pressure contour of bearing when $R_3 = 2.5\text{mm}$}%
-                  [6.4cm]{\includegraphics[height=3cm]{example-image-b.pdf}}
+                  [0.4\textwidth]{\includegraphics[height=2.5cm]{example-image-b.pdf}}
   \bicaption{包含子图题的范例（使用 subcaptionbox）}
             {Example with subcaptionbox}
   \label{fig:bisubcaptionbox}
@@ -268,7 +268,6 @@
 \begin{algorithm}[htb]
   \caption{算法示例}
   \label{algo:algorithm}
-  \small
   \SetAlgoLined
   \KwData{this text}
   \KwResult{how to write algorithm with \LaTeXe }

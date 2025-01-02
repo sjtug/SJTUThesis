@@ -33,6 +33,10 @@
     zh / author          = {某\quad{}某},
     en / author          = {Mo Mo},
     %
+    % 学号
+    %
+    id              = {0010900990},
+    %
     % 指导教师
     %
     zh / supervisor      = {某某教授},
@@ -47,9 +51,15 @@
     % zh / co-supervisor     = {某某工程师},
     % en / co-supervisor     = {Engr.\ Oum Oum},
     %
-    % 学号
+    % 所属院系
     %
-    id              = {0010900990},
+    zh / department      = {某某系},
+    en / department      = {Depart of XXX},
+    %
+    % 专业
+    %
+    zh / major           = {某某专业},
+    en / major           = {A Very Important Major},
     %
     % 学位
     %   除交叉学科门类外，各一级学科按所属学科门类申请学位
@@ -58,16 +68,6 @@
     %
     zh / degree          = {工学硕士},
     en / degree          = {Master of Engineering},
-    %
-    % 专业
-    %
-    zh / major           = {某某专业},
-    en / major           = {A Very Important Major},
-    %
-    % 所属院系
-    %
-    zh / department      = {某某系},
-    en / department      = {Depart of XXX},
     %
     % 答辩日期
     %   使用 ISO 格式 (yyyy-mm-dd)；默认为当前时间
@@ -127,6 +127,9 @@
 % 定义图片文件目录与扩展名
 \graphicspath{{figures/}}
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
+
+% 颜色宏包
+\usepackage{xcolor} 
 
 % 确定浮动对象的位置，可以使用 [H]，强制将浮动对象放到这里（可能效果很差）
 % \usepackage{float}
