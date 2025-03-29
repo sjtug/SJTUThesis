@@ -1,9 +1,9 @@
 on:
   push:
     branches:
-    - release
+      - release
     tags:
-    - "v*"
+      - "v*"
 
 name: Release
 
@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Set version number
+        run: |
+          TAG=${{ github.ref_name }}
+          echo "SJTUTHESIS_VERSION=${TAG#v}" >> $GITHUB_ENV
       - name: Download SJTUTeX
         uses: dsaltares/fetch-gh-release-asset@master
         with:
@@ -27,7 +31,8 @@ jobs:
           rm texmf/sjtutex.tds.zip
       - name: Prepare the release package
         run: |
-          zip -r SJTUThesis-full.zip . -x "*.git*" "SJTUThesis-full.zip"
+          git add -A texmf/
+          git archive --format=zip --prefix=$SJTUTHESIS_VERSION/ -o SJTUThesis-full-$SJTUTHESIS_VERSION.zip `git stash create`
       - name: Build with XeLaTeX
         uses: xu-cheng/texlive-action@v2
         with:
@@ -37,10 +42,9 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          body: "New release ${{ github.ref }}"
+          tag_name: ${{ github.ref_name }}
           draft: true
           prerelease: false
           files: |
             main.pdf
-            SJTUThesis-full.zip
+            SJTUThesis-full-${{ env.SJTUTHESIS_VERSION }}.zip
