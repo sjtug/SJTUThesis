@@ -1,32 +1,43 @@
-on:
-  push:
-    branches:
-    - release
-    tags:
-    - "v*"
-
 name: Release
 
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
 jobs:
-  release-xelatex:
-    permissions:
-      contents: write
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: checkout code
-      - uses: xu-cheng/texlive-action@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Fetch SJTUTeX
+        uses: dsaltares/fetch-gh-release-asset@master
+        id: fetch-sjtutex-release
+        with:
+          repo: 'sjtug/SJTUTeX'
+          file: 'sjtutex.tds.zip'
+          target: '.github/sjtutex.tds.zip'
+      - name: Build package
+        run: |
+          unzip -o .github/sjtutex.tds.zip "tex/*" -d texmf/
+          git add -A texmf/
+          git archive --format=zip --prefix="SJTUThesis-full-${GITHUB_REF_NAME#v}/" -o SJTUThesis-full-${GITHUB_REF_NAME#v}.zip $(git stash create)
+      - name: Build sample
+        uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
           run: |
-            latexmk main.tex -halt-on-error -time -xelatex
-        name: build with XeLaTeX
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+            latexmk -halt-on-error -time -xelatex -jobname=sjtuthesis-sample main.tex
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          body: "New release ${{ github.ref }}"
+          body: "SJTUTeX version: ${{ steps.fetch-sjtutex-release.outputs.version }}"
           draft: true
           prerelease: false
           files: |
-            main.pdf
+            SJTUThesis-full-*.zip
+            sjtuthesis-sample.pdf
