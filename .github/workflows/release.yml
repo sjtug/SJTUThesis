@@ -1,50 +1,43 @@
+name: Release
+
 on:
   push:
-    branches:
-      - release
     tags:
       - "v*"
 
-name: Release
+permissions:
+  contents: write
 
 jobs:
-  release-xelatex:
-    permissions:
-      contents: write
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Set version number
-        run: |
-          TAG=${{ github.ref_name }}
-          echo "SJTUTHESIS_VERSION=${TAG#v}" >> $GITHUB_ENV
-      - name: Download SJTUTeX
+      - name: Fetch SJTUTeX
         uses: dsaltares/fetch-gh-release-asset@master
+        id: fetch-sjtutex-release
         with:
           repo: 'sjtug/SJTUTeX'
           file: 'sjtutex.tds.zip'
-          target: 'texmf/sjtutex.tds.zip'
-      - name: Unzip SJTUTeX
+          target: '.github/sjtutex.tds.zip'
+      - name: Build package
         run: |
-          unzip -o texmf/sjtutex.tds.zip -d texmf
-          rm texmf/sjtutex.tds.zip
-      - name: Prepare the release package
-        run: |
+          unzip -o .github/sjtutex.tds.zip "tex/*" -d texmf/
           git add -A texmf/
-          git archive --format=zip --prefix=$SJTUTHESIS_VERSION/ -o SJTUThesis-full-$SJTUTHESIS_VERSION.zip `git stash create`
-      - name: Build with XeLaTeX
+          git archive --format=zip --prefix="SJTUThesis-full-${GITHUB_REF_NAME#v}/" -o SJTUThesis-full-${GITHUB_REF_NAME#v}.zip $(git stash create)
+      - name: Build sample
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
           run: |
-            latexmk main.tex -halt-on-error -time -xelatex
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+            latexmk -halt-on-error -time -xelatex -jobname=sjtuthesis-sample main.tex
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
+          body: "SJTUTeX version: ${{ steps.fetch-sjtutex-release.outputs.version }}"
           draft: true
           prerelease: false
           files: |
-            main.pdf
-            SJTUThesis-full-${{ env.SJTUTHESIS_VERSION }}.zip
+            SJTUThesis-full-*.zip
+            sjtuthesis-sample.pdf

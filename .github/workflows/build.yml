@@ -1,65 +1,33 @@
-on:
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    branches:
-      - master
-      - develop
-
 name: Build
 
+on: [ push, pull_request, workflow_dispatch ]
+
 jobs:
-  build-xelatex:
+  build:
+    strategy:
+      matrix:
+        tex: [ xelatex, lualatex ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: checkout code
-      - name: Download SJTUTeX
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Fetch SJTUTeX
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           repo: 'sjtug/SJTUTeX'
           file: 'sjtutex.tds.zip'
-          target: 'texmf/sjtutex.tds.zip'
-      - name: Unzip SJTUTeX
+          target: '.github/sjtutex.tds.zip'
+      - name: Install SJTUTeX
         run: |
-          unzip -o texmf/sjtutex.tds.zip -d texmf
-          rm texmf/sjtutex.tds.zip
-      - uses: xu-cheng/texlive-action@v2
+          unzip -o .github/sjtutex.tds.zip "tex/*" -d texmf/
+      - name: Build
+        uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
           run: |
-            latexmk main.tex -halt-on-error -time -xelatex
-        name: build with XeLaTeX
-      - uses: actions/upload-artifact@v4
+            latexmk -halt-on-error -time -${{ matrix.tex }} -jobname=output-${{ matrix.tex }} main.tex
+      - name: Upload output
+        uses: actions/upload-artifact@v4
         with:
-          path: main.pdf
-          name: build-xelatex
-        name: upload build artifacts
-  build-lualatex:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        name: checkout code
-      - name: Download SJTUTeX
-        uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          repo: 'sjtug/SJTUTeX'
-          file: 'sjtutex.tds.zip'
-          target: 'texmf/sjtutex.tds.zip'
-      - name: Unzip SJTUTeX
-        run: |
-          unzip -o texmf/sjtutex.tds.zip -d texmf
-          rm texmf/sjtutex.tds.zip
-      - uses: xu-cheng/texlive-action@v2
-        with:
-          scheme: full
-          run: |
-            latexmk main.tex -halt-on-error -time -lualatex
-        name: build with LuaLaTeX
-      - uses: actions/upload-artifact@v4
-        with:
-          path: main.pdf
-          name: build-lualatex
-        name: upload build artifacts
+          path: output-${{ matrix.tex }}.pdf
+          name: build-${{ matrix.tex }}
