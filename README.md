@@ -11,11 +11,15 @@
 
 SJTUThesis 支持 XeTeX 与 LuaTeX 引擎，字符编码仅支持 UTF-8。
 
+## 安装 TeX 发行版
+
+由于 SJTUThesis 依赖的文档类集 SJTUTeX 已经被 [CTAN](https://www.ctan.org/pkg/sjtutex) 收录，你需要首先按照 [安装指南](https://github.com/sjtug/SJTUThesis/wiki/TeX-%E5%8F%91%E8%A1%8C%E7%89%88%E5%8F%8A%E5%85%B6%E5%AE%89%E8%A3%85) 安装**最新版本的 TeX 发行版**，并经常[对宏包进行更新](https://github.com/sjtug/SJTUThesis/wiki/TeX-%E5%8F%91%E8%A1%8C%E7%89%88%E5%8F%8A%E5%85%B6%E5%AE%89%E8%A3%85#%E5%AE%89%E8%A3%85%E6%88%96%E6%9B%B4%E6%96%B0%E5%AE%8F%E5%8C%85)以使用最新版本的 SJTUTeX。
+
 ## 获取模板
 
 ### 下载模版
 
-普通用户可以直接 `clone` 或者下载 [master.zip](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)。
+你可以直接 `clone` 或者下载 [master.zip](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)。
 
 ```bash
 git clone https://github.com/sjtug/SJTUThesis.git
@@ -33,11 +37,11 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 点击上方图标即可直接使用。
 
-如果需要在其他在线 LaTeX 编辑器上使用（比如 [SJTU LaTeX 文档助手](https://latex.sjtu.edu.cn)），您可以下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至相应平台。请注意，一般在线编辑器新建项目默认使用 pdflatex 编译器，您需要设置使用 XeLaTeX 编译器。
+如果需要在其他在线 LaTeX 编辑器上使用（比如 [SJTU LaTeX 文档助手](https://latex.sjtu.edu.cn)），您可以下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至相应平台。请注意，一般在线编辑器新建项目默认使用 pdfLaTeX 编译器，您需要设置使用 XeLaTeX 编译器；并使用最新的 TeX 发行版本。
 
 ## 模板使用
 
-如果你不熟悉 LaTeX 的编译流程，请参考以下说明编译文档。在编译前，需要安装最新的 TeXLive 发行版。
+如果你不熟悉 LaTeX 的编译流程，请参考以下说明编译文档。
 
 ### 使用编辑器
 
@@ -94,10 +98,6 @@ make wordcount                # 论文字数统计
 
 这个仓库是面向用户的**示例模版**，如果你有很好的排版示例，可以提交到此仓库与大家分享。如果你想要为 SJTUThesis 文档类贡献代码，可移步 [SJTUTeX](https://github.com/sjtug/SJTUTeX)。
 
-`texmf/tex/latex/sjtuthesis` 目录下的内容都是通过 SJTUTeX 的 `sjtuthesis.dtx` 文件自动生成的。如果您需要修改文档类的内容，应该修改 SJTUTeX 仓库中的 `sjtuthesis.dtx`，而非直接修改 cls 文件。
-
-因此，如果您修改了 `sjtuthesis` 模版类，应该先给 `SJTUTeX` 发 PR，然后再将更新同步到本仓库。
-
 在贡献之前，你可以从[这些问题](https://github.com/sjtug/SJTUThesis/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue)开始熟悉贡献代码的流程。除了提交 Pull Request 之外，还有以下方式可以进行贡献：
 
 * 帮助我们解答同学们的[问题](https://github.com/sjtug/SJTUThesis/discussions)，这些问题你也可能遇到过并且知道如何解决；
@@ -119,6 +119,6 @@ make wordcount                # 论文字数统计
 
 上海交通大学校徽校名图片（`sjtu-vi-logo-blue.pdf` 等）的版权归上海交通大学所有。
 
-`sjtuthesis.cls` 文档类与相关附属文件使用 [LPPL](https://www.latex-project.org/lppl.txt) 授权。
+`sjtutex` 文档类集（`sjtuthesis.cls` 等）使用 [The LaTeX Project Public License 1.3c](https://www.latex-project.org/lppl.txt) 授权。
 
 其他部分使用 [Apache License 2.0](LICENSE) 授权。

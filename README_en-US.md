@@ -10,7 +10,11 @@ This sample template is a full implementation of SJTUThesis document class which
 
 Please note that `sjtuthesis` supports both XeTeX and LuaTeX engine, `sjtuthesis` only allows UTF-8 character encoding.
 
-## Obtain Template
+## Install the TeX Distribution
+
+Since the dependency package [SJTUTeX](https://github.com/sjtug/SJTUTeX) has been retrieved by [CTAN](https://www.ctan.org/pkg/sjtutex), you need to first install the **latest TeX distribution** first and update the packages regularly to use the latest version of SJTUTeX.
+
+## Get the Template
 
 ### Downloads
 
@@ -28,9 +32,11 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 You can create your own project through the link above.
 
+If you want to use other online LaTeX editors which supports the latest TeX distribution, you could download the latest version `SJTUThesis-full.zip` of this project in [Release](https://github.com/sjtug/SJTUThesis/releases/latest), and change the compiler to XeLaTeX.
+
 ## Usage
 
-If you are not familiar with the LaTeX compilation process, please follow the instructions below to compile the document. Before compiling, you need to install the latest TeXLive distribution.
+If you are not familiar with the LaTeX compilation process, please follow the instructions below to compile the document.
 
 ### Compile with Editors
 
