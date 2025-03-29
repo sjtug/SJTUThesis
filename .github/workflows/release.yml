@@ -13,14 +13,27 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: checkout code
-      - uses: xu-cheng/texlive-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Download SJTUTeX
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: 'sjtug/SJTUTeX'
+          file: 'sjtutex.tds.zip'
+          target: 'texmf/sjtutex.tds.zip'
+      - name: Unzip SJTUTeX
+        run: |
+          unzip -o texmf/sjtutex.tds.zip -d texmf
+          rm texmf/sjtutex.tds.zip
+      - name: Prepare the release package
+        run: |
+          zip -r SJTUThesis-full.zip . -x "*.git*" "SJTUThesis-full.zip"
+      - name: Build with XeLaTeX
+        uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
           run: |
             latexmk main.tex -halt-on-error -time -xelatex
-        name: build with XeLaTeX
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -30,3 +43,4 @@ jobs:
           prerelease: false
           files: |
             main.pdf
+            SJTUThesis-full.zip
