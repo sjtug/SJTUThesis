@@ -32,7 +32,7 @@ git clone https://github.com/sjtug/SJTUThesis.git
 
 You can create your own project through the link above.
 
-If you want to use other online LaTeX editors which supports the latest TeX distribution, you could download the latest version `SJTUThesis-full-x.x.x.zip` of this project in [Release](https://github.com/sjtug/SJTUThesis/releases/latest), and change the compiler to XeLaTeX.
+If you want to use other online LaTeX editors (such as [SJTU Overleaf](https://latex.sjtu.edu.cn)) which supports the latest TeX distribution, you could download [the latest version](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip) and upload it to the corresponding platform. Notice that the online editors typically use pdfLaTeX compiler by default, you need to change it to XeLaTeX compiler and use the latest TeX distribution.
 
 ## Usage
 

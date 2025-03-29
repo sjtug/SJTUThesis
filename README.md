@@ -37,7 +37,7 @@ git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
 
 点击上方图标即可直接使用。
 
-如果需要在其他在线 LaTeX 编辑器上使用（比如 [SJTU LaTeX 文档助手](https://latex.sjtu.edu.cn)），您可以下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至相应平台。请注意，一般在线编辑器新建项目默认使用 pdfLaTeX 编译器，您需要设置使用 XeLaTeX 编译器；并使用最新的 TeX 发行版本。
+如果你需要在其他支持最新 TeX 发行版的在线 LaTeX 编辑器上使用（比如 [SJTU LaTeX 文档助手](https://latex.sjtu.edu.cn)），你可以下载 [最新版压缩包](https://github.com/sjtug/SJTUThesis/archive/refs/heads/master.zip)，然后上传至相应平台。请注意，一般在线编辑器新建项目默认使用 pdfLaTeX 编译器，你需要设置使用 XeLaTeX 编译器；并使用最新的 TeX 发行版本。
 
 ## 模板使用
 
@@ -90,7 +90,7 @@ make wordcount                # 论文字数统计
 
 * 如遇不会使用、编译错误等问题，请至 [在 GitHub 项目讨论区提问](https://github.com/sjtug/SJTUThesis/discussions) (推荐)
 * 如遇模版 BUG，或有新的需求，请至 [在 GitHub 项目中提 issue](https://github.com/sjtug/SJTUThesis/issues)
-* 您也可以加入 SJTUG 的 QQ 群和 Telegram 群即时讨论。
+* 你也可以加入 SJTUG 的 QQ 群和 Telegram 群即时讨论。
     * QQ 群群号 715273806。
     * Telegram 群。首先，关注 [SJTUG 镜像站的通知频道](https://t.me/sjtug_mirrors_news)。而后，加入频道关联的群组。
 
