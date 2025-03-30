@@ -77,7 +77,7 @@ make wordcount                # 论文字数统计
 .\Compile.bat wordcount       # 论文字数统计
 ```
 
-更多关于模板的实现细节以及使用信息，请查看使用文档 [`sjtutex.pdf`](https://mirrors.sjtug.sjtu.edu.cn/ctan/macros/latex/contrib/sjtutex/sjtutex.pdf)。
+更多关于模板的实现细节以及使用信息，请查看使用文档 [`sjtutex.pdf`](https://mirrors.ctan.org/macros/latex/contrib/sjtutex/sjtutex.pdf)。
 
 ## 反馈与贡献
 
@@ -117,7 +117,7 @@ make wordcount                # 论文字数统计
 
 ## 软件许可证
 
-上海交通大学校徽校名图片（`sjtu-vi-logo-blue.pdf` 等）的版权归上海交通大学所有。
+上海交通大学校徽校名图片（`sjtu-vi-logo-*.pdf` 等）的版权归上海交通大学所有。
 
 `sjtutex` 文档类集（`sjtuthesis.cls` 等）使用 [The LaTeX Project Public License 1.3c](https://www.latex-project.org/lppl.txt) 授权。
 

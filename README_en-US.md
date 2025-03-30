@@ -72,7 +72,7 @@ We also provided a batch script `Compile.bat` for Windows users. You can double-
 .\Compile.bat wordcount       # count the words of the thesis
 ```
 
-For more information about the implementation and usage of the template, please refer to the document [`sjtutex.pdf`](https://mirrors.sjtug.sjtu.edu.cn/ctan/macros/latex/contrib/sjtutex/sjtutex.pdf).
+For more information about the implementation and usage of the template, please refer to the document [`sjtutex.pdf`](https://mirrors.ctan.org/macros/latex/contrib/sjtutex/sjtutex.pdf).
 
 ## Feedback
 
@@ -84,9 +84,9 @@ We are hearing from:
 
 ## License
 
-The copyright of image sources including SJTU logo (`sjtu-vi-logo-blue.pdf` etc.)
+The copyright of image sources including SJTU logo (`sjtu-vi-logo-*.pdf` etc.)
 belongs to Shanghai Jiao Tong University.
 
-`sjtuthesis.cls` document class with related files are under [LPPL](https://www.latex-project.org/lppl.txt).
+`sjtuthesis.cls` document class with related files are under [The LaTeX Project Public License 1.3c](https://www.latex-project.org/lppl.txt).
 
 The remaining parts are under [Apache License 2.0](LICENSE).
