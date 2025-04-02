@@ -6,6 +6,8 @@
 
 ## [Unreleased]
 
+## [v2.2.1] - 2025-04-02
+
 ### Changed
 
 - `listings` 环境参数 `texcl` 和 `mathescape` 默认设置为 `false`（[#1079](https://github.com/sjtug/SJTUThesis/pull/1079)）。
@@ -45,7 +47,8 @@
 SJTUThesis v2.0 正式发布！
 
 
-[Unreleased]: https://github.com/sjtug/SJTUThesis/compare/v2.1.5...HEAD
+[Unreleased]: https://github.com/sjtug/SJTUThesis/compare/v2.2.1...HEAD
+[v2.2.1]:     https://github.com/sjtug/SJTUThesis/compare/v2.1.5...v2.2.1
 [v2.1.5]:     https://github.com/sjtug/SJTUThesis/compare/v2.1.4...v2.1.5
 [v2.1.4]:     https://github.com/sjtug/SJTUThesis/compare/v2.1.3...v2.1.4
 [v2.1.3]:     https://github.com/sjtug/SJTUThesis/compare/v2.0.3...v2.1.3
