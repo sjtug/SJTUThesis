@@ -32,10 +32,14 @@ jobs:
           scheme: full
           run: |
             latexmk -halt-on-error -time -xelatex -jobname=sjtuthesis-sample main.tex
+      - name: Generate release notes
+        run: |
+          echo "SJTUTeX version: [${{ steps.fetch-sjtutex-release.outputs.version }}](https://github.com/sjtug/SJTUTeX/releases/tag/${{ steps.fetch-sjtutex-release.outputs.version }})" > ${{ github.workspace }}-RELEASE.txt
+          awk -v ver="[${GITHUB_REF_NAME}]" '/^#+ \[/ { if (p) { exit }; if ($2 == ver) { p=1; next } } p' RELEASES.md >> ${{ github.workspace }}-RELEASE.txt
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          body: "SJTUTeX version: ${{ steps.fetch-sjtutex-release.outputs.version }}"
+          body_path: ${{ github.workspace }}-RELEASE.txt 
           draft: true
           prerelease: false
           files: |
