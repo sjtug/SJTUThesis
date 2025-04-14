@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- 添加 `sjtuthesis-bachelor.sty` 来补充学士论文额外配置（[#1113](https://github.com/sjtug/SJTUThesis/pull/1113)）。
+
 ## [v2.2.1] - 2025-04-02
 
 ### Changed
