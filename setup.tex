@@ -1,5 +1,51 @@
 % !TEX root = ./main.tex
 
+% 学士论文额外设置
+\ExplSyntaxOn
+\int_compare:nNnT { \g__sjtu_thesis_type_int } = { 1 }
+  {
+    % 设置标题页字段名称宽度
+    \def\SJTU@CT@W@width{4em}
+
+    % 修改标题页字段
+    \clist_map_inline:nn
+      {
+        { department } { 学院 } ,
+        { major      } { 专业名称 } ,
+        { degree     } { \hfill\llap{申请学位层次} }
+      }
+      { \__sjtu_name_set:nnn { zh } #1 }
+
+    % 加粗标题页字段名称
+    \EditInstance{sjtu/element}{titlea/info}
+      {format=\zihao{4}\setbaselineskip{30bp}\heiti\bfseries}
+    
+    % 修改主题
+    \sjtusetup{info/zh/subject={上海交通大学学位论文}}
+
+    % 修改文中图、表、公式、定理编号中的分隔符
+    \sjtusetup{style/num-sep={-}}
+
+    % 修改章节为中文编号
+    \ctexset{chapter/name={第,章}}
+    \ctexset{chapter/number=\chinese{chapter}}
+
+    % 修改目录格式
+    \titlecontents{chapter}
+      [0pt]{\addvspace{6bp}\zihao{4}\setbaselineskip{24bp}\bfseries}
+      {\contentspush{\thecontentslabel\enskip}}{}
+      {\csname SJTU@leaders\endcsname\thecontentspage}[\addvspace{6bp}]
+    \titlecontents{section}
+      [1em]{\zihao{-4}\setbaselineskip{20bp}}
+      {\contentspush{\thecontentslabel\enskip}}{}
+      {\csname SJTU@leaders\endcsname\thecontentspage}
+    \titlecontents{subsection}
+      [2em]{\zihao{5}\setbaselineskip{16bp}}
+      {\contentspush{\thecontentslabel\enskip}}{}
+      {\csname SJTU@leaders\endcsname\thecontentspage}
+  }
+\ExplSyntaxOff
+
 \sjtusetup{
   %
   %******************************
