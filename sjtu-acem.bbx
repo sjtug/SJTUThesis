@@ -13,7 +13,7 @@
 %==================================================
 %加载gb样式
 %==================================================
-\RequireBibliographyStyle{gb7714-2015}
+\RequireBibliographyStyle{gb7714-2015ay}
 \RequirePackage{mfirstuc}%单词首字母大写的问题
 \MFUnocap{in}%
 \MFUnocap{the}%
@@ -67,7 +67,6 @@
 %==================================================
 \ExecuteBibliographyOptions{
   maxbibnames=99,
-  gbalign=left,
   gbtype=false,
   gbpub=false,
   gbnamefmt=reverseorder,
@@ -91,28 +90,31 @@
 
 
 \def\execerjpuncten{%
-\def\gbpunctdot{\adddot}%
-\def\gbpunctmark{\addcomma\addspace}%
-\def\gbpunctcomma{\addcomma\addspace}%
-\def\gbpunctcommalanen{\addcomma\addspace}%
-\def\gbpunctcolon{\addcolon\addspace}%
-\def\gbpunctcolonlanen{\addcolon\addspace}%
-\def\gbpunctsemicolon{\addsemicolon\addspace}%
-\def\gbpunctttl{《}%
-\def\gbpunctttr{》}%
+  \def\gbpunctdot{\adddot}%
+  \def\gbpunctmark{\addcomma\addspace}%
+  \def\gbpunctcomma{\addcomma\addspace}%
+  \def\gbpunctcommalanen{\addcomma\addspace}%
+  \def\gbpunctcolon{\addcolon\addspace}%
+  \def\gbpunctcolonlanen{\addcolon\addspace}%
+  \def\gbpunctsemicolon{\addsemicolon\addspace}%
+  \def\gbpunctttl{《}%
+  \def\gbpunctttr{》}%
 }
+
+%将页码间隔符替换会英文的短横线
+\DefineBibliographyExtras{english}{\renewcommand*{\bibrangedash}{--}}
 
 %==================================================
 %为标注和文献表中标点格式，重设and本地化字符串
 %==================================================
 \DefineBibliographyStrings{english}{
-    and         = { and},%and后面的空格在finalnamedelim已经加过了，所以这里去掉20191009
-    andcn       = {\gbpunctmark\unspace},%\gbpunctmark
-    andincitecn = {和},%将标注中的分开，便于与文献表中的区分
-    andincite   = {\&},
-    %andotherscn={等},
-    %mathesiscn={[硕士学位论文]},
-    %phdthesiscn={[博士学位论文]},
+  and         = { and},%and后面的空格在finalnamedelim已经加过了，所以这里去掉20191009
+  andcn       = {\gbpunctmark\unspace},%\gbpunctmark
+  andincitecn = {和},%将标注中的分开，便于与文献表中的区分
+  andincite   = {\&},
+  % andotherscn = {等},
+  mathesiscn  = {硕士学位论文},
+  phdthesiscn = {博士学位论文},
 }
 
 
