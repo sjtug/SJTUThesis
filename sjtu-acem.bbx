@@ -1,0 +1,263 @@
+%%
+%% ---------------------------------------------------------------
+%% sjtu-acem.bbx --- A bibliography style for SJTU ACEM
+%% modified from chinese-erj
+%% Original by huzhenzhen
+%% Released under the LaTeX Project Public License v1.3c or later
+%% ---------------------------------------------------------------
+%%
+%%用法：类似于标准的样式在biblatex加载时设置样式
+
+\ProvidesFile{sjtu-acem.bbx}[2025/04/15 v1.0 a biblatex bibliography style for SJTU ACEM]
+
+%==================================================
+%加载gb样式
+%==================================================
+\RequireBibliographyStyle{gb7714-2015}
+\RequirePackage{mfirstuc}%单词首字母大写的问题
+\MFUnocap{in}%
+\MFUnocap{the}%
+\MFUnocap{of}%
+\MFUnocap{on}%
+\MFUnocap{and}%
+\MFUnocap{for}%
+
+%
+%   增加一个控制标点是英文还是中文的选项
+%   20220222,v1.0a,hzz
+\DeclareBibliographyOption{gbpunctcn}[true]{%biblatex低版本
+  \ifstrequal{#1}{false}{\execerjpuncten}{}}
+
+
+%==================================================
+%考虑多音字增加multipinyin排序，是其可以根据key域添加拼音来排序
+%==================================================
+\DeclareSortingTemplate{multipinyin}{
+  \sort{
+    \field{presort}
+  }
+  \sort{
+  \field{lansortorder}%language
+  }
+  \sort{
+    \field{sortkey}
+  }
+  \sort{%[direction=descending]
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+  }
+  \sort{
+    \field{sortyear}
+    \field{year}
+  }
+  \sort{
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort{
+    \field{volume}
+    \literal{0}
+  }
+}
+
+%==================================================
+%选项设置
+%==================================================
+\ExecuteBibliographyOptions{
+  maxbibnames=99,
+  gbalign=left,
+  gbtype=false,
+  gbpub=false,
+  gbnamefmt=reverseorder,
+  sorting=multipinyin,
+  doi=false,
+  url=false,
+}
+
+%==================================================
+%定义一些标点为中文全角标点
+%==================================================
+\def\gbpunctdot{。}%
+\def\gbpunctmark{、}%
+\def\gbpunctcomma{，}%
+\def\gbpunctcommalanen{\addcomma\addspace}%
+\def\gbpunctcolon{：}%
+\def\gbpunctcolonlanen{\addcolon\addspace}%
+\def\gbpunctsemicolon{；}%
+\def\gbpunctttl{《}%
+\def\gbpunctttr{》}
+
+
+\def\execerjpuncten{%
+\def\gbpunctdot{\adddot}%
+\def\gbpunctmark{\addcomma\addspace}%
+\def\gbpunctcomma{\addcomma\addspace}%
+\def\gbpunctcommalanen{\addcomma\addspace}%
+\def\gbpunctcolon{\addcolon\addspace}%
+\def\gbpunctcolonlanen{\addcolon\addspace}%
+\def\gbpunctsemicolon{\addsemicolon\addspace}%
+\def\gbpunctttl{《}%
+\def\gbpunctttr{》}%
+}
+
+%==================================================
+%为标注和文献表中标点格式，重设and本地化字符串
+%==================================================
+\DefineBibliographyStrings{english}{
+    and         = { and},%and后面的空格在finalnamedelim已经加过了，所以这里去掉20191009
+    andcn       = {\gbpunctmark\unspace},%\gbpunctmark
+    andincitecn = {和},%将标注中的分开，便于与文献表中的区分
+    andincite   = {\&},
+    %andotherscn={等},
+    %mathesiscn={[硕士学位论文]},
+    %phdthesiscn={[博士学位论文]},
+}
+
+
+%==================================================
+%设置一些标点格式为中文的标点
+%==================================================
+\DeclareFieldFormat{titlecase}{\iffieldequalstr{userd}{chinese}{#1}{\capitalisewords{#1}}}
+\DeclareFieldFormat*{title}{\iffieldequalstr{userd}{chinese}{\gbpunctttl#1\gbpunctttr}{#1\isdot}}
+\DeclareFieldFormat[article]{title}{\iffieldequalstr{userd}{chinese}{\gbpunctttl#1\gbpunctttr}{\mkbibquote{#1}\isdot}}
+\DeclareFieldFormat*{journaltitle}{\iffieldequalstr{userd}{chinese}{\gbpunctttl#1\gbpunctttr}{\textit{#1}}}%
+%\DeclareFieldFormat*{booktitle}{\gbpunctttl#1\gbpunctttr}
+\renewcommand*{\revsdnamepunct}{\iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}}%%来源biblatex.def
+\DeclareDelimFormat*{multinamedelim}{\iffieldequalstr{userd}{chinese}{\gbpunctmark}{\gbpunctcommalanen}}%\addcomma\addspace
+\DeclareDelimFormat{finalnamedelim}{%
+  %\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  %\addspace%
+  \edef\userfieldabcde{userd}%
+  \ifcurrentname{translator}{\edef\userfieldabcde{usere}}{}%
+  \ifcurrentname{editor}{\edef\userfieldabcde{userc}}{}%
+  \ifcurrentname{author}{\edef\userfieldabcde{userf}}{}%
+  \ifcurrentname{bookauthor}{\edef\userfieldabcde{userb}}{}%
+  \ifcase\value{gbcitelocalcase}%
+    \iffieldequalstr{\userfieldabcde}{chinese}{\bibstring{andincitecn}}{}%
+    \iffieldequalstr{\userfieldabcde}{korean}{\bibstring{andkr}}{}%
+    \iffieldequalstr{\userfieldabcde}{japanese}{\bibstring{andjp}}{}%
+    \iffieldequalstr{\userfieldabcde}{english}{\space\bibstring{andincite}\space}{}%
+    \iffieldequalstr{\userfieldabcde}{french}{\bibstring{and}}{}%
+    \iffieldequalstr{\userfieldabcde}{russian}{\bibstring{and}}{}%
+%\space%
+  \or%
+  \bibstring{andincitecn}\space%
+  \or%
+  \bibstring{andincite}\space%
+  \fi}
+\DeclareDelimFormat[bib,biblist]{finalnamedelim}{%
+%  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+%  \addspace%
+  \edef\userfieldabcde{userd}%
+  \ifcurrentname{translator}{\edef\userfieldabcde{usere}}{}%
+  \ifcurrentname{editor}{\edef\userfieldabcde{userc}}{}%
+  \ifcurrentname{author}{\edef\userfieldabcde{userf}}{}%
+  \ifcurrentname{bookauthor}{\edef\userfieldabcde{userb}}{}%
+  \ifcase\value{gbbiblocalcase}%
+    \iffieldequalstr{\userfieldabcde}{chinese}{\bibstring{andcn}}{}%
+    \iffieldequalstr{\userfieldabcde}{korean}{\bibstring{andkr}}{}%
+    \iffieldequalstr{\userfieldabcde}{japanese}{\bibstring{andjp}}{}%
+    \iffieldequalstr{\userfieldabcde}{english}{\bibstring{and}}{}%
+    \iffieldequalstr{\userfieldabcde}{french}{\bibstring{and}}{}%
+    \iffieldequalstr{\userfieldabcde}{russian}{\bibstring{and}}{}%
+\space%
+  \or%
+  \bibstring{andcn}\space%
+  \or%
+  \bibstring{and}\space%
+  \fi}
+\DeclareDelimFormat{nameyeardelim}{\iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}}%\addcomma\addspace
+\DeclareDelimFormat[bib,biblist]{nameyeardelim}{\iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}}%\addcomma\addspace
+\DeclareDelimFormat{bibpagespunct}{\iffieldequalstr{userd}{chinese}{}{\unspace\gbpunctcommalanen}}%\addcomma\addspace\mbox{}
+\renewcommand*{\newunitpunct}{\iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}}%\addcomma\space %，
+\renewcommand*{\finentrypunct}{\iffieldequalstr{userd}{chinese}{\gbpunctdot}{\adddot}}
+
+
+%==================================================
+%调整部分域的输出格式
+%==================================================
+%
+%   修改number和volume的格式
+%
+\newcounter{numberwithoutzero}
+\DeclareFieldFormat[article,periodical]{number}%
+    {\iffieldequalstr{userd}{chinese}{%
+        \iffieldint{number}{\setcounter{numberwithoutzero}{#1}\printtext{\bibstring{serialcn}\addthinspace\arabic{numberwithoutzero}\addthinspace 期}}%
+        {\printtext{\bibstring{serialcn}\addthinspace#1\addthinspace 期}}%
+    }%
+        {\printtext{(}#1\printtext{)}}}%\kern\z@
+\DeclareFieldFormat[article,periodical]{volume}%
+    {\iffieldequalstr{userd}{chinese}{}%
+    {#1}}% volume of a book
+
+%
+%   调整期刊名的格式
+%
+%   原理方法:因为作者年制年份提到前面，因此涉及到期刊名与后面的卷期的关系。
+%   v1.0k,20180425,增加了字体控制命令，hzz
+\renewbibmacro*{journal+issuetitle}{\bibpubfont%源来自standard.bbx
+  \usebibmacro{journal}%
+  %\setunit*{\addspace}%
+  %\setunit*{\addcomma\addspace}%修改为增加一个逗号
+  \iffieldundef{series}%
+    {}%
+    {\newunit%
+     \printfield{series}%
+     \setunit{\addspace}}%
+  %\usebibmacro{volume+number+eid}%
+  %\setunit{\addspace}%
+  \usebibmacro{issue+date}%
+  %\setunit{\addcolon\space}%
+  %\iffieldundef{volume}{}{\setunit{\addcomma\space}}%
+  %换成逗号和空格
+  \usebibmacro{issue}%
+  \usebibmacro{volume+number+eid}%把卷期放到年份后面
+  %\newunit
+  }
+
+%   调整期刊卷和期的格式
+%
+\renewbibmacro*{volume+number+eid}{%源来自standard.bbx
+\iffieldequalstr{userd}{chinese}{%\printfield{volume}%
+  \iffieldundef{number}{}{\printfield{number}}%区别于顺序编码制
+    }
+  {\newunit\printfield{volume}%
+  %\setunit*{\adddot\space}%
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}}
+
+%
+%   重设title的输出
+%
+%   20180425，v1.0k，为标题增加字体控制命令，Hu Zhenzhen
+%   原理方法:将文献类型标识符输出出去，原输出来自biblatex.def文件
+%   利用toggle做标识符是否输出的判断
+\renewbibmacro*{title}{%
+  \ifboolexpr{%
+    test{\iffieldundef{title}}%
+    and
+    test{\iffieldundef{subtitle}}%
+  }%
+    {}%
+    {\setunit{\iffieldequalstr{userd}{chinese}{\gbpunctcolon}{\gbpunctcommalanen}}\printtext[title]{\bibtitlefont%增加字体控制命令%增加了标点：
+       \printfield[titlecase]{title}%
+       \ifboolexpr{test {\iffieldundef{subtitle}}}%这里增加了对子标题的判断，解决不判断多一个点的问题
+       {}{\setunit{\subtitlepunct}%
+       \printfield[titlecase]{subtitle}}%
+       \iffieldundef{titleaddon}{}%判断一下titleaddon，否则直接加可能多一个空格
+        {\setunit{\subtitlepunct}\printfield{titleaddon}}%
+        \iftoggle{bbx:gbtype}{%
+         \iffieldundef{entrysubtype}{\printfield[gbtypeflag]{usera}}%在标题后直接给出文献标识字母，判断一下，是否是报纸和标准
+        {\iffieldequalstr{entrysubtype}{standard}{\printfield[gbtypeflags]{usera}}%判断是否为标准
+                                         {\iffieldequalstr{entrysubtype}{news}{\printfield[gbtypeflagn]{usera}}% 判断是否为报纸
+                                                                      {\printfield[gbtypeflag]{usera}}}% 其它
+        }}{}%
+     %\iffieldundef{booktitle}{\newunit}{}%当title是析出时，不要标点
+     %\newunit
+     }%
+}}
+
+\DeclareFieldFormat{pages}{\iffieldequalstr{userd}{chinese}{}{#1}}%页码引用格式的修改%去掉前面引导页码的pp.等字符
