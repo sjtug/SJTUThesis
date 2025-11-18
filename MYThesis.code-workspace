@@ -1,0 +1,93 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "latex-workshop.latex.autoBuild.run": "never",
+        "latex-workshop.latex.tools": [
+            {
+                "name": "xelatex",
+                "command": "xelatex",
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "%DOCFILE%"
+                ]
+            },
+            {
+                "name": "latexmk",
+                "command": "latexmk",
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-pdf",
+                    "-outdir=%OUTDIR%",
+                    "%DOC%"
+                ]
+            },
+            {
+                "name": "latexmk-xelatex",
+                "command": "latexmk",
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-xelatex",
+                    "-outdir=%OUTDIR%",
+                    "%DOC%"
+                ]
+            }
+        ],
+        "latex-workshop.latex.recipes": [
+            {
+                "name": "latexmk (xelatex)",
+                "tools": [
+                    "latexmk-xelatex"
+                ]
+            },
+            {
+                "name": "xelatex -> bibtex -> xelatex*2",
+                "tools": [
+                    "xelatex",
+                    "bibtex",
+                    "xelatex",
+                    "xelatex"
+                ]
+            }
+        ],
+        "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+        "latex-workshop.view.pdf.viewer": "tab",
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.clean.fileTypes": [
+            "*.aux",
+            "*.bbl",
+            "*.blg",
+            "*.idx",
+            "*.ind",
+            "*.lof",
+            "*.lot",
+            "*.out",
+            "*.toc",
+            "*.acn",
+            "*.acr",
+            "*.alg",
+            "*.glg",
+            "*.glo",
+            "*.gls",
+            "*.ist",
+            "*.fls",
+            "*.log",
+            "*.fdb_latexmk",
+            "*.synctex.gz",
+            "*.run.xml",
+            "*.bcf"
+        ],
+        "latex-workshop.latex.outDir": "./",
+        "latex-workshop.message.error.show": false,
+        "latex-workshop.message.warning.show": false
+    }
+}

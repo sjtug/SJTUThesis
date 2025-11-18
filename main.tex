@@ -3,7 +3,7 @@
 % !TeX TXS-program:recompile-bibliography = txs:///latexmk/{} -v
 
 % 载入 SJTUThesis 模版
-\documentclass[type=master]{sjtuthesis}
+\documentclass[type=doctor,lang=en]{sjtuthesis}
 % 选项
 %   type=[doctor|master|bachelor],     % 可选（默认：master），论文类型
 %   zihao=[-4|5],                      % 可选（默认：-4），正文字号大小
@@ -14,7 +14,7 @@
 %   math-style=[ISO|TeX],              % 可选 (默认：ISO)，数学符号样式
 
 % 学士论文额外设置
-\usepackage{sjtuthesis-bachelor}
+% \usepackage{sjtuthesis-bachelor}
 
 % 论文基本配置，加载宏包等全局配置
 \input{setup}
@@ -47,9 +47,6 @@
 % 算法索引
 \listofalgorithms
 
-% 符号对照表
-\input{contents/nomenclature}
-
 %TC:endignore
 
 % 主体部分
@@ -57,8 +54,12 @@
 
 % 正文内容
 \input{contents/intro}
-\input{contents/math_and_citations}
-\input{contents/floats}
+\input{contents/theory}
+\input{contents/instrument}
+\input{contents/events}
+\input{contents/BSMtttt}
+\input{contents/Difftttt}
+\input{contents/RPC}
 \input{contents/summary}
 
 %TC:ignore
@@ -90,9 +91,6 @@
 
 % 简历
 \input{contents/resume}
-
-% 学士学位论文要求在最后有一个大摘要，单独编页码
-\input{contents/digest}
 
 %TC:endignore
 

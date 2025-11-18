@@ -1,0 +1,172 @@
+% !TEX root = ../main.tex
+
+\chapter{Standard Model of Particle Physics and Beyond}\label{ch:theory}
+
+The Standard Model (SM) of particle physics, which is a comprehensive framework for understanding the fundamental particles and their interactions, provides a wonderful playground for understanding the world.
+Through decades of exploration, it has been established as a remarkably successful theory, accurately describing a wide range of phenomena observed in experiments.
+However, as a callback to what happened in the beginning of the 20\textsuperscript{th} century, the SM is also known to be incomplete, leaving several profound questions unanswered.
+This chapter will provide an overview of the SM and introduce something beyond it.
+The underlying principle of modern physics is presented in Section~\ref{sec:symmetry}. Following by the construction of the SM in Section~\ref{sec:SM}. In the end some discussion is made on its limitations and the motivations for exploring physics beyond the Standard Model (BSM) in Section~\ref{sec:BSM}.
+
+\section{The goal of a unified description}\label{sec:unified}
+
+There has been a long history of seeking a unified description of nature.
+From Newton marked down the unified principle of mechanics and the universal law of gravitation. 
+To Maxwell unified the theory of electricity and magnetism. And Einstein unified spacetime description of gravity.
+Each time a successful unification was achieved, it marked a significant milestone in our understanding of the universe.
+
+The seeking will never comes to an end. While a common description is needed, QFT (Quantum Field Theory), which is a combination of field theory, quantum mechanics and special relativity, provides a framework to describe particles and interactions in a unified manner.
+In QFT, particles are treated as excitations of underlying fields. The S-matrix is a tool to calculate probabilities of interactions.
+
+\section{Symmetry as a Guiding Principle}\label{sec:symmetry}
+
+Symmetry is beauty, this belief has been deeply ingrained in the minds of humankind since ancient times.
+While looking at the fields in QFT and their interactions, symmetries raise their inner structure.
+
+\subsection{Spacetime symmetry}\label{subsec:spacetime}
+
+As a consequence of combining quantum mechanics and special relativity, fields in quantum field theory must transform covariantly under Lorentz transformations.
+In general, a Lorentz transformation acts on spacetime coordinates through the matrix $\Lambda^{\mu}{}_{\nu}$, and on fields through the finite-dimensional representation $D(\Lambda)$, such that
+
+\begin{align}
+    x^\mu &\;\rightarrow\; x'^{\mu} = \Lambda^{\mu}{}_{\nu}\, x^{\nu}, \Phi_a(x) &\;\rightarrow\; \Phi'_a(x') = D(\Lambda)_{ab}\, \Phi_b(x).
+\end{align}
+
+The set of all linear transformations that leave the Minkowski metric invariant form the Lorentz group, denoted by $\mathrm{O}(1,3)$ (its proper orthochronous component is $\mathrm{SO}^+(1,3)$).
+The generators of the Lorentz group include rotations $J_i$ and boosts $K_i$ (with $i=1,2,3$), which satisfy the commutation relations
+
+\begin{align}
+    [J_i,J_j] &= i\epsilon_{ijk}J_k, & 
+    [J_i,K_j] &= i\epsilon_{ijk}K_k, &
+    [K_i,K_j] &= -i\epsilon_{ijk}J_k.
+\label{eq:JK-algebra}
+\end{align}
+
+Further, the Lie algebra of the Lorentz group can be decomposed into two commuting SU(2) algebras. Defining
+\[
+    A_i=\frac{J_i+iK_i}{2},\qquad B_i=\frac{J_i-iK_i}{2},
+\]
+one finds
+\begin{align}
+    [A_i,A_j] &= i\epsilon_{ijk}A_k, &
+    [B_i,B_j] &= i\epsilon_{ijk}B_k, &
+    [A_i,B_j] &= 0.
+\label{eq:AB-algebra}
+\end{align}
+
+Hence, the irreducible representations of the Lorentz group can be labelled by two half-integers $(j_L,j_R)$, corresponding to the representations of the two SU(2) algebras.
+Vairant fileds can be calssified according to these representations. For instance, scalar fields transform as $(0,0)$, left-handed and right-handed Weyl spinors as $(\tfrac{1}{2},0)$ and $(0,\tfrac{1}{2})$ respectively, Dirac spinors as $(\tfrac{1}{2},0)\oplus(0,\tfrac{1}{2})$, and vector fields as $(\tfrac{1}{2},\tfrac{1}{2})$.
+
+To be more robust, the field should as well be invariant under translations in space and time in addition to Lorentz transformations, which together form the Poincaré group $\mathcal{P}=\mathbb{R}^{1,3} \rtimes \mathrm{SO}^+(1,3)$ as the full spacetime symmetry group in the SM and reveal deeper structure of nature.
+The translation inavaraince of the generator $\mathrm{P}^{\mu}$ implies its conservation via Noether's theorem, which corresponds to the conservation of energy and momentum.
+And the irreducible unitary representations of the Poincaré group classify one-particle states, which labeled by two invariants: the mass $m$ and the spin $s$ (or helicity $h$ for massless particles).
+For massive particles, their spins are related to the Lorentz group representation content as $s=j_L+j_R$. So that the scalr fields have spin 0, Weyl and Dirac spinors have spin $\tfrac{1}{2}$, and vector fields have spin 1.
+When combined with the spin-statistics theorem, this leads to the physical distinction between bosons (integer spin) and fermions (half-integer spin).
+
+Addintionally, locality and unitarity requirements in QFT further invariant under CPT symmetry, which states that the combined operations of charge conjugation (C), parity transformation (P), and time reversal (T) leave the physical laws unchanged.
+
+\subsection{Internal Symmetries and Gauge Theory}\label{subsec:internal}
+
+Then we take a look at the fields themselves. The internal sysmetries act only on the fields indices without affecting the spacetime coordinates.
+
+\begin{align}
+    \Phi_a(x) &\;\rightarrow\; \Phi'_a(x) = U_{ab}\, \Phi_b(x),
+\end{align}
+
+where $U$ is a linear transformation. These symmetries can be global or local (gauge) symmetries.
+In the content of global symmetries, the transformation $U$ is independent of spacetime position $x$. For instance, $\mathrm{U}(1)$ represents the abelian single phase rotation and $\mathrm{SU}(N)$ represents the non-abelian unitary rotation in an N-dimensional internal space with determinant-1.
+While global internal symmetries lead to conserved Noether currents, they do not constrain how the theory behaves under space-dependent transformations.
+
+Gauge invariance, covariant derivative, field strength tensor.
+
+Yang-Mills.
+
+QED as an example.
+
+Renormalisability and locality.
+
+\begin{align}
+    \Phi(x) &\to \Phi'(x) = U(x)\,\Phi(x),
+\\[4pt]
+    \partial_\mu \Phi(x) &\to \partial_\mu \Phi'(x)
+        = U(x)\,\partial_\mu \Phi(x) 
+        + (\partial_\mu U(x))\,\Phi(x).
+\end{align}
+
+\[
+\partial_\mu \Phi'(x) \neq U(x)\,\partial_\mu\Phi(x),
+\]
+
+\begin{align}
+    D_\mu &\equiv \partial_\mu + i g A_\mu(x),
+\\
+    A_\mu(x) &\equiv A_\mu^a(x) T^a.
+\end{align}
+
+\[
+D_\mu \Phi(x) \to D'_\mu \Phi'(x) = U(x)\,D_\mu \Phi(x),
+\]
+
+\begin{align}
+    A'_\mu(x)
+    = U(x) A_\mu(x) U^{-1}(x)
+    - \frac{i}{g} \big(\partial_\mu U(x)\big) U^{-1}(x).
+\end{align}
+
+\begin{align}
+    F_{\mu\nu}
+    &= \frac{1}{i g} [D_\mu, D_\nu]
+\\
+    &= \partial_\mu A_\nu - \partial_\nu A_\mu
+       + i g [A_\mu, A_\nu].
+\end{align}
+
+\[
+F_{\mu\nu}^a
+    = \partial_\mu A_\nu^a 
+    - \partial_\nu A_\mu^a
+    + g f^{abc} A_\mu^b A_\nu^c.
+\]
+
+\begin{align}
+\mathcal{L}_{\mathrm{YM}}
+    = -\frac{1}{4} F_{\mu\nu}^a F^{a\,\mu\nu}
+      + \bar{\psi}\left( i\gamma^\mu D_\mu - m \right)\psi .
+\end{align}
+
+\[
+D_\mu = \partial_\mu + i g A_\mu^a T^a.
+\]
+
+\[
+D_\mu = \partial_\mu + i e A_\mu.
+\]
+
+\[
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu.
+\]
+
+\begin{align}
+\mathcal{L}_{\mathrm{QED}}
+= -\frac14 F_{\mu\nu} F^{\mu\nu}
+  + \bar{\psi} (i\gamma^\mu D_\mu - m ) \psi.
+\end{align}
+
+
+\section{The Standard Model of Particle Physics}\label{sec:SM}
+
+\subsection{Electroweak Sector}\label{subsec:EW}
+
+\subsection{Quantum Chromodynamics}\label{subsec:QCD}
+
+\subsection{Let there be mass}\label{subsec:Higgs}
+
+\section{Beyond the Standard Model}\label{sec:BSM}
+
+\subsection{Limitations of the Standard Model}\label{subsec:limitations}
+
+\subsection{2HDM}\label{subsec:2HDM}
+
+\subsection{Colour-singlets and Colour-octets}\label{subsec:S1/S8}
+
+\section{Four top quarks production}\label{sec:four-top}
