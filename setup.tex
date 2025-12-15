@@ -131,6 +131,9 @@
 % 颜色宏包
 \usepackage{xcolor} 
 
+% 控制浮动体越界：\FloatBarrier 可阻止浮动越过屏障
+\usepackage{placeins}
+
 % 确定浮动对象的位置，可以使用 [H]，强制将浮动对象放到这里（可能效果很差）
 % \usepackage{float}
 
@@ -203,6 +206,15 @@
 % 绘图宏包
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, shapes.geometric}
+
+% Feynman diagram support
+\usepackage{subcaption}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+
+% Draw plots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
 
 % 数据图表宏包
 \usepackage{pgfplots}
