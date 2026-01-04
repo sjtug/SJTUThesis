@@ -55,21 +55,21 @@ goto :EOF
 
 :thesis
 	echo %ESC%[33mCompile . . .%ESC%[0m
-	latexmk -quiet -file-line-error -halt-on-error -interaction=nonstopmode %THESIS% 2>nul
+	latexmk -pdf -xelatex -outdir=out -quiet -file-line-error -halt-on-error -interaction=nonstopmode %THESIS% 2>nul
 goto :EOF
 
 :clean
 	echo %ESC%[33mClean files . . .%ESC%[0m
-	latexmk -quiet -c %THESIS% 2>nul
+	latexmk -quiet -c -outdir=out %THESIS% 2>nul
 goto :EOF
 
 :cleanall
 	echo %ESC%[33mClean files . . .%ESC%[0m
-	latexmk -quiet -C %THESIS% 2>nul
-	if exist %THESIS%.pdf (
-		echo %ESC%[31mClose the file: %ESC%[7m'%THESIS%.pdf'%ESC%[0;31m!%ESC%[0m
+	latexmk -quiet -C -outdir=out %THESIS% 2>nul
+	if exist out\%THESIS%.pdf (
+		echo %ESC%[31mClose the file: %ESC%[7m'out\\%THESIS%.pdf'%ESC%[0;31m, then press any key to delete it.%ESC%[0m
 		pause
-		call :cleanall
+		del /F /Q out\%THESIS%.pdf 2>nul
 	)
 goto :EOF
 

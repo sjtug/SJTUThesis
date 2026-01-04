@@ -113,6 +113,14 @@
 %   biblatex-gb7714-2015 常用选项
 %     gbnamefmt=lowercase     姓名大小写由输入信息确定
 %     gbpub=false             禁用出版信息缺失处理
+%
+% 占位符：控制文献类型/载体标识符与 URL 显示（无需现在启用）
+% 取消下一行注释可隐藏如 [R/OL]、[J] 等类型标识符
+% \PassOptionsToPackage{gbtype=false}{biblatex}
+% 取消下一行注释可不显示 URL
+% \PassOptionsToPackage{url=false}{biblatex}
+% 取消下一行注释可将题名设为超链接（替代 [OL] 的表现）
+% \PassOptionsToPackage{gbtitlelink=true}{biblatex}
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 % 文献表字体
 \renewcommand{\bibfont}{\zihao{5}\setbaselineskip{16bp}}

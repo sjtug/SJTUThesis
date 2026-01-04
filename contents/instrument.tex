@@ -14,23 +14,28 @@ And the ATLAS detector is one of the two general-purpose detectors at the LHC, d
 
 \section{The Large Hadron Collider}
 
-Being the world's largest and most powerful particle accelerator, the Large Hadron Collider (LHC) is located at CERN near Geneva, Switzerland. 
-It was designed and constructed as the flagship facility of the CERN accelerator programme to explore particle interactions at the highest achievable energies. 
-The LHC is installed in a circular tunnel of 27 km in circumference and 100 m underground, originally built for the Large Electron-Positron (LEP) collider, and became operational in 2008.
+Being the world's largest and most powerful particle accelerator, the LHC\cite{LHCDR2004}, which is located at CERN on the Franco-Swiss border near Geneva, Switzerland,
+is designed and constructed as the flagship facility of the CERN accelerator programme to explore particle interactions at the highest achievable energies. 
+The LHC is installed in a circular tunnel of 27.6 km in circumference and 100 m underground, originally built for the Large Electron-Positron (LEP) collider\cite{LEPDRv1,LEPDRv2}, and became operational in 2008.
 
 The LHC is a proton-proton collider designed to operate at a centre-of-mass energy of up to 14 TeV. Protons are accelerated and guided along the ring by a system of superconducting magnets, 
 including dipole magnets providing a magnetic field of 8.3 T to bend the beams along the circular trajectory. 
 In addition to proton-proton collisions, the LHC is also capable of colliding heavy ions (Pb) beam for 2.8 TeV per nucleon pair, enabling a broad physics programme.
 
-The proton beams circulating in the Large Hadron Collider are produced and accelerated through a sequence of pre-accelerators, collectively referred to as the CERN accelerator complex. 
+The proton beams circulating in the Large Hadron Collider are produced and accelerated through a sequence of pre-accelerators, collectively referred to as the CERN accelerator complex\cite{Bruning2012LHCReview}. 
 This multi-stage acceleration scheme is designed to gradually increase the beam energy while preserving beam quality and intensity, before injection into the LHC.
 
 The acceleration chain begins with a linear accelerator, Linac2, which provides an initial energy of 50 MeV to protons extracted from a hydrogen source. 
 The protons are then injected into the Proton Synchrotron Booster (PSB), where their energy is increased to 1.4 GeV. Subsequently, the beams are transferred to the Proton Synchrotron (PS), 
 which accelerates the protons to an energy of 26 GeV, before injection into the Super Proton Synchrotron (SPS).
 In the SPS, the proton beams are accelerated to 450 GeV and prepared for injection into the LHC. At each stage of the accelerator complex, radio-frequency cavities are used to increase the beam energy, 
-while magnetic systems guide and focus the beams along the desired trajectories. The staged structure of the accelerator complex enables efficient accumulation of high-intensity proton bunches suitable for high-luminosity operation in the LHC.
+while magnetic systems guide and focus the beams along the desired trajectories. The staged structure of the accelerator complex enables efficient accumulation of high-intensity proton bunches suitable for high-luminosity operation in the LHC (HL-LHC\cite{HLLHC2020TDR}).
 Once accelerated to the injection energy of 450 GeV, the proton beams are transferred from the SPS into the LHC, where they are captured and further accelerated to their final collision energy. 
+During 2019-2021, refer to as the Long Shutdown 2 (LS2), the LHC underwent significant upgrades and maintenance to prepare for the HL-LHC era.
+Linac4 replaced the older Linac2 and now delivers H⁻ beams at 160 MeV, allowing higher beam brightness to be injected into the Proton Synchrotron Booster (PSB). 
+The PSB itself received a redesigned injection region, a new radio-frequency (RF) system, and an upgraded main power supply, enabling the extraction energy to increase from 1.4 GeV to 2 GeV. 
+Further upgrades to the Proton Synchrotron and the Super Proton Synchrotron, including improved radio-frequency systems and beam stability measures, 
+allow the injector chain to reliably provide the high-intensity beams required for future high-luminosity operation\cite{HLLHCUpgrade}.
 The CERN accelerator complex therefore plays a crucial role in delivering high-quality beams that meet the stringent requirements of the LHC physics programme.
 
 Once injected into the LHC, the proton beams circulate in two separate beam pipes in opposite directions and are further accelerated to their final energy. 
@@ -40,17 +45,62 @@ This magnetic system ensures stable beam operation and allows the protons to be 
 The two counter-rotating beams are brought into collision at four designated interaction points distributed around the ring. At these locations, the beams are strongly focused to maximise the collision rate, 
 enabling high instantaneous luminosity. Large particle detectors are installed around each interaction point to record the products of the proton-proton or heavy-ion collisions.
 
-The four main experiments at the LHC are ATLAS and CMS, which are general-purpose detectors designed to investigate a broad range of physics processes, 
-including precision measurements of the Standard Model and searches for new phenomena; ALICE, which is optimised for the study of strongly interacting matter in heavy-ion collisions; 
-and LHCb, which focuses on precision measurements in the heavy-flavour sector. The overall layout of the LHC ring and the locations of the interaction points are illustrated in Fig.~\ref{fig:LHC_layout}.
+The four main experiments at the LHC are ATLAS (A Large Toroidal LHC ApparatuS)\cite{ATLASTDR14,ATLASTDR15} and CMS (Compact Muon Solenoid)\cite{CMSPhysicsTDRv1,CMSJPhysG2007}, which are general-purpose detectors designed to investigate a broad range of physics processes, 
+including precision measurements of the Standard Model and searches for new phenomena; ALICE (A Large Ion Collider Experiment)\cite{ALICETP1995}, which is optimised for the study of strongly interacting matter in heavy-ion collisions; 
+and LHCb (LHC beauty)\cite{LHCbTDR9}, which focuses on precision measurements in the heavy-flavour sector. The overall layout of the LHC ring and the locations of the interaction points are illustrated in Fig.~\ref{fig:LHC_layout}.
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/CCC-v2022.png}
-    \caption{Schematic layout of the Large Hadron Collider, showing the ring structure and the locations of the four main experiments. Linac2 has been replaced by Linac4 for Run3 operations.}
+    \includegraphics[width=0.8\textwidth]{figures/CCC-v2022_smaller_reso.png}
+    \caption{Schematic layout of the Large Hadron Collider, showing the ring structure and the locations of the four main experiments\cite{CERNGraphics2022Layout}.}
     \label{fig:LHC_layout}
 \end{figure}
 
+The performance of a hadron collider is commonly characterised by its luminosity, which determines the rate at which particle interactions occur. 
+
+For a given physics process with production cross section $\sigma$, the expected event yield $N$ is
+
+\begin{equation}
+    N = \sigma \int \mathcal{L}(t) dt
+\end{equation}
+
+where $\mathcal{L}(t)$ denotes the instantaneous luminosity in $\mathrm{cm}^{-2}\,\mathrm{s}^{-1}$. The time integral defines the integrated luminosity accumulated over a data-taking period.
+For bunched beams, the collision frequency is $f_{\mathrm{coll}} = n_b f_0$, where $f_0$ is the revolution frequency (or repetition rate for a linear collider) and $n_b$ the number of bunches per beam. 
+In general, the instantaneous luminosity is proportional to the bunch populations and their transverse overlap at the interaction point (IP). 
+For two identical Gaussian beams with equal bunch populations $N_b$, the luminosity can be written\cite{Bruning2012LHCReview}
+
+\begin{equation}
+\mathcal{L} 
+= 
+\frac{f_0\, n_b\, N_b^2}{4\pi\, \sigma_x\, \sigma_y}\, F\,,
+\end{equation}
+
+where $\sigma_{x,y}$ are the transverse rms beam sizes at the IP, and $F$ is a geometric reduction factor accounting for the crossing angle and the longitudinal hourglass effect. 
+Using normalized emittances $\epsilon_{n\,x,y}$ and beta-functions $\beta_{x,y}^*$, the transverse sizes satisfy $\sigma_{x,y} = \sqrt{\epsilon_{n\,x,y}\,\beta_{x,y}^*/\gamma}$, 
+with $\gamma$ the relativistic Lorentz factor.
+
+At the LHC, the proton beams are organised into discrete bunches, which cross at the interaction points at regular intervals. 
+As the instantaneous luminosity increases, multiple proton-proton interactions can occur within the same bunch crossing. These additional interactions are collectively referred to as pile-up. 
+The average number of inelastic interactions per bunch crossing is commonly denoted by $\langle \mu \rangle$ and provides a convenient measure of the pile-up conditions during data taking.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/luminosity.pdf}
+    \caption{LHC peak instantaneous luminosity and integrated luminosity delivered to the ATLAS experiment over time.}
+    \label{fig:LHC_luminosity}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/mu_2015_2018.pdf}
+    \caption{Average number of interactions per bunch crossing (pileup) recorded by the ATLAS experiment over time.}
+    \label{fig:LHC_pileup}
+\end{subfigure}
+\caption{LHC performance metrics during Run 2 (2015-2018).}
+\label{fig:LHC_performance}
+\end{figure}
 
 \section{The ATLAS Detector}
 
