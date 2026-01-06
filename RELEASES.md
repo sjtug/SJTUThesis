@@ -6,6 +6,8 @@
 
 ## [Unreleased]
 
+- 注释英文大摘要（[#1137](https://github.com/sjtug/SJTUThesis/pull/1137)）。
+
 ### Added
 
 - 添加 `sjtuthesis-bachelor.sty` 来补充学士论文额外配置（[#1113](https://github.com/sjtug/SJTUThesis/pull/1113)）。
