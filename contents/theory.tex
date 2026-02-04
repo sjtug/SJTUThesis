@@ -1,27 +1,37 @@
 % !TEX root = ../main.tex
 
-\chapter{Standard Model of Particle Physics and Beyond}\label{ch:theory}
+\chapter{Standard Model of Particle Physics and Beyond}
+\label{ch:theory}
 
-The Standard Model (SM) of particle physics, which is a comprehensive framework for understanding the fundamental particles and their interactions, provides a wonderful playground for understanding the world~\cite{PDG2024}.
-Through decades of exploration, it has been established as a remarkably successful theory, accurately describing a wide range of phenomena observed in experiments~\cite{Weinberg1967,Glashow1961,Salam1968}.
-However, as a callback to what happened in the beginning of the 20\textsuperscript{th} century, the SM is also known to be incomplete, leaving several profound questions unanswered~\cite{SMProblemsReview}.
-This chapter provides an overview of the SM and introduces physics beyond it.
-The underlying principles of modern particle physics are presented in Section~\ref{sec:symmetry}, followed by the construction of the SM in Section~\ref{sec:SM}. In the end, we discuss its limitations and the motivations for exploring physics beyond the Standard Model (BSM) in Section~\ref{sec:BSM}.
+The Standard Model (SM) of particle physics is a comprehensive theoretical framework for describing the fundamental particles and their interactions.
+Through decades of theoretical development and experimental verification, it has been established as a remarkably successful theory, accurately accounting for a wide range of observed phenomena~\cite{Weinberg1967,Glashow1961,Salam1968,PDG2024}.
+However, in a way reminiscent of the situation at the beginning of the 20\textsuperscript{th} century, the SM is also known to be incomplete, leaving several profound questions about the fundamental structure of nature unanswered~\cite{SMProblemsReview}.
+This chapter provides an overview of the SM and introduces the motivations for exploring physics beyond it.
+The underlying principles of modern particle physics are presented in Section~\ref{sec:symmetry}, followed by the construction of the SM in Section~\ref{sec:SM}.
+Finally, the limitations of the SM and the motivations for physics beyond the Standard Model (BSM) are discussed in Section~\ref{sec:BSM}.
 
-\section{The Goal of a Unified Description}\label{sec:unified}
+\section{The Goal of a Unified Description}
+\label{sec:unified}
 
-There has been a long history of seeking a unified description of nature.
-From Newton, who marked down the unified principles of mechanics and the universal law of gravitation,
-to Maxwell, who unified the theory of electricity and magnetism, and Einstein, who unified the spacetime description of gravity,
-Each time a successful unification was achieved, it marked a significant milestone in our understanding of the universe.
+The quest for a unified description of nature has a long and distinguished history.
+From Newton's formulation of classical mechanics and universal gravitation,
+to Maxwell's unification of electricity and magnetism, and Einstein's geometric description of gravity,
+each successful unification has marked a major milestone in our understanding of the physical world.
 
-The seeking will never come to an end. While a common description is needed, quantum field theory (QFT), which combines field theory, quantum mechanics, and special relativity, provides a framework to describe particles and interactions in a unified manner.
-In QFT, particles are treated as excitations of underlying fields, and the S-matrix is a tool to calculate probabilities of interactions.
+The pursuit of a common description of fundamental phenomena remains an ongoing effort in modern physics.
+Quantum field theory (QFT), which combines the principles of quantum mechanics, special relativity, and classical field theory,
+provides a consistent framework for describing particles and their interactions.
+Within QFT, fields are regarded as the fundamental entities, while particles emerge as quantised excitations of these fields.
+The dynamics and interactions of the fields are determined by an underlying Lagrangian, whose form is strongly constrained by symmetry principles.
+Physical observables in high-energy experiments are typically inferred from scattering and decay processes.
+In this context, the scattering matrix (S-matrix) provides a direct link between quantum field theory and experimentally measurable quantities, encoding the transition amplitudes between asymptotic in- and out-states of interacting particles.
 
-\section{Symmetry as a Guiding Principle}\label{sec:symmetry}
+\section{Symmetry as a Guiding Principle}
+\label{sec:symmetry}
 
-Symmetry is beauty; this belief has been deeply ingrained in the minds of humankind since ancient times.
-When looking at the fields in QFT and their interactions, symmetries reveal their inner structure.
+The idea that symmetry reflects an underlying order of nature has accompanied the development of physics since ancient times.
+In the context of quantum field theory, this notion acquires a precise mathematical meaning: symmetries govern the transformation properties of fields and severely restrict the possible forms of their interactions.
+As a result, symmetry principles provide the foundation upon which the Standard Model of particle physics is constructed.
 
 \subsection{Spacetime Symmetry}\label{subsec:spacetime}
 
@@ -61,7 +71,8 @@ Variant fields can be classified according to these representations. For instanc
 To be more robust, fields should also be invariant under translations in space and time in addition to Lorentz transformations, which together form the Poincaré group $\mathcal{P}=\mathbb{R}^{1,3} \rtimes \mathrm{SO}^+(1,3)$ as the full spacetime symmetry group in the SM and reveal a deeper structure of nature.
 The translation invariance of the generator $P^{\mu}$ implies its conservation via Noether's theorem, which corresponds to the conservation of energy and momentum.
 The irreducible unitary representations of the Poincaré group classify one-particle states, which are labeled by two invariants: the mass $m$ and the spin $s$ (or helicity $h$ for massless particles).
-For massive particles, their spins are related to the Lorentz group representation content as $s=j_L+j_R$. Thus, scalar fields have spin 0, Weyl and Dirac spinors have spin $\tfrac{1}{2}$, and vector fields have spin 1.
+For massive particles, the spin quantum number is associated with the representation of the rotation subgroup, and is related to the Lorentz representation content through $s = j_L + j_R$.
+Thus, scalar fields have spin 0, Weyl and Dirac spinors have spin $\tfrac{1}{2}$, and vector fields have spin 1.
 When combined with the spin-statistics theorem, this leads to the physical distinction between bosons (integer spin) and fermions (half-integer spin).
 
 Additionally, locality and unitarity requirements in QFT further imply invariance under CPT symmetry, which states that the combined operations of charge conjugation (C), parity transformation (P), and time reversal (T) leave the physical laws unchanged~\cite{Luders1954,Pauli1955}.
@@ -163,10 +174,10 @@ Locality requires that the Lagrangian density be constructed from fields and the
 In particular, gauge interactions must be mediated through local operators such as the covariant derivative $D_\mu$ and the field-strength tensor $F_{\mu\nu}$.
 This ensures a causal relativistic evolution and excludes non-local interactions in which fields at different spacetime points appear directly.
 
-Renormalisability further restricts the allowed operators to those of mass dimension four or less~\cite{tHooft1971}.
-In non-Abelian Yang-Mills theories, gauge invariance automatically forbids higher-dimensional terms (such as explicit mass terms for gauge bosons),
-leaving a uniquely determined renormalisable structure as in Eq.~\eqref{Yang-Mills}.
-Matter fields couple through the dimension-four operator $\bar{\psi}\gamma^\mu D_\mu\psi$, which preserves both gauge symmetry and renormalisability.
+Within the framework of renormalisable quantum field theories, additional constraints arise on the allowed operators appearing in the Lagrangian.
+In particular, restricting to operators of mass dimension four or less leads to a predictive and ultraviolet-complete description of interactions at accessible energy scales~\cite{tHooft1971}.
+In non-Abelian Yang--Mills theories, gauge invariance then forbids explicit mass terms for the gauge fields, resulting in a uniquely determined renormalisable structure such as that given in Eq.~\eqref{Yang-Mills}.
+Matter fields couple through dimension-four operators, for example $\bar{\psi}\gamma^\mu D_\mu\psi$, which preserve both gauge symmetry and renormalisability.
 
 \section{The Standard Model of Particle Physics}\label{sec:SM}
 
@@ -174,7 +185,7 @@ We now arrive at the point where we can offer an official introduction to the St
 which provides a unified and experimentally successful description of elementary particles and their interactions.
 Formulated as a gauge-invariant and renormalisable quantum field theory, the SM incorporates gauge bosons, fermions, and the Higgs sector~\cite{Glashow1961,Weinberg1967,Salam1968,GIM1970}.
 
-\subsection{Gauge Bosons}\label{subsec:bosons}
+\subsection{Gauge Fields}\label{subsec:bosons}
 
 The gauge bosons in the Standard Model are spin-1 fields that mediate the fundamental interactions (except gravity) among matter fields. 
 Each type of interaction is associated with a specific gauge symmetry. 
@@ -193,7 +204,7 @@ The $\mathrm{SU}(3)_C$ generators $t^a$ ($a=1,\dots,8$) correspond to eight gluo
 More generally, the non-Abelian nature of the SM gauge groups implies that gauge bosons carry the corresponding charges and self-interact: both $\mathrm{SU}(2)_L$ and $\mathrm{SU}(3)_C$ exhibit boson self-couplings.
 In the strong sector, the specific structure of $\mathrm{SU}(3)_C$ and the running of its coupling give rise to asymptotic freedom at high energies and colour confinement at low energies in quantum chromodynamics (QCD).
 
-In summary, the gauge bosons of the Standard Model are summarized in Table~\ref{tab:gauge-bosons}:
+For reference, the gauge bosons of the Standard Model are listed in Table~\ref{tab:gauge-bosons}.
 
 \begin{table}[h!]
 \centering
@@ -210,6 +221,18 @@ $\gamma_\mu$ & 1 & $\mathrm{U}(1)_\mathrm{EM}$ & Massless, couples to electric c
 \caption{Gauge bosons of the Standard Model.}
 \label{tab:gauge-bosons}
 \end{table}
+
+As discussed in Section~\ref{sec:symmetry}, the dynamics of non-Abelian gauge fields are governed by the Yang--Mills construction.
+Accordingly, the gauge sector of the Standard Model is described by
+\begin{equation}
+    \mathcal{L}_{\mathrm{gauge}}
+    = -\frac{1}{4} G_{\mu\nu}^a G^{a\,\mu\nu}
+      -\frac{1}{4} W_{\mu\nu}^i W^{i\,\mu\nu}
+      -\frac{1}{4} B_{\mu\nu} B^{\mu\nu},
+\end{equation}
+\label{eq:SM-gauge}
+where $G_{\mu\nu}^a$, $W_{\mu\nu}^i$, and $B_{\mu\nu}$ are the field-strength tensors associated with
+$\mathrm{SU}(3)_C$, $\mathrm{SU}(2)_L$, and $\mathrm{U}(1)_Y$, respectively.
 
 Finally, the interaction of gauge fields with matter is encoded in the covariant derivative, which generalises the ordinary derivative by incorporating the gauge generators and their corresponding gauge fields:
 
@@ -258,25 +281,26 @@ As disscussed in last section, the gauge interactions follow from the covariant 
 \begin{equation}
     \mathcal{L}_{\mathrm{fermion}}
     = \sum_{\psi} \bar{\psi} i \gamma^\mu D_\mu \psi,
-\end{equation}
+\end{equation}\label{eq:SM-fermion}
 
 where the sum runs over all fermion fields $\psi$ in Table~\ref{tab:fermions}.
 
-\subsection{Let There Be Mass: Higgs}\label{subsec:Higgs}
+\subsection{Electroweak Symmetry Breaking and the Higgs Mechanism}\label{subsec:Higgs}
 
 So far, the Standard Model has been constructed consistently under the requirement of gauge invariance.
-However, this very requirement forbids all explicit mass terms: both gauge bosons and fermions are forced to be massless.
-For instance, the Dirac mass term for a fermion $m \bar{\psi_L} \psi_R$ is not gauge invariant because the left- and right-handed fermions transform in different representations of $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$.
-Similar arguments prohibit mass terms $\frac{1}{2} m^2 A_\mu A^\mu$ for the gauge bosons.
+However, exact gauge invariance severely restricts the form of the Lagrangian and, in particular, forbids all explicit mass terms.
+For instance, a Dirac mass term $m\,\bar{\psi}_L \psi_R$ is not gauge invariant, since the left- and right-handed fermions transform in different representations of $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$.
+Similarly, mass terms of the form $\tfrac12 m^2 A_\mu A^\mu$ for the electroweak gauge fields violate gauge invariance.
 
 This raises an immediate question: how do the particles we observe in nature acquire mass?
-This puzzle is sorted out by introducing the spontaneous symmetry breaking (SSB) mechanism which is a phenomenon where the Lagrangian is symmetric, while the ground state is not.
-In the SM, the electroweak symmetry $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is spontaneously broken via the Brout-Englert-Higgs mechanism.
-The electroweak symmetry breaking (EWSB) introduces the Higgs field $\phi = (\phi^+,\phi^0)^T$, a complex scalar $\mathrm{SU}(2)$ doublet which have the Lagrangian
+This apparent contradiction with experimental observations is resolved by the mechanism of spontaneous symmetry breaking (SSB),
+in which the Lagrangian is symmetric while the ground state is not.
+In the Standard Model, the electroweak symmetry $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is spontaneously broken via the Brout--Englert--Higgs mechanism.
+Electroweak symmetry breaking (EWSB) is realised by introducing a complex scalar field $\phi = (\phi^+,\phi^0)^T$, transforming as an $\mathrm{SU}(2)_L$ doublet, known as the Higgs field, whose dynamics are described by the Lagrangian
 
 \begin{equation}
     \mathcal{L}_{\mathrm{Higgs}} = (D_\mu \phi)^\dagger (D^\mu \phi) - V(\phi),
-\end{equation}
+\end{equation}\label{eq:SM-Higgs}
 
 The kinetic term involves the covariant derivative $D_\mu$ in EW to ensure gauge invariance.
 And the potential $V(\phi)$ is chosen to have the form
@@ -369,7 +393,7 @@ Then the task is to generate fermion masses, which is accomplished through Yukaw
                 - y_u \, \bar{Q}_L \tilde{\phi} \, u_R
                 - y_e \, \bar{L}_L \phi \, e_R
                 + \text{h.c.},
-\end{equation}
+\end{equation}\label{eq:SM-Yukawa}
 
 where $Q_L$ and $L_L$ are the left-handed quark and lepton doublets, $u_R$, $d_R$, and $e_R$ are the right-handed singlets, 
 $\tilde{\phi} = i\sigma_2 \phi^*$, and $y_f$ are the Yukawa couplings. 
@@ -388,17 +412,30 @@ which appears in the charged weak interactions:
 \mathcal{L}_\text{charged current} = \frac{g}{\sqrt{2}} \, \bar{u}_L \gamma^\mu V_{\mathrm{CKM}} \, d_L \, W_\mu^+ + \text{h.c.}.
 \end{equation}
 
-\subsection{Standard Model in a Nutshell}\label{subsec:full-lagrangian}
+\subsection{Standard Model in a Nutshell}
+\label{subsec:full-lagrangian}
 
-Bringing the sectors together yields the compact SM Lagrangian
+In the preceding sections, the individual building blocks of the Standard Model have been introduced:
+the gauge-field dynamics governed by Yang--Mills theory,
+the kinetic terms for chiral fermions,
+the Higgs sector responsible for electroweak symmetry breaking,
+and the Yukawa interactions generating fermion masses.
+These ingredients can be assembled into a single, compact Lagrangian density that fully specifies the Standard Model at the renormalisable level,
 \begin{equation}
-    \mathcal{L}_{\mathrm{SM}}
-    = \mathcal{L}_{\mathrm{gauge}}
-    + \mathcal{L}_{\mathrm{fermion}}
-    + \mathcal{L}_{\mathrm{Higgs}}
-    + \mathcal{L}_{\mathrm{Yukawa}},
+\mathcal{L}_{\mathrm{SM}}
+= \mathcal{L}_{\mathrm{gauge}}~\eqref{eq:SM-gauge}
++ \mathcal{L}_{\mathrm{fermion}}~\eqref{eq:SM-fermion}
++ \mathcal{L}_{\mathrm{Higgs}}~\eqref{eq:SM-Higgs}
++ \mathcal{L}_{\mathrm{Yukawa}}~\eqref{eq:SM-Yukawa}.
 \end{equation}
-with $D_\mu$ acting on all fields in their representations. Gauge symmetry, renormalisability, and anomaly cancellation leave little freedom in its form. Decades of precision measurements from deep inelastic scattering to electroweak fits and Higgs couplings—corroborate this structure to high accuracy, while small deviations remain a focus of ongoing searches.
+Together with the gauge symmetry $G_{\mathrm{SM}}$ and the pattern of electroweak symmetry breaking,
+this Lagrangian defines the complete particle content and interaction structure of the Standard Model,
+which is schematically summarised in Fig.~\ref{fig:SM-table}.
+
+Gauge symmetry, renormalisability, and anomaly cancellation together impose strong theoretical constraints on the structure of the Standard Model, leaving remarkably little freedom in its formulation.
+Within this framework, the particle content, interaction vertices, and symmetry-breaking pattern are largely fixed.
+Over several decades, an extensive programme of experimental tests—from deep inelastic scattering and flavour physics to precision electroweak measurements and Higgs coupling studies—has confirmed the predictions of the Standard Model to a high degree of accuracy.
+Despite this success, the Standard Model is widely regarded as an effective description valid up to a finite energy scale, motivating ongoing experimental and theoretical efforts to search for deviations and to explore physics beyond the Standard Model.
 
 \begin{figure}[!t]
     \centering
@@ -491,7 +528,7 @@ The particle $h$ is identified with the observed Higgs boson with a mass of appr
 The interactions between the Higgs doublets and fermions are described by the Yukawa sector. In the most general renormalizable form, both Higgs doublets can couple to a given fermion species, leading to
 \[
 \begin{aligned}
-\mathcal{L}_Yukawa =\;&
+\mathcal{L}_\text{Yukawa} =\;&
 - \bar{Q}_L \left( Y_1^u \tilde{\Phi}_1 + Y_2^u \tilde{\Phi}_2 \right) u_R
 - \bar{Q}_L \left( Y_1^d \Phi_1 + Y_2^d \Phi_2 \right) d_R \\
 &- \bar{L}_L \left( Y_1^\ell \Phi_1 + Y_2^\ell \Phi_2 \right) \ell_R
@@ -781,7 +818,7 @@ Depending on whether the $W$ bosons decay leptonically or hadronically, several 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.65\textwidth]{Figures/4tops_BR.png}
+  \includegraphics[width=0.65\textwidth]{figures/4tops_BR.png}
   \caption{Branching fractions of four-top final states classified by the number of
   leptonic $W$ boson decays.}
   \label{fig:tttt_br}
@@ -796,7 +833,7 @@ Figure~\ref{fig:tttt_jets} illustrates the jet multiplicity distribution in four
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{Figures/4tops_jet_multiplicity.pdf}
+  \includegraphics[width=0.7\textwidth]{figures/4tops_jet_multiplicity.pdf}
   \caption{Representative jet multiplicity distribution in four-top production,
   illustrating the complexity of the final state compared to dominant backgrounds.}
   \label{fig:tttt_jets}
@@ -829,7 +866,7 @@ A summary of the current measurements of four-top production is presented in Fig
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/fourtop_summary_nov23.pdf}
-    \caption{Summary of four-top production measurements.}
+    \caption{Summary of four-top production measurements (taken from Ref.~\cite{LHCTopWGFourTopSummary}).}
     \label{fig:fourtop-summary}
 \end{figure}
 

@@ -213,7 +213,29 @@
 
 % 绘图宏包
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, shapes.geometric}
+\usetikzlibrary{arrows.meta, shapes.geometric, 3d, bending}
+\usepackage{tikz-3dplot}
+\usepackage[outline]{contour} % glow around text
+\contourlength{0.9pt}
+
+% TikZ styles/colors for the detector coordinate schematic
+\colorlet{veccol}{green!50!black}
+\colorlet{myred}{red!70!black}
+\colorlet{mycontourred}{red!55!black!3} % for contour
+\colorlet{mycontourred2}{red!55!black!6} % for contour
+\colorlet{myblue}{blue!70!black}
+\colorlet{mydarkred}{red!40!black}
+\colorlet{mydarkblue}{blue!30!black}
+\colorlet{CMScol}{red!80!black}
+\colorlet{ATLAScol}{blue!80!black}
+\tikzset{>=latex} % for LaTeX arrow head
+\tikzstyle{axis}=[->,thick,line cap=round]
+\tikzstyle{detector}=[thick,draw=mydarkred,rotate around z=\ang]
+\tikzstyle{beam pipe}=[draw=blue!20!black!50,fill=blue!20!black!10,rotate around z=\ang]
+\tikzstyle{detector surface}=[blue!60!black!10,opacity=0.5,rotate around z=\ang]
+\usetikzlibrary{angles,quotes} % for pic (angle labels)
+\providecommand*{\vv}[1]{}% ensure command exists
+\renewcommand*{\vv}[1]{\vec{\mkern0mu#1}} % aligned vector arrow
 
 % Feynman diagram support
 \usepackage{subcaption}
