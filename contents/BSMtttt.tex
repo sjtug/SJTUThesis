@@ -65,3 +65,192 @@ A summary of current measurements is shown in Fig.~\ref{fig:fourtop-summary}.
     \caption{Summary of four-top production measurements (taken from Ref.~\cite{LHCTopWGFourTopSummary}).}
     \label{fig:fourtop-summary}
 \end{figure}
+
+\section{Analysis Overview}
+\label{sec:analysis-overview}
+
+The production of four top quarks represents one of the rarest processes predicted by the Standard Model at the Large Hadron Collider.
+Owing to its small production cross section and complex final-state topology,
+four-top production poses significant experimental challenges, requiring advanced analysis techniques and large datasets.
+Using the full Run~2 dataset at $\sqrt{s}=13$~TeV, both the ATLAS and CMS collaborations have reported the first observations of this process in final states with same-sign dileptons and multiple leptons.
+While the measured cross sections are consistent with Standard Model predictions within uncertainties,
+the relatively large experimental and theoretical uncertainties leave room for potential contributions from physics beyond the Standard Model.
+
+Motivated by the sensitivity of the four-top final state to new heavy states coupling to the top quark,
+this analysis targets the production of a heavy neutral Higgs boson in association with a top-quark pair,
+with the Higgs boson subsequently decaying into a second top-quark pair.
+The resulting $t\bar{t}H/A \rightarrow t\bar{t}t\bar{t}$ topology provides a well-defined and experimentally accessible signature
+for probing extended Higgs sectors with enhanced top-quark Yukawa couplings.
+The study focuses on heavy Higgs boson masses in the range
+$m_{H/A} \in [400,1000]~\mathrm{GeV}$.
+
+Given the large Standard Model backgrounds and the high multiplicity of final-state objects,
+the analysis is performed in final states containing either one isolated charged lepton
+or two opposite-sign charged leptons (denoted as the 1L and 2LOS channels, respectively),
+which offer a favourable balance between signal acceptance and background rejection.
+The dominant background arises from top-quark pair production in association with additional heavy-flavour jets,
+which exhibits similar final-state characteristics to the signal and constitutes the primary experimental challenge.
+
+To enhance the sensitivity to the signal and to constrain background contributions directly from data,
+events are categorised according to jet and $b$-tag multiplicities,
+defining multiple signal and control regions.
+Dedicated control regions are used to normalise and validate the dominant background processes,
+while signal regions are optimised to maximise discrimination between signal and background.
+
+To further exploit the rich event topology of four-top final states,
+a multivariate analysis strategy based on a graph neural network (GNN) is employed.
+The GNN is designed to incorporate information from all reconstructed objects and their correlations,
+and is trained in a mass-parameterised approach to maintain sensitivity across the full signal mass range.
+The output of the GNN serves as the final discriminant in the signal regions.
+
+The signal extraction is performed through a simultaneous profile likelihood fit
+to the GNN output distributions in the signal regions and to kinematic observables in the control regions.
+Systematic uncertainties affecting both the normalisation and the shape of the signal and background predictions
+are incorporated in the fit as nuisance parameters.
+In the absence of a significant excess over the Standard Model expectation,
+upper limits on the signal production cross section are derived.
+
+While the analysis is optimised for heavy Higgs boson production,
+the same analysis framework is also applicable to other new-physics scenarios leading to four-top final states.
+The results are therefore additionally interpreted in terms of colour-octet scalar (sgluon) pair production,
+providing a complementary interpretation of the obtained limits.
+
+\section{Data and simulated samples}
+
+\subsection{Data sample}
+\label{subsec:data_sample}
+
+The analysis uses the full Run~2 $pp$ collision dataset recorded by the ATLAS
+detector at a centre-of-mass energy of $\sqrt{s}=13$~TeV.
+After applying standard data-quality requirements, the dataset corresponds to an
+integrated luminosity of $139~\mathrm{fb}^{-1}$.
+
+Events are selected online using single-lepton triggers, including both single-electron
+and single-muon triggers, to ensure high efficiency for signal events containing at least
+one isolated charged lepton in the final state.
+Due to changes in trigger menus during Run~2, different trigger configurations are used
+for different data-taking periods.
+For each year, a logical OR of several single-lepton triggers is applied.
+The full list of triggers used in the analysis is summarised in
+Table~\ref{tab:slep_trigger}.
+
+\begin{table}[htbp]
+\centering
+\caption{List of single-lepton triggers used in the analysis for different Run~2
+data-taking periods.
+For each year, events are selected if they pass at least one of the listed triggers.}
+\label{tab:slep_trigger}
+\begin{tabular}{c|c}
+\hline
+Year of data taking & List of ORed triggers \\
+\hline\hline
+\multicolumn{2}{c}{Single-electron triggers} \\
+\hline\hline
+2015 & e24\_lhmedium\_L1EM20VH, e60\_lhmedium, e120\_lhloose \\
+2016--2018 & e26\_lhtight\_nod0\_ivarloose, e60\_lhmedium\_nod0, e140\_lhloose\_nod0 \\
+\hline\hline
+\multicolumn{2}{c}{Single-muon triggers} \\
+\hline\hline
+2015 & mu20\_iloose\_L1MU15, mu50 \\
+2016--2018 & mu26\_ivarmedium, mu50 \\
+\hline
+\end{tabular}
+\end{table}
+
+The effect of multiple $pp$ interactions per bunch crossing (pile-up) is
+modelled in simulation, and the simulated pile-up distribution is reweighted to match
+that observed in data.
+
+\subsection{Signal samples}
+\label{subsec:signal_samples}
+
+\subsubsection{Heavy Higgs boson production (Type-II 2HDM)}
+
+The primary signal process considered in this analysis is the associated production
+of a heavy neutral Higgs boson with a top-quark pair, followed by the decay of the Higgs boson
+into a second top-quark pair,
+$t\bar{t}H/A \rightarrow t\bar{t}t\bar{t}$.
+Signal samples are generated for a discrete set of heavy Higgs boson mass hypotheses
+in the range $m_{H/A} = 400$--$1000~\mathrm{GeV}$, covering the kinematic region
+accessible with the full Run~2 dataset.
+
+The hard-scattering process is simulated using a matrix-element generator
+that includes the leading or next-to-leading order QCD contributions,
+depending on the production mode.
+Parton showering and hadronisation are modelled using a dedicated parton shower program,
+with matrix-element--parton-shower matching applied to ensure a consistent description
+of additional QCD radiation.
+All generated events include the full decay chain of the top quarks,
+with subsequent decays of the $W$ bosons treated inclusively.
+
+The modelling of the heavy Higgs boson follows benchmark scenarios based on
+a Type-II two-Higgs-doublet model, as introduced in Chapter~\ref{ch:theory}.
+In this framework, the couplings of the heavy neutral scalars to up-type quarks
+are enhanced at low values of $\tan\beta$,
+leading to sizeable production rates in association with a top-quark pair.
+For each mass hypothesis, the corresponding production cross section and total width
+of the heavy Higgs boson are calculated consistently within the benchmark scenario.
+The resulting values are summarised in Table~\ref{tab:MassWidth}.
+The total width of the heavy Higgs boson increases with its mass,
+leading to a progressively broader resonance structure at high masses.
+
+\begin{table}[!ht]
+  \begin{center}\small
+    \begin{tabular}{|cccccccccc|}
+       \hline
+       \multicolumn{10}{|c|}{Mass points [GeV]}\\
+        \hline
+       200 & 300& 400& 500& 600& 700& 750& 800& 900& 1000\\
+       \hline   
+       \hline
+       \multicolumn{10}{|c|}{Widths [GeV]}\\
+        \hline
+       1 & 2 & 5& 5& 10& 20& 20& 20& 20& 30\\
+       \hline   
+    \end{tabular}
+    \caption{Mass points and widths used for the $ttH$ signal generation.}
+    \label{tab:MassWidth}
+  \end{center}
+\end{table}
+
+
+Interference effects between the signal process and the Standard Model four-top
+production arise due to the identical final state.
+Dedicated studies indicate that, within the sensitivity of the present analysis,
+the impact of such interference effects on the overall signal acceptance and on the
+discriminating observables is limited.
+They are therefore not explicitly included in the signal modelling,
+and the signal is treated as an incoherent contribution on top of the
+Standard Model background.
+
+The signal samples are normalised using the central theoretical predictions for the
+production cross section.
+Theoretical uncertainties associated with the choice of renormalisation and
+factorisation scales and with the parton distribution functions are evaluated
+separately and are treated as systematic uncertainties in the statistical analysis.
+
+\subsubsection{Sgluon pair production}
+\label{subsubsec:sgluon_signal}
+
+In addition to the heavy Higgs boson interpretation,
+the same analysis framework is used to probe scenarios featuring
+the pair production of a colour-octet scalar, commonly referred to as a sgluon.
+Such particles arise in a variety of extensions of the Standard Model,
+including supersymmetric and composite models,
+and are produced predominantly through strong interactions.
+
+Owing to their colour-octet nature, sgluon pairs can be produced with sizeable
+cross sections at the LHC via gluon--gluon fusion.
+If the sgluon couples preferentially to top quarks,
+its dominant decay mode is $S_8 \to t\bar{t}$,
+resulting in a four-top-quark final state from sgluon pair production.
+This topology closely resembles the heavy Higgs signal considered in this analysis,
+characterised by a high multiplicity of jets and multiple $b$-tagged jets.
+
+The sgluon signal samples are generated for a set of benchmark mass hypotheses,
+and are processed through the same detector simulation and reconstruction chain
+as the heavy Higgs signal.
+No dedicated optimisation of the event selection or of the multivariate discriminant
+is performed for the sgluon interpretation.
+Instead, the signal sensitivity is evaluated by reusing the analysis strategy
+and the statistical model developed for the heavy Higgs search.
