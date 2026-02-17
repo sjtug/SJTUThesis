@@ -1,0 +1,28 @@
+\subsection{Muon selection}
+
+\begin{table}[ht]
+  \caption{Muon selection criteria.}%
+  \label{tab:object:muon}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}[ht]{ll}
+    \toprule
+    Feature & Criterion \\
+    \midrule
+    Selection working point & \texttt{Loose/Medium/Tight /High-pT} \\
+    Isolation working point & \texttt{LooseTrackOnly/Loose/Tight/Gradient/\ldots}\\
+    Momentum calibration & Sagitta correction [used/not used] \\
+    \pT Cut & \SI[parse-numbers=false]{X}{\GeV} \\
+    \(|\eta|\) cut & \(< X\) \\
+    \dzero significance cut & X \\
+    \(z_{0}\) cut & \SI[parse-numbers=false]{X}{\mm} \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+The selection criteria are implemented in the \texttt{MuonSelectorTools-XX-XX-XX}\\
+with \texttt{MuonMomentumCorrections-XX-XX-XX}, 
+isolation in \texttt{IsolationSelection-XX-XX-XX} and \dzero and \(z_{0}\) cuts in \texttt{xAODTracking-XX-XX-XX}.
+The muon recommendations can be found in 
+\href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/MCPAnalysisGuidelinesMC16}{MCPAnalysisGuidelinesMC16}.

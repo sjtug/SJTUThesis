@@ -1,0 +1,196 @@
+%-------------------------------------------------------------------------------
+% This file provides template SUSY group object descriptions and cuts.
+% \pdfinclusioncopyfonts=1
+% This command may be needed in order to get \ell in PDF plots to appear. Found in
+% https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\makeatletter
+\def\input@path{{../../latex/}}
+\makeatother
+%-------------------------------------------------------------------------------
+\documentclass[NOTE, atlasdraft=false, texlive=2016, USenglish]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  txfonts=true|false    Use txfonts rather than the default newtx
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+%-------------------------------------------------------------------------------
+% Extra packages:
+\usepackage[biblatex=false]{atlaspackage}
+% Commonly used options:
+%  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
+%-------------------------------------------------------------------------------
+\usepackage{multirow}
+
+% Useful macros
+\usepackage[jetetmiss]{atlasphysics}
+% See doc/atlas_physics.pdf for a list of the defined symbols.
+% Default options are:
+%   true:  journal, misc, particle, unit, xref
+%   false: BSM, heppparticle, hepprocess, hion, jetetmiss, math, process,
+%          other, snippets, texmf
+% See the package for details on the options.
+
+% Package for creating list of authors and contributors to the analysis.
+\usepackage{atlascontribute}
+
+% Add you own definitions here (file atlas-document-defs.sty).
+% \usepackage{atlas-document-defs}
+
+% Paths for figures - do not forget the / at the end of the directory name.
+\graphicspath{{../../logos/}{figures/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+\AtlasTitle{SUSY group text snippets for INT notes}
+
+\author{ATLAS SUSY Group}
+
+\AtlasRefCode{Version \ATPackageVersion}
+
+\AtlasAbstract{%
+  This note contains text snippets and tables that should be included in supporting notes
+  from the SUSY group.
+
+  The templates are in American English.
+  If wanted, some adaption to British English could be made. 
+
+  % \emph{2019-02-04: This file is a work in progress (WIP) and will probably be updated.
+  % Backwards incompatible changes may be made as the examples develop.}
+}
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS SUSY supporting note},pdfauthor={ATLAS SUSY group}}
+
+%-------------------------------------------------------------------------------
+% Main document
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+%-------------------------------------------------------------------------------
+% The executive summary template is provided by the group
+\include{executive_summary}
+%-------------------------------------------------------------------------------
+
+Please feel free to also include a change log with major updates either before or after the executive summary.
+
+%-------------------------------------------------------------------------------
+% The executive summary template is provided by the group
+\section{Introduction}
+\label{sec:introduction}
+%-------------------------------------------------------------------------------
+
+Place a short introduction here.  It is useful to introduce your analysis target signals, place them in context,
+and describe any previous analyses that this analysis follows on (particularly if significant pieces are in common).
+
+Please note that in an internal note there is no need for a description of the ATLAS detector,
+unless the search uses some unusual or less well-known features of the detector of which reviewers will need a reminder.
+
+%-------------------------------------------------------------------------------
+\section{Signal Models}
+\label{sec:signals}
+%-------------------------------------------------------------------------------
+
+Place the description of your target signal models here, potentially including a description of the ``signal grids'' that you will ultimately use for interpretataion.
+
+%-------------------------------------------------------------------------------
+\section{Data and Simulated Event Samples}
+\label{sec:samples}
+%-------------------------------------------------------------------------------
+
+Place the description of your dataset (including GRL) and Monte Carlo simulated samples here.
+Please place any long tables (e.g. lists of used datasets) into appendices.
+
+%-------------------------------------------------------------------------------
+\section{Object definition}
+\label{sec:objects}
+%-------------------------------------------------------------------------------
+
+Please describe your object definition here.
+% Object definition recommendations are here: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/SusyObjectDefinitionsr2113TeV
+
+%-------------------------------------------------------------------------------
+\section{Event selection}
+\label{sec:selection}
+%-------------------------------------------------------------------------------
+
+Place the description of your event selection here.  This can include signal region optimization, control region selection, and pre-selection.
+
+%-------------------------------------------------------------------------------
+\section{Background Estimation}
+\label{sec:backgrounds}
+%-------------------------------------------------------------------------------
+
+Place the description of your background estimation here.
+
+%-------------------------------------------------------------------------------
+\section{Systematic Uncertainties}
+\label{sec:systematics}
+%-------------------------------------------------------------------------------
+
+Place the description of your systematic uncertainties here.
+% Useful recommendations are maintained by the SUSY group: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/SUSYSpecificRecommendations
+% and by the PMG: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PhysicsModellingGroup#Systematic_uncertainties_and_rew
+
+%-------------------------------------------------------------------------------
+\section{Results}
+\label{sec:result}
+%-------------------------------------------------------------------------------
+
+Place your results here.
+
+% The required information is available here: https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/SUSYResultsPresentation
+% All figures and tables should appear before the summary and conclusion.
+% The package placeins provides the macro \FloatBarrier to achieve this.
+% \FloatBarrier
+
+
+%-------------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%-------------------------------------------------------------------------------
+
+Place your conclusion here.
+
+
+%-------------------------------------------------------------------------------
+% If you use biblatex and either biber or bibtex to process the bibliography
+% just say \printbibliography here
+% \printbibliography
+% If you want to use the traditional BibTeX you need to use the syntax below.
+% \bibliographystyle{obsolete/bst/atlasBibStyleWithTitle}
+% \bibliography{atlas-document,bib/ATLAS,bib/CMS,bib/ConfNotes,bib/PubNotes}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Print the list of contributors to the analysis
+% The argument gives the fraction of the text width used for the names
+%-------------------------------------------------------------------------------
+\clearpage
+The supporting notes for the analysis should also contain a list of contributors.
+This information should usually be included in \texttt{mydocument-metadata.tex}.
+The list should be printed either here or before the Table of Contents.
+\PrintAtlasContribute{0.30}
+
+
+%-------------------------------------------------------------------------------
+\clearpage
+\appendix
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
+%-------------------------------------------------------------------------------
+
+In an ATLAS note, use the appendices to include all the technical details of your work
+that are relevant for the ATLAS Collaboration only (e.g.\ dataset details, software release used).
+This information should be printed after the Bibliography.
+
+\end{document}

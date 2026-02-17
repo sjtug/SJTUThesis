@@ -1,0 +1,188 @@
+%-------------------------------------------------------------------------------
+% This file provides a skeleton ATLAS paper.
+%-------------------------------------------------------------------------------
+% \pdfoutput=1
+% The \pdfoutput command is needed by arXiv/JHEP/JINST to ensure use of pdflatex.
+% It should be included in the first 5 lines of the file.
+% \pdfinclusioncopyfonts=1
+% This command may be needed in order to get \ell in PDF plots to appear. Found in
+% https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
+%-------------------------------------------------------------------------------
+\documentclass[PAPER, atlasdraft=true, texlive=2016, UKenglish]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  coverpage             Create ATLAS draft cover page for collaboration circulation.
+%                        See atlas-draft-cover.tex for a list of variables that should be defined.
+%  cernpreprint          Create front page for a CERN preprint.
+%                        See atlas-preprint-cover.tex for a list of variables that should be defined.
+%  NOTE                  The document is an ATLAS note (draft).
+%  PAPER                 The document is an ATLAS paper (draft).
+%  CONF                  The document is a CONF note (draft).
+%  PUB                   The document is a PUB note (draft).
+%  BOOK                  The document is of book form, like an LOI or TDR (draft).
+%  txfonts=true|false    Use txfonts rather than the default newtx.
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+%-------------------------------------------------------------------------------
+% Extra packages:
+\usepackage{atlaspackage}
+% Commonly used options:
+%  biblatex=true|false   Use biblatex (default) or bibtex for the bibliography.
+%  backend=bibtex        Use the bibtex backend rather than biber.
+%  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
+%  minimal               Minimal set of packages.
+%  default               Standard set of packages.
+%  full                  Full set of packages.
+%-------------------------------------------------------------------------------
+% Style file with biblatex options for ATLAS documents.
+\usepackage{atlasbiblatex}
+
+% Useful macros
+\usepackage{atlasphysics}
+% See doc/atlas_physics.pdf for a list of the defined symbols.
+% Default options are:
+%   true:  journal, misc, particle, unit, xref
+%   false: BSM, heppparticle, hepprocess, hion, jetetmiss, math, process,
+%          other, snippets, texmf
+% See the package for details on the options.
+
+% Macro to add to-do notes (for several authors). Uses the todonotes package.
+% \ATLnote{JS}{Jane}{green!20}{green!50!black!60}
+% add macros \JSnote and \JSinote for notes in the margin and inline.
+% Set output=false in order not to print out the notes.
+% Comment this out for the final version of the paper.
+\usepackage[output=true]{atlastodo}
+
+% Files with references for use with biblatex.
+% Note that biber gives an error if it finds empty bib files.
+% \addbibresource{atlas-document.bib}
+\addbibresource{bib/ATLAS.bib}
+\addbibresource{bib/CMS.bib}
+\addbibresource{bib/ConfNotes.bib}
+\addbibresource{bib/PubNotes.bib}
+
+% Paths for figures - do not forget the / at the end of the directory name.
+\graphicspath{{logos/}{figures/}}
+
+% Add your own definitions here (file atlas-document-defs.sty).
+\usepackage{atlas-document-defs}
+
+%-------------------------------------------------------------------------------
+% Generic document information.
+%-------------------------------------------------------------------------------
+
+% Title, abstract and document.
+\input{atlas-document-metadata}
+% Author and title for the PDF file.
+\hypersetup{pdftitle={ATLAS document},pdfauthor={The ATLAS Collaboration}}
+
+%-------------------------------------------------------------------------------
+% Content
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+% List of to-do notes.
+% \listoftodos
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-------------------------------------------------------------------------------
+
+Place your introduction here.
+
+%-------------------------------------------------------------------------------
+\section{ATLAS detector}
+\label{sec:detector}
+%-------------------------------------------------------------------------------
+
+The ATLAS detector~\cite{PERF-2007-01} ...
+% \input{atlas-detector}
+
+%-------------------------------------------------------------------------------
+\section{Analysis}
+\label{sec:analysis}
+%-------------------------------------------------------------------------------
+
+You can find some text snippets that can be used in papers in \texttt{latex/atlassnippets.sty}.
+To use them, provide the \texttt{snippets} option to \texttt{atlasphysics}.
+
+%-------------------------------------------------------------------------------
+\section{Results}
+\label{sec:result}
+%-------------------------------------------------------------------------------
+
+Place your results here.
+
+% All figures and tables should appear before the summary and conclusion.
+% The package placeins provides the macro \FloatBarrier to achieve this.
+% \FloatBarrier
+
+%-------------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%-------------------------------------------------------------------------------
+
+Place your conclusion here.
+
+%-------------------------------------------------------------------------------
+\section*{Acknowledgements}
+%-------------------------------------------------------------------------------
+
+% \input{acknowledgements/Acknowledgements}
+
+The \texttt{atlaslatex} package contains the acknowledgements that were valid 
+at the time of the release you are using.
+These can be found in the \texttt{acknowledgements} subdirectory.
+When your ATLAS paper or PUB/CONF note is ready to be published,
+the acknowledgements should be automatically updated by PO-GitLab.
+The acknowledgements can be inspected on the web page:
+\url{https://atlas-glance.cern.ch/atlas/membership/funding_agencies/history}.
+
+%-------------------------------------------------------------------------------
+\clearpage
+\appendix
+\part*{Appendix}
+\addcontentsline{toc}{part}{Appendix}
+%-------------------------------------------------------------------------------
+
+In a paper, an appendix is used for technical details that would otherwise disturb the flow of the paper.
+Such an appendix should be printed before the Bibliography.
+
+%-------------------------------------------------------------------------------
+% If you use biblatex and either biber or bibtex to process the bibliography
+% just say \printbibliography here.
+\printbibliography
+% If you want to use the traditional BibTeX you need to use the syntax below.
+% \bibliographystyle{obsolete/bst/atlasBibStyleWoTitle}
+% \bibliography{atlas-document,bib/ATLAS,bib/CMS,bib/ConfNotes,bib/PubNotes}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Author list - comment in this line when you are ready to include it.
+% \clearpage
+% \input{atlas_authlist}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Auxiliary material - comment out the following line if you do not have any.
+\include{atlas-document-auxmat}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Extra tables etc. for HepData - comment in the following line if you have any.
+% \include{atlas-document-hepdata}
+%-------------------------------------------------------------------------------
+
+\end{document}

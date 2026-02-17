@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              tWZ                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\tWZ]{\tWZ}
+\label{subsec:tWZ}
+
+This section describes the MC samples used for the modelling of \tWZ\ production.
+Section~\ref{subsubsec:tWZ_aMCP8} describes the \MGNLOPY[8] samples,
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:tWZ_aMCP8}
+
+\paragraph{Samples}
+%\label{par:tWZ_aMCP8_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:tWZ_aMCP8}.
+
+\begin{table}[htbp]
+  \caption{Nominal \tWZ\ samples produced with \MGNLOPY[8].}%
+  \label{tab:tWZ_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410408 & \tWZ\, DR1 \\
+    410409 & \tWZ\, DR2 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \tWZ\ events was modelled using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The events were interfaced with \PYTHIA[8.212]~\cite{Sjostrand:2014zea}~ using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}. 
+
+
+\paragraph{Long description:}
+
+The production of \tWZ events was modelled using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The events were interfaced with
+\PYTHIA[8.212]~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The top quark and the $Z$ boson were decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve spin correlations.
+While the top quark was allowed to decay inclusively, the $Z$ boson decay was restricted to a pair of charged leptons.
+The five-flavour scheme was used, where all the quark masses are set to zero, except the top quark. 
+The renormalisation and factorisation scales were set to the top-quark mass.
+The diagram removal scheme described in Ref.~\cite{Frixione:2008yi} was employed to handle the interference 
+between \tWZ and \ttZ, and was applied to the \tWZ sample.
+A sample with the alternative scheme described in Ref.~\cite{Demartin:2016axk} was produced to assess the associated systematic uncertainty.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}.
+

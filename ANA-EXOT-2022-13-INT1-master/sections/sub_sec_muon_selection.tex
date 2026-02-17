@@ -1,0 +1,68 @@
+%
+Muon candidates are reconstructed by combining tracks in the inner detector with tracks in the muon spectrometer~\cite{Aad:2020gmm}. The following WPs are supported by the Muon CP group:   \texttt{Tight},  \texttt{Medium},  \texttt{Loose},  \texttt{HighPt} and  \texttt{LowPt}~\cite{twiki:MuonSelectionTool}. Only muon candidates satisfying the \texttt{Medium} requirement  with $ \pT > 28$~GeV and within $|\eta|<2.5$ are selected.   As for electrons, standard requirements on the transverse impact parameter of $|d_{0}^{\text{BL}}(\sigma)| < 3$,  and on the longitudinal impact parameter  $|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{0.5}{\mm}$ are also applied~\cite{twiki:FinalTrackingRecommendations}. Muons are also required to be well isolated from other reconstructed objects. They must satisfy the \texttt{FCTightTrackOnly}  isolation WP~\cite{twiki:IsolationSelectionTool}, defined as a fixed cut on the track isolation variable with variable cone size:  \texttt{ptvarcone30\_TightTTVA\_pt1000/pT}$<0.06$.  
+
+
+To correct for the efficiency differences between data and MC simulation, the associated scale factors for trigger, identification, isolation and TTVA selection of the muons are applied as multiplicative factors to the MC simulation event weight~\cite{twiki:FMCPAnalysisGuidelinesMC16}. 
+
+The selection criteria above will be referred in the following as \textit{tight}, and they are summarised in Table~\ref{tab:object:muon}. Muons with a looser selection are used in the overlap removal procedure detailed in Section~\ref{sub:overlap_removal} and also for some background checks. They are defined basically by relaxing the \pT cut, and by removing the isolation requirement. The \textit{loose} selection criteria are summarised in Table~\ref{tab:object:loose_muon}.
+
+\begin{table}[ht]
+  \caption{Tight muon selection criteria.}%
+  \label{tab:object:muon}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}[ht]{ll}
+    \toprule
+    Feature & Criterion \\
+    \midrule
+    Identification & \texttt{Medium} \\
+    Isolation  & \texttt{FCTightTrackOnly}\\
+    Momentum calibration & Sagitta correction not used \\
+    Transverse momentum& \(\pT > \SI[parse-numbers=false]{28}{\GeV}\) \\
+     Pseudorapidity range &  \(|\eta| < 2.5\) \\
+     \midrule
+    \multirow{2}{*}{Track to vertex association}&  \(|d_{0}^{\text{BL}}(\sigma)| < 3\)  \\
+    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{0.5}{\mm}\) \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+
+\begin{table}[ht]
+  \caption{Loose muon selection criteria.}%
+  \label{tab:object:loose_muon}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}[ht]{ll}
+    \toprule
+    Feature & Criterion \\
+    \midrule
+    Identification & \texttt{Medium} \\
+    Isolation  & \texttt{--}\\
+    Momentum calibration & Sagitta correction not used \\
+    Transverse momentum& \(\pT > \SI[parse-numbers=false]{10}{\GeV}\) \\
+     Pseudorapidity range &  \(|\eta| < 2.5\) \\
+     \midrule
+    \multirow{2}{*}{Track to vertex association}&  \(|d_{0}^{\text{BL}}(\sigma)| < 3\)  \\
+    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{0.5}{\mm}\) \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%NOTES:
+% For muon selection: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/TopPhys/xAOD/TopObjectSelectionTools/Root/MuonMC15.cxx
+
+% Isolation definition: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/AnalysisCommon/IsolationSelection/Root/IsolationSelectionTool.cx
+
+% For sagitta bias:  /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/MuonID/MuonIDAnalysis/MuonMomentumCorrections/Root/MuonCalibrationPeriodTool.cxx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%The selection criteria are implemented in the \texttt{MuonSelectorTools-XX-XX-XX}\\
+%with \texttt{MuonMomentumCorrections-XX-XX-XX}, 
+%isolation in \texttt{IsolationSelection-XX-XX-XX} and \dzero and \(z_{0}\) cuts in \texttt{xAODTracking-XX-XX-XX}.
+%The muon recommendations can be found in 
+%\href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/MCPAnalysisGuidelinesMC16}{MCPAnalysisGuidelinesMC16}.

@@ -1,0 +1,434 @@
+%-------------------------------------------------------------------------------
+% Useful definitions from the Jet/Etmiss group.
+% Include with jetetmiss option in atlasphysics.sty.
+% Not included by default.
+% Also needs atlasmisc.sty (option misc).
+% Compiled by David Miller.
+% Adapted for atlaslatex by Ian Brock.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+%%% Topoclusters
+\newcommand*{\topo}{topo-cluster}
+\newcommand*{\Topo}{Topo-cluster}
+\newcommand*{\topos}{topo-clusters}
+\newcommand*{\Topos}{Topo-clusters}
+
+
+%%% Standard terms
+\newcommand*{\insitu}{in~situ\xspace}
+\newcommand*{\Insitu}{In~situ\xspace}
+
+
+%%% Event generator
+\newcommand*{\LS}{\ensuremath{\text{LS}}\xspace}
+\newcommand*{\NLOjet}{\textsc{NLOJet}\texttt{++}\xspace}
+\newcommand*{\Fastjet}{\textsc{FastJet}\xspace}
+\newcommand*{\TwoToTwo}{\ensuremath{2\rightarrow2}\xspace}
+
+
+%%% Jets
+\newcommand*{\largeR}{large-\ensuremath{R}\xspace}
+\newcommand*{\LargeR}{Large-\ensuremath{R}\xspace}
+%\newcommand*{\kt}{\ensuremath{k_{t}}\xspace}
+%\newcommand*{\antikt}{anti-\kt}
+%\newcommand*{\Antikt}{Anti-\kt}
+\newcommand*{\akt}{\antikt}
+\newcommand*{\Akt}{\Antikt}
+\newcommand*{\AKT}{\akt}
+\newcommand*{\AKTFat}{\antikt, \ensuremath{R=1.0}\xspace}
+\newcommand*{\AKTPrune}{\antikt, \ensuremath{R=1.0} (pruned)\xspace}
+\newcommand*{\AKTFilt}{\antikt, \ensuremath{R=1.0} (filtered)\xspace}
+\newcommand*{\KTSix}{\kt, \ensuremath{R=0.6}\xspace}
+\newcommand*{\ca}{Cambridge--Aachen\xspace}
+\newcommand*{\CamKt}{\ensuremath{\text{C/A}}\xspace}
+\newcommand*{\CASix}{\CamKt, \ensuremath{R=0.6}\xspace}
+\newcommand*{\CAFat}{\CamKt, \ensuremath{R=1.2}\xspace}
+\newcommand*{\CAPrune}{\CamKt, \ensuremath{R=1.2} (pruned)\xspace}
+\newcommand*{\CAFilt}{\CamKt, \ensuremath{R=1.2} (filtered)\xspace}
+
+%%% HEPTopTagger
+\newcommand*{\htt}{HEPTopTagger\xspace}
+\newcommand*{\mcut}{\ensuremath{m_{\text{cut}}}\xspace}
+\newcommand*{\Nfilt}{\ensuremath{N_{\text{filt}}}\xspace}
+
+%%% Groomed jets
+\newcommand*{\Rfilt}{\ensuremath{R_{\text{filt}}}\xspace}
+\newcommand*{\ymin}{\ensuremath{y_{\min}}\xspace}
+\newcommand*{\fcut}{\ensuremath{f_{\text{cut}}}\xspace}
+\newcommand*{\Rsub}{\ensuremath{R_{\text{sub}}}\xspace}
+%\newcommand*{\drsub}{\ensuremath{\Rsub}\xspace}
+\newcommand*{\mufrac}{\ensuremath{\mu_{\text{frac}}}\xspace}
+\newcommand*{\Rcut}{\ensuremath{R_{\text{cut}}}\xspace}
+\newcommand*{\zcut}{\ensuremath{z_{\text{cut}}}\xspace}
+
+% Jet calibration (GSC)
+\newcommand*{\ftile}{\ensuremath{f_{\text{Tile}0}}\xspace}
+\newcommand*{\fem}{\ensuremath{f_{\text{LAr}3}}\xspace}
+\newcommand*{\fpres}{\ensuremath{f_{\text{PS}}}\xspace}
+\newcommand*{\fhec}{\ensuremath{f_{\text{HEC}0}}\xspace}
+\newcommand*{\ffcal}{\ensuremath{f_{\text{FCal}1}}\xspace}
+
+\newcommand*{\central}{\ensuremath{0.3 \leq |\eta| < 0.8}\xspace}
+\newcommand*{\ecap}{\ensuremath{2.1 \leq |\eta| < 2.8}\xspace}
+\newcommand*{\forward}{\ensuremath{3.6 \leq |\eta| < 4.5}\xspace}
+
+
+%%% Pileup
+\newcommand*{\avg}[1]{\ensuremath{\langle #1 \rangle}\xspace} % for e.g. <\mu>
+\newcommand*{\Npv}{\ensuremath{N_{\text{PV}}}\xspace}
+\newcommand*{\Nref}{\ensuremath{\Npv^{\text{ref}}}\xspace}
+\newcommand*{\Navg}{\ensuremath{\avg{\Npv}}\xspace}
+\newcommand*{\avgmu}{\ensuremath{\avg{\mu}}\xspace}
+
+
+%%% JES
+\newcommand*{\JES}{\text{JES}\xspace}
+\newcommand*{\JMS}{\text{JMS}\xspace}
+\newcommand*{\EMJES}{\text{EM+JES}\xspace}
+\newcommand*{\GCWJES}{\text{GCW+JES}\xspace}
+\newcommand*{\LCWJES}{\text{LCW+JES}\xspace}
+\newcommand*{\EM}{\text{EM}\xspace}
+\newcommand*{\GCW}{\text{GCW}\xspace}
+\newcommand*{\LCW}{\text{LCW}\xspace}
+\newcommand*{\GSL}{\text{GSL}\xspace}
+\newcommand*{\GS}{\text{GS}\xspace}
+\newcommand*{\MTF}{\text{MTF}\xspace}
+\newcommand*{\MPF}{\text{MPF}\xspace}
+
+
+%%% Jet multiplicity
+\newcommand*{\Njet}{\ensuremath{N_\text{jet}}\xspace}
+\newcommand*{\njet}{\Njet}
+
+
+%%% Kinematics
+\newcommand*{\ETjet}{\ensuremath{\ET^{\text{jet}}}\xspace}
+\newcommand*{\etjet}{\ETjet}
+\newcommand*{\pTavg}{\ensuremath{\pT^\text{avg}}\xspace}
+\newcommand*{\ptavg}{\pTavg}
+\newcommand*{\pTjet}{\ensuremath{\pT^\text{jet}}\xspace}
+\newcommand*{\ptjet}{\pTjet}
+\newcommand*{\pTcorr}{\ensuremath{\pT^\text{corr}}\xspace}
+\newcommand*{\ptcorr}{\pTcorr}
+\newcommand*{\pTjeti}{\ensuremath{p_{\text{T}, i}^\text{jet}}\xspace}
+\newcommand*{\ptjeti}{\pTjeti}
+\newcommand*{\pTrecoil}{\ensuremath{\pT^\text{recoil}}\xspace}
+\newcommand*{\ptrecoil}{\pTrecoil}
+\newcommand*{\pTleading}{\ensuremath{\pT^{\text{leading}}}\xspace}
+\newcommand*{\ptleading}{\pTleading}
+\newcommand*{\pTjetEM}{\ensuremath{p_{\text{T, \EM}}^{\text{jet}}}\xspace}
+\newcommand*{\ptjetEM}{\pTjetEM}
+\newcommand*{\pThat}{\ensuremath{\hat{p}_\text{T}}\xspace}
+\newcommand*{\pthat}{\pThat}
+\newcommand*{\pTprobe}{\ensuremath{\pT^{\text{probe}}}\xspace}
+\newcommand*{\ptprobe}{\pTprobe}
+\newcommand*{\pTref}{\ensuremath{\pT^{\text{ref}}}\xspace}
+\newcommand*{\ptref}{\pTref}
+\newcommand*{\pToff}{\ensuremath{\mathcal{O}}\xspace}
+\newcommand*{\ptoff}{\pToff}
+\newcommand*{\pToffjet}{\ensuremath{\pToff^{\text{jet}}}\xspace}
+\newcommand*{\ptoffjet}{\pToffjet}
+\newcommand*{\pTZ}{\ensuremath{\pT^{Z}}\xspace}
+\newcommand*{\ptZ}{\pTZ}
+
+% Use siunitx definitions if available. Otherwise assume \GeV is defined.
+\@ifpackageloaded{siunitx}{%
+  \newcommand*{\pTRange}[2]{\ensuremath{{#1} \leq \pTjet < \SI{#2}{\GeV}}\xspace}
+  \newcommand*{\ptRange}[2]{\ensuremath{{#1} \leq \ptjet < \SI{#2}{\GeV}}\xspace}
+}{%
+  \newcommand*{\pTRange}[2]{\ensuremath{{#1} \leq \pTjet < {#2} \GeV}\xspace}
+  \newcommand*{\ptRange}[2]{\ensuremath{{#1} \leq \ptjet < {#2} \GeV}\xspace}
+}
+\newcommand*{\pTtrue}{\ensuremath{\pT^{\text{true}}}\xspace}
+\newcommand*{\pttrue}{\pTtrue}
+\newcommand*{\pTtruth}{\ensuremath{\pT^{\text{true}}}\xspace}
+\newcommand*{\pttruth}{\pTtruth}
+\newcommand*{\pTreco}{\ensuremath{\pT^{\text{reco}}}\xspace}
+\newcommand*{\ptreco}{\pTreco}
+\newcommand*{\pTtrk}{\ensuremath{\pT^{\text{track}}}\xspace} 
+\newcommand*{\pttrk}{\pTtrk}
+\newcommand*{\ptrk}{\ensuremath{p^{\text{track}}}\xspace} 
+\newcommand*{\pTtrkjet}{\ensuremath{\pT^{\text{track jet}}}\xspace}
+\newcommand*{\pttrkjet}{\pTtrkjet}
+\newcommand*{\ntrk}{\ensuremath{n_{\text{track}}}\xspace}
+\newcommand*{\EoverP}{\ensuremath{E/p}\xspace}
+\newcommand*{\Etrue}{\ensuremath{E^{\text{true}}}\xspace}
+\newcommand*{\Etruth}{\ensuremath{E^{\text{true}}}\xspace}
+\newcommand*{\Ecalo}{\ensuremath{E^{\text{jet}}}\xspace}
+\newcommand*{\EcaloEM}{\ensuremath{E^{\text{jet}}_{\EM}}\xspace}
+\newcommand*{\asym}{\ensuremath{\mathcal{A}}\xspace}
+\newcommand*{\Response}{\ensuremath{\mathcal{R}}\xspace} 
+\newcommand*{\Rcalo}{\ensuremath{\Response^{\text{jet}}}\xspace} 
+\newcommand*{\Rcalom}{\ensuremath{\Response^{\text{jet}}_{m}}\xspace} 
+\newcommand*{\RcaloEM}{\ensuremath{\Rcalo_{\EM}}\xspace}
+\newcommand*{\RMPF}{\ensuremath{\Response_{\MPF}}\xspace}
+\newcommand*{\EcaloCALIB}{\ensuremath{E^{\text{jet}}}\xspace}
+\newcommand*{\RcaloCALIB}{\ensuremath{\mathcal{R}^{\text{jet}}}\xspace} 
+\newcommand*{\EcaloEMJES}{\ensuremath{E^{\text{jet}}_{\EMJES}}\xspace}
+\newcommand*{\RcaloEMJES}{\ensuremath{\mathcal{R}^{\text{jet}}_{\EMJES}}\xspace}
+\newcommand*{\EcaloGCWJES}{\ensuremath{E^{\text{jet}}_{\GCWJES}}\xspace}
+\newcommand*{\RcaloGCWJES}{\ensuremath{\mathcal{R}^{\text{jet}}_{\GCWJES}}\xspace}
+\newcommand*{\EcaloLCWJES}{\ensuremath{E^{\text{jet}}_{\LCWJES}}\xspace}
+\newcommand*{\RcaloLCWJES}{\ensuremath{\mathcal{R}^{\text{jet}}_{\LCWJES}}\xspace}
+\newcommand*{\Rtrack}{\ensuremath{\mathcal{R}^{\text{track jet}}}\xspace}
+\newcommand*{\rtrk}{\ensuremath{r_{\text{trk}}}\xspace}
+\newcommand*{\Rtrk}{\ensuremath{R_{\text{trk}}}\xspace}
+\newcommand*{\rtrackjet}{\ensuremath{r^{\text{calo / track jet}}}\xspace}
+\newcommand*{\rtrackjetiso}{\ensuremath{\rtrackjet_{\text{iso}}}\xspace}
+\newcommand*{\rtrackjetnoniso}{\ensuremath{\rtrackjet_{\text{non-iso}}}\xspace}
+\newcommand*{\rtrackjetisoratio}{\ensuremath{\rtrackjet_{\text{non-iso/iso}}}\xspace}
+\newcommand*{\gammajet}{\ensuremath{\gamma\text{+jet}}\xspace}
+\newcommand*{\deltaphijetgamma}{\ensuremath{\Delta \phi_{\text{jet--}\gamma}}\xspace}
+
+
+%%% Spatial quantities
+\newcommand*{\rapjet}{\ensuremath{y}\xspace}
+\newcommand*{\etajet}{\ensuremath{\eta}\xspace}
+\newcommand*{\phijet}{\ensuremath{\phi}\xspace}
+\newcommand*{\etadet}{\ensuremath{\eta_{\text{det}}}\xspace}
+\newcommand*{\etatrk}{\ensuremath{\eta^{\text{track}}}\xspace}
+\newcommand*{\etaRange}[2]{\ensuremath{{#1} \leq |\eta| < {#2}}\xspace}
+\newcommand*{\AetaRange}[1]{\ensuremath{|\eta| < {#1}}\xspace}
+
+\newcommand*{\Rmin}{\ensuremath{R_{\min}}\xspace}
+\newcommand*{\DeltaR}{\ensuremath{\Delta R}\xspace}
+\newcommand*{\DetaDphi}{\ensuremath{\sqrt{(\Delta\eta)^{2}+(\Delta\phi)^{2}}}\xspace}
+\newcommand*{\Deta}{\ensuremath{|\Delta\eta|}\xspace}
+\newcommand*{\Drap}{\ensuremath{|\Delta y|}\xspace}
+\newcommand*{\DetaOneTwo}{\ensuremath{|\Delta\eta(\text{jet}1, \text{jet}2)|}\xspace}
+\newcommand*{\DyDphi}{\ensuremath{\sqrt{(\Delta y)^{2} + (\Delta\phi)^{2}}}\xspace}
+\newcommand*{\DeltaRdef}{\ensuremath{\DeltaR = \DetaDphi}\xspace}
+\newcommand*{\DeltaRydef}{\ensuremath{\DeltaR = \DyDphi}\xspace}
+\newcommand*{\DeltaRtrk}{\ensuremath{\Delta R(\text{trk}_1,\text{trk}_2)}\xspace}
+
+
+%%% Pile-up correction and mitigation related
+\newcommand*{\JVF}{\ensuremath{\text{JVF}}\xspace}
+\newcommand*{\cJVF}{\ensuremath{\text{corrJVF}}\xspace}
+\newcommand*{\RpT}{\ensuremath{R_\text{\pT}}\xspace}
+\newcommand*{\JVT}{\ensuremath{\text{JVT}}\xspace}
+\newcommand*{\ghostpt}{\ensuremath{g_{t}}\xspace}
+\newcommand*{\ghostptavg}{\ensuremath{\avg{\ghostpt}}\xspace}
+\newcommand*{\ghostfm}{\ensuremath{g_{\mu}}\xspace}
+\newcommand*{\ghostfmi}{\ensuremath{g_{\mu,i}}\xspace}
+\newcommand*{\ghostdensity}{\ensuremath{\nu_{g}}\xspace}
+\newcommand*{\ghostrho}{\ensuremath{\ghostdensity\ghostptavg}\xspace}
+\newcommand*{\Aghost}{\ensuremath{A_{g}}\xspace}
+\newcommand*{\Amu}{\ensuremath{A_{\mu}}\xspace}
+\newcommand*{\Amui}{\ensuremath{A_{\mu, i}}\xspace}
+\newcommand*{\jetarea}{\ensuremath{A^{\text{jet}}}\xspace}
+\newcommand*{\jetareafm}{\ensuremath{A^{\text{jet}}_{\mu}}\xspace}
+\newcommand*{\jetareai}{\ensuremath{\jetarea_{i}}\xspace}
+\newcommand*{\Rkt}{\ensuremath{R_{\kt}}\xspace}
+\newcommand*{\pTmuslope}{\ensuremath{\partial\langle\Delta \pt\rangle/\partial\avgmu}\xspace}
+\newcommand*{\ptmuslope}{\pTmuslope}
+\newcommand*{\pTnpvslope}{\ensuremath{\partial\langle\Delta \pt\rangle/\partial\Npv}\xspace}
+\newcommand*{\ptnpvslope}{\pTnpvslope}
+\newcommand*{\pTmuunc}{\ensuremath{\Delta\left(\ptmuslope\right)}\xspace}
+\newcommand*{\ptmuunc}{\pTmuunc}
+\newcommand*{\pTnpvunc}{\ensuremath{\Delta\left(\ptnpvslope\right)}\xspace}
+\newcommand*{\ptnpvunc}{\pTnpvunc}
+
+\newcommand*{\sumPt}{\ensuremath{\sum \vec{p}_{\text{T}}}\xspace}
+\newcommand*{\sumpt}{\sumPt}
+%\newcommand*{\sumPtTr}{\ensuremath{|\sum \vec{p}_{\text{T}}^{\text{ track}}|}\xspace}
+%\newcommand*{\sumpt}{\sumPt}
+\newcommand*{\sumpTtrk}{\ensuremath{\sum\pt^\text{track}}\xspace}
+\newcommand*{\sumpttrk}{\sumpTtrk}
+\newcommand*{\nPUtrk}{\ensuremath{n_\text{trk}^\text{PU}}\xspace}
+
+%%% Jet structure observables
+\newcommand*{\mjet}{\ensuremath{m^{\text{jet}}}\xspace}
+\newcommand*{\mlead}{\ensuremath{\mjet_{1}}\xspace}
+\newcommand*{\mleadavg}{\ensuremath{\langle\mlead\rangle}\xspace}
+\newcommand*{\Mjet}{\mjet}
+\newcommand*{\massjet}{\mjet}
+\newcommand*{\masscorr}{\ensuremath{m^{\text{corr}}}}
+\newcommand*{\mthresh}{\ensuremath{M_{\text{threshold}}}\xspace}
+\newcommand*{\mjetavg}{\ensuremath{\langle\mjet\rangle}\xspace}
+\newcommand*{\masstrkjet}{\ensuremath{m^{\text{track jet}}}\xspace}
+\newcommand*{\width}{\ensuremath{w}\xspace}
+\newcommand*{\wcalo}{\ensuremath{\width^{\text{calo}}}\xspace}
+\newcommand*{\wtrk}{\ensuremath{\width^{\text{track}}}\xspace}
+\newcommand*{\shapeV}{\ensuremath{\mathcal{V}}\xspace}
+\newcommand*{\pTsubjet}{\ensuremath{\pT^\text{subjet}}\xspace}
+\newcommand*{\ptsubjet}{\pTsubjet}
+\newcommand*{\sjone}{\ensuremath{j_{1}}\xspace}
+\newcommand*{\sjtwo}{\ensuremath{j_{2}}\xspace}
+\newcommand*{\msubjone}{\ensuremath{m^{\sjone}}\xspace}
+\newcommand*{\msubjtwo}{\ensuremath{m^{\sjtwo}}\xspace}
+\newcommand*{\pTsubji}{\ensuremath{\pT^{i}}\xspace}
+\newcommand*{\ptsubji}{\pTsubji}
+\newcommand*{\pTsubjone}{\ensuremath{\pT^{\sjone}}\xspace}
+\newcommand*{\ptsubjone}{\pTsubjone}
+\newcommand*{\pTsubjtwo}{\ensuremath{\pT^{\sjtwo}}\xspace}
+\newcommand*{\ptsubjtwo}{\pTsubjtwo}
+\newcommand*{\Rsubjets}{\ensuremath{R_{\sjone,\sjtwo}}\xspace}
+\newcommand*{\DRsubjets}{\ensuremath{\Delta\Rsubjets}\xspace}
+\newcommand*{\yij}{\ensuremath{y_{ij}}\xspace}
+\newcommand*{\dcut}{\ensuremath{d_{\text{cut}}}\xspace}
+\newcommand*{\dmin}{\ensuremath{d_{\min}}\xspace}
+\newcommand*{\dij}{\ensuremath{d_{ij}}\xspace}
+\newcommand*{\Dij}{\ensuremath{\sqrt{\dij}}\xspace}
+\newcommand*{\Donetwo}{\ensuremath{\sqrt{d_{12}}}\xspace}
+\newcommand*{\Dtwothr}{\ensuremath{\sqrt{d_{23}}}\xspace}
+\newcommand*{\yonetwo}{\ensuremath{y_{1}}\xspace}
+\newcommand*{\ytwothr}{\ensuremath{y_{2}}\xspace}
+\newcommand*{\yonetwoDef}{\ensuremath{\yonetwo=\Donetwo/\mjet}\xspace}
+\newcommand*{\ytwothrDef}{\ensuremath{\ytwothr=\Dtwothr/\mjet}\xspace}
+\newcommand*{\xj}{\ensuremath{x_{J}}\xspace}
+\newcommand*{\jetFunc}{\ensuremath{J^{(eik),c} (\mjet,\pT,R)}\xspace}
+\newcommand*{\tauone}{\ensuremath{\tau_1}\xspace}
+\newcommand*{\tautwo}{\ensuremath{\tau_2}\xspace}
+\newcommand*{\tauthr}{\ensuremath{\tau_3}\xspace}
+\newcommand*{\tauN}{\ensuremath{\tau_N}\xspace}
+\newcommand*{\tautwoone}{\ensuremath{\tau_{21}}\xspace}
+\newcommand*{\tauthrtwo}{\ensuremath{\tau_{32}}\xspace}
+\newcommand*{\dip}{\ensuremath{\mathcal{D}}\xspace}
+\newcommand*{\diponetwo}{\ensuremath{\dip_{12}}\xspace}
+\newcommand*{\diptwothr}{\ensuremath{\dip_{23}}\xspace}
+\newcommand*{\diponethr}{\ensuremath{\dip_{13}}\xspace}
+\newcommand*{\mtaSup}{\ensuremath{m^{\text{TA}}}\xspace}
+\newcommand*{\mcalo}{\ensuremath{m^{\text{calo}}}\xspace}
+\newcommand*{\mcomb}{\ensuremath{m^{\text{comb}}}\xspace}
+\newcommand*{\ECFOne}{\ensuremath{ECF_1}\xspace}
+\newcommand*{\ECFTwo}{\ensuremath{ECF_2}\xspace}
+\newcommand*{\ECFThr}{\ensuremath{ECF_3}\xspace}
+\newcommand*{\ECFThrNorm}{\ensuremath{e_3}\xspace}
+\newcommand*{\DTwo}{\ensuremath{D_{2}}\xspace}
+\newcommand*{\CTwo}{\ensuremath{C_{2}}\xspace}
+\newcommand*{\FoxWolfRatio}{\ensuremath{R^{\text{FW}}_{2}}\xspace}
+\newcommand*{\PlanarFlow}{\ensuremath{\mathcal{P}}\xspace}
+\newcommand*{\Angularity}{\ensuremath{a_{3}}\xspace}
+\newcommand*{\Aplanarity}{\ensuremath{A}\xspace}
+\newcommand*{\KtDR}{\ensuremath{KtDR}\xspace}
+\newcommand*{\Qw}{\ensuremath{Q_w}\xspace}
+\newcommand*{\NConst}{\ensuremath{N^{\text{const}}}\xspace}
+
+%-------------------------------------------------------------------------------
+% The following definitions were in a first version of this style file
+% that I received. They have either been moved into another file or
+% are not really generic enough, or do not use a units package.
+% They are kept for reference.
+%-------------------------------------------------------------------------------
+
+%%% b-tagging
+%\newcommand*{\btag}{\ensuremath{b\text{-tagging}}\xspace}
+%\newcommand*{\btagged}{\ensuremath{b\text{-tagged}}\xspace}
+%\newcommand*{\bquark}{\ensuremath{b\text{-quark}}\xspace}
+%\newcommand*{\bquarks}{\ensuremath{b\text{-quarks}}\xspace}
+%\newcommand*{\bjet}{\ensuremath{b\text{-jet}}\xspace}
+%\newcommand*{\bjets}{\ensuremath{b\text{-jets}}\xspace}
+
+
+%%% Processes
+%\newcommand*{\Zbb}{\ensuremath{Z \rightarrow \bbbar}\xspace}
+%\newcommand*{\tWb}{\ensuremath{t \rightarrow Wb}\xspace}
+%\newcommand*{\Wqqbar}{\ensuremath{W \rightarrow \qqbar}\xspace}
+%%\newcommand*{\enu}{\ensuremath{e\nu}\xspace}  
+%\newcommand*{\Zmumu}{\ensuremath{Z \rightarrow \mumu}\xspace}
+%\newcommand*{\Wlnu}{\ensuremath{W \rightarrow \lnu}\xspace}
+%\newcommand*{\Wenu}{\ensuremath{W \rightarrow \enu}\xspace}
+%%\newcommand*{\munu}{\ensuremath{\mu\nu}\xspace}
+%\newcommand*{\Wmunu}{\ensuremath{W \rightarrow \munu}\xspace}
+%\newcommand*{\Wjets}{\ensuremath{\Wboson\text{+jets}}\xspace}
+%\newcommand*{\Zjets}{\ensuremath{\Zboson\text{+jets}}\xspace}
+
+%\newcommand*{\W}{\Wboson\xspace}
+%\newcommand*{\Z}{\Zboson\xspace}
+
+
+%%% Energy
+%\newcommand*{\fourfgev}{\ensuremath{\SI{450}{\GeV}}\xspace}
+%\newcommand*{\ninehgev}{\ensuremath{\SI{900}{\GeV}}\xspace}
+%\newcommand*{\seventev}{\ensuremath{\SI{7}{\TeV}}\xspace}
+%\newcommand*{\eighttev}{\ensuremath{\SI{8}{\TeV}}\xspace}
+%\newcommand*{\sqsthirt}{\ensuremath{\sqrt{s} = \SI{13}{\TeV}}\xspace}
+%\newcommand*{\sqsfourt}{\ensuremath{\sqrt{s} = \SI{14}{\TeV}}\xspace}
+%\newcommand*{\sqsTev}{\ensuremath{\SI{1.96}{\TeV}}\xspace}
+%\newcommand*{\threehtev}{\ensuremath{\SI{3.5}{\TeV}}\xspace}
+%\newcommand*{\sqsnineh}{\ensuremath{\sqrt{s} = \ninehgev}\xspace}
+%\newcommand*{\sqsseven}{\ensuremath{\sqrt{s} = \seventev}\xspace}
+%\newcommand*{\sqseight}{\ensuremath{\sqrt{s} = \eighttev}\xspace}
+%\newcommand*{\bunchSp}{\ensuremath{\tau_{\text{bunch}}}\xspace}
+
+
+%%% Runs
+%\newcommand*{\RunOne}{Run 1\xspace}
+%\newcommand*{\RunTwo}{Run 2\xspace}
+%\newcommand*{\RunThr}{Run 3\xspace}
+%\newcommand*{\pp}{\ensuremath{pp}\xspace} -> atlasparticle.sty
+
+
+%%% Luminosity
+%\newcommand*{\invpb}{~\ensuremath{\text{pb}^{-1}}\xspace}
+%\newcommand*{\invnb}{~\ensuremath{\text{nb}^{-1}}\xspace}
+%\newcommand*{\invfb}{~\ensuremath{\text{fb}^{-1}}\xspace}
+%\newcommand*{\invmub}{~\ensuremath{\mu\text{b}^{-1}}\xspace}
+%\newcommand*{\cmSqSec}{cm\ensuremath{^{-2}}s\ensuremath{^{-1}}\xspace}
+%\newcommand*{\lumi}{\ensuremath{\mathcal L}\xspace}
+%\newcommand*{\calL}{\lumi}
+%\newcommand*{\dldz}{\ensuremath{d\lumi/dz}\xspace}
+%\newcommand*{\lofz}{\ensuremath{{\mathcal L}(z)}\xspace}
+%\newcommand*{\sigyofz}{\ensuremath{\sigma_y(z)}\xspace}
+%\newcommand*{\Lsp}{\ensuremath{{\mathcal L}_{sp}}\xspace}
+%\newcommand*{\StoB}{\ensuremath{S/B}\xspace}
+
+
+%%% Detectors -> atlasmisc
+%\newcommand*{\radlength} {\ensuremath{X_0}}
+%\newcommand*{\Lone}      {\texttt{L1}}
+%\newcommand*{\HLT}       {\texttt{HLT}}
+%\newcommand*{\ID}        {\texttt{ID}}
+%\newcommand*{\Pixel}     {\texttt{Pixel}}
+%\newcommand*{\SCT}       {\texttt{SCT}}
+%\newcommand*{\TRT}       {\texttt{TRT}}
+%
+%\newcommand*{\LHC}       {LHC} - Dropped
+%\newcommand*{\EMB}       {\texttt{EMB}}
+%\newcommand*{\EME}       {\texttt{EME}}
+%\newcommand*{\EMEC}      {\texttt{EMEC}}
+%\newcommand*{\FCAL}      {\texttt{FCAL}}
+%\newcommand*{\Cryo}      {\texttt{Cryo}}
+%\newcommand*{\Gap}       {\texttt{Gap}}
+%\newcommand*{\Scint}     {\texttt{Scint}}
+%\newcommand*{\HEC}       {\texttt{HEC}}
+%\newcommand*{\LAr}       {\texttt{LAr}}
+%\newcommand*{\FCal}      {\texttt{FCal}}
+%\newcommand*{\Tile}      {\texttt{Tile}}
+%\newcommand*{\TileExt}   {\texttt{TileExt}}
+%\newcommand*{\TileBar}   {\texttt{TileBar}}
+%\newcommand*{\MBTS}      {\texttt{MBTS}}
+%\newcommand*{\Presampler}{\texttt{Presampler}}
+
+
+%%% Event generator stuff
+%%\newcommand*{\Herwig}{\texttt{HERWIG}\xspace}
+%\newcommand*{\herwigpp}{\texttt{HERWIG}++\xspace}
+%%\newcommand*{\Herwigpp}{\herwigpp}
+%\newcommand*{\geant}{\texttt{GEANT}4\xspace}
+%\newcommand*{\jimmy}{\texttt{Jimmy}\xspace}
+%\newcommand*{\Alpgen}{\texttt{Alpgen}\xspace}
+%\newcommand*{\Sherpa}{\texttt{SHERPA}\xspace}
+%\newcommand*{\Comphep}{\texttt{CompHep}\xspace}
+%\newcommand*{\Madgraph}{\texttt{MadGraph}\xspace}
+%\newcommand*{\Pythia}{\texttt{PYTHIA}\xspace}
+%\newcommand*{\Powheg}{\texttt{POWHEG}\xspace}
+%\newcommand*{\PowhegBox}{\texttt{POWHEG-BOX}\xspace}
+%\newcommand*{\PowPythia}{\texttt{POWHEG}+\Pythia}
+%\newcommand*{\Perugia}{\texttt{Perugia}\xspace}
+%\newcommand*{\Prospino}{\texttt{Prospino}\xspace}
+%\newcommand*{\Mcatnlo}{\texttt{MC@NLO}\xspace}
+%\newcommand*{\Acermc}{\texttt{ACERMC}\xspace}
+%\newcommand*{\PythiaP}{\Pythia (\Perugia 2010)\xspace}
+
+%\newcommand*{\LO}        {\ensuremath{\text{LO}}\xspace}
+%\newcommand*{\NLO}       {\ensuremath{\text{NLO}}\xspace}
+%\newcommand*{\NLL}       {\ensuremath{\text{NLL}}\xspace}
+%\newcommand*{\NNLO}      {\ensuremath{\text{N}}\NLO\xspace}
+%\newcommand*{\muF}       {\ensuremath{\mu_\textsc{f}}\xspace}
+%\newcommand*{\muR}       {\ensuremath{\mu_\textsc{r}}\xspace}

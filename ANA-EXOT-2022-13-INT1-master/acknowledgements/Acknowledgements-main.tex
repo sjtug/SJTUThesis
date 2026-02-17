@@ -1,0 +1,23 @@
+\documentclass[11pt,a4paper]{article}
+% Test document for ATLAS standard Acknowledgements.
+
+\usepackage[backend=biber]{biblatex}
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+\hypersetup{pdftitle={ATLAS Document}, pdfauthor={ATLAS Collaboration}} 
+\hypersetup{colorlinks, breaklinks}
+\hypersetup{linkcolor=blue, citecolor=blue, filecolor=black, urlcolor=blue}
+
+\addbibresource{Acknowledgements.bib}
+
+\begin{document}
+
+\section*{Acknowledgements}
+
+\input{Acknowledgements}
+
+\printbibliography
+
+\end{document}
+

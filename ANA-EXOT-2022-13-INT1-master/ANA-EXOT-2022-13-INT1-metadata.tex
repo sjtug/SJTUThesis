@@ -1,0 +1,94 @@
+%-------------------------------------------------------------------------------
+% This file contains the title, author and abstract.
+% It also contains all relevant document numbers used for an ATLAS note.
+%-------------------------------------------------------------------------------
+
+% Title
+\AtlasTitle{Search for $t\bar tH/A \rightarrow \tttt$ production in a final state with one lepton or two opposite-sign leptons using the full Run 2 $pp$ collisions data at $\sqrt{s} = 13$ \TeV}
+
+% Draft version:
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+% If given, adds draft version on front page, a 'DRAFT' box on top of each other page, 
+% and line numbers.
+% Comment or remove in final version.
+\AtlasVersion{0.9}
+
+% Abstract - % directly after { is important for correct indentation
+\AtlasAbstract{%
+  This note presents a search for a new heavy Higgs-boson in the process $t\bar tH/A \rightarrow \tttt$  using an integrated luminosity of 139 fb$^{-1}$ of proton-proton collision data at a centre-of-mass energy of 13 TeV collected by the ATLAS detector at the LHC. 
+Events are selected if they contain exactly one lepton or two opposite-sign lepton pairs (electrons or muons).
+
+The signal-enriched regions are defined by exploiting the high jet and b-jet multiplicities.  
+The signal is then separated from the background through a multivariate discriminant, and dedicated signal-depleted regions are used to constrain the dominant backgrounds. No significant excess of events over Standard Model expectation is observed.  The results are interpreted in the context of the two-Higgs-doublet model, and  observed(expected) 95\% CL upper limits on the cross-section times branching ratio of  $H/A \rightarrow \ttbar$  have been  estimated to range between 40.8(25.7) fb and 7.1(6.1) fb  for a heavy Higgs boson mass  between 400~\GeV~and 1000~\GeV, respectively. }
+
+% Author - this does not work with revtex (add it after \begin{document})
+%\author{The ATLAS Collaboration}
+
+ %Authors and list of contributors to the analysis
+% \AtlasAuthorContributor also adds the name to the author list
+ %Include package latex/atlascontribute to use this
+% Use authblk package if there are multiple authors, which is included by latex/atlascontribute
+
+% \usepackage{latex/atlascontribute}
+% \usepackage{authblk}
+% Use the following 3 lines to have all institutes on one line
+ \makeatletter
+ \renewcommand\AB@affilsepx{, \protect\Affilfont}
+ \makeatother
+ \renewcommand\Authands{, } % avoid ``. and'' for last author
+ \renewcommand\Affilfont{\itshape\small} % affiliation formatting
+ 
+ 
+ \AtlasAuthorContributor{S. Berlendis}{a}{1LOS channel. Software development and maintenance.}
+ \AtlasAuthorContributor{P. Berta}{b}{1LOS channel. Analysis contact, fit studies.}
+ \AtlasAuthorContributor{C. Birch-Sykes}{c}{1LOS channel. MVA analysis, graph NN for signal background discrimination.}
+ \AtlasAuthorContributor{C. Chauhan}{b}{1LOS channel. Main analyzer, validation in data of MVA discriminants, general data/MC comparison, fit studies, ntuple production.}
+ \AtlasAuthorContributor{J. Guo}{e}{1LOS channel. Supervision of Lining Mao.}
+ \AtlasAuthorContributor{S. Huang}{d}{SSML channel. Charge flip background estimation.}
+ \AtlasAuthorContributor{K. Johns}{a}{1LOS channel. Contact editor, supervision of Rachel Lindley.}
+ \AtlasAuthorContributor{Q. Jiang}{d}{1LOS channel. Validation of the sgluon samples.}
+ \AtlasAuthorContributor{A. Juste Rozas}{e}{1LOS channel. Supervision of Anil Sonay.}
+ \AtlasAuthorContributor{R. Lindley}{a}{1LOS channel. Main analyzer, sensitivity estimate, quark/gluon tagging for MVA analysis, fit studies.}
+ \AtlasAuthorContributor{L. Mao}{e}{1LOS channel. Main analyzer, fit studies, combination with SSML, sgluon interpretation.}
+ \AtlasAuthorContributor{N. Orlando}{e}{1LOS channel. Analysis contact, analysis strategy.}
+ \AtlasAuthorContributor{D. Paredes Hernandez}{d}{Analysis contact, contact editor, software development and maintenance, ntuples production, student supervision, MC requests.}
+ \AtlasAuthorContributor{R. Peters}{c}{1LOS channel. Supervision of Callum Birch Sykes.}
+ \AtlasAuthorContributor{J. Qian}{f}{SSML channel. Supervision of Meng-Ju Tsai.}
+ \AtlasAuthorContributor{Y. Qin}{c}{1LOS channel. Contact Editor, analysis strategy, supervision of Callum Birch Sykes.}
+ \AtlasAuthorContributor{D. Scheirich}{b}{1LOS channel, data/MC comparison.}
+ \AtlasAuthorContributor{A. Sonay}{e}{1LOS channel. Main analyzer, MVA analysis, NN based background estimation, full 1LOS analysis chain and software preparation.}
+ \AtlasAuthorContributor{K. C. Tam}{d}{1LOS channel. Main analyzer, MVA analysis and optimisation, tt+HF data-driven correction.}
+ \AtlasAuthorContributor{M. Tsai}{f}{SSML channel. SM BDT, BSM BDT, Signal region optimisation, statistical interpretation.}
+ \AtlasAuthorContributor{Y. Tu}{d}{SSML channel. Student supervision.}
+ \AtlasAuthorContributor{C. Vernieri}{g}{SSML channel. Postdoc supervision, supervision of Zhi Zheng.}
+ \AtlasAuthorContributor{Z. Zheng}{g}{SSML channel. ttW studies, systematics for fakes background.}
+
+ 
+% \author[a]{University of Arizona}
+ %\author[a]{DESY}
+ %\author[b]{Third Author}
+ \affil[a]{University of Arizona}
+ \affil[b]{Charles University, Prague}
+ \affil[c]{University of Manchester}
+\affil[d]{University of Hong Kong}
+\affil[e]{IFAE}
+\affil[f]{University of Michigan}
+\affil[g]{SLAC}
+\affil[e]{Shanghai Jiao Tong University}
+
+% If a special author list should be indicated via a link use the following code:
+% Include the two lines below if you do not use atlasstyle:
+% \usepackage[marginal,hang]{footmisc}
+% \setlength{\footnotemargin}{0.5em}
+%% Use the following lines in all cases:
+% \usepackage{authblk}
+% \author{The ATLAS Collaboration%
+% \thanks{The full author list can be found at:\newline
+%   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2016-007/authorlist.pdf}}
+% }
+
+% ATLAS reference code, to help ATLAS members to locate the paper
+\AtlasRefCode{ANA-EXOT-2022-13}
+
+% ATLAS note number. Can be an COM, INT, PUB or CONF note
+\AtlasNote{ANA-EXOT-2022-13-INT1}

@@ -1,0 +1,198 @@
+%
+The data used in this analysis corresponds to the full LHC Run 2 dataset collected by the ATLAS detector at $\sqrt{s}=13~\tev$
+between 2015 and 2018 with stable beam conditions and with all detector systems operating normally.
+The average number of additional $pp$ interactions per bunch crossing (pileup) $<\mu>$ ranged between 14 in 2015 and 38 in 2017-2018.
+The event quality was checked to remove events with noise bursts or coherent noise in the calorimeters.
+
+The analysis uses single lepton triggers. Table~\ref{tab:slep_trigger} lists the different single lepton triggers used for each data periods.
+A matching between online objects firing the trigger and the offline reconstructed object is required.
+
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{c|c}
+\hline
+Year of data taking & list of ORed triggers \\
+\hline \hline
+\multicolumn{2}{c}{single electron triggers} \\
+\hline \hline
+2015 & e24\_lhmedium\_L1EM20VH, e60\_lhmedium, e120\_lhloose  \\
+2016, 2017 and 2018 & e26\_lhtight\_nod0\_ivarloose, 60\_lhmedium\_nod0, e140\_lhloose\_nod0 \\
+\hline \hline
+\multicolumn{2}{c}{single muon triggers} \\
+\hline \hline
+2015 & mu20\_iloose\_L1MU15, mu50 \\
+2016, 2017 and 2018 & mu26\_ivarmedium, mu50 \\
+\hline
+\end{tabular}
+\caption{List of single lepton triggers used in the analysis per data period.}
+\label{tab:slep_trigger}
+\end{center}
+\end{table}
+
+Monte Carlo simulation is used to estimate the signal acceptance as well as the physics background.
+All MC events used in this analysis come from centrally produced MC16a, MC16d and MC16e samples.
+The exact list of MC samples used can be found at these gitlab links for 
+\href{https://gitlab.cern.ch/atlas-phys/exot/hqt/bsm_h_4t/common-framework/-/blob/master/preProd/mc16a_SM4tops.py}{MC16a}, 
+\href{https://gitlab.cern.ch/atlas-phys/exot/hqt/bsm_h_4t/common-framework/-/blob/master/preProd/mc16d_SM4tops.py}{MC16d} 
+and \href{https://gitlab.cern.ch/atlas-phys/exot/hqt/bsm_h_4t/common-framework/-/blob/master/preProd/mc16e_SM4tops.py}{MC16e}.  The background samples are described below:
+
+After event preselection, the main background is $\ttbar$+jets production, with the production of a $W$ boson in association with
+jets ($W$+jets) and multijet events contributing to a lesser extent. Small contributions arise from single top quark, $Z$+jets and 
+diboson ($WW,WZ,ZZ$) production, as well as from the associated production of a vector boson $V$ ($V=W,Z$) or a Higgs boson 
+and a $\ttbar$ pair ($\ttbar V$ and $\ttbar H$). Multijet events contribute to the selected sample via the misidentification of a jet or 
+a photon as an electron or via the presence of a non-prompt lepton, e.g.~from a semileptonic $b$- or $c$-hadron decay. Studies were made in order to measure the impact of this background and it has proved to be negligible in similar recent analyses. The rest of the background contributions are estimated from simulation 
+and normalised to their theoretical cross sections. In the case of the $\ttbar$+jets background prediction, further corrections are 
+applied to improve agreement between the data and simulation, as discussed in Sect.~\ref{sec:nn_rew}.
+
+Both signal and background samples also include a simulation of pileup interactions, and are processed through a 
+full {\sc Geant4} or fast (AFII) detector simulation and the same reconstruction software as the data. Further details about the modelling of each 
+of the backgrounds are provided below. 
+%A complete list of the Monte Carlo datasets for background processes used in the analysis is given in App.~\ref{sec:datasets}.  
+
+\begin{description}
+
+\item[\ttbar:] 
+
+The nominal $t\bar{t}$ sample is generated using the {\powheg}
+v2 NLO generator~\cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd} with the
+{\textsc NNPDF3.0} parton distribution function (PDF) set~\cite{Ball:2014uwa} using the 5-flavour scheme (5FS). The
+$h_{\textrm{damp}}$ parameter, which controls the \pt of the first additional
+emission beyond the Born configuration, is set to 1.5 times the top quark mass
+of $m_t=172.5$ \gev. The main effect of the $h_{\textrm{damp}}$ setting is to regulate the
+high-\pt emission against which the \ttbar system recoils. Parton shower and
+hadronisation are modelled by {\textsc Pythia} 8.2~\cite{Sjostrand:2007gs} with
+the appropriate A14~\cite{ATLASUETune4} tune. 
+The sample includes event
+weights so that we can evaluate uncertainties from the choice of scales 
+and the PDF used. The sample is
+generated separately for ``non-all hadronic'' $W$ bosons decays, dilepton decays,
+and all-hadronic decays. The dilepton sample is a subset of the first sample.
+Additional samples for each of these types of $W$ bosons decays are generated with
+filters requiring extra $b$ jets or large H$_{T}$, which is important to ensure a reasonable
+number of simulated events passing cuts in the high $b$-tag multiplicity region and ensure enough statistics at large H$_{T}$.
+
+An additional \ttbin~sample was produced with the \powhegboxRes~\cite{Jezo:2018yaf} NLO
+generator and \openloops~\cite{Cascioli:2011va,Denner:2016kdg}, using a pre-release of the implementation of this process in \powhegboxRes\
+provided by the authors~\cite{ttbbPowheg}, with the \texttt{NNPDF3.0nlonf4}~\cite{Ball:2014uwa} PDF set, and using \textsc{Pythia8} for the PS and hadronisation. 
+This sample was produced in the four flavour scheme with $m_b=4.95$~\GeV~in the matrix element. 
+This will be referenced in text as \ttbin~(4FS), and will be included as systematic in the fit modeling. 
+
+
+Additional types of samples are generated for studying systematic uncertainties
+on the \ttbar\ backgrounds. The Monte Carlo generator uncertainty for the hard
+process is evaluated by comparing the default \textsc{Powheg+Pythia8} sample to
+one generated by \amcatnlo\ interfaced to \textsc{Pythia} 8.
+The showering and hadronisation uncertainties compare the default \textsc{Powheg+Pythia8} sample
+to one where Powheg is interfaced instead to Herwig 7.0.4~\cite{Bellm:2015jjp,Bahr:2008pv}. Radiation systematics 
+are evaluated following PMG recommendations outlined here \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PmgTopProcesses\#Systematic\_uncertainties}{TopPMG};
+these are based upon built-in Monte Carlo event weights implemented in the nominal \textsc{Powheg+Pythia8} sample and an alternative version of 
+\textsc{Powheg+Pythia8} with factorisation ($\mu_{F}$) and renormalisation scales ($\mu_{R}$) set to 0.5 times their values in the default sample \textsc{Powheg+Pythia8} and varied tune of the parton-shower model.
+
+Some \ttbar\ samples mentioned above are studied in detail and compared in~\cite{ATL-PHYS-PUB-2022-026}.
+
+These samples are normalised to the top++2.0~\cite{Czakon:2011xx} theoretical cross
+section of $832^{+46}_{-51}$~pb, calculated at next-to-next-to-leading order
+(NNLO) in QCD that includes resummation of next-to-next-to-leading logarithmic
+(NNLL) soft gluon terms~\cite{Cacciari:2011hy,Baernreuther:2012ws,Czakon:2012zr,Czakon:2012pz,Czakon:2013goa}.
+Theoretical uncertainties result from variations of the factorisation and
+renormalisation scales, as well as from uncertainties on the PDF and
+$\alpha_{S}$. The latter two represent the largest contribution to the overall
+theoretical uncertainty in the cross section and were calculated using the
+PDF4LHC prescription.
+
+The $\ttbar$ events are categorised
+depending on the flavour of partons that are matched to particle jets that do
+not originate from the decay of the $\ttbar$ system. Particle jets are
+reconstructed from all stable truth particles (not counting muons and neutrinos)
+with the anti-$k_t$ algorithm with a radius parameter $R=0.4$ and are required
+to have $\pt>15\,\gev$ and $|\eta|<2.5$. Events where at least one such particle
+jet is matched within $\Delta R<0.3$ to a $b$-hadron with $\pt>5\,\gev$ not
+originating from a top quark decay are labelled as \ttbin\ events. Similarly,
+events which are not already categorised as \ttbin, and where at least one
+particle jet is matched to a charm quark not originating from a $W$ bosons decay,
+are labelled as \ttcin\ events.
+Events labelled as either \ttbin\  or \ttcin\ are generically referred to as
+\ttbar+HF events (HF for ``heavy flavour'').  The remaining events are labelled
+as $\ttbar$+light-jet events, including those with no additional jets. All these samples
+are generated by using fast simulation (AFII)
+
+\item[\tttt:] The production of \tttt\ events is modelled using the \amcatnlo~v2.6.2 \cite{Alwall:2014hca} generator which provides matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas with the NNPDF3.1 NLO~\cite{Ball_2017} parton distribution function.
+The functional form of the renormalisation and factorisation scales are set to $\mu_r=\mu_f=m_\textrm{T}/4$ where $m_\textrm{T}$ is defined as the scalar sum of the transverse masses $\sqrt{m^2+p^2_{T}}$  of the particles generated from the matrix element calculation, following Ref.~\cite{Frederix:2017wme}.
+Top quarks are decayed at LO using \madspin~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve all spin correlations.
+The events are interfaced with \pythiaeight.230~\cite{Sjostrand:2014zea} for the parton shower and hadronisation, using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the NNPDF2.3 LO~\cite{Ball_2013} PDF set.
+The decays of bottom and charm hadrons are simulated using the \EvtGen\ v1.6.0 program~\cite{EvtGen}.
+To avoid the use of negative weights in the Boosted Decision Trees training, an additional \tttt\ sample is produced at leading order (LO) with the same MC settings used for the NLO sample. 
+Another \tttt\ sample is also produced at NLO replacing the parton shower of the nominal samples to \herwigseven.04~\cite{Bahr:2008pv,Bellm:2015jjp} to evaluate the impact of the parton shower and hadronisation model. The H7UE set of tuned parameters~\cite{Bellm:2015jjp} and the MMHT2014LO PDF set~\cite{Harland-Lang:2014zoa} are used for this sample. The ATLAS detector response is simulated using AltFastII (AFII). 
+All \tttt\ samples are normalized to cross section of 13.37 fb based on the NLO (QCD+EW) + NLL' prediction from Ref.~\cite{vanBeekveld:2022hty}.
+
+
+\item[\ttV:]  
+Samples of $\ttbar V$ events, with the matrix element calculation performed up to two additional partons at LO, and of  $\ttbar WW$ events,
+are generated using {\MadG} and interfaced to \textsc{Pythia} 8 with the A14 NNPDF23LO UE tune. 
+Showering is performed using \textsc{Pythia} 8.210 and the A14 tune.
+
+\item[$t\bar tH$:] The production of $t\bar tH$ events is modelled using the \powheg v2~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd} generator at NLO with the NNPDF3.0 NLO~\cite{Ball:2014uwa} PDF set. The \powheg model parameter $h_{damp}$, which controls the matrix element to parton shower matching and effectively regulates the high-\pT  radiation, is set to $1.5\times ( 2m_t +m_H)/2$, where $m_H=125$~\GeV. 
+The parton shower and hadronisation were modelled with  \pythiaeight.230~\cite{Sjostrand:2014zea}~ using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the NNPDF2.3 LO~\cite{Ball_2013} PDF set.  The simulated sample is normalised to the cross section computed at NLO in QCD with the leading NLO electroweak corrections~\cite{Frixione:2015zaa,deFlorian:2227475}. An alternative sample generated with \amcatnlo~v2.3.3 has been used to evaluate the generator uncertainty. 
+
+
+\item[Single-top:]  Single-top $tW$ associated production is modelled using the \powheg~\cite{Re:2010bp,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}~v2 generator at NLO in QCD in the five flavour scheme with the NNPDF3.0 NLO~\cite{Ball:2014uwa} PDF set.
+The diagram removal scheme~\cite{Frixione:2008yi} was employed to handle the interference with \ttbar\ production~\cite{ATL-PHYS-PUB-2016-020}.
+Single-top t-channel production is modelled using the \powheg\,\cite{Frederix:2012dh,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}~v2 generator at NLO in QCD in the four flavour scheme with the NNPDF3.0 NLOnf4~\cite{Ball:2014uwa} PDF set.
+Single-top s-channel production is modelled using the \powheg~\cite{Alioli:2009je,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}~v2 generator at NLO in QCD in the five flavour scheme with the NNPDF3.0 NLO~\cite{Ball:2014uwa} PDF set.
+For all single-top processes, the events are interfaced with \pythiaeight.230~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the NNPDF2.3 LO PDF set.
+
+\item[$V$+jets:] The production of $V+$jets is simulated with the \sherpa~v2.2.1~\cite{Bothmann:2019yzt}
+generator using NLO-accurate matrix elements for up to two jets, and LO-accurate matrix elements
+for up to four jets calculated with the Comix~\cite{Gleisberg:2008fv}
+and OpenLoops~\cite{Cascioli:2011va,Denner:2016kdg} libraries. They
+are matched with the \sherpa parton shower~\cite{Schumann:2007mg} using the MEPS@NLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}
+using the set of tuned parameters developed by the \sherpa authors.
+The NNPDF3.0 NNLO set of PDFs~\cite{Ball:2014uwa} is used and the samples
+are normalised to a next-to-next-to-leading order (NNLO)
+prediction~\cite{Anastasiou:2003ds}.
+
+\item[$VV$:] Samples of diboson final states ($VV$) are simulated with the
+\sherpa~v2.2.1 or v2.2.2~\cite{Bothmann:2019yzt} generator depending on the process.
+Fully leptonic final states and semileptonic final states, where one boson
+decays leptonically and the other hadronically, are generated using
+matrix elements at NLO accuracy in QCD for up to one additional parton
+and at LO accuracy for up to three additional parton
+emissions. Samples for the loop-induced processes $gg \to VV$ are
+generated using LO-accurate matrix elements for up to one
+additional parton emission for both cases of fully leptonic and
+semileptonic final states. The matrix element calculations are matched
+and merged with the \sherpa parton shower based on Catani-Seymour
+dipole~\cite{Gleisberg:2008fv,Schumann:2007mg} using the MEPS@NLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+The virtual QCD correction are provided by the
+\openloops\ library~\cite{Cascioli:2011va,Denner:2016kdg}. The
+NNPDF3.0 NNLO set of PDFs is used~\cite{Ball:2014uwa}, along with the
+dedicated set of tuned parton-shower parameters developed by the
+\sherpa authors.
+
+\item[$S_8S_8\rightarrow t \bar tt \bar t$:] The results of this analysis  are reinterpreted in the context of a simplified model  which  considers a scalar state $S_8$ decaying to a pair of top quarks  ($S_8 \rightarrow t \bar t$), 
+giving as a final state  $t \bar tt \bar t$ events \cite{Darm__2021}.
+The field $S_8$ is color-octet with respect to $SU(3)_{C}$.
+The new physics Lagrangian for the real scalar field $S_8$ is given by
+
+\begin{equation}
+\mathcal{L}_{S8} = \frac{1}{2}D_\mu S_{8}^{A}D^{\mu}S_{8}^{A}- \frac{1}{2} m^2_{S8}S_{8}^{A}S_{8}^{A} + \bar{t} [y_{8S}+i y_{8P}\gamma^{5}]T^{A}S_{8}^{A}t,
+\end{equation}
+
+where $T^A$ represent the generators of $SU(3)$ in the fundamental representation, 
+$m_{S8}$ the mass of $S_8$, and  the scalar $y_{8S}$ and pseudo-scalar $y_{8P}$,  the interactions of the $S_8$ state with the top quark.  
+Any higher-dimensional operator coupling the scalar-octet state to gluons are ignored.  
+  The usual QCD interactions of the scalar field are included through the covariant derivatives used for the kinetic term. 
+  The case of a purely scalar  $S_8$ field, considered in this work, is obtained by setting $y_{8P}$  to zero.
+  
+  Events were generated at leading order with MadGraph5$\_$aMC@NLO, with the decay of $S_8\rightarrow t \bar t$ handled by MadSpin. 
+  Further decay and showering is  performed with Pythia8.   
+  The parameter $y_{8S}$ is set to $0.1$, ensuring that only the pair production of the color-octet $S_8$,  $pp\rightarrow S_8S_8$,  dominates.  
+  Under this kinematic regime, the interference with the SM background and the $ t \bar tS_8$ production contribute  less than 10\% to the total BSM $t \bar tt \bar t$ production for  $m_{S8}<2$ TeV.  
+  Truth-level studies confirmed that for the pair production  of $S_8$, the kinematics of  the process  does not depend on the value of $y_{8S}$. 
+  Thus, the results are considered to be valid for the full range of $y_{8S}<0.1$.  
+  The branching ratio of the $S_8$ decay to a pair of top quarks is 100\%.   A total of fourteen MC samples were generated for $m_{S8}$ ranging between 0.4 TeV and 2 TeV, with a spacing of 100 GeV for  $m_{S8}\in [0.4, 1.5]$ TeV, and 250 GeV for $m_{S8}\in [1.75, 2.0]$  TeV.  
+
+\end{description}
+

@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              ttH                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\ttH production]{\ttH}
+\label{subsec:ttH}
+
+\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+%\label{subsubsec:ttH_PP8}
+
+Nominal $t\bar{t}H$ samples are produced with \POWPY[8]. The \hdamp value is set to $352.5\,\GeV = 3/4 \cdot (\mH+2\mtop)$.
+
+\paragraph{Samples}
+%\label{par:ttH_PP8_samples}
+Table~\ref{tab:ttH_PP8} gives the nominal \ttH samples.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttH samples produced with \POWPY[8].}%
+  \label{tab:ttH_PP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    346343 & \ttH, $H\to$ all, $\ttbar\to$ all-hadronic \\
+    346344 & \ttH, $H\to$ all, $\ttbar\to$ semileptonic \\
+    346345 & \ttH, $H\to$ all, $\ttbar\to$ dileptonic \\
+    346525 & \ttH, $H\to \gamma\gamma$, $\ttbar\to$ all \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \ttH events was modelled using the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd,Hartanto:2015uka}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set.
+The events were interfaced to \PYTHIA[8.230]~\cite{Sjostrand:2014zea}~using 
+the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. The decays of bottom and charm hadrons
+were performed by \EVTGEN[1.6.0]~\cite{Lange:2001uf}.
+
+\paragraph{Long description:}
+
+The production of \ttH events was modelled using the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd,Hartanto:2015uka}
+generator, which provided matrix elements at next-to-leading order (NLO) in the strong coupling 
+constant \alphas in the five-flavour scheme with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set.
+The functional form of the renormalisation and factorisation scales was
+set to $\sqrt[3]{m_\text{T}(t)\cdot m_\text{T}(\bar{t}) \cdot m_\text{T}(H)}$.
+The events were interfaced to \PYTHIA[8.230]~\cite{Sjostrand:2014zea}
+using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. The decays of bottom and charm hadrons
+were performed by \EVTGEN[1.6.0]~\cite{Lange:2001uf}.
+
+The cross-section was calculated at NLO QCD and NLO EW accuracy using
+\MGNLO as reported in Ref.~\cite{deFlorian:2016spz}. The predicted value at \rts~=~\SI{13}{\TeV} is
+507$^{+35}_{-50}$~fb, where the uncertainties were estimated from
+variations of \alphas and the renormalisation and factorisation scales.
+
+The uncertainty in the initial-state radiation (ISR) was estimated using the Var3c
+up/down variations of the A14 tune. Uncertainties due to missing
+higher-order corrections were evaluated through simultaneous variations of the
+renormalisation and factorisation scales by factors of
+2.0 and 0.5. Uncertainties in the PDFs were evaluated using the 100
+variations of the \NNPDF[3.0nlo] set.
+
+
+\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+%\label{subsubsec:ttH_PH7}
+
+\paragraph{Samples}
+%\label{par:ttH_PH7_samples}
+
+Table~\ref{tab:ttH_PH7} presents alternative \ttH samples.
+
+\begin{table}[htbp]
+  \caption{Alternative \ttH \POWHER[7] samples produced to evaluate systematic uncertainties 
+  due to different MC models for parton showering and hadronisation.}%
+  \label{tab:ttH_PH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    346346 & \ttH, $H\to$ all, $\ttbar\to$ all-hadronic \\
+    346347 & \ttH, $H\to$ all, $\ttbar\to$ semileptonic \\
+    346348 & \ttH, $H\to$ all, $\ttbar\to$ dileptonic \\
+    346526 & \ttH, $H\to\gamma\gamma$, $\ttbar\to$ all \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated by showering the nominal hard-scatter events with
+\HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp} using the H7UE set of tuned parameters~\cite{Bellm:2015jjp} and 
+the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
+
+\paragraph{Long description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated
+by comparing the nominal sample with another sample produced with
+the \POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator but interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the 
+H7UE set of tuned parameters~\cite{Bellm:2015jjp} and 
+the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
+\POWHEGBOX provided matrix elements at next-to-leading
+order~(NLO) in the strong coupling constant \alphas with the
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). 
+The functional form of the renormalisation and factorisation scales was 
+set to $\sqrt[3]{m_\text{T}(t)\cdot m_\text{T}(\bar{t}) \cdot m_\text{T}(H)}$.
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 

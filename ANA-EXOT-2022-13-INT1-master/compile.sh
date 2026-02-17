@@ -1,0 +1,4 @@
+pdflatex ANA-EXOT-2022-13-INT1 
+biber    ANA-EXOT-2022-13-INT1   
+pdflatex ANA-EXOT-2022-13-INT1   
+pdflatex ANA-EXOT-2022-13-INT1   

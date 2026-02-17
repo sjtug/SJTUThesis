@@ -1,0 +1,84 @@
+%
+Electron candidates are reconstructed from energy deposits in the electromagnetic calorimeter matched to a track in the inner detector~\cite{Aad:2019tso}. They are identified using the likelihood-based identification criteria~\cite{Aad:2019tso} as recommended by the Egamma CP group. There are five WPs supported for LH electrons: \texttt{VeryLooseLH},  \texttt{LooseLH}, \texttt{LooseAndBLayerLH}, \texttt{MediumLH} and \texttt{TightLH}~\cite{twiki:EGammaIdentificationRun2}.  Only electron candidates satisfying the  \texttt{TightLH}  requirement  with  a $\pt>28$~\GeV~and within  $|\eta|<2.47$ (excluding the LAr crack region) are selected. As recommended by the Egamma CP group, electrons are removed if they are coming from a bad calorimeter cluster (\texttt{BADCLUSELECTRON}) or if they are associated to the 2015+2016/mc16a crack+topocluster bug~\cite{twiki:EGammaIdentificationRun2}.  Standard requirements on the transverse impact parameter of $|d_{0}^{\text{BL}}(\sigma)| < 5$,  and on the longitudinal impact parameter  $|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{0.5}{\mm}$ are also applied~\cite{twiki:EGammaIdentificationRun2}.  Electrons are also required to be well isolated from other reconstructed objects. They must satisfy the \texttt{FCTight}  isolation WP~\cite{twiki:IsolationSelectionTool}, defined as a fixed cut on both calorimetric and track isolation variables: \texttt{topoetcone20/pT}$<0.06$ and \texttt{ptvarcone20\_TightTTVA\_pt1000/pT}$<0.06$.  
+
+An additional requirement is imposed to electrons in the $e^\pm e^\pm$ and  $e^\pm \mu^\pm$ channels to reduce the background coming from the charge misidentification.  This requirement is based on the score of a BDT that uses the calorimeter cluster and track properties of the electron to separate events with correct and incorrect electron charge assignments. This selection is done using the \texttt{ElectronChargeIDSelector} (ECIDS) tool~\cite{twiki:ECIDSTool}. The chosen requirement on the BDT score removes approximately 90\% of electrons with a wrong charge assignment while selecting 98\% of electrons with correctly measured charge~\cite{Aad:2019tso}. 
+
+
+
+To correct for the efficiency differences between data and Monte Carlo (MC) simulation, the associated scale factors for trigger, identification, isolation and reconstruction, are applied as multiplicative factors to the MC simulation event weight~\cite{twiki:ElectronEfficiencyRun2,twiki:LatestElectronRecomendations}. An additional scale factor associated to the efficiency of the ECIDS cut is also applied to the $e^\pm e^\pm$ and  $e^\pm \mu^\pm$ events ~\cite{twiki:LatestElectronRecomendations}. 
+
+The selection criteria above will be referred in the following as \textit{tight}, and they are summarised in Table \ref{tab:object:electron}. Electrons with a looser selection are used in the overlap removal procedure detailed in Section~\ref{sub:overlap_removal} and also for some background checks. They are defined basically by relaxing the ID requirement, the \pT cut, and by removing the isolation. The \textit{loose} selection criteria are summarised in Table~\ref{tab:object:loose_electron}.
+
+
+\begin{table}[ht]
+  \caption{Tight electron selection criteria.}%
+  \label{tab:object:electron}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & \multicolumn{1}{c}{Criterion} \\
+    \midrule
+    Pseudorapidity range & \((|\eta| < 1.37) \quad || \quad (1.52 < |\eta| < 2.47)\) \\
+    Energy calibration & \texttt{es2018\_R21\_v0} (ESModel)\\
+%    Energy & \(E > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+%    Transverse energy & \(\ET > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse momentum & \(\pT > \SI[parse-numbers=false]{28}{\GeV}\) \\
+    \midrule
+    \multirow{2}{*}{Object quality} & Not from a bad calorimeter cluster (\texttt{BADCLUSELECTRON}) \\ %\cline{2-2}
+      & Not from the 2015+2016/mc16a crack+topocluster association bug   \\
+     % & Remove clusters from regions with EMEC bad HV (2016 data only) \\
+    \midrule
+    \multirow{2}{*}{Track to vertex association} & \(|d_{0}^{\text{BL}}(\sigma)| < 5\) \\ %\cline{2-2}
+    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{0.5}{\mm}\) \\
+    \midrule
+    Identification & \texttt{TightLH} \\
+    Isolation & \texttt{FCTight } \\
+    ChargeID & pass \texttt{ECIDS}  (only on $e^\pm e^\pm$ and  $e^\pm \mu^\pm$ channels)\\
+      \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+
+\begin{table}[ht]
+  \caption{Loose electron selection criteria.}%
+  \label{tab:object:loose_electron}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & \multicolumn{1}{c}{Criterion} \\
+    \midrule
+    Pseudorapidity range & \((|\eta| < 1.37) \quad || \quad (1.52 < |\eta| < 2.47)\) \\
+    Energy calibration & \texttt{es2018\_R21\_v0} (ESModel)\\
+%    Energy & \(E > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+%    Transverse energy & \(\ET > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse momentum & \(\pT > \SI[parse-numbers=false]{10}{\GeV}\) \\
+    \midrule
+    \multirow{2}{*}{Object quality} & Not from a bad calorimeter cluster (\texttt{BADCLUSELECTRON}) \\ %\cline{2-2}
+      & Not from the 2015+2016/mc16a crack+topocluster association bug   \\
+     % & Remove clusters from regions with EMEC bad HV (2016 data only) \\
+    \midrule
+    \multirow{2}{*}{Track to vertex association} & \(|d_{0}^{\text{BL}}(\sigma)| < 5\) \\ %\cline{2-2}
+    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{0.5}{\mm}\) \\
+    \midrule
+    Identification & \texttt{MediumLH} \\
+    Isolation & \texttt{-- } \\
+    ChargeID & pass \texttt{ECIDS}  (only on $e^\pm e^\pm$ and  $e^\pm \mu^\pm$ channels)\\
+      \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%NOTES:
+% Selection: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/TopPhys/xAOD/TopObjectSelectionTools/Root/ElectronLikelihoodMC15.cxx
+% Calibration: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/TopPhys/xAOD/TopCPTools/Root/TopEgammaCPTools.cxx
+% Isolation: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/AnalysisCommon/IsolationSelection/Root/IsolationSelectionTool.cx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+

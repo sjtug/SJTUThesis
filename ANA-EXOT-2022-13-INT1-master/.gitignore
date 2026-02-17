@@ -1,0 +1,28 @@
+# Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration
+
+# Private excludes can be found or put in .git/info/exclude
+# PDF files in top-level directory
+/*.pdf
+# PDF files produced by epstopdf
+*-eps-converted-to.pdf
+
+# Generic files to ignore
+*.aux
+*.bak
+*.bcf
+*.bbl
+*-blx.bib
+*.blg
+.*.lb
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.spl
+*.synctex.gz
+*.tdo
+*.toc
+*~

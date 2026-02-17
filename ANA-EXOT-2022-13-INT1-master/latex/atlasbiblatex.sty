@@ -1,0 +1,228 @@
+%-------------------------------------------------------------------------------
+% This file contains adjustments to the numeric-comp (and numeric)
+% biblatex styles that are suggested for ATLAS documents.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlasbiblatex}[2021/08/20 v11.6.0 ATLAS biblatex style]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Process option. Use kvoptions package.
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=ABIB,
+  prefix=ABIB@
+}
+\DeclareStringOption[ragged]{block}
+\DeclareStringOption[5]{maxbibnames}
+\DeclareBoolOption[true]{articletitle}
+\DeclareBoolOption[false]{titlequote}
+\DeclareBoolOption[false]{showdoi}
+\DeclareBoolOption[true]{eprint}
+\DeclareBoolOption[false]{address}
+\DeclareBoolOption[false]{location}
+\DeclareBoolOption[true]{backref}
+\DeclareStringOption[2016]{texlive}
+\ProcessKeyvalOptions*
+
+\typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
+
+%-------------------------------------------------------------------------------
+% Only set things if biblatex is actually loaded
+\@ifpackageloaded{biblatex}{%
+  % Set block mode
+  \typeout{atlasbiblatex: block set to \ABIB@block}
+  \ExecuteBibliographyOptions{block=\ABIB@block}
+
+  % Set maxbibnames
+  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
+  \ExecuteBibliographyOptions{maxbibnames=\ABIB@maxbibnames}
+
+  % backref=true adds page numbers of citations to bibliography
+  \ifthenelse{\boolean{ABIB@backref}}{%
+    \typeout{atlasbiblatex: turning backref on}
+    \ExecuteBibliographyOptions{backref=true}
+  }{%
+    \typeout{atlasbiblatex: backref is off}
+    \ExecuteBibliographyOptions{backref=false}
+  }
+
+  % Include the DOI as a hyperlink with the journal.
+  \ifthenelse{\boolean{ABIB@showdoi}}{}{%
+    \ExecuteBibliographyOptions{doi=false}
+    % Fix from Knut Zoch - field is better than macro to avoid comma becoming part of link
+    \DeclareFieldFormat{string+doi}{%
+      \iffieldundef{doi}{#1}{\href{https://doi.org/\thefield{doi}}{#1}}}
+    %\newbibmacro{string+doi}[1]{%
+    %  \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+    %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibtextit{#1}}}
+  }
+
+  % Turn off printing of arXiv
+  \ifthenelse{\boolean{ABIB@eprint}}{}{%
+    \ExecuteBibliographyOptions{eprint=false}
+  }
+
+  % date=year option works for TeX Live 2014 or so onwards
+  \ifthenelse{\ABIB@texlive < 2014}{}{%
+    \ExecuteBibliographyOptions{date=year}
+  }
+
+  % Don't want months
+  \AtEveryBibitem{%
+    \clearfield{month}
+  }
+
+  % Use consistent format for title for articles and booklets/reports (CONF/PUB notes)
+  \ifthenelse{\boolean{ABIB@articletitle}}{%
+    % Titles all in italics or in quotes
+    \ifthenelse{\boolean{ABIB@titlequote}}{%
+      \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[thesis]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
+    }{%
+      \DeclareFieldFormat[article]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[booklet]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[report]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[thesis]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[misc]{title}{\textit{#1}\isdot}
+    }
+  }{%
+    \AtEveryBibitem{
+      \ifentrytype{article}{\clearfield{title}}{}
+      \ifentrytype{booklet}{\clearfield{title}}{}
+      \ifentrytype{report}{\clearfield{title}}{}
+      \ifentrytype{thesis}{\clearfield{title}}{}
+      %\ifentrytype{misc}{\clearfield{title}}{}
+    }
+  }
+
+  % Journal in upright font
+  \DeclareFieldFormat[article]{journaltitle}{#1\isdot}
+  \DeclareFieldFormat[article]{journalsubtitle}{#1\isdot}
+
+  % Volume in bold font
+  \DeclareFieldFormat[article]{volume}{\textbf{#1}\isdot}
+
+  % Suppress issue number
+  \AtEveryBibitem{
+    \ifentrytype{article}{\clearfield{number}}{}
+  }
+
+  % Do not print out the address, except for proceedings
+  \ifthenelse{\boolean{ABIB@address}}{}{%
+    \ifthenelse{\boolean{ABIB@location}}{}{%
+      \AtEveryBibitem{%
+        \ifentrytype{article}{\clearlist{location}}{}
+        \ifentrytype{booklet}{\clearlist{location}}{}
+        \ifentrytype{report}{\clearlist{location}}{}
+        % \clearlist{location}
+      }
+    }
+  }
+
+  % DOI as link with journal reference
+  \ifthenelse{\boolean{ABIB@showdoi}}{}{%
+    %\DeclareFieldFormat[article]{journaltitle}{\usebibmacro{string+doi}{#1\isdot}}
+    %\DeclareFieldFormat[article]{journal+issuetitle}{\usebibmacro{string+doi}{#1}}
+    % Adapted from /usr/local/texlive/2014/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+    % Merge page number into journal+issuetitle and remove it from note+pages
+    % Use fix from Knut Zoch so comma before journal is not part of the link
+    \renewbibmacro*{journal+issuetitle}{%
+      %\usebibmacro{string+doi}{%
+      \printtext[string+doi]{%
+      \usebibmacro{journal}%
+      \setunit*{\addspace}%
+      \iffieldundef{series}
+        {}
+        {\newunit
+         \printfield{series}%
+         \setunit{\addspace}}%
+      \usebibmacro{volume+number+eid}%
+      \setunit{\addspace}%
+      \usebibmacro{issue+date}%
+      \setunit{\addcolon\space}%
+      \usebibmacro{issue}%
+      \setunit{\bibpagespunct}%
+      \printfield{pages}%
+      \newunit
+      }%
+    }
+    \renewbibmacro*{note+pages}{%
+      \printfield{note}%
+      %\setunit{\bibpagespunct}%
+      %\printfield{pages}%
+      \newunit}
+  }
+
+  % Print only first page
+  \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
+
+  % Change punctuation to comma
+  \renewcommand*{\newunitpunct}{\addcomma\space}
+
+  % You can include the following line(s) if you want to shorten your
+  % bibliography by not including url fields
+  % \AtEveryBibitem{\clearfield{url}}
+  % \AtEveryCitekey{\clearfield{url}}
+
+  % Do not add "In:"
+  \renewbibmacro{in:}{}
+  % \renewbibmacro{in:}{%
+  %   \ifentrytype{article}{}{%
+  %   \printtext{\bibstring{in}\intitlepunct}}}
+
+  % Remove p. or pp. by pages - this has to be done for every language
+  % separately as these strings depend on the language
+  \renewcommand{\bibpagespunct}{\space}
+  \DefineBibliographyStrings{english}{%
+    page = {},
+    pages = {}
+  }
+  \DefineBibliographyStrings{american}{%
+    page = {},
+    pages = {}
+  }
+  \DefineBibliographyStrings{british}{%
+    page = {},
+    pages = {}
+  }
+  \DefineBibliographyStrings{UKenglish}{%
+    page = {},
+    pages = {}
+  }
+  \DefineBibliographyStrings{USenglish}{%
+    page = {},
+    pages = {}
+  }
+  \DefineBibliographyStrings{ngerman}{%
+    page = {},
+    pages = {}
+  }
+
+  % Check which version this works for
+  % If you get an error here use institution+location+year
+  % \renewbibmacro*{institution+location+year}{%
+  \renewbibmacro*{institution+location+date}{%
+    % \printlist{location}%
+    \iflistundef{institution}
+      {\setunit*{\addcomma\space}}
+      {\setunit*{\addcolon\space}}%
+    \printlist{institution}%
+    \setunit*{\addcomma\space}%
+    \usebibmacro{date}%
+    \newunit}
+}{\typeout{*** atlasbiblatex: biblatex is not loaded}
+}
+
+\endinput

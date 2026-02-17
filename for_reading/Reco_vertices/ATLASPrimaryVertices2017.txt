@@ -1,0 +1,3049 @@
+
+
+===== PAGE 1 =====
+Eur. Phys. J. C (2017) 77:332
+DOI 10.1140/epjc/s10052-017-4887-5
+Regular Article - Experimental Physics
+Reconstruction of primary vertices at the ATLAS experiment
+in Run 1 proton–proton collisions at the LHC
+ATLAS Collaboration⋆
+CERN, 1211 Geneva 23, Switzerland
+Received: 1 December 2016 / Accepted: 5 May 2017 / Published online: 19 May 2017
+© CERN for the beneﬁt of the CMS collaboration 2017. This article is an open access publication
+Abstract This paper presents the method and performance
+of primary vertex reconstruction in proton–proton collision
+data recorded by the ATLAS experiment during Run 1 of
+the LHC. The studies presented focus on data taken during
+2012 at a centre-of-mass energy of √ s = 8 TeV . The per-
+formance has been measured as a function of the number of
+interactions per bunch crossing over a wide range, from one
+to seventy. The measurement of the position and size of the
+luminous region and its use as a constraint to improve the
+primary vertex resolution are discussed. A longitudinal ver-
+tex position resolution of about 30µm is achieved for events
+with high multiplicity of reconstructed tracks. The transverse
+position resolution is better than 20 µm and is dominated by
+the precision on the size of the luminous region. An analytical
+model is proposed to describe the primary vertex reconstruc-
+tion efﬁciency as a function of the number of interactions per
+bunch crossing and of the longitudinal size of the luminous
+region. Agreement between the data and the predictions of
+this model is better than 3% up to seventy interactions per
+bunch crossing.
+Contents
+1 Introduction ..................... 1
+2 The ATLAS detector and LHC beam parameters .. 2
+2.1 The ATLAS inner detector ........... 2
+2.2 The minimum-bias trigger ........... 2
+2.3 Determination of pile-up interactions ...... 3
+2.4 Parameters affecting the luminous region
+at the LHC .................... 3
+3 Data and Monte Carlo samples ........... 4
+4 Primary vertex reconstruction ............ 5
+4.1 Track reconstruction ............... 5
+4.2 Primary vertex ﬁnding and ﬁtting ........ 6
+4.3 Beam-spot reconstruction ............ 7
+4.4 Beam-spot stability ............... 8
+5 Hard-scatter interaction vertices ........... 1 0
+⋆ e-mail: atlas.publications@cern.ch
+5.1 Monte Carlo truth matching and classiﬁcation of
+vertices ..................... 1 0
+5.2 Vertex reconstruction and selection efﬁciency
+for hard-scatter interactions ........... 1 1
+6 Primary vertices in minimum-bias data ....... 1 3
+7 Performance in the high pile-up regime ....... 1 6
+8 Efﬁciency of vertex reconstruction as a function
+of pile-up ....................... 1 7
+8.1 Modelling the number of reconstructed vertices 17
+8.2 Determination of correction for merging of pri-
+mary vertices .................. 1 8
+8.3 Comparison of data to simulation ........ 1 9
+9 Conclusion ...................... 2 0
+References ........................ 2 1
+1 Introduction
+Efﬁcient and precise reconstruction of primary vertices,
+deﬁned as the points in space where proton–proton ( pp)
+interactions have occurred, is an important element of data
+analysis at the LHC. It is of direct relevance to the reconstruc-
+tion of hard-scatter interactions, in which the correct assign-
+ment of charged-particle trajectories to the hard-scatter pri-
+mary vertex is essential in reconstructing the full kinematic
+properties of the event. An aspect of primary vertex recon-
+struction requiring special attention is the superposition of
+multiple inelastic pp interactions reconstructed as a single
+physics event with many primary vertices. These additional
+primary vertices, which are usually soft-QCD interactions
+related to the dominant components of the total cross section,
+are referred to as pile-up. The average number of inelastic
+pp interactions per bunch crossing under constant beam con-
+ditions is denoted as μ and is directly related to the instan-
+taneous luminosity [1]. The primary vertex reconstruction is
+also important for the determination of the luminous region,
+or beam spot, where collisions take place within the ATLAS
+detector.
+123
+
+===== PAGE 2 =====
+332 Page 2 of 35 Eur. Phys. J. C (2017) 77 :332
+This paper describes the performance of primary vertex
+reconstruction with the ATLAS detector, during Run 1 of the
+LHC from 2010 to 2012. The studies presented here are based
+on the data collected in 2012 at a proton–proton centre-of-
+mass energy √
+s = 8 TeV . Averaged over the 2012 dataset,
+μ was approximately 20. The 2012 data are representative of
+the full set of data taken from 2010 to 2012 in terms of the
+primary vertex performance. Studies in this paper make use
+of dedicated datasets recorded at very low values of μ (μ =
+0.01), thereby providing a measurement of the performance
+in the absence of pile-up. Data recorded with the highest
+number of interactions per bunch crossing, leading to values
+of μ up to 72, are used to study the various mechanisms that
+lead to a degradation of the primary vertex reconstruction as
+pile-up increases.
+The paper is organised as follows: Sect.2 provides a brief
+description of the ATLAS detector, a description of pile-up
+determination and a discussion of the parameters of the LHC
+accelerator that determine the size of the luminous region.
+Section 3 describes the data and Monte Carlo (MC) simu-
+lation samples used. Section 4 presents the algorithms for
+primary vertex reconstruction in ATLAS. The measurement
+and stability of the beam-spot parameters and their use as
+a constraint in primary vertex reconstruction are discussed.
+The predicted impact of pile-up contamination on the recon-
+struction and selection of primary vertices from hard-scatter
+processes is discussed in Sect. 5. Studies of single vertex
+reconstruction in minimum-bias data and the related com-
+parisons to MC simulation are presented in Sect.6. Section 7
+describes the performance of vertex reconstruction in high
+pile-up conditions. In Sect.8, the results of studies presented
+in Sects. 5 through 7 are used to model the efﬁciency of
+primary vertex reconstruction in simulation, to predict its
+behaviour at high pile-up, and to compare the predictions to
+data. Summary and conclusions are presented in Sect. 9.
+2 The ATLAS detector and LHC beam parameters
+The ATLAS detector [2] is a multi-purpose detector with a
+cylindrical geometry. It is comprised of an inner detector (ID)
+surrounded by a thin superconducting solenoid, a calorime-
+ter system and a muon spectrometer embedded in a toroidal
+magnetic ﬁeld. The ID is the primary detector used for ver-
+tex reconstruction and it is described in further detail below
+in Sect. 2.1. Outside of the ID and the solenoid are elec-
+tromagnetic sampling calorimeters made of liquid argon as
+the active material and lead as an absorber. Surrounding the
+electromagnetic calorimeter is the iron and scintillator tile
+calorimeter for hadronic energy measurements. In the for-
+ward regions it is complemented by two end-cap calorime-
+ters made of liquid argon and copper or tungsten. The muon
+spectrometer surrounds the calorimeters and consists of three
+large superconducting eight-coil toroids, a system of tracking
+chambers, and detectors for triggering.
+2.1 The ATLAS inner detector
+The inner detector covers the pseudorapidity
+1 range |η| <
+2.5. Schematic views of the Run 1 inner detector are pre-
+sented in Fig. 1. Particle trajectories are identiﬁed using
+the combined information from the sub-detectors of the ID:
+the innermost silicon pixel detector, the surrounding silicon
+microstrip semiconductor tracker (SCT), and the transition
+radiation tracker (TRT), made of straw tubes ﬁlled with a
+Xe-CO
+2 gas mixture [3]. All three sub-systems are divided
+into a barrel section and two end-caps. The barrel sections
+consist of several cylindrical layers, while the end-caps are
+composed of radial disks and wheels. The sensitive regions
+of the three sub-detectors cover radial distances in the barrel
+section from 50.5 to 122.5, 299 to 514, and 554 to 1082 mm.
+Typical position resolutions are 10, 17, and 130 µmf o rt h e
+transverse coordinate in the pixel detector, the SCT, and the
+TRT respectively. In the case of the pixel and SCT, the resolu-
+tions in the z-coordinate are 115 and 580µm. The supercon-
+ducting solenoid coil around the tracking system produces
+a 2 T axial magnetic ﬁeld. A track from a charged particle
+traversing the barrel detector would typically have 11 mea-
+surements in the silicon detector
+2 (3 pixel clusters and 8 strip
+clusters) and more than 30 measurements in the TRT [4].
+2.2 The minimum-bias trigger
+A minimum-bias trigger was used to select the data presented
+in this paper. This trigger is designed to record a random
+selection of bunch crossings, unbiased by any hard physics
+produced in the bunch crossing, by using a signal from the
+minimum-bias trigger scintillators (MBTS). The MBTS are
+mounted at each end of the detector in front of the liquid-
+argon end-cap calorimeter cryostats at z =± 3.56 m, cover-
+ing the range 2.09 < |η| < 3.84. The MBTS trigger used for
+this paper requires one hit above threshold from either side
+of the detector, referred to as a single-arm trigger [4].
+1 The ATLAS experiment uses a right-handed coordinate system with
+its origin at the nominal interaction point (IP) in the centre of the detector
+and the z-axis along the beam direction. The x-axis points from the IP
+to the centre of the LHC ring, and they-axis points upward. Cylindrical
+coordinates (r,φ) are used in the transverse (x, y) plane, φ being the
+azimuthal angle around the z-axis. The pseudorapidity is deﬁned in
+terms of the polar angle θas η=− ln tan(θ/2).
+2 Measurements of charged particle trajectories in the pixel, SCT and
+TRT are called ID hits.
+123
+
+===== PAGE 3 =====
+Eur. Phys. J. C (2017) 77 :332 Page 3 of 35 332
+Fig. 1 Schematic views of the ATLAS Run 1 inner detector:a barrel and end-cap sections; b cross section of the barrel section showing the TRT,
+SCT, and pixel sub-detectors
+2.3 Determination of pile-up interactions
+Depending on the length of the read-out window of a sub-
+detector, signals from neighbouring bunch crossings can be
+present simultaneously when the detector is read out. The
+impact of interactions from the neighbouring bunch crossings
+is referred to as out-of-time pile-up, while in-time pile-up
+results from the presence of multiple pp interactions in the
+same bunch crossing.
+During most of Run 1 of the LHC, the separation of pro-
+ton bunches was 50 ns. The timing resolution of the inner
+detector components is about 25 ns. This is sufﬁcient for
+the out-of-time pile-up to have a much smaller impact on ID
+measurements than the in-time pile-up. As a consequence the
+number of reconstructed vertices is a direct measure of the
+amount of in-time pile-up on an event-by-event basis.
+The instantaneous luminosity, L, can be expressed in
+terms of the visible interaction rate, R
+vis
+inel, and the visible
+inelastic cross section, σvis
+inel,a s :
+L = Rvis
+inel
+σvis
+inel
+. (1)
+The inelastic cross section, σinel , and the visible inelastic
+cross section are related through: σvis
+inel = ϵσinel .H e r eϵ is
+the efﬁciency of the detector to record an inelastic collision.
+The inelastic cross section is deﬁned as the total cross section
+minus the elastic cross section.
+In practice, the full rate of inelastic collisions is never
+directly measured. Only a fraction of it is observable in the
+detector due to theηacceptance. The luminosity is measured
+using a set of dedicated detectors which allow bunch-by-
+bunch measurements. The luminosity detectors are calibrated
+using dedicated Van der Meer scans [5]. The uncertainty in
+the luminosity measurement is 1.9% [1].
+The number of pp inelastic interactions per bunch cross-
+ing follows a Poisson distribution with mean valueμ. Assum-
+ing that the pp collider operates at a revolution frequency fr
+with nb interacting bunches per beam, the luminosity can
+also be expressed as:
+L = μ nb fr
+σinel
+. (2)
+The value ofμ changes during data-taking as a function of
+time: it decreases with decreasing beam intensity and increas-
+ing emittance. The highest value is at the start of the stable
+beam period of the ﬁll. For the studies presented in this paper,
+μ is calculated using Eq. (2). The value of the inelastic cross
+section at 8 TeV centre-of-mass energy is 71.5 mb, taken
+from the PYTHIA8 MC generator [ 6]. Experimental mea-
+surements [7,8] are found to be compatible with the cross
+section predicted by PYTHIA8. The overall uncertainty inμ
+is 4%, which is derived from the quadratic sum of the uncer-
+tainties in the luminosity and in the inelastic cross section.
+2.4 Parameters affecting the luminous region at the LHC
+The size, position and shape of the luminous region, or beam
+spot, are determined by the operating parameters of the beams
+and magnets of the LHC [ 9]. The transverse size is deter-
+mined by the focusing of the LHC beams near the interaction
+region and by the spread in position–momentum phase space
+of the protons within the colliding bunches. The latter is quan-
+tiﬁed by the geometric emittance εof the beams, or equiva-
+lently by the normalised emittance deﬁned as ε
+N = βv γε,
+where βv and γ are the relativistic functions βv = v/c ≃ 1
+and γ = Ebeam/m p, Ebeam is the beam energy and m p is
+the mass of the proton. The focusing of the beams is charac-
+t e r i s e db yt h eβ-function, and especially its minimum value
+123
+
+===== PAGE 4 =====
+332 Page 4 of 35 Eur. Phys. J. C (2017) 77 :332
+Table 1 Summary of LHC parameters for typicalpp collision ﬁlls and
+corresponding expected sizes of the luminous region. Emittance and
+bunch length values (and the corresponding beam-spot sizes) refer to
+values expected at the start of a ﬁll. The two values given for expected
+transverse and longitudinal beam-spot size in 2011 correspond to the
+two β
+∗ settings of 1.5 and 1.0 m. Measured average beam-spot param-
+eters are presented in Table 3 (Sect. 4.4)
+Year 2011 2012
+Beam energy (TeV) 3.5 4.0
+β∗ (m) 1.5, 1.0 0.6
+Normalised emittance εN (µmr a d ) 2 . 5 2 . 5
+Full crossing angle φ (µrad) 240 290
+4σ bunch length Tz (ns) 1.20 1.25
+Bunch length σz (mm) 90 94
+Expected transverse beam-spot size σxL, σyL
+(µm)
+22, 18 13
+Expected longitudinal beam-spot size σzL (mm) 60, 59 54
+β∗. The longitudinal size of the luminous region is deter-
+mined by the bunch length and by the angle φ (full crossing
+angle) at which the two beams are brought into collision. In
+the following discussion it is assumed that the emittances
+and β-functions in the horizontal and vertical direction are
+the same for each of the two beams. These assumptions lead
+to a circular transverse beam proﬁle, as has been observed to
+be approximately the case at the LHC.
+The particle densities in proton bunches can be described
+by three-dimensional Gaussian distributions with transverse
+and longitudinal sizes given by σx = σy = √ εβ and
+σz = cT z/4 respectively, where Tz is the “four σ bunch
+length” (in ns) customarily quoted for the LHC. Because the
+ratio σz/β∗ was small during Run 1, the quadratic form of
+the β-function around the interaction region had a negligi-
+ble effect over the length of the luminous region and the
+transverse beam size along the beam axis remained con-
+stant. As a result the luminous region is described well by a
+three-dimensional Gaussian distribution. With the assump-
+tion of pair-wise equal bunch sizes mentioned above, the
+transverse size σ
+xL (and equivalently σyL)o ft h el u m i -
+nous region is given by σxL = σx/
+√
+2. For a cross-
+ing angle in the vertical plane as is the case for ATLAS,
+and assuming equal longitudinal bunch sizes σ
+z in both
+beams, the longitudinal size of the luminous region is given
+by:
+σzL = cT z/4√
+2
+1√
+1 +
+(
+σz
+σy
+φ
+2
+) 2
+. (3)
+A summary of typical LHC parameters for pp collisions
+at √ s = 7 TeV in 2011 and at√ s = 8 TeV in 2012 is shown
+in Table 1 together with the resulting expected sizes of the
+luminous region. The measured sizes of the luminous region
+are discussed in Sect. 4.4 and Table 3.
+3 Data and Monte Carlo samples
+This paper uses pp collision data with√ s = 8 TeV recorded
+during the LHC Run 1 period. Data were collected using the
+minimum-bias triggers described in Sect. 2. The data-taking
+conditions of the corresponding data samples are summarised
+in Table 2. The studies presented here aim to cover the full
+range of Run 1 μ values and use both a special high-μ data
+sample as well as a range of lower- μ data. The distribution
+of the average number of interactions per pp bunch crossing
+in Run 1 is shown in Fig.2. This does not include the special
+high and low μ runs listed in Table 2. Most data taken in
+Run 1 had pile-up near μ = 20. The low pile-up dataset
+was taken at average μ around 0.01, while the special high
+pile-up run featured peak collision multiplicities up to μ =
+72. The results presented in this paper use MC simulation
+of hard-scatter interactions and soft inelastic pp collisions.
+The collection of soft inelastic interactions is referred to here
+as the minimum-bias sample. These are events that would
+have been collected with the minimum-bias trigger, described
+in Sect. 2.2, and they represent an average beam crossing,
+without selection of a speciﬁc hard-scatter interaction.
+Table 2 The data-taking conditions of the pp collision data samples
+used in this paper
+Pile-up conditions μ range Date
+Low μ 0–1 April 2012
+High μ 55–72 July 2012
+Run 1 data range 7–40 2012
+μ
+0 5 10 15 20 25 30 35 40 45 50
+Arbitrary units
+×
+ATLAS
+ = 8 TeVs
+Fig. 2 The average number of interactions per proton bunch crossing,
+μ, during 8 TeV data-taking in Run 1, weighted by the luminosity
+123
+
+===== PAGE 5 =====
+Eur. Phys. J. C (2017) 77 :332 Page 5 of 35 332
+Minimum-bias samples were simulated with the
+PYTHIA8 MC generator, with the A2 set of tuned parame-
+ters [10] and the MSTW2008LO parton density function set
+[11]. The PYTHIA8 model for soft QCD uses a phenomeno-
+logical adaptation of 2→ 2 parton scattering to describe low
+transverse momentum processes. Samples were generated
+for non-diffractive, single-diffractive, and double-diffractive
+interactions. These contributions were combined according
+to the PYTHIA8 generator cross sections.
+To study the collective effects of multiple primary vertices
+reconstructed in one beam crossing, MC simulation with no
+hard-scattering process but only pile-up was created forμ up
+to 72. These samples mimic randomly triggered events, and
+were also generated with PYTHIA8 using the A2 tune. A spe-
+cial conﬁguration was used to match 2012 data-taking con-
+ditions, including the beam spot with z-direction size equal
+to the average observed in data.
+Hard-scatter interactions were simulated with POWHEG
+[12] interfaced to PYTHIA8 for the Z → μμ and H →
+γγ processes, and MC@NLO [ 13], HERWIG [ 14] and
+Jimmy [ 15] for top-quark pair production ( t ¯t). The CT10
+parameterisation [ 16] of the parton density functions was
+used. The top-quark pairs were generated with a lepton ﬁlter,
+requiring a lepton in the ﬁnal state. The hard-scatter interac-
+tion samples were generated for a range of pile-up between
+μ = 0 and 38. The overlaid pile-up collisions were simulated
+with the soft QCD processes of PYTHIA8 in the manner of
+the minimum-bias simulation described above.
+All generated events are processed with the ATLAS
+detector simulation framework [ 17], using the GEANT
+4[ 18] toolkit. After full detector simulation, the MC events
+are reconstructed and analysed in the same manner as
+data.
+When comparing data with simulation in the presence
+of pile-up interactions, the average number of collisions
+per bunch crossing in simulation is re-weighted to match
+that measured in data. In order to obtain the same visi-
+ble cross section for pp interactions for the simulation and
+data, a μ-rescaling is also applied before the re-weighting.
+The rescaling factor is calculated by comparing the ratio
+of the visible cross section to the total inelastic cross sec-
+tion, ϵ
+ξ = σvis
+inel /σinel , for data with that for simulation.
+The value of ϵdata
+ξ is computed from independent mea-
+surements of these cross sections in data [ 19,20]. The
+value of ϵMC
+ξ is computed from events simulated with
+the PYTHIA8 MC generator with the A2 tune. The ﬁnal
+scale factor is corrected to match the visible cross section
+within the ATLAS inner detector acceptance, resulting in
+ϵ
+MC
+ξ /ϵdata
+ξ = 1.11. The uncertainty in this scale factor is
+5%. It is calculated from the quadrature sum of the uncer-
+tainties in the cross-section measurements, 3.5 and 2.6%
+from Refs. [19,20] respectively, and a 2% uncertainty in the
+extrapolation from 7 to 8 TeV and to the inner detector accep-
+tance.
+4 Primary vertex reconstruction
+This section describes the method for reconstructing primary
+vertices. The input to the vertex reconstruction is a collection
+of reconstructed tracks. A brief summary of the main steps
+of track reconstruction is presented in Sect. 4.1. The vertex
+reconstruction is presented in Sect. 4.2. This is followed by
+a description of how primary vertices are used to reconstruct
+the shape of the luminous region, or beam spot, in Sect. 4.3,
+and a description of the stability of the beam spot in Sect.4.4.
+4.1 Track reconstruction
+The reconstruction of charged-particle trajectories in the
+inner detector is based on ﬁtting a trajectory model to a set of
+measurements. The reconstructed charged-particle trajecto-
+ries are hereafter referred to as tracks. The general structure
+and performance of ATLAS track reconstruction is described
+in detail in Refs. [21,22] and a brief overview is given below.
+Track seeds consist of three measurements in different
+layers of the pixel detector and SCT. Tracks are propagated
+out from the seed towards the TRT (“inside-out”) using a
+combinatorial Kalman ﬁlter [22], and additional silicon hits
+are added to the seed. An ambiguity solving procedure is
+applied to remove track candidates with incorrectly assigned
+hits. The candidate tracks are scored in a reward–penalty
+schema with respect to one another. To favour fully recon-
+structed tracks over short track segments, each additional
+measurement associated with a track leads to a better score
+value. The measurements from different sub-detectors are
+weighted differently, preferring the precision measurements
+(e.g. pixel clusters) and downgrading measurements from
+less precise detector parts. To provide a realistic description
+of detector acceptance and efﬁciency, the concept of a hole
+on a track is introduced. A hole represents a measurement
+on a detector surface that is expected, given the trajectory
+predictions, but not observed (holes are not considered on
+the ﬁrst and last surfaces in the measurement). The presence
+of holes reduces the overall track score. The χ
+2 of the track
+ﬁt is also used to penalise poor-quality candidates. Finally,
+the logarithm of the track transverse momentum ln ( pT) is
+considered as a criterion to promote energetic tracks and to
+suppress the larger number of tracks formed from incorrect
+combinations of clusters, which tend to have low measured
+p
+T. After the reconstruction of tracks in the pixel and the SCT
+detectors, the successful candidates are extrapolated into the
+TRT volume and combined with measurements there.
+123
+
+===== PAGE 6 =====
+332 Page 6 of 35 Eur. Phys. J. C (2017) 77 :332
+During data-taking at √ s = 8 TeV , the input to the ver-
+tex reconstruction algorithms consisted of charged-particle
+tracks selected according to the following criteria:
+• p
+T > 400 MeV; |d0| < 4 mm; σ(d0)< 5 mm; σ(z0)<
+10 mm;
+• At least four hits in the SCT detector;
+• At least nine silicon (SCT or pixel) hits;
+• No pixel holes.
+Here the symbols d0 and z0 denote the transverse and longi-
+tudinal impact parameters of tracks with respect to the centre
+of the luminous region, andσ(d0) and σ(z0) denote the cor-
+responding uncertainties [21]. The impact parameter require-
+ments are applied to reduce contamination from tracks origi-
+nating from secondary interactions. The above requirements
+are tighter than the standard ATLAS track selection criteria
+in order to maintain a low rate of fake tracks (tracks mis-
+takenly reconstructed from a random combination of hits) at
+Run 1 pile-up levels (up to μ = 40). The track reconstruc-
+tion efﬁciency under this selection is between 75 and 85% for
+central rapidities (|η| < 1.5) and track p
+T above 500 MeV;
+the efﬁciency falls to about 60% at higher rapidities or about
+65% for tracks with p
+T between 400 and 500 MeV .
+4.2 Primary vertex ﬁnding and ﬁtting
+The procedure of primary vertex reconstruction is divided
+into two stages: vertex ﬁnding and vertex ﬁtting [ 23]. The
+former stage generally denotes the pattern recognition pro-
+cess: the association of reconstructed tracks to vertex can-
+didates. The vertex ﬁtting stage deals with reconstruction of
+the actual vertex position and its covariance matrix. The strat-
+egy is explained in detail in this section, and can be brieﬂy
+outlined in these steps:
+• A set of tracks satisfying the track selection criteria is
+deﬁned.
+• A seed position for the ﬁrst vertex is selected.
+• The tracks and the seed are used to estimate the best vertex
+position with a ﬁt. The ﬁt is an iterative procedure, and in
+each iteration less compatible tracks are down-weighted
+and the vertex position is recomputed.
+• After the vertex position is determined, tracks that are
+incompatible with the vertex are removed from it and
+allowed to be used in the determination of another vertex.
+• The procedure is repeated with the remaining tracks in
+the event.
+Each of these steps (except the track selection described in
+the previous section) is expanded on below.
+1. The seed position of the vertex ﬁt is based on the beam
+spot in the transverse plane. The x- and y-coordinates
+of the starting point are taken from the centre of the
+beam spot, reconstructed as discussed in Sect.4.3.T h ez-
+coordinate of the starting point is calculated as the mode
+of the z-coordinates of tracks at their respective points of
+closest approach to the reconstructed centre of the beam
+spot. The mode is calculated using the Half-Sample Mode
+algorithm [24].
+2. After the seed has been determined, the iterative primary
+vertex ﬁnding procedure begins. The vertex position is
+determined using an adaptive vertex ﬁtting algorithm
+with an annealing procedure [ 25]. Using the seed posi-
+tion as the starting point and parameters of reconstructed
+tracks as input measurements, the algorithm performs
+an iterative χ
+2 minimisation, ﬁnding the optimal vertex
+position. Each input track is assigned a weight, reﬂect-
+ing its compatibility with the vertex estimate. The ver-
+tex position is recalculated using the weighted tracks,
+and then the procedure is repeated, recalculating track
+weights with respect to the new vertex position. The indi-
+vidual track weights are calculated according to the fol-
+lowing equation:
+ω( ˆχ
+2) = 1
+1 + exp
+(
+ˆχ2−χ2
+cutof f
+2T
+) . (4)
+Here ˆχ2 is the χ2 value calculated in three dimensions
+between the last estimated vertex position and the respec-
+tive point of the closest approach of the track. Tracks with
+lower weights are less compatible with the vertex and will
+have less inﬂuence on the position calculation. The con-
+stant χ
+2
+cutof f deﬁnes the threshold where the weight of
+an individual track becomes equal to 0.5. Tracks with
+low weights are not removed, but will have less impact
+on the calculated vertex position. The value of χ2
+cutof f
+is set to nine, which corresponds to about three standard
+deviations. The temperature T controls the smoothness
+of the weighting procedure. For low values of T , ω( ˆχ2)
+approaches a step function, and for large values of T
+the function ﬂattens, progressively losing its χ2 depen-
+dence. To avoid convergence in local minima, the weight-
+ing procedure is applied progressively by decreasing the
+temperature T during the ﬁt iterations. The temperature
+is lowered from some high starting value in a pre-deﬁned
+sequence of steps that converges atT = 1. A typical dis-
+tribution of track weights is shown in Fig. 3. It widens
+as T decreases, reaching an optimal separation of track
+outliers for T = 1.
+3. After the last iteration, the ﬁnal weight of each track used
+in the vertex ﬁt is evaluated. Tracks found incompatible
+with the vertex by more than seven standard deviations
+are removed from the vertex candidate and returned to the
+123
+
+===== PAGE 7 =====
+Eur. Phys. J. C (2017) 77 :332 Page 7 of 35 332
+Track weight within vertex fit
+0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+Arbitrary units
+T = 1T = 4T = 64
+ATLAS
+ = 8 TeVs
+Fig. 3 Histogram showing the weights applied to tracks in the vertex
+reconstruction ﬁt. The ﬁtting algorithm iterates through progressively
+smaller values of the temperatureT , effectively down-weighting outly-
+ing tracks in the vertex ﬁt. The vertical axis is on a logarithmic scale
+Reconstructed vertices per event
+0 5 10 15 20 25 30
+Arbitrary units
+ATLAS
+ = 8 TeVs
+ < 23μ21 < 
+Fig. 4 Distribution of the number of reconstructed vertices per event
+in a sample of √ s = 8 TeV minimum-bias data for the pile-up range
+21 <μ< 23
+pool of unused tracks. This loose requirement is intended
+to reduce the number of single pp interactions which
+are reconstructed as two distinct primary vertices due to
+the presence of track outliers, while maintaining a high
+efﬁciency.
+4. After the vertex candidate is created, the rejected tracks
+are considered as input for a new vertex ﬁnding iteration.
+The procedure described above is then repeated starting
+from step 1, calculating the new starting position from
+remaining tracks, until no unassociated tracks are left
+in the event or no additional vertex can be found in the
+remaining set of tracks.
+All vertices with at least two associated tracks are retained
+as valid primary vertex candidates. The output of the vertex
+reconstruction algorithm is a set of three dimensional vertex
+positions and their covariance matrices. Figure 4 shows a
+typical distribution for the number of reconstructed vertices
+per event in Run 1 for minimum-bias data collected in the
+pile-up range 21 <μ< 23.
+The reconstructed position and width of the beam spot
+can be used as an additional measurement during the pri-
+mary vertex ﬁt. It is taken as a three-dimensional Gaussian
+measurement centred around the beam-spot centre and with
+the beam-spot size as the width. Tracks outside the beam
+spot have low compatibility with the vertex ﬁt and are thus
+removed in the iterative ﬁtting procedure. This procedure is
+hereafter referred to as the beam-spot constraint. Figure 5
+shows typical distributions of the x, y, and z coordinates
+of primary vertices without the beam-spot constraint. The
+transverse position resolution of vertices reconstructed from
+a small number of tracks may exceed 100 µm. For these
+vertices the application of the beam-spot constraint signif-
+icantly improves their transverse position resolution. In the
+z-direction, the length of the luminous region has no signif-
+icant impact on the resolution of primary vertices. The lon-
+gitudinal resolution of primary vertices is determined by the
+intrinsic resolution of the primary tracks. However, knowl-
+edge of the longitudinal beam-spot size still helps to remove
+far outlying tracks.
+4.3 Beam-spot reconstruction
+The beam-spot reconstruction is based on an unbinned
+maximum-likelihood ﬁt to the spatial distribution of primary
+vertices collected from many events. These primary vertices
+are reconstructed without beam-spot constraint from a rep-
+resentative subset of the data called the express stream dur-
+ing the detector calibration performed approximately every
+ten minutes. In each event only the primary vertex with the
+highest sum of squares of transverse momenta of contribut-
+ing tracks, denoted hereafter as∑p
+2
+T, is considered. In order
+to be used in the beam-spot ﬁt, this vertex must include at
+least ﬁve tracks and must have a probability of the χ
+2 of
+the vertex ﬁt greater than 0.1%. The requirement of at least
+ﬁve tracks ensures that most vertices have a transverse vertex
+resolution better than 50 µm with a most probable value of
+about 15 µm that is comparable to the transverse beam-spot
+size. At least 100 selected vertices are required to perform
+a beam-spot ﬁt, and in a typical ﬁt several thousand vertices
+collected over a time period of about ten minutes are avail-
+able. The ﬁt extracts the centroid position (
+xL, yL, zL)o ft h e
+beam spot (luminous centroid), the tilt angles x′
+L and y′
+L in
+the x–z and y–z planes respectively, and the luminous sizes
+(σxL, σyL, σzL), which are the measured sizes of the lumi-
+nous region with the vertex resolution deconvoluted from the
+measurements.
+123
+
+===== PAGE 8 =====
+332 Page 8 of 35 Eur. Phys. J. C (2017) 77 :332
+mμEvents / 2 
+0
+20
+40
+60
+80
+100
+120
+140
+160
+180
+200
+ATLAS
+ = 8 TeVs
+Data
+Fit projection
+Beam spot
+x [mm]
+-0.42 -0.4 -0.38 -0.36 -0.34 -0.32 -0.3 -0.28 -0.26 -0.24
+Data / fit
+0.5
+1
+1.5
+(a)
+mμEvents / 2 
+0
+20
+40
+60
+80
+100
+120
+140
+160
+180
+200
+220
+ATLAS
+ = 8 TeVs
+Data
+Fit projection
+Beam spot
+y[ m m ]
+0.5 0.52 0.54 0.56 0.58 0.6 0.62 0.64 0.66 0.68 0.7
+Data / fit
+0.5
+1
+1.5
+(b)
+Events / 4 mm
+0
+20
+40
+60
+80
+100
+120
+140
+ATLAS
+ = 8 TeVs
+Data
+Fit projection
+Beam spot
+z [mm]
+-200 -150 -100 -50 0 50 100 150 200
+Data / fit
+0.5
+1
+1.5
+(c)
+Fig. 5 Distribution in a x, b y and c z of the reconstructed primary
+vertices used for a typical single beam-spot ﬁt, projection of the 3D
+Gaussian beam-spot ﬁt result, and ﬁtted beam spot. The ﬁt projection
+and beam spot curves are identical in c
+In the transverse plane the width of the distribution of
+primary vertices is the convolution of the vertex resolution
+with the width of the luminous region. This is modelled by
+the transverse covariance matrix
+V
+i = V B + k2 V V
+i , (5)
+where V B describes the transverse beam-spot size and allows
+for a rotation of the luminous-region ellipsoid in the trans-
+verse plane in case of non-circular beams. The transverse
+vertex resolution V
+V
+i estimated by the vertex ﬁt for each pri-
+mary vertex i is scaled by a parameter k determined by the
+beam-spot ﬁt in order to account for any differences between
+ﬁtted and expected vertex resolutions. The parameter k is
+expected to be close to unity as long as the vertex ﬁtter pro-
+vides good estimates of the vertex position uncertainty, the
+contamination from secondary vertices among the primary
+vertex candidates used in the beam-spot ﬁt is small, and the
+Gaussian ﬁt model provides an adequate description of the
+beam-spot shape. During 2012, the average value of k was
+1.16. No vertex resolution correction and no error scaling is
+applied in the longitudinal direction because the longitudi-
+nal beam-spot size of about 50 mm is much larger than the
+typical z resolution of 35 µm for the vertices selected for the
+beam-spot ﬁt.
+The beam-spot ﬁt assumes a Gaussian shape inx, y and z
+and the corresponding probability density function (PDF) is
+maximised using theMinuit [26] minimisation package after
+an iterative procedure removes a small number of outliers
+incompatible with the ﬁt. The effect of this outlier removal
+on the ﬁtted beam-spot parameters is negligible but brings
+the error scaling factor k closer to 1.
+As an example of the beam-spot ﬁt, Fig.5 shows the distri-
+bution of primary vertices selected as input to the beam-spot
+ﬁt (before outlier removal), together with the projection of
+the ﬁt result. The ﬁtted beam spot, i.e. the distribution of
+primary vertices after unfolding of the vertex position res-
+olution, is also shown. The impact of the vertex position
+resolution is clearly seen in the transverse direction, whereas
+in the longitudinal (z) direction the vertex resolution is neg-
+ligible compared to the beam spot and therefore ﬁtted beam
+spot and ﬁt projection are identical.
+4.4 Beam-spot stability
+The evolution of the beam-spot position and size as a func-
+tion of time during a typical LHC ﬁll is shown in Fig.6.T h e
+coordinates of the beam-spot position are given with respect
+to the ATLAS coordinate system. The precise origin loca-
+tion and the orientation of the ATLAS coordinate system is
+deﬁned through the detector alignment procedure. The origin
+was chosen to be at the nominal interaction point with a z-
+axis along the beam direction, ensuring that the coordinates
+of the beam-spot centroid position are close to zero. In the
+early Run 1 data, a tilt angle of
+x′
+L ≈ 500 µrad was observed.
+123
+
+===== PAGE 9 =====
+Eur. Phys. J. C (2017) 77 :332 Page 9 of 35 332
+Time
+09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00
+x [mm]
+0.333
+0.332
+0.331
+0.33
+0.329
+0.328
+0.327
+0.326 ATLAS
+ = 8 TeVs
+(a)
+Time
+09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00
+ [mm]x
+0.012
+0.013
+0.014
+0.015
+0.016
+0.017
+0.018
+0.019
+0.02
+ATLAS
+ = 8 TeVs
+(b)
+Time
+09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00
+y [mm]
+0.598
+0.6
+0.602
+0.604
+0.606
+ATLAS
+ = 8 TeVs
+(c)
+Time
+09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00
+ [mm]y
+0.012
+0.013
+0.014
+0.015
+0.016
+0.017
+0.018
+0.019
+0.02
+ATLAS
+ = 8 TeVs
+(d)
+Time
+09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00
+z [mm]
+15
+10
+5
+0
+5
+10 ATLAS
+ = 8 TeVs
+(e)
+Time
+09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00
+ [mm]z
+47
+48
+49
+50
+51
+52
+53
+54 ATLAS
+ = 8 TeVs
+(f)
+Fig. 6 Position (a xL, c yL, e zL) and size ( b σxL, d σyL, f σzL) of the luminous region in ATLAS during a typical ﬁll at √ s = 8T e V .T h e
+transverse sizes are corrected for the transverse vertex resolution
+In 2011 the ATLAS coordinate system was rotated in order
+to align the coordinate system more precisely with the beam
+line.
+The downward movement of the beam-spot position dur-
+ing the ﬁrst 40 min of the run followed by a gradual rise as
+seen in Fig.6c is typical and is attributed to movement of the
+pixel detector after powering up from standby. The increase in
+transverse size during the ﬁll (Fig.6b, d) is expected from the
+transverse-emittance growth of the beams. The magnitude
+of the changes in longitudinal beam-spot position (Fig. 6e)
+is typical and is understood to be due to relative RF phase
+drift. The increase in longitudinal size (Fig.6f) reﬂects bunch
+lengthening in the beams during the ﬁll. The tilt angles
+x′
+L
+and y′
+L ( n o ts h o w ni nF i g .6) were stable at the level of about
+10 µrad.
+The long-term evolution of the beam-spot position dur-
+ing 2012 is shown in Fig. 7. The large vertical movement
+at the beginning of May visible in Fig. 7b was associated
+with movement of the ID. Apart from variations in each
+ﬁll due to transverse-emittance growth and bunch length-
+ening, both the transverse and longitudinal beam-spot sizes
+remained unchanged during 2012.
+Table 3 summarises the beam-spot position and size in
+2010, 2011 and 2012 for pp collision data.
+Data from special runs is excluded. As expected, the aver-
+age transverse beam-spot size scales approximately with√ β∗/Ebeam, but is also inﬂuenced by changes in the nor-
+malised emittance and by the amount of emittance growth
+during the ﬁlls. In 2010 and 2011 the centre-of-mass energy
+was 7 TeV . In 2012 it increased to 8 TeV . During this time
+the crossing angle φ was increased from zero at the start of
+2010 to 290 µrad in 2012.
+The measured transverse size of the beam spot at the start
+of a run is in good agreement with the values expected from
+the LHC machine parameters at the start of a ﬁll (Table 1).
+This can be seen in Fig. 6. The average transverse size in
+2012 shown in Table 3 (15 µm) is larger than the expected
+size of 13 µmf r o mT a b l e1 due to emittance growth dur-
+123
+
+===== PAGE 10 =====
+332 Page 10 of 35 Eur. Phys. J. C (2017) 77 :332
+Time
+Apr May Jun Jul Aug Sep Oct Nov Dec
+  [mm]
+0.34
+0.32
+0.3
+0.28
+0.26
+0.24
+0.22 ATLAS
+ = 8 TeVs
+(a)
+Time
+Apr May Jun Jul Aug Sep Oct Nov Dec
+  [mm]
+0.55
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95 ATLAS
+ = 8 TeVs
+(b)
+Time
+Apr May Jun Jul Aug Sep Oct Nov Dec
+  [mm]
+30
+20
+10
+0
+10
+20
+30
+40 ATLAS
+ = 8 TeVs
+(c)
+Fig. 7 Position of the luminous region in ATLAS over the course of
+pp running in 2012 at √ s = 8 TeV . The data points are the result of
+a maximum likelihood ﬁt to the spatial distribution of primary vertices
+collected over ten minutes. Errors are statistical only
+ing the run. Within the relatively large uncertainty expected
+for the 4 σ bunch length Tz due to instrumental and non-
+Gaussian effects, the longitudinal beam-spot size is in rea-
+sonable agreement with expectations from the LHC param-
+eters shown in Table 1.
+5 Hard-scatter interaction vertices
+This section describes how both the reconstruction and iden-
+tiﬁcation efﬁciencies of hard-scatter primary vertices are
+evaluated using simulation. The impact of pile-up tracks and
+vertices on the performance is also estimated. A classiﬁcation
+scheme based on MC generator-level information, denoted
+hereafter as truth-level information, is used to describe the
+level of pile-up contamination in reconstructed vertices from
+hard-scatter processes.
+5.1 Monte Carlo truth matching and classiﬁcation of
+vertices
+To study the performance of primary vertex reconstruction
+using MC simulation, a truth-matching algorithm has been
+developed, based on the generator-level particles associated
+to tracks contributing to reconstructed vertices. The proce-
+dure ﬁrst classiﬁes each reconstructed track used in a vertex
+ﬁt. The compatibility criteria for track truth-matching are
+based on the fraction of hits used to reconstruct the track in
+each sub-detector that were produced by the generated pri-
+mary particle as discussed in Ref. [ 21]. Each reconstructed
+track is classiﬁed as one of the following:
+• A track matched to a hard-scatter interaction.
+• A track matched to a pile-up interaction.
+• An unmatched track. Such a tracks are considered ran-
+dom combinations of detector hits falsely identiﬁed as
+charged particle trajectories. These are referred to as fake
+tracks.
+Tracks are matched to their primary generating interac-
+tion, i.e. tracks from secondary interactions are traced back
+to a hard-scatter or pile-up interaction. Based on the above
+classiﬁcation, reconstructed vertices can be categorised. For
+each vertex, the sum of the weights assigned to all contribut-
+ing tracks is normalised to unity. The fractional weights of
+Table 3 Average beam-spot position and size for pp collision data in 2010, 2011 and 2012 for different β∗ settings. The errors given in the table
+are the RMS spread of the parameters during the corresponding time period
+Year β∗ (m) xL (mm) yL (mm) zL (mm) σxL (µm) σyL (µm) σzL (mm)
+2010 11 −0.347 ± 0.015 0 .611 ± 0.018 0 .9 ± 3.54 9 ± 86 0 ± 12 29 ± 3
+2010 2 −0.364 ± 0.031 0 .647 ± 0.009 −1.2 ± 2.23 0 ± 53 9 ± 12 36 ± 3
+2010 3 .50 .081 ± 0.033 1 .099 ± 0.029 −3.0 ± 4.64 1 ± 44 4 ± 66 3 ± 3
+2011 1 .5 −0.050 ± 0.018 1 .059 ± 0.051 −6.2 ± 3.82 6 ± 22 4 ± 25 7 ± 3
+2011 1 .0 −0.052 ± 0.009 1 .067 ± 0.013 −6.7 ± 1.52 1 ± 22 0 ± 15 6 ± 3
+2012 0 .6 −0.291 ± 0.016 0 .705 ± 0.046 −7.3 ± 4.71 5 ± 21 5 ± 14 8 ± 2
+123
+
+===== PAGE 11 =====
+Eur. Phys. J. C (2017) 77 :332 Page 11 of 35 332
+individual tracks in each vertex are calculated. Vertices can
+then be put into one of the following exclusive categories:
+• Matched vertex Tracks identiﬁed as coming from the
+same generated interaction contribute at least 70% of the
+total weight of tracks ﬁtted to the reconstructed vertex.
+• Merged vertex No single generated interaction con-
+tributes more than 70% of track weight to the recon-
+structed vertex. Two or more generated interactions con-
+tribute to the reconstructed vertex.
+• Split vertex The generated interaction with the largest
+contribution to the reconstructed vertex is also the largest
+contributor to one or more other reconstructed vertices.
+In this case, the reconstructed vertex with the highest
+fraction of track/Sigma1p
+2
+T is categorised as matched or merged
+and the vertex or vertices with lower/Sigma1p2
+T are categorised
+as split.
+• Fake vertex Fake tracks contribute more weight to the
+reconstructed vertex than any generated interaction.
+This classiﬁcation schema allows detailed studies of ver-
+tex reconstruction in a pile-up environment. The effects of
+splitting and merging of primary vertices as well as the inﬂu-
+ence of these effects on the vertex reconstruction efﬁciency
+and primary vertex resolution can be studied. This schema
+also allows the reconstructed vertices to be associated either
+with the primary hard-scatter pp collision or with pile-up
+interactions.
+When studying the hard-scatter pp collisions, the recon-
+structed events are classiﬁed based on the following mutually
+exclusive deﬁnitions:
+• Clean The event contains one matched vertex corre-
+sponding to the hard-scatter interaction. The hard-scatter
+interaction does not contribute more than 50% of the
+accumulated track weight to any other vertex.
+• Low pile-up contamination The event contains one and
+only one merged vertex where the hard-scatter interac-
+tion contributes more than 50% of the accumulated track
+weight.
+• High pile-up contamination The event does not contain
+any vertex where the hard-scatter interaction contributes
+more than 50% of the accumulated track weight. It does
+however contain at least one merged vertex in which the
+hard-scatter interaction contributes between 1 and 50%
+of the accumulated track weight.
+• Split The event contains at least two merged vertices in
+which the hard-scatter interaction contributes more than
+50% of the accumulated track weight.
+• Inefﬁcient The event does not contain any vertex where
+the hard-scatter interaction contributes more than 1% of
+the accumulated track weight.
+In the current analysis, all categories except “Inefﬁcient” are
+considered as successful in reconstructing the hard-scatter
+primary vertex. All of these categories thus contribute to the
+calculation of total vertex reconstruction efﬁciency.
+5.2 Vertex reconstruction and selection efﬁciency for
+hard-scatter interactions
+The efﬁciency to reconstruct and also to correctly identify
+the hard-scatter primary vertex is used to quantify the impact
+of pile-up contamination. Assuming that the hard-scatter pri-
+mary vertex produces reconstructed tracks, the efﬁciency of
+hard-scatter primary vertex reconstruction is predicted to be
+larger than 99%. This includes interactions with low or high
+pile-up contamination, and split event categories as deﬁned in
+Sect. 5.1. The corresponding contributions to the reconstruc-
+tion efﬁciencies as a function of simulated μ are shown in
+Fig. 8 for the processes Z → μμ, H → γγ and t ¯t → l + X
+(t ¯t decays that include a lepton).
+The fraction of events with low and high pile-up con-
+tamination increases with growing μ, while the fraction of
+clean events decreases with μ. The fraction of events con-
+taining split vertices remains negligible for allμ.F o rμ = 38
+the fraction of high pile-up contamination vertices is 8% for
+Z → μμ events, 5% for H →
+γγ events, and 2% for t ¯t
+events.
+The effect of pile-up contamination on the reconstruction
+efﬁciency for the hard-scatter primary vertex clearly depends
+on the nature of the physics process under study. The hard-
+scatter interactions corresponding to Z-boson production
+leave on average fewer charged particles within the detector
+acceptance than those corresponding tot ¯t production. Hard-
+scatter vertices from Z-boson production can therefore be
+expected to be more affected by pile-up contamination than
+those from t ¯t events. Indeed, Fig. 8 shows that the low and
+high pile-up contamination fractions are always higher for
+Z → μμ than for t ¯t events.
+Pile-up tracks contaminating reconstructed hard-scatter
+vertices lead to a degradation of position resolution. Figure9
+shows the distribution of residuals of the primary vertex posi-
+t i o ni naZ → μμ sample for different classes.
+The residuals are calculated as the distance between the
+position of the hard-scatter primary vertex at generator level
+and its reconstructed position obtained from the primary ver-
+tex reconstruction as described in Sect.4.2. Only the vertices
+matched according to the deﬁnition presented in Sect. 5.1
+are taken into account. The results are obtained using the
+MC simulation including detector acceptance without fur-
+ther selection criteria. The categories of clean reconstruc-
+tion, low and high pile-up contamination show progressively
+degrading resolution. This effect is visibly largest for the
+z-coordinate, because the transverse coordinates are con-
+strained by the beam-spot width. The events categorised as
+123
+
+===== PAGE 12 =====
+332 Page 12 of 35 Eur. Phys. J. C (2017) 77 :332
+ertices reconstructed
+07 5
+0.8
+0.85
+0.9
+0.95
+1
+γγ→H
+ATLAS
+ = 8 TeVsSimulation 
+μ
+0 5 10 15 20 25 30 35 40
+Fraction of v
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ertices reconstructed
+07 5
+0.8
+0.85
+0.9
+0.95
+1
+tt
+ATLAS
+ = 8 TeVsSimulation 
+μ
+0 5 10 15 20 25 30 35 40
+Fraction of v
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ertices reconstructed
+07 5
+0.8
+0.85
+0.9
+0.95
+1
+μμ→Z
+ATLAS
+ = 8 TeVsSimulation 
+μ
+0 5 10 15 20 25 30 35 40
+Fraction of v
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+Contributions:
+A) Clean
+B) Low pile-up contamination
+C) High pile-up contamination
+Sum of contributions:
+(A)+(B)
+(A)+(B)+(C)
+Fig. 8 Contributions to the predicted primary vertex reconstruction
+efﬁciency as a function of the average number of interactions per bunch
+crossing, μ. The mutually exclusive categories of events are deﬁned
+in Sect. 5.1.T h e black circles show the contribution to the efﬁciency
+from events categorised as clean, and the blue and red circles show
+the contributions from events with low and high pile-up contamination
+respectively. The open crosses show the sum of the contributions from
+events that are clean and those with low pile-up contamination; theﬁlled
+crosses show the sum of the contributions from all categories and rep-
+resent the overall efﬁciency. The hard-scatter processes considered are
+Higgs-boson decay into γγ, t ¯t production with a lepton in the decay,
+and Z-boson decay into μμ
+containing split vertices do not suffer from a degraded reso-
+lution compared to the clean event category.
+In addition to the degradation of the spatial resolution,
+the presence of signiﬁcant pile-up makes it more difﬁcult to
+correctly identify the hard-scatter primary vertex among the
+many pile-up vertices reconstructed in most bunch crossings.
+For most hard-scatter physics processes, it is effective to iden-
+tify the hard-scatter primary vertex as the primary vertex with
+the highest sum of the squared transverse momenta of con-
+tributing tracks:∑p
+2
+T. This criterion is based on the assump-
+tion that the charged particles produced in hard-scatter inter-
+actions have on average a harder transverse momentum spec-
+trum than those produced in pile-up collisions. The efﬁciency
+of the hard-scatter identiﬁcation using this criterion depends
+on the kinematics of the hard-scatter process. Distributions
+of
+√∑p2
+T of the tracks in various hard-scatter processes are
+s h o w ni nF i g .10, including H → γγ, Z → μμ, and t ¯t
+decays in which a ﬁlter has been applied to select decays
+with leptons. These are compared to a minimum-bias sam-
+ple, which can be taken to have the same
+√
+∑p2
+T distribution
+as pile-up.
+123
+
+===== PAGE 13 =====
+Eur. Phys. J. C (2017) 77 :332 Page 13 of 35 332
+Fig. 9 The residual
+distributions in a x and b z
+coordinates for reconstructed
+primary vertices in a sample of
+simulated Z → μμ events for
+the four classes of events
+deﬁned in Sect. 5.1.T h e
+distributions are normalised to
+the same area. The RMS values
+of these residuals are provided
+for each class
+x [mm]Δ
+-0.06 -0.04 -0.02 0 0.02 0.04 0.06
+Arbitrary units
+0
+Clean
+m)μ(RMS 11 
+Low pile-up
+m)μ(RMS 12 
+High pile-up 
+m)μ(RMS 15 
+Split
+m)μ(RMS 11 
+ATLAS
+Simulation
+μμ→Z
+(a)
+z [mm]Δ
+-0.6 -0.4 -0.2 0 0.2 0.4 0.6
+Arbitrary units
+Clean
+(RMS 0.05 mm)
+Low pile-up
+(RMS 0.13 mm)
+High pile-up
+(RMS 0.29 mm)
+Split
+(RMS 0.06 mm)
+ATLAS
+Simulation
+μμ→Z
+(b)
+ [GeV]2
+T pΣ
+01 02 03 04 05 06 07 0
+Arbitrary units Minimum bias
+μμ→Z 
+tt
+γγ→H
+ATLAS
+Simulation
+within acceptance
+Fig. 10 The distributions of the sum of the squared transverse momen-
+tum for tracks from primary vertices, shown for simulated hard-scatter
+processes and a minimum-bias sample. In the case of the Z → μμ
+process, only events with at least two muons withp
+T > 15 GeV recon-
+structed within the ATLAS inner detector acceptance are shown. The
+t ¯t process is ﬁltered to select decays with leptons. The distributions are
+normalised to the same area
+In the case of Z → μμ and t ¯t, there is signiﬁcant trans-
+verse momentum carried by charged particles even in the case
+of inclusive samples. In contrast, in the case of H → γγ
+events, most of the transverse momentum is carried by the
+photons from the Higgs boson decay. The remaining charged
+particles in the acceptance of the detector are produced in the
+underlying event and have a much softer p
+T spectrum. The
+efﬁciency to correctly select the hard-scatter vertex among
+many pile-up vertices by choosing the vertex with the high-
+est ∑p
+2
+T is thus inferior for H → γγ decays compared to
+most other hard-scatter processes. A more efﬁcient method
+for choosing the primary vertex in the case of H → γγ
+decay is described in Ref. [27].
+For hard-scatter processes, the primary vertex selection
+efﬁciency is deﬁned as the fraction of events in which the
+highest ∑p2
+T vertex is the vertex associated with the MC
+simulation hard scatter. The MC hard scatter is taken as
+the vertex with the highest weight of hard-scatter tracks, as
+described in Sect. 5.1. The efﬁciency to reconstruct and then
+select the hard-scatter primary vertex is shown as a func-
+tion of μ in Fig. 11a for different physics processes. The
+highest efﬁciency is achieved for t ¯t events for all values
+of μ. This observation is attributed to the high multiplic-
+ity of high transverse momentum tracks produced in top-
+quark decays. The selection efﬁciency forZ → μμ events is
+greatly improved when additional criteria reﬂecting the kine-
+matics of the physics process are imposed. Figure11bs h o w s
+the selection efﬁciencies after requiring at least two muons
+with p
+T > 15 GeV to be reconstructed within the ATLAS
+inner detector acceptance. The t ¯t sample shows a selection
+efﬁciency above 99% with or without the muon acceptance
+requirement (the points are overlapping in the ﬁgure). A clear
+selection efﬁciency improvement for the Z → μμ process
+is visible when muons are reconstructed in the acceptance,
+resulting in at most 2% of events with a wrongly selected
+hard-scattering primary vertex for μ of 38. These losses are
+primarily due to the small but non-zero probability that the∑p2
+T of tracks from one of the inelastic interactions in the
+minimum-bias sample is larger than in theZ → μμ interac-
+tion, as illustrated in Fig. 10. A more quantitative prediction
+of this loss is given in Sect. 8.
+6 Primary vertices in minimum-bias data
+This section presents a study of single primary vertex recon-
+struction in soft interactions which are characteristic of the
+123
+
+===== PAGE 14 =====
+332 Page 14 of 35 Eur. Phys. J. C (2017) 77 :332
+μ
+0 5 10 15 20 25 30 35 40
+Reconstruction + selection efficiency0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+ATLAS
+Simulation
+=8 TeVs
+tt
+μμ→Z
+γγ→H
+(a)
+μ
+0 5 10 15 20 25 30 35 40
+Reconstruction + selection efficiency0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+tt
+ within acceptancett
+μμ→Z
+ within acceptanceμμ→Z
+ATLAS
+Simulation
+=8 TeVs
+(b)
+Fig. 11 Efﬁciency to reconstruct and then select the hard-scatter pri-
+mary vertex as a function of the average number of pp interactions
+per bunch crossing, μ, for different physics processes: a all recon-
+structed events; b events with at least two muons with pT > 15 GeV
+reconstructed within the ATLAS inner detector acceptance. The points
+showing the t ¯t efﬁciency with and without acceptance criteria overlap
+Table 4 Vertex reconstruction
+efﬁciencies, at various selection
+levels, for non-diffractive,
+single-diffractive, and
+double-diffractive interactions
+in PYTHIA8 minimum-bias
+simulation
+Non-diffractive (%) Single-diffractive (%) Double-diffractive (%)
+Efﬁciency without any
+selection cuts
+92.9 45.7 49.0
+Efﬁciency requiring at least
+two charged particles with
+pT > 400 MeV and
+|η| < 2.5
+96.1 92.6 90.2
+Efﬁciency requiring at least
+two charged particles
+reconstructed in the inner
+detector
+99.6 99.5 99.3
+pile-up events superimposed on the hard-scatter event of
+interest. This study is based on a minimum-bias data sam-
+ple with a single primary vertex reconstructed in each event
+and corresponding to an average number of interactions per
+bunch crossingμ = 0.01. These data are compared to a sim-
+ulation of inelastic interactions using the PYTHIA8 event
+generator.
+The reconstruction efﬁciency for primary vertices pro-
+duced in soft pp interactions varies depending on the nature
+of the soft interaction process. If the majority of ﬁnal-state
+charged particles are produced outside the detector accep-
+tance, the reconstruction of the corresponding primary ver-
+tex may be unsuccessful. The vertex reconstruction efﬁciency
+may be further reduced by the inefﬁcient reconstruction of
+very low p
+T trajectories, characteristic of these soft inter-
+actions. Table 4 shows the efﬁciencies for reconstructing
+the primary vertex in events from a minimum-bias sample
+with only single interactions. These efﬁciencies are obtained
+from PYTHIA8 MC simulation separately for the three pro-
+cesses which produce minimum-bias triggers in the experi-
+ment, namely non-diffractive, single-diffractive, and double-
+diffractive interactions. Without selection cuts the recon-
+struction efﬁciency depends strongly on the process: increas-
+ing from 46% for single-diffractive to 93% for non-diffractive
+interactions. Taking into account the relative contributions
+of each process to inelastic interactions, the average efﬁ-
+ciency is estimated to be about 80%. The difference in the
+efﬁciencies estimated for the different processes is primar-
+ily due to the different distributions of transverse momenta
+and pseudorapidities of charged particles produced in each
+process. In diffractive processes, the charged particles are
+mostly produced at large pseudorapidities, often outside the
+acceptance of the ATLAS tracking system. The very soft
+transverse momentum spectrum of these charged particles is
+an additional complication in their reconstruction. As shown
+in the second row of Table 4, basic geometrical and kine-
+matic requirements on the generated particles remove most
+of the differences in efﬁciency among the non-diffractive,
+single- and double-diffractive processes. The overall vertex
+reconstruction efﬁciency increases to 95% in this case. The
+123
+
+===== PAGE 15 =====
+Eur. Phys. J. C (2017) 77 :332 Page 15 of 35 332
+Vertices
+0.02
+0.04
+0.06
+0.08
+0.1
+610×
+Minimum Bias
+Data
+Simulation
+ATLAS
+ = 8 TeVs
+Number of tracks
+10 20 30 40 50 60 70
+(a)
+Tracks / 0.1 GeV
+210
+310
+410
+510
+610
+Minimum Bias
+Data
+Simulation
+ATLAS
+ = 8 TeVs
+ [GeV]Tp
+123456789
+(b)
+Tracks / 0.2
+0.5
+0.55
+0.6
+0.65
+0.7
+610×
+Minimum Bias
+Data
+Simulation
+ATLAS
+ = 8 TeVs
+η
+2− 1.5− 1− 0.5− 0 0.5 1 1.5 2
+(c)
+Vertices / 0.1 GeV
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+610×
+Minimum Bias
+Data
+Simulation
+ATLAS
+ = 8 TeVs
+ [GeV]2
+T
+ p∑
+2 4 6 8 10 12 14 16
+(d)
+Fig. 12 Distributions of a number of tracks per vertex, b track trans-
+verse momentum pT, c track pseudorapidity η and d
+√
+/Sigma1p2
+T of the
+tracks associated with each vertex. Distributions are shown for tracks
+associated with primary vertices in low μ minimum-bias data and in
+simulation samples
+remaining differences in efﬁciencies are mostly due to the
+dependence of the track reconstruction efﬁciency on η and
+pT. The third row of Table 4 shows that the primary vertex
+reconstruction efﬁciency further increases to about 99% for
+all processes after requiring that at least two tracks are recon-
+structed within the inner detector, in addition to the require-
+ments listed in the second row. The intrinsic efﬁciency of the
+ATLAS vertex reconstruction algorithm is thus expected to
+be very high if at least two charged particles are produced
+within the inner detector acceptance.
+Figure 12 compares the simulation to data for the distri-
+butions of the number of ﬁtted tracks, the track p
+T, track η,
+and
+√
+/Sigma1p2
+T of tracks in primary vertices. The ﬁgure illus-
+trates how soft the pile-up interactions are: only 0.4% of
+the tracks belonging to a reconstructed primary vertex have
+p
+T > 4 GeV and only 1.2% of the reconstructed vertices have
+a total
+√
+/Sigma1p2
+T above 10 GeV . There are small discrepancies
+between simulation and data at very high values in the track
+pT spectrum and at highη. As described in Refs. [4,10], these
+are due to deﬁciencies in the physics modelling of these dis-
+tributions and not related to the primary vertex reconstruction
+algorithm. The dominant sources of systematic uncertainties
+relevant to the comparisons in Fig. 12 are the knowledge
+of the beam-spot size, the modelling of fake tracks, and the
+dependence of the track reconstruction efﬁciency on p
+T, η
+and μ. These sources are not included in the error bars of the
+corresponding plots, but contribute to the observed discrep-
+ancies between data and simulation.
+The position resolution of single vertices is estimated
+either from MC simulation or from data using the split-vertex
+123
+
+===== PAGE 16 =====
+332 Page 16 of 35 Eur. Phys. J. C (2017) 77 :332
+m]μTransverse resolution [
+10
+100
+ATLAS
+ = 8 TeVs
+Data (SVM)
+MC (SVM)
+MC (truth without B constraint)
+MC (truth with B constraint)
+Data / MC0.7
+0.8
+0.91
+1.1
+1.21.3
+Number of tracks
+0 1 02 03 04 05 06 07 0
+(a)
+m]μLongitudinal resolution [
+10
+100
+ATLAS
+ = 8 TeVs
+Data (SVM)
+MC (SVM)
+MC (truth without B constraint)
+MC (truth with B constraint)
+Data / MC0.7
+0.8
+0.91
+1.1
+1.21.3
+Number of tracks
+0 1 02 03 04 05 06 07 0
+(b)
+Fig. 13 Resolution of the primary vertex position in a x and b z as
+function of the number of ﬁtted tracks, estimated using the split-vertex
+method (SVM) for minimum-bias data ( black circles) and MC simu-
+lation (blue squares). Also shown is the resolution obtained from the
+difference between the generator-level information and reconstructed
+primary vertex position in MC simulation (labeled “truth”), with and
+without the beam-spot constraint (pink and red triangles respectively).
+The bottom panel in each plot shows the ratio of the resolution found
+using the split-vertex method in data to that obtained using the MC
+generator-level information without the beam-spot constraint
+method (SVM). In this method the n tracks associated to a
+primary vertex are ordered in descending order of their trans-
+verse momenta. The tracks are then split into two groups, one
+with even-ranking tracks and one with odd-ranking tracks,
+such that both groups have, on average, the same number of
+tracks, n/2. The vertex ﬁt is applied independently to each
+group. The spatial separation between two resulting vertices
+gives a measurement of the intrinsic resolution for a vertex
+with n/2 tracks. The two split vertices must be reconstructed
+independently and therefore no beam-spot constraint is used
+during the ﬁt.
+Figure 13 shows the resolution in data calculated with the
+split-vertex method as a function of the number of tracks per
+vertex.
+The split-vertex method is also used to calculate the res-
+olution for the minimum-bias simulation sample. There is
+good agreement between the data and simulation distribu-
+tions, showing that the reconstructed track parameters used
+in the vertex reconstruction are well modelled in the simula-
+tion. Figure 13 also shows the primary vertex resolution cal-
+culated as the difference between the true and reconstructed
+vertex position in the MC simulation. The good agreement
+between the split-vertex method and the resolution calculated
+with the MC generator-level information gives conﬁdence
+that the split-vertex method provides a reliable measurement
+of the primary vertex resolution. At very low track multi-
+plicity the result of the split-vertex method deviates slightly
+from the resolution obtained using the generator-level infor-
+mation. Here the resolution obtained from the generator-level
+information beneﬁts from the perfect knowledge of vertex
+position decreasing the resolution spread, compared to the
+resolution obtained from the two reconstructed vertices in
+the split-vertex method. When the beam-spot constraint is
+included the resolution improves considerably in the trans-
+verse direction, staying below 20 µm for the full range of μ
+studied. The longitudinal resolution reaches 30 µma th i g h
+track multiplicity. Figure13 also shows the resolution calcu-
+lated using MC generator-level information with and without
+beam-spot constraint.
+7 Performance in the high pile-up regime
+In this section, the study of the primary vertex reconstruction
+performance at lowμ is extended to the high pile-up regime.
+A dedicated data sample of minimum-bias events collected
+with values of μ between 55 and 72 was used to study the
+performance of the primary vertex reconstruction in the pres-
+ence of multiple vertices. The simulation samples spanned
+values of μ from 0 to 22, typical of the standard 2012 data-
+taking conditions, and from 38 to 72 to emulate the high μ
+data sample.
+The efﬁciency of primary vertex reconstruction decreases
+with increasing pile-up. In addition to the inefﬁciencies
+affecting single vertex reconstruction described in Sect. 6,
+effects related to the merging of adjacent primary vertices
+start to play a signiﬁcant role as pile-up increases. Figure14a
+shows the average number of vertices lost due to merging and
+to other effects, such as track reconstruction and detector
+acceptance.
+123
+
+===== PAGE 17 =====
+Eur. Phys. J. C (2017) 77 :332 Page 17 of 35 332
+μ
+10 20 30 40 50 60 70
+〉lostN〈
+0
+5
+10
+15
+20
+25
+30
+35
+40
+ATLAS
+Simulation
+=8 TeVs
+Vertices lost to merging
+Vertices lost to other inefficiencies
+(a)
+μ
+0 1 02 03 04 05 06 07 0
+〉vtxN〈
+0
+10
+20
+30
+40
+50
+60
+70
+80
+Matched vertex
+Merged vertex
+Vertex
+ATLAS
+Simulation
+=8 TeVs
+with charged
+particles in ID
+acceptance
+(b)
+Fig. 14 a Average number of generated primary vertices with at least
+two charged particles within the detector acceptance, that are not recon-
+structed due to merging (blue) and due to detector inefﬁciencies (red),
+as a function of the average number of interactions per bunch crossing,
+μ. b Average number of reconstructed primary vertices of each truth-
+matching category compared to the total number of generated vertices
+with two particles within the detector acceptance, as a function of the
+average number of interactions per bunch crossing. The available MC
+simulation samples were generated with values ofμ below 22 and above
+38
+Merging has a small effect on overall vertex reconstruction
+efﬁciency for μ values below 20, but it is a dominant effect
+for μ values above 40. Figure14b shows the average number
+of expected reconstructed primary vertices as a function of
+μ, for the two main classes of vertices deﬁned in Sect. 5,
+matched vertices, consisting of tracks mostly coming from a
+single interaction, and merged vertices. For the highest val-
+ues ofμ around 70, where one expects about 60 primary ver-
+tices with at least two charged particles withp
+T > 400 MeV
+within the detector acceptance, a total of 30 primary vertices
+are expected to be reconstructed on average, out of which
+about 10 are merged vertices. About 20 additional primary
+vertices are lost due to merging and about 10 due to other inef-
+ﬁciencies as shown in Fig.14a. Vertices classiﬁed as “Fake”
+or “Split”, according to the deﬁnitions presented in Sect.5.1,
+are not shown in Fig. 14b, since they represent a very small
+contribution of at most 2% of the total number of recon-
+structed vertices at μ = 70.
+The main observables relevant to the primary vertex recon-
+struction performance are in reasonable agreement between
+data and simulation with only small discrepancies attributed
+to the physics modelling of soft interactions (see Fig. 12).
+To quantify the agreement between data and simulation at
+high values of μ, the same observables are studied and the
+ratios of data to simulation are compared between low and
+high values of μ. This is shown in Fig. 15 for the track p
+T,
+the number of tracks per primary vertex, and the
+√
+/Sigma1p2
+T per
+primary vertex. The data to simulation ratios are overlaid for
+low and high μ samples in the upper panels. The lower pan-
+els show the double ratios of data to simulation between high
+and low values of μ.
+The double ratios agree with unity, showing that there
+is similar agreement between data and simulation at low
+and high μ. In the case of track multiplicity, the agreement
+between data and simulation for high track multiplicities is
+somewhat better at highμ than at lowμ. This arises possibly
+because discrepancies in physics modelling are diluted by
+the contributions from merged vertices as μ increases.
+8 Efﬁciency of vertex reconstruction as a function
+of pile-up
+An analytical model to predict the number of reconstructed
+vertices as a function of event multiplicity has been devel-
+oped. This model is based on the measured primary vertex
+reconstruction efﬁciency and on the the probability of vertex
+merging.
+8.1 Modelling the number of reconstructed vertices
+In the ideal case of perfect reconstruction efﬁciency, the num-
+ber of reconstructed vertices would scale linearly with μ.I n
+reality there are a number of effects that cause the relation to
+be non-linear. As discussed in Sect.7, one of the most impor-
+tant effects is vertex merging, when two or more vertices are
+merged and reconstructed as one vertex. Other effects include
+reconstruction inefﬁciencies, detector acceptance, and, at a
+small level for low track multiplicities, non-collision back-
+ground. As already mentioned, the impact of fake and split
+vertices is negligible.
+123
+
+===== PAGE 18 =====
+332 Page 18 of 35 Eur. Phys. J. C (2017) 77 :332
+Ratio data/MC0.5
+1
+1.5
+2
+ data/MC ratioμLow 
+ data/MC ratioμHigh 
+ATLAS
+ = 8 TeVs
+]GeV[Tp
+123456789 1 0
+Double ratio
+0.5
+1
+1.5
+ ratioμ ratio / Low μHigh 
+(a)
+Ratio data/MC0.5
+1
+1.5
+2
+ data/MC ratioμLow 
+ data/MC ratioμHigh 
+ATLAS
+ = 8 TeVs
+Number of tracks
+0 1 02 03 04 05 06 07 0
+Double ratio
+0.5
+1
+1.5
+ ratioμ ratio / Low μHigh 
+(b)
+Ratio data/MC0.5
+1
+1.5
+2
+ data/MC ratioμLow 
+ data/MC ratioμHigh 
+ATLAS
+ = 8 TeVs
+]GeV[2
+T pΣ
+02468 1 0 1 2 1 4 1 6
+Double ratio
+0.5
+1
+1.5
+ ratioμ ratio / Low μHigh 
+(c)
+Fig. 15 Ratios of data to MC simulation for observables relevant to the
+primary vertex reconstruction performance:a track transverse momen-
+tum pT, b number of tracks per vertex, c
+√
+/Sigma1p2
+T of the tracks in each
+vertex. Error bars represent only statistical uncertainties. The ratios are
+shown for low (0–1) and high (55–72) values of μ.T h ebottom panel
+in each ﬁgure shows the double ratio of high to low μ
+The average number of reconstructed vertices,⟨nVer ti ces⟩,
+can be parameterised as a function of μ as follows:
+⟨nVertices ⟩= p0 + ϵμ − F(ϵμ, pmerge ), (6)
+where ϵ is the efﬁciency of the vertex reconstruction algo-
+rithm before including vertex merging effects, and p0
+accounts for any small offset arising from non-collision back-
+ground. Based on the results shown in Sects. 5, 6, and 7,t h e
+value of ϵ is considered to be independent of μ. The quan-
+tity ϵμ represents the average number of vertices that would
+be reconstructed in the absence of any pile-up induced ver-
+tex merging effects. This quantity is referred to, hereafter,
+as the number of reconstructible vertices. In this study the
+ z [mm]Δ
+-20 -15 -10 -5 0 5 10 15 20
+Arbitrary units
+ = 8 TeVs
+Data
+Simulation
+ATLAS
+Fig. 16 Distribution of the longitudinal separation between pairs of
+adjacent primary vertices in a typical Run 1 minimum-bias data sample
+and in MC simulation
+parameter ϵ is obtained from a ﬁt to the MC simulation. The
+function F(ϵμ, pmerge ) represents the average number of
+vertices lost due to merging effects, taking into account the
+number of reconstructible vertices and the vertex merging
+probability, p
+merge . These effects are primarily responsible
+for the non-linear dependence of the number of reconstructed
+vertices as a function ofμ. The evaluation of this function is
+described in the next section.
+The proposed model only describes the primary vertex
+reconstruction and does not account for pile-up effects in the
+reconstruction of tracks. The model assumes that the track
+reconstruction efﬁciency and the corresponding fake rate are
+constant for the studied range of pile-up values.
+8.2 Determination of correction for merging of primary
+vertices
+The effects of vertex merging are studied using the longitudi-
+nal separation, /Delta1z, between pairs of adjacent reconstructed
+primary vertices. The distribution of /Delta1z in a typical Run 1
+minimum-bias data sample is shown in Fig.16 together with
+the prediction from simulation.
+At low values of /Delta1z close-by vertices can no longer be
+separated and are reconstructed as a single vertex. In Fig.16,
+this effect is visible as a steep decrease of the number of
+reconstructed vertices at values of/Delta1z below a few mm. The
+small peak around /Delta1z = 0 is due to the effect of splitting
+of primary vertices: in this case, close-by vertices are recon-
+structed with longitudinal separations well below the typical
+primary vertex resolution. The distribution of /Delta1z measured
+123
+
+===== PAGE 19 =====
+Eur. Phys. J. C (2017) 77 :332 Page 19 of 35 332
+in a low pile-up data sample (μ below 10) is used to derive a
+two-vertex merging probability density functionpmerge (/Delta1z).
+This function can then be combined with a given beam-spot
+shape to derive an analytical relationship between the num-
+ber of reconstructible vertices per event, ϵμ, and the aver-
+age number of reconstructed vertices,⟨nVertices ⟩. Using this
+approach, the effect of different beam-spot sizes on the merg-
+ing probability can then also be evaluated.
+The analytical function is derived as follows:
+1. The /Delta1z distribution for pairs of adjacent vertices recon-
+structed in low pile-up data is ﬁtted with a Gaussian func-
+tion in a range where the merging of vertices is negligible:
+|/Delta1z| > 30 mm. The Gaussian has an expected width of√
+2σzL, where σzL is the longitudinal beam-spot RMS,
+assuming the beam spot has a Gaussian shape distribution
+along the z-axis.
+2. A merging probability density function, pmerge (/Delta1z),i s
+constructed by taking the difference between the dis-
+tribution of /Delta1z observed in data in the range |/Delta1z| <
+30 mm and the prediction obtained from the Gaussian
+ﬁt, fexp (/Delta1z). This difference is then normalised to the
+prediction probability density function:
+pmerge (/Delta1z) = fexp(/Delta1z) − fobs(/Delta1z)
+fexp(/Delta1z) . (7)
+Here, fobs(/Delta1z) represents the observed probability den-
+sity function of /Delta1z in the range |/Delta1z| < 30 mm. An
+example of the observed distribution fobs(/Delta1z) is shown
+in Fig. 16.
+The pmerge (/Delta1z) PDF is parameterised using a step func-
+tion convolved with a Gaussian function with parameters
+ﬁt to the observed distribution. The p
+merge (/Delta1z) PDF is
+derived in the low pile-up regime, where only the merg-
+ing of adjacent pairs of vertices is assumed to be signiﬁ-
+cant. The possible effects of merging more than two pp
+collisions into a single reconstructed primary vertex are
+assumed to be negligible in this low pile-up regime.
+3. The total merging probability p
+merge for two independent
+reconstructible vertices is computed from the product of
+the merging PDF and the expectedfexp(/Delta1z) distribution:
+pmerge =
+∫
+fexp (/Delta1z) pmerge (/Delta1z)d(/Delta1z). (8)
+It is assumed that the merging PDF for a pair of adjacent
+vertices pmerge (/Delta1z) is independent of the beam condi-
+tions. The overall probability of merging two random
+reconstructible vertices depends on the particular beam-
+spot distribution, and therefore on f
+exp (/Delta1z).
+4. The total number of vertices lost due to merging effects
+is given by:
+F(ϵμ, pmerge ) = ϵμ −
+∑
+NVertices
+P(NVertices ,
+ϵμ)℘merge (NVertices , pmerge ), (9)
+where P(NVer ti ces,ϵμ )is a PDF, representing the proba-
+bility of reconstructingNVertices vertices givenϵμ poten-
+tially reconstructible vertices. Since the number of visible
+pp collisions varies according to Poisson with the mean
+of μ, this function P(NVertices ,ϵμ ) is a Poisson with a
+mean ϵμ.
+The function ℘merge (NVertices , pmerge ) represents the
+number of reconstructed vertices after taking into account
+merging effects, for a number, N
+Vertices , of vertices
+which would be reconstructed in the absence of any merg-
+ing. This number is deﬁned as follows:
+℘merge (NVertices , pmerge ) =
+NVertices∑
+i=1
+pi, (10)
+where pi = pi−1(1 − pi−1 pmerge ), i ≥ 2 and p1 = 1.
+The pi represents the probability to reconstructi vertices
+in the presence of merging effects.
+8.3 Comparison of data to simulation
+To quantitatively compare data with simulation, additional
+effects and systematic uncertainties need to be taken into
+account. To account for the difference in visible cross sec-
+tion between data and simulation discussed in Sect. 3,t h e
+parameter ϵ, extracted from the simulation ﬁt, is scaled by
+a factor 1/1.11, which is equivalent to a scaling of μ.A6 %
+uncertainty is assigned to this procedure, where the domi-
+nant contribution comes from the uncertainty in the measured
+value of μ.
+The impact of possible discrepancies in longitudinal
+beam-spot size between data and MC simulation was also
+assessed since the observed data values represent an average
+over a range of different and non-uniform experimental val-
+ues. The MC simulation samples used in this study were gen-
+erated with a beam-spot size equal to the average observed in
+data. The effect of a change in beam-spot size on the merging
+probability can be evaluated with Eq. (8). A small additional
+uncertainty is assigned to account for the variations of up to
+±2 mm in beam-spot size in data.
+Aﬁ tu s i n gE q .(6) was performed on MC simulation,
+allowing parameters p
+0,ϵ, and pmerge to vary. The efﬁciency,
+ϵ, and merging probability, pmerge , are extracted from the
+ﬁt to simulation and found to be, 0 .618 ± 0.004(stat .) ±
+0.037(syst .) and 0.0323 ± 0.0002(stat .) ± 0.0013(syst .)
+respectively, after correctingϵ with theμ-rescaling factor and
+taking into account the systematic uncertainties, as described
+above. The ﬁt to MC simulation is shown in Fig. 17a.
+123
+
+===== PAGE 20 =====
+332 Page 20 of 35 Eur. Phys. J. C (2017) 77 :332
+ >Vertices< n
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+ATLAS
+Simulation
+Simulation
+Simulation Fit
+Lost vertices (merging)
+μ
+0 2 04 06 08 0 1 0 0
+MC/Fit0.8
+1
+1.2
+(a)
+ >Vertices< n
+5
+10
+15
+20
+25
+30 Data 2012
+Simulation Fit
+Beam-spot length uncertainty
+Total uncertainty
+ATLAS
+ = 8 TeVs
+μ
+0 1 02 03 04 05 06 07 0
+Data/Fit
+0.9
+0.95
+1
+1.05
+1.1
+(b)
+Fig. 17 Distribution of the average number of reconstructed vertices
+as a function of the number of interactions per bunch crossing,μ. a MC
+simulation of minimum-bias events (triangles) and the analytical func-
+tion in Eq. (6) ﬁt to the simulation (solid line). The dashed curve shows
+the average estimated number of vertices lost to merging.b Minimum-
+bias data (black points). The curve represents the result of the ﬁt to the
+simulation in a after applying the μ-rescaling correction described in
+the text. The inner dark (blue) band shows the systematic uncertainty
+in the ﬁt from the beam-spot length, while the outer light (green)b a n d
+shows the total uncertainty in the ﬁt. The panels at the bottom of each
+ﬁgure represent the respective ratios of simulationa or data b to the ﬁts
+described in the text
+Data are compared to Eq. ( 6) with the parameters ϵ and
+pmerge ﬁxed to the values from the ﬁt to simulation, and
+with the small value of p0 extracted from a ﬁt to the data.
+The p0 parameter is irrelevant in MC simulation, which does
+not account for the small non-collision background present
+in data at low values of μ. The result is shown in Fig. 17b.
+The uncertainty bands in Fig. 17b show the beam-spot size
+uncertainty and the total uncertainty, which is computed by
+summing in quadrature the beam-spot size and the dominant
+μ-rescaling uncertainty terms.
+The overall agreement between the data and the prediction
+is within 3%, with the largest observed discrepancies well
+within the systematic uncertainty bands.
+This comparison shows that the simulation describes the
+primary vertex reconstruction efﬁciency dependence on μ
+accurately. Vertex merging is the effect that has the largest
+impact on primary vertex reconstruction efﬁciency as μ
+increases. The analytical description proposed to describe
+this effect is validated by the measurements based on
+minimum-bias data. This conﬁrms that the main factors
+related to the vertex reconstruction in pile-up conditions are
+correctly taken into account and that the remaining effects
+related to the presence of fake and split vertices are negligi-
+ble, as expected.
+The predicted average number of reconstructed vertices,
+as obtained from data for a given value ofμ in Fig. 17b, can
+be used to estimate the primary vertex selection efﬁciency for
+a speciﬁc hard-scatter process. This is done by combining the
+prediction with the simulated distributions of track
+√
+∑p2
+T
+for this process and for minimum-bias events, as shown in
+Fig. 10. For the highest μ value (μ = 40) studied in terms
+of hard-scatter primary vertex reconstruction and selection
+efﬁciencies in Sect. 5,F i g .17b predicts an average number
+of reconstructed vertices from pile-up interactions of 17± 1.
+Of all the reconstructed vertices, the one with highest ∑p
+2
+T
+is selected as the hard-scatter vertex with a very high efﬁ-
+ciency for most processes. To estimate the small probability
+that a pile-up vertex is selected by this procedure instead, the
+simulated distribution of track
+√∑p2
+T for inelastic interac-
+tions in Fig.10 is compared to the much harder one expected
+for the hard-scatter process of interest. For Z → μμ events,
+a randomly selected point on the ∑p2
+T distribution is found
+to be lower than the largest of the values found for 17 ran-
+dom samplings of the distribution for minimum-bias events
+in approximately 4% of the cases. This estimate, which is par-
+tially based on data but does not account for all experimental
+effects such as the distortion of the track ∑p
+2
+T distribution
+of minimum-bias events due to merging of primary vertices,
+is in reasonable agreement with the estimate of 2% obtained
+based on simulation in Fig. 11.
+9 Conclusion
+This paper presents primary vertex reconstruction and selec-
+tion methods and their performance for proton–proton colli-
+sion data recorded by the ATLAS experiment at the LHC dur-
+ing Run 1. The primary vertex position resolution measured
+in data is consistent with the predictions from simulation. A
+longitudinal vertex position resolution of about 30 µm has
+been achieved for events with high track-multiplicity. A sig-
+niﬁcant improvement of the vertex transverse-position reso-
+123
+
+===== PAGE 21 =====
+Eur. Phys. J. C (2017) 77 :332 Page 21 of 35 332
+lution is obtained using the beam-spot constraint in the vertex
+ﬁt, giving a resolution below 20 µm for all multiplicities.
+The primary vertex reconstruction efﬁciency has been
+measured using MC simulation. For minimum-bias events,
+the single vertex reconstruction efﬁciency is above 99% for
+all processes, provided at least two charged particles are
+reconstructed within the ATLAS inner detector. For hard-
+scatter interactions, the reconstruction and selection efﬁ-
+ciency has been studied for a number of benchmark processes
+as a function of pile-up. In all cases, the overall signal vertex
+reconstruction efﬁciency exceeds 99%. A signiﬁcant con-
+tamination from pile-up minimum-bias vertices is however
+observed for high values ofμ in the case of hard-scatter pro-
+cesses with a small number of charged-particle tracks, such
+as H → γγ and Z → μμ. The efﬁciency to reconstruct and
+then correctly select the primary vertex atμ = 40 in the case
+of Z → μμ is predicted to remain very high, namely 98%,
+when both muons are reconstructed within the inner detector
+acceptance.
+The impact of multiple pp interactions in the same bunch
+crossing on the reconstruction of primary vertices has been
+studied in detail. Comparisons of the modelling of vertex
+input quantities were made for low and high values of μ
+and good agreement between data and the MC simulation
+is observed for values of μ up to 70. The largest impact of
+pile-up is the merging of nearby vertices, which has been
+quantiﬁed precisely by studying the relationship between μ
+and the number of reconstructed vertices. The corresponding
+non-linear effects due to merging are well modelled within
+the uncertainties in the MC simulation for values ofμ as high
+as 70, conﬁrming the validity of the proposed model.
+Acknowledgements We thank CERN for the very successful oper-
+ation of the LHC, as well as the support staff from our institutions
+without whom ATLAS could not be operated efﬁciently. We acknowl-
+edge the support of ANPCyT, Argentina; YerPhI, Armenia; ARC,
+Australia; BMWFW and FWF, Austria; ANAS, Azerbaijan; SSTC,
+Belarus; CNPq and FAPESP, Brazil; NSERC, NRC and CFI, Canada;
+CERN; CONICYT, Chile; CAS, MOST and NSFC, China; COLCIEN-
+CIAS, Colombia; MSMT CR, MPO CR and VSC CR, Czech Repub-
+lic; DNRF and DNSRC, Denmark; IN2P3-CNRS, CEA-DSM/IRFU,
+France; SRNSF, Georgia; BMBF, HGF, and MPG, Germany; GSRT,
+Greece; RGC, Hong Kong SAR, China; ISF, I-CORE and Benoziyo
+Center, Israel; INFN, Italy; MEXT and JSPS, Japan; CNRST, Morocco;
+NWO, Netherlands; RCN, Norway; MNiSW and NCN, Poland; FCT,
+Portugal; MNE/IFA, Romania; MES of Russia and NRC KI, Russian
+Federation; JINR; MESTD, Serbia; MSSR, Slovakia; ARRS and MIZŠ,
+Slovenia; DST/NRF, South Africa; MINECO, Spain; SRC and Wal-
+lenberg Foundation, Sweden; SERI, SNSF and Cantons of Bern and
+Geneva, Switzerland; MOST, Taiwan; TAEK, Turkey; STFC, United
+Kingdom; DOE and NSF, United States of America. In addition, indi-
+vidual groups and members have received support from BCKDF, the
+Canada Council, CANARIE, CRC, Compute Canada, FQRNT, and
+the Ontario Innovation Trust, Canada; EPLANET, ERC, ERDF, FP7,
+Horizon 2020 and Marie Skłodowska-Curie Actions, European Union;
+Investissements d’Avenir Labex and Idex, ANR, Région Auvergne and
+Fondation Partager le Savoir, France; DFG and AvH Foundation, Ger-
+many; Herakleitos, Thales and Aristeia programmes co-ﬁnanced by
+EU-ESF and the Greek NSRF; BSF, GIF and Minerva, Israel; BRF,
+Norway; CERCA Programme Generalitat de Catalunya, Generalitat
+Valenciana, Spain; the Royal Society and Leverhulme Trust, United
+Kingdom. The crucial computing support from all WLCG partners is
+acknowledged gratefully, in particular from CERN, the ATLAS Tier-1
+facilities at TRIUMF (Canada), NDGF (Denmark, Norway, Sweden),
+CC-IN2P3 (France), KIT/GridKA (Germany), INFN-CNAF (Italy),
+NL-T1 (Netherlands), PIC (Spain), ASGC (Taiwan), RAL (UK) and
+BNL (USA), the Tier-2 facilities worldwide and large non-WLCG
+resource providers. Major contributors of computing resources are listed
+in Ref. [28].
+Open Access This article is distributed under the terms of the Creative
+Commons Attribution 4.0 International License ( http://creativecomm
+ons.org/licenses/by/4.0/), which permits unrestricted use, distribution,
+and reproduction in any medium, provided you give appropriate credit
+to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made.
+Funded by SCOAP
+3.
+References
+1. ATLAS Collaboration, Luminosity determination in pp collisions
+at √ s = 8 TeV using the ATLAS detector at the LHC. (2016).
+arXiv: 1608.03953 [hep-ex]
+2. ATLAS Collaboration, The ATLAS Experiment at the CERN Large
+Hadron Collider. JINST 3, S08003 (2008)
+3. ATLAS Collaboration, ATLAS Inner Detector Technical Design
+Report. CERN-LHCC-97-016 (1997), http://cds.cern.ch/record/
+331063
+4. ATLAS Collaboration, Charged-particle multiplicities in pp inter-
+actions measured with the ATLAS detector at the LHC. New J.
+Phys. 13, 053033 (2011). arXiv: 1012.5104 [hep-ex]
+5. ATLAS Collaboration, Improved luminosity determination in pp
+collisions at √
+s = 7 TeV using the ATLAS detector at the LHC,
+Eur. Phys. J. C 73, 2518 (2013). arXiv: 1302.4393 [hep-ex]
+6. T. Sjöstrand, S. Mrenna, P.Z. Skands, A brief introduction to Pythia
+8.1. Comput. Phys. Commun. 178, 852 (2008). arXiv: 0710.3820
+[hep-ex]
+7. TOTEM Collaboration, G. Anelli et al., The TOTEM Experiment
+at the CERN Large Hadron Collider, JINST 3, S08007 (2008)
+8. ATLAS Collaboration, Measurement of the total cross section from
+elastic scattering in pp collisions at √ s = 7 TeV with the ATLAS
+detector, Nucl. Phys. B889, 486 (2014).arXiv: 1408.5778[hep-ex]
+9. L. Evans, P. Bryant, L.H.C. Machine, JINST 3, S08001 (2008)
+10. ATLAS Collaboration, Summary of ATLAS Pythia 8 tunes, ATL-
+PHYS-PUB-2012-003 (2012), http://cds.cern.ch/record/1474107
+11. A.D. Martin, W.J. Stirling, R.S. Thorne, G. Watt, Parton distribu-
+tions for the LHC. Eur. Phys. J. C63, 189 (2009).arXiv: 0901.0002
+[hep-ph]
+12. S. Alioli et al., A general framework for implementing NLO calcu-
+lations in shower Monte Carlo programs: the Powheg BOX. JHEP
+06, 043 (2010). arXiv: 1002.2581 [hep-ph]
+13. S. Frixione, B.R. Webber, Matching NLO QCD computations and
+parton shower simulations. JHEP 06, 029 (2002). arXiv: 0204244
+[hep-ph]
+14. G. Corcella et al., HERWIG 6.5 release note. (2002). arXiv:
+0210213 [hep-ph]
+15. J.M. Butterworth, J.R. Forshaw, M.H. Seymour, Multiparton inter-
+actions in photoproduction at HERA. Z. Phys. C 72, 637 (1996).
+arXiv: 9601371 [hep-ph]
+16. H.-L. Lai et al., New parton distributions for collider physics. Phys.
+Rev. D 82, 074024 (2010). arXiv: 1007.2241 [hep-ph]
+123
+
+===== PAGE 22 =====
+332 Page 22 of 35 Eur. Phys. J. C (2017) 77 :332
+17. ATLAS Collaboration, The ATLAS simulation infrastructure, Eur.
+Phys. J. C 70, 823 (2010). arXiv: 1005.4568 [physics.ins-det]
+18. GEANT4 Collaboration, S. Agostinelli et al., Geant4: A Simula-
+tion toolkit, Nucl. Inst. Meth. A 506, 250 (2003)
+19. ATLAS Collaboration, Measurement of the inelastic proton-proton
+cross-section at √ s = 7 TeV with the ATLAS detector, Nat. Com-
+mun. 2, 463 (2011). arXiv: 1104.0326 [hep-ex]
+20. TOTEM Collaboration, G. Antchev et al., First measurement of
+the total proton–proton cross section at the LHC energy of√ s = 7
+TeV. EPL96, 21002 (2011). arXiv: 1110.1395 [hep-ex]
+21. ATLAS Collaboration, Performance of the ATLAS Inner Detector
+track and vertex reconstruction in the high pile-up LHC environ-
+ment, ATLAS-CONF-2012-042 (2012), http://cds.cern.ch/record/
+1435196
+22. T. Cornelissen et al., The new ATLAS track reconstruction
+(NEWT). J. Phys. Conf. Ser. 119, 032014 (2008)
+23. G. Piacquadio, K. Prokoﬁev, A. Wildauer, Primary vertex recon-
+struction in the ATLAS experiment at LHC. J. Phys. Conf. Ser.
+119, 032033 (2008)
+24. T. Robertson, J.D. Cryer, An iterative procedure for estimating the
+mode. J. Am. Stat. Assoc. 69, 1012 (1974)
+25. W. Waltenberger, R. Frühwirth, P. Vanlaer, Adaptive vertex ﬁtting.
+J. Phys. G 34, N343 (2007)
+26. F. James, M. Winkler, MINUIT User’s Guide (2004), http://seal.
+web.cern.ch/seal/documents/minuit/mnusersguide.pdf
+27. ATLAS Collaboration, Measurement of Higgs boson production
+in the diphoton decay channel in pp collisions at center-of-mass
+energies of 7 and 8 TeV with the ATLAS detector, Phys. Rev. D
+90, 112015 (2014). arXiv: 1408.7084 [hep-ex]
+28. ATLAS Collaboration, ATLAS Computing Acknowledgements
+2016–2017, ATL-GEN-PUB-2016-002 (2016),http://cds.cern.ch/
+record/2202407
+ATLAS Collaboration
+M. Aaboud136d,G . A a d87, B. Abbott 114, J. Abdallah 65, O. Abdinov 12, B. Abeloos 118, R. Aben 108, O. S. AbouZeid 138,
+N. L. Abraham152, H. Abramowicz 156, H. Abreu 155, R. Abreu 117, Y . Abulaiti 149a,149b, B. S. Acharya 167a,167b,a,
+L. Adamczyk40a, D. L. Adams 27, J. Adelman 109, S. Adomeit 101, T. Adye 132, A. A. Affolder 76, T. Agatonovic-Jovin 14,
+J. Agricola56, J. A. Aguilar-Saavedra 127a,127f, S. P. Ahlen 24, F. Ahmadov 67,b, G. Aielli 134a,134b, H. Akerstedt 149a,149b,
+T. P. A. Åkesson83,A . V . A k i m o v97, G. L. Alberghi 22a,22b, J. Albert 172, S. Albrand 57, M. J. Alconada Verzini 73,
+M. Aleksa32, I. N. Aleksandrov 67,C . A l e x a28b, G. Alexander 156, T. Alexopoulos 10, M. Alhroob 114,B . A l i 129,
+M. Aliev75a,75b, G. Alimonti 93a, J. Alison 33, S. P. Alkire 37, B .M .M .A l l b r o o k e152, B .W .A l l e n117, P. P. Allport 19,
+A. Aloisio105a,105b, A. Alonso38, F. Alonso73, C. Alpigiani139, M. Alstaty87, B. Alvarez Gonzalez32, D. Álvarez Piqueras170,
+M. G. Alviggi105a,105b, B. T. Amadio 16, K. Amako 68, Y . Amaral Coutinho 26a, C. Amelung 25, D. Amidei 91,
+S. P. Amor Dos Santos127a,127c, A. Amorim 127a,127b, S. Amoroso 32, G. Amundsen 25, C. Anastopoulos 142, L. S. Ancu 51,
+N. Andari109, T. Andeen 11, C. F. Anders 60b, G. Anders 32, J. K. Anders 76, K. J. Anderson 33, A. Andreazza 93a,93b,
+V . Andrei60a, S. Angelidakis 9, I. Angelozzi 108, P. Anger 46, A. Angerami 37, F. Anghinolﬁ 32, A. V . Anisenkov 110,c,
+N. Anjos13, A. Annovi125a,125b, C. Antel60a, M. Antonelli49, A. Antonov99,*, F. Anulli133a, M. Aoki68, L. Aperio Bella 19,
+G. Arabidze92,Y .A r a i68, J. P. Araque127a,A .T .H .A r c e47, F. A. Arduh73, J.-F. Arguin96, S. Argyropoulos65,M .A r i k20a,
+A. J. Armbruster146,L .J .A r m i t a g e78, O. Arnaez32, H. Arnold50, M. Arratia30,O .A r s l a n23, A. Artamonov98, G. Artoni121,
+S. Artz85,S . A s a i158, N. Asbah 44, A. Ashkenazi 156,B . Å s m a n149a,149b, L. Asquith 152, K. Assamagan 27, R. Astalos 147a,
+M. Atkinson169, N. B. Atlay 144, K. Augsten 129, G. Avolio32,B . A x e n16, M. K. Ayoub118, G. Azuelos 96,d, M .A .B a a k32,
+A. E. Baas60a, M .J .B a c a19, H. Bachacou 137, K. Bachas 75a,75b, M. Backes 32, M. Backhaus 32, P. Bagiacchi 133a,133b,
+P. Bagnaia133a,133b,Y . B a i35a, J. T. Baines 132, O .K .B a k e r179, E .M .B a l d i n110,c, P. Balek 175, T. Balestri 151, F. Balli 137,
+W. K. Balunas123, E. Banas 41, Sw. Banerjee 176,e, A. A. E. Bannoura 178, L. Barak 32, E. L. Barberio 90, D. Barberis 52a,52b,
+M. Barbero87, T. Barillari 102, M.-S. Barisits 32, T. Barklow 146,N . B a r l o w30, S. L. Barnes 86, B. M. Barnett 132,
+R. M. Barnett16, Z. Barnovska-Blenessy 5, A. Baroncelli 135a, G. Barone 25,A . J . B a r r121, L. Barranco Navarro 170,
+F. Barreiro84, J. Barreiro Guimarães da Costa 35a, R. Bartoldus 146,A . E . B a r t o n74,P . B a r t o s147a, A. Basalaev 124,
+A. Bassalat118,f, R. L. Bates 55, S. J. Batista 162, J. R. Batley 30, M. Battaglia 138, M. Bauce 133a,133b, F. Bauer 137,
+H. S. Bawa146,g, J. B. Beacham 112, M. D. Beattie 74, T. Beau 82, P. H. Beauchemin 165, P. Bechtle 23, H. P. Beck 18,h,
+K. Becker121, M. Becker 85, M. Beckingham 173, C. Becot 111, A. J. Beddall 20d, A. Beddall 20b, V . A. Bednyakov 67,
+M. Bedognetti108,C .P .B e e151, L. J. Beemster108, T. A. Beermann32, M. Begel27,J .K .B e h r44, C. Belanger-Champagne89,
+A. S. Bell80, G. Bella 156, L. Bellagamba 22a, A. Bellerive 31, M. Bellomo 88, K. Belotskiy 99, O. Beltramello 32,
+N. L. Belyaev99, O. Benary156,*, D. Benchekroun136a, M. Bender101, K. Bendtz149a,149b, N. Benekos10, Y . Benhammou156,
+E. Benhar Noccioli179, J. Benitez 65, D. P. Benjamin47, J. R. Bensinger 25, S. Bentvelsen108, L. Beresford 121, M. Beretta 49,
+D. Berge108, E. Bergeaas Kuutmann 168, N. Berger 5, J. Beringer 16, S. Berlendis 57, N. R. Bernard 88, C. Bernius 111,
+F. U. Bernlochner23,T . B e r r y79,P . B e r t a130, C. Bertella 85, G. Bertoli 149a,149b, F. Bertolucci 125a,125b, I. A. Bertram 74,
+C. Bertsche44, D. Bertsche114,G .J .B e s j e s38, O. Bessidskaia Bylund149a,149b, M. Bessner44, N. Besson137, C. Betancourt50,
+S. Bethke102,A .J .B e v a n78,W .B h i m j i16, R. M. Bianchi126, L. Bianchini25, M. Bianco32, O. Biebel101, D. Biedermann17,
+R. Bielski86, N .V .B i e s u z125a,125b, M. Biglietti 135a, J. Bilbao De Mendizabal 51, H. Bilokon 49, M. Bindi 56, S. Binet 118,
+A. Bingul20b,C . B i n i133a,133b, S. Biondi 22a,22b, D .M .B j e r g a a r d47, C. W. Black 153, J .E .B l a c k146, K. M. Black 24,
+123
+
+===== PAGE 23 =====
+Eur. Phys. J. C (2017) 77 :332 Page 23 of 35 332
+D. Blackburn139, R. E. Blair 6, J.-B. Blanchard 137, J. E. Blanco 79, T. Blazek 147a, I. Bloch 44, C. Blocker 25,W . B l u m85,*,
+U. Blumenschein56, S. Blunier 34a, G. J. Bobbink 108, V . S. Bobrovnikov110,c, S. S. Bocchetta 83, A. Bocci 47, C. Bock 101,
+M. Boehler50, D. Boerner 178, J. A. Bogaerts 32, D. Bogavac 14, A. G. Bogdanchikov 110, C. Bohm 149a, V . Boisvert 79,
+P. Bokan14,T . B o l d40a, A. S. Boldyrev 167a,167c, M. Bomben 82, M. Bona 78, M. Boonekamp 137,A . B o r i s o v131,
+G. Borissov74, J. Bortfeldt32, D. Bortoletto121, V . Bortolotto62a,62b,62c, D. Boscherini22a,M .B o s m a n13,J .D .B o s s i oS o l a29,
+J. Boudreau126, J. Bouffard2, E. V . Bouhova-Thacker74, D. Boumediene36, C. Bourdarios118, S. K. Boutle 55, A. Boveia32,
+J. Boyd32, I .R .B o y k o67, J. Bracinik 19, A. Brandt 8, G. Brandt 56, O. Brandt 60a, U. Bratzler 159,B . B r a u88, J .E .B r a u117,
+H. M. Braun178,*, W. D. Breaden Madden 55, K. Brendlinger 123, A. J. Brennan 90, L. Brenner 108, R. Brenner 168,
+S. Bressler175, T .M .B r i s t o w48, D. Britton 55, D. Britzger 44, F. M. Brochu 30, I. Brock 23, R. Brock 92, G. Brooijmans 37,
+T. Brooks79, W. K. Brooks 34b,J . B r o s a m e r16,E . B r o s t 109, J. H Broughton 19, P. A. Bruckman de Renstrom 41,
+D. Bruncko147b, R. Bruneliere 50, A. Bruni 22a, G. Bruni 22a, L. S. Bruni 108, BH Brunt 30, M. Bruschi 22a, N. Bruscino 23,
+P. Bryant33, L. Bryngemark 83, T. Buanes15, Q. Buat 145, P. Buchholz144, A. G. Buckley 55, I. A. Budagov 67, F. Buehrer50,
+M. K. Bugge120, O. Bulekov 99, D. Bullock 8, H. Burckhart 32, S. Burdin 76,C . D . B u r g a r d50, B. Burghgrave 109,
+K. Burka41,S . B u r k e132, I. Burmeister 45,J . T . P . B u r r121, E. Busato 36, D. Büscher 50, V . Büscher 85, P. Bussey 55,
+J. M. Butler24, C. M. Buttar 55, J. M. Butterworth 80, P. Butti 108, W. Buttinger 27, A. Buzatu 55, A. R. Buzykaev 110,c,
+S. Cabrera Urbán170, D. Caforio 129,V . M . C a i r o39a,39b, O. Cakir 4a, N. Calace 51, P. Calaﬁura 16, A. Calandri 87,
+G. Calderini82, P. Calfayan 101, G. Callea 39a,39b, L. P. Caloba 26a, S. Calvente Lopez 84,D . C a l v e t36,S . C a l v e t36,
+T. P. Calvet87, R. Camacho Toro 33, S. Camarda 32, P. Camarri 134a,134b, D. Cameron 120, R. Caminal Armadans 169,
+C. Camincher57, S. Campana 32, M. Campanelli 80, A. Camplani 93a,93b, A. Campoverde 144, V . Canale 105a,105b,
+A. Canepa163a, M. Cano Bret 141, J. Cantero 115, R. Cantrill 127a,T . C a o42, M. D. M. Capeans Garrido 32, I. Caprini 28b,
+M. Caprini28b, M. Capua 39a,39b, R. Caputo 85, R. M. Carbone 37, R. Cardarelli 134a, F. Cardillo 50,I . C a r l i 130,
+T. Carli32, G. Carlino 105a, L. Carminati 93a,93b, S. Caron 107, E. Carquin 34b, G. D. Carrillo-Montoya 32,J . R . C a r t e r30,
+J. Carvalho127a,127c, D. Casadei 19, M. P. Casado 13,i, M. Casolino 13, D. W. Casper 166, E. Castaneda-Miranda 148a,
+R. Castelijn108, A. Castelli 108, V . Castillo Gimenez170,N . F . C a s t r o127a,j, A. Catinaccio 32,J . R . C a t m o r e120, A. Cattai 32,
+J. Caudron85, V . Cavaliere169, E. Cavallaro13, D. Cavalli93a, M. Cavalli-Sforza13, V . Cavasinni125a,125b, F. Ceradini135a,135b,
+L. Cerda Alberich170,B . C . C e r i o47, A. S. Cerqueira 26b,A . C e r r i152, L. Cerrito 78, F. Cerutti16,M . C e r v32, A. Cervelli 18,
+S. A. Cetin20c, A. Chafaq 136a, D. Chakraborty 109, S .K .C h a n 58, Y . L. Chan 62a, P. Chang 169, J. D. Chapman 30,
+D. G. Charlton19, A. Chatterjee 51, C. C. Chau 162, C. A. Chavez Barajas 152,S . C h e112, S. Cheatham 74, A. Chegwidden 92,
+S. Chekanov6, S. V . Chekulaev163a,G .A .C h e l k o v67,k, M. A. Chelstowska91, C. Chen66, H. Chen27, K. Chen151, S. Chen35b,
+S. Chen158, X. Chen 35c,l, Y . Chen69, H. C. Cheng 91, H. J. Cheng 35a, Y . Cheng33, A. Cheplakov 67, E. Cheremushkina 131,
+R. Cherkaoui El Moursli136e, V . Chernyatin 27,*, E. Cheu 7, L. Chevalier 137, V . Chiarella 49, G. Chiarelli 125a,125b,
+G. Chiodini75a, A. S. Chisholm 19, A. Chitan 28b, M. V . Chizhov 67, K. Choi 63, A. R. Chomont 36, S. Chouridou 9,
+B. K. B. Chow101, V . Christodoulou80, D. Chromek-Burckhart 32, J. Chudoba 128, A. J. Chuinard 89, J. J. Chwastowski 41,
+L. Chytka116, G. Ciapetti 133a,133b, A. K. Ciftci 4a, D. Cinca 45, V . Cindro77, I .A .C i o a r a23, C. Ciocca 22a,22b, A. Ciocio 16,
+F. Cirotto105a,105b, Z. H. Citron175, M. Citterio93a, M. Ciubancan28b,A .C l a r k51,B .L .C l a r k58,M .R .C l a r k37,P .J .C l a r k48,
+R. N. Clarke16, C. Clement 149a,149b, Y . Coadou 87, M. Cobal 167a,167c, A. Coccaro 51, J. Cochran 66,L . C o f f e y25,
+L. Colasurdo107,B . C o l e37, A. P. Colijn 108, J. Collot 57, T. Colombo 32, G. Compostella 102, P. Conde Muiño 127a,127b,
+E. Coniavitis50, S. H. Connell 148b, I. A. Connelly 79, V . Consorti50, S. Constantinescu 28b, G. Conti 32, F. Conventi 105a,m,
+M. Cooke16, B. D. Cooper 80, A. M. Cooper-Sarkar 121, K .J .R .C o r m i e r162, T. Cornelissen 178, M. Corradi 133a,133b,
+F. Corriveau89,n, A. Corso-Radu 166, A. Cortes-Gonzalez 13, G. Cortiana 102,G . C o s t a93a, M .J .C o s t a170, D. Costanzo 142,
+G. Cottin30,G . C o w a n79,B . E . C o x86, K. Cranmer 111,S . J . C r a w l e y55,G . C r e e31, S. Crépé-Renaudin 57, F. Crescioli 82,
+W. A. Cribbs149a,149b, M. Crispin Ortuzar121, M. Cristinziani23, V . Croft107, G. Crosetti39a,39b, T. Cuhadar Donszelmann142,
+J. Cummings179, M. Curatolo 49,J . C ú t h85, C. Cuthbert 153,H . C z i r r144, P. Czodrowski3,G . D ’ a m e n22a,22b,S . D ’ A u r i a55,
+M. D’Onofrio76, M. J. Da Cunha Sargedas De Sousa 127a,127b,C . D a V i a86, W. Dabrowski 40a, T. Dado 147a,T . D a i91,
+O. Dale15, F. Dallaire 96, C. Dallapiccola 88,M . D a m38, J. R. Dandoy 33, N. P. Dang 50, A .C .D a n i e l l s19, N .S .D a n n86,
+M. Danninger171, M. Dano Hoffmann137,V .D a o50, G. Darbo52a,S .D a r m o r a8, J. Dassoulas3, A. Dattagupta63, W. Davey23,
+C. David172, T. Davidek 130,M . D a v i e s156,P . D a v i s o n80,E . D a w e90,I . D a w s o n142, R. K. Daya-Ishmukhametova 88,
+K. De8, R. de Asmundis 105a, A. De Benedetti 114,S . D e C a s t r o22a,22b, S. De Cecco 82, N. De Groot 107, P. de Jong 108,
+H. De la Torre84, F. De Lorenzi 66,A . D e M a r i a56, D. De Pedis 133a, A. De Salvo 133a, U. De Sanctis 152, A. De Santo 152,
+J .B .D eV i v i eD eR e g i e118, W. J. Dearnaley 74, R. Debbe 27, C. Debenedetti 138, D. V . Dedovich 67, N. Dehghanian 3,
+I. Deigaard108, M. Del Gaudio 39a,39b, J. Del Peso 84, T. Del Prete125a,125b, D. Delgove 118, F. Deliot137, C. M. Delitzsch 51,
+M. Deliyergiyev77, A. Dell’Acqua 32, L. Dell’Asta 24, M. Dell’Orso 125a,125b, M. Della Pietra 105a,105b, D. della V olpe51,
+M. Delmastro5,P . A . D e l s a r t57, D. A. DeMarco 162, S. Demers 179, M. Demichev 67, A. Demilly 82, S .P .D e n i s o v131,
+123
+
+===== PAGE 24 =====
+332 Page 24 of 35 Eur. Phys. J. C (2017) 77 :332
+D. Denysiuk137, D. Derendarz 41, J. E. Derkaoui 136d, F. Derue 82,P . D e r v a n76, K. Desch 23, C. Deterre 44, K. Dette 45,
+P. O. Deviveiros32, A. Dewhurst 132, S. Dhaliwal 25, A. Di Ciaccio 134a,134b, L. Di Ciaccio 5, W .K .D iC l e m e n t e123,
+C. Di Donato133a,133b, A. Di Girolamo 32, B. Di Girolamo 32, B. Di Micco 135a,135b, R .D iN a r d o32, A .D iS i m o n e50,
+R. Di Sipio162, D. Di Valentino 31, C. Diaconu 87, M. Diamond 162,F . A . D i a s48,M . A . D i a z34a, E .B .D i e h l91,
+J. Dietrich17, S. Diglio 87, A. Dimitrievska 14, J. Dingfelder 23, P. Dita 28b, S. Dita 28b, F. Dittus 32,F . D j a m a87,
+T. Djobava53b, J. I. Djuvsland 60a, M .A .B .d oV a l e26c, D. Dobos 32, M. Dobre 28b, C. Doglioni 83, T. Dohmae 158,
+J. Dolejsi130, Z. Dolezal 130, B. A. Dolgoshein 99,*, M. Donadelli 26d, S. Donati 125a,125b, P. Dondero 122a,122b, J. Donini 36,
+J. Dopke132,A . D o r i a105a,M . T . D o v a73,A . T . D o y l e55, E. Drechsler 56,M . D r i s10,Y . D u140, J. Duarte-Campderros 156,
+E. Duchovni175, G. Duckeck 101, O. A. Ducu 96,o, D. Duda 108, A. Dudarev 32, E. M. Dufﬁeld 16, L. Duﬂot 118, L. Duguid 79,
+M. Dührssen32, M. Dumancic 175, M. Dunford 60a, H. Duran Yildiz 4a, M. Düren 54, A. Durglishvili 53b, D. Duschinger 46,
+B. Dutta44, M. Dyndal 44, C. Eckardt 44, K .M .E c k e r102, R. C. Edgar 91, N. C. Edwards 48,T . E i f e r t32, G. Eigen 15,
+K. Einsweiler16,T .E k e l o f168, M. El Kacimi136c, V . Ellajosyula87, M. Ellert168, S. Elles5, F. Ellinghaus178, A. A. Elliot172,
+N. Ellis32, J. Elmsheuser 27, M. Elsing 32, D. Emeliyanov 132, Y . Enari158, O. C. Endner 85, M. Endo 119, J. S. Ennis 173,
+J. Erdmann45, A. Ereditato 18,G . E r n i s178,J . E r n s t2,M . E r n s t27, S. Errede 169,E . E r t e l85, M. Escalier 118,H . E s c h45,
+C. Escobar126, B. Esposito 49, A. I. Etienvre137, E. Etzion 156, H. Evans63, A. Ezhilov124, F. Fabbri22a,22b, L. Fabbri22a,22b,
+G. Facini33, R. M. Fakhrutdinov 131, S. Falciano 133a, R .J .F a l l a80, J. Faltova 32, Y . Fang35a, M. Fanti 93a,93b, A. Farbin 8,
+A. Farilla135a,C . F a r i n a126, E .M .F a r i n a122a,122b, T. Farooque 13,S . F a r r e l l16, S. M. Farrington 173, P. Farthouat 32,
+F. Fassi136e, P. Fassnacht 32, D. Fassouliotis 9, M. Faucci Giannelli 79, A. Favareto 52a,52b, W. J. Fawcett 121, L. Fayard 118,
+O. L. Fedin124,p, W. Fedorko 171, S. Feigl 120, L. Feligioni 87, C. Feng 140, E. J. Feng 32, H. Feng 91, A. B. Fenyuk 131,
+L. Feremenga8, P. Fernandez Martinez170, S. Fernandez Perez 13, J. Ferrando 55, A. Ferrari 168, P. Ferrari108, R. Ferrari 122a,
+D .E .F e r r e i r ad eL i m a60b, A. Ferrer 170, D. Ferrere 51, C. Ferretti 91, A. Ferretto Parodi 52a,52b, F. Fiedler 85, A. Filipˇciˇc77,
+M. Filipuzzi44, F. Filthaut 107, M. Fincke-Keeler 172, K. D. Finelli 153, M .C .N .F i o l h a i s127a127c,q,L . F i o r i n i170,
+A. Firan42, A. Fischer 2, C. Fischer 13, J. Fischer 178, W .C .F i s h e r92, N. Flaschel 44, I. Fleck 144, P. Fleischmann 91,
+G. T. Fletcher142, R. R. M. Fletcher 123, T. Flick 178, A. Floderus 83, L. R. Flores Castillo 62a, M .J .F l o w e r d e w102,
+G. T. Forcolin86, A. Formica 137,A . F o r t i86,A . G . F o s t e r19, D. Fournier 118,H . F o x74, S. Fracchia 13, P. Francavilla 82,
+M. Franchini22a,22b, D. Francis 32, L. Franconi 120, M. Franklin 58,M . F r a t e166, M. Fraternali 122a,122b, D. Freeborn 80,
+S. M. Fressard-Batraneanu32, F. Friedrich46, D. Froidevaux32, J. A. Frost121, C. Fukunaga159, T. Fusayasu103, J. Fuster170,
+C. Gabaldon57, O. Gabizon 178, A. Gabrielli 22a,22b, A. Gabrielli 16, G. P. Gach 40a, S. Gadatsch 32, S. Gadomski 51,
+G. Gagliardi52a,52b, L. G. Gagnon 96, P. Gagnon 63, C. Galea 107, B. Galhardo 127a,127c, E. J. Gallas 121,B . J . G a l l o p132,
+P. Gallus129, G. Galster 38, K .K .G a n 112,J . G a o 59,Y . G a o48,Y . S . G a o146,g, F. M. Garay Walls 48, C. García 170,
+J. E. García Navarro170, M. Garcia-Sciveres 16, R. W. Gardner 33, N. Garelli 146, V . Garonne 120, A. Gascon Bravo 44,
+C. Gatti49, A. Gaudiello 52a,52b, G. Gaudio 122a, B. Gaur 144, L. Gauthier 96, I .L .G a v r i l e n k o97,C . G a y171, G. Gaycken 23,
+E. N. Gazis10, Z. Gecse 171, C .N .P .G e e 132, Ch. Geich-Gimbel 23,M . G e i s e n85, M. P. Geisler 60a, C. Gemme 52a,
+M. H. Genest57, C. Geng59,r, S. Gentile133a,133b, C. Gentsos157, S. George79, D. Gerbaudo13, A. Gershon156, S. Ghasemi144,
+H. Ghazlane136b, M. Ghneimat 23, B. Giacobbe 22a, S. Giagu 133a,133b, P. Giannetti125a,125b, B. Gibbard 27,S . M . G i b s o n79,
+M. Gignac171, M. Gilchriese 16, T. P. S. Gillam 30, D. Gillberg 31, G. Gilles 178, D .M .G i n g r i c h3,d, N. Giokaris 9,*,
+M. P. Giordani167a,167c,F . M . G i o r g i22a,F . M . G i o r g i17, P .F .G i r a u d137, P. Giromini 58, D. Giugni 93a, F. Giuli 121,
+C. Giuliani102, M. Giulini 60b, B. K. Gjelsten 120, S. Gkaitatzis 157, I. Gkialas 9,s, E. L. Gkougkousis 118, L. K. Gladilin 100,
+C. Glasman84, J. Glatzer 50, P. C. F. Glaysher 48, A. Glazov 44, M. Goblirsch-Kolb 25, J. Godlewski 41, S. Goldfarb 90,
+T. Golling51, D. Golubkov 131, A. Gomes 127a,127b,127d, R. Gonçalo 127a, J. Goncalves Pinto Firmino Da Costa 137,
+G. Gonella50, L. Gonella 19, A. Gongadze 67, S. González de la Hoz 170, G. Gonzalez Parra 13, S. Gonzalez-Sevilla 51,
+L. Goossens32, P. A. Gorbounov 98, H. A. Gordon 27, I. Gorelov 106,B . G o r i n i32,E . G o r i n i75a,75b, A. Gorišek 77,
+E. Gornicki41, A. T. Goshaw 47, C. Gössling 45, M .I .G o s t k i n67, C. R. Goudet 118, D. Goujdami 136c, A .G .G o u s s i o u139,
+N. Govender148b,t, E. Gozani155, L. Graber56, I. Grabowska-Bold40a,P .O .J .G r a d i n57, P. Grafström22a,22b, J. Gramling51,
+E. Gramstad120, S. Grancagnolo17, V . Gratchev124, P. M. Gravila28e,H .M .G r a y32, E. Graziani135a, Z. D. Greenwood81,u,
+C. Grefe23, K. Gregersen 80, I .M .G r e g o r44, P. Grenier 146, K. Grevtsov 5,J . G r i f ﬁ t h s8, A. A. Grillo 138,K . G r i m m74,
+S. Grinstein13,v, Ph. Gris 36,J . - F . G r i v a z118,S . G r o h85, J .P .G r o h s46,E . G r o s s175, J. Grosse-Knetter 56, G. C. Grossi 81,
+Z. J. Grout152, L. Guan 91, W. Guan 176, J. Guenther 64, F. Guescini 51, D. Guest 166, O. Gueta 156, E. Guido 52a,52b,
+T. Guillemin5, S. Guindon2,U .G u l55, C. Gumpert32,J .G u o141,Y .G u o59,r, R. Gupta42, S. Gupta121, G. Gustavino133a,133b,
+P. Gutierrez114, N. G. Gutierrez Ortiz 80, C. Gutschow 46, C. Guyot 137, C. Gwenlan 121, C. B. Gwilliam 76, A. Haas 111,
+C. Haber16, H. K. Hadavand 8, A. Hadef 87, P. Haefner 23, S. Hageböck 23, Z. Hajduk 41, H. Hakobyan 180,*, M. Haleem 44,
+J. Haley115, G. Halladjian 92, G. D. Hallewell 87, K. Hamacher 178, P. Hamal 116, K. Hamano 172, A. Hamilton 148a,
+G. N. Hamity142, P. G. Hamnett 44,L . H a n59, K. Hanagaki 68,w, K. Hanawa 158, M. Hance 138, B. Haney 123, P. Hanke 60a,
+123
+
+===== PAGE 25 =====
+Eur. Phys. J. C (2017) 77 :332 Page 25 of 35 332
+R. Hanna137, J. B. Hansen38, J. D. Hansen38, M. C. Hansen23, P. H. Hansen38,K .H a r a164,A .S .H a r d176, T. Harenberg178,
+F. Hariri118, S. Harkusha 94, R. D. Harrington 48, P .F .H a r r i s o n173, N. M. Hartmann 101, M. Hasegawa 69, Y. Hasegawa143,
+A. Hasib114, S. Hassani 137, S. Haug 18, R. Hauser 92, L. Hauswald46, M. Havranek128,C .M .H a w k e s19, R. J. Hawkings32,
+D. Hayden92, C. P. Hays 121, J. M. Hays 78, H. S. Hayward 76, S. J. Haywood 132, S. J. Head 19, T. Heck 85, V . Hedberg83,
+L. Heelan8, K. K. Heidegger 50,S . H e i m123,T . H e i m16, B. Heinemann 16, J. J. Heinrich 101, L. Heinrich 111, C. Heinz 54,
+J. Hejbal128, L. Helary 24, S. Hellman 149a,149b, C. Helsens 32, J. Henderson 121, R. C. W. Henderson 74, Y . Heng 176,
+S. Henkelmann171, A. M. Henriques Correia 32, S. Henrot-Versille 118, G. H. Herbert 17, Y . Hernández Jiménez 170,
+G. Herten50, R. Hertenberger 101,L . H e r v a s32,G . G . H e s k e t h80, N. P. Hessey 108, J. W. Hetherly 42, R. Hickling 78,
+E. Higón-Rodriguez170, E. Hill172,J .C .H i l l30, K. H. Hiller44, S. J. Hillier19, I. Hinchliffe16, E. Hines123,R .R .H i n m a n16,
+M. Hirose50, D. Hirschbuehl 178, J. Hobbs 151,N . H o d 163a, M. C. Hodgkinson 142, P. Hodgson 142, A. Hoecker 32,
+M. R. Hoeferkamp106, F. Hoenig 101, D. Hohn 23, T .R .H o l m e s16, M. Homann 45, T. M. Hong 126, B. H. Hooberman 169,
+W. H. Hopkins117,Y . H o r i i104, A .J .H o r t o n145, J.-Y . Hostachy 57,S . H o u 154, A. Hoummada 136a,J . H o w a r t h44,
+M. Hrabovsky116,I . H r i s t o v a17, J. Hrivnac 118, T. Hryn’ova 5, A. Hrynevich 95,C . H s u148c,P . J . H s u154,x,S . - C . H s u139,
+D. Hu37,Q .H u59, Y . Huang44, Z. Hubacek129, F. Hubaut87, F. Huegging23,T .B .H u f f m a n121, E. W. Hughes37, G. Hughes74,
+M. Huhtinen32,P . H u o151, N. Huseynov 67,b,J . H u s t o n92,J . H u t h58, G. Iacobucci 51, G. Iakovidis 27, I. Ibragimov 144,
+L. Iconomidou-Fayard118, E. Ideal179, P. Iengo32, O. Igonkina108,y,T .I i z a w a174,Y .I k e g a m i68, M. Ikeno68, Y . Ilchenko11,z,
+D. Iliadis157, N. Ilic 146, T. Ince 102, G. Introzzi 122a,122b, P. Ioannou 9,*, M. Iodice 135a, K. Iordanidou 37, V . Ippolito58,
+N. Ishijima119,M .I s h i n o70, M. Ishitsuka160, R. Ishmukhametov112, C. Issever121, S. Istin20a,F .I t o164, J. M. Iturbe Ponce86,
+R. Iuppa134a,134b, W. Iwanski64, H. Iwasaki68, J. M. Izen43, V . Izzo105a, S. Jabbar3, B. Jackson123, M. Jackson76, P. Jackson1,
+V. J a i n2, K. B. Jakobi85, K. Jakobs50, S. Jakobsen32, T. Jakoubek128,D .O .J a m i n115,D .K .J a n a81, E. Jansen80, R. Jansky64,
+J. Janssen23, M. Janus 56,G . J a r l s k o g83, N. Javadov 67,b,T . J a v ˚urek50, M. Javurkova 50, F. Jeanneau 137, L. Jeanty 16,
+G.-Y . Jeng153, D. Jennens90, P. Jenni50,aa, J. Jentzsch45,C .J e s k e173, S. Jézéquel5,H .J i176,J .J i a151, H. Jiang66, Y . Jiang59,
+S. Jiggins80, J. Jimenez Pena 170,S .J i n35a, A. Jinaru28b, O. Jinnouchi160, P. Johansson142, K. A. Johns 7, W. J. Johnson139,
+K. Jon-And149a,149b, G. Jones 173, R. W. L. Jones 74, S. Jones 7, T. J. Jones 76, J. Jongmanns 60a, P. M. Jorge 127a,127b,
+J. Jovicevic163a,X .J u176, A. Juste Rozas13,v, M. K. Köhler175, A. Kaczmarska41, M. Kado118, H. Kagan112, M. Kagan146,
+S. J. Kahn87, E. Kajomovitz 47, C. W. Kalderon 121, A. Kaluza 85,S . K a m a42, A. Kamenshchikov 131, N. Kanaya 158,
+S. Kaneti30, L. Kanjir 77, V . A. Kantserov 99, J. Kanzaki 68, B. Kaplan 111, L. S. Kaplan 176, A. Kapliy 33,D . K a r148c,
+K. Karakostas10, A. Karamaoun 3, N. Karastathis 10, M. J. Kareem 56, E. Karentzos 10, M. Karnevskiy 85, S. N. Karpov 67,
+Z. M. Karpova67, K. Karthik 111, V . Kartvelishvili74, A. N. Karyukhin 131, K. Kasahara 164, L. Kashif 176, R .D .K a s s112,
+A. Kastanas15, Y . Kataoka 158,C . K a t o158,A . K a t r e51, J. Katzy 44, K. Kawade 104, K. Kawagoe 72, T. Kawamoto 158,
+G. Kawamura56, S. Kazama 158, V . F. Kazanin 110,c, R. Keeler 172, R. Kehoe 42, J. S. Keller 44, J. J. Kempster 79,
+H. Keoshkerian162, O. Kepka 128, B. P. Kerševan 77, S. Kersten 178, R. A. Keyes 89, M. Khader 169, F. Khalil-zada 12,
+A. Khanov115, A. G. Kharlamov 110,c, T. J. Khoo 51, V . Khovanskiy 98,*, E. Khramov 67, J. Khubua 53b,ab,S . K i d o69,
+H. Y . Kim8, S .H .K i m 164,Y . K . K i m33,N . K i m u r a157, O .M .K i n d17,B . T . K i n g76,M . K i n g170, S .B .K i n g171,
+J. Kirk132, A. E. Kiryunin102, T. Kishimoto69, D. Kisielewska40a,F .K i s s50, K. Kiuchi164,O .K i v e r n y k137, E. Kladiva147b,
+M. H. Klein37, M. Klein76, U. Klein76, K. Kleinknecht85, P. Klimek109, A. Klimentov27, R. Klingenberg45, J. A. Klinger142,
+T. Klioutchnikova32, E.-E. Kluge60a, P. Kluit108, S. Kluth102, J. Knapik41, E. Kneringer64, E. B. F. G. Knoops87, A. Knue102,
+A. Kobayashi158, D. Kobayashi160, T. Kobayashi158, M. Kobel46, M. Kocian146, P. Kodys130,T .K o f f a s31,E .K o f f e m a n108,
+T. Koi146, H. Kolanoski 17,M . K o l b60b, I. Koletsou 5, A. A. Komar 97,*, Y . Komori158, T. Kondo 68, N. Kondrashova 44,
+K. Köneke50, A .C .K ö n i g107, T. Kono 68,ac, R. Konoplich 111,ad, N. Konstantinidis 80, R. Kopeliansky 63, S. Koperny 40a,
+L. Köpke85, A. K. Kopp 50,K . K o r c y l41, K. Kordas 157,A . K o r n80, A .A .K o r o l110,c, I. Korolkov 13, E. V . Korolkova142,
+O. Kortner102, S. Kortner 102, T. Kosek 130, V . V . Kostyukhin 23,A . K o t w a l47, A. Kourkoumeli-Charalampidi 9,
+C. Kourkoumelis9, V . Kouskoura 27, A .B .K o w a l e w s k a41, R. Kowalewski 172,T . Z . K o w a l s k i40a, C. Kozakai 158,
+W. Kozanecki137, A. S. Kozhin 131, V . A. Kramarenko 100, G. Kramberger 77, D. Krasnopevtsev 99, M. W. Krasny 82,
+A. Krasznahorkay32, J. K. Kraus 23, A. Kravchenko 27,M . K r e t z60c, J. Kretzschmar 76, K. Kreutzfeldt 54, P. Krieger 162,
+K. Krizka33, K. Kroeninger 45, H. Kroha 102,J . K r o l l123, J. Kroseberg 23, J. Krstic 14, U. Kruchonak 67, H. Krüger 23,
+N. Krumnack66,A . K r u s e176, M .C .K r u s e47, M. Kruskal 24, T. Kubota 90, H. Kucuk 80, S. Kuday 4b, J. T. Kuechler 178,
+S. Kuehn50, A. Kugel60c, F. Kuger177, A. Kuhl138, T. Kuhl44, V . Kukhtin67, R. Kukla137, Y . Kulchitsky94, S. Kuleshov34b,
+M. Kuna133a,133b, T. Kunigo70, A. Kupco128, H. Kurashige69, Y . A. Kurochkin94,V .K u s128, E. S. Kuwertz172, M. Kuze160,
+J. Kvita116,T .K w a n172, D. Kyriazopoulos142,A .L aR o s a102,J .L .L aR o s aN a v a r r o26d, L. La Rotonda39a,39b, C. Lacasta170,
+F. Lacava133a,133b, J. Lacey 31, H. Lacker 17, D. Lacour 82, V . R. Lacuesta170, E. Ladygin 67, R. Lafaye 5, B. Laforge 82,
+T. Lagouri179,S .L a i56, S. Lammers63, W. Lampl7, E. Lançon137, U. Landgraf50, M. P. J. Landon78, M. C. Lanfermann51,
+V . S. Lang60a, J. C. Lange 13, A. J. Lankford 166, F. Lanni 27, K. Lantzsch 23, A. Lanza 122a, S. Laplace 82, C. Lapoire 32,
+123
+
+===== PAGE 26 =====
+332 Page 26 of 35 Eur. Phys. J. C (2017) 77 :332
+J. F. Laporte137,T . L a r i93a, F. Lasagni Manghi 22a,22b, M. Lassnig 32, P. Laurelli 49, W. Lavrijsen 16,A . T . L a w138,
+P. Laycock76, T. Lazovich 58, M. Lazzaroni 93a,93b,B . L e 90,O . L e D o r t z82,E . L e G u i r r i e c87, E. P. Le Quilleuc 137,
+M. LeBlanc172, T. LeCompte 6, F. Ledroit-Guillon 57,C . A . L e e27,S . C . L e e154,L . L e e1, G. Lefebvre 82, M. Lefebvre 172,
+F. Legger101, C. Leggett16, A. Lehan76, G. Lehmann Miotto32,X .L e i7, W. A. Leight31, A. G. Leister179,M .A .L .L e i t e26d,
+R. Leitner130, D. Lellouch 175, B. Lemmer 56, K .J .C .L e n e y80, T. Lenz 23, B. Lenzi 32, R. Leone 7, S. Leone 125a,125b,
+C. Leonidopoulos48, S. Leontsinis 10, G. Lerner 152,C . L e r o y96, A .A .J .L e s a g e137,C . G . L e s t e r30, M. Levchenko 124,
+J. Levêque5,D . L e v i n91, L .J .L e v i n s o n175,M . L e v y19,D . L e w i s78, A .M .L e y k o23,B . L i 59,r,H . L i 151,H . L . L i33,
+L. Li47,L . L i141,Q . L i35a,S . L i47,X . L i86,Y . L i144, Z. Liang 35a, B. Liberti 134a, A. Liblong 162, P. Lichard32,K . L i e169,
+J. Liebal23, W. Liebig 15, A. Limosani 153,S . C . L i n154,ae, T .H .L i n85, B. E. Lindquist 151, A. E. Lionti 51, E. Lipeles 123,
+A. Lipniacka15, M. Lisovyi 60b, T .M .L i s s169,af, A. Lister 171, A .M .L i t k e138,B . L i u 154,ag,D . L i u 154,H . L i u 91,
+H. Liu27,J . L i u87, J .B .L i u59,K . L i u87,L . L i u169,M . L i u47,M . L i u59,Y . L . L i u59,Y . L i u59,M . L i v a n122a,122b,
+A. Lleres57, J. Llorente Merino 35a,S . L . L l o y d78,F . L o S t e r z o154, E. M. Lobodzinska 44, P. Loch 7, W. S. Lockman 138,
+F. K. Loebinger86, A. E. Loevschall-Jensen 38, K .M .L o e w 25, A. Loginov 179,*, T. Lohse 17, K. Lohwasser 44,
+M. Lokajicek128, B. A. Long 24, J. D. Long 169, R. E. Long 74, L. Longo 75a,75b, K. A. Looper 112, L. Lopes 127a,
+D. Lopez Mateos58, B. Lopez Paredes 142, I. Lopez Paz 13, A. Lopez Solis 82, J. Lorenz 101, N. Lorenzo Martinez 63,
+M. Losada21, P. J. Lösel 101,X . L o u35a, A. Lounis 118, J. Love 6, P. A. Love 74,H . L u 62a,N . L u 91, H. J. Lubatti 139,
+C. Luci133a,133b, A. Lucotte 57, C. Luedtke 50, F. Luehring 63, W. Lukas 64, L. Luminari 133a, O. Lundberg 149a,149b,
+B. Lund-Jensen150, P. M. Luzi82, D. Lynn27, R. Lysak128,E .L y t k e n83, V . Lyubushkin67,H .M a27,L .L .M a 140,Y .M a140,
+G. Maccarrone49, A. Macchiolo 102, C. M. Macdonald 142,B . M a ˇcek77, J. Machado Miguens 123,127b, D. Madaffari 87,
+R. Madar36, H. J. Maddocks 168, W. F. Mader46, A. Madsen 44, J. Maeda 69, S. Maeland 15, T. Maeno27, A. S. Maevskiy100,
+E. Magradze56, J. Mahlstedt 108, C. Maiani 118, C. Maidantchik 26a, A. A. Maier 102, T. Maier 101,A . M a i o127a,127b,127d,
+S. Majewski117, Y . Makida68, N. Makovec 118, B. Malaescu 82, Pa. Malecki 41, V .P .M a l e e v124, F. Malek 57, U. Mallik 65,
+D. Malon6, C. Malone 146, S. Maltezos 10, S. Malyukov 32, J. Mamuzic 170, G. Mancini 49, B. Mandelli 32, L. Mandelli 93a,
+I. Mandi´c77, J. Maneira 127a,127b, L. Manhaes de Andrade Filho 26b, J. Manjarres Ramos 163b, A. Mann 101, A. Manousos 32,
+B. Mansoulie137, J. D. Mansour 35a, R. Mantifel 89, M. Mantoani 56, S. Manzoni 93a,93b, L. Mapelli 32, G. Marceca 29,
+L. March51, G. Marchiori 82, M. Marcisovsky 128, M. Marjanovic 14,D . E . M a r l e y91, F. Marroquim 26a, S. P. Marsden 86,
+Z. Marshall16, S. Marti-Garcia 170, B. Martin 92, T. A. Martin 173, V . J. Martin48, B. Ma rtin dit Latour 15, M. Martinez 13,v,
+V . I. Martinez Outschoorn169, S. Martin-Haugh 132, V . S. Martoiu 28b, A. C. Martyniuk 80,M . M a r x139, A. Marzin 32,
+L. Masetti85, T. Mashimo 158, R. Mashinistov 97,J . M a s i k86, A. L. Maslennikov 110,c, I. Massa 22a,22b, L. Massa 22a,22b,
+P. Mastrandrea5, A. Mastroberardino 39a,39b, T. Masubuchi158, P. Mättig178, J. Mattmann 85, J. Maurer 28b, S. J. Maxﬁeld 76,
+D. A. Maximov110,c, R. Mazini 154, S. M. Mazza 93a,93b, N. C. Mc Fadden 106, G. Mc Goldrick 162, S .P .M cK e e 91,
+A. McCarn91, R .L .M c C a r t h y151, T .G .M c C a r t h y102, L. I. McClymont 80, E. F. McDonald 90, J. A. Mcfayden 80,
+G. Mchedlidze56, S. J. McMahon 132, R. A. McPherson 172,n, M. Medinnis 44, S. Meehan 139, S. Mehlhase 101, A. Mehta 76,
+K. Meier60a, C. Meineck 101, B. Meirose 43, D. Melini 170,ah, B .R .M e l l a d oG a r c i a148c,M . M e l o147a, F. Meloni 18,
+A. Mengarelli22a,22b, S. Menke 102, E. Meoni 165, S. Mergelmeyer 17,P . M e r m o d51, L. Merola 105a,105b, C. Meroni 93a,
+F. S. Merritt33, A. Messina 133a,133b, J. Metcalfe 6, A .S .M e t e166, C. Meyer 85, C. Meyer 123, J.-P. Meyer 137, J. Meyer 108,
+H. Meyer Zu Theenhausen60a, F. Miano 152, R. P. Middleton 132, S. Miglioranzi 52a,52b, L. Mijovi´ c23, G. Mikenberg 175,
+M. Mikestikova128, M. Mikuž77, M. Milesi90, A. Milic64, D. W. Miller33, C. Mills48, A. Milov175,D .A .M i l s t e a d149a,149b,
+A. A. Minaenko131, Y . Minami 158, I. A. Minashvili 67, A. I. Mincer 111, B. Mindur 40a, M. Mineev 67,Y . M i n g176,
+L. M. Mir13, K. P. Mistry 123, T. Mitani 174, J. Mitrevski 101, V . A. Mitsou 170, A. Miucci 51, P. S. Miyagawa 142,
+J. U. Mjörnmark83,T .M o a149a,149b, K. Mochizuki96, S. Mohapatra37, S. Molander149a,149b, R. Moles-Valls23, R. Monden70,
+M. C. Mondragon92, K. Mönig 44, J. Monk 38, E. Monnier 87, A. Montalbano 151, J. Montejo Berlingen 32, F. Monticelli 73,
+S. Monzani93a,93b, R .W .M o o r e3, N. Morange 118, D. Moreno 21, M. Moreno Llácer 56, P. Morettini52a, S. Morgenstern 32,
+D. Mori145,T . M o r i158,M . M o r i i58, M. Morinaga 158, V . Morisbak120, S. Moritz 85,A . K . M o r l e y153, G. Mornacchi 32,
+J. D. Morris78,L . M o r v a j151, M. Mosidze 53b,J . M o s s 146,ai, K. Motohashi 160, R. Mount 146, E. Mountricha 27,
+S. V . Mouraviev97,*, E .J .W .M o y s e88, S. Muanza 87, R .D .M u d d19, F. Mueller 102, J. Mueller 126, R .S .P .M u e l l e r101,
+T. Mueller30, D. Muenstermann 74, P. Mullen 55, G. A. Mullier 18, F. J. Munoz Sanchez 86, J. A. Murillo Quijada 19,
+W. J. Murray173,132, H. Musheghyan 56, M. Muškinja 77, A. G. Myagkov 131,aj, M. Myska 129, B. P. Nachman 146,
+O. Nackenhorst51, K. Nagai 121, R. Nagai 68,ac, K. Nagano 68, Y . Nagasaka 61, K. Nagata 164, M. Nagel 50, E. Nagy 87,
+A. M. Nairz32, Y . Nakahama32, K. Nakamura68, T. Nakamura158, I. Nakano113, H. Namasivayam43, R. F. Naranjo Garcia44,
+R. Narayan11, D. I. Narrias Villar 60a, I. Naryshkin 124, T. Naumann 44,G . N a v a r r o21, R. Nayyar 7, H .A .N e a l 91,
+P. Yu. Nechaeva97, T. J. Neep 86,P . D . N e f146,A . N e g r i122a,122b,M . N e g r i n i22a, S. Nektarijevic 107, C. Nellist 118,
+A. Nelson166, S. Nemecek 128, P. Nemethy111, A. A. Nepomuceno 26a, M. Nessi 32,ak, M. S. Neubauer 169, M. Neumann 178,
+123
+
+===== PAGE 27 =====
+Eur. Phys. J. C (2017) 77 :332 Page 27 of 35 332
+R. M. Neves111,P . N e v s k i27, P. R. Newman19, D. H. Nguyen 6, T. Nguyen Manh96, R .B .N i c k e r s o n121, R. Nicolaidou 137,
+J. Nielsen138, A. Nikiforov 17, V . Nikolaenko131,aj, I. Nikolic-Audit 82, K. Nikolopoulos 19, J. K. Nilsen 120, P. Nilsson 27,
+Y . Ninomiya158,A . N i s a t i133a, R. Nisius 102, T. Nobe 158, M. Nomachi 119, I. Nomidis 31, T. Nooney 78, S. Norberg 114,
+M. Nordberg32, N. Norjoharuddeen 121, O. Novgorodova 46,S . N o w a k102, M. Nozaki 68, L. Nozka 116, K. Ntekas 10,
+E. Nurse80,F . N u t i90, F. O’grady 7,D . C . O ’ N e i l145, A .A .O ’ R o u r k e44, V . O’Shea55, F. G. Oakham 31,d, H. Oberlack 102,
+T. Obermann23, J. Ocariz 82, A. Ochi 69, I. Ochoa 37, J. P. Ochoa-Ricoux 34a,S . O d a72, S. Odaka 68, H. Ogren 63,A . O h86,
+S. H. Oh47,C . C . O h m16, H. Ohman 168,H . O i d e32,H . O k a w a164, Y . Okumura 33, T. Okuyama 68,A . O l a r i u28b,
+L. F. Oleiro Seabra127a, S. A. Olivares Pino48, D. Oliveira Damazio27, A. Olszewski41, J. Olszowska41, A. Onofre127a,127e,
+K. Onogi104, P .U .E .O n y i s i11,z, M .J .O r e g l i a33,Y . O r e n156, D. Orestano 135a,135b, N. Orlando 62b,R . S . O r r162,
+B. Osculati52a,52b,*, R. Ospanov 86, G. Otero y Garzon 29, H. Otono 72, M. Ouchrif 136d, F. Ould-Saada 120, A. Ouraou 137,
+K. P. Oussoren108, Q. Ouyang35a, M. Owen55,R .E .O w e n19, V . E. Ozcan20a, N. Ozturk8, K. Pachal145, A. Pacheco Pages13,
+L. Pacheco Rodriguez137, C. Padilla Aranda 13, S. Pagan Griso 16, F. Paige 27,P . P a i s88, K. Pajchel 120, G. Palacino 163b,
+S. Palazzo39a,39b, S. Palestini 32, M. Palka 40b, D. Pallin 36,A . P a l m a127a,127b, E. St. Panagiotopoulou 10, C. E. Pandini 82,
+J. G. Panduro Vazquez79, P. Pani 149a,149b, S. Panitkin 27, D. Pantea 28b, L. Paolozzi 51, Th. D. Papadopoulou 10,
+K. Papageorgiou9,s, A. Paramonov 6, D. Paredes Hernandez 179,A . J . P a r k e r74, M .A .P a r k e r30,K . A . P a r k e r142,
+F. Parodi52a,52b, J. A. Parsons 37, U. Parzefall 50, V . R. Pascuzzi162, E. Pasqualucci 133a, S. Passaggio 52a,F r . P a s t o r e79,
+G. Pásztor31,al, S. Pataraia178,J .R .P a t e r86, T. Pauly32, J. Pearce172, B. Pearson114, L. E. Pedersen38, S. Pedraza Lopez170,
+R. Pedro127a,127b, S. V . Peleganchuk110,c, D. Pelikan168, O. Penc128, C. Peng35a, H. Peng59, J. Penwell63, B. S. Peralva26b,
+M. M. Perego137, D. V . Perepelitsa 27, E. Perez Codina 163a, L. Perini 93a,93b, H. Pernegger 32, S. Perrella 105a,105b,
+R. Peschke44, V . D. Peshekhonov67, K. Peters44, R. F. Y . Peters86, B. A. Petersen32, T. C. Petersen38, E. Petit57, A. Petridis1,
+C. Petridou157, P. Petroff118, E. Petrolo133a, M. Petrov121, F. Petrucci135a,135b, N. E. Pettersson88, A. Peyaud137, R. Pezoa34b,
+P. W. Phillips132, G. Piacquadio 146,am, E. Pianori 173, A. Picazio 88, E. Piccaro 78, M. Piccinini 22a,22b,M . A . P i c k e r i n g121,
+R. Piegaia29, J. E. Pilcher 33, A. D. Pilkington 86,A . W . J . P i n86, M. Pinamonti 167a167c,an, J .L .P i n f o l d3, A. Pingel 38,
+S. Pires82,H . P i r u m o v44, M. Pitt 175, L. Plazak 147a, M.-A. Pleier 27,V . P l e s k o t85, E. Plotnikova 67, P. Plucinski 92,
+D. Pluth66, R. Poettgen 149a,149b, L. Poggioli 118, D. Pohl 23, G. Polesello 122a, A. Poley 44, A. Policicchio 39a,39b,
+R. Polifka162, A. Polini 22a, C. S. Pollard 55, V . Polychronakos 27, K. Pommès 32, L. Pontecorvo 133a, B. G. Pope 92,
+G. A. Popeneciu28c, D. S. Popovic 14, A. Poppleton 32, S. Pospisil 129, K. Potamianos 16, I .N .P o t r a p67, C. J. Potter 30,
+C. T. Potter117, G. Poulard 32, J. Poveda 32, V . Pozdnyakov67, M. E. Pozo Astigarraga 32, P. Pralavorio 87, A. Pranko 16,
+S. Prell66,D . P r i c e86,L . E . P r i c e6, M. Primavera 75a, S. Prince 89, M. Proissl 48, K. Prokoﬁev 62c, F. Prokoshin 34b,
+S. Protopopescu27, J. Proudfoot 6, M. Przybycien 40a, D. Puddu 135a,135b, M. Purohit 27,ao, P. Puzo118,J . Q i a n91,G . Q i n55,
+Y. Q i n86, A. Quadt 56, W. B. Quayle 167a,167b, M. Queitsch-Maitland 86, D. Quilty 55, S. Raddum 120, V . Radeka 27,
+V . Radescu60b, S. K. Radhakrishnan 151, P. Radloff 117, P. Rados 90, F. Ragusa 93a,93b, G. Rahal 181, J. A. Raine 86,
+S. Rajagopalan27, M. Rammensee 32, C. Rangel-Smith 168, M .G .R a t t i93a,93b, F. Rauscher101,S . R a v e85, T. Ravenscroft55,
+I. Ravinovich175, M. Raymond32,A .L .R e a d120, N. P. Readioff76, M. Reale75a,75b, D. M. Rebuzzi122a,122b, A. Redelbach177,
+G. Redlinger27, R. Reece 138,K . R e e v e s43, L. Rehnisch 17, J. Reichert 123,H . R e i s i n29, C. Rembser 32,H . R e n 35a,
+M. Rescigno133a, S. Resconi 93a, O. L. Rezanova 110,c, P. Reznicek 130, R. Rezvani 96, R. Richter 102, S. Richter 80,
+E. Richter-Was40b,O . R i c k e n23, M. Ridel 82, P. Rieck 17, C. J. Riegel 178, J. Rieger 56,O . R i f k i114, M. Rijssenbeek 151,
+A. Rimoldi122a,122b, M. Rimoldi 18, L. Rinaldi 22a, B. Risti´ c51, E. Ritsch 32,I . R i u13, F. Rizatdinova 115, E. Rizvi 78,
+C. Rizzi13, S. H. Robertson 89,n, A. Robichaud-Veronneau 89, D. Robinson 30, J. E. M. Robinson 44, A. Robson 55,
+C. Roda125a,125b, Y . Rodina87,ap, A. Rodriguez Perez13, D. Rodriguez Rodriguez170,S .R o e32, C. S. Rogan58, O. Røhne120,
+A. Romaniouk99, M. Romano 22a,22b, S. M. Romano Saez 36, E. Romero Adam 170, N. Rompotis 139, M. Ronzani 50,
+L. Roos82,E . R o s170, S. Rosati 133a, K. Rosbach 50,P . R o s e138, O. Rosenthal 144,N . - A . R o s i e n56, V . Rossetti149a,149b,
+E. Rossi105a,105b, L. P. Rossi52a,J .H .N .R o s t e n30,R .R o s t e n139, M. Rotaru28b,I .R o t h175, J. Rothberg139, D. Rousseau118,
+C. R. Royon137, A. Rozanov87, Y . Rozen155, X. Ruan148c, F. Rubbo146, M. S. Rudolph162, F. Rühr50, A. Ruiz-Martinez31,
+Z. Rurikova50, N. A. Rusakovich67, A. Ruschke101, H. L. Russell139, J. P. Rutherfoord7, N. Ruthmann32, Y . F. Ryabov124,
+M. Rybar169, G. Rybkin 118,S . R y u6, A. Ryzhov 131, G. F. Rzehorz 56, A. F. Saavedra 153, G. Sabato 108, S. Sacerdoti 29,
+H. F.-W. Sadrozinski138, R. Sadykov 67, F. Safai Tehrani 133a, P. Saha 109, M. Sahinsoy 60a, M. Saimpert 137, T. Saito 158,
+H. Sakamoto158, Y . Sakurai 174, G. Salamanna 135a,135b, A. Salamon 134a,134b, J. E. Salazar Loyola 34b, D. Salek 108,
+P. H. Sales De Bruin139, D. Salihagic 102, A. Salnikov 146, J. Salt 170, D. Salvatore 39a,39b, F. Salvatore 152, A. Salvucci 62a,
+A. Salzburger32, D. Sammel 50, D. Sampsonidis 157, J. Sánchez 170, V . Sanchez Martinez170, A. Sanchez Pineda 105a,105b,
+H. Sandaker120, R. L. Sandbach78, H. G. Sander85, M. Sandhoff178, C. Sandoval21, R. Sandstroem102, D. P. C. Sankey132,
+M. Sannino52a,52b, A. Sansoni 49, C. Santoni 36, R. Santonico 134a,134b, H. Santos 127a, I. Santoyo Castillo 152, K. Sapp 126,
+A. Sapronov67, J. G. Saraiva 127a,127d, B. Sarrazin 23, O. Sasaki 68, Y . Sasaki158, K. Sato 164, G. Sauvage 5,*, E. Sauvan 5,
+123
+
+===== PAGE 28 =====
+332 Page 28 of 35 Eur. Phys. J. C (2017) 77 :332
+G. Savage79,P . S a v a r d162,d, C. Sawyer 132, L. Sawyer 81,u, J. Saxon 33, C. Sbarra 22a, A. Sbrizzi 22a,22b, T. Scanlon 80,
+D. A. Scannicchio166, M. Scarcella 153, V . Scarfone 39a,39b, J. Schaarschmidt 175, P. Schacht 102, B. M. Schachtner 101,
+D. Schaefer32, R. Schaefer44, J. Schaeffer85, S. Schaepe23, S. Schaetzel60b, U. Schäfer85, A. C. Schaffer118, D. Schaile101,
+R. D. Schamberger151, V . Scharf60a, V . A. Schegelsky124, D. Scheirich130, M. Schernau166, C. Schiavi52a,52b, S. Schier138,
+C. Schillo50, M. Schioppa 39a,39b, S. Schlenker 32, K. R. Schmidt-Sommerfeld 102, K. Schmieden 32, C. Schmitt 85,
+S. Schmitt44, S. Schmitz 85, B. Schneider 163a, U. Schnoor 50, L. Schoeffel 137, A. Schoening 60b, B. D. Schoenrock 92,
+E. Schopf23, M. Schott 85, J. Schovancova8, S. Schramm 51, M. Schreyer 177, N. Schuh 85, A. Schulte 85, M. J. Schultens 23,
+H.-C. Schultz-Coulon60a, H. Schulz 17, M. Schumacher 50, B. A. Schumm 138, Ph. Schune 137, A. Schwartzman 146,
+T. A. Schwarz91, Ph. Schwegler 102, H. Schweiger 86, Ph. Schwemling 137, R. Schwienhorst 92, J. Schwindling 137,
+T. Schwindt23, G. Sciolla25, F. Scuri125a,125b, F. Scutti90, J. Searcy91, P. Seema23, S. C. Seidel106, A. Seiden138, F. Seifert129,
+J. M. Seixas26a, G. Sekhniaidze 105a, K. Sekhon 91, S. J. Sekula 42, D. M. Seliverstov 124,*, N. Semprini-Cesari 22a,22b,
+C. Serfon120, L. Serin 118, L. Serkin 167a,167b, M. Sessa 135a,135b, R. Seuster 172,H . S e v e r i n i114, T. Sﬁligoj 77, F. Sforza 32,
+A. Sfyrla51, E. Shabalina56, N. W. Shaikh149a,149b, L. Y . Shan35a, R. Shang169, J. T. Shank24, M. Shapiro16, P. B. Shatalov98,
+K. Shaw167a,167b, S. M. Shaw 86, A. Shcherbakova 149a,149b, C. Y . Shehu152, P. Sherwood 80, L. Shi 154,aq, S. Shimizu 69,
+C. O. Shimmin166, M. Shimojima103, M. Shiyakova67,ar, A. Shmeleva97, D. Shoaleh Saadi96, M. J. Shochet33, S. Shojaii93a,
+S. Shrestha112, E. Shulga 99, M. A. Shupe 7, P. Sicho 128, A. M. Sickles 169, P. E. Sidebo 150, O. Sidiropoulou 177,
+D. Sidorov115, A. Sidoti22a,22b, F. Siegert46, Dj. Sijacki14, J. Silva127a,127d, S. B. Silverstein149a,V .S i m a k129,O .S i m a r d5,
+Lj. Simic14, S. Simion 118, E. Simioni 85, B. Simmons 80,D . S i m o n36,M . S i m o n85, P. Sinervo 162, N .B .S i n e v117,
+M. Sioli22a,22b, G. Siragusa 177, S. Yu. Sivoklokov100, J. Sjölin 149a,149b, M. B. Skinner 74, H. P. Skottowe58, P. Skubic 114,
+M. Slater19, T. Slavicek 129, M. Slawinska 108, K. Sliwa 165,R . S l o v a k130, V . Smakhtin175,B . H . S m a r t5,L . S m e s t a d15,
+J. Smiesko147a, S. Yu. Smirnov99,Y . S m i r n o v99,L . N . S m i r n o v a100,as,O . S m i r n o v a83, M .N .K .S m i t h37, R .W .S m i t h37,
+M. Smizanska74,K . S m o l e k129, A. A. Snesarev 97, S. Snyder 27, R. Sobie 172,n, F. Socher 46, A. Soffer 156, D. A. Soh 154,
+G. Sokhrannyi77, C. A. Solans Sanchez 32, M. Solar 129, E. Yu. Soldatov 99, U. Soldevila 170, A. A. Solodkov 131,
+A. Soloshenko67, O. V . Solovyanov131, V . Solovyev124, P. Sommer50, H. Son165, H. Y . Song59,at, A. Sood16, A. Sopczak129,
+V . Sopko129, V . Sorin13, D. Sosa 60b, C. L. Sotiropoulou 125a,125b, R. Soualah 167a,167c, A. M. Soukharev 110,c, D. South 44,
+B. C. Sowden79, S. Spagnolo 75a,75b, M. Spalla 125a,125b, M. Spangenberg 173, F. Spanò 79, D. Sperlich 17, F. Spettel 102,
+R. Spighi22a, G. Spigo 32, L. A. Spiller 90, M. Spousta 130, R .D .S t .D e n i s55,*, A. Stabile 93a,R . S t a m e n60a,S . S t a m m17,
+E. Stanecka41, R. W. Stanek6, C. Stanescu135a, M. Stanescu-Bellu44, M. M. Stanitzki44, S. Stapnes120, E. A. Starchenko131,
+G. H. Stark33,J . S t a r k57, S. H Stark 38, P. Staroba 128, P. Starovoitov 60a,S . S t ä r z32, R. Staszewski 41, P. Steinberg 27,
+B. Stelzer145, H .J .S t e l z e r32, O. Stelzer-Chilton 163a, H. Stenzel 54,G . A . S t e w a r t55, J. A. Stillings 23, M. C. Stockton 89,
+M. Stoebe89, G. Stoicea 28b, P. Stolte 56, S. Stonjek 102, A. R. Stradling 8, A. Straessner 46, M. E. Stramaglia 18,
+J. Strandberg150, S. Strandberg 149a,149b, A. Strandlie 120, M. Strauss 114, P. Strizenec147b, R. Ströhmer 177,D . M . S t r o m117,
+R. Stroynowski42, A. Strubig107, S. A. Stucci18, B. Stugu15, N. A. Styles44,D .S u146,J .S u126, S. Suchek60a, Y . Sugaya119,
+M. Suk129, V . V . Sulin97, S. Sultansoy 4c, T. Sumida 70, S. Sun 58, X. Sun 35a, J. E. Sundermann 50, K. Suruliz 152,
+G. Susinno39a,39b, M. R. Sutton 152, S. Suzuki 68,M . S v a t o s128, M. Swiatlowski 33, I. Sykora 147a, T. Sykora 130,D . T a50,
+C. Taccini135a,135b, K. Tackmann44, J. Taenzer162,A .T a f f a r d166, R. Taﬁrout163a, N. Taiblum156, H. Takai27, R. Takashima71,
+T. Takeshita143, Y . Takubo68, M. Talby 87, A. A. Talyshev 110,c,K . G . T a n90, J. Tanaka 158, R. Tanaka 118, S. Tanaka 68,
+B. B. Tannenwald112, S. Tapia Araya 34b, S. Tapprogge 85, S. Tarem 155, G. F. Tartarelli 93a,P . T a s130,M . T a s e v s k y128,
+T. Tashiro70, E. Tassi39a,39b, A. Tavares Delgado127a,127b, Y . Tayalati136d, A. C. Taylor106, G. N. Taylor90, P. T. E. Taylor90,
+W. Taylor163b, F. A. Teischinger 32, P. Teixeira-Dias 79, D. Temple 145,H . T e n K a t e32, P. K. Teng 154, J. J. Teoh 119,
+F. Tepel178, S. Terada68, K. Terashi158,J . T e r r o n84, S. Terzo102,M . T e s t a49, R. J. Teuscher 162,n, T. Theveneaux-Pelzer87,
+J. P. Thomas19, J. Thomas-Wilsker 79, E. N. Thompson 37, P. D. Thompson 19, A. S. Thompson 55, L .A .T h o m s e n179,
+E. Thomson123, M. Thomson 30, M .J .T i b b e t t s16,R . E . T i c s e T o r r e s87, V . O. Tikhomirov 97,au, Yu. A. Tikhonov 110,c,
+S. Timoshenko99, P. Tipton 179, S. Tisserant 87, K. Todome 160, T. Todorov 5,*, S. Todorova-Nova 130,J . T o j o 72,
+S. Tokár147a, K. Tokushuku 68, E. Tolley 58, L. Tomlinson 86, M. Tomoto 104, L. Tompkins 146,av,K . T o m s106, B. Tong 58,
+E. Torrence117,H . T o r r e s145, E. Torró Pastor139,J . T o t h87,aw, F. Touchard87, D. R. Tovey142, T. Trefzger177, A. Tricoli 27,
+I. M. Trigger163a, S. Trincaz-Duvoid 82, M. F. Tripiana 13, W. Trischuk 162, B. Trocmé 57,A . T r o f y m o v44, C. Troncon 93a,
+M. Trottier-McDonald16, M. Trovatelli 172, L. Truong 167a,167c, M. Trzebinski 41, A. Trzupek 41, J. C.-L. Tseng 121,
+P. V . Tsiareshka94, G. Tsipolitis10, N. Tsirintanis9, S. Tsiskaridze13, V . Tsiskaridze50, E. G. Tskhadadze53a,K .M .T s u i62a,
+I. I. Tsukerman98, V . Tsulaia 16, S. Tsuno 68, D. Tsybychev 151, A. Tudorache 28b, V . Tudorache 28b, A .N .T u n a58,
+S. A. Tupputi22a,22b, S. Turchikhin 100,as, D. Turecek 129, D. Turgeman 175, R. Turra 93a, A .J .T u r v e y42,P . M . T u t s37,
+M. Tyndel132, G. Ucchielli 22a,22b, I. Ueda 158, M. Ughetto 149a,149b,F . U k e g a w a164, G. Unal 32, A. Undrus 27, G. Unel 166,
+F. C. Ungaro90, Y . Unno 68, C. Unverdorben 101, J. Urban 147b, P. Urquijo 90, P. Urrejola 85,G . U s a i8, A. Usanova 64,
+123
+
+===== PAGE 29 =====
+Eur. Phys. J. C (2017) 77 :332 Page 29 of 35 332
+L. Vacavant87, V . Vacek129, B. Vachon89, C. Valderanis101, E. Valdes Santurio149a,149b, N. Valencic108, S. Valentinetti22a,22b,
+A. Valero170, L. Valéry 13, S. Valkar 130, S. Vallecorsa 51, J .A .V a l l sF e r r e r170, W. Van Den Wollenberg 108,
+P. C. Van Der Deijl108, R. van der Geer108, H. van der Graaf108, N. van Eldik155, P. van Gemmeren6, J. Van Nieuwkoop145,
+I. van Vulpen108, M. C. van Woerden 32, M. Vanadia 133a,133b, W. Vandelli 32, R. Vanguri 123, A. Vaniachine 161,
+P. Vankov108, G. Vardanyan180,R . V a r i133a, E. W. Varnes7, T. Varol42, D. Varouchas82, A. Vartapetian8,K . E . V a r v e l l153,
+J. G. Vasquez179, F. Vazeille36, T. Vazquez Schroeder89, J. Veatch56, L. M. Veloce162, F. Veloso127a,127c, S. Veneziano133a,
+A. Ventura75a,75b, M. Venturi 172, N. Venturi 162, A. Venturini 25, V . Vercesi122a, M. Verducci 133a,133b,W . V e r k e r k e108,
+J. C. Vermeulen108,A . V e s t46,ax, M. C. Vetterli 145,d, O. Viazlo 83, I. Vichou 169,*,T . V i c k e y142, O. E. Vickey Boeriu 142,
+G. H. A. Viehhauser121,S . V i e l16, L. Vigani 121, R. Vigne 64, M. Villa 22a,22b, M. Villaplana Perez 93a,93b, E. Vilucchi 49,
+M. G. Vincter31, V . B. Vinogradov67, C. Vittori22a,22b, I. Vivarelli152, S. Vlachos10,M .V l a s a k129, M. V ogel178, P. V okac129,
+G. V olpi125a,125b, M. V olpi90, H. von der Schmitt102, E. von Toerne23, V . V orobel130, K. V orobev99,M .V o s170,R .V o s s32,
+J. H. V ossebeld76, N. Vranjes 14, M. Vranjes Milosavljevic 14,V . V r b a128, M. Vreeswijk 108, R. Vuillermet32, I. Vukotic33,
+Z. Vykydal129, P. Wagner23, W. Wagner178, H. Wahlberg73, S. Wahrmund46, J. Wakabayashi104, J. Walder74,R .W a l k e r101,
+W. Walkowiak144, V . Wallangen149a,149b, C. Wang 35b, C. Wang 140,ay, F. Wang 176, H. Wang 16, H. Wang 42, J. Wang 44,
+J. Wang153, K. Wang 89, R. Wang 6, S .M .W a n g154, T. Wang23, T. Wang37, W. Wang59, X. Wang 179, C. Wanotayaroj 117,
+A. Warburton89,C . P . W a r d30, D. R. Wardrope 80, A. Washbrook 48, P. M. Watkins 19,A . T . W a t s o n19,M . F . W a t s o n19,
+G. Watts139, S. Watts 86, B. M. Waugh 80, S. Webb 85, M. S. Weber 18, S. W. Weber177, J .S .W e b s t e r6, A. R. Weidberg121,
+B. Weinert63, J. Weingarten 56,C . W e i s e r50, H. Weits 108, P. S. Wells 32, T. Wenaus 27, T. Wengler 32, S. Wenig 32,
+N. Wermes23, M. Werner50, M. D. Werner 66, P. Werner32, M. Wessels60a, J. Wetter165, K. Whalen 117, N. L. Whallon 139,
+A. M. Wharton74, A. White 8, M. J. White 1, R. White 34b, D. Whiteson 166, F. J. Wickens 132, W. Wiedenmann 176,
+M. Wielers132, P. Wienemann23, C. Wiglesworth 38, L. A. M. Wiik-Fuchs 23, A. Wildauer 102, F. Wilk86, H. G. Wilkens 32,
+H. H. Williams123, S. Williams 108, C. Willis 92, S. Willocq 88, J. A. Wilson 19, I. Wingerter-Seez 5, F. Winklmeier 117,
+O. J. Winston152, B. T. Winter 23, M. Wittgen 146, J. Wittkowski 101, M .W .W o l t e r41, H. Wolters 127a,127c,S . D . W o r m132,
+B. K. Wosiek41, J. Wotschack32, M. J. Woudstra86, K. W. Wozniak41,M .W u57,M .W u33,S .L .W u176,X .W u51,Y .W u91,
+T. R. Wyatt86, B. M. Wynne48, S. Xella38,D .X u35a,L .X u27, B. Yabsley153, S. Yacoob148a, R. Yakabe69, D. Yamaguchi160,
+Y . Yamaguchi119, A. Yamamoto68, S. Yamamoto158, T. Yamanaka158, K. Yamauchi104, Y . Yamazaki69,Z .Y a n24, H. Yang141,
+H. Yang176, Y . Yang154, Z. Yang15,W . - M .Y a o16,Y .C .Y a p82,Y .Y a s u68, E. Yatsenko5, K. H. Yau Wong23,J .Y e42,S .Y e27,
+I. Yeletskikh67,A . L . Y e n58, E. Yildirim 85, K. Yorita 174, R. Yoshida 6, K. Yoshihara 123, C. Young 146, C. J. S. Young 32,
+S. Youssef24,D .R .Y u16,J .Y u8,J .M .Y u91,J .Y u66,L .Y u a n69,S .P .Y .Y u e n23, I. Yusuff30,az, B. Zabinski41, R. Zaidan140,
+A. M. Zaitsev131,aj, N. Zakharchuk 44, J. Zalieckas 15, A. Zaman 151, S. Zambito 58, L. Zanello 133a,133b, D. Zanzi 90,
+C. Zeitnitz178, M. Zeman129,A .Z e m l a40a,J .C .Z e n g169, Q. Zeng146, K. Zengel25, O. Zenin131, T. Ženiš147a,D .Z e r w a s118,
+D. Zhang91, F. Zhang 176, G. Zhang 59,at, H. Zhang 35b, J. Zhang 6, L. Zhang 50, R. Zhang 23, R. Zhang 59,ay, X. Zhang 140,
+Z. Zhang118, X. Zhao 42, Y . Zhao140,ba, Z. Zhao 59, A. Zhemchugov 67, J. Zhong 121, B. Zhou 91, C. Zhou 47, L. Zhou 37,
+L. Zhou42, M. Zhou151, N. Zhou35c,C .G .Z h u140,H .Z h u35a,J .Z h u91,Y .Z h u59, X. Zhuang35a, K. Zhukov97, A. Zibell177,
+D. Zieminska63, N .I .Z i m i n e67, C. Zimmermann 85, S. Zimmermann 50, Z. Zinonos 56,M . Z i n s e r85, M. Ziolkowski 144,
+L. Živkovi´c14, G. Zobernig176, A. Zoccoli22a,22b, M. zur Nedden17, L. Zwalinski32
+1 Department of Physics, University of Adelaide, Adelaide, Australia
+2 Physics Department, SUNY Albany, Albany, NY, USA
+3 Department of Physics, University of Alberta, Edmonton, AB, Canada
+4 (a)Department of Physics, Ankara University, Ankara, Turkey;(b)Istanbul Aydin University, Istanbul, Turkey;(c)Division
+of Physics, TOBB University of Economics and Technology, Ankara, Turkey
+5 LAPP, CNRS/IN2P3 and Université Savoie Mont Blanc, 00, France
+6 High Energy Physics Division, Argonne National Laboratory, Argonne, IL, USA
+7 Department of Physics, University of Arizona, Tucson, AZ, USA
+8 Department of Physics, The University of Texas at Arlington, Arlington, TX, USA
+9 Physics Department, National and Kapodistrian University of Athens, Athens, Greece
+10 Physics Department, National Technical University of Athens, Zografou, Greece
+11 Department of Physics, The University of Texas at Austin, Austin, TX, USA
+12 Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+13 Institut de Física d’Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Barcelona, Spain
+14 Institute of Physics, University of Belgrade, Belgrade, Serbia
+15 Department for Physics and Technology, University of Bergen, Bergen, Norway
+123
+
+===== PAGE 30 =====
+332 Page 30 of 35 Eur. Phys. J. C (2017) 77 :332
+16 Physics Division, Lawrence Berkeley National Laboratory and University of California, Berkeley, CA, USA
+17 Department of Physics, Humboldt University, Berlin, Germany
+18 Albert Einstein Center for Fundamental Physics and Laboratory for High Energy Physics, University of Bern, Bern,
+Switzerland
+19 School of Physics and Astronomy, University of Birmingham, Birmingham, UK
+20 (a)Department of Physics, Bogazici University, Istanbul, Turkey;(b)Department of Physics Engineering, Gaziantep
+University, Gaziantep, Turkey;(c)Faculty of Engineering and Natural Sciences, Istanbul Bilgi University, Istanbul,
+Turkey;(d)Faculty of Engineering and Natural Sciences, Bahcesehir University, Istanbul, Turkey
+21 Centro de Investigaciones, Universidad Antonio Narino, Bogotá, Colombia
+22 (a)INFN Sezione di Bologna, Bologna, Italy; (b)Dipartimento di Fisica e Astronomia, Università di Bologna, Bologna,
+Italy
+23 Physikalisches Institut, University of Bonn, Bonn, Germany
+24 Department of Physics, Boston University, Boston, MA, USA
+25 Department of Physics, Brandeis University, Waltham, MA, USA
+26 (a)Universidade Federal do Rio De Janeiro COPPE/EE/IF, Rio de Janeiro, Brazil;(b)Electrical Circuits Department,
+Federal University of Juiz de Fora (UFJF), Juiz de Fora, Brazil;(c)Federal University of Sao Joao del Rei (UFSJ), Sao
+Joao del Rei, Brazil; (d)Instituto de Fisica, Universidade de Sao Paulo, Sao Paulo, Brazil
+27 Physics Department, Brookhaven National Laboratory, Upton, NY, USA
+28 (a)Transilvania University of Brasov, Brasov, Romania;(b)Horia Hulubei National Institute of Physics and Nuclear
+Engineering, Bucharest, Romania; (c)Physics Department, National Institute for Research and Development of Isotopic
+and Molecular Technologies, Cluj-Napoca, Romania;(d)University Politehnica Bucharest, Bucharest, Romania;(e)West
+University in Timisoara, Timisoara, Romania
+29 Departamento de Física, Universidad de Buenos Aires, Buenos Aires, Argentina
+30 Cavendish Laboratory, University of Cambridge, Cambridge, UK
+31 Department of Physics, Carleton University, Ottawa, ON, Canada
+32 CERN, Geneva, Switzerland
+33 Enrico Fermi Institute, University of Chicago, Chicago, IL, USA
+34 (a)Departamento de Física, Pontiﬁcia Universidad Católica de Chile, Santiago, Chile;(b)Departamento de Física,
+Universidad Técnica Federico Santa María, Valparaiso, Chile
+35 (a)Institute of High Energy Physics, Chinese Academy of Sciences, Beijing, China; (b)Department of Physics, Nanjing
+University, Jiangsu, China;(c)Physics Department, Tsinghua University, Beijing 100084, China
+36 Université Clermont Auvergne, CNRS/IN2P3, LPC, Clermont-Ferrand, France
+37 Nevis Laboratory, Columbia University, Irvington, NY, USA
+38 Niels Bohr Institute, University of Copenhagen, Kobenhavn, Denmark
+39 (a)INFN Gruppo Collegato di Cosenza, Laboratori Nazionali di Frascati, Frascati, Italy; (b)Dipartimento di Fisica,
+Università della Calabria, Rende, Italy
+40 (a)Faculty of Physics and Applied Computer Science, AGH University of Science and Technology, Kraków,
+Poland; (b)Marian Smoluchowski Institute of Physics, Jagiellonian University, Kraków, Poland
+41 Institute of Nuclear Physics Polish Academy of Sciences, Kraków, Poland
+42 Physics Department, Southern Methodist University, Dallas, TX, USA
+43 Physics Department, University of Texas at Dallas, Richardson, TX, USA
+44 DESY, Hamburg and Zeuthen, Germany
+45 Lehrstuhl für Experimentelle Physik IV, Technische Universität Dortmund, Dortmund, Germany
+46 Institut für Kern- und Teilchenphysik, Technische Universität Dresden, Dresden, Germany
+47 Department of Physics, Duke University, Durham, NC, USA
+48 SUPA-School of Physics and Astronomy, University of Edinburgh, Edinburgh, UK
+49 INFN e Laboratori Nazionali di Frascati, Frascati, Italy
+50 Fakultät für Mathematik und Physik, Albert-Ludwigs-Universität, Freiburg, Germany
+51 Departement de Physique Nucleaire et Corpusculaire, Université de Genève, Geneva, Switzerland
+52 (a)INFN Sezione di Genova, Genoa, Italy;(b)Dipartimento di Fisica, Università di Genova, Genoa, Italy
+53 (a)E. Andronikashvili Institute of Physics, Iv. Javakhishvili Tbilisi State University, Tbilisi, Georgia;(b)High Energy
+Physics Institute, Tbilisi State University, Tbilisi, Georgia
+54 II Physikalisches Institut, Justus-Liebig-Universität Giessen, Giessen, Germany
+123
+
+===== PAGE 31 =====
+Eur. Phys. J. C (2017) 77 :332 Page 31 of 35 332
+55 SUPA-School of Physics and Astronomy, University of Glasgow, Glasgow, UK
+56 II Physikalisches Institut, Georg-August-Universität, Göttingen, Germany
+57 Laboratoire de Physique Subatomique et de Cosmologie, Université Grenoble-Alpes, CNRS/IN2P3, Grenoble, France
+58 Laboratory for Particle Physics and Cosmology, Harvard University, Cambridge, MA, USA
+59 Department of Modern Physics and State Key Laboratory of Particle Detection and Electronics, University of Science
+and Technology of China, Anhui, China
+60 (a)Kirchhoff-Institut für Physik, Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany;(b)Physikalisches Institut,
+Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany;(c)ZITI Institut für technische Informatik,
+Ruprecht-Karls-Universität Heidelberg, Mannheim, Germany
+61 Faculty of Applied Information Science, Hiroshima Institute of Technology, Hiroshima, Japan
+62 (a)Department of Physics, The Chinese University of Hong Kong, Shatin, N.T., Hong Kong;(b)Department of Physics,
+The University of Hong Kong, Hong Kong, China;(c)Department of Physics and Institute for Advanced Study, The Hong
+Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong, China
+63 Department of Physics, Indiana University, Bloomington, IN, USA
+64 Institut für Astro- und Teilchenphysik, Leopold-Franzens-Universität, Innsbruck, Austria
+65 University of Iowa, Iowa City, IA, USA
+66 Department of Physics and Astronomy, Iowa State University, Ames, IA, USA
+67 Joint Institute for Nuclear Research, JINR Dubna, Dubna, Russia
+68 KEK, High Energy Accelerator Research Organization, Tsukuba, Japan
+69 Graduate School of Science, Kobe University, Kobe, Japan
+70 Faculty of Science, Kyoto University, Kyoto, Japan
+71 Kyoto University of Education, Kyoto, Japan
+72 Research Center for Advanced Particle Physics and Department of Physics, Kyushu University, Fukuoka, Japan
+73 Instituto de Física La Plata, Universidad Nacional de La Plata and CONICET, La Plata, Argentina
+74 Physics Department, Lancaster University, Lancaster, UK
+75 (a)INFN Sezione di Lecce, Lecce, Italy; (b)Dipartimento di Matematica e Fisica, Università del Salento, Lecce, Italy
+76 Oliver Lodge Laboratory, University of Liverpool, Liverpool, UK
+77 Department of Experimental Particle Physics, Jožef Stefan Institute and Department of Physics, University of Ljubljana,
+Ljubljana, Slovenia
+78 School of Physics and Astronomy, Queen Mary University of London, London, UK
+79 Department of Physics, Royal Holloway University of London, Surrey, UK
+80 Department of Physics and Astronomy, University College London, London, UK
+81 Louisiana Tech University, Ruston, LA, USA
+82 Laboratoire de Physique Nucléaire et de Hautes Energies, UPMC and Université Paris-Diderot and CNRS/IN2P3, Paris,
+France
+83 Fysiska institutionen, Lunds universitet, Lund, Sweden
+84 Departamento de Fisica Teorica C-15, Universidad Autonoma de Madrid, Madrid, Spain
+85 Institut für Physik, Universität Mainz, Mainz, Germany
+86 School of Physics and Astronomy, University of Manchester, Manchester, UK
+87 CPPM, Aix-Marseille Université and CNRS/IN2P3, Marseille, France
+88 Department of Physics, University of Massachusetts, Amherst, MA, USA
+89 Department of Physics, McGill University, Montreal, QC, Canada
+90 School of Physics, University of Melbourne, Victoria, Australia
+91 Department of Physics, The University of Michigan, Ann Arbor, MI, USA
+92 Department of Physics and Astronomy, Michigan State University, East Lansing, MI, USA
+93 (a)INFN Sezione di Milano, Milan, Italy; (b)Dipartimento di Fisica, Università di Milano, Milan, Italy
+94 B.I. Stepanov Institute of Physics, National Academy of Sciences of Belarus, Minsk, Republic of Belarus
+95 Research Institute for Nuclear Problems of Byelorussian State University, Minsk, Republic of Belarus
+96 Group of Particle Physics, University of Montreal, Montreal, QC, Canada
+97 P.N. Lebedev Physical Institute of the Russian Academy of Sciences, Moscow, Russia
+98 Institute for Theoretical and Experimental Physics (ITEP), Moscow, Russia
+99 National Research Nuclear University MEPhI, Moscow, Russia
+100 D.V . Skobeltsyn Institute of Nuclear Physics, M.V . Lomonosov Moscow State University, Moscow, Russia
+123
+
+===== PAGE 32 =====
+332 Page 32 of 35 Eur. Phys. J. C (2017) 77 :332
+101 Fakultät für Physik, Ludwig-Maximilians-Universität München, Munich, Germany
+102 Max-Planck-Institut für Physik (Werner-Heisenberg-Institut), Munich, Germany
+103 Nagasaki Institute of Applied Science, Nagasaki, Japan
+104 Graduate School of Science and Kobayashi-Maskawa Institute, Nagoya University, Nagoya, Japan
+105 (a)INFN Sezione di Napoli, Naples, Italy; (b)Dipartimento di Fisica, Università di Napoli, Naples, Italy
+106 Department of Physics and Astronomy, University of New Mexico, Albuquerque, NM, USA
+107 Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef, Nijmegen, The
+Netherlands
+108 Nikhef National Institute for Subatomic Physics and University of Amsterdam, Amsterdam, The Netherlands
+109 Department of Physics, Northern Illinois University, DeKalb, IL, USA
+110 Budker Institute of Nuclear Physics, SB RAS, Novosibirsk, Russia
+111 Department of Physics, New York University, New York, NY, USA
+112 Ohio State University, Columbus, OH, USA
+113 Faculty of Science, Okayama University, Okayama, Japan
+114 Homer L. Dodge Department of Physics and Astronomy, University of Oklahoma, Norman, OK, USA
+115 Department of Physics, Oklahoma State University, Stillwater, OK, USA
+116 Palacký University, RCPTM, Olomouc, Czech Republic
+117 Center for High Energy Physics, University of Oregon, Eugene, OR, USA
+118 LAL, Univ. Paris-Sud, CNRS/IN2P3, Université Paris-Saclay, Orsay, France
+119 Graduate School of Science, Osaka University, Osaka, Japan
+120 Department of Physics, University of Oslo, Oslo, Norway
+121 Department of Physics, Oxford University, Oxford, UK
+122 (a)INFN Sezione di Pavia, Pavia, Italy;(b)Dipartimento di Fisica, Università di Pavia, Pavia, Italy
+123 Department of Physics, University of Pennsylvania, Philadelphia, PA, USA
+124 National Research Centre “Kurchatov Institute” B.P. Konstantinov Petersburg Nuclear Physics Institute, St. Petersburg,
+Russia
+125 (a)INFN Sezione di Pisa, Pisa, Italy; (b)Dipartimento di Fisica E. Fermi, Università di Pisa, Pisa, Italy
+126 Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh, PA, USA
+127 (a)Laboratório de Instrumentação e Física Experimental de Partículas-LIP, Lisbon, Portugal; (b)Faculdade de Ciências,
+Universidade de Lisboa, Lisbon, Portugal;(c)Department of Physics, University of Coimbra, Coimbra,
+Portugal; (d)Centro de Física Nuclear da Universidade de Lisboa, Lisbon, Portugal;(e)Departamento de Fisica,
+Universidade do Minho, Braga, Portugal;(f)Departamento de Fisica Teorica y del Cosmos and CAFPE, Universidad de
+Granada, Granada, Spain; (g)Dep Fisica and CEFITEC of Faculdade de Ciencias e Tecnologia, Universidade Nova de
+Lisboa, Caparica, Portugal
+128 Institute of Physics, Academy of Sciences of the Czech Republic, Prague, Czech Republic
+129 Czech Technical University in Prague, Prague, Czech Republic
+130 Charles University, Faculty of Mathematics and Physics, Prague, Czech Republic
+131 State Research Center Institute for High Energy Physics (Protvino), NRC KI, Protvino, Russia
+132 Particle Physics Department, Rutherford Appleton Laboratory, Didcot, UK
+133 (a)INFN Sezione di Roma, Rome, Italy; (b)Dipartimento di Fisica, Sapienza Università di Roma, Rome, Italy
+134 (a)INFN Sezione di Roma Tor Vergata, Rome, Italy;(b)Dipartimento di Fisica, Università di Roma Tor Vergata, Rome,
+Italy
+135 (a)INFN Sezione di Roma Tre, Rome, Italy;(b)Dipartimento di Matematica e Fisica, Università Roma Tre, Rome, Italy
+136 (a)Faculté des Sciences Ain Chock, Réseau Universitaire de Physique des Hautes Energies-Université Hassan II,
+Casablanca, Morocco; (b)Centre National de l’Energie des Sciences Techniques Nucleaires, Rabat, Morocco;(c)Faculté
+des Sciences Semlalia, Université Cadi Ayyad, LPHEA-Marrakech, Marrakech, Morocco;(d)Faculté des Sciences,
+Université Mohamed Premier and LPTPM, Oujda, Morocco;(e)Faculté des Sciences, Université Mohammed V, Rabat,
+Morocco
+137 DSM/IRFU (Institut de Recherches sur les Lois Fondamentales de l’Univers), CEA Saclay (Commissariat à l’Energie
+Atomique et aux Energies Alternatives), Gif-sur-Yvette, France
+138 Santa Cruz Institute for Particle Physics, University of California Santa Cruz, Santa Cruz, CA, USA
+139 Department of Physics, University of Washington, Seattle, W A, USA
+140 School of Physics, Shandong University, Shandong, China
+123
+
+===== PAGE 33 =====
+Eur. Phys. J. C (2017) 77 :332 Page 33 of 35 332
+141 Department of Physics and Astronomy, Key Laboratory for Particle Physics, Astrophysics and Cosmology, Ministry of
+Education; Shanghai Key Laboratory for Particle Physics and Cosmology, Shanghai Jiao Tong University; (also at
+PKU-CHEP), Shanghai, China
+142 Department of Physics and Astronomy, University of Shefﬁeld, Shefﬁeld, UK
+143 Department of Physics, Shinshu University, Nagano, Japan
+144 FDepartment Physik, Universität Siegen, Siegen, Germany
+145 Department of Physics, Simon Fraser University, Burnaby, BC, Canada
+146 SLAC National Accelerator Laboratory, Stanford, CA, USA
+147 (a)Faculty of Mathematics, Physics and Informatics, Comenius University, Bratislava, Slovak Republic;(b)Department of
+Subnuclear Physics, Institute of Experimental Physics of the Slovak Academy of Sciences, Kosice, Slovak Republic
+148 (a)Department of Physics, University of Cape Town, Cape Town, South Africa;(b)Department of Physics, University of
+Johannesburg, Johannesburg, South Africa;(c)School of Physics, University of the Witwatersrand, Johannesburg, South
+Africa
+149 (a)Department of Physics, Stockholm University, Stockholm, Sweden;(b)The Oskar Klein Centre, Stockholm, Sweden
+150 Physics Department, Royal Institute of Technology, Stockholm, Sweden
+151 Departments of Physics and Astronomy and Chemistry, Stony Brook University, Stony Brook, NY, USA
+152 Department of Physics and Astronomy, University of Sussex, Brighton, UK
+153 School of Physics, University of Sydney, Sydney, Australia
+154 Institute of Physics, Academia Sinica, Taipei, Taiwan
+155 Department of Physics, Technion: Israel Institute of Technology, Haifa, Israel
+156 Raymond and Beverly Sackler School of Physics and Astronomy, Tel Aviv University, Tel Aviv, Israel
+157 Department of Physics, Aristotle University of Thessaloniki, Thessaloniki, Greece
+158 International Center for Elementary Particle Physics and Department of Physics, The University of Tokyo, Tokyo, Japan
+159 Graduate School of Science and Technology, Tokyo Metropolitan University, Tokyo, Japan
+160 Department of Physics, Tokyo Institute of Technology, Tokyo, Japan
+161 Tomsk State University, Tomsk, Russia
+162 Department of Physics, University of Toronto, Toronto, ON, Canada
+163 (a)TRIUMF, Vancouver, BC, Canada;(b)Department of Physics and Astronomy, York University, Toronto, ON, Canada
+164 Faculty of Pure and Applied Sciences, and Center for Integrated Research in Fundamental Science and Engineering,
+University of Tsukuba, Tsukuba, Japan
+165 Department of Physics and Astronomy, Tufts University, Medford, MA, USA
+166 Department of Physics and Astronomy, University of California Irvine, Irvine, CA, USA
+167 (a)INFN Gruppo Collegato di Udine, Sezione di Trieste, Udine, Italy;(b)ICTP, Trieste, Italy;(c)Dipartimento di Chimica,
+Fisica e Ambiente, Università di Udine, Udine, Italy
+168 Department of Physics and Astronomy, University of Uppsala, Uppsala, Sweden
+169 Department of Physics, University of Illinois, Urbana, IL, USA
+170 Instituto de Fisica Corpuscular (IFIC), Centro Mixto Universidad de Valencia-CSIC, Valencia, Spain
+171 Department of Physics, University of British Columbia, Vancouver, BC, Canada
+172 Department of Physics and Astronomy, University of Victoria, Victoria, BC, Canada
+173 Department of Physics, University of Warwick, Coventry, UK
+174 Waseda University, Tokyo, Japan
+175 Department of Particle Physics, The Weizmann Institute of Science, Rehovot, Israel
+176 Department of Physics, University of Wisconsin, Madison, WI, USA
+177 Fakultät für Physik und Astronomie, Julius-Maximilians-Universität, Würzburg, Germany
+178 Fakultät für Mathematik und Naturwissenschaften, Fachgruppe Physik, Bergische Universität Wuppertal, Wuppertal,
+Germany
+179 Department of Physics, Yale University, New Haven, CT, USA
+180 Yerevan Physics Institute, Yerevan, Armenia
+181 Centre de Calcul de l’Institut National de Physique Nucléaire et de Physique des Particules (IN2P3), Villeurbanne, France
+a Also at Department of Physics, King’s College London, London, UK
+b Also at Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+c Also at Novosibirsk State University, Novosibirsk, Russia
+123
+
+===== PAGE 34 =====
+332 Page 34 of 35 Eur. Phys. J. C (2017) 77 :332
+d Also at TRIUMF, Vancouver, BC, Canada
+e Also at Department of Physics and Astronomy, University of Louisville, Louisville, KY , USA
+f Also at Physics Department, An-Najah National University, Nablus, Palestine
+g Also at Department of Physics, California State University, Fresno, CA, USA
+h Also at Department of Physics, University of Fribourg, Fribourg, Switzerland
+i Also at Department de Fisica de la Universitat Autonoma de Barcelona, Barcelona, Spain
+j Also at Departamento de Fisica e Astronomia, Faculdade de Ciencias, Universidade do Porto, Portugal
+k Also at Tomsk State University, Tomsk, Russia
+l Also at The Collaborative Innovation Center of Quantum Matter (CICQM), Beijing, China
+m Also at Universita di Napoli Parthenope, Napoli, Italy
+n Also at Institute of Particle Physics (IPP), Canada
+o Also at Horia Hulubei National Institute of Physics and Nuclear Engineering, Bucharest, Romania
+p Also at Department of Physics, St. Petersburg State Polytechnical University, St. Petersburg, Russia
+q Also at Borough of Manhattan Community College, City University of New York, New York City, United States of
+America
+r Also at Department of Physics, The University of Michigan, Ann Arbor, MI, USA
+s Also at Department of Financial and Management Engineering, University of the Aegean, Chios, Greece
+t Also at Centre for High Performance Computing, CSIR Campus, Rosebank, Cape Town, South Africa
+u Also at Louisiana Tech University, Ruston, LA, USA
+v Also at Institucio Catalana de Recerca i Estudis Avancats, ICREA, Barcelona, Spain
+w Also at Graduate School of Science, Osaka University, Osaka, Japan
+x Also at Department of Physics, National Tsing Hua University, Taiwan
+y Also at Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef, Nijmegen,
+The Netherlands
+z Also at Department of Physics, The University of Texas at Austin, Austin, TX, USA
+aa Also at CERN, Geneva, Switzerland
+ab Also at Georgian Technical University (GTU), Tbilisi, Georgia
+ac Also at Ochadai Academic Production, Ochanomizu University, Tokyo, Japan
+ad Also at Manhattan College, New York, NY , USA
+ae Also at Academia Sinica Grid Computing, Institute of Physics, Academia Sinica, Taipei, Taiwan
+af Also at The City College of New York, New York NY , United States of America
+ag Also at School of Physics, Shandong University, Shandong, China
+ah Also at Departamento de Fisica Teorica y del Cosmos and CAFPE, Universidad de Granada, Granada, Portugal
+ai Also at Department of Physics, California State University, Sacramento CA, USA
+aj Also at Moscow Institute of Physics and Technology, State University, Dolgoprudny, Russia
+ak Also at Departement de Physique Nucleaire et Corpusculaire, Université de Genève, Geneva, Switzerland
+al Also at Eotvos Lorand University, Budapest, Hungary
+am Also at Departments of Physics and Astronomy and Chemistry, Stony Brook University, Stony Brook NY , USA
+an Also at International School for Advanced Studies (SISSA), Trieste, Italy
+ao Also at Department of Physics and Astronomy, University of South Carolina, Columbia, SC, USA
+ap Also at Institut de Física d’Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Barcelona, Spain
+aq Also at School of Physics, Sun Yat-sen University, Guangzhou, China
+ar Also at Institute for Nuclear Research and Nuclear Energy (INRNE) of the Bulgarian Academy of Sciences, Soﬁa,
+Bulgaria
+as Also at Faculty of Physics, M.V . Lomonosov Moscow State University, Moscow, Russia
+at Also at Institute of Physics, Academia Sinica, Taipei, Taiwan
+au Also at National Research Nuclear University MEPhI, Moscow, Russia
+av Also at Department of Physics, Stanford University, Stanford, CA, USA
+aw Also at Institute for Particle and Nuclear Physics, Wigner Research Centre for Physics, Budapest, Hungary
+ax Also at Flensburg University of Applied Sciences, Flensburg, Germany
+ay Also at CPPM, Aix-Marseille Université and CNRS/IN2P3, Marseille, France
+123
+
+===== PAGE 35 =====
+Eur. Phys. J. C (2017) 77 :332 Page 35 of 35 332
+az Also at University of Malaya, Department of Physics, Kuala Lumpur, Malaysia
+ba Also at LAL, Univ. Paris-Sud, CNRS/IN2P3, Université Paris-Saclay, Orsay, France
+∗ Deceased
+123

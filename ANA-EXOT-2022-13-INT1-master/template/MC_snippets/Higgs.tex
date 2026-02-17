@@ -1,0 +1,348 @@
+\section{Higgs boson processes}
+%\label{sec:higgs}
+
+In this section, the set-up of the current ATLAS samples for Higgs boson production in gluon--gluon fusion, 
+vector-boson fusion and Higgs-strahlung processes is described.
+
+\subsection{$H$ via gluon--gluon fusion}
+%\label{sec:higgs-ggH}
+
+\subsubsection*{\texorpdfstring{\POWPY[8]}{Powheg+Pythia8} samples}
+%\label{sec:higgs-ggH-samples}
+
+%HGam: https://twiki.cern.ch/twiki/bin/view/Sandbox/RuggeroTurraSandbox
+%ZZ: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/HZZllllRun2MCSamplesMC16#mc16
+%WW: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/HWWMC
+%Hlep:https://twiki.cern.ch/twiki/bin/view/AtlasProtected/HSG4MCrequests2015
+%Hbb: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/HbbMC
+
+The descriptions below correspond to the samples in Table~\ref{tab:higgs-ggH-samples}.
+\begin{table}[!htbp]
+  \caption{\POWHEG Higgs gluon--gluon fusion samples with \POWPY[8] for different Higgs boson decay channels.}%
+  \label{tab:higgs-ggH-samples}
+  \centering
+  \begin{tabular}{ l | l | l}
+    \toprule
+    DSID   & Decay channel & Additional comment \\
+    \midrule
+    343981 & $H\to\gamma\gamma$&   \\
+    345316 & $H\to Z\gamma$ & \\
+    345060 & $H\to ZZ^{*} \to 4\ell $ & $\ell=e,\mu,\tau$   \\
+    345324 & $H\to WW^{*} \to 2\ell2\nu $ &  $p_{{\textrm T},\ell1} > 15$~\GeV\  and $p_{{\textrm T},\ell2} > 5$~\GeV   \\
+    308284 & $H\to ZZ^{*}\to 4\nu$ & $E_\text{T}^\text{miss} > 75$~\GeV\\
+    345342 & $H\to b \bar{b}$ & \\
+    345097 & $H\to\mu\mu$      &     \\
+    345120 & $H\to\tau\tau\to \ell^{+}\ell^{-}$      & $p_{{\textrm T},\ell1} > 13$~\GeV\  and $p_{{\textrm T},\ell2} > 7$~\GeV \\
+    345121 & $H\to\tau\tau\to h^{+}\ell^{-}$      & $p_{{\textrm T},\ell} > 15$~\GeV\  and $p_{{\textrm T},h} > 20$~\GeV\\
+    345122 & $H\to\tau\tau\to \ell^{+}h^{-}$      & $p_{{\textrm T},\ell} > 15$~\GeV\  and $p_{{\textrm T},h} > 20$~\GeV\\
+    345123 & $H\to\tau\tau\to h^{+}h^{-}$      & $p_{{\textrm T},h1} > 30$~\GeV\  and $p_{{\textrm T},h2} > 20$~\GeV \\
+    345124 & $H\to\tau\tau\to \mu\tau$      &\\ %$p_{\textrm T},h1 > 30$~GeV  and $p_{\textrm T},h2 > 20$~GeV 
+    345125 & $H\to\tau\tau\to e \tau$      & \\ %$p_{\textrm T},h1 > 30$~GeV  and $p_{\textrm T},h2 > 20$~GeV 
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Higgs boson production via gluon--gluon fusion was simulated at next-to-next-to-leading-order (NNLO) accuracy in 
+QCD using \POWHEGBOX[v2]~\cite{Hamilton:2013fea,Hamilton:2015nsa,Alioli:2010xd,Nason:2004rx,Frixione:2007vw}. 
+The simulation achieved NNLO accuracy for arbitrary inclusive $gg\to H$ observables by reweighting the Higgs boson 
+rapidity spectrum in \textsc{Hj}-\MINLO~\cite{Hamilton:2012np,Campbell:2012am,Hamilton:2012rf} to that of HNNLO~\cite{Catani:2007vq}.
+%The transverse momentum spectrum of the Higgs boson obtained with this sample was found to be compatible with the fixed-order HNNLO calculation and the Hres2.3 calculation~\cite{Bozzi:2005wk,deFlorian:2011xf} performing resummation at next-to-next-to- leading-logarithm accuracy matched to a NNLO fixed-order calculation (NNLL+NNLO).
+The \PDFforLHC[15nnlo] PDF set~\cite{Butterworth:2015oua} and the \AZNLO tune~\cite{STDM-2012-23} 
+of \PYTHIA[8]~\cite{Sjostrand:2014zea} were used.
+
+The gluon--gluon fusion prediction from the Monte Carlo samples was normalised to the 
+next-to-next-to-next-to-leading-order cross-section in QCD plus electroweak corrections 
+at next-to-leading order 
+(NLO)~\cite{deFlorian:2016spz,Anastasiou:2016cez,Anastasiou:2015ema,Dulat:2018rbf,Harlander:2009mq,Harlander:2009bw,Harlander:2009my,Pak:2009dg,Actis:2008ug,Actis:2008ts,Bonetti:2018ukf,Bonetti:2018ukf}. The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}.
+The normalisation of all Higgs boson
+samples accounts for the decay branching ratio calculated with HDECAY~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz}
+and \PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.
+
+
+\paragraph{Long description:}
+
+Higgs boson production via gluon--gluon fusion was simulated at next-to-next-to-leading-order (NNLO) accuracy in QCD using 
+\POWHEGBOX[v2]~\cite{Hamilton:2013fea,Hamilton:2015nsa,Alioli:2010xd,Nason:2004rx,Frixione:2007vw}. The simulation achieved NNLO
+accuracy for arbitrary inclusive $gg\to H$ observables by reweighting the Higgs boson rapidity spectrum 
+in \textsc{Hj}-\MINLO~\cite{Hamilton:2012np,Campbell:2012am,Hamilton:2012rf} to that of HNNLO~\cite{Catani:2007vq}. The transverse momentum
+spectrum of the Higgs boson obtained with this sample was found to be compatible with the fixed-order HNNLO calculation and the
+\HRES[2.3] calculation~\cite{Bozzi:2005wk,deFlorian:2011xf} performing resummation at next-to-next-to-leading-logarithm accuracy
+matched to a NNLO fixed-order calculation (NNLL+NNLO). 
+Top- and bottom-quark mass effects were included up to next-to-leading order (NLO).
+
+The renormalisation and factorisation scales were set to half of the Higgs boson mass and the \PDFforLHC[15nnlo] PDF
+set~\cite{Butterworth:2015oua} was used. The matrix elements were matched to the parton shower of \PYTHIA[8]~\cite{Sjostrand:2014zea}
+which uses the AZNLO tune~\cite{STDM-2012-23}. The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}.
+
+The QCD scale uncertainties were obtained using nine-point scale variations of the NLO renormalisation and factorisation scales and applying the NNLO reweighting to those variations, including up and down variations of $\muR=\muF$ around the central value for the NNLO part, yielding a total of 27 scale variations.
+PDF and \alphas uncertainties were estimated using the \PDFforLHC[15nlo] set of eigenvectors.
+The envelope of the resulting 27 scale variations was taken to estimate the QCD scale uncertainty. 
+Uncertainties were also provided for switching off bottom- and top-quark mass effects.
+%From YR4
+
+The prediction from the Monte Carlo samples was normalised to the next-to-next-to-next-to-leading-order 
+cross-section in QCD in the infinite top-quark mass 
+limit~\cite{deFlorian:2016spz,Anastasiou:2016cez,Anastasiou:2015ema,Dulat:2018rbf,Aglietti:2004nj} and including exact 
+corrections for all finite quark-mass effects at NLO in QCD as well as NLO electroweak 
+effects~\cite{Actis:2008ug,Bonetti:2018ukf}. Additionally, corrections to the inverse of the top-quark mass were taken 
+into account at NNLO~\cite{Harlander:2009mq,Harlander:2009bw,Harlander:2009my,Pak:2009dg}. 
+The normalisation of all Higgs boson samples accounts for the decay branching ratio calculated with 
+HDECAY~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz}
+and \PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.
+
+
+\subsection{$H$ via vector-boson fusion}
+%\label{sec:higgs-VBF}
+
+\subsubsection*{\texorpdfstring{\POWPY[8]}{Powheg+Pythia8} samples}
+%\label{sec:higgs-VBF-samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:higgs-VBF-samples}.
+
+\begin{table}[!htbp]
+  \caption{\POWPY[8] Higgs vector-boson fusion samples for different Higgs boson decay channels.}%
+  \label{tab:higgs-VBF-samples}
+  \centering
+  \begin{tabular}{ l l l}
+    \toprule
+    DSID   & Decay channel & Additional comment \\
+    \midrule
+    346317 & $H\to$ all  & \\
+    346214 & $H\to\gamma\gamma$&   \\
+    345833 & $H\to Z\gamma$ & $Z\to \ell^{+}\ell^{-}$\\
+    345834 & $H\to \gamma\gamma^{*}$ & $\gamma^{*}\to \ell^{+}\ell^{-}$\\
+    346228 & $H\to ZZ^{*} \to 4\ell $ & $\ell=e,\mu$   \\
+    450576 & $H\to ZZ^{*} \to 2\ell2b $ &   \\
+    345948 & $H\to WW^{*} \to 2\ell2\nu $ &  $p_{{\textrm T},\ell1} > 15$~\GeV\  and $p_{{\textrm T},\ell2} > 5$~\GeV   \\
+    346600 & $H\to ZZ^{*}\to 4\nu$ & $\MET>75$~\GeV\\
+    345949 & $H\to b \bar{b}$ & \\
+    % & $H\to\mu\mu$      &     \\
+    346190& $H\to\tau\tau\to \ell^{+}\ell^{-}$      & $p_{{\textrm T},\ell1} > 13$~\GeV\  and $p_{{\textrm T},\ell2} > 7$~\GeV \\
+    346191 & $H\to\tau\tau\to h^{+}\ell^{-}$      & $p_{{\textrm T},\ell} > 15$~\GeV\  and $p_{{\textrm T},h} > 20$~\GeV\\
+    346192 & $H\to\tau\tau\to \ell^{+}h^{-}$      & $p_{{\textrm T},\ell} > 15$~\GeV\  and $p_{{\textrm T},h} > 20$~\GeV\\
+    346193 & $H\to\tau\tau\to h^{+}h^{-}$      & $p_{{\textrm T},h1} > 30$~\GeV\  and $p_{{\textrm T},h2} > 20$~\GeV \\
+    346194 & $H\to\tau\tau\to e\tau$      & \\%$p_{\textrm T},l1 > 10$~GeV  and $p_{\textrm T},h1 > 20$~GeV \\
+    346195 & $H\to\tau\tau\to \mu\tau$      & \\%$p_{\textrm T},l1 > 10$~GeV  and $p_{\textrm T},h1 > 20$~GeV \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Higgs boson production via vector-boson fusion was simulated with
+\POWHEGBOX[v2]~\cite{Nason:2009ai,Alioli:2010xd,Nason:2004rx,Frixione:2007vw} 
+and interfaced with \PYTHIA[8]~\cite{Sjostrand:2014zea} for parton shower and non-perturbative effects,
+with parameters set according to the \AZNLO tune~\cite{STDM-2012-23}.
+The \POWHEGBOX prediction is accurate to next-to-leading order (NLO) and uses
+the \PDFforLHC[15nlo] PDF set~\cite{Butterworth:2015oua}. 
+%It was tuned to match calculations with effects due to finite heavy-quark masses 
+%and soft-gluon resummation up to NNLL.
+It was normalised to an approximate-NNLO QCD cross-section 
+with NLO electroweak corrections~\cite{Ciccolini:2007jr,Ciccolini:2007ec,Bolzoni:2010xr}.
+The decays of bottom and charm hadrons were performed by \EVTGEN~\cite{Lange:2001uf}.
+The normalisation of all Higgs boson samples accounts for the decay branching ratio calculated 
+with \textsc{HDECAY}~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz} 
+and \PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.
+
+
+\paragraph{Long description:}
+
+Higgs boson production via vector-boson fusion was simulated with
+\POWHEGBOX[v2]~\cite{Nason:2009ai,Alioli:2010xd,Nason:2004rx,Frixione:2007vw}. A factorised approximation, where cross-talk between the
+fermion lines is neglected, was used. The implementation is based on the respective NLO QCD calculations for genuine $W/Z$ vector-boson
+fusion topologies (VBF approximation). Quark--antiquark annihilation and interference contributions 
+between $t$- and $u$-channel contributions were disregarded.
+%External fermion masses are neglected throughout.  For the choice of renormalisation and factorisation scales, various options are available.  For this report, fixed scales,μF=μR=MW, areused, and contributions from external bottom and top quarks are entirely disregarded.
+
+The renormalisation and factorisation scales were set to the $W$ boson mass and the \PDFforLHC[15nlo] PDF set~\cite{Butterworth:2015oua}
+was used. The matrix elements were matched to the parton shower of \PYTHIA[8]~\cite{Sjostrand:2014zea} which uses the \AZNLO
+tune~\cite{STDM-2012-23}. A dipole-recoil strategy was used for the parton shower.The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}.%, which provides a better agreement than other recoil schemes with the NNLO predictions of proVBFH (not included in the HiggsReference twiki). % cite https://arxiv.org/pdf/1710.00391.pdf ?,
+
+%The samples include weight variations evaluated on-the-fly for the estimation of QCD scale, PDF- and \alphas-induced uncertainties. 
+The QCD scales \muR and \muF were varied independently by factors of 0.5 and 2.0, both in the matrix element 
+and in the parton shower.
+
+The prediction from the \POWHEGBOX sample was normalised to the next-to-next-to-leading-order cross-section in QCD 
+using the VBF approximation~\cite{Ciccolini:2007jr,Ciccolini:2007ec,Bolzoni:2010xr}. Relative 
+next-to-leading-order electroweak corrections were also taken into account for the $t$- and $u$-channel contribution 
+considered in the VBF approximation. The normalisation of all Higgs boson samples accounts for the decay branching 
+ratio calculated with \textsc{HDECAY}~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz} and 
+\PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}. 
+
+
+\subsection{$VH$}
+%\label{sec:higgs-VH}
+
+This section describes the generation details of nominal samples for Higgs-strahlung production.
+
+\subsubsection*{\texorpdfstring{\POWPY[8]}{Powheg+Pythia8} samples}
+%\label{sec:higgs-VH-samples}
+
+The descriptions below correspond to the samples in Tables~\ref{tab:higgs-ZH-samples} to \ref{tab:higgs-ggZH-samples}.
+
+\begin{table}[!htbp]
+  \caption{\POWPY[8] samples of Higgs boson production in association with a $Z$ boson for different Higgs boson decay channels.}%
+  \label{tab:higgs-ZH-samples}
+  \centering
+  \begin{tabular}{ l l l}
+    \toprule
+    DSID   & Decay channel & Additional comment \\
+    \midrule
+    345038 & $H \to ZZ^{*} \to 4\ell$ & $Z\to$ all\\
+    345319 & $H \to \gamma\gamma$ & $Z\to$ all\\
+    345322 & $H \to Z\gamma$ & $Z\to$ all\\
+    345103 & $H \to\mu\mu$ & $Z\to$ all\\ 
+    345217 & $H \to\tau\tau$& $Z\to$ all\\ 
+    345218 & $H \to e\tau$ &$Z\to$ all\\
+    345219 & $H \to \mu\tau$&$Z\to$ all\\
+    345445 & $H \to WW^{*} \to 2\ell2\nu $ & $Z\to$ all \\
+    345876 & $H\ to ee$ &$Z\to$ all \\
+    345965 & $H \to \gamma\gamma^{*}$ & $\gamma^{*}\to \ell^{+}\ell^{-}$; $Z\to$ all\\
+    346310 & $H \to$ all&$Z\to$ all\\
+    346607 & $H \to ZZ^{*} \to 4\nu $ &$Z\to \ell^{+}\ell^{-}$ \\
+    345055 & $H \to b\bar{b}$ & $p_{{\textrm T},Z}$ enhancement; $Z\to \ell^{+}\ell^{-}$\\
+    345111 & $H \to c\bar{c}$ & $p_{{\textrm T},Z}$ enhancement; $Z\to \ell^{+}\ell^{-}$\\
+    345337 & $H \to WW^{*} \to 2\ell2\nu $ &$p_{{\textrm T},Z}$ enhancement; $Z\to \ell^{+}\ell^{-}$\\
+    346326 & $H \to\tau\tau$& $p_{{\textrm T},Z}$ enhancement; $Z\to \ell^{+}\ell^{-}$\\
+    346693 & $H \to ZZ^{*} \to 4\nu $ & $p_{{\textrm T},Z}$ enhancement; $Z\to \ell^{+}\ell^{-}$\\
+    345056 & $H \to b\bar{b}$ & $p_{{\textrm T},Z}$ enhancement; $Z\to \nu\bar{\nu}$\\
+    345112 & $H \to c\bar{c}$ & $p_{{\textrm T},Z}$ enhancement; $Z\to \nu\bar{\nu}$\\
+    345445 & $H \to WW^{*} \to 2\ell2\nu$  & $p_{{\textrm T},Z}$ enhancement; $Z\to \nu\bar{\nu}$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+  \caption{\POWPY[8] samples of Higgs boson production in association with a $W^{+}$ boson for different Higgs boson decay channels.}
+  \label{tab:higgs-WpH-samples}
+  \centering
+  \begin{tabular}{l l l}
+    \toprule
+    DSID   & Decay channel & Additional comment \\
+    \midrule
+    345039 & $H \to ZZ^{*} \to 4\ell$ & $W^{+}\to$ all\\
+    345318 & $H \to \gamma\gamma$ & $W^{+}\to$ all\\
+    345104 & $H \to \mu\mu$ &  $W^{+}\to$ all\\
+    345212 & $H \to \tau\tau$ &  $W^{+}\to$ all\\
+    345214 & $H \to e \tau $ & $W^{+}\to$ all\\
+    345216 & $H \to \mu \tau $ & $W^{+}\to$ all\\
+    345321 & $H \to Z\gamma$ & $W^{+}\to$ all\\
+    345325 & $H \to WW^{*} \to 2\ell2\nu $ & $W^{+} \to q\bar{q}$ \\
+    345877 & $H \to e^{+}e^{-}$ & $W^{+}\to$ all\\
+    345964 & $H \to \gamma\gamma^{*}$ & $\gamma^{*}\to \ell^{+}\ell^{-}$; $W^{+}\to$ all\\
+    346311 & $H \to$ all & $W^{+}\to$ all\\ 
+    346605 & $H \to ZZ^{*} \to 4\nu $ & $W^{+}\to$ all\\
+    346699 & $H \to 4\ell$ & interfaced to PROPHECY4F \\
+    346705 & $H \to 4\ell$ & interfaced to Hto4l \\
+    345054 & $H \to b\bar{b}$ & $p_{{\textrm T},W}$ enhancement; $W^{+}\to \ell^{+}\nu$ \\
+    345110 & $H \to c\bar{c}$ & $p_{{\textrm T},W}$ enhancement; $W^{+}\to \ell^{+}\nu$ \\
+    345327 & $H \to WW^{*} \to 2\ell2\nu$ & $p_{{\textrm T},W}$ enhancement; $W^{+}\to \ell^{+}\nu$ \\ 
+    346561 & $H \to WW^{*} \to q\bar{q}\ell\nu$ & $p_{{\textrm T},W}$ enhancement; $W^{+}\to \ell^{+}\nu$ \\
+    346325 & $H \to \tau\tau$ & $p_{{\textrm T},W}$ enhancement; $W^{+}\to \ell^{+}\nu$ \\
+    346729 & $H \to ZZ^{*} \to 4\nu$ & $p_{{\textrm T},W}$ enhancement; $W^{+}\to \ell^{+}\nu$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+  \caption{\POWPY[8] samples of Higgs boson production in association with a $W^{-}$ boson for different Higgs boson decay channels.}
+  \label{tab:higgs-WmH-samples}
+  \centering
+  \begin{tabular}{l l l}
+    \toprule
+    DSID   & Decay channel & Additional comment \\
+    \midrule
+    345040 & $H \to ZZ^{*} \to 4\ell$ & $W^{-}\to$ all\\
+    345317 & $H \to \gamma\gamma$ & $W^{-}\to$ all\\
+    345105 & $H \to \mu\mu$ &  $W^{-}\to$ all\\
+    345211 & $H \to \tau\tau$ &  $W^{-}\to$ all\\
+    345213 & $H \to e \tau $ & $W^{-}\to$ all\\
+    345215 & $H \to \mu \tau $ & $W^{-}\to$ all\\
+    345320 & $H \to Z\gamma$ & $W^{-}\to$ all\\
+    345333 & $H \to WW^{*} \to 2\ell2\nu $ & $W^{-} \to q\bar{q}$ \\
+    345878 & $H \to e^{+}e^{-}$ & $W^{-}\to$ all\\
+    345963 & $H \to \gamma\gamma^{*}$ & $\gamma^{*}\to \ell^{+}\ell^{-}$; $W^{-}\to$ all\\
+    346312 & $H \to$ all & $W^{-}\to$ all\\ 
+    346606 & $H \to ZZ^{*} \to 4\nu $ & $W^{-}\to$ all\\
+    346700 & $H \to 4\ell$ & interfaced to PROPHECY4F \\
+    346706 & $H \to 4\ell$ & interfaced to Hto4l \\
+    345053 & $H \to b\bar{b}$ & $p_{{\textrm T},W}$ enhancement; $W^{-}\to \ell^{-}\bar{\nu}$ \\
+    345109 & $H \to c\bar{c}$ & $p_{{\textrm T},W}$ enhancement; $W^{-}\to \ell^{-}\bar{\nu}$  \\
+    345326 & $H \to WW^{*} \to 2\ell2\nu$ & $p_{{\textrm T},W}$ enhancement;  $W^{-}\to \ell^{-}\bar{\nu}$ \\
+    346560 & $H \to WW^{*} \to q\bar{q}\ell\nu$ & $p_{{\textrm T},W}$ enhancement; $W^{-}\to \ell^{-}\bar{\nu}$ \\
+    346324 & $H \to \tau\tau$ & $p_{{\textrm T},W}$ enhancement; $W^{-}\to \ell^{-}\bar{\nu}$ \\
+    346730 & $H \to ZZ^{*} \to 4\nu$ & $p_{{\textrm T},W}$ enhancement; $W^{-}\to \ell^{-}\bar{\nu}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+  \caption{\POWPY[8] samples of loop-induced Higgs boson production in association with a $Z$ boson for different
+  Higgs boson decay channels.}%
+  \label{tab:higgs-ggZH-samples}
+  \centering
+  \begin{tabular}{ l | l | l}
+    \toprule
+    DSID   & Decay channel & Additional comment \\
+    \midrule
+    345061 & $H \to \gamma\gamma$ & $Z\to$ all \\
+    345066 & $H \to ZZ^{*} \to 4\ell$ & $Z\to$ all \\
+    345098 & $H \to \mu\mu$ & $Z\to$ all \\
+    345596 & $H \to ZZ^{*} \to 4\nu$ & $Z\to$ all \\
+    346524 & $H \to WW^{*} \to 2\ell2\nu $ & $Z\to$ all \\
+    346697 & $H \to ZZ^{*} \to 4\nu$ & interfaced to PROPHECY4F \\
+    346703 & $H \to ZZ^{*} \to 4\nu$ & interfaced to Hto4l \\
+    345057 & $H \to b\bar{b}$ &  $Z\to \ell^{+}\ell^{-}$\\ 
+    345113 & $H \to c\bar{c}$ & $Z\to \ell^{+}\ell^{-}$\\
+    345446 & $H \to WW^{*} \to 2\ell2\nu$ &  $Z\to \ell^{+}\ell^{-}$\\
+    346329 & $H \to \tau\tau$ &  $Z\to \ell^{+}\ell^{-}$\\
+    346694 & $H \to ZZ^{*} \to 4\nu$ &  $Z\to \ell^{+}\ell^{-}$\\
+    345058 & $H \to b\bar{b}$ & $Z\to \nu\bar{\nu}$\\
+    345114 & $H \to c\bar{c}$ & $Z\to \nu\bar{\nu}$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Higgs boson production in association with a vector boson was simulated using
+\POWHEGBOX[v2]~\cite{Nason:2009ai,Alioli:2010xd,Nason:2004rx,Frixione:2007vw} and interfaced with \PYTHIA[8]~\cite{Sjostrand:2014zea} for
+parton shower and non-perturbative effects. The \POWHEGBOX prediction is accurate to next-to-leading order for $VH$ boson plus one-jet production. 
+The loop-induced $gg\to ZH$ process was generated separately at leading order. The \PDFforLHC[15nlo] PDF
+set~\cite{Butterworth:2015oua} and the \AZNLO tune~\cite{STDM-2012-23} of \PYTHIA[8]~\cite{Sjostrand:2014zea} were used. The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}. The Monte Carlo
+prediction was normalised to cross-sections calculated at NNLO in QCD with NLO electroweak corrections for $q\bar{q}/qg \to VH$ and at NLO
+and next-to-leading-logarithm accuracy in QCD for $gg \to
+ZH$~\cite{Ciccolini:2003jy,Brein:2003wg,Brein:2011vx,Altenkamp:2012sx,Denner:2014cla,Brein:2012ne,Harlander:2014wda}. The
+normalisation of all Higgs boson samples accounts for the decay branching ratio calculated with 
+HDECAY~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz} and \PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.
+
+
+\paragraph{Long description:}
+
+Higgs boson production in association with a vector boson was simulated using
+\POWHEGBOX[v2]~\cite{Nason:2009ai,Alioli:2010xd,Nason:2004rx,Frixione:2007vw}. The computation was carried out using the
+\MINLO~\cite{Luisoni:2013cuh} prescription, which achieves NLO accuracy for the $VH$ and $VH$ boson plus one-jet production
+inclusive distributions and dictates the choice of renormalisation and factorisation scales. Virtual amplitudes were constructed
+through the interface to the \GOSAM package~\cite{Cullen:2011ac}. The loop-induced $gg\to ZH$ process was generated separately at
+leading order with \POWHEGBOX. In all cases, the \PDFforLHC[15nlo] PDF set~\cite{Butterworth:2015oua} was used.
+
+The matrix elements were matched to the parton shower of \PYTHIA[8]~\cite{Sjostrand:2014zea} which uses the \AZNLO
+tune~\cite{STDM-2012-23}. The decays of bottom and charm hadrons were performed by \EVTGEN~\cite{Lange:2001uf}.
+%The samples include weight variations evaluated on-the-fly for the estimation of QCD scale, PDF- and \alphas-induced uncertainties. 
+The QCD scales \muR and \muF were varied independently by factors of 0.5 and 2.0 to account for their uncertainties.
+
+The predictions from \POWHEGBOX were normalised to the best available theoretical prediction. The  $q\bar{q}/qg \to VH$ cross-sections
+were calculated at NNLO in QCD with NLO electroweak corrections and the $gg \to ZH$ cross-sections were calculated at NLO and 
+next-to-leading-logarithm accuracy~\cite{Ciccolini:2003jy,Brein:2003wg,Brein:2011vx,Altenkamp:2012sx,Denner:2014cla,Brein:2012ne,Harlander:2014wda}. 
+The normalisation of the $q\bar{q}\to ZH$ samples was extracted from the subtraction of the latter from the former. 
+Differential NLO EW corrections were available from the \textsc{HAWK} program~\cite{Denner:2014cla} to be applied to 
+$q\bar{q}$-initiated $VH$ production as a function of the vector boson's transverse momentum.
+The normalisation of all Higgs boson samples accounts for the decay branching ratio calculated with
+\textsc{HDECAY}~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz} and 
+\PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.

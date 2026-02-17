@@ -1,0 +1,472 @@
+%-------------------------------------------------------------------------------
+% Style file for ATLAS cover page for circulation of ATLAS drafts,
+% CERN preprint and auxiliary material front pages.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\providecommand*\ATPackageVersion{11.6.0}
+\ProvidesPackage{latex/atlascover}[2021/08/20 v11.6.0 ATLAS cover pages]
+\NeedsTeXFormat{LaTeX2e}
+
+%\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
+%\def\@getclass{\expandafter\@getcl@ss\@filelist\relax}
+%
+%\@getclass
+%\typeout{atlascover: this document uses \@currentclass\space class}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=ACOV,
+  prefix=ACOV@
+}
+\DeclareBoolOption[false]{coverpage}
+\DeclareBoolOption[false]{CONF}
+\DeclareBoolOption[false]{PUB}
+\DeclareBoolOption[false]{LANGEDIT}
+\DeclareBoolOption[false]{twocolumn}
+\DeclareBoolOption[false]{atlasdoc}
+\DeclareStringOption[11pt]{coverfontsize}
+\DeclareStringOption[0pt]{hoffset}
+\DeclareStringOption[0pt]{voffset}
+\ProcessKeyvalOptions*
+
+%\typeout{Value of hoffset is \ACOV@hoffset}
+%\typeout{Value of voffset is \ACOV@voffset}
+\newif\ifACOV@atlaspaper
+\ACOV@atlaspapertrue
+\ifthenelse{\boolean{ACOV@CONF}}{%
+  \typeout{atlascover: Cover page for CONF note will be made}
+  \ACOV@atlaspaperfalse
+}{%
+  \ifthenelse{\boolean{ACOV@PUB}}{%
+    \typeout{atlascover: Cover page for PUB note will be made}
+    \ACOV@atlaspaperfalse
+  }{%
+    \typeout{atlascover: Cover page for paper draft will be made}
+  }
+}
+
+\let\ACOV@AdvancePageTwoSided\relax
+
+% Turn on bold math when using \bfseries
+\def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
+
+% See if atlascover is called from atlasdoc
+\ifthenelse{\boolean{ACOV@atlasdoc}}{%
+  \typeout{atlascover: loaded from atlasdoc}
+  \relax
+}{%
+  \@ifclassloaded{latex/atlasdoc}{%
+    \typeout{atlascover: class loaded is latex/atlasdoc}
+    \ACOV@atlasdoctrue
+  }{%
+    \@ifclassloaded{atlasdoc}{%
+      \typeout{atlascover: class loaded is atlasdoc}
+      \ACOV@atlasdoctrue
+    }{%
+      \typeout{atlascover: class loaded does not appear to be atlasdoc}
+      \ACOV@atlasdocfalse
+    }
+  }
+}
+
+% If atlascover called from atlasdoc, do not need to do much
+\ifthenelse{\boolean{ACOV@atlasdoc}}{%
+  \typeout{atlascover: ATLAS cover called from atlasdoc}
+  % Let atlasdoc know we want a cover page
+  \ifthenelse{\boolean{ACOV@coverpage}}{%
+    \typeout{atlascover: telling atlasdoc we want a cover page}
+    \ADOC@coverpagetrue
+  }{}
+}{%
+  % Define macros that are needed here and usually defined in atlasdoc
+  \typeout{atlascover: ATLAS cover called standalone}
+}
+
+% All definitions should also be in atlasdoc.cls
+% They are needed here for a standalone cover that does not use atlasdoc.cls
+\@ifundefined{AtlasTitle}{%
+  \typeout{atlascover: AtlasTitle etc. not yet defined}
+
+  % If statements for checking if things are defined.
+  \newif\ifADOC@abstract
+  \newif\ifACOV@support
+
+  % \renewcommand{\@title}{Dummy title in atlascover\\ Use \textbackslash AtlasTitle to set it}
+  \providecommand{\AtlasTitleText}{Dummy AtlasTitleText in atlascover\\ Use \textbackslash AtlasTitle to set it}
+  \providecommand{\AtlasTitle}[1]{%
+    \renewcommand{\@title}{#1}%
+    \renewcommand{\AtlasTitleText}{#1}%
+  }
+
+  % Draft version
+  \providecommand*{\ADOC@draftversion}{}
+  \providecommand*{\draftversion}[1]{\renewcommand*{\ADOC@draftversion}{#1}}
+  \providecommand*{\AtlasVersion}[1]{\renewcommand*{\ADOC@draftversion}{#1}}
+
+  % ATLAS reference code - empty by default
+  % Also create variable with web page
+  \providecommand*{\ADOC@refcode}{}
+  \providecommand*{\AtlasRefCode}[1]{\renewcommand*{\ADOC@refcode}{#1}}
+  \providecommand*{\AtlasPaperWebpage}{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/\ADOC@refcode}
+
+  % ATLAS note number
+  \providecommand*{\ADOC@atlasnote}{}
+  \providecommand*{\AtlasNote}[1]{\renewcommand*{\ADOC@atlasnote}{#1}}
+
+  % ATLAS date - arXiv submission; to be filled in by the Physics Office
+  \providecommand*{\ADOC@atlasdate}{\today}
+  \providecommand*{\AtlasDate}[1]{\renewcommand*{\ADOC@atlasdate}{#1}}
+
+  % Journal
+  \providecommand*{\ADOC@journal}{}
+  \providecommand*{\journal}[1]{\renewcommand*{\ADOC@journal}{#1}}
+  \providecommand*{\AtlasJournal}[1]{\renewcommand*{\ADOC@journal}{#1}}
+
+  % Preprint
+  \providecommand*{\ADOC@preprintnumber}{}
+  \providecommand*{\PreprintIdNumber}[1]{\renewcommand*{\ADOC@preprintnumber}{#1}}
+
+  % Journal reference
+  \providecommand*{\ADOC@journalref}{}
+  \providecommand*{\AtlasJournalRef}[1]{\renewcommand*{\ADOC@journalref}{#1}}
+
+  % DOI
+  \providecommand*{\ADOC@doi}{}
+  \providecommand*{\AtlasDOI}[1]{\renewcommand*{\ADOC@doi}{#1}}
+
+  % ArXiv
+  \providecommand*{\AtlasArXivId}{}
+  \providecommand*{\AtlasArXivURL}{}
+  \providecommand*{\arXivId}[1]{\renewcommand*{\AtlasArXivId}{#1}\renewcommand*{\AtlasArXivURL}{http://arXiv.org/abs/#1}}
+  \providecommand*{\AtlasArXivCat}{[hep-ex]}
+
+  % HEP Data
+  \providecommand*{\AtlasHepDataRecord}{}
+  \providecommand*{\HepDataRecord}[1]{\renewcommand*{\AtlasHepDataRecord}{http://hepdata.cedar.ac.uk/view/ins#1}}
+
+  % Abstract text
+  \providecommand{\AtlasAbstractText}{}
+  \providecommand{\AtlasAbstract}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
+  \providecommand{\abstracttext}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
+
+  \providecommand*{\ACOV@CommentsDeadline}{Comments deadline}
+  \providecommand{\AtlasCoverCommentsDeadline}[1]{\renewcommand*{\ACOV@CommentsDeadline}{#1}}
+
+  \providecommand*{\ACOV@AnalysisTeam}{Analysis team}
+  \providecommand{\AtlasCoverAnalysisTeam}[1]{\renewcommand*{\ACOV@AnalysisTeam}{#1}}
+
+  \providecommand*{\ACOV@EgroupEditors}{Editor egroup}
+  \providecommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupEditors}{#1}}
+
+  \providecommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
+  \providecommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
+
+  % Multiple corresponding editors
+  % \providecommand{\ACOV@Editors}{}
+  % \providecommand{\AtlasCoverEditor}[2]{%
+  %   \g@addto@macro\ACOV@Editors{%
+  %     #1 & (\texttt{#2}) \\
+  %   }%
+  % }
+
+  % EdBoard members
+  \providecommand{\ACOV@EdBoardMembers}{}
+  \providecommand{\AtlasCoverEdBoardMember}[1]{%
+    \g@addto@macro\ACOV@EdBoardMembers{%
+      #1\par
+    }%
+  }
+
+  % Readers (for PUB notes)
+  \providecommand{\ACOV@ReaderMembers}{}
+  \providecommand{\AtlasCoverReaderMember}[1]{%
+    \g@addto@macro\ACOV@ReaderMembers{%
+      #1\par
+    }%
+  }
+
+  % Language editor
+  \providecommand*{\ACOV@LangEditor}{language editor contact}
+  \providecommand{\LEcontact}[1]{\renewcommand*{\ACOV@LangEditor}{#1}}
+
+  \providecommand*{\ACOV@TwikiURL}{}
+  \providecommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\renewcommand*{\ACOV@TwikiURL}{\url{#1}}}
+
+  % Supporting note list
+  \providecommand\ACOV@Notes{}
+  \providecommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
+    \g@addto@macro\ACOV@Notes{%
+      #1: \url{#2}\newline
+    }%
+  }
+}{}
+
+
+% It seemed as if hyperref has to included here if you include a cover page from within atlasdoc
+\RequirePackage{hyperref}
+
+% Set font sizes - an option could then be made for this in the future
+\newlength{\ACOV@size}
+\newlength{\ACOV@space}
+\newlength{\ACOV@sizes}
+\newlength{\ACOV@spaces}
+\newlength{\ACOV@sizel}
+\newlength{\ACOV@spacel}
+\newlength{\ACOV@sizeL}
+\newlength{\ACOV@spaceL}
+\newlength{\ACOV@sizeh}
+\newlength{\ACOV@spaceh}
+\setlength{\ACOV@size}{\ACOV@coverfontsize}
+\setlength{\ACOV@space}{1.2\ACOV@size}
+\setlength{\ACOV@sizes}{\ACOV@size}
+\addtolength{\ACOV@sizes}{-1pt}
+\setlength{\ACOV@spaces}{1.2\ACOV@sizes}
+\setlength{\ACOV@sizel}{\ACOV@size}
+\addtolength{\ACOV@sizel}{+2pt}
+\setlength{\ACOV@spacel}{1.2\ACOV@sizel}
+\setlength{\ACOV@sizeL}{\ACOV@size}
+\addtolength{\ACOV@sizeL}{+3pt}
+\setlength{\ACOV@spaceL}{1.2\ACOV@sizeL}
+\setlength{\ACOV@sizeh}{\ACOV@size}
+\addtolength{\ACOV@sizeh}{+5pt}
+\setlength{\ACOV@spaceh}{1.2\ACOV@sizeh}
+% \typeout{atlascover: value of font sizes and spacing are:}
+% \typeout{Default: \the\ACOV@size,  \the\ACOV@space}
+% \typeout{small:   \the\ACOV@sizes, \the\ACOV@spaces}
+% \typeout{large:   \the\ACOV@sizel, \the\ACOV@spacel}
+% \typeout{Large:   \the\ACOV@sizeL, \the\ACOV@spaceL}
+% \typeout{huge:    \the\ACOV@sizeh, \the\ACOV@spaceh}
+% \newlength{\ACOV@linewidth}
+% \setlength{\ACOV@linewidth}{\textwidth}
+% \addtolength{\ACOV@linewidth}{-12pt}
+% \setlength{\fboxsep}{0pt}
+
+% \typeout{atlascover: line width1 \the\linewidth, text width \the\textwidth}
+%-------------------------------------------------------------------------------
+% Page One: Header/Body/Footer
+%-------------------------------------------------------------------------------
+\newlength{\coverpageparbox}
+\newcommand{\ATLAS@CoverHeader}{%
+  \setlength{\coverpageparbox}{\textwidth}
+  % \addtolength{\coverpageparbox}{-11pt}%
+  % \typeout{atlascover: coverpageparbox is \the\coverpageparbox, line width \the\linewidth, text width \the\textwidth}
+  \parbox{\coverpageparbox}{%
+    % \typeout{atlascover: line width3 \the\linewidth, text width \the\textwidth}%
+    \parbox{0.25\linewidth}{%
+      \includegraphics[height=25mm]{AT_atlaslogo_2015}
+    }
+    \parbox{0.50\linewidth}{%
+      \centering
+      \sffamily\bfseries\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
+      \ifthenelse{\boolean{ACOV@atlaspaper}}{%
+        ATLAS Paper Draft\par
+      }{%
+        \ifthenelse{\boolean{ACOV@CONF}}{%
+          ATLAS CONF Note Draft\par
+        }{%
+          \ifthenelse{\boolean{ACOV@PUB}}{%
+            ATLAS PUB Note Draft\par
+          }{}
+        }
+      }
+      {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+        \ADOC@refcode\par
+      }
+      {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+        Version \ADOC@draftversion\par
+      }
+      \ifthenelse{\boolean{ACOV@atlaspaper}}{%
+        {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+          Target journal: \ADOC@journal\par
+        }
+      }{}
+    }\par%
+    \rule{\linewidth}{1.5pt}\par
+    \vspace*{0.5em}
+    \parbox{\coverpageparbox}{\centering
+      \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      Comments are due by: \ACOV@CommentsDeadline%
+    }\par%
+    \rule{\linewidth}{1.5pt}
+  }
+}
+
+%-------------------------------------------------------------------------------
+\newcommand{\ATLAS@CoverSupport}{%
+  \setlength{\coverpageparbox}{\textwidth}%
+  % \addtolength{\coverpageparbox}{-11pt}%
+  \parbox{\coverpageparbox}{%
+    \ifthenelse{\boolean{ACOV@support}}{%
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \flushleft Supporting internal notes\par
+      }
+      \ifthenelse{\equal{\ACOV@TwikiURL}{}}{}{%
+        {\sffamily\mdseries\fontsize{\ACOV@size}{\ACOV@space}\selectfont
+          \flushleft\ACOV@TwikiURL\par
+        }
+      }
+      \ifthenelse{\equal{\ACOV@Notes}{}}{}{%
+        {\sffamily\mdseries\fontsize{\ACOV@size}{\ACOV@space}\selectfont
+          \flushleft\ACOV@Notes\par
+        }
+      }
+      \rule{\linewidth}{1.5pt}
+    }{}
+  }
+}
+
+%-------------------------------------------------------------------------------
+\newcommand{\ATLAS@CoverTitle}{%
+  \setlength{\coverpageparbox}{\textwidth}%
+  % \addtolength{\coverpageparbox}{-11pt}%
+  % \parbox{\coverpageparbox}{%
+  {\centering
+    {\sffamily\bfseries\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
+      \AtlasTitleText\par
+    }
+    {\sffamily\mdseries\fontsize{\ACOV@sizes}{\ACOV@spaces}\selectfont
+      \begin{quote}
+        \AtlasAbstractText
+      \end{quote}
+    }
+  }
+}
+
+%-------------------------------------------------------------------------------
+\newcommand{\ATLAS@CoverFooter}{%
+  \setlength{\coverpageparbox}{\textwidth}%
+  \addtolength{\coverpageparbox}{-11pt}%
+  % \parbox{\coverpageparbox}{%
+  {\sffamily\mdseries\fontsize{9}{10.8}\selectfont
+    \ifthenelse{\boolean{ACOV@atlasdoc}}{%
+      Document created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
+    }{%
+      Cover created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
+    }
+  }
+  % }
+}
+
+%-------------------------------------------------------------------------------
+% Page Two:  Names of analysis team (editors), EdBoard and Language Editor
+%-------------------------------------------------------------------------------
+\newcommand{\ATLAS@CoverPageTwo}{%
+  \setlength{\coverpageparbox}{\linewidth}%
+  % Analysis team
+  \parbox{\coverpageparbox}{%
+    \centering
+    \rule{\linewidth}{1.5pt}\par
+    \vspace*{1ex}
+    {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      Analysis Team\par
+    }
+    \ifthenelse{\boolean{ACOV@PUB}}{}{%
+      \vspace*{1ex}
+      [{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      email:}
+      \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      \ACOV@EgroupEditors]\par
+    }
+    \vspace*{1ex}
+    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      \ACOV@AnalysisTeam\par
+    }
+    \vspace*{1ex}
+    % Editorial Board or Readers
+    \rule{\linewidth}{1.5pt}\par
+    \vspace*{1ex}
+    % PUB notes have readers
+    \ifthenelse{\boolean{ACOV@PUB}}{%
+      {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+        Readers\par
+      }
+      \vspace*{1ex}
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \ACOV@ReaderMembers\par
+      }
+    % Everything else has an EdBoard
+    }{%
+      {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+        Editorial Board\par
+      }
+      \vspace*{1ex}
+      {[{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        email:}
+        \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \ACOV@EgroupEdBoard]\par
+      }
+      \vspace*{1ex}
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \ACOV@EdBoardMembers\par
+      }
+      % \vspace*{1ex}
+      % {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      %   (*): EdBoard Chair\par
+      % }
+    }
+    \vspace*{1ex}
+    \rule{\linewidth}{1.5pt}\par
+    \ifthenelse{\boolean{ACOV@LANGEDIT}}{%
+      \vspace*{1ex}
+      {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+        Language editor:
+      }
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \ACOV@LangEditor\par
+      }
+    }{}
+  }
+}
+
+%-------------------------------------------------------------------------------
+% Main printout phase
+%-------------------------------------------------------------------------------
+\newcommand{\ACOV@PrintAtlasCover}{%
+  \thispagestyle{empty}%
+  \setlength{\parindent}{\z@}%
+  \setlength{\parskip}{\z@}%
+  % \setlength{\parfillskip}{\z@}%
+  \ATLAS@CoverHeader
+  \ATLAS@CoverSupport{\parfillskip=0pt \emergencystretch=0.5\textwidth \par}
+  \vspace*{\stretch{1}}
+  \ATLAS@CoverTitle%{\parfillskip=0pt \emergencystretch=0.5\textwidth \par}
+  \vspace*{\stretch{1}}
+  \ATLAS@CoverFooter
+}
+
+\newcommand{\ACOV@PrintAtlasCoverPageTwo}{%
+  \thispagestyle{empty}
+  \vspace*{\stretch{1}}
+  \ATLAS@CoverPageTwo
+  \vspace*{\stretch{1}}
+}
+
+%-------------------------------------------------------------------------------
+% Print cover page here, if not called from atlasdoc
+%-------------------------------------------------------------------------------
+\AtBeginDocument{
+  \ifthenelse{\boolean{ACOV@atlasdoc}}{}{%
+    \typeout{atlascover: producing the cover pages}
+    \ifthenelse{\boolean{ACOV@twocolumn}}{\onecolumn}{}
+    \ifthenelse{\boolean{ACOV@coverpage}}{%
+      \ACOV@PrintAtlasCover
+      \clearpage
+      \ACOV@PrintAtlasCoverPageTwo
+      \clearpage
+    }{}
+    \setcounter{page}{1}
+    \ifthenelse{\boolean{ACOV@twocolumn}}{\twocolumn}{}
+  }
+}
+
+\endinput

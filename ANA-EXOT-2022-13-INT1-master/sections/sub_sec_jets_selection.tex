@@ -1,0 +1,55 @@
+%
+Jets are reconstructed with the particle-flow reconstruction technique  using the  anti-$k_t$ algorithm with a radius parameter $R=0.4$~\cite{atlascollaboration2020jet}. Only jet candidates with a $\pT > 25$~\GeV~and within $|\eta|<2.5$ are selected.  In order to reduce the effect of pileup, the Jet Vertex Tagger (JVT)~\cite{twiki:JetVertexTaggerTool}  is applied to reject jets with $\pT<60$~\GeV~and  $|\eta|<2.4$~\cite{twiki:PileupJetRecommendations}. The corresponding WP used for the JVT is  \texttt{Tight}, and its associated scale factor is applied as a multiplicative factor to the MC simulation event weight.  In addition, an event is  fully vetoed when a jet with a quality  \texttt{LooseBad} is present~\cite{twiki:HowToCleanJets2017}. Jets are also calibrated as recommended by the JetEtMiss group~\cite{twiki:ApplyJetCalibrationR21}. 
+
+ The jet reconstruction and selection criteria, together with the information of the calibration, are summarised in Table~\ref{tab:object:jet1}.
+
+%If you want to use variables such as \verb|\fcut| you need to add the option
+%\texttt{jetetmiss} to \texttt{atlaspackage}.
+
+\begin{table}[ht]
+  \caption{Jet reconstruction criteria.}%
+  \label{tab:object:jet1}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+  \toprule
+  Feature & Criterion \\
+  \midrule
+  Algorithm & \Antikt  \\
+  \(R\)-parameter & 0.4 \\
+  Input constituent & EMPFlow \\
+  Analysis release number & 21.2.169 \\
+  %Calibration tag & JetCalibTools-00-04-76 \\
+  \texttt{CalibArea} tag & 00-04-82 \\
+  Calibration configuration & \texttt{JES\_MC16Recommendation\_Consolidated\_PFlow\_Apr2019\_Rel21.config} \\
+  Calibration sequence (Data) & \texttt{JetArea\_Residual\_EtaJES\_GSC\_Insitu} \\
+  Calibration sequence (MC) & \texttt{JetArea\_Residual\_EtaJES\_GSC\_Smear} \\
+  %Calibration sequence (AFII) & \texttt{JetArea\_Residual\_EtaJES\_GSC} \\
+  %Jet collection  & \texttt{AntiKt4EMPFlowJets\_BTagging201903} \\
+  \midrule
+  \multicolumn{2}{c}{Selection requirements} \\
+  \midrule
+  Observable & Requirement \\
+  \midrule
+  Jet cleaning & \texttt{LooseBad} \\
+  BatMan cleaning & No \\
+  \pT & \(> \SI[parse-numbers=false]{25}{\GeV}\) \\
+  \(|\eta|\) & \(< 2.5\) \\
+  JVT &  \(>0.5\) for \(\pT < \SI{60}{\GeV}\), \(|\eta| < 2.4\)\\
+  \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+Since $ttH/A(\rightarrow tt)$ process has boosted top-quark decayed from heavy Higgs boson and more hadronic top-quark decay than in $t\bar{t}+$jets production, jet sub-structure can be one of the important feature to reduce the $t\bar{t}+$jets background in 1LOS channels.
+The sub-structure is described through the re-clustered jets, refered to as RC-jets.
+All selected (and calibrated) jets surviving the overlap removal procedure are used as inputs for further jet reclustering using the anti-$k_{t}$ algorithm with a radius parameter of $R=1.0$.
+The calibration corrections and uncertainties in the RC-jets are automatically inherited from the small-R jets.
+In order to further suppress contributions from pileup and other soft radiation, the RC-jets are trimmed by removing all small-R jets within a reclustered jet that have $p_{T}$ smaller than $5\%$ of the $p_{T}$ of the reclustered jet.
+The resulting RC-jets that passing $p_{T}>200~GeV$ and $\left| \eta \right|<2.0$ selections are treated as hadronically decaying top-quark candidates.
+% NOTES:
+% Selection: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/TopPhys/xAOD/TopObjectSelectionTools/Root/JetMC15.cxx 
+% Calibration tag: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/Reconstruction/Jet/JetCalibTools/Root/JetCalibrationTool.cx
+% Calibration configuration: /cvmfs/atlas.cern.ch/repo/sw/software/21.2/AnalysisBase/21.2.120/InstallArea/x86_64-centos7-gcc8-opt/src/PhysicsAnalysis/TopPhys/xAOD/TopCPTools/Root/TopJetMETCPTools.cxx
+
+

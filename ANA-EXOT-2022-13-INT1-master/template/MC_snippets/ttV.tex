@@ -1,0 +1,155 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              ttV                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\ttV production]{\ttV production}
+\label{subsec:ttV}
+
+This section describes the MC samples used for the modelling of \ttV ($V=W/Z$) production.
+Section~\ref{subsubsec:ttV_aMCP8} describes the \MGNLOPY[8] samples,
+and Section~\ref{subsubsec:ttV_sherpa} describes the \SHERPA samples.
+(NOTE: this section is not frozen as the \SHERPA samples are likely to be updated and become the nominal samples in the near future.)
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:ttV_aMCP8}
+
+\paragraph{Samples}
+%\label{par:ttV_aMCP8_samples}
+
+The descriptions below correspond to the samples in Tables~\ref{tab:ttV_aMCP8} and \ref{tab:ttV_aMCP8_addRad}.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttV samples produced with \MGNLOPY[8].}%
+  \label{tab:ttV_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410155 & \ttW \\
+    410156 & \ttZnunu \\
+    410157 & \ttZqq \\
+    410218 & \ttee, $m_{\ell\ell} > 5$~\GeV \\
+    410219 & \ttmumu, $m_{\ell\ell} > 5$~\GeV \\
+    410220 & \tttautau, $m_{\ell\ell} > 5$~\GeV \\
+    410276 & \ttee, $m_{\ell\ell} \in [1,5]$~\GeV\\
+    410277 & \ttmumu, $m_{\ell\ell} \in [1,5]$~\GeV\\
+    410278 & \tttautau, $m_{\ell\ell} \in [1,5]$~\GeV\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \caption{\ttV samples produced with \MGNLOPY[8] used to estimate initial-state radiation systematic uncertainties.}%
+  \label{tab:ttV_aMCP8_addRad}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410376 & \ttW\ A14Var3c up \\
+    410377 & \ttW\ A14Var3c down \\
+    410378 & \ttZnunu\ A14Var3c up \\
+    410379 & \ttZnunu\ A14Var3c down \\
+    410380 & \ttZqq\ A14Var3c up \\
+    410381 & \ttZqq\ A14Var3c down \\
+    410370 & \ttee\ A14Var3c up \\
+    410371 & \ttee\ A14Var3c down \\
+    410372 & \ttmumu\ A14Var3c up \\
+    410373 & \ttmumu\ A14Var3c down \\
+    410374 & \tttautau\ A14Var3c up \\
+    410375 & \tttautau\ A14Var3c down \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \ttV\ events was modelled using the
+\MGNLO[2.3.3]~\cite{Alwall:2014hca} generator at NLO with the
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The events were interfaced to \PYTHIA[8.210]~\cite{Sjostrand:2014zea}
+using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. The decays of bottom and charm
+hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}.
+
+The uncertainty due to initial-state radiation (ISR) was estimated by
+comparing the nominal event sample with two samples where the Var3c
+up/down variations of the A14 tune were employed.
+
+
+\paragraph{Long description:}
+
+The production of \ttV events was modelled using the \MGNLO[2.3.3]
+\cite{Alwall:2014hca} generator, which provided matrix elements at
+next-to-leading order~(NLO) in the strong coupling constant \alphas
+with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution
+function~(PDF). The functional form of the renormalisation and
+factorisation scales was set to the default of $0.5 \times \sum_i
+\sqrt{m^2_i+p^2_{\text{T},i}}$, where the sum runs over all the particles
+generated from the matrix element calculation. Top quarks were decayed
+at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to
+preserve spin correlations. The events were interfaced with
+\PYTHIA[8.210]~\cite{Sjostrand:2014zea} for the parton shower and
+hadronisation, using the A14 set of tuned
+parameters~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.  
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}. 
+
+% Note : The cross-section is supplemented with an off-shell (down to 5~\GeV) correction calculated in Ref.~\cite{ATLASPMGttVNLOXsec}. 
+The cross-sections were calculated at NLO QCD and NLO EW accuracy using
+\MGNLO as reported in Ref.~\cite{deFlorian:2016spz}.
+In the case of \ttll the cross-section was scaled by 
+an off-shell correction estimated at one-loop level in \alphas.
+(\emph{Optionally:})
+The predicted values at \rts~=~\SI{13}{\TeV} are 0.88$^{+0.09}_{-0.11}$\,pb and
+0.60$^{+0.08}_{-0.07}$\,pb for \ttZ and \ttW, respectively, where the
+uncertainties were estimated from variations of \alphas and the renormalisation and
+factorisation scales.
+
+The uncertainty due to initial-state radiation (ISR) was estimated by
+comparing the nominal \ttV sample with two additional samples, which
+have the same settings as the nominal one, but employed the Var3c up or down
+variation of the A14 tune, which corresponds
+to the variation of \alphas for initial-state radiation
+(ISR) in the A14 tune.
+
+Uncertainties due to missing higher-order corrections were evaluated
+by simultaneously varying the renormalisation and factorisation scales
+by factors of 2.0 and 0.5. Uncertainties in the PDFs
+were evaluated using the 100 replicas of the \NNPDF[3.0nlo] set.
+
+
+\subsubsection[Sherpa]{\SHERPA}
+\label{subsubsec:ttV_sherpa}
+
+\paragraph{Samples}
+%\label{par:ttV_sherpa_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttV_sherpa}.
+
+\begin{table}[htbp]
+  \caption{\ttV samples produced with \SHERPA.}%
+  \label{tab:ttV_sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410142 & \ttll \\
+    410143 & \ttZqq, \ttZnunu \\
+    410144 & \ttW \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Additional \ttV samples were produced with the
+\SHERPA[2.2.0]~\cite{Bothmann:2019yzt} generator at LO accuracy, using
+the \MEPSatLO set-up~\cite{Catani:2001cc,Hoeche:2009rj} with up to one
+additional parton for the \ttll sample and two additional partons for the
+others. A dynamic renormalisation scale was used and is defined
+similarly to that of the nominal \ttV samples. The CKKW matching
+scale of the additional emissions was set to 30\,\GeV. The default
+\SHERPA[2.2.0] parton shower was used along with the
+\NNPDF[3.0nnlo]~\cite{Ball:2014uwa} PDF set.

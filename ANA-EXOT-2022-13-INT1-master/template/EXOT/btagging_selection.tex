@@ -1,0 +1,27 @@
+\subsection{Jet flavor tagging selection}
+
+\begin{table}[ht]
+  \caption{\btag selection criteria.}%
+  \label{tab:object:btag}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & Criterion \\ 
+    \midrule
+    & EM Topo Jets / Track jets / VR jets \\
+    \midrule
+    Jet collection  & \texttt{AntiKt4EMTopo/AntiKt2PV0/AntiKtVR30Rmax4Rmin02} \\
+    Jet selection   & \(\pT > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    	            	& \(|\eta| < X\) \\				
+                    & JVT cut if applicable \\
+    \midrule
+    Algorithm 		  & \texttt{MV2c10/MV2c10mu/MV2c10rnn/DL1/DL1mu/DL1rnn} \\
+    \midrule
+    Operating point & Hybrid /  Fixed \\
+                    & Eff = 60 / 70 / 77 / 85 \\
+    CDI             & \texttt{2017-21-13TeV-MC16-CDI-2017-12-22\_v1} \\
+  \bottomrule
+  \end{tabular}
+  % }
+\end{table}%

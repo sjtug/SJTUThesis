@@ -1,0 +1,462 @@
+%-------------------------------------------------------------------------------
+% This file provides a skeleton ATLAS note.
+% \pdfinclusioncopyfonts=1
+% This command may be needed in order to get \ell in PDF plots to appear. Found in
+% https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
+%-------------------------------------------------------------------------------
+\documentclass[NOTE, atlasdraft=true, texlive=2016, UKenglish]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  coverpage             Create ATLAS draft cover page for collaboration circulation.
+%                        See atlas-draft-cover.tex for a list of variables that should be defined.
+%  cernpreprint          Create front page for a CERN preprint.
+%                        See atlas-preprint-cover.tex for a list of variables that should be defined.
+%  NOTE                  The document is an ATLAS note (draft).
+%  PAPER                 The document is an ATLAS paper (draft).
+%  CONF                  The document is a CONF note (draft).
+%  PUB                   The document is a PUB note (draft).
+%  BOOK                  The document is of book form, like an LOI or TDR (draft).
+%  txfonts=true|false    Use txfonts rather than the default newtx.
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+%-------------------------------------------------------------------------------
+% Extra packages:
+\usepackage{atlaspackage}
+% Commonly used options:
+%  biblatex=true|false   Use biblatex (default) or bibtex for the bibliography.
+%  backend=bibtex        Use the bibtex backend rather than biber.
+%  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
+%  minimal               Minimal set of packages.
+%  default               Standard set of packages.
+%  full                  Full set of packages.
+%-------------------------------------------------------------------------------
+% Style file with biblatex options for ATLAS documents.
+\usepackage{atlasbiblatex}
+% Commonly used options:
+%  backref=true|false    Turn on or off back references in the bibliography.
+
+% Package for creating list of authors and contributors to the analysis.
+\usepackage{latex/atlascontribute}
+\usepackage{authblk}
+
+% Useful macros
+\usepackage{atlasphysics}
+% See doc/atlas_physics.pdf for a list of the defined symbols.
+% Default options are:
+%   true:  journal, misc, particle, unit, xref
+%   false: BSM, heppparticle, hepprocess, hion, jetetmiss, math, process,
+%          other, snippets, texmf
+% See the package for details on the options.
+
+% Macro to add to-do notes (for several authors). Uses the todonotes package.
+% \ATLnote{JS}{Jane}{green!20}{green!50!black!60}
+% add macros \JSnote and \JSinote for notes in the margin and inline.
+% Set output=false in order not to print out the notes.
+% Comment this out for the final version of the note.
+\usepackage[output=true]{atlastodo}
+
+% Files with references for use with biblatex.
+% Note that biber gives an error if it finds empty bib files.
+% \addbibresource{ANA-EXOT-2022-13-INT1.bib}
+\addbibresource{ANA-EXOT-2022-13-INT1.bib}
+\addbibresource{bib/ATLAS.bib}
+\addbibresource{bib/CMS.bib}
+\addbibresource{bib/ConfNotes.bib}
+\addbibresource{bib/PubNotes.bib}
+
+% Paths for figures - do not forget the / at the end of the directory name.
+\graphicspath{{logos/}{figures/}}
+
+
+% Scattered packages
+\usepackage{multirow}
+
+% Add your own definitions here (file ANA-EXOT-2022-13-INT1-defs.sty).
+\usepackage{ANA-EXOT-2022-13-INT1-defs}
+
+%-------------------------------------------------------------------------------
+% Generic document information.
+%-------------------------------------------------------------------------------
+
+% Title, abstract and document.
+\input{ANA-EXOT-2022-13-INT1-metadata}
+% Author and title for the PDF file.
+\hypersetup{pdftitle={ATLAS document},pdfauthor={The ATLAS Collaboration}}
+
+%-------------------------------------------------------------------------------
+% Content
+%-------------------------------------------------------------------------------
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{3}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+% List of contributors - print here or after the Bibliography.
+\clearpage
+\PrintAtlasContribute{0.30}
+\clearpage
+
+% List of to-do notes
+% \listoftodos
+
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Changelog}
+\label{sec:changelog}
+\input{sections/sec_changelog}% Anil, Peter
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{To-do list}
+\label{sec:todo}
+\input{sections/sec_to_do_list}% Anil, Peter
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Executive summary}
+\label{sec:exec_summ}
+\input{sections/sec_executive_summary}% Daniela, Nicola
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Introduction}
+\label{sec:intro}
+\input{sections/sec_introduction}% Daniela, Nicola
+%-------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Signal modeling}
+\label{sec:sig}
+\input{sections/sec_signal_modeling}% Daniela, Nicola
+%-------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Samples of simulated events and data}% Daniela, Nicola
+\label{sec:samples}
+\input{sections/sec_samples}
+%-------------------------------------------------------------------------------            
+
+
+%-------------------------------------------------------------------------------                                                                                                
+%\FloatBarrier
+%\section{Objects definition}% Daniela, Nicola
+%\label{sec:objects}
+%\input{sections/sec_objects}
+%-------------------------------------------------------------------------------               
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Objects definition and event selection}% Daniela, Nicola
+\label{sec:event_selection}
+\input{sections/sec_event_selection}
+%-------------------------------------------------------------------------------                
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Analysis strategy}% Daniela, Nicola
+\label{sec:strategy}
+\input{sections/sec_strategy}
+%-------------------------------------------------------------------------------     
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{\ttbar\ background estimation}% Anil
+\label{sec:ttbar_rew}
+\input{sections/sec_ttbar_rew}
+%-------------------------------------------------------------------------------     
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{MVA strategy: signal extraction}
+\label{sec:mva}
+\subsection{Introduction}% Daniela, Nicola
+\label{sec:mva_intro}
+\input{sections/sec_mva_introduction}
+\subsection{Boosted Decision Trees}% Terry
+\label{sec:mva_bdt}
+\input{sections/sec_mva_bdt}
+\subsection{Graph Neural Network}% Callum
+\label{sec:mva_gnn}
+\input{sections/sec_mva_gnn}
+%-------------------------------------------------------------------------------          
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Systematic uncertainties}% Daniela, Nicola
+\label{sec:systematics}
+\input{sections/sec_systematics}
+%-------------------------------------------------------------------------------          
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Statistical analysis}% Daniela, Nicola
+\label{sec:stats}
+\input{sections/sec_statistics}
+\subsection{Blinding strategy}% Daniela, Nicola
+\label{sec:blinding}
+\input{sections/sec_blinding}
+\subsection{Binning strategy}% Daniela, Nicola
+\label{sec:binning}
+\input{sections/sec_binning}
+\subsection{Smoothing strategy}% Peter
+\label{sec:smoothing}
+\input{sections/sec_smoothing}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fits to asimov data}% Chainika, Rachel, Peter, Terry
+\label{sec:asimov}
+\input{sections/sec_fit_asimov}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fits to blinded data}% Peter
+\label{sec:blinded}
+\input{sections/sec_fit_data_blinded}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fits to unblinded data - background only}% Peter
+\label{sec:unblinded_Bonly}
+\input{sections/sec_fit_data_unblinded_Bonly}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fits to unblinded data - signal+background}% Peter
+\label{sec:unblinded_SplusB}
+\input{sections/sec_fit_data_unblinded_SplusB}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Comparison of data fit}% Peter
+\label{sec:fits_comparison}
+\input{sections/sec_fit_data_comparison}
+%-------------------------------------------------------------------------------
+
+% Moved the 2HDM interpretation to section "Fits to unblinded data - signal+background"
+%-------------------------------------------------------------------------------
+%\FloatBarrier
+%\section{2HDM interpretation}% Peter, Terry
+%\label{sec:limits}
+%\input{sections/sec_limits}
+%-------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Combination with the same-sign dilepton and multilepton final state}% Lining
+\label{sec:combination}
+\input{sections/sec_combination}
+%-------------------------------------------------------------------------------  
+
+%-------------------------------------------------------------------------------                                                                                                
+\FloatBarrier
+\section{Limits on $S_{8}S_{8}\rightarrow t\bar{t}t\bar{t}$ production}% Lining
+\label{sec:sgluon}
+\input{sections/sec_sgluon_interpretation}
+%-------------------------------------------------------------------------------  
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Conclusions}% Daniela, Nicola
+\label{sec:conclusions}
+\input{sections/sec_conclusions}
+%-------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------
+% If you use biblatex and either biber or bibtex to process the bibliography
+% just say \printbibliography here.
+\printbibliography
+% If you want to use the traditional BibTeX you need to use the syntax below.
+% \bibliographystyle{obsolete/bst/atlasBibStyleWithTitle}
+% \bibliography{ANA-EXOT-2022-13-INT1,bib/ATLAS,bib/CMS,bib/ConfNotes,bib/PubNotes}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Print the list of contributors to the analysis.
+% The argument gives the fraction of the text width used for the names.
+%-------------------------------------------------------------------------------
+%The supporting notes for the analysis should also contain a list of contributors.
+%This information should usually be included in \texttt{mydocument-metadata.tex}.
+%The list should be printed either here or before the Table of Contents.
+
+%-------------------------------------------------------------------------------
+\clearpage
+\appendix
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Signal modelling: checks on tan$\beta$ dependence}
+\label{app:tan_beta_dep}
+\input{sections/app_tanbeta_dep}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{$t\bar{t}H$ and $t\bar{t}A$ comparison and the impact of signal $t$-channel in the analysis}
+\label{app:t_channel}
+\input{sections/app_tchannel}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{The Background Modeling Comparison}
+\label{app:background_modeling_comp}
+\input{sections/app_seq_vs_nn_rew}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Data/MC Comparison of $5$Flavor Scheme with $4$Flavor Scheme}
+\label{app:4FS_vs_5FS}
+\input{sections/app_4FSvs5FS}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{\ttbar modeling systematics as a function of fit variables}
+\label{app:TTB_modeling}
+\input{sections/app_TTB_modeling_systematics}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Comparisons of flavor scheme for $t\bar{t}$ samples}
+\label{app:FS_studies}
+\input{sections/app_FS_studies}
+%------------------------------------------------------------------------------- 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\section{Comparisons of BDT and GNN sensitivity}
+\label{app:BDTvsGNN}
+\input{sections/app_BDTvsGNN}
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Validation plots for the unblinded B-only fit}
+\label{app:validation_region_studies}
+\input{sections/app_validation_regions}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{FTAG High $p_T$ uncertainties}
+\label{app:FTAG_uncertainties}
+\input{sections/app_FTAG_uncertainties}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\section{Heavy Flavour Correction Factor}
+\label{app:HFCorr_studies}
+\input{sections/app_HFStudies}
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\section{More NN-Reweighting Plots}
+\label{app:NNRewPlots}
+\input{sections/app_NNRewPlots}
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\section{MVA Input Variables Distribution}
+\label{app:MVAInput}
+\input{sections/app_MVAInput}
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Understanding of the opposite TTC cross section pull between 1L and 2LOS}
+\label{app:TTC_pull}
+\input{sections/app_TTC_pull}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{GNN modelling validation}
+\label{app:GNN_modelling}
+\input{sections/app_GNN_modelling}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Prefit/postfit plots for mass points 700 and 1000 GeV}
+\label{app:700_1000}
+\input{sections/app_700_1000}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{500GeV signal injection test}
+\label{app:injection}
+\input{sections/app_injection}
+%-------------------------------------------------------------------------------   
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fit result using decorrelated ttb 4FS systematics across regions}
+\label{app:decorrelation_ttb_4FS}
+\input{sections/app_ttb_4FS_decorrelation}
+%-------------------------------------------------------------------------------   
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fit result using decorrelated ttbb 4FS systematics across regions}
+\label{app:decorrelation_ttbb_4FS}
+\input{sections/app_ttbb_4FS_decorrelation}
+%------------------------------------------------------------------------------- 
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Fit result using decorrelated $\mu$ across regions}
+\label{app:decorrelation_mu}
+\input{sections/app_mu_decorrelation}
+%-------------------------------------------------------------------------------  
+
+%-------------------------------------------------------------------------------
+\FloatBarrier
+\section{Pulls in $9j, \ge5b$ region}
+\label{app:ljets_9jge5b_pull}
+\input{sections/app_9jge5b_pull}                                                                                                                                                         
+%-------------------------------------------------------------------------------
+
+\end{document}

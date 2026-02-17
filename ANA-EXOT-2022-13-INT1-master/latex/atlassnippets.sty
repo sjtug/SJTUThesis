@@ -1,0 +1,28 @@
+%-------------------------------------------------------------------------------
+% This file collects useful snippets that can be included in ATLAS papers.
+% A number of them are taken from https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComCommonText
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\RequirePackage{atlasjetetmiss}
+
+\newcommand{\AntiktSnippet}{%
+The \antikt algorithm with a radius parameter of \(R=0.4\) is used to reconstruct jets with a four-momentum recombination scheme, using \topos as inputs. Jet energy is calibrated to the hadronic scale with the effect of \pileup removed.}
+
+\newcommand{\TopoclusteringSnippet}{%
+Hadronic jets are reconstructed from calibrated three-dimensional \topos.
+Clusters are constructed from calorimeter cells that are grouped together using a topological clustering algorithm.
+These objects provide a three-dimensional representation of energy depositions in the calorimeter and implement a nearest-neighbour noise suppression algorithm.
+The resulting \topos are classified as either electromagnetic or hadronic based on their shape, depth and energy density.
+Energy corrections are then applied to the clusters in order to calibrate them to the appropriate energy scale for their classification.
+These corrections are collectively referred to as \textit{local cluster weighting}, or LCW, and jets that are calibrated using this procedure are referred to as LCW jets~\cite{PERF-2012-01}.}
+
+\newcommand{\GroomingSnippet}{%
+Trimming removes subjets with \(\ptsubji/\ptjet < \fcut\), where \ptsubji is the transverse momentum of the \(i^{\text{th}}\) subjet, and \(\fcut=0.05\).
+Filtering proceeds similarly, but utilises the relative masses of the subjets defined and the original jet. For at least one of the configurations tested, trimming and filtering are both able to approximately eliminate the \pileup dependence of the jet mass.}
+
+\newcommand{\FastSimSnippet}{%
+The signal Monte Carlo samples were processed with a fast simulation that relies on a parameterisation of the calorimeter response~\cite{SOFT-2010-01}.}
+
+\newcommand{\PileupSnippet}{%
+The generation of the simulated event samples includes the effect of multiple \(pp\) interactions per bunch crossing, as well as the effect on the detector response due to interactions from bunch crossings before or after the one containing the hard interaction.}

@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              tttt                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\tttt production]{\tttt production}
+\label{subsec:tttt}
+
+This section describes the MC samples used for the modelling of \tttt\ production.
+Section~\ref{subsubsec:tttt_aMCP8} describes the \MGNLOPY[8] samples,
+and Section~\ref{subsubsec:tttt_aMCH7} describes the \MGNLOHER[7] samples.
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:tttt_aMCP8}
+
+\paragraph{Samples}
+%\label{par:tttt_aMCP8_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:tttt_aMCP8}.
+
+\begin{table}[htbp]
+  \caption{Nominal \tttt\ samples produced with \MGNLOPY[8].}%
+  \label{tab:tttt_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    412043 & \tttt \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \tttt\ events was modelled using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator at NLO with the \NNPDF[3.1nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}~ using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+
+\paragraph{Long description:}
+
+The production of \tttt\ events was modelled using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator, which provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas
+with the \NNPDF[3.1nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The functional form of the renormalisation and factorisation scales was set to $0.25\times \sum_i \sqrt{m^2_i+p^2_{\text{T},i}}$,
+where the sum runs over all the particles generated from the matrix element calculation, following the Ref.~\cite{Frederix:2017wme}.
+Top quarks were decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve all spin correlations. 
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea} for the parton shower and hadronisation,
+using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Herwig7]{\MGNLOHER[7]}
+\label{subsubsec:tttt_aMCH7}
+
+\paragraph{Samples}
+%\label{par:tttt_aMCH7_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:tttt_aMCH7}.
+
+\begin{table}[htbp]
+  \caption{\tttt\ samples produced with \MGNLOHER[7].}%
+  \label{tab:tttt_aMCH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    412044 & \tttt \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Additional \tttt\ samples were produced with the parton shower of the nominal samples replaced by
+\HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp} to evaluate the impact of using a different parton shower and hadronisation model. The H7UE set of
+tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa} were used.

@@ -1,0 +1,1158 @@
+
+
+===== PAGE 1 =====
+ATL-PHYS-PUB-2016-012
+28/02/2017
+ATLAS NOTE
+ATL-PHYS-PUB-2016-012
+13th June 2016
+Optimisation of the ATLAS b-tagging performance for the 2016
+LHC Run
+The ATLAS Collaboration
+Abstract
+The performance of the current ATLASb-tagging algorithms has been optimised ahead of
+the 2016 Run-2 data taking. The algorithms used to identify jets containingb-hadrons are
+brieﬂy described and the improvements relative to the 2015 LHC run are highlighted. Par-
+ticular emphasis is given to the optimisation and performance of the multivariateb-tagging
+algorithm, MV2. Overall for ab-tagging eﬃciency of 77%, the light-quark rejection factor
+hasbeenheldconstantwhileincreasingthecharmrejectionfactorby40%. Theperformance
+at high jetpT has also been improved.
+Note: Updated 28/2/17 to correct LLR discriminant formula on page 4.
+©2017 CERN for the beneﬁt of the ATLAS Collaboration.
+Reproduction of this article or parts of it is allowed as speciﬁed in the CC-BY-4.0 license.
+
+===== PAGE 2 =====
+1 Introduction
+The identiﬁcation of jets containingb-hadrons (b-tagging) is an important ingredient in the physics pro-
+gram of the ATLAS experiment [1]. This note is intended to provide an update on the mainb-tagging
+algorithms with respect to those used for the 2015 LHC, which are documented in Ref. [2]. The main
+modiﬁcations for the 2016 run are brieﬂy described in this note and a comparison is presented between
+the performance of the new and the 2015 version of the algorithms.
+The inputs to theb-tagging algorithms are the trajectories of charged particles (tracks) reconstructed
+in the Inner Detector (ID) [3]. The ATLAS inner detector system, consisting of a silicon pixel detector,
+a silicon micro-strip detector (SCT) and the straw tubes of the transition radiation tracker (TRT), is used
+to measure the trajectories and momenta of charged particles in the region1|η| < 2.5. The ID surrounds
+the beam pipe, and is located inside a solenoid magnet that provides a 2 T axial magnetic ﬁeld. A series
+of upgrades were made to the ATLAS detector between Run 1 and Run 2, including improvements to the
+ID.Inordertohavebettertrackandvertexreconstructionperformanceatthehigherluminositiesexpected
+during Run 2, a fourth pixel layer, the insertableB-layer (IBL), has been added to ATLAS [4]. This
+inclusion leads to signiﬁcantly improvedb-tagging performance, mostly in the low and medium jetpT
+region, compared to that achieved at Run 1 [2, 5].
+Thisnoteisstructuredasfollows. Section2givesanoverviewofthesamplesemployedforthisstudy,the
+object deﬁnitions and the track selection used. Section 3 brieﬂy summarizes the current basicb-tagging
+algorithms used by the ATLAS collaboration. The outputs resulting from these basic tagging algorithms
+are used as inputs to a multivariate-based algorithm (MV2) described in Section 4. Finally, conclusions
+are reported in Section 5.
+2 Event Samples and Selections
+TheresultspresentedinthisnoteareobtainedusingaMonteCarlosampleof t¯t eventsproducedinproton-
+proton collisions generated at a centre-of-mass energy (√s) of 13 TeV and simulated with Powheg [6]
+interfacedwithPythia6[7]forpartonshowerandhadronization. TheCT10[8]partondistributionfunction
+setisusedinthesimulation. TheEvtGen[9]programisusedtomodelthedecaysof b-and c-hadrons. In
+addition,minimumbiasinteractionsareproducedwithPythia8[10]andadditionalinelastic pp collisions
+accompanying the hard-scatter interactions (pileup) are included in the simulation. The simulation is
+generated with an average of 20 pileup interactions per event (µ). Only t¯t decays with at least one lepton
+fromasubsequent W-bosondecayareincludedinthesimulation. InSection3.1, Z′→ t¯t eventssimulated
+with Pythia8 [10] at a Z’ resonance mass of 4 TeV are also used. The NNPDF2.3 [11] parton distribution
+function set is used in the simulation and, as for thet¯t case, the EvtGen program models the decays ofb-
+and c-hadrons. The propagation of particles through the detector and the detector response are modelled
+using GEANT4 [12, 13].
+The ATLAS reconstruction software is run on the simulated samples. A common selection used as
+1 ATLASusesaright-handedcoordinatesystemwithitsoriginatthenominalinteractionpoint(IP)inthecentreofthedetector
+and the z-axis along the beam pipe. The x-axis points from the IP to the centre of the LHC ring and they-axis points
+upwards. Cylindrical coordinates (r,φ) are used in the transverse plane, beingφ the azimuthal angle around thez-axis. The
+pseudo-rapidity is deﬁned in terms of the polar angleθ asη= -lntan(θ/2) while ∆R2=
+√
+∆η2 + ∆φ2.
+2
+
+===== PAGE 3 =====
+a basis for all performance studies is then applied. The hard scatter event vertex is chosen as the one with
+the largest sum of squared transverse momenta (pT) of the associated tracks. Jets are reconstructed by
+clustering energy deposits in the calorimeter with the anti-kt algorithm [14] with a radius parameter of
+0.4, where clusters are calibrated at the EM-scale and the hadronic scale is obtained through apT andη
+dependentcorrectionfactorthatbringstheenergyscaleinMonteCarloclosetothatmeasuredindata[15].
+In this note, only jets withpT above 20 GeV and|η| < 2.5 are selected. Furthermore, in order to
+reject jets originating from pileup interactions, a requirement on the output of the Jet Vertex Tagger
+algorithm(JVT)[16]isused. Thisalgorithmisbasedontrack-basedvariablescombinedinamultivariate
+discriminantandisdesignedtosuppresspileupjetsinsuchawaythattheresultingeﬃciencyforjetsfrom
+the hard scattering collision is stable as a function of the number of primary vertices in the event. Jets
+with pT < 60GeVandjet |η| < 2.4arediscardediftheJVTscoreislessthan0.59. Thischoiceresultsin
+92% eﬃciency for jets from the hard-scatter interaction and 2% residual observed rate from pileup jets.
+Finally, in order to label jets as beingb, c- or light-ﬂavour jets in the simulation for training and
+performance studies, the jets are matched to theb and c-hadrons within a cone of radius∆R=0.3 around
+the jet axis. The labelling procedure is performed by ﬁrst searching forb-hadrons within the cone
+centered on the axis of the jet. If nob-hadron is found, the algorithm is repeated forc-hadrons, and
+for τ leptons. In addition, the transverse momenta ofb- and c- hadrons are required to be larger than
+5 GeV. Ultimately the remaining jets which do not fall in the previous categories are considered as
+light-ﬂavourjets. Furthermore, arequirementonthepossibleoverlapbetweenjetsandleptonsisapplied:
+jetsareremovediftheyoverlapwithatruthelectronormuonfromW/Zbosondecaysinaconeof ∆R<0.3.
+The tracks used in theb-tagging algorithms are associated to jets reconstructed in the calorimeter by
+using the angular separation∆R between the track and the jet axis. The∆R requirement varies as a
+function of jet pT, being wide for lowpT jets and narrower for highpT jets which tend to be more
+collimated. For instance, at 20 GeV, it is 0.45 while for more energetic jets with apT of 150 GeV the
+∆R cut is 0.26 [5]. Further track selection depends on the speciﬁc algorithm and will be described in
+Sections 3.1, 3.2 and 3.3.
+3 Basic Algorithms
+Theidentiﬁcationof b-quarkjetsinATLASisbasedondistinctstrategiesencodedinthreebasic b-tagging
+algorithms: impact parameter-based algorithms described in Section 3.1, an inclusive secondary vertex
+reconstructionalgorithmdescribedinSection3.2andadecaychainmulti-vertexreconstructionalgorithm
+described in Section 3.3. The output of these b-tagging algorithms are combined in a multivariate
+discriminant (MV2) that is the output of the default algorithm used by ATLAS, described in Section 4,
+which provides the best separation between the diﬀerent jet ﬂavours. These sections also describe the
+algorithmic changes and improvements made since the release of the previous note [2].
+3.1 IP2D and IP3D: The Impact Parameter based Algorithms
+The long lifetime of hadrons containing ab-quark (∼1.5 ps, cτ∼450 µm) can be exploited to build
+lifetime-based tagging algorithms. The typicalb-hadron topology is characterized by at least one vertex
+3
+
+===== PAGE 4 =====
+displaced from the point where the hard-scatter collision takes place. The transverse impact parameter
+(d0) is deﬁned as the distance of closest approach in the r-φ plane of the track to the primary vertex while
+the longitudinal impact parameter (z0sinθ) is deﬁned as the distance of the track to the primary vertex in
+thelongitudinalplaneatthepointofclosestapproachinr- φ. Duetothelonglifetimeof b-hadrons,tracks
+generated fromb-hadron decay products tend to have large impact parameters enabling their contribution
+to be separated from the contribution of tracks from the primary vertex. It is possible to assign a sign to
+the impact parameter by determining, relatively to the jet direction, if the primary vertex is in front of the
+secondary vertex or behind. Secondary vertices behind the primary are normally due to background and
+are used to help to calibrate the light quark tag rate [5]. The impact parameter taggers, IP2D and IP3D,
+generally referred to as IP in what follows, are based on this sign convention.
+Thetrackselectionappliedfortheimpact-parameteralgorithmisbasedonthefollowingrequirements:
+• track pT above 1 GeV;
+• |d0| <1 mm and|z0sinθ| <1.5 mm;
+• sevenormoresiliconhits,withatmosttwosiliconholes,atmostoneofwhichisinthepixeldetector,
+where a hole is deﬁned as a hit expected to be associated with the track but not present [17].
+The IP2D tagger makes use of the transverse impact parameter signiﬁcance,d0/σd0, as discriminat-
+ing variable whereas IP3D uses both the transverse and the longitudinal impact parameter signiﬁcance,
+z0sinθ/σ z0sin θ, in a two-dimensional template to account for their correlation. Probability density func-
+tions (PDF) obtained from reference histograms for the transverse and longitudinal impact parameter
+signiﬁcances are derived from Monte Carlo simulation. They are separated into exclusive categories that
+dependonthehitpatternofagiventracktoincreasethediscriminatingpowerandusedtocalculateratios
+of theb- and light ﬂavour jet probabilities. This computation is performed on a per-track basis. Diﬀerent
+PDFs are used for the various track categories and for each jet-ﬂavour hypothesis (b, c, light). The track
+categorisation exploited in the algorithm can be found in Table 1 and the categories are determined in
+a t¯t sample. By knowing whether the hit is expected or not in the innermost (IBL) and in the next-to-
+innermost(b-layer)layers,aqualitycriterionisdeﬁned. Theexpectationsforwhichhitsshouldbepresent
+are derived from the knowledge of the detector geometry and inactive module maps. A hit is considered
+split if, during the ambiguity solver stage of the track reconstruction at the pattern recognition level [17],
+it was identiﬁed as being created by multiple charged particles (the decision is made by looking at its
+typical cluster shape [18, 19]). If a Pixel or SCT hit is associated to more than one track, and not already
+marked assplit, it is regarded asshared.
+Afterwards, a log-likelihood ratio (LLR) discriminant is computed as the sum of the per-track contri-
+butions, ∑N
+i=1log
+(pb
+pu
+)
+, where N is the number of tracks of a given jet andpb, pu are the template
+probabilitydensityfunctions(PDF)forthe b-andlight-ﬂavourjetﬂavourhypotheses,respectivelyassum-
+ing no correlation among the various tracks contributing to the sum. In addition to the LLR separating
+b- and light-ﬂavour jets, LLR functions are also computed to separateb- from c-jets, or c-jets from
+light-ﬂavourjets. Thedistributionsfor thetransverseandlongitudinal impactparametersigniﬁcancesare
+shown in Figure 1 for tracks from light,c- and b-jets. It can be seen that the distribution ofd0/σd0 for
+light-ﬂavour jet features a small exponential tail at high values that is formed by tracks coming fromΛ,
+KS decays,hadronicinteractionsorfromphotonconversions,whilethetailathigh d0/σd0 for b-jetsisan
+eﬀect of the longb-hadrons lifetime. In addition,z0/σz0 shows a large tail that is typically generated by
+tracks from pileup jets (very close-by pileup vertices).
+4
+
+===== PAGE 5 =====
+Fractional contribution [%]
+# Category b-jets c-jets light-jets
+0 No hits in ﬁrst two layers; expected hit in IBL and b-layer 1.9 2.0 1.9
+1 No hits in ﬁrst two layers; expected hit in IBL and no expected hit in b-layer0.1 0.1 0.1
+2 No hits in ﬁrst two layers; no expected hit in IBL and expected hit in b-layer0.04 0.04 0.04
+3 No hits in ﬁrst two layers; no expected hit in IBL and b-layer 0.03 0.03 0.03
+4 No hit in IBL; expected hit in IBL 2.4 2.3 2.1
+5 No hit in IBL; no expected hit in IBL 1.0 1.0 0.9
+6 No hit in b-layer; expected hit in b-layer 0.5 0.5 0.5
+7 No hit in b-layer; no expected hit in b-layer 2.4 2.4 2.2
+8 Sharedhit in both IBL and b-layer 0.01 0.01 0.03
+9 At least onesharedpixel hits 2.0 1.7 1.5
+10 Two or moresharedSCT hits 3.2 3.0 2.7
+11 Split hits in both IBL and b-layer 1.0 0.87 0.6
+12 Split pixel hit 1.8 1.4 0.9
+13 Good 83.6 84.8 86.4
+Table 1: Description of the track categories used by IP2D and IP3D together with the fraction of tracks in each
+category for jets int¯t events. The order of the layers is explained in the text. The categories further down in the list
+can be more inclusive than the ﬁrst ones because, when a category is not fulﬁlled, the next one is evaluated.
+Track signed d0 significance (Good)
+20− 10− 0 10 20 30 40
+Arbitrary units
+6−10
+5−10
+4−10
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(a)
+Track signed z0 significance (Good)
+20− 10− 0 10 20 30 40
+Arbitrary units
+6−10
+5−10
+4−10
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (b)
+Figure 1: The transverse (a) and longitudinal (b) signed impact parameter signiﬁcance of tracks int¯t events forb
+(solid blue),c (dashed green) and light ﬂavour (dotted red) jets for theGood category as deﬁned in Table 1.
+5
+
+===== PAGE 6 =====
+The distributions of the ﬁnal LLR discriminant for IP2D and IP3D are shown in Figures 2 (a) and 2 (b)
+for theb- versus light-ﬂavour separation.
+)u/PbIP2D log(P
+20− 10− 0 10 20 30 40 50
+Arbitrary units
+6−10
+5−10
+4−10
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(a)
+)u/PbIP3D log(P
+20− 10− 0 10 20 30 40 50
+Arbitrary units
+6−10
+5−10
+4−10
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (b)
+Figure 2: The log-likelihood ratio for the IP2D (a) and IP3D (b)b-tagging algorithm forb- (solid blue),c- (dashed
+green) and light-ﬂavour (dotted red) jets int¯t events. The log-likelihood ratio shown here is computed as ratio of
+the b- and light-ﬂavour jet hypotheses. If no tracks are found in the jet, a large negative value that is not indicated
+in the plot is assigned as the algorithm output.
+Correctly measuring thed0/σd0 and z0/σz0 shapes for even classes with a small track population can
+signiﬁcantly improve the rejection because even a small class of tracks can signiﬁcantly contribute to the
+already very small fake rate. This is shown in Figure 3 that illustrates the distributions of the transverse
+and longitudinal impact parameter signiﬁcances for the fourth category in Table 1 (no hits in IBL while
+expected). The comparison with the templates for theGood category shown in Figure 1 illustrates the
+diﬀerence of the distributions.
+Several reﬁnements in the algorithm have been introduced for the new version of the IP tagger compared
+to the version described in [2]. They are listed below.
+• The requirement on the number of pixel hits is relaxed from at least two to at least one in the pixel
+detector. Thepreviousrequirementinducedsomeineﬃciencyinthehigh b-jet pT regionbecausea
+signiﬁcantfractionofhigh pT b-hadronsdecayaftertheIBL( R=3.3cm)andtheb-layer( R=5.5cm).
+The new requirement increases the performance at highb-jet pT, while not signiﬁcantly aﬀecting
+the low-mediumpT regime.
+• It is found that by ignoring tracks originating from conversions,Λ and KS decays, material in-
+teractions as identiﬁed by the SV algorithm described in Section 3.2, a sizeable gain of 15% in
+light-ﬂavour jet rejection for ab-jet eﬃciency working point of 77% is achieved.
+6
+
+===== PAGE 7 =====
+Track signed d0 significance (Track category 4)
+20− 10− 0 10 20 30 40
+Arbitrary units
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(a)
+Track signed z0 significance (Track category 4)
+20− 10− 0 10 20 30 40
+Arbitrary units
+4−10
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (b)
+Figure 3: The transverse (a) and longitudinal (b) signed impact parameter signiﬁcance of tracks int¯t events withb
+(solid blue),c (dashed green) and light ﬂavour (dotted red) jets for track category 4 (no hit in IBL while expected)
+as deﬁned in Table 1.
+• Reference histograms are produced with a mixture oft¯t and Z′ → t¯t (50%/50%) for the two
+categories with no hits in the ﬁrst two layers despite them being expected (categories 0 and 1
+in Table 1). Tracks fromb-jets in t¯t events (low-medium pT range) mostly populate categories
+where hits in the ﬁrst two innermost layers are present. However,b-jets (or theb-hadrons) from
+Z′→ t¯t eventsarecharacterisedbyaharder pT spectrum,hencetheirassociatedtrackstendtostart
+outsidetheIBL/b-layersincethecorresponding b-hadrondecayoccursbeyondtheselayersandthey
+populatethecategorieswherenohitsintheinnerlayersarepresent. Thisallowsustoovercomethe
+limited statistics available in these categories in thet¯t-only sample. Figure 4 shows the variation
+of the fraction of tracks in each of the 14 categories as a function of jet-pT. By using a sample
+with higher pT b-jets, it is therefore possible to signiﬁcantly enhance the number of tracks in the
+aforementioned categories.
+Figure 5 shows the distributions of the average multiplicity of tracks fromb-hadron decays including
+tracksfromsubsequent c-hadrondecaysandtracksstemmingfromthefragmentationprocess(thecharged
+multiplicity at generator level is around 5). The distribution in Figure shows the average multiplicity
+of tracks directly from b-hadron and from subsequent c-hadron decays selected for the IP algorithm as
+a function of the jetpT. The contribution of tracks from fragmentation insideb-jets is observed to be
+dominant in the medium-high jetpT regime (> 200 GeV) compared to tracks fromb-hadron decays and
+therefore represents an important source of background inside the jets. Figure 6 shows the light (a) and
+c-jet rejection (b) as a function of theb-jet eﬃciency for the IP3D tagger when comparing the 2016
+conﬁguration to the 2015 version. The improvement in light-ﬂavour jet rejection is mostly present in the
+medium-low b-jeteﬃciencyregion(below75%). Gainsofapproximately7%inlight-ﬂavourjetrejection
+and 3% in c-jet rejection are observed at the 77%b-jet eﬃciency working point. The small wiggles
+7
+
+===== PAGE 8 =====
+ [GeV]
+T
+Jet p
+0 50 100 150 200 250 300 350 400
+Fraction of b­hadron tracks
+0
+0.2
+0.4
+0.6
+0.8
+1
+ATLAS Simulation Preliminary
+ t=13 TeV, ts
+0 1
+2 3
+4 5
+6 7
+8 9
+10 11
+12 13
+Figure 4: Fraction of tracks fromb-hadron decays as a function of the jetpT for t¯t events for IP categories reported
+in Table 1.
+characterising the light-ﬂavour jet rejection curve are due to jets with no tracks surviving the IP selection
+such that they carry a default value for the likelihood discriminant.
+ [GeV]
+T
+Jet p
+0 50 100 150 200 250 300 350 400 450
+<Number IP tracks>
+0
+2
+4
+6
+8
+10
+12 ATLAS Simulation Preliminary
+t=13 TeV , ts
+b­hadron tracks
+Fragmentation tracks
+Figure5:Averagenumberof b-hadronandjetfragmentationtracksselectedfortheIPalgorithmasafunctionofthe
+jet pT. The shaded band around the two contributions represents the RMS for eachpT bin.
+3.2 Secondary Vertex Finding Algorithm: SV
+The secondary vertex ﬁnding algorithm [20] explicitely reconstructs an inclusive displaced secondary
+vertex within the jet. All track pairs within a jet are tested for a two-track vertex hypothesis. Any found
+two track vertices are rejected if they were likely to originate from the decay of a long-lived particle (e.g.
+8
+
+===== PAGE 9 =====
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+light­jet rejection
+10
+210
+310
+410
+510
+IP3D 2015 config
+IP3D 2016 config
+b­jet efficiency
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+2016/2015 config0.8
+0.9
+1
+1.1
+1.2
+(a)
+c­jet rejection
+10 IP3D 2015 config
+IP3D 2016 config
+b­jet efficiency
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+2016/2015 config0.8
+0.9
+1
+1.1
+1.2 (b)
+Figure6:Light-ﬂavour(a)and c-jet(b)rejectionasafunctionofthe b-jeteﬃciencyfortheIP3Dalgorithmcomparing
+the current conﬁguration (2016 conﬁg) with the previous one (2015 conﬁg).
+Ks or Λ), photon conversions or hadronic interactions with the detector material. If a two-track vertex
+remains,anewvertexisthenﬁttedwithalltracksfromtheacceptedtwo-trackvertices,whereoutliersare
+iteratively removed from this set of tracks. Several reﬁnements in the selections of tracks and two-track
+vertices have been made in order to improve the performance of the algorithm, especially against pileup
+contamination and for high-pT jets.
+Each selected track is required to have at least seven silicon hits (sum of pixel and SCT hits) and at
+most one shared hit in these two detectors. Theχ2 per degree of freedom of the track ﬁt is required to be
+lessthan3[17]. Inadditiontothesetrackqualityselections,extratrackrequirementsareusedtoimprove
+the performance of the algorithm for the 2016 LHC run:
+• Highly-energeticjets(witha pT > 300GeV),asillustratedinFigure5,suﬀerfromhighmultiplicity
+of tracks produced in jet fragmentation which increases the probability of reconstructing fake
+vertices. Inordertoreducethenumberoffakevertices,tracksareorderedaccordingtotheir pT and
+at most 25 tracks with largestpT are used in the secondary vertex reconstruction. With an average
+charged particle multiplicity fromb-hadron decays of about 5, this selection is inclusive enough
+to retain all reconstructed tracks from anyb-hadron decay, including the case of jets containing a
+gluon splitting tob¯b.
+• In addition, the reconstruction of tracks associated to jets in the high pseudorapidity region (|η| >
+1.5) suﬀers from an increasing amount of detector material leading to worse track parameter
+resolution and an increased rate of hadronic interactions. Additional track cleaning is applied for
+these jets to mitigate the negative inﬂuence on the secondary vertex ﬁnding eﬃciency. To increase
+the quality of the selected tracks, the minimal number of required hits in the silicon detectors is
+increased by one for tracks with|η| > 1.5.
+9
+
+===== PAGE 10 =====
+• In order to reduce the impact of pileup, tracks with lowd0/σd0 (<2) and high z0/σz0 (>6) are
+removed, again reducing the number of fake vertices.
+As previously mentioned, the set of tracks passing the track selections described above are used to form
+all possible two-track vertices. The two-track vertex candidates are required to be signiﬁcantly displaced
+from the primary interaction vertex. Each track of the pair should exceed a signiﬁcance of the distance
+between the track and the primary vertex of 2, and the sum of the two IP signiﬁcances of the tracks in the
+two-track vertex should be higher than 2. Finally theχ2 of the ﬁtted tracks should be less than 4.5. In
+ordertoadditionallyreducefakeverticesandmaterialinteractions,extracleaningselectionsontwo-track
+vertices are considered for the 2016 LHC run:
+• since secondary tracks cannot have associated detector hits with radii smaller than the production
+vertex radius, the track pixel hit pattern is required to correspond to the reconstructed vertex radius
+for both tracks;
+• two-track vertices with an invariant mass greater than 6 GeV are removed as those are not likely to
+be frombor c hadron decays.
+• Some of the reconstructed 2-track vertices come fromKs, Λ decays, photon conversions and
+hadronic interactions with the detector material; the tracks coming fromKs and Λ decays can be
+rejected by using the mass of the vertex. The invariant mass spectra ofπ+π− and pπ are used to
+identify the peaks due toKs and Λ decays, charged tracks coming from such vertices are rejected
+by the algorithm.
+Figure7showsthedistributionofsomeofthepropertiesofthereconstructedsecondaryvertexcomparing
+vertices fromb, c and light-ﬂavour jets. Figure 8 displays the fraction of jets which have a reconstructed
+secondary vertex, as a function of jet-pT (a) andη (b) forb-jets, c-jets, and vertices in light-ﬂavour jets.
+Theincreaseoftracksfromfragmentationinthehighjet pT regionisthemainreasonfortheperformance
+degradation. Thenumberoffakeverticesisincreasingwithjet pT inlightjets,whilethesecondaryvertex
+reconstruction eﬃciency forb- and c- jets slightly decreases with jetpT. Figures 8 (c) and 8 (d) show
+thesecondaryvertexreconstructionrateforlight-ﬂavourjetswhenemployingtheprevioustrackselection
+documented in [2] and the updated requirements. Notably, the new track selection results in signiﬁcantly
+smaller fake rate of SV reconstruction for light-ﬂavour jets both as function of jetpT andη.
+3.3 Decay Chain Multi-Vertex Algorithm: JetFitter
+The decay chain multi-vertex reconstruction algorithm, JetFitter [21], exploits the topological structure
+of weak b- and c-hadron decays inside the jet and tries to reconstruct the fullb-hadron decay chain. A
+Kalmanﬁlterisusedtoﬁndacommonlineonwhichtheprimaryvertexandthebottomandcharmvertices
+lie, approximating theb-hadron ﬂight path, as well as their positions. With this approach, theb- and
+c-hadron vertices, whenever resolution allows, can be resolved, even when only a single track is attached
+to any of them. No modiﬁcation of this tagger has been made compared to the previous results reported
+in [2].
+10
+
+===== PAGE 11 =====
+(SV)2TrkVtxN
+0 10 20 30 40 50 60
+Arbitrary units
+5−10
+4−10
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(a)
+(SV) [mm]xyL
+0 10 20 30 40 50 60 70 80 90
+Arbitrary units
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (b)
+(SV)
+xyzLσ/xyzL
+0 10 20 30 40 50 60 70 80 90 100
+Arbitrary units
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(c)
+(SV)Ef
+0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+Arbitrary units
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (d)
+m(SV) [GeV]
+0 1 2 3 4 5 6
+Arbitrary units
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(e)
+(SV)TrkAtVtxN
+2 4 6 8 10 12 14
+Arbitrary units
+5−10
+4−10
+3−10
+2−10
+1−10
+1
+10 ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (f)
+Figure 7: Properties of secondary vertices reconstructed by the SV algorithm forb- (solid blue),c- (dashed green)
+and light-ﬂavour (dotted red) jets int¯t events: the number of two-track vertices reconstructed within the jet (a), the
+transverse decay length (b), the 3D decay length signiﬁcance (c), the energy fraction (d), deﬁned as the energy of
+the tracks in the displaced vertex relative to the energy of all tracks reconstructed within the jet, the invariant mass
+(e)andthenumberoftracks(f)associatedwiththevertex. Theincreasedrateoflight-ﬂavourjetsathightransverse
+decay length values is due to residual material interactions.
+11
+
+===== PAGE 12 =====
+ [GeV]Tjet p
+100 200 300 400 500 600 700 800 900 1000
+SV reconstruction rate
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+b jets
+c jets
+Light­flavour jets
+ Simulation Preliminary ATLAS
+t = 13 TeV, ts
+(a)
+ηjet 
+­2 ­1 0 1 2
+SV reconstruction rate
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+b jets
+c jets
+Light­flavour jets
+ Simulation Preliminary ATLAS
+t = 13 TeV, ts (b)
+ [GeV]T light jet p
+100 200 300 400 500 600 700 800 900 1000
+SV rate
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+default selections
+improved selections
+ Simulation Preliminary ATLAS
+t = 13 TeV, ts
+(c)
+η light jet 
+­2 ­1 0 1 2
+SV rate
+0
+0.05
+0.1
+0.15
+default selections
+improved selections
+ Simulation Preliminary ATLAS
+t = 13 TeV, ts (d)
+Figure 8: Secondary vertex reconstruction rate as a function of jetpT (a) andη (b) forb-jets (blue),c-jets (dashed
+green), and light-ﬂavour jets (dotted red). Fake rate of secondary vertices for light-ﬂavour jets as a function of jet
+pT (c)and η (d)whencomparingtheprevioustrackselectionandthecurrentrequirementsdescribedinSection3.2.
+12
+
+===== PAGE 13 =====
+4 Multivariate Algorithm: MV2
+To achieve a better discrimination than any of the basic algorithms can exploit individually, a Boosted
+Decisions Tree (BDT) algorithm, using the ROOT Toolkit for Multivariate Data Analysis (TMVA) [22],
+is employed. It combines the output of the basic taggers described in Section 3.
+4.1 Description of the algorithm and training procedure
+Thelistofinputvariablesthatarefoundtobediscriminatingamongthediﬀerentﬂavourhypotheseshave
+not been modiﬁed with respect to the previous version of the MV2 algorithm documented in Ref. [2].
+The training of the multivariate classiﬁer is performed on jets fromt¯t events withb-jets (1 million) being
+consideredassignal,and c-(0.5million)andlight-ﬂavourjets(1million)beingconsideredasbackground.
+The performance is tested on an independent sample of 5 milliont¯t events. The kinematic properties of
+thejets,namely pT and|η|,illustratedinFigure9,areincludedinthetraininginordertotakeadvantageof
+thecorrelationswiththeotherinputvariables. However,toavoiddiﬀerencesinthekinematicdistributions
+ofsignalandbackground(light-ﬂavourjets)beinginterpretedasdiscriminatingbythetraining,thesignal
+jetsarereweightedin pT and|η| tomatchthespectrumofthelight-ﬂavourbackgroundjets. Nokinematic
+reweighting is applied at the evaluation stage of the multivariate classiﬁer.
+ [GeV]TJet p
+50 100 150 200 250 300
+Arbitrary units
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+(a)
+ηJet 
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Arbitrary units
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets (b)
+Figure 9: Kinematic distributions ofpT (a) and|η| (b) forb(solid blue),c (dashed green) and light-ﬂavour (dotted
+red) jets int¯t events.
+ThenewversionoftheMV2algorithmconstitutesasigniﬁcantreﬁnementofthatdocumentedinRef.[2].
+Each tagging algorithm can fail to produce a result for a jet (e.g. if it does not reconstruct a secondary
+vertex in the case of SV or JetFitter). In the previous version of the algorithm, jets failing to produce
+resultsinanyofthealgorithmsweregivenapenaltyweight(10 −6)inthetrainingprocedure(downgrading
+13
+
+===== PAGE 14 =====
+procedure). This approach was found to be sub-optimal since such events are not properly taken into
+account in the training. In addition, the probability of reconstructing secondary vertices for diﬀerent
+ﬂavour hypotheses (b, c and light) is very useful information for the multivariate classiﬁer to exploit in
+order to enhance the overall signal-to-background separation. In the current downgrading procedure, the
+penalty factor (10−6) is applied if and only if all the three underlying tagger algorithms are found to be
+invalid. The gain in performance originating from this change is gauged by theu(c)-jet rejection versus
+b-jet eﬃciency at the 77%b-jet eﬃciency working point: 40% gain in light-ﬂavour jet rejection and 20%
+in c-jet rejection. The fraction of jets aﬀected by this procedure, namely the ones not having valid output
+for all taggers is 0.6% in the case of light-ﬂavour jets and 0.1% forc- andb-jets.
+In the previous version of the algorithm, three MV2 variants were released, MV2c00, MV2c10 and
+MV2c20, where the names of the taggers indicate thec-jet fraction in the training, e.g. in MV2c20,
+the background sample is composed of 20% (80%)c- (light-ﬂavour) jets. It is possible to modify the
+light versusc-jet rejection performance by changing the fraction ofc-jets in the training. Given that the
+majorityofphysicsanalysesarepresentlymorelimitedbythe c-ratherthanthelight-ﬂavourjetrejection,
+the c-jetbackgroundfractioninthetraininghasbeenchoseninsuchawaytoenhancethecharmrejection
+by keeping a similar light-ﬂavour jet rejection compared to the previous approach. Thec-jet fraction
+of the training for MV2c10 is therefore set at 7% such that the training is performed assigningb-jets as
+signal and a mixture of 93% light-ﬂavour jets and 7%c-jets as background. In a second variant, denoted
+MV2c20, thec-jet fraction used is 15%; lastly, noc-jet contribution is present in the training is used for
+MV2c00.2
+ThetrainingparametersfortheBDThavealsobeenoptimized. Theminimumnodesize(MNS)parameter
+deﬁning the minimal fraction of jets in a leaf over the total number of jets in the training is reduced from
+0.5% to 0.05% as the new downgrading procedure results in a larger training sample. The gain in
+performance for the light-ﬂavour jet rejection as a function of the number of trees in the BDT forest or
+as a function of the typical depth of the trees (30) is also checked for ﬁxed values of MNS. An additional
+test is performed on the number of trees, and although the number of trees and depth are intrinsically
+correlated, it is found that a non-negligible extra gain is brought by extending the number of trees from
+400to1000. Lastly, ascanoverthenumberofcutsinthetraining, namelythenumberofgridpointsover
+the variable range used in ﬁnding an optimal cut in node splitting, is performed and results are observed
+toberelativelyinsensitivetothespeciﬁcvalueusedforthisvariable. Theﬁnalimprovementsinlight-( c-)
+jet rejection at 77%b-jet eﬃciency working point brought by the optimization of the parameters of the
+BDT for the training is approximately 30% (20%).
+4.2 Studies on the MV2 performance and training validations
+The performance of the optimized MV2c00, MV2c10 and MV2c20b-tagging algorithms is shown in
+Figure 10 for the light andc-jet rejection as a function of theb-jet eﬃciency in comparison to the 2015
+MV2c20 conﬁguration. It is noted that the current MV2c10 (2016 conﬁguration) discriminant provides
+a similar light-ﬂavour jet rejection (improvement of approximately 4% at 77%b-jet eﬃciency) to the
+2015 MV2c20 conﬁguration, but a signiﬁcantly betterc-jet rejection of +40% at the 77%b-jet eﬃciency
+working point. The 2016 MV2c20 setup provides even better charm rejection, but at the expense of
+a reduced light-ﬂavour jet rejection, which may be detrimental to some analyses. The MV2c10 tagger
+2 It was decided to keep the same nomenclature MV2XX where X=00,10,20 for the three variants of the MV2 algorithm even
+though the value of XX no longer reﬂects thec-jet fraction used in the training sample.
+14
+
+===== PAGE 15 =====
+algorithm has therefore been chosen as the standardb-tagging discriminant for 2016 analyses. Figure 11
+shows the MV2c10 BDT output for the signal and background components. The Monte Carlo simulation
+hasalsobeenadjustedtobetterrepresentthedataconditionsexpectedin2016(pileupproﬁlefor2016data-
+taking), and this is found to have a small eﬀect on the performance when re-training the MV2 algorithm
+(5-7% improved light-ﬂavour jet rejection and 2-3% gain in c-jet rejection at 77%b-jet eﬃciency).
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+light­jet rejection
+10
+210
+310
+410
+510
+MV2c20 − 2015 config
+MV2c20 − 2016 config
+MV2c10 − 2016 config
+MV2c00 − 2106 config
+b­jet efficiency
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+ATLAS  Simulation Preliminary
+t=13 TeV, ts
+2016/2015 config0.6
+1
+1.4
+1.8
+2.2
+2.6
+(a)
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+c­jet rejection
+10
+210
+MV2c20 − 2015 config
+MV2c20 − 2016 config
+MV2c10 − 2016 config
+MV2c00 − 2016 config
+b­jet efficiency
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+2016/2015 config
+ATLAS  Simulation Preliminary
+t=13 TeV, ts
+0.6
+1
+1.4
+1.8 (b)
+Figure 10: Light-ﬂavour jet (a) andc-jet (b) rejection versusb-jet eﬃciency for the previous (2015 conﬁg) and
+the current conﬁguration (2016 conﬁg) of the MV2b-tagging algorithm evaluated ont¯t events. As explained in
+Section 4.2, MV2c00 denotes the MV2 algorithm where noc-jet contribution was present in the training. MV2c10
+(MV2c20)denotetheMV2outputswherea7%(15%) c-jetfractionswaspresentinthebackgroundsample(forthe
+2016 conﬁguration).
+OperatingpointsaredeﬁnedbyasinglecutvalueontheMV2outputandarechosentoprovideaspeciﬁc
+b-jet eﬃciency on at¯t sample. Table 2 shows the operating points deﬁned for the recommended tagger
+b-tagging algorithm, MV2c10, with benchmark performance values.
+BDT Cut Value b-jet Eﬃciency [%] c-jet Rejection Light-jet Rejection τ Rejection
+0.9349 60 34 1538 184
+0.8244 70 12 381 55
+0.6459 77 6 134 22
+0.1758 85 3.1 33 8.2
+Table2:OperatingpointsfortheMV2c10 b-taggingalgorithm,includingbenchmarknumbersfortheeﬃciencyand
+rejections rates. These values have been extracted fromt¯t events, the main requirement being jetpT above 20 GeV.
+Figure12displaysthecomparisonofthe b-jeteﬃciencyasafunctionofjet pT betweenthecurrenttagger
+MV2c10 and the 2015 MV2c20 algorithm. Figure 13 shows the comparison between the baseline 2015
+conﬁguration(MV2c20)andthecurrent2016approach(MV2c10)forthelight-ﬂavourand c-jetrejection
+as a function of jetpT and jetη. The distributions have been produced with a ﬁxed cut at the 77%b-jet
+eﬃciency operating point. The light-jet rejection is slightly descreased in the highb-jet pT region (>100
+15
+
+===== PAGE 16 =====
+MV2c10 BDT Output
+1− 0.8− 0.6− 0.4− 0.2− 0 0.2 0.4 0.6 0.8 1
+Arbitrary units
+3−10
+2−10
+1−10
+1
+10
+ATLAS  Simulation Preliminary
+t = 13 TeV, ts b jets
+c jets
+Light­flavour jets
+Figure 11: MV2c10 BDT output forb- (solid blue),c- (dashed green) and light-ﬂavour (dotted red) jets evaluated
+with t¯t events.
+GeV), but, at the same time, theb-jet eﬃciency is also increased in the same kinematic region. The
+reasonforthisisthatthenewMV2trainingwiththeupdateddowngradingprocedureresultsinadiﬀerent
+eﬀective tagging requirement as a function of jetpT: at high jetpT, the 77% working point is slightly
+worse as compared to the 2015 conﬁguration. Theb-jet eﬃciency distribution as a function of jetη has
+also been inspected: no major diﬀerences in eﬃciency are found when comparingthe results in 2015 and
+2016 MV2 trainings.
+Figure 14 displays the comparison between the baseline 2015 conﬁguration (MV2c20) and the current
+2016 approach (MV2c10) for the light-ﬂavour andc-jet rejection. In each bin of thepT distribution, the
+b-tagging cut value has been chosen in such a way to yield a constantb-jet eﬃciency of 77%. For ﬁxed
+b-jet eﬃciency, the new MV2 training shows a sizeable improvement in all kinematic regions.
+Similarly to the rejectionvs eﬃciency curves reported in Figure 10, the enhancement inc-jet rejection
+brought by the optimization of the MV2 multivariate classiﬁer is also clearly visible over the fullpT and
+η range. Furtermore, as a consequence of the choice of thec-jet fraction in the training for MV2c10, the
+τ-rejection has increased by approximately a factor 2 with respect the 2015 algorithm.
+Additional cross-validation checks on the ﬁnal BDT conﬁguration were performed in order to assess
+the impact of the usage of diﬀerent training samples on the performance and to verify the eﬀect of the
+ﬁnite Monte Carlo statistics for the training of the classiﬁer. Cross-training tests have been performed in
+order to make sure that the performance is consistent when independent sub-samples are used as input to
+themultivariateclassiﬁer. Itisobservedthatthetaggingperformancefor c-andlight-ﬂavourjetrejection
+16
+
+===== PAGE 17 =====
+b­jet efficiency
+0.5
+0.55
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+=77%
+b
+ε
+[GeV]
+T
+Jet p
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+30 40 50 100 200 300 400
+2016/2015 config
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+1.04
+1.06
+1.08
+2016 config
+2015 config
+Figure12: b-jeteﬃciencyfortheﬁxedcutworkingpointwitha b-jeteﬃciencyof77%asafunctionofthejet pT for
+thecomparisonbetweentheMV2c10 b-taggingalgorithmemployedforthe2016analyses(denotedas2016conﬁg)
+and the previous version of the tagger, MV2c20 (2015 conﬁg).
+is stable at the level of few % while the statistical uncertainty on the rejection values evaluated on the test
+sample is negligible.
+5 Conclusions
+The current performance of the ATLAS ﬂavour-tagging algorithms for the 2016 LHC run has been
+described in this note including a review of the current algorithmic strategy, the new features of the
+main basic taggers, IP and the Secondary Vertex Finder algorithms, and a complete overview of the new
+training procedure for MV2. Particular emphasis is given to the recent developments of MV2 in light
+of the improvedc-jet rejection resulting in a gain of approximately 40% inc-jet rejection at 77%b-jet
+eﬃciencyandappoximatelythesamelight-ﬂavourjetrejectionasachievedbythepreviousalgorithmused
+for 2015 analyses. In addition, the rejection power at highb-jet pT is also signiﬁcantly improved.
+17
+
+===== PAGE 18 =====
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+20 30 40 50 60 70 100 200 300 400
+Light­flavour jet rejection
+100
+150
+200
+250
+300
+ [GeV]TpJet
+=77%
+b
+ε
+30 40 50 100 200 300 400
+2016/2015 config
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config
+(a)
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+η
+0 0.5 1 1.5 2 2.5
+Light­flavour jet rejection
+100
+120
+140
+160
+180
+200
+220
+240
+260
+|ηJet |
+=77%
+b
+ε
+0 0.5 1 1.5 2 2.5
+2016/2015 config
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config (b)
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+30 40 50 70 100 200 300 400 500
+c­jet rejection
+4
+5
+6
+7
+8
+9
+=77%
+b
+ε
+ [GeV]TpJet
+30 40 50 100 200 300 400
+2016/2015 config
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config
+(c)
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+η
+=77%
+b
+ε
+0 0.5 1 1.5 2 2.5
+c­jet rejection
+5
+6
+7
+8
+9
+|ηJet |
+0 0.5 1 1.5 2 2.5
+2016/2015 config
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config (d)
+Figure 13: Light-ﬂavour jet andc-jet rejection as a function of jetpT, (a) and (c), and jetη, (b) and (d), for the
+previous (2015 conﬁg) MV2c20 and the current MV2c10 conﬁguration (2016 conﬁg). A ﬁxed cut at 77%b-jet
+eﬃciency operating point is employed.
+18
+
+===== PAGE 19 =====
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+20 30 40 50 60 70 100 200 300 400
+Light­flavour jet rejection
+100
+200
+300
+400
+500
+=77%
+b
+ε
+ [GeV]TpJet
+30 40 50 100 200 300 400
+2016/2015 config
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config
+(a)
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+η
+0 0.5 1 1.5 2 2.5
+Light­flavour jet rejection
+50
+100
+150
+200
+250
+300
+350
+|ηJet |
+=77%
+b
+ε
+0 0.5 1 1.5 2 2.5
+2016/2015 config 
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config (b)
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+30 40 50 60 70 100 200 300 400 500
+c­jet rejection
+4
+6
+8
+10
+12
+14
+=77%
+b
+ε
+ [GeV]TpJet
+30 40 50 100 200 300 400
+2016/2015 config
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config
+(c)
+ATLAS Simulation Preliminary
+tt = 13 TeV, s
+η
+0 0.5 1 1.5 2 2.5
+c­jet rejection
+4
+5
+6
+7
+8
+9
+10
+|ηJet |
+=77%
+b
+ε
+0 0.5 1 1.5 2 2.5
+2016/2015 config
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+2016 config
+2015 config (d)
+Figure 14: Light-ﬂavour jet and c-jet rejection as a function of jetpT, (a) and (c), and jetη, (b) and (d), for
+the previous (2015 conﬁg) MV2c20 and the current MV2c10 conﬁguration (2016 conﬁg). In each bin of thepT
+distribution, theb-tagging cut value has been set in such a way to yield a constantb-jet eﬃciency at 77%.
+19
+
+===== PAGE 20 =====
+References
+[1] ATLAS Collaboration, The ATLAS Experiment at the CERN Large Hadron Collider,
+JINST 3 (2008) S08003.
+[2] ATLAS Collaboration, Expected performance of the ATLASb-tagging algorithms in Run-2,
+ATL-PHYS-PUB-2015-022, url: https://cds.cern.ch/record/2037697.
+[3] ATLAS Collaboration, The ATLAS Inner Detector commissioning and calibration,
+Eur. Phys. J.C70 (2010) 787.
+[4] ATLAS Collaboration, ATLAS Insertable B-Layer Technical Design Report,
+CERN-LHCC-2010-013. ATLAS-TDR-19,url: https://cds.cern.ch/record/1291633.
+[5] ATLAS Collaboration, Performance ofb-Jet Identiﬁcation in the ATLAS Experiment,
+JINST 11 (2016) P04008.
+[6] P. Nason, A new method for combining NLO QCD with shower Monte Carlo algorithms,
+JHEP 11(2004) 040.
+[7] T. Sjöstrand, S. Mrenna and P. Z. Skands,PYTHIA 6.4 Physics and Manual, JHEP05(2006) 026.
+[8] H.-L. Lai et al.,New parton distributions for collider physics, Phys. Rev.D82 (2010) 074024.
+[9] D. J. Lange,The EvtGen particle decay simulation package,
+Nucl. Instrum. Meth.A462(2001) 152.
+[10] T. Sjöstrand, S. Mrenna and P. Z. Skands,A Brief Introduction to PYTHIA 8.1,
+Comput. Phys. Commun.178 (2008) 852.
+[11] R. D. Ball et al.,Parton distributions with LHC data, Nucl. Phys.B867(2013) 244.
+[12] S. Agostinelli et al.,GEANT4: A simulation toolkit, Nucl. Instrum. Meth.A506(2003) 250.
+[13] ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur. Phys. J. C70(2010) 823.
+[14] M. Cacciari, G. P. Salam and G. Soyez,The anti-kt jet clustering algorithm, JHEP04(2008) 063.
+[15] A. Collaboration, Jet energy measurement and its systematic uncertainty in proton-proton
+collisions at√s = 7TeV with the ATLAS detector, Eur. Phys. J.C75 (2015) 17.
+[16] ATLAS Collaboration, Tagging and suppression of pileup jets with the ATLAS detector,
+ATLAS-CONF-2014-018, url: https://cds.cern.ch/record/1700870.
+[17] ATLAS Collaboration,
+Track Reconstruction Performance of the ATLAS Inner Detector at√s = 13 TeV,
+ATL-PHYS-PUB-2015-018, url: https://cds.cern.ch/record/2037683.
+[18] ATLAS Collaboration, The Optimization of ATLAS Track Reconstruction in Dense Environments,
+ATL-PHYS-PUB-2015-006, url: http://cds.cern.ch/record/2002609.
+[19] ATLAS Collaboration,
+A neural network clustering algorithm for the ATLAS silicon pixel detector,
+JINST 9(2014) P09009.
+[20] ATLAS Collaboration,
+Commissioning of the ATLAS high-performance b-tagging algorithms in the 7 TeV collision data,
+ATLAS-CONF-2011-102, url: https://cds.cern.ch/record/1369219.
+20
+
+===== PAGE 21 =====
+[21] G. Piacquadio and C. Weiser,
+A new inclusive secondary vertex algorithm forb-jet tagging in ATLAS,
+J. Phys. Conf. Ser.119 (2008) 032032.
+[22] A. Höcker et al.,TMVA: Toolkit for multivariate data analysis, PoSACAT(2007) 040,
+arXiv: physics/0703039 [physics].
+21

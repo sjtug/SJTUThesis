@@ -1,0 +1,74 @@
+% \RequirePackage{snapshot}
+%-------------------------------------------------------------------------------
+% Guide to the use of the ATLAS LaTeX package
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{../atlasdocpath}
+%-------------------------------------------------------------------------------
+\documentclass[UKenglish, texlive=2016]{atlasdoc}
+% \KOMAoptions{DIV=8}
+
+% Standard packages that can and should be used in ATLAS papers
+\usepackage{atlaspackage}
+\usepackage{atlasbiblatex}
+
+\usepackage{authblk}
+\usepackage{atlasphysics}
+
+% Macro to add to-do notes (for several authors). Uses the todonotes package.
+\usepackage{atlastodo}
+\ATLnote{JS}{Jane}{magenta!20}{magenta}
+\ATLnote{IB}{Ian}{green!20}{green!50!black!60}
+
+% Macros for documentation
+\usepackage{atlas_doc-defs}
+
+% Files with references in BibTeX format
+\addbibresource{../atlas_latex.bib}
+
+% Paths for figures
+\graphicspath{{../../logos/}{figures/}}
+
+% Shorthand for \phantom to use in tables
+\newcommand{\mcc}[1]{\multicolumn{1}{c}{#1}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
+
+\AtlasTitle{Users guide to the ATLAS \LaTeX\ package}
+
+\author{Ian C. Brock}
+\affil{University of Bonn}
+
+\AtlasAbstract{%
+  The usage of the ATLAS \LaTeX\ templates and style files is documented here.
+  The options that are available are given, as well as the packages that can be loaded
+  using these files.
+  Information on the setups used to test the packages is given and
+  some help with the conversion of the document to the \LaTeX\ format needed for journal submission
+  is included.
+
+  This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
+  The \TeX\ Live version is set to \ATTeXLiveVersion.
+  It uses the option \Option{atlasstyle}, which implies that the standard ATLAS preprint style is used.
+}
+
+%-------------------------------------------------------------------------------
+% This is where the document really begins
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\clearpage
+
+\input{atlas_latex-text}
+
+\printbibliography
+
+\end{document}

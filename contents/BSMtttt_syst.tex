@@ -1,0 +1,113 @@
+Systematic uncertainties arise from imperfect modelling of the detector response and from theoretical and modelling uncertainties affecting the simulated predictions of both background and signal processes.
+They impact the analysis through variations in the overall normalisation and/or the shape of the final discriminant distributions.
+All uncertainties are implemented as nuisance parameters in the profile-likelihood fit and are propagated coherently across analysis regions where appropriate.
+
+% =========================================================
+\subsection{Experimental uncertainties}
+\label{sec:syst_exp}
+
+\subsubsection{Integrated luminosity}
+
+The uncertainty on the integrated luminosity of the full Run~2 dataset (2015--2018) amounts to 1.7\%~\cite{ATLAS-CONF-2019-021}.
+It is derived from the primary luminosity calibration using the LUCID-2 detector~\cite{Avoni_2018} and is applied as a normalisation uncertainty to all simulated samples.
+
+\subsubsection{Pile-up modelling}
+
+The modelling of additional $pp$ interactions (pile-up) in simulation is corrected by reweighting the distribution of the average number of interactions per bunch crossing to match that observed in data.
+The associated uncertainty is evaluated by varying the pile-up reweighting procedure within its recommended uncertainties and propagating the resulting variations to the final distributions.
+
+\subsubsection{Lepton-related uncertainties}
+
+Residual differences between data and simulation in lepton reconstruction, identification, isolation and trigger efficiencies are corrected using scale factors derived from tag-and-probe techniques~\cite{Aad:2019tso,Aad:2020gmm}.
+Systematic uncertainties associated with these scale factors are propagated to the analysis discriminants.
+
+For electrons, additional uncertainties related to the energy scale and resolution are considered, together with a dedicated uncertainty associated with charge mis-identification rejection.
+For muons, uncertainties in the momentum scale and resolution are included, accounting for contributions from the inner detector and muon spectrometer.
+
+\subsubsection{Small-$R$ jet uncertainties}
+
+Jet-related uncertainties arise from JVT, the jet energy scale (JES) and the jet energy resolution (JER).
+
+The JVT uncertainty is evaluated by varying the efficiency correction applied in simulation within its uncertainty.
+
+The JES uncertainty is parameterised by multiple independent components that account for detector calibration effects, $\eta$ intercalibration, pile-up dependence, flavour composition and response, and additional effects relevant at high $p_{\mathrm{T}}$.
+The JER uncertainty accounts for residual differences between data and simulation in the jet resolution modelling.
+All jet-related variations are propagated to derived observables, including $E_{\mathrm{T}}^{\mathrm{miss}}$.
+
+\subsubsection{$b$-tagging}
+
+The $b$-tagging performance in simulation is corrected to match that in data using per-jet scale factors derived from dedicated calibration measurements.
+The corresponding uncertainties are parameterised using eigenvector variations obtained from the diagonalisation of the calibration covariance matrices and are provided separately for $b$-jets and for the mis-tag rates of $c$- and light-flavour jets.
+Additional uncertainties associated with the extrapolation of the calibration to the high-$p_{\mathrm{T}}$ regime are included following the recommended prescriptions~\cite{high_pt_extrapolation,btagging_rec_2023}.
+
+\subsubsection{Missing transverse momentum}
+
+The uncertainty on the missing transverse momentum, $E_{\mathrm{T}}^{\mathrm{miss}}$, is dominated by the modelling of the soft term reconstructed from tracks not associated with hard objects.
+It is evaluated using data--MC comparisons of the transverse momentum balance between the hard-object and soft-term contributions and is parameterised by independent variations corresponding to the soft-term scale and resolution components.
+
+% =========================================================
+\subsection{Theory and modelling uncertainties}
+\label{sec:syst_theory}
+
+Theoretical and modelling uncertainties are assigned to the signal and simulated background processes.
+These include variations of QCD renormalisation and factorisation scales, generator modelling differences (matrix element, parton shower and hadronisation), and additional normalisation uncertainties where theoretical precision is limited.
+
+% ---------------------------------------------------------
+\subsubsection{$t\bar{t}$ modelling uncertainties}
+
+The modelling of $t\bar{t}$ production constitutes one of the dominant sources of systematic uncertainty in this analysis.
+
+\paragraph{QCD scale variations.}
+
+Uncertainties due to missing higher-order QCD corrections are evaluated by varying the renormalisation and factorisation scales in the nominal {\scshape Powheg}+ \allowbreak{\scshape Pythia8} configuration by factors of two and one-half.
+
+\paragraph{Generator and parton shower modelling.}
+
+The uncertainty associated with the choice of matrix-element generator is estimated by comparing the nominal {\scshape Powheg}+\allowbreak{\scshape Pythia8} configuration to an alternative {\scshape MadGraph5\allowbreak\_aMC@NLO}+\allowbreak{\scshape Pythia8} setup.
+Parton shower and hadronisation uncertainties are evaluated by comparing {\scshape Powheg} predictions interfaced to {\scshape Pythia8} with those obtained using {\scshape Herwig7}.
+
+\paragraph{Radiation modelling.}
+
+Additional variations probe the modelling of initial- and final-state radiation and the choice of the $h_{\mathrm{damp}}$ parameter in \textsc{Powheg}.
+
+\paragraph{Heavy-flavour normalisation.}
+
+To account for residual mismodelling in the rates of $t\bar{t}$ production with additional heavy-flavour jets, a conservative normalisation uncertainty of 50\% is assigned independently to the $t\bar{t}+b$ and $t\bar{t}+c$ components.
+A 5\% uncertainty is applied to the $t\bar{t}+\mathrm{light}$ component.
+
+\paragraph{Four- vs five-flavour scheme comparison.}
+
+An additional modelling uncertainty is derived from the comparison between the nominal five-flavour-scheme \textsc{Powheg}+\textsc{Pythia8} prediction and an alternative four-flavour-scheme NLO prediction obtained with \textsc{Powheg-Box}\allowbreak-\textsc{Res}.
+
+\paragraph{NN reweighting.}
+
+The uncertainty associated with the neural-network-based reweighting applied to the $t\bar{t}$ background is evaluated using dedicated correlated variations.
+
+% ---------------------------------------------------------
+\subsubsection{Other signal and background uncertainties}
+
+\paragraph{\textbf{\boldmath Signal.}}
+
+The signal modelling uncertainty includes renormalisation and factorisation scale variations evaluated in \textsc{MadGraph5\_aMC@NLO}, together with an additional PDF uncertainty.
+
+\paragraph{\textbf{\boldmath $t\bar{t}t\bar{t}$.}}
+
+Modelling uncertainties are derived from generator variations probing matrix-element scale choices and parton shower modelling.
+An additional uncertainty on the inclusive $t\bar{t}t\bar{t}$ cross section is applied, amounting to $^{+7.8\%}_{-13.3\%}$~\cite{vanBeekveld:2022hty}.
+
+\paragraph{\textbf{\boldmath $t\bar{t}W$, $t\bar{t}Z$, $t\bar{t}H$.}}
+
+For $t\bar{t}W$ and $t\bar{t}Z$, generator modelling uncertainties are evaluated by comparing the nominal \textsc{MadGraph5\_aMC@NLO}+\textsc{Pythia8} prediction to alternative samples produced with \textsc{Sherpa}.
+For $t\bar{t}H$, the nominal \textsc{Powheg}+\textsc{Pythia8} setup is compared to \textsc{MadGraph5\_aMC@NLO}+\textsc{Pythia8}.
+Additional scale variations are included.
+Normalisation uncertainties of 12\% and 10\% are applied to the inclusive $t\bar{t}Z$ and $t\bar{t}H$ cross sections, respectively.
+
+\paragraph{\textbf{\boldmath Single top.}}
+
+Modelling uncertainties are evaluated by comparing \textsc{Powheg} and \textsc{MadGraph5\allowbreak\_aMC@NLO} matrix-element generators, interfaced with \textsc{Pythia8} and \textsc{Herwig7}, and by varying QCD scales.
+A conservative normalisation uncertainty of 30\% is assigned.
+
+\paragraph{\textbf{\boldmath Minor processes.}}
+
+A 60\% uncertainty is applied to $V+\mathrm{jets}$ production~\cite{Alwall:2007fs}.
+For other minor backgrounds, a 50\% normalisation uncertainty is assigned.

@@ -1,0 +1,157 @@
+%-------------------------------------------------------------------------------
+% Useful particle definitions - include with hepparticle option in atlasphysics.sty.
+% Not included by default.
+% Use particle definitions from the heppparticle/heppennames package.
+% Note that atlasparticle and atlashepparticle are mutually exclusive!
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+%\let\sst=\scriptscriptstyle
+
+% Make sure heppennames is loaded.
+\ifthenelse{\boolean{APHY@hepitalic}}{%
+  \RequirePackage[italic]{heppennames}
+}{%
+  \RequirePackage{heppennames}
+}
+
+% Adjust the kerning for bar over particles with narrow glyphs (from Andy Buckley)
+\def\@shiftlen@anti@gen@bar{0mu}
+
+% +--------------------------------------------------------------------+
+% |  Particle-antiparticle pair notations                              |
+% +--------------------------------------------------------------------+
+\newcommand*{\pp}{\Pp{}\Pp}
+%\newcommand*{\antibar}[1]{\ensuremath{#1\bar{#1}}\xspace}
+\newcommand*{\pbar}{\Pap}
+\newcommand*{\ppbar}{\Pp{}\Pap}
+\newcommand*{\tbar}{\Paqt}
+\newcommand*{\ttbar}{\Pqt{}\Paqt}
+% SIunits already defines \bbar - supersede the definition
+\@ifpackageloaded{SIunits}{%
+  \renewcommand*{\bbar}{\Paqb}
+}{%
+  \newcommand*{\bbar}{\Paqb}
+}
+\newcommand*{\bbbar}{\Pqb{}\Paqb}
+\newcommand*{\cbar}{\Paqc}
+\newcommand*{\ccbar}{\Pqc{}\Paqc}
+\newcommand*{\sbar}{\Paqs}
+\newcommand*{\ssbar}{\Pqs{}\Paqs}
+\newcommand*{\ubar}{\Paqu}
+\newcommand*{\uubar}{\Pqu{}\Paqu}
+\newcommand*{\dbar}{\Paqd}
+\newcommand*{\ddbar}{\Pqd{}\Paqd}
+\newcommand*{\fbar}{\Paf}
+\newcommand*{\ffbar}{\Pf{}\Paf}
+\newcommand*{\qbar}{\Paq}
+\newcommand*{\qqbar}{\Pq{}\Paq}
+\newcommand*{\nbar}{\Pagn}
+\newcommand*{\nnbar}{\Pgn{}\Pagn}
+
+% +--------------------------------------------------------------------+
+% |  e+e-, etc.                                                        |
+% +--------------------------------------------------------------------+
+\newcommand*{\ee}{\Pep{}\Pem}
+\newcommand*{\epm}{\Pepm}
+\newcommand*{\epem}{\Pep{}\Pem}
+\newcommand*{\mumu}{\Pgmp{}\Pgmm}
+\newcommand*{\tautau}{\Pgtp{}\Pgtm}
+\newcommand*{\leplep}{\Plp{}\Plm}
+\newcommand*{\ellell}{\Plp{}\Plm}
+\newcommand*{\enu}{\Pe{}\Pgn}
+\newcommand*{\munu}{\Pgm{}\Pgn}
+\newcommand*{\lnu}{\Pl{}\Pgn}
+
+% +--------------------------------------------------------------------+
+% |  Vector bosons                                                     |
+% +--------------------------------------------------------------------+
+\newcommand*{\Zzero}{\PZ}
+\newcommand*{\Zboson}{\PZ}
+\newcommand*{\Wplus}{\PWp}
+\newcommand*{\Wminus}{\PWm}
+\newcommand*{\Wboson}{\PW}
+\newcommand*{\Wpm}{\PWpm}
+\newcommand*{\Wmp}{\PWmp}
+
+% +--------------------------------------------------------------------+
+% |  Tau leptons                                                       |
+% +--------------------------------------------------------------------+
+\newcommand*{\taulep}{\ensuremath{\Pgt_{\text{lep}}}\xspace}
+\newcommand*{\tauhad}{\ensuremath{\Pgt_{\text{had}}}\xspace}
+\newcommand*{\tauhadvis}{\ensuremath{\Pgt_{\text{had-vis}}}\xspace}
+\newcommand*{\taup}[1]{\ensuremath{\Pgt_{\text{#1-prong}}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  pi, pi0, pi+, pi-, pi+-, eta, eta1, etc.                          |
+% +--------------------------------------------------------------------+
+%\let\pii=\pi
+%\renewcommand*{\pi}{\ensuremath{\pii}\xspace}
+\newcommand*{\pizero}{\Pgpz}
+\newcommand*{\piplus}{\Pgpp}
+\newcommand*{\piminus}{\Pgpm}
+\newcommand*{\pipm}{\Pgppm}
+\newcommand*{\pimp}{\Pgpmp}
+%\let\etaa=\eta
+%\renewcommand*{\eta}{\ensuremath{\etaa}\xspace}
+\newcommand*{\etaprime}{\Pghpr}
+
+% +--------------------------------------------------------------------+
+% |  K0, K+, K-, K0L, K0S                                              |
+% +--------------------------------------------------------------------+
+\newcommand*{\Kzero}{\PKz}
+\newcommand*{\Kzerobar}{\PaKz}
+\newcommand*{\kaon}{\PK}
+\newcommand*{\Kplus}{\PKp}
+\newcommand*{\Kminus}{\PKm}
+\newcommand*{\KzeroL}{\PKzL}
+\newcommand*{\Kzerol}{\PKzL}
+\newcommand*{\Klong}{\PKzL}
+\newcommand*{\KzeroS}{\PKzS}
+\newcommand*{\Kzeros}{\PKzS}
+\newcommand*{\Kshort}{\PKzS}
+\newcommand*{\Kstar}{\PKst}
+
+% +--------------------------------------------------------------------+
+% |  J/psi, psi prime, etc.                                            |
+% +--------------------------------------------------------------------+
+%\let\psii=\psi  %  Save normal "\psi" definition, since I redefine it.
+%\renewcommand*{\psi}{\ensuremath{\psii}\xspace}
+\newcommand*{\jpsi}{\PJgy}
+\newcommand*{\Jpsi}{\PJgy}
+\newcommand*{\psip}{\Pgyii}
+\newcommand*{\chic}{\Pcgc}
+
+% +--------------------------------------------------------------------+
+% |  Upsilons of various sorts                                         |
+% +--------------------------------------------------------------------+
+% \newcommand*{\Ups}{\ensuremath{\mit\Upsilon}\xspace}
+%\newcommand*{\Upsp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime}}\xspace}
+%\newcommand*{\Upspp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime\prime}}\xspace}
+%\newcommand*{\Upsppp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime\prime\prime}}\xspace}
+%\newcommand*{\Upspppp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime\prime\prime\prime}}\xspace}
+\newcommand*{\UoneS}{\PgUi}
+\newcommand*{\Ups}[1]{\ensuremath{\PgU(\text{#1S})}\xspace}
+\DeclareRobustCommand{\Pbgc}{\HepParticle{\chi}{b}{}\xspace}
+\newcommand*{\chib}{\Pbgc}
+
+% +--------------------------------------------------------------------+
+% |  C physics                                                         |
+% +--------------------------------------------------------------------+
+\newcommand*{\Dstar}{\PDst}
+%\newcommand*{\Dsstar}{\ensuremath{D^{**}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  B physics                                                         |
+% +--------------------------------------------------------------------+
+\newcommand*{\Bd}{\PdB}
+\newcommand*{\Bs}{\PsB}
+\newcommand*{\Bu}{\ensuremath{\PB_{\Pqu}}}
+\newcommand*{\Bc}{\ensuremath{\PB_{\Pqc}}}
+\newcommand*{\Lb}{\PbgL}
+\newcommand*{\Bstar}{\PBst}
+\newcommand*{\BoBo}{\PBz{}\mbox{--}\PaBz}
+\newcommand*{\BodBod}{\PdB{}\mbox{--}\PadB}
+\newcommand*{\BosBos}{\PsB{}\mbox{--}\PasB}

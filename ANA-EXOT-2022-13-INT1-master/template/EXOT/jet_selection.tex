@@ -1,0 +1,113 @@
+\subsection{Small-$R$ jet selection}
+
+If you want to use variables such as \verb|\fcut| you need to add the option
+\texttt{jetetmiss} to \texttt{atlaspackage}.
+
+\begin{table}[ht]
+  \caption{Jet reconstruction criteria.}%
+  \label{tab:object:jet1}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+  \toprule
+  Feature & Criterion \\
+  \midrule
+  Algorithm & \Antikt  \\
+  \(R\)-parameter & 0.4 \\
+  Input constituent & EMTopo \\
+  Analysis release number & 21.2.10 \\
+  %Calibration tag & JetCalibTools-00-04-76 \\
+  \texttt{CalibArea} tag & 00-04-81 \\
+  Calibration configuration & \texttt{JES\_data2017\_2016\_2015\_Recommendation\_Feb2018\_rel21.config} \\
+  Calibration sequence (Data) & \texttt{JetArea\_Residual\_EtaJES\_GSC\_Insitu} \\
+  Calibration sequence (MC) & \texttt{JetArea\_Residual\_EtaJES\_GSC} \\
+  %Calibration sequence (AFII) & \texttt{JetArea\_Residual\_EtaJES\_GSC} \\
+  \midrule
+  \multicolumn{2}{c}{Selection requirements} \\
+  \midrule
+  Observable & Requirement \\
+  \midrule
+  Jet cleaning & \texttt{LooseBad} \\
+  BatMan cleaning & No \\
+  \pT & \(> \SI[parse-numbers=false]{XX}{\GeV}\) \\
+  \(|\eta|\) & \(< X\) \\
+  JVT & (\emph{Update if needed}) \(>0.59\) for \(\pT < \SI{60}{\GeV}\), \(|\eta| < 0.4\)\\
+  \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+
+\clearpage
+\subsection{Large-$R$ jet selection}
+
+\begin{table}[ht]
+  \caption{Large-\(R\) jet reconstruction criteria.}%
+  \label{tab:object:jet2}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & Criterion \\ 
+    \midrule
+    Algorithm & \antikt  \\
+    R-parameter & 1.0 \\
+    Input constituent & \texttt{LCTopo} \\
+    Grooming algorithm & Trimming \\ 
+    \fcut & 0.05 \\
+    \(R_{\text{trim}}\) & 0.2 \\
+    Analysis release number & 21.2.10 \\
+    %Calibration tag & JetCalibTools-00-04-76 \\
+    \texttt{CalibArea} tag & 00-04-81 \\
+    Calibration configuration & \texttt{JES\_MC16recommendation\_FatJet\_JMS\_comb\_19Jan2018.config} \\
+    Calibration sequence (Data) & \texttt{EtaJES\_JMS\_Insitu} \\
+    Calibration sequence (MC) & \texttt{EtaJES\_JMS} \\
+    \bottomrule
+    \multicolumn{2}{c}{Selection requirements} \\
+    \midrule
+    Observable & Requirement \\
+    \midrule
+    \pT  & \(> \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    \(|\eta|\) & \(< X\) \\
+    Mass & \(> \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    \bottomrule
+    \multicolumn{2}{c}{Boosted object tagger} \\
+    \midrule
+    Object  & Working point \\
+    \midrule
+    \(W\) / \(Z\) / top & 50\% / 80\% \\
+    \(X\rightarrow bb\) & single/double \btag with/without loose/tight mass \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+
+\subsection{\MET selection}
+
+\begin{table}[ht]
+  \caption{\MET reconstruction criteria.}%
+  \label{tab:object:met}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Parameter & Value \\ 
+    \midrule
+    Algorithm & Calo-based \\
+    Soft term & Track-based (TST) \\ 
+    MET operating point & \texttt{Tight} \\
+    Analysis release & 21.2.16 \\
+    Calibration tag & \texttt{METUtilities-00-02-46} \\
+    \bottomrule
+    \multicolumn{2}{c}{Selection requirements} \\
+    \midrule
+    Observable & Requirement \\
+    \midrule
+    \MET & \(> \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    \(\sum{\ET} / \MET\)  & \(< X\) \\
+    Object-based \MET significance & \(> X\) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+

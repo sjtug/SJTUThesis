@@ -1,0 +1,71 @@
+%-------------------------------------------------------------------------------
+% This file contains the title, author and abstract.
+% It also contains all relevant document numbers used by the different cover pages.
+%-------------------------------------------------------------------------------
+
+%% Title
+\AtlasTitle{A simple ATLAS paper draft}
+%
+% Author - this does not work with revtex
+% \author{The ATLAS Collaboration}
+%
+% Date: if not given, uses current date
+% \date{\today}
+
+% Draft version:
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+% If given, adds draft version on front page, a 'DRAFT' box on top of each other page, 
+% and line numbers.
+% Comment or remove in final version.
+\AtlasVersion{1.0}
+
+% ATLAS reference code, to help ATLAS members to locate the paper
+\AtlasRefCode{GROUP-2020-XX}
+
+% ATLAS note number. Can be an COM, INT, PUB or CONF note
+% \AtlasNote{ATLAS-CONF-2020-XXX}
+% \AtlasNote{ATLAS-PUB-2020-XXX}
+\AtlasNote{ATLAS-COM-PHYS-2020-XXX}
+
+% Submission journal
+\AtlasJournal{Phys.\ Lett.\ B.}
+
+% Abstract - % directly after { is important for correct indentation
+\AtlasAbstract{%
+	This is a bare bones ATLAS document used to demonstrate how to use journal templates.
+
+	This document is typeset using the \DocumentStyle.
+}
+
+%-------------------------------------------------------------------------------
+% The following information is needed for the cover page. The commands are only defined
+% if you use the coverpage option in atlasdoc or use the atlascover package
+%-------------------------------------------------------------------------------
+
+% Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
+\AtlasCoverSupportingNote{A supporting note}{http://cds.cern.ch/record/XXXXXX}
+\AtlasCoverSupportingNote{Another supporting note}{http://cds.cern.ch/record/YYYYYY}
+%
+% OR (the 2nd option is deprecated, especially for CONF and PUB notes)
+%
+% Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
+% \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+
+% Comment deadline
+\AtlasCoverCommentsDeadline{DD Month 2020}
+
+% Analysis team members - contact editors should no longer be specified
+% as there is a generic email list name for the editors
+\AtlasCoverAnalysisTeam{Peter Analyser, Susan Editor1, Jenny Editor2, Alphonse Physicien}
+
+% Editorial Board Members - indicate the Chair by a (chair) after his/her name
+\AtlasCoverEdBoardMember{EdBoard~Chair~(chair), EB~Member~1, EB~Member~2, EB~Member~3}
+
+% Editors egroup
+\AtlasCoverEgroupEditors{atlas-GROUP-2020-XX-editors@cern.ch}
+
+% EdBoard egroup
+\AtlasCoverEgroupEdBoard{atlas-GROUP-2020-XX-editorial-board@cern.ch}
+
+% CERN preprintnumber
+\PreprintIdNumber{CERN-EP-2020-XX}

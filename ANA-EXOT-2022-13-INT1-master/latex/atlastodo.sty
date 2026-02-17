@@ -1,0 +1,63 @@
+%-------------------------------------------------------------------------------
+% This file uses the todonotes package to define commands for inline notes.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlastodo}[2021/08/20 v11.6.0 ATLAS to-do notes]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Process option. Use kvoptions package.
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=ANOTE,
+  prefix=ANOTE@
+}
+\DeclareBoolOption[true]{output}
+\DeclareBoolOption[true]{shift}
+\ProcessKeyvalOptions*
+
+% Print the notes
+\ifthenelse{\boolean{ANOTE@output}}{%
+  \typeout{ATLAS document: showing notes}
+  \ifthenelse{\boolean{ANOTE@shift}}{%
+    \KOMAoptions{BCOR=-5mm}
+    \KOMAoptions{DIV=last}
+    \addtolength{\marginparwidth}{10mm}
+    \addtolength{\textwidth}{-7.86mm}
+  }{}
+  \RequirePackage[colorinlistoftodos]{todonotes}
+  % \presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}
+  % \typeout{ATLnote: 1=#1; 2=#2; 3=#3; 4=#4; 5=#5}
+  \newcommand{\ATL@inote}[5]{%
+    \textcolor{#5}{#2}\todo[author=#1, color=#4, inline]{#3}%
+  }
+  \newcommand{\ATL@note}[5]{%
+    \textcolor{#5}{#2}\todo[author=#1, color=#4, linecolor=#5]{#3}\xspace%
+  }
+}{%
+  \typeout{ATLAS document: not showing notes}
+  \RequirePackage[disable]{todonotes}
+  % \typeout{ATLnote: 1:#1; 2:#2; 3:#3; 4=#4; 5=#5}
+  \newcommand{\ATL@inote}[5]{%
+    #2\xspace%
+  }
+  \newcommand{\ATL@note}[5]{%
+    #2\xspace%
+  }
+}
+
+% Macro to set up a note command
+\newcommand{\ATLnote}[4]{%
+  % \typeout{Defining a note #1, #2, #3, #4}%
+  % \@namedef{#1note}{\ATL@note{#2}{}}
+  \expandafter\newcommand\csname #1note\endcsname[2]{\ATL@note{#2}{##1}{##2}{#3}{#4}}%
+  \expandafter\newcommand\csname #1inote\endcsname[2]{\ATL@inote{#2}{##1}{##2}{#3}{#4}}%
+}

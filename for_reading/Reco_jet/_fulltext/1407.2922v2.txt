@@ -1,0 +1,1007 @@
+
+
+===== PAGE 1 =====
+Jets from Jets:
+Re-clustering as a tool for large radius jet
+reconstruction and grooming at the LHC
+Benjamin Nachman a, Pascal Nef a, Ariel Schwartzman a, Maximilian Swiatlowski a, and
+Chaowaroj Wanotayarojb
+aSLAC National Accelerator Laboratory, Stanford University, 2575 Sand Hill Rd, Menlo Park,
+CA 94025, U.S.A.
+bCenter for High Energy Physics, University of Oregon, Eugene, OR 97403, U.S.A.
+E-mail: bnachman@cern.ch, pascal.nef@cern.ch, sch@slac.stanford.edu,
+swiatlow@slac.stanford.edu, ma.x@cern.ch
+Abstract: Jets with a large radiusR ≳ 1 and grooming algorithms are widely used to
+fully capture the decay products of boosted heavy particles at the Large Hadron Collider
+(LHC). Unlike most discriminating variables used in such studies, the jet radius is usually
+not optimized for speciﬁc physics scenarios. This is because every jet conﬁguration must
+be calibrated, insitu, to account for detector response and other experimental eﬀects. One
+solution to enhance the availability of large-R jet conﬁgurations used by the LHC experi-
+ments isjet re-clustering. Jet re-clustering introduces an intermediate scaler<R at which
+jets are calibrated and used as the inputs to reconstruct large radius jets. In this paper
+we systematically study and propose new jet re-clustering conﬁgurations and show that
+re-clustered large radius jets have essentially the same jet mass performance as large radius
+groomed jets. Jet re-clustering has the beneﬁt that no additional large-R calibration is
+necessary, allowing the re-clustered large radius parameter to be optimized in the context
+of speciﬁc precision measurements or searches for new physics.
+arXiv:1407.2922v2  [hep-ph]  11 Dec 2014
+
+===== PAGE 2 =====
+1 Introduction
+The angular separation of decay products for massive particlesP, such asW andZ bosons,
+scales as 2mP/pP
+T. This suggests that the radius parameterR of jet clustering algorithms
+aimed at targeting the hadronic decays ofP should be process dependent and scale with the
+momentum under consideration. However, it is traditionally the case at the Large Hadron
+Collider (LHC) that only a few choices ofR are used for all analyses, which use the best
+available algorithm (which may not be optimal). This is because every jet conﬁguration,
+which includes the algorithm, radius, and grooming parameters, must be calibrated to
+account for unmeasured energy deposits and other experimental eﬀects [1, 2], even though
+the inputs to jet clustering (topological clusters for ATLAS [3, 4] and particle ﬂow objects
+for CMS [5, 6]) are themselves calibrated. The calibration of inputs provides a partial
+calibration to the jet, but jet energy and mass scale corrections provide afull calibration
+by also correcting particles that were missed, merged, or below noise thresholds, energy
+loss in un-instrumented regions of the calorimeter, and additionally takes into account
+correlations between particles. The dependence on these additional calibrations thus makes
+it desirable to reconsider the current jet clustering paradigm in favor of a modular structure
+that allows for a much broader class of algorithms and radius parameters to be selected by
+analyses.
+One solution is to introduce a new angular scaler<R , such that jets of radiusr can be
+the inputs to the clustering algorithm of large radiusR jets1. If chosen appropriately, the
+fully calibrated small radius jets can make the calibration of the re-clustered large radius
+jets automatic. Furthermore, with no additional calibration needed, any large radiusR,
+any clustering algorithm, and many grooming strategies can be used. Using optimal pa-
+rameters can, for instance, signiﬁcantly improve the discovery potential of searches for new
+physics [7]. In particular, every kinematic region of every analysis for every data-taking
+condition (e.g. level of pileup - number of additional pp collisions) can optimize these
+parameters in order to maximize the sensitivity to particular physics scenarios. Another
+beneﬁt is that the uncertainties on the re-clusteredpT and mass are also automatic conse-
+quences of propagating the corresponding uncertainties computed for small radius jets. In
+this way, the re-clustered jet mass can be viewed as any other kinematic variable, such as
+di-, tri-, or multi-jet invariant masses that are ubiquitous in measurements and searches for
+new physics. The uncertainties on re-clustered jets may be higher or lower than those on
+the corresponding directly constructed large radius jet: a full experimental assessment will
+be necessary to determine if any precision is lost.
+The idea of re-clustering small radius jets is not new. These objects ﬁrst appeared in
+an ATLAS search for supersymmetry in the multijet ﬁnal state [8] and more recently in an
+ATLAS search for direct stop quark pair production in the all hadronic ﬁnal state [9]. There
+are also related techniques which group small radius jets together to form pseudo-jets [10]
+or mega-jets [11]. However, these analyses still use only a small number of re-grouping
+techniques which can be further optimized to depend on event kinematics. The purpose of
+1Similar ideas have been proposed in the past such as variableR jets [12]. While these methods address
+the variability ofR, they do not address the concerns of individually calibrating many jet collections.
+– 1 –
+
+===== PAGE 3 =====
+this paper is to describe a systematic comparison of re-clustering jet techniques. Section 2
+describes the technical details of re-clustering, including re-clustered grooming which has
+never been considered before. Section 3 gives the simulation details for the comparison of
+large radius jets and re-clustered jets presented in Section 4. Finally, Section 6 provides
+some concluding remarks.
+2 Jet re-clustering
+The clustering algorithms at the LHC use sequential recombination. Given distance met-
+rics dij (between particle 4-vectors) anddiB (between particle and beam 4-vectors), these
+algorithms recursively combine proto-jets until there are none left. The list of proto-jets
+is initialized by the set of jet inputs and then at every level of recursion, the algorithms
+combine particles based ondij = argmini′,j′{di′j′,d i′B}. If j̸= B then proto-jetsi and j
+are combined into a new proto-jet with a four-vector that is the sum of the four vectors
+of i and j2. If i = B, then the proto-jeti is declared a jet and removed from the list of
+proto-jets.
+The most widely used metrics come from thekt family: dij = min(p2n
+T i,p 2n
+T j)R2
+ij/R2,
+whereRij =
+√
+∆y2
+ij + ∆φ2
+ij. Forn = 1 the algorithm is calledkt [13], forn = 0 its is called
+Cambridge-Aachen (C/A) [14], and forn =−1 the algorithm is known as anti-kt [15]. In
+all three of these algorithms,R is roughly the size of the jet in(y,φ ) space, though C/A
+and kt jets can have very irregularjet areas [16].
+The inputs of jet a clustering algorithm are typically stable particles (Monte Carlo
+truth studies), topological clusters (ATLAS), or particle ﬂow objects (CMS). Re-clustered
+large radiusR jets take as input the output of the small radiusr jet clustering. In general,
+the algorithm used to cluster the small radius jets can be diﬀerent than the algorithm used
+for re-clustering the entire event. Fig. 1 shows a simple example of an event clustered with
+anti-kt R = 1.0 and with anti-kt R = 1.0 re-clusteredr = 0.3 anti-kt jets. Unlike the inputs
+of clustering which are e.g. measured in a calorimeter and can be measured and individually
+calibrated with very low energy, small radius jets can only be reliably fully calibrated for
+≳ 15 GeV [1, 2], where the actual threshold may depend onr. This minimumpT threshold
+acts as an eﬀective grooming for the re-clustered jets (RC). This is seen clearly in Fig. 1,
+where the blue large radius jet has many constituents far away from the jet axis (which
+have lowpT) and are not part of the re-clustered jet. One could choose a more aggressive
+threshold to, for instance, remove the impact of additionalpp collisions (i.e. pileup) on the
+jets. A more dynamic grooming scheme, which we callre-clustered jet trimming (RT), in
+analogy to large radius jet trimming [17], sets thepT cut on the small radius jets based on
+the large radius jetpT (calculated before any small-r jets are removed). Speciﬁcally, the
+RT grooming removes any small radius jet constituentj of a largeR re-clustered jetJ if
+pj
+T < fcut×pJ
+T. The parameterfcut can be optimized for a particular kinematic selection
+and event topology. Other grooming schemes are possible, but beyond our scope3.
+2This is a four-vector recombination procedure; other schemes also exist.
+3Jet grooming procedures applied to jets-as-inputs have been studied in the past (see for instance
+Ref. [18]); these and other algorithms can be adopted to the re-clustering paradigm.
+– 2 –
+
+===== PAGE 4 =====
+Rapidity
+-2
+0 2 Azimuthal Angle [rad]
+-2
+0
+2
+=1.5 TeV
+Z', mt t→ = 8 TeV PYTHIA Z' sStable Truth Particles
+ R=1.0 Jets
+tanti-kRapidity
+-2
+0 2 Azimuthal Angle [rad]
+-2
+0
+2
+Inside R=0.3 Jets
+Stable Truth Particles
+ R=1.0, r=0.3 Jets
+tanti-k
+Figure 1. An example event which has been clustered using the anti-kt R = 1.0 (left) and with
+anti-kt R = 1.0 re-clustered r = 0.3 anti-kt jets (right). The shaded regions show the jet area
+determined by clustering ghost particles. Only large radius jets withpT > 50 GeV are shown and
+small radius jets are required to havepT > 15 GeV.
+Due to the increased catchment area of large radius jets over small radius jets, they are
+more susceptible to contributions from pileup. Just as there are pileup correction techniques
+for large radius jets and their subjets, one can beneﬁt from pileup corrections to the small
+radius jet inputs that propagate to re-clustered jets. In particular, one can remove jets
+from pileup interactions with techniques like JVT [19] or pileup jet identiﬁcation [20] and
+can correct the remaining jets with methods like the four-vector jet areas subtraction.
+In the growing ﬁeld of jet substructure, there are many jet observables which depend
+explicitly on the jet constituents, not just the jet four-vector. These techniques are still
+applicable for re-clustered jets. Section 5 discusses two approaches to jet substructure in
+the re-clustering paradigm. In a top-down approach, large radius re-clustered jets inherit
+the constituents of the small radius jets clustered within. Clearly, any constituents that
+might be part of large radius jets that are not clustered within a small radius jets are not
+considered under this scheme. However, this removal of radiation also impacts trimmed
+large radius jets. More details on substructure for trimmed and re-clustered trimmed jets
+is presented in Section 5.1. An alternativebottom-up approach to jet substructure is to use
+the radiusr jets directly as the inputs to jet substructure. The advantages and limitations
+of bottom-up substructure are described in Section 5.2.
+– 3 –
+
+===== PAGE 5 =====
+3 Simulation
+Three processes are generated usingPythia 8.170 [21, 22] at√s = 14 TeV for studying the
+eﬃcacy of re-clustered jets. HadronicW boson and top quarks are used for studying hard
+2- and 3-prong type jets. To simulate highpT hadronicW decays,W ′ bosons are generated
+which decay exclusively into aW and Z boson which subsequently decay in quarks and
+leptons, respectively. The pT scale of the hadronically decayingW is set by the mass of
+the W ′ which is tuned to 800 GeV for this study so that thepW
+T ≲ 400 GeV. In thispW
+T
+range, not all of the decay products of theW are expected to merge into a small radius jet
+of r ≲ 0.4, but should merge within a cone ofR = 1.0. A sample enriched in 3-prong type
+jets is generated withZ′→t¯t, where theZ′ mass sets the energy scale of the hadronically
+decaying top quarks. In this analysis, we usemZ′ = 1.0 TeV, which setspt
+T ≳ 350 GeV. To
+study the impact on signal versus background for re-clustering, QCD dijets are generated
+with a range ofˆpT that is approximately in the same range as the relevant signal process.
+Pileup is generated by overlaying additional (between 20 and 80) independently generated
+minimum-bias interactions with each signal event (denoted NPV = number of primary
+vertices).
+Jet are re-clustered usingF astJet[23] 3.0.3. While the large radius jets can be deﬁned
+using any set of parameters, the studies in Sec. 4 will use a ﬁxed large jet algorithm: anti-kt
+algorithm withR = 1.0. Trimmed jet are constructed as follows: the constituents of the
+large anti-kt R = 1.0 jets are used to reconstructkt subjets with a distance parameter
+Rsub = 0.3 and imposing a minimal requirement on the ratio of the subjetpT divided
+by the large-R jet pT (fcut) of 0.1. Here, both transverse momenta are pileup corrected
+using the median-area method described in Ref. [16]. The value of fcut chosen yields
+approximately optimal resolution of the trimmed jet mass for the studiedW ′ sample –
+largely independently of the level of pileup considered. Note that this is slightly non-
+standard: in experimental studies, thefcut parameter is usually imposed on the uncorrected
+jetpT, whichwouldrequireapileupdependent fcut criteriontooptimizethemassresolution.
+Re-clustering is investigated with a series of schemes for the small radius jets:
+• Algorithms anti-kt, kt, and C/A
+• Radius parameters r = 0.2, 0.3 and 0.4.
+• Grooming jet pT cut of 15 GeV for RC and RT with trimmingfcut parameters 0.1
+and 0.2.
+This list is not exhaustive, but encompasses a relevant set of parameters. Radii below
+r = 0.2 are not considered due to experimental limitations from calorimeter granularity
+and theoretical considerations from non-trivial non-perturbative eﬀects. Small radius jets
+are required to havepT > 15 GeV.
+– 4 –
+
+===== PAGE 6 =====
+4 Analysis and Results
+4.1 Performance of Jet Mass
+The most widely used large radius jet observable is the jet mass,(∑
+i∈jetEi)2−(∑
+i∈jet⃗ pi)2,
+whereirunsovertheconstituentsofthejet. Tocomparetheperformanceoflargeradiusjets
+with re-clustered jets, we study the performance of the jet mass for the various re-clustering
+schemes described in Section 3. Jet mass performance is quantiﬁed by the average jet mass
+⟨m⟩, a mass resolution,σ, and the dependance of these quantities with the amount of pileup.
+The averages and deviations are computed over a ﬁxed mass range: 60-100 GeV. We also
+present the eﬃciency of a60 < mjet/GeV< 100 mass cut (fraction of events with a mass
+in this window) as a third ﬁgure of merit. Figure 2 shows the RT jet mass distribution
+for three small radius jet clustering algorithms with ﬁxedr = 0.3,f cut = 0.1. At very low
+levels of pileup, there are essentially no diﬀerences between building jets from the top down
+(trimming) or bottom up (re-clustered trimming), as is evident from the fact thatr = 0.3
+kt jets re-clustered with theR = 1.0 anti-kt algorithm are nearly identical in distribution
+to the large anti-kt R = 1.0 trimmed jets withkt subjets. However, with increasing levels
+of pileup, there are clear diﬀerences between the three algorithms. For instance, the C/A
+algorithm has a large high mass tail which is absent in the other algorithms. However,
+the tradeoﬀ is that C/A has a smaller low mass peak that arises when some of the small
+radius jets are removed to eﬀectively reconstruct theW jet. Figure 3 is similar to Figure 2
+but uses a sample ofZ′→t¯t events. Again, especially for low pileup levels, the diﬀerence
+between trimming and the diﬀerent re-clustering conﬁgurations are small. The optimal
+re-clustering conﬁguration, however, is topology dependent and not necessarily the same
+for the consideredW ′ and Z′ samples. In the following, we will focus our studies on the
+W ′ events.
+The discussed features of Fig. 2 are quantiﬁed in Fig. 4. It is seen that the average
+mass is higher for C/A jets compared to anti-kt or kt, but the eﬃciency is also highest for
+C/A jets. Both of these metrics remain stable under increased levels of pileup.
+Figures 5 and 6 compare trimming to several grooming schemes for re-clustered jets. In
+the region near theW mass peak, re-clustered trimming withfcut = 0.2 performs the best.
+However, there is a sizable peak at low mass where too many jets have been cut out by the
+aggressive trimming parameter. The ﬁxed cut of15 GeV is too low, especially at very high
+pileup where the large high mass tail is much bigger for RC than for RT. The re-clustered
+trimming using anti-kt with the samefcut as the trimming has very similar performance,
+though the peak position is slightly higher. Figure 6 shows the performance metrics as a
+function of NPV for the various grooming schemes. The average mass for RT is very stable,
+whereas there is a slight slope for RC. The mass resolution for RC is slightly worse than for
+RT, but the eﬃciency of RC is better because it avoids the peak at low masses well below
+the W boson mass.
+The mass distribution for several small radius jet sizes is shown in Figure 7 and the
+performance metrics are quantiﬁed in Fig. 8. For all three considered values of r, the
+minimum pT cut is 15 GeV. In practice, this could be optimized, since smaller radius jets
+may be calibrated at smaller values ofpT. An alternative approach is to useiterative re-
+– 5 –
+
+===== PAGE 7 =====
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 20
+r = 0.3
+ = 0.1
+cutfLarge-R Trimmed
+t
+RT anti-kRT C/A
+t
+RT k
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+r = 0.3
+ = 0.1
+cutfLarge-R Trimmed
+t
+RT anti-kRT C/A
+t
+RT k
+Figure 2. Jet mass distribution for various algorithms using small radius jets at ﬁxedr = 0.3 and
+fcut = 0.1 for NPV = 20 on the left and NPV = 80 on the right, using a sample ofW ′→ WZ
+events.
+Jet Mass [GeV]
+0 100 200 300
+dN/(3 GeV)
+0
+0.05
+0.1
+Large-R Trimmed
+ tRT anti-k
+RT C/A
+tRT k
+t t→PYTHIA Z'
+ = 1 TeVZ' = 14 TeV, ms
+ > 350 GeVT R=1.0, ptanti-k
+NPV = 20
+r = 0.3
+ = 0.1cutf
+Jet Mass [GeV]
+0 100 200 300
+dN/(3 GeV)
+0
+0.05
+0.1
+Large-R Trimmed
+tRT anti-k
+RT C/A
+tRT k
+t t→PYTHIA Z'
+ = 1 TeVZ' = 14 TeV, ms
+ > 350 GeVT R=1.0, ptanti-k
+NPV = 80
+r = 0.3
+ = 0.1cutf
+Figure 3. Same as Figure 2 but using a sample ofZ ′→t¯t events.
+clustering by re-clusteringr = 0.2 intor′ = 0.4 and then intoR = 1.0 to further increase the
+ﬂexibility of the jet algorithms (also this reduces the eﬀective jet area and so the resulting
+jets would be less susceptible to pileup4). The right plot of Figure 7 and the top right plot
+of Fig. 8 show ther = 0.2 as the most peaked.
+4If viewed as a uniform noise in the calorimeter, the contribution of pileup to a given jet scales propor-
+tionally to its area. There are, however, local ﬂuctuations that complicate this picture.
+– 6 –
+
+===== PAGE 8 =====
+NPV
+20
+40 60 80  [GeV]
+〉 m 〈 50
+55
+60
+65
+70
+75
+80
+85
+90
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+t
+RT anti-kRT C/A
+t
+RT kr = 0.3
+ = 0.1
+cutf
+NPV
+20
+40 60 80 Mass RMS
+0
+5
+10
+15
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+t
+RT anti-kRT C/A
+t
+RT kr = 0.3
+ = 0.1
+cutf
+NPV
+20
+40 60 80 Efficiency in 60 < m/GeV < 100
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+ llqq' → WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+t
+RT anti-kRT C/A
+t
+RT kr = 0.3
+ = 0.1
+cutf
+Figure 4. Mean, mass resolution, and mass window eﬃciency of the mass distribution as a function
+of the number of additional interaction vertices for various small radius jet clustering algorithms.
+– 7 –
+
+===== PAGE 9 =====
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 20
+r = 0.3
+t
+anti-k > 15 GeV
+T
+RC p = 0.1
+cutRT f = 0.2
+cutRT f
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+r = 0.3
+t
+anti-k > 15 GeV
+T
+RC p = 0.1
+cutRT f = 0.2
+cutRT f
+Figure 5. Various re-clustered grooming parameters for anti-kt r = 0.3 jets for NPV = 20 on the
+left and NPV = 80 on the right.
+– 8 –
+
+===== PAGE 10 =====
+NPV
+20
+40 60 80  [GeV]
+〉 m 〈 50
+55
+60
+65
+70
+75
+80
+85
+90
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+ > 15 GeV
+T
+RC p = 0.1
+cutRT f = 0.2
+cutRT fr = 0.3
+t
+anti-k
+NPV
+20
+40 60 80 Mass RMS
+0
+5
+10
+15
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+ > 15 GeV
+T
+RC p = 0.1
+cutRT f = 0.2
+cutRT fr = 0.3
+t
+anti-k
+NPV
+20
+40 60 80 Efficiency in 60 < m/GeV < 100
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+ llqq' → WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+ > 15 GeV
+T
+RC p = 0.1
+cutRT f = 0.2
+cutRT fr = 0.3
+t
+anti-k
+Figure 6. Mean, mass resolution, and mass window eﬃciency of the mass distribution as a function
+of the number of additional vertices for various re-clustered jet grooming schemes.
+– 9 –
+
+===== PAGE 11 =====
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 20
+t
+RT anti-k = 0.1
+cutfLarge-R Trimmed
+r = 0.4
+r = 0.3
+r = 0.2
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+t
+RT anti-k = 0.1
+cutfLarge-R Trimmed
+r = 0.4
+r = 0.3
+r = 0.2
+Figure 7. Various small radii for a ﬁxed algorithm of anti-kt for NPV = 20 on the left and NPV
+= 80 on the right.
+– 10 –
+
+===== PAGE 12 =====
+NPV
+20
+40 60 80  [GeV]
+〉 m 〈 50
+55
+60
+65
+70
+75
+80
+85
+90
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+r = 0.4
+r = 0.3
+r = 0.2
+t
+RT anti-k = 0.1
+cutf
+NPV
+20
+40 60 80 Mass RMS
+0
+5
+10
+15
+ llqq'
+→ WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+r = 0.4
+r = 0.3
+r = 0.2
+t
+RT anti-k = 0.1
+cutf
+NPV
+20
+40 60 80 Efficiency in 60 < m/GeV < 100
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+ llqq' → WZ →PYTHIA W'  = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kLarge-R Trimmed
+r = 0.4
+r = 0.3
+r = 0.2
+t
+RT anti-k = 0.1
+cutf
+Figure 8. Mean, mass resolution, and mass window eﬃciency of the mass distribution as a function
+of the number of additional vertices for various small jet radii.
+– 11 –
+
+===== PAGE 13 =====
+4.2 Comparisons to QCD
+It is important to study the eﬀect of re-clustering not just on signal jets, but also on the
+most likely background– jets originating from QCD multijet processes. It is well established
+that various jet grooming techniques increase the separation in jet mass between signal and
+QCD jets [24, 25]. Figure 9 shows this comparison: while a 4-vector pileup correction alone
+(left) does not allow for separation between QCD andW jet, both trimming (center) and
+re-clustering (right) allow for the successful discrimination of signal and background using
+the jet mass. The details of the optimization to improve the signal-to-background in a
+mass window are best left up to the experimental analyses which use these techniques, but
+ﬁgure 9 indicates that similar performance in QCD rejection is possible with re-clustering
+as compared to the use of large-R trimmed jets.
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+PYTHIA
+ = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+Pileup
+Corrected
+ llqq'
+→ WZ →W' Dijets
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+PYTHIA
+ = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+Large-R
+Trimmed
+ llqq'
+→ WZ →W' Dijets
+Jet Mass [GeV]
+0
+50 100 150 200 dN/(2 GeV)
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+PYTHIA
+ = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+t
+RT r = 0.3 anti-k = 0.1
+cutf llqq'
+→ WZ →W' Dijets
+Figure 9. Comparison of jet mass betweenW jets and QCD jets, for 4-vector pileup corrected jets
+(left), trimmed jets (center) and re-clustered jets (right). Re-clustered jets use anti-kt R = 0.3 jets
+as inputs, and apply a trimming cut offcut = 10%. A pileup level ofNPV = 80 is used.
+5 Re-clustering and Jet Substructure
+Jet substructure techniques have become very sophisticated tools for classifying hadronic
+ﬁnal states. There are two natural ways to deﬁne jet substructure within the re-clustering
+paradigm. In a top-down approach, re-clustered jets inherit constituents from the radius
+r jets (Sec. 5.1). In a bottom-up approach, the radiusr jets are themselves the inputs to
+calculating jet substructure properties of the reclustered radiusR jet (Sec. 5.2).
+5.1 Performance of Shape V ariables
+In addition to studying the jet mass, in this section we consider one example of a jet
+substructure variable, then-subjettiness ratioτ21, and compare QCD toW jets [26]. N-
+subjettiness moments are deﬁned over a set ofN axes 5, and calculated as:
+τN = 1
+d0
+∑
+k
+pT,k min{∆R1,k, ∆R2,k,... ∆RN,k} (5.1)
+5We use the “one-pass”kt axes optimization technique, which uses an exclusivekt algorithm to ﬁndN
+axes and then reﬁnes them by minimizing the n-subjettiness value.
+– 12 –
+
+===== PAGE 14 =====
+with the normalization is deﬁned as:
+d0 =
+∑
+k
+pT,kR0 (5.2)
+where R0 is the radius of the jet. In practice, analyses use the n-subjettiness ratios:
+τij = τi
+τj
+(5.3)
+τ21 is often used for the separation ofW from QCD jets [27, 28]. This variable measures
+the compatibility of jets with a 2-prong hypothesis compared to a 1-prong hypothesis,
+where a low value indicates that the jet likely has a 2-prong structure. When calculating
+n-subjettiness for re-clustered jets, we use as inputs the constituents of the small jets which
+have been re-clustered: i.e., we use the truth particles (or in a detector, the particle ﬂow
+objects or topological clusters) and not the small jets themselves. A pre-selection on thepT
+and mass, of200<p T/GeV< 300 and 60<m/ GeV< 100 is applied to all jets considered.
+21
+τ0
+0.5 1 1.5 2 Normalized to Unity
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+PYTHIA
+ = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+ < 100 GeV
+jet
+50 GeV < mLarge-R
+Trimmed
+ llqq'
+→ WZ →W' Dijets
+21
+τ0
+0.5 1 1.5 2 Normalized to Unity
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+PYTHIA
+ = 0.8 TeV
+W' = 14 TeV, ms < 300 GeV
+jet
+T
+ R = 1.0, 200 GeV < ptanti-kNPV = 80
+ < 100 GeV
+jet
+50 GeV < mt
+RT r = 0.3 anti-k = 0.1
+cutf llqq'
+→ WZ →W' Dijets
+Figure 10 . Comparison of the n-subjettiness ratio τ21 for W and QCD jets, calculated using
+trimmed jets (left) and re-clustered jets (right). Re-clustered jets use anti-kt R = 0.3 jets as inputs,
+and apply a trimming cut of10%. A pileup level ofNPV = 80 is used.
+Figure10showsacomparisonof τ21 calculatedusingtrimmedjets(left)andre-clustered
+jets (right) for samples withNPV = 80. Both jet conﬁgurations show similar discrimina-
+tion. For a quantitative comparison, we vary cuts onτ21 and plot theW eﬃciency versus the
+QCD rejection (deﬁned as the inverse of QCD eﬃciency). The results, shown in Figure 11,
+are consistent between trimmed and re-clustered jets indicating that powerful discrimina-
+tion between signal and background jets using jet substructure information is possible with
+re-clustered jets.
+Some studies have shown [27] that un-groomed jets perform better than trimmed or
+otherwise groomed jets as inputs for the purposes of calculating substructure variables.
+– 13 –
+
+===== PAGE 15 =====
+Re-clustered jets have the disadvantage of always having some eﬀective level of grooming
+applied (even without the additional re-clustered trimming layer), so in principle calcu-
+lating substructure variables without grooming is not possible with re-clustered jets. The
+event display in Figure 1 highlights this issue: substructure variables are sometimes best
+calculated with large-area jets like those on the left hand plot, but re-clustered jets only
+ever appear with the reduced-area of the plot on the right. In practice, it is possible to
+simply associate all constituents closer than the jet parameterR for the purposes of cal-
+culating shape variables. The details of such an association are left to studies within the
+experimental collaborations.
+W Efficiency
+0
+0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 QCD Rejection
+1
+10
+2
+103
+10 qqll
+→ WZ→PYTHIA W'=0.8 TeV
+W'=14 TeV, ms = 0.1, r = 0.3
+cutNPV = 40, f / GeV < 300
+T
+200 < p50 < m / GeV < 100
+21
+τCut on Trimmed
+Re-clustered
+Figure 11. Comparison of the eﬃcacy of cuts on n-subjettiness in separatingW from QCD jets.
+Samples with a pileup of NPV = 40 are shown.
+5.2 Bottom-up Substructure
+An alternative to the assignment of radiusr constituents to the radiusR jets described in
+Sec. 5.1 is to use the radiusr jets directly. For example, consider thekt splitting scale6
+√
+dn,n+1, which is sensitive to hard(n + 1)-prong structure in a jet. One can use directly
+the radiusr jets inside a radiusR re-clustered jet to compute
+√
+dn,n+1. If there are only two
+6Computed by re-clustering a jet’s constituents using thekt algorithm and then considering the distance
+metric of the lastn un-clusterings.
+– 14 –
+
+===== PAGE 16 =====
+radiusr jets, then√d12 is simply thekt distance between the radiusr jets. The advantage
+of this approach is that there is a natural prescription for calibrations and systematic
+uncertainties. The jet energy scale calibration and its uncertainties directly translate into
+the calibration of the bottom-up substructure variables. Furthermore, in this approach one
+knows how the substructure variable calibrations and uncertainties are correlated with the
+re-clustered jet calibrations and uncertainties. This information is available for the ﬁrst
+time with this bottom-up procedure.
+Figure 12 compares bottom-up and top-down jet substructure variables in classifying
+Z′→ t¯t and QCD multijet events. For the chosen parameters, the two techniques have
+comparable performance. The main drawback of bottom-up substructure is that the relative
+eﬃcacy depends onpT (andr). Whenr ≳m/pT, or equivalently, when there are not many
+radius r jets inside the radiusR jet, the experimental gains from bottom-up substructure
+are diminished. For instance, if there is only one radiusr jet, then√d12 = 0. Thus, in
+certain kinematic regimes, bottom-up substructure may provide a powerful alternative to
+standard methods, but in other regimes a more dedicated analysis is required to understand
+correlations in calibrations and uncertainties (when jet substructure observables are built
+from the jet constituents).
+– 15 –
+
+===== PAGE 17 =====
+Top Efficiency
+0
+0.2 0.4 0.6 0.8 1 1/QCD Efficiency
+1
+10
+2
+103
+10t
+ t→PYTHIA Z'  = 2 TeV, NPV = 40, r=0.2
+Z' = 14 TeV, msLarge R Mass
+RT Mass
+12
+d12
+dRT 23
+d23
+dRT sub
+RT NRandom Tagger
+Figure 12 . The performance of a bottom-up approach to jet substructure where the radiusr
+jets are inputs to substructure variables. Solid lines show the performance curves for large radius
+trimmed jets (Rsub = 0.3,f cut = 0.05) and the dashed lines show the analogous re-clustered variable.
+Random tagger denotes a classiﬁer which picks signal and background with equal probability.
+– 16 –
+
+===== PAGE 18 =====
+6 Conclusion
+Jet re-clustering is a very simple approach for creating large radius jets which emphasizes
+experimental ﬂexibility by simplifying the commissioning and calibration of jet algorithms.
+It allows experimentalists to focus on calibrating only one jet algorithm (the small jets used
+as inputs to larger jets), and has a modular structure that is amenable to optimization
+per physics process and per event kinematics. Uncertainties and resolutions propagate
+from the low level to the high level jets, simplifying the determination of mass scales and
+mass resolutions for large radius jets. Pileup corrections applied to small jets, using both
+area-based techniques and track/vertex-based approaches, stabilize the large radius jets
+against pileup. With the addition of re-clustered trimming, performance can be essentially
+identical to large-R trimmed jets, not only for jet mass but also for shape variables such as
+n-subjettiness.
+Jet clustering– both the choice of algorithm andR-parameter– is an important as-
+pect of analysis optimization in hadronic ﬁnal states at the LHC. Experimentally, it has
+been diﬃcult to fully utilize such optimization because of the time and eﬀort involved in
+calibrating, validating, and otherwise commissioning each separate collection of jets. Jet re-
+clustering provides one solution for a modular system that allows every analysis to choose
+the jet clustering parameters that optimize the sensitivity and accuracy of searches and
+measurements.
+7 Acknolwdgements
+WewouldliketothankGavinSalam, SalRappoccio, andHernanReisinforusefulcomments
+on the text and Sal in particular for suggesting the title of the paper. Additionally, we would
+like to thank Jon Butterworth for feedback on the manuscript. This work is supported by
+the US Department of Energy (DOE) Early Career Research Program and grant DE-AC02-
+76SF00515. BN and MS are supported by the NSF Graduate Research Fellowship under
+Grant No. DGE-4747, and BN is also supported by the Stanford Graduate Fellowship.
+– 17 –
+
+===== PAGE 19 =====
+References
+[1] CMS Collaboration,Determination of jet energy calibration and transverse momentum
+resolution in CMS, JINST 6 P11002 (2011) [hep-ex/1107.4277].
+[2] ATLAS Collaboration,Jet energy measurement and its systematic uncertainty in
+proton–proton collisions at√s = 7 TeV with the ATLAS detector, [hep-ex/1406.0076].
+[3] W. Lampl et al.,Calorimeter clustering algorithms: description and performance,
+ATL-LARG-PUB-2008-002 [CDS-ATLAS/1099735].
+[4] C. Cojocaru et al.,Hadronic calibration of the ATLAS liquid argon end-cap calorimeter in the
+pseudorapidity region1.6<|η|< 1.8 in beam tests, Nucl. Instrum. Meth. A 531 (2004) 481
+[hep-ex/0407009].
+[5] CMS Collaboration,Particle Flow Event Reconstruction in CMS and Performance for Jets,
+Taus, andEmiss
+T , CMS-PAS-PFT-09-001 [CDS-CMS/1194487].
+[6] CMS Collaboration,Commissioning of the Particle-Flow Reconstruction in Minimum-Bias
+and Jet Events frompp Collisions at 7 TeV, CMS-PAS-PFT-10-002 [CDS-CMS/1279341].
+[7] Gavin P. Salam,Towards Jetography, [hep-ph/0906.1833].
+[8] ATLAS Collaboration,Search for new phenomena in ﬁnal states with large jet multiplicities
+and missing transverse momentum at√s = 8 TeV proton-proton collisions using the ATLAS
+experiment, JHEP 1310 (2013) 130 [hep-ex/1308.1841].
+[9] ATLAS Collaboration,Search for direct pair production of the top squark in all-hadronic ﬁnal
+states in proton-proton collisions at√s = 8 TeV with the ATLAS detector[hep-ex/1406.1122].
+[10] CMS Collaboration,Search for supersymmetry in hadronic ﬁnal states usingMT2 with the
+CMS detector at√s = 8 TeV, CMS-PAS-SUS-13-019 [CDS-CMS/1646394].
+[11] CMS Collaboration,Search for supersymmetry using razor variables in events with b-jets in
+pp collisions at 8 TeV, CMS-PAS-SUS-13-004 [CDS-CMS/1596446].
+[12] David Krohn, Jesse Thaler and Lian-Tao Wang,Jets with Variable R, [hep-ph/0903.0392]
+[13] S. Catani, Y. L. Dokshitzer, M. H. Seymour and B. R. Webber, Nucl. Phys. B 406 (1993) 187
+and refs. therein; S. D. Ellis and D. E. Soper, Phys. Rev. D 48 (1993) 3160 [hep-ph/9305266].
+[14] Y. L. Dokshitzer, G. D. Leder, S. Moretti and B. R. Webber, JHEP 9708, 001 (1997)
+[hep-ph/9707323]; M. Wobisch and T. Wengler [hep-ph/9907280].
+[15] M. Cacciari, G. P. Salam, and G. Soyez,The Anti-k(t) jet clustering algorithm, JHEP 0804
+(2008) [hep-ph/0802.1189]. 063.
+[16] Matteo Cacciari, Gavin P. Salam,Pileup subtraction using jet areas, Phys.Lett. B659 (2008)
+119-126 [hep-ph/0707.1378].
+[17] Krohn, David and Thaler, Jesse and Wang, Lian-Tao,Jet Trimming, JHEP 1002 (2010) 084
+[hep-ph/0912.1342].
+[18] G. Maxime et al.,Scale-invariant resonance tagging in multijet events and new physics in
+Higgs pair production, JHEP 07 (2013) 148 [hep-ph/1303.6636]
+[19] ATLAS Collaboration,Tagging and suppression of pileup jets with the ATLAS detector,
+ATLAS-CONF-2014-018 [CDS-ATLAS/1700870].
+[20] CMS Collaboration,Pileup Jet Identiﬁcation, CMS-PAS-JME-13-005 [CDS-CMS/1581583].
+– 18 –
+
+===== PAGE 20 =====
+[21] Torbjörn Sjöstrand, Stephen Mrenna, and Peter Skands,A Brief Introduction to PYTHIA
+8.1, Comput. Phys. Commun. 178 (2008) 852 [hep-ph/0710.3820].
+[22] Torbjörn Sjöstrand, Stephen Mrenna, and Peter Skands„PYTHIA 6.4 Physics and Manual,
+JHEP05 (2006) 026 [hep-ph/0603175].
+[23] Matteo Cacciari, Gavin P. Salam, Gregory Soyez,FastJet user manual[hep-ph/1111.6097].
+[24] A. Altheimer et al.,Jet Substructure at the Tevatron and LHC: New results, new tools, new
+benchmarks, [hep-ex/1201.0008].
+[25] A. Altheimer et al.,Boosted objects and jet substructure at the LHC, [hep-ex/1311.2708].
+[26] Jesse Thaler, Ken Van Tilburg,Identifying Boosted Objects with N-subjettiness, JHEP
+1103:015 (2011) [hep-ph/1011.2268].
+[27] CMS Collaboration,Identifying Hadronically Decaying Vector Bosons Merged into a Single
+Jet, CMS-PAS-JME-13-006 [CDS-CMS/1577417].
+[28] ATLAS Collaboration,Performance of Boosted W Boson Identiﬁcation with the ATLAS
+Detector, ATL-PHYS-PUB-2014-004 [CDS-ATLAS/1690048].
+– 19 –

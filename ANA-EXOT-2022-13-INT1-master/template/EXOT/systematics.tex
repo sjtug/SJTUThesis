@@ -1,0 +1,120 @@
+Systematic uncertainties arise from the reconstruction of the various physics objects and 
+from theoretical and/or modelling uncertainties affecting the predictions for both the backgrounds and signals. 
+These uncertainties manifest themselves as uncertainties both in the overall yield and 
+shape of the final observable.
+
+\subsection{Experimental}
+
+A summary of the experimental systematic uncertainties taken into account in this analysis is given in
+Table~\ref{tab:syst_summary_sources}, along with the shorthand name of the uncertainty used throughout 
+the analysis. 
+
+\textit{Include also subsections for each of the individual descriptions of the uncertainty groups and the
+source where they come from.  If the recommendation is not available at this time, state that in the section.}
+
+\begin{table}[h]
+	\centering
+	\scriptsize
+	\begin{center}
+		\begin{tabular}{ll}
+			\toprule \midrule
+			Systematic uncertainty        & Short description                                                                          \\ \midrule
+			\multicolumn{2}{c}{\textbf{Event}}  \\ \midrule
+			Luminosity  & uncertainty on the total integrated luminosity  \\ \midrule
+			\multicolumn{2}{c}{\textbf{Electrons}}  \\ \midrule
+			EL\_EFF\_Trigger\_TOTAL\_1NPCOR\_PLUS\_UNCOR   & trigger efficiency uncertainty    \\
+			EL\_EFF\_Reco\_TOTAL\_1NPCOR\_PLUS\_UNCOR    & reconstruction efficiency uncertainty          \\ 
+			EL\_EFF\_ID\_TOTAL\_1NPCOR\_PLUS\_UNCOR    & ID efficiency uncertainty               \\ 
+			EL\_EFF\_Iso\_TOTAL\_1NPCOR\_PLUS\_UNCOR    & isolation efficiency uncertainty       \\
+			EG\_SCALE\_ALL & energy scale uncertainty  \\ 
+			EG\_RESOLUTION\_ALL & energy resolution uncertainty  \\ \midrule
+			\multicolumn{2}{c}{\textbf{Muons}}  \\ \midrule
+			mu20\_iloose\_L1MU15\_OR\_HLT\_mu40\_MUON\_EFF\_Trig   & \multirow{ 2}{*}{trigger efficiency uncertainties (2 muon selection)}       \\ 
+			mu24\_ivarmed\_OR\_HLT\_mu40\_MU\_EFF\_TrigStat        &         \\ 
+			mu24\_ivarmed\_OR\_HLT\_mu50\_MU\_EFF\_TrigStat        &         \\ 
+			mu26\_ivarmed\_OR\_HLT\_mu50\_MU\_EFF\_TrigStat        &         \\ 
+			MUON\_EFF\_RECO\_STAT        & \multirow{ 2}{*}{reconstruction uncertainty for \pt > 15 GeV}        \\ % todo: guess that includes the ID uncertainty? PR.
+			MUON\_EFF\_RECO\_SYS        &        \\ 
+			MUON\_EFF\_RECO\_STAT\_LOWPT        & \multirow{ 2}{*}{reconstruction and ID efficiency uncertainty for \pt < 15 GeV}        \\ 
+			MUON\_EFF\_RECO\_SYS \_LOWPT       &        \\ 
+			MUON\_ISO\_STAT        & \multirow{ 2}{*}{isolation efficiency uncertainty}        \\ 
+			MUON\_ISO\_SYS        &        \\ 
+			MUON\_TTVA\_STAT        & \multirow{ 2}{*}{track-to-vertex association efficiency uncertainty}        \\ 
+			MUON\_TTVA\_SYS        &        \\ 
+			MUONS\_SCALE        & energy scale uncertainty                                                           \\ 
+			MUONS\_SAGITTA\_RHO        & variations in the scale of the momentum (charge dependent)                  \\ 
+			MUONS\_SAGITTA\_RESBIAS        & variations in the scale of the momentum (charge dependent)              \\ 
+			MUONS\_ID        & energy resolution uncertainty from inner detector                              \\ 
+			MUONS\_MS & energy resolution uncertainty from muon system  \\ \midrule
+			\multicolumn{2}{c}{\textbf{Small-R Jets}}  \\ \midrule
+			JET\_GroupedNP  & energy scale uncertainty split into 3 components              \\ 
+			JET\_SR1\_JET\_EtaIntercalibration\_NonClosure & non-closure in the jet response at $2.4<|\eta|<2.5$   \\
+			JET\_SR1\_JER\_SINGLE\_NP  & energy resolution uncertainty  \\
+			JvtEfficiency & JVT efficiency uncertainty  \\
+			%
+			%
+			% todo: decide on b-tagging EV prescription. So far we only have the simplest prescription, but we should switch.
+			%
+			%
+			FT\_EFF\_EIGEN\_B & $b$-tagging efficiency uncertainties ("BTAG\_MEDIUM):   \\
+			FT\_EFF\_EIGEN\_C & \\ % \multirow{2}{*}{3 components for $b$-jets, 4 for $c$-jets and 5 for light jets} \\
+			FT\_EFF\_EIGEN\_L &   \\ 
+			FT\_EFF\_EIGEN\_extrapolation &  $b$-tagging efficiency uncertainty on the extrapolation on high \pt-jets  \\ 
+			FT\_EFF\_EIGEN\_extrapolation\_from\_charm & $b$-tagging efficiency uncertainty on $\tau$-jets   \\ \midrule
+			\multicolumn{2}{c}{\textbf{Large-R Jets}}  \\ \midrule
+			%
+			%
+			%
+			FATJET\_JMR   & mass resolution uncertainty                                                                 \\ 
+			FATJET\_JER    & energy resolution uncertainty                                                               \\ 
+			JET\_Comb\_Baseline\_Kin &  \multirow{4}{*}{energy scale uncertainties (\pt and mass scales fully correlated)}  \\
+			JET\_Comb\_Modelling\_Kin &  \\
+			JET\_Comb\_TotalStat\_Kin &  \\
+			JET\_Comb\_Tracking\_Kin   &  \\ 
+			\midrule % TODO: which uncertainties do we need for large-R jets?
+			% calo mass 
+			%JET\_Medium\_JET\_Rtrk\_Baseline\_Kin &  \multirow{4}{*}{energy scale uncertainties (\pt and mass scales fully correlated)}  \\
+			%JET\_Medium\_JET\_Rtrk\_Modelling\_Kin &  \\
+			%JET\_Medium\_JET\_Rtrk\_TotalStat\_Kin &  \\
+			%JET\_Medium\_JET\_Rtrk\_Tracking\_Kin   &  \\ \midrule
+			%
+			%
+			% todo: decide on b-tagging EV prescription also for track jets. So far we only have the simplest prescription, but we should switch.
+			%
+			%
+			\multicolumn{2}{c}{\textbf{Track-Jets}}  \\ \midrule
+			FT\_EFF\_EIGEN\_B & $b$-tagging efficiency uncertainties ("BTAG\_MEDIUM):   \\
+			FT\_EFF\_EIGEN\_C & \\ % \multirow{2}{*}{3 components for $b$-jets, 4 for $c$-jets and 5 for light jets} \\
+			FT\_EFF\_EIGEN\_L &   \\ 
+			FT\_EFF\_EIGEN\_extrapolation &  $b$-tagging efficiency uncertainty on the extrapolation on high \pt-jets  \\ 
+			FT\_EFF\_EIGEN\_extrapolation\_from\_charm & $b$-tagging efficiency uncertainty on $\tau$-jets   \\ \midrule
+			\multicolumn{2}{c}{\textbf{\MET-Trigger and \MET-Terms}}  \\ \midrule
+			METTrigStat    & \multirow{2}{*}{trigger efficiency uncertainty} -  \\
+			METTrigSyst &    \\
+			MET\_SoftTrk\_ResoPerp           & track-based soft term related to transversal resolution uncertainty                  \\ 
+			MET\_SoftTrk\_ResoPara           & track-based soft term related to longitudinal resolution uncertainty                  \\ 
+			MET\_SoftTrk\_Scale                  & track-based soft term related to longitudinal scale uncertainty                          \\ 
+			MET\_JetTrk\_Scale                   & track MET scale uncertainty due to tracks in jets                                            \\ \midrule
+			PRW\_DATASF         & uncertainty on data SF used for the computation of pileup reweighting      \\
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	\caption{ Qualitative summary of the experimental systematic uncertainties considered in this analysis.}
+	\label{tab:syst_summary_sources}
+\end{table}
+
+
+\subsection{Theory/Modelling}
+
+\textit{Modelling uncertainties can be analysis specific in the case of the background.  However, you should 
+have a clear idea for your analysis how you will estimate these uncertainties.  If you are doing 
+an MC-based background estimation, describe the sources of these uncertainties and the comparisons that
+you will make.  If you are doing a data driven estimation, describe the sources.}
+
+\textit{For signal yield uncertainties, these uncertainties are evaluated in a standard way and should 
+include PDF variations and renormalization/factorization scale variations.  There is more information
+provided on the PMG TWiki pages for this.}
+
+
+\clearpage

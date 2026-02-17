@@ -1,0 +1,35 @@
+%
+Jets containing $b$-hadrons  are identified using the \texttt{DL1r} algorithm as recommended by the Flavour Tagging group~\cite{twiki:BTagTaggerRecommendationsRelease21}. It consists of a deep-learning neural network based on the distinctive features of $b$-hadrons  in terms of the impact parameters of tracks and the displaced vertices reconstructed in the inner detector.  The input to the DL1r network also includes discriminant variables constructed by a recurrent neural network (RNNIP)~\cite{ATL-PHYS-PUB-2017-003}, which exploits the spatial and kinematic correlations between tracks originating from the same $b$-hadron.  Operating points (OPs) are
+defined by a single cut-value on the discriminant output distribution and are chosen to provide a specific $b$-jet efficiency. Four OPs are defined with average expected efficiencies of 60\%, 70\%, 77\% and 85\%. A jet is $b$-tagged if it passes a  certain OP. A pseudo-continuous score is assigned to each jet passing these
+OPs, with an integer value ranging from five for jets that pass the 60\% OP to two for jets passing only the
+85\% OP~\cite{Aad_2019}. A score of one is assigned if the jet does not pass any of the OPs. In this search, a jet is considered as $b$-tagged if it passes an OP of 70\%. The corresponding simulation-to-data scale factor is applied to the simulated events to compensate for differences in the $b$-tagging efficiency between data and MC.  
+
+The $b$-tagging selection criteria are summarised in Table~\ref{tab:object:btag}.
+
+%($b$-tagged) are identified via  a  multivariate discriminant combining information from the impact parameters of displaced tracks with topological properties of secondary and tertiary decay vertices reconstructed within the jet . The WP used corresponds to an average efficiency of 77\%. The associated scale factor 
+
+
+\begin{table}[ht]
+  \caption{\btag selection criteria.}%
+  \label{tab:object:btag}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & Criterion \\ 
+    \midrule
+    & EMPFlow jets \\
+    \midrule
+    Jet collection  & \texttt{AntiKt4EMPFlowJets\_BTagging201903} \\
+    Jet selection   & \(\pT > \SI[parse-numbers=false]{25}{\GeV}\) \\
+    & \(|\eta| < 2.5\) \\
+                    & JVT $>0.5$   for  \(\pT < \SI{60}{\GeV}\), \(|\eta| < 2.4\)\\
+    \midrule
+    Algorithm   & \texttt{DL1r} \\
+    \midrule
+    Operating point & Pseudo-continuous \\
+    CDI             & \texttt{2020-21-13TeV-MC16-CDI-2021-04-16\_v1}\\
+  \bottomrule
+  \end{tabular}
+  % }
+\end{table}%

@@ -1,0 +1,91 @@
+%-------------------------------------------------------------------------------
+% Standard ATLAS paper template with Elsevier class
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found - adjust if necessary
+\makeatletter
+\def\input@path{{../latex/}}
+\makeatother
+%-------------------------------------------------------------------------------
+\documentclass[UKenglish,texlive=2016]{elsarticle}
+
+\usepackage[centering, scale=0.75]{geometry}
+
+% ATLAS packages
+\usepackage[biblatex=false]{atlaspackage}
+
+% Extra packages
+% \usepackage{showframe}
+
+% Useful macros
+\usepackage{atlasphysics}
+
+% Paths for figures
+\graphicspath{{../logos/}{figures/}}
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS draft},pdfauthor={The ATLAS Collaboration}}
+
+% Either include atlascover or atlasmetadefs
+\usepackage[coverpage=false]{atlascover}
+% \usepackage{atlasmetadefs}
+
+\newcommand*{\DocumentStyle}{\texttt{elsarticle} class}
+
+% Title, abstract and document 
+\input{atlas-document-metadata}
+
+\begin{document}
+
+% Take the title from \AtlasTitle
+% \title{\AtlasTitleText}
+
+\author{The ATLAS Collaboration}
+
+% Take the abstract from \AtlasAbstract
+\begin{abstract}
+  \AtlasAbstractText
+
+  No cover page. Use \texttt{atlascover}.
+\end{abstract}
+
+\maketitle
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-------------------------------------------------------------------------------
+
+Place your introduction here.
+
+The ATLAS Collaboration discovered a new particle in 2012~\cite{HIGG-2012-27}.
+
+%-------------------------------------------------------------------------------
+% ATLAS detector description
+%-------------------------------------------------------------------------------
+% \input{../template/atlas-detector}
+
+
+%-------------------------------------------------------------------------------
+\section{Results}
+\label{sec:result}
+%-------------------------------------------------------------------------------
+
+Place your results here.
+
+
+%-------------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%-------------------------------------------------------------------------------
+
+Place your conclusion here.
+
+%-------------------------------------------------------------------------------
+% If you use biblatex and biber to process the bibliography just say \printbibliography here
+% \printbibliography
+% If you want to use BibTeX you need to use the syntax below.
+\bibliographystyle{elsarticle-num}
+\bibliography{atlas-paper}
+%-------------------------------------------------------------------------------
+
+\end{document}

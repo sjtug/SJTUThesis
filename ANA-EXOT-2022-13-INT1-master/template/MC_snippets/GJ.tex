@@ -1,0 +1,268 @@
+\section{Photon processes}
+%\label{sec:GJ}
+
+The following paragraphs describe the set-up of the current ATLAS $\gamma$+jets and $\gamma\gamma$+jets baseline samples. 
+
+\subsection[Sherpa (MEPS@NLO)]{\SHERPA (\MEPSatNLO)}
+%\label{sec:gammajets-sherpa-nlo}
+
+\subsubsection*{Samples}
+%\label{sec:gammajets-sherpa-nlo-samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:gammajets-sherpa-nlo}.
+
+\begin{table}[!htbp]
+  \caption{$\gamma$+jets and $\gamma\gamma$+jets samples with \SHERPA NLO\@.}%
+  \label{tab:gammajets-sherpa-nlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364541--364547 & single photon \\ 
+    364350--364354 & diphoton  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+%same description as in~\ref{sec:vjets-sherpa-vjets}
+\subsubsection{$\gamma$+jets}
+%\label{sec:gammajets-sherpa-nlo-singlephoton}
+
+\paragraph{Short description:}
+
+Prompt single-photon production was simulated with the
+\SHERPA[2.2]~\cite{Bothmann:2019yzt} generator. In this set-up, NLO-accurate
+matrix elements for up to two partons, and LO-accurate matrix elements for up
+to four partons were calculated with the Comix~\cite{Gleisberg:2008fv} and
+\OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries. They were matched
+with the \SHERPA parton shower~\cite{Schumann:2007mg} using the \MEPSatNLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}
+with a dynamic merging cut~\cite{Siegert:2016bre} of 20~\GeV.
+Photons were required to be isolated according to
+a smooth-cone isolation criterion~\cite{Frixione:1998jh}. Samples were generated using the
+\NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa}, along with the dedicated set of
+tuned parton-shower parameters developed by the \SHERPA authors.
+
+
+\paragraph{Long description:}
+
+Prompt single-photon production was simulated with the
+\SHERPA[2.2]~\cite{Bothmann:2019yzt} parton shower Monte Carlo
+generator. In this set-up, NLO-accurate
+matrix elements for up to two partons, and LO-accurate matrix elements for up
+to four partons were calculated with the Comix~\cite{Gleisberg:2008fv} and
+\OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries.
+The default \SHERPA parton shower~\cite{Schumann:2007mg} based on
+Catani--Seymour dipole factorisation and the cluster hadronisation model~\cite{Winter:2003tt}
+were used. They employed the dedicated set of tuned parameters developed by the
+\SHERPA authors for this generator version and the \NNPDF[3.0nnlo] PDF
+set~\cite{Ball:2014uwa}.
+
+The NLO matrix elements for a given jet multiplicity were matched to the parton
+shower using a colour-exact variant of the MC@NLO
+algorithm~\cite{Hoeche:2011fd}. Different jet multiplicities were then merged
+into an inclusive sample using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj} which was extended to NLO
+accuracy using the \MEPSatNLO prescription~\cite{Hoeche:2012yf}.
+The merging cut was set dynamically at a scale of 20~\GeV{}
+according to the prescription in Ref.~\cite{Siegert:2016bre}.
+
+The renormalisation and factorisation scales for the photon-plus-jet core
+process were set to the transverse energy of the photon, $E_\text{T}^\gamma$.
+The strong coupling constant was set to $\alphas (m_Z)= 0.118$ and the QED coupling
+constant was evaluated in the Thomson limit. Photons from the matrix elements were required 
+to be central, by being within the rapidity range $|y_{\gamma}|<2.7$, and isolated according to a 
+smooth-cone isolation criterion~\cite{Frixione:1998jh} with $\delta_0=0.1$, $\epsilon_{\gamma}=0.1$ and $n=2$.
+
+The effects of QCD scale uncertainties were evaluated~\cite{Bothmann:2016nao} using
+seven-point variations of the factorisation and renormalisation scales in the matrix elements.
+The scales were varied independently by factors of $0.5$ and $2$, avoiding variations in opposite directions.
+
+PDF uncertainties for the nominal PDF set were
+evaluated using the 100 variation replicas, as well as $\pm 0.001$ shifts
+of \alphas. Additionally, the results were cross-checked using the central values of the 
+\CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} 
+PDF sets.
+
+%\textcolor{red}{ Several Monte Carlo slices were generated to ensure good statistics over the whole phase space. In each of them, the photon was required to fall within a $E_{T}^{\gamma}$ range that depends on the slice avoiding any double-counting when the different slices are combined.}
+
+
+\subsubsection[yy+jets]{ $\gamma\gamma$+jets}
+%\label{sec:gammajets-sherpa-nlo-diphoton}
+
+\paragraph{Short description:}
+
+Prompt diphoton production was simulated with the
+\SHERPA[2.2]~\cite{Bothmann:2019yzt} generator. In this set-up, NLO-accurate
+matrix elements for up to one parton, and LO-accurate matrix elements for up
+to three partons were calculated with the Comix~\cite{Gleisberg:2008fv} and
+\OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries. They were matched
+with the \SHERPA parton shower~\cite{Schumann:2007mg} using the \MEPSatNLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}
+with a dynamic merging cut~\cite{Siegert:2016bre} of 10~\GeV.
+Photons were required to be isolated according to a smooth-cone isolation
+criterion~\cite{Frixione:1998jh}. Samples were generated using the
+\NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa}, along with the dedicated set of tuned
+parton-shower parameters developed by the \SHERPA authors.
+
+
+\paragraph{Long description:}
+
+Prompt diphoton production was simulated with the
+\SHERPA[2.2]~\cite{Bothmann:2019yzt} parton shower Monte Carlo
+generator. In this set-up, NLO and LO-accurate
+matrix elements were calculated with the Comix~\cite{Gleisberg:2008fv} and
+\OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries.
+The default \SHERPA parton shower~\cite{Schumann:2007mg} based on
+Catani--Seymour dipole factorisation and the cluster hadronisation model~\cite{Winter:2003tt}
+were used. They employed the dedicated set of tuned parameters developed by the
+\SHERPA authors for this generator version and the \NNPDF[3.0nnlo]
+PDF set~\cite{Ball:2014uwa}.
+
+The NLO matrix elements for a given jet multiplicity were matched to the parton
+shower using a colour-exact variant of the MC@NLO algorithm~\cite{Hoeche:2011fd}. 
+Different jet multiplicities were then merged
+into an inclusive sample using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj} which was extended to NLO
+accuracy using the \MEPSatNLO prescription~\cite{Hoeche:2012yf}.
+The merging cut was set dynamically to a scale of 20~\GeV{},
+according to the prescription in Ref.~\cite{Siegert:2016bre}.
+
+The renormalisation and factorisation scales for the diphoton core process
+were set to the invariant mass of the photon pair, $m_{\gamma\gamma}$.
+The strong coupling constant was set to $\alphas (m_Z)= 0.118$ and the QED coupling
+constant was evaluated in the Thomson limit. Photons from the matrix elements were required to be central, 
+by being within the rapidity range $|y_{\gamma}|<2.7$, and isolated according to a smooth-cone isolation 
+criterion~\cite{Frixione:1998jh} with $\delta_0=0.1$, $\epsilon_{\gamma}=0.1$ and $n=2$. 
+Additionally, the photons were required to be separated by $\Delta R(\gamma_1,\gamma_2) > 0.2$.
+
+
+The effects of QCD scale uncertainties were evaluated~\cite{Bothmann:2016nao} using
+seven-point variations of the factorisation and renormalisation scales in the matrix elements.
+The scales were varied independently by factors of $0.5$ and $2$, avoiding variations in opposite directions.
+
+PDF uncertainties for the nominal PDF set were
+evaluated using the 100 variation replicas, as well as $\pm 0.001$ shifts
+of \alphas. Additionally, the results were cross-checked using the central values of the 
+\CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} 
+PDF sets.
+%\textcolor{red}{ Several Monte Carlo slices were generated to ensure good statistics over the whole phase space. In each of them, the photon pair was required to fall within a $m_{\gamma\gamma}$ range that depends on the slice avoiding any double-counting when the different slices are combined.}
+
+
+\subsection[Sherpa (MEPS@NLO)]{\SHERPA (\MEPSatNLO)}
+%\label{sec:gammajets-sherpa-lo}
+
+\subsubsection*{Samples}
+%\label{sec:gammajets-sherpa-lo-samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:gammajets-sherpa-lo}.
+
+\begin{table}[!htbp]
+  \caption{$\gamma$+jets and  $\gamma\gamma$+jets samples with \SHERPA LO\@.}%
+  \label{tab:gammajets-sherpa-lo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    361039--361062 & single photon \\
+    303727--303742 & diphoton \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\subsubsection[y+jets]{$\gamma$+jets}
+%\label{sec:gammajets-sherpa-lo-singlephoton}
+
+\paragraph{Description:}
+
+Prompt single-photon production was simulated using the \SHERPA[2.1]~\cite{Bothmann:2019yzt}
+generator. The tree-level matrix elements, generated for up to three
+additional partons, were merged with the initial- and final-state parton showers using the
+\MEPSatLO prescription~\cite{Hoeche:2009rj}. The \CT[10nlo] set of PDFs~\cite{Lai:2010vv} was
+used to parameterise the proton structure in conjunction with the dedicated set of tuned
+parton-shower parameters developed by the \SHERPA authors for this generator version. A
+modified version of the cluster model~\cite{Winter:2003tt} was used
+for the description of the fragmentation into hadrons. Photons from the matrix elements were
+required to be isolated according to a smooth-cone hadronic isolation criterion~\cite{Frixione:1998jh}
+with $\delta_0=0.3$, $\epsilon_{\gamma}=0.025$ and $n=2$.
+
+
+\subsubsection[yy+jets]{ $\gamma\gamma$+jets}
+%\label{sec:gammajets-sherpa-lo-diphoton}
+
+\paragraph{Description:}
+
+Prompt diphoton production was simulated using the \SHERPA[2.1]~\cite{Bothmann:2019yzt}
+generator. The tree-level matrix elements, generated for up to two
+additional partons, were merged with the initial- and final-state parton showers using the
+\MEPSatLO prescription~\cite{Hoeche:2009rj}. The \CT[10nlo] set of PDFs~\cite{Lai:2010vv} was
+used to parameterise the proton structure in conjunction with the dedicated set of tuned
+parton-shower parameters developed by the \SHERPA authors for this generator version. A
+modified version of the cluster model~\cite{Winter:2003tt} was used
+for the description of the fragmentation into hadrons. Photons from the matrix elements were
+required to be isolated according to a smooth-cone hadronic isolation criterion~\cite{Frixione:1998jh}
+with $\delta_0=0.3$, $\epsilon_{\gamma}=0.025$ and $n=2$. Additionally, the photons were 
+required to be separated by $\Delta R(\gamma_1,\gamma_2) > 0.2$.
+
+
+\subsection[Pythia (LO)]{\PYTHIA (LO)}
+%\label{sec:gammajets-pythia-lo}
+
+The descriptions below correspond to the samples in Table~\ref{tab:gammajets-pythia-lo}.
+
+\begin{table}[!htbp]
+  \caption{$\gamma$+jets and  $\gamma\gamma$+jets samples with \PYTHIA.}%
+  \label{tab:gammajets-pythia-lo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    423099--423112 & single photon \\
+    344008, 302520--34, 364423 & diphoton \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\subsubsection[y+jets]{$\gamma$+jets}
+%\label{sec:gammajets-pythia-lo-singlephoton}
+
+\paragraph{Description:}
+
+Prompt single-photon production was simulated using the \PYTHIA[8.186]~\cite{Sjostrand:2007gs} generator. 
+Events were generated using tree-level matrix elements for photon-plus-jet final
+states as well as LO QCD dijet events, with the inclusion of initial-
+and final-state parton showers. The fragmentation component was
+modelled by final-state QED radiation arising from calculations of all
+$2\rightarrow 2$ QCD processes. The \NNPDF[2.3lo]~\cite{Ball:2012cx} PDF
+set was used in the matrix element calculation, the parton shower, and
+the simulation of the multi-parton interactions. The samples
+include a simulation of the underlying event with parameters set
+according to the A14 tune~\cite{ATL-PHYS-PUB-2014-021}. The Lund
+string model~\cite{Andersson:1983ia,Sjostrand:1984ic} was used for the
+description of the fragmentation into hadrons.
+
+
+\subsubsection[yy+jets]{ $\gamma\gamma$+jets}
+%\label{sec:gammajets-pythia-lo-diphoton}
+
+\paragraph{Description:}
+
+Prompt diphoton production was simulated using the 
+\PYTHIA[8.186]~\cite{Sjostrand:2007gs} generator. Events were 
+generated using tree-level matrix elements for diphoton final states,
+with the inclusion of initial- and final-state parton showers.  The
+fragmentation component was modelled by final-state QED radiation
+arising from calculations of photon-plus-jet processes in dedicated
+samples. The \NNPDF[2.3lo]~\cite{Ball:2012cx} PDF set was used in the
+matrix element calculation, the parton shower, and in the simulation of the
+multi-parton interactions. The samples include a simulation of the
+underlying event with parameters set according to the A14
+tune~\cite{ATL-PHYS-PUB-2014-021}. The Lund string
+model~\cite{Andersson:1983ia,Sjostrand:1984ic} was used for the
+description of the fragmentation into hadrons.

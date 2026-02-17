@@ -1,0 +1,554 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              tW                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Single-top \texorpdfstring{$tW$}{tW} associated production}
+\label{subsec:tW}
+
+This section describes the MC samples used for the modelling of single-top $tW$ associated production.
+Section~\ref{subsubsec:tW_PP8} describes the \POWPY[8] samples -- both for the diagram removal (DR) set-ups,
+which are used for the nominal prediction as well as uncertainties due to additional radiation and PDFs,  
+and for the diagram subtraction (DS) set-ups, which are used for the uncertainty due to the treatment 
+of the overlap with \ttbar production. 
+Section~\ref{subsubsec:tW_PH7} describes the \POWHER[7] samples used for the uncertainty 
+due to parton showering and hadronisation modelling, and Section~\ref{subsubsec:tW_aMCP8} describes the 
+\MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
+
+The reference cross-section values are extracted from Ref.~\cite{LHCTopWGsgtopXsec}.
+
+\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\label{subsubsec:tW_PP8}
+
+\paragraph{Samples}
+%\label{par:tW_PP8_samples}
+
+Table~\ref{tab:tW_PP8} gives the DSIDs of the $tW$ \POWPY[8] samples, for both the DR and DS schemes.
+Single-top and single-anti-top ($tW^-$ and $\bar{t}W^+$) events were generated in different samples.
+The dileptonic samples overlap with the inclusive ones.
+
+\begin{table}[htbp]
+  \caption{Single-top $tW$ associated production samples produced with \POWPY[8].}%
+  \label{tab:tW_PP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    410646 & $tW^-$ (DR) inclusive \\
+    410647 & $\bar{t}W^+$ (DR) inclusive \\
+    410648 & $tW^-$ (DR) dileptonic \\
+    410649 & $\bar{t}W^+$ (DR) dileptonic \\
+    \midrule
+    410654 & $tW^-$ (DS) inclusive \\
+    410655 & $\bar{t}W^+$ (DS) inclusive \\
+    410656 & $tW^-$ (DS) dileptonic \\
+    410657 & $\bar{t}W^+$ (DS) dileptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The associated production of top quarks with $W$ bosons ($tW$) was
+modelled by the
+\POWHEGBOX[v2]~\cite{Re:2010bp,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator at NLO in QCD using the five-flavour scheme and the
+\NNPDF[3.0nlo] set of PDFs~\cite{Ball:2014uwa}.
+The diagram removal scheme~\cite{Frixione:2008yi} was used to
+remove interference and overlap with \ttbar production. 
+The related uncertainty was estimated by comparison with an alternative sample
+generated using the diagram subtraction scheme~\cite{Frixione:2008yi,ATL-PHYS-PUB-2016-020}.\footnote{Analyses which do not use this approach 
+should obviously not use this sentence in their description.} 
+The events were interfaced to \PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14
+tune~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] set of
+PDFs~\cite{Ball:2012cx}.
+
+\input{top_isrfsr_powpy_short}
+
+
+\paragraph{Long description:}
+
+Single-top $tW$ associated production was modelled using the
+\POWHEGBOX[v2]~\cite{Re:2010bp,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator, which provided matrix elements at next-to-leading
+order~(NLO) in the strong coupling constant \alphas\ in the five-flavour 
+scheme with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton
+distribution function~(PDF) set.  The functional form of the
+renormalisation and factorisation scales was set to the default scale,
+which is equal to the top-quark mass ($\mtop = 172.5\,\GeV$).  
+The diagram removal scheme~\cite{Frixione:2008yi} was employed to handle the interference
+with \ttbar production~\cite{ATL-PHYS-PUB-2016-020}.  The events were
+interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14
+tune~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] PDF set.  The
+decays of bottom and charm hadrons were simulated using the
+\EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+The inclusive cross-section was corrected to the theory prediction
+calculated at NLO in QCD with NNLL soft-gluon
+corrections~\cite{Kidonakis:2010ux,Kidonakis:2013zqa}.  For proton--proton
+collisions at a centre-of-mass energy of \rts~=~\SI{13}{\TeV}, this
+cross-section corresponds to $\sigma(tW)_\text{NLO+NNLL}= 71.7\pm3.8$\,pb,
+using a top-quark mass of $\mtop = 172.5\,\GeV$.  The uncertainty in
+the cross-section due to the PDF was calculated using the \MSTW[nnlo] 90\%
+CL~\cite{Martin:2009iq,Martin:2009bu} PDF set, and was added in
+quadrature to the effect of the scale uncertainty.
+
+\input{top_isrfsr_powpy_long}
+
+The nominal \POWPY[8] sample was compared with an alternative
+sample generated using the diagram subtraction
+scheme~\cite{Frixione:2008yi,ATL-PHYS-PUB-2016-020} to estimate the
+uncertainty arising from the interference with \ttbar production.
+
+To evaluate the PDF uncertainties for the nominal PDF, the 100
+variations for \NNPDF[3.0nlo] were taken into account. 
+In addition, the central value of this PDF was compared with the 
+central values of the \CT[14nnlo]~\cite{Dulat:2015mca} and
+\MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
+
+
+\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+\label{subsubsec:tW_PH7}
+
+\paragraph{Samples}
+%\label{par:tW_PH7_samples}
+
+Table~\ref{tab:tW_PH7} gives the DSIDs of the $tW$ \POWHER[7] DR samples.
+Single-top and single-anti-top ($tW^-$ and $\bar{t}W^+$) events were generated in different samples.
+The dileptonic samples overlap with the inclusive ones.
+
+\begin{table}[htbp]
+  \caption{Single-top $tW$ associated production samples produced with \POWHER[7].}%
+  \label{tab:tW_PH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    411036 & $tW^-$ (DR) inclusive \\
+    411037 & $\bar{t}W^+$ (DR) inclusive \\
+    411038 & $tW^-$ (DR) dileptonic \\
+    411039 & $\bar{t}W^+$ (DR) dileptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The uncertainty due to the parton shower and hadronisation model was
+evaluated by comparing the nominal sample of events with a sample where
+events generated with the
+\POWHEGBOX[v2]~\cite{Re:2010bp,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator were interfaced to
+\HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the H7UE set
+of tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
+
+
+\paragraph{Long description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated
+by comparing the nominal $tW$ sample with another sample produced with the
+\POWHEGBOX[v2]~\cite{Re:2010bp,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator but interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp},
+using the H7UE set of tuned parameters~\cite{Bellm:2015jjp} and the
+\MMHT[lo] PDF set \cite{Harland-Lang:2014zoa}.
+\POWHEGBOX provided matrix elements at next-to-leading order~(NLO) in the 
+strong coupling constant \alphas in the five-flavour scheme with the 
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).  
+The functional form of the renormalisation and factorisation scales was set to 
+the default scale, which is equal to the top-quark mass.  The diagram removal
+scheme~\cite{Frixione:2008yi} was employed to handle the interference
+with \ttbar production~\cite{ATL-PHYS-PUB-2016-020}.  The decays of bottom
+and charm hadrons are simulated using the \EVTGEN[1.6.0]
+program~\cite{Lange:2001uf}.
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:tW_aMCP8}
+
+\paragraph{Samples}
+%\label{par:tW_aMCP8_samples}
+
+Table~\ref{tab:tW_aMCP8} gives the DSIDs of the $tW$ \MGNLOPY[8] samples.
+The dileptonic sample overlaps with the inclusive one.
+
+\begin{table}[htbp]
+  \caption{Single-top $tW$ associated production samples produced with \MGNLOPY[8].}%
+  \label{tab:tW_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    412002 & $tW$ inclusive \\
+    412003 & $tW$ dileptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+To assess the uncertainty in the matching of NLO matrix elements to the
+parton shower, the nominal $tW$ sample was compared with a sample generated
+with the \MGNLO[2.6.2] generator at NLO in QCD using the five-flavour
+scheme and the \NNPDF[2.3nlo]~\cite{Ball:2014uwa} PDF set. The events were
+interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14
+set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo]
+PDF.
+
+
+\paragraph{Long description:}
+
+To assess the uncertainty due to the choice of matching scheme, the nominal $tW$ sample was compared with a sample generated
+with the \MGNLO[2.6.2] generator, which provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas
+in the five-flavour scheme, using the \NNPDF[2.3nlo]~\cite{Ball:2014uwa} PDF set.
+The functional form of the renormalisation and factorisation scale was set to the default scale, which is equal to the top-quark mass.
+The parton-shower starting scale had the functional form $\muQ = H_{\mathrm T}/2$~\cite{ATL-PHYS-PUB-2017-007}, 
+where $H_{\mathrm T}$ is defined as the scalar sum of the \pT of all outgoing partons.
+The diagram removal scheme~\cite{Frixione:2008yi} was employed to handle the interference with \ttbar production~\cite{ATL-PHYS-PUB-2016-020}.
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} 
+and the \NNPDF[2.3lo] PDF.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              t-channel              %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Single-top \texorpdfstring{$t$}{t}-channel production}
+\label{subsec:tchan}
+
+This section describes the MC samples used for the modelling of single-top $t$-channel production.
+Section~\ref{subsubsec:tchan_PP8} describes the \POWPY[8] samples used for the nominal prediction
+and for the uncertainty from additional radiation and due to PDFs.
+Section~\ref{subsubsec:tchan_PH7} describes the \POWHER[7] samples used for the uncertainty due to the choice of parton shower and hadronisation model,
+and Section~\ref{subsubsec:tchan_aMCP8} describes the \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
+
+The reference cross-section values are extracted from Ref.~\cite{LHCTopWGsgtopXsec}.
+
+
+\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\label{subsubsec:tchan_PP8}
+
+\paragraph{Samples}
+%\label{par:tchan_PP8_samples}
+
+Table~\ref{tab:tchan_PP8} gives the DSIDs of the $t$-channel \POWPY[8] samples.
+Single-top and single-anti-top events were generated in distinct samples.
+
+\begin{table}[!htbp]
+  \caption{Single-top $t$-channel event samples produced with \POWPY[8].}%
+  \label{tab:tchan_PP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    410658 & $t$-channel $t$ leptonic \\
+    410659 & $t$-channel $\bar{t}$ leptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Single-top $t$-channel production was modelled using the
+\POWHEGBOX[v2]~\cite{Frederix:2012dh,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator at NLO in QCD using the four-flavour scheme and the
+corresponding \NNPDF[3.0nlo] set of PDFs~\cite{Ball:2014uwa}.  The events were
+interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14
+tune~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] set of
+PDFs~\cite{Ball:2012cx}.
+
+\input{top_isrfsr_powpy_short}
+
+
+\paragraph{Long description:}
+
+Single-top $t$-channel production was modelled using the
+\POWHEGBOX[v2]~\cite{Frederix:2012dh,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator, which provided matrix elements at next-to-leading-order~(NLO) 
+accuracy in the strong coupling constant \alphas\ in the four-flavour 
+scheme with the corresponding \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton
+distribution function~(PDF) set.  The functional form of the
+renormalisation and factorisation scales was set to
+$\sqrt{m_b^2 + p_{\text{T},b}^2}$ following the
+recommendation of Ref.~\cite{Frederix:2012dh}. Top quarks were decayed at
+LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve
+all spin correlations.  The events were interfaced with
+\PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14
+tune~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] PDF set.  
+The decays of bottom and charm hadrons were simulated using the
+\EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+The inclusive cross-section was corrected to the theory prediction calculated at NLO in QCD with 
+\HATHOR[2.1]~\cite{Aliev:2010zk,Kant:2014oha}.
+For proton--proton collisions at a centre-of-mass energy of \rts~=~\SI{13}{\TeV}, this cross-section corresponds to
+$\sigma(t,t\text{-chan})_\text{NLO}= 136.02^{+5.40}_{-4.57}$\,pb ($\sigma(\bar{t},t\text{-chan})_\text{NLO}=80.95^{+4.06}_{-3.61}$\,pb)
+for single-top (single-anti-top) production, using a top-quark mass of $\mtop = 172.5\,\GeV$.
+The uncertainties in the cross-section due to the PDF and \alphas were calculated using the \PDFforLHC prescription~\cite{Butterworth:2015oua}
+with the \MSTW[nlo] 68\% CL~\cite{Martin:2009iq,Martin:2009bu}, \CT[10nlo]~\cite{Lai:2010vv} 
+and \NNPDF[2.3nlo]~\cite{Ball:2012cx} PDF sets,
+and were added in quadrature to the effect of the scale uncertainty.
+
+\input{top_isrfsr_powpy_long}
+
+To evaluate the PDF uncertainties for the nominal PDF, the 100 variations for \NNPDF[3.0nlo] were taken into account. 
+In addition, the central value of this PDF was compared with the central values of the \CT[14nnlo]~\cite{Dulat:2015mca} 
+and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
+
+
+\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+\label{subsubsec:tchan_PH7}
+
+\paragraph{Samples}
+%\label{par:tchan_PH7_samples}
+
+Table~\ref{tab:tchan_PH7} gives the DSIDs of the $t$-channel \POWHER[7] samples.
+Single-top and single-anti-top events were generated in distinct samples.
+
+\begin{table}[htbp]
+  \caption{Single-top $t$-channel event samples produced with \POWHER[7].}%
+  \label{tab:tchan_PH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    411032 & $t$-channel $\bar t$ leptonic \\
+    411033 & $t$-channel $t$ leptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The uncertainty due to the parton shower and hadronisation model was
+evaluated by comparing the nominal sample of events with a sample where
+the events generated with the
+\POWHEGBOX[v2]~\cite{Frederix:2012dh,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator were interfaced to
+\HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the H7UE set
+of tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set
+\cite{Harland-Lang:2014zoa}.
+
+
+\paragraph{Long description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated by comparing the nominal sample
+with another sample produced with the \POWHEGBOX[v2]~\cite{Frederix:2012dh,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator but interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the H7UE set of
+tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set \cite{Harland-Lang:2014zoa}.
+\POWHEGBOX provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas
+in the four-flavour scheme with the corresponding \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The functional form of the renormalisation and factorisation scales was set to $\sqrt{m_b^2 + p_{\text{T},b}^2}$
+following the recommendation of Ref.~\cite{Frederix:2012dh}.
+Top quarks were decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve all spin correlations.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:tchan_aMCP8}
+
+\paragraph{Samples}
+%\label{par:tchan_aMCP8_samples}
+
+Table~\ref{tab:tchan_aMCP8} gives the DSIDs of the $t$-channel \MGNLOPY[8] samples.
+
+\begin{table}[htbp]
+  \caption{Single-top $t$-channel event samples produced with \MGNLOPY[8].}%
+  \label{tab:tchan_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    412004 & $t$-channel leptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+To assess the uncertainty in the matching of NLO matrix elements to the
+parton shower, the nominal sample was compared with a sample generated
+with the \MGNLO[2.6.2] generator at NLO in QCD using the five-flavour
+scheme and the \NNPDF[2.3nlo]~\cite{Ball:2014uwa} PDF set. The events were
+interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14
+set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] PDF set.
+
+
+\paragraph{Long description:}
+
+To assess the uncertainty due to the choice of matching scheme, the nominal sample was compared with a sample generated
+with the \MGNLO[2.6.2] generator, which provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas
+in the four-flavour scheme, using the corresponding \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set.
+The functional form of the renormalisation and factorisation scales was set to $\sqrt{m_b^2 + p_{\text{T},b}^2}$
+following the recommendation of Ref.~\cite{Frederix:2012dh}.
+The parton-shower starting scale had the functional form $\muQ = H_\text{T}/2$~\cite{ATL-PHYS-PUB-2017-007}, 
+where $H_\text{T}$ is defined as the scalar sum of the \pT of all outgoing partons.
+Top quarks were decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve all spin correlations.
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} 
+and the \NNPDF[2.3lo] PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              s-channel              %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Single-top \texorpdfstring{$s$}{s}-channel production}
+\label{subsec:schan}
+
+This section describes the MC samples used for the modelling of single-top $s$-channel production.
+Section~\ref{subsubsec:schan_PP8} describes the \POWPY[8] samples used for the nominal prediction
+and for the uncertainty from additional radiation and due to PDFs.
+Section~\ref{subsubsec:schan_PH7} describes the \POWHER[7] samples used for the uncertainty due to the parton shower and hadronisation model,
+and Section~\ref{subsubsec:schan_aMCP8} describes the \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
+
+The reference cross-section values are extracted from Ref.~\cite{LHCTopWGsgtopXsec}.
+
+\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\label{subsubsec:schan_PP8}
+
+\paragraph{Samples}
+%\label{par:schan_PP8_samples}
+
+Table~\ref{tab:schan_PP8} gives the DSIDs of the $s$-channel \POWPY[8] samples.
+Single-top and single-anti-top events were generated in distinct samples.
+
+\begin{table}[htbp]
+  \caption{Single-top $s$-channel event samples produced with \POWPY[8].}%
+  \label{tab:schan_PP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    410644 & $s$-channel $t$ leptonic \\
+    410645 & $s$-channel $\bar{t}$ leptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Single-top $s$-channel production was modelled using the \POWHEGBOX[v2]~\cite{Alioli:2009je,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator at NLO in QCD in the five-flavour scheme with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) set.
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo] PDF set.
+
+\input{top_isrfsr_powpy_short}
+
+
+\paragraph{Long description:}
+
+Single-top $s$-channel production was modelled using the \POWHEGBOX[v2]~\cite{Alioli:2009je,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator, which provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas in the 
+five-flavour scheme with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) set.
+The functional form of the renormalisation and factorisation scales was set to the default scale, which was equal to the top-quark mass.
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo] PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+The inclusive cross-section was corrected to the theory prediction calculated at NLO in QCD with 
+\HATHOR[2.1]~\cite{Aliev:2010zk,Kant:2014oha}.
+For proton--proton collisions at a centre-of-mass energy of \rts~=~\SI{13}{\TeV}, this cross-section corresponds to
+$\sigma(t,s\text{-chan})_\text{NLO}= 6.35^{+0.23}_{-0.20}$\,pb ($\sigma(\bar{t},s\text{-chan})_\text{NLO}=3.97^{+0.19}_{-0.17}$\,pb)
+for single-top (single-anti-top) production, using a top-quark mass of $\mtop = 172.5\,\GeV$.
+The uncertainties in the cross-section due to the PDF and \alphas were calculated using the \PDFforLHC prescription~\cite{Butterworth:2015oua}
+with the \MSTW[nlo] 68\% CL~\cite{Martin:2009iq,Martin:2009bu}, \CT[10nlo]~\cite{Lai:2010vv} and \NNPDF[2.3nlo]~\cite{Ball:2012cx} PDF sets,
+and were added in quadrature to the effect of the scale uncertainty.
+
+\input{top_isrfsr_powpy_long}
+
+To evaluate the PDF uncertainties for the nominal PDF, the 100 variations for \NNPDF[3.0nlo] were taken into account. 
+In addition, the central value of this PDF was compared with the central values of the 
+\CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
+
+
+\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+\label{subsubsec:schan_PH7}
+
+\paragraph{Samples}
+%\label{par:schan_PH7_samples}
+
+Table~\ref{tab:schan_PH7} gives the DSIDs of the $s$-channel \POWHER[7] samples.
+Single-top and single-anti-top events were generated in distinct samples.
+
+\begin{table}[htbp]
+  \caption{Single-top $s$-channel event samples produced with \POWHER[7].}%
+  \label{tab:schan_PH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    411034 & $s$-channel $t$ leptonic \\
+    411035 & $s$-channel $\bar{t}$ leptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated by comparing the nominal sample
+with another sample produced with the \POWHEGBOX[v2]~\cite{Alioli:2009je,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator at NLO in the strong coupling constant \alphas in the five-flavour scheme using the 
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+Events in the latter sample were interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the H7UE set of
+tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set \cite{Harland-Lang:2014zoa}.
+
+
+\paragraph{Long description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated by comparing the nominal sample
+with another sample produced with the \POWHEGBOX[v2]~\cite{Alioli:2009je,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator but interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the H7UE set of
+tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set \cite{Harland-Lang:2014zoa}.
+\POWHEGBOX provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas
+in the five-flavour scheme with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The functional form of the renormalisation and factorisation scales was set to the default scale, which is equal to the top-quark mass.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:schan_aMCP8}
+
+\paragraph{Samples}
+%\label{par:schan_aMCP8_samples}
+
+Table~\ref{tab:schan_aMCP8} gives the DSIDs of the $s$-channel \MGNLOPY[8] samples.
+
+\begin{table}[htbp]
+  \caption{Single-top $s$-channel event samples produced with \MGNLOPY[8].}%
+  \label{tab:schan_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    412005 & $s$-channel leptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+%% the MG5_aMC@NLO version was double checked in the tag collector
+To assess the uncertainty due to the choice of matching scheme, the nominal sample was compared with a sample generated
+with the \MGNLO[2.6.2] generator at NLO in the strong coupling constant \alphas in the five-flavour scheme, 
+using the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set.
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} 
+and the \NNPDF[2.3lo] PDF set.
+
+
+\paragraph{Long description:}
+
+To assess the uncertainty due to the choice of matching scheme, the nominal sample was compared with a sample generated
+with the \MGNLO[2.6.2] generator, which provided matrix elements at next-to-leading order~(NLO) in the strong coupling constant \alphas
+in the five-flavour scheme with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The functional form of the renormalisation and factorisation scales was set to the default scale, which is equal to the top-quark mass.
+The parton-shower starting scale had the functional form $\muQ = H_{\mathrm T}/2$~\cite{ATL-PHYS-PUB-2017-007}, 
+where $H_{\mathrm T}$ is defined as the scalar sum of the \pT of all outgoing partons.
+Top quarks were decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve all spin correlations.
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} 
+and the \NNPDF[2.3lo] PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.

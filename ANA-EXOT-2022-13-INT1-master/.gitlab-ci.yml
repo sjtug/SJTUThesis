@@ -1,0 +1,25 @@
+####################################################
+#
+# Gitlab CI for automatic checks of papers and notes
+# This will take care of running the needed steps
+# for checking everything
+#
+#################################################################
+#
+# THIS FILE IS AUTOMATICALLY PRODUCED AND UPDATED BY THE CI TOOLS
+# DON'T MODIFY THIS FILE !!!!!
+#
+#################################################################
+
+# -- VARIABLES --
+variables:
+  DOCNAME: "ANA-EXOT-2022-13-INT1"
+  FROZEN: newest
+  IMAGE_TAG: latest
+  JOBS_SCRIPTS_PATH: "/usr/share/scripts"
+# -- END OF VARIABLES --
+
+include:
+  - project: 'atlas-physics-office/gitlab-integration'
+    ref: master
+    file: '/pogitlab/ci-jobs.yml'

@@ -1,0 +1,322 @@
+\section{Single-boson processes}
+%\label{sec:VJ}
+
+In the following paragraphs, the set-up of the current ATLAS single-boson baseline samples is described. 
+Details of the full process configuration are given in the PUB note~\cite{ATL-PHYS-PUB-2017-006}. In the case of \SHERPA samples,
+a minimal description of built-in systematic uncertainties is also given.  
+
+%In addition, \SHERPA[2.1.1] is still used for cross checks and in the evaluation of theoretical uncertainties. 
+%Samples using this version have been generated with the \CT[10nlo] set of PDFs~\cite{Lai:2010vv}, in conjunction  
+%with the dedicated set of tuned parton-shower parameters developed by the \SHERPA authors for this generator version.
+
+\subsection[Sherpa MEPS@NLO]{\SHERPA (\MEPSatNLO)}
+%\label{sec:vjets-sherpa}
+
+\subsubsection{QCD $V+$jets}
+%\label{sec:vjets-sherpa-vjets}
+
+\subsubsection*{Samples}
+%\label{sec:vjets-sherpa-samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:vjets-sherpa}.
+
+\begin{table}[!htbp]
+  \caption{$V$+jets samples with \SHERPA.}%
+  \label{tab:vjets-sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364100--364113    & $Z\to\mu\mu$   \\
+    364198--364203    & $Z\to \mu\mu$ ($10\,\GeV < m_{\ell\ell} < 40\,\GeV$) \\
+    364359, 364362, 364281  &  $Z\to\mu\mu$ (very low mass)   \\
+    364114--364127    & $Z\to ee$    \\
+    364204--364209    & $Z\to ee$ ($10\,\GeV < m_{\ell\ell} < 40\,\GeV$) \\
+    364358, 364361, 364282 & $Z\to ee$ (very low mass) \\
+    364128--364141    & $Z\to \tau\tau$    \\
+    364210--364215    & $Z\to \tau\tau$ ($10\,\GeV < m_{\ell\ell} < 40\,\GeV$) \\
+    364282, 364360, 364363 &  $Z\to \tau\tau$ \\
+    364142--364155    & $Z\to \nu\nu$   \\ 
+    364156--364169    & $W\to \mu\nu$   \\
+    364170--364183    & $W\to e\nu$    \\
+    364184--364197    & $W\to \tau\nu$  \\
+    364216--364229    & $Z\to\ell\ell,W\to\ell\nu$ (high \pt)\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of $V+$jets was simulated with the
+\SHERPA[2.2.1]~\cite{Bothmann:2019yzt}
+generator using next-to-leading-order (NLO) matrix elements (ME) for up to two partons, and leading-order (LO) matrix elements
+for up to four partons calculated with the Comix~\cite{Gleisberg:2008fv}
+and \OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries. They
+were matched with the \SHERPA parton shower~\cite{Schumann:2007mg} using the \MEPSatNLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}
+using the set of tuned parameters developed by the \SHERPA authors.
+The \NNPDF[3.0nnlo] set of PDFs~\cite{Ball:2014uwa} was used and the samples
+were normalised to a next-to-next-to-leading-order (NNLO)
+prediction~\cite{Anastasiou:2003ds}.
+
+
+\paragraph{Long description:}
+
+The production of $V+$jets was simulated with the \SHERPA[2.2.1]~\cite{Bothmann:2019yzt}
+generator. In this set-up, NLO-accurate matrix elements for up to two partons, and LO-accurate matrix elements for up
+to four partons were calculated with the Comix~\cite{Gleisberg:2008fv} and
+\OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries.
+The default \SHERPA parton shower~\cite{Schumann:2007mg} based on
+Catani--Seymour dipole factorisation and the cluster hadronisation model~\cite{Winter:2003tt}
+were used. They employed the dedicated set of tuned parameters developed by the
+\SHERPA authors and the \NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa}.
+
+The NLO matrix elements for a given jet multiplicity were matched to the parton
+shower (PS) using a colour-exact variant of the MC@NLO
+algorithm~\cite{Hoeche:2011fd}. Different jet multiplicities were then merged
+into an inclusive sample using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj} which was extended to NLO
+accuracy using the \MEPSatNLO prescription~\cite{Hoeche:2012yf}. The merging threshold 
+was set to $20$~\GeV.
+
+\input{sherpa_scale_pdf.tex}
+
+The $V$+jets samples were normalised to a next-to-next-to-leading-order (NNLO) 
+prediction~\cite{Anastasiou:2003ds}.
+
+
+\subsubsection{Electroweak $Vjj$ (VBF)}
+%\label{sec:vjets-sherpa-vjj}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:ewkvjets-sherpa}.  Samples include the VBF and $V$-strahlung diagrams, but 
+they do not include semileptonic $VV$ diagrams and do not overlap with QCD $V+$jets samples.
+
+\begin{table}[!htbp]
+  \caption{Electroweak $Vjj$ samples with \SHERPA.}%
+  \label{tab:ewkvjets-sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    308092--308096 & EWK $Vjj$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Electroweak production of $\ell\ell jj$, $\ell\nu jj$ and $\nu\nu jj$ final states
+was simulated with \SHERPA[2.2.1]~\cite{Bothmann:2019yzt} using 
+leading-order (LO) matrix elements with up to two additional parton emissions. 
+The matrix elements were merged with the \SHERPA parton
+shower~\cite{Schumann:2007mg} following the \MEPSatLO
+prescription~\cite{Catani:2001cc} and using the set of tuned
+parameters developed by the \SHERPA authors.  The \NNPDF[3.0nnlo] set of
+PDFs~\cite{Ball:2014uwa} was employed. The samples were produced
+using the VBF approximation, which avoids overlap  with semileptonic
+diboson topologies by requiring a $t$-channel colour-singlet exchange.
+
+%These samples are generated in the $G_\mu$ scheme using, ensuring an
+%optimal description of pure electroweak interactions at the
+%electroweak scale.
+
+
+\subsection[MadGraph5 (CKKW-L)]{\MADGRAPH (CKKW-L)}
+%\label{sec:vjets-mg5py8_ckkwl}
+
+\subsubsection*{Samples}
+%\label{sec:vjets-mg5py8_ckkwl-samples}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:vjets-mg5py8_ckkwl}. The set-ups of $N_\text{parton}$- and
+$H_\text{T}$-sliced samples differ slightly between the two slicing schemes 
+with regard to the matrix element PDF, the jet-clustering radius parameter 
+and the scale used in the evaluation of  \alphas to determine the weight of
+each splitting. The short description merges the two set-ups and requires 
+the paper editors to select the appropriate PDF set (or gracefully describe 
+both); the long description is left unmerged. 
+
+\begin{table}[!htbp]
+  \caption{$V$+jets samples with \MGPY[8] using CKKW-L merging.}%
+  \label{tab:vjets-mg5py8_ckkwl}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    363123--363146 & $H_\text{T}$-sliced $Z\to\mu\mu$   \\
+    363147--363170 & $H_\text{T}$-sliced $Z\to ee$     \\
+    361510--361514 & $N_\text{parton}$-sliced $Z\to\tau\tau$ \\
+    361515--361519 & $N_\text{parton}$-sliced $Z\to\nu\nu$   \\
+    363624--363647 & $H_\text{T}$-sliced $W\to \mu\nu$   \\
+    363600--363623 & $H_\text{T}$-sliced $W\to e\nu$    \\
+    363648--363671 & $H_\text{T}$-sliced $W\to\tau\nu$  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description for $H_\text{T}$-sliced and $N_\text{parton}$-sliced $V$+jets:}
+
+QCD $V$+jets production was simulated with \MGNLO[2.2.2]~\cite{Alwall:2014hca}, 
+using LO-accurate matrix elements (ME) with up to four final-state partons. 
+The ME calculation employed the \NNPDF[3.0nlo] set of PDFs~\cite{Ball:2014uwa} 
+($H_\text{T}$-sliced) / \NNPDF[2.3lo] set of PDFs~\cite{Ball:2012cx} ($N_\text{parton}$-sliced). 
+Events were interfaced to \PYTHIA[8.186]~\cite{Sjostrand:2007gs} for the modelling
+of the parton shower, hadronisation, and  underlying event. The overlap between
+matrix element and parton shower emissions was removed using the CKKW-L
+merging procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx}. The A14 
+tune~\cite{ATL-PHYS-PUB-2014-021} of \PYTHIA[8] was used with the
+\NNPDF[2.3lo] PDF set~\cite{Ball:2012cx}. 
+The decays of bottom and charm
+hadrons were performed by \EVTGEN[1.2.0]~\cite{Lange:2001uf}.
+The $V$+jets samples were normalised to a next-to-next-to-leading-order (NNLO) 
+prediction~\cite{Anastasiou:2003ds}.
+ 
+
+\paragraph{$H_\text{T}$-sliced long description:}
+
+QCD $V$+jets production was simulated with LO-accurate matrix elements (ME) 
+for up to four partons with \MGNLO[2.2.2]~\cite{Alwall:2014hca}. The ME calculation was interfaced with
+\PYTHIA[8.186]~\cite{Sjostrand:2007gs} for the modelling of the parton
+shower, hadronisation, and underlying event. To remove overlap between the matrix
+element and the parton shower the CKKW-L merging
+procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx} was applied with a
+merging scale of 30~\GeV{} and a jet-clustering radius parameter of
+$0.2$. In order to better model the region of large jet \pt, the
+strong coupling constant \alphas was evaluated at the scale of each splitting to
+determine the weight. The matrix element calculation was performed with
+the \NNPDF[3.0nlo] PDF set~\cite{Ball:2014uwa} with $\alphas= 0.118$. The calculation was done
+in the five-flavour number scheme with massless $b$- and
+$c$-quarks. Quark masses were reinstated in the \PYTHIA[8] parton shower. 
+The renormalisation and factorisation scales were set to the \MADGRAPH default
+values, based on a clustering of the event. The A14
+tune~\cite{ATL-PHYS-PUB-2014-021} of \PYTHIA[8] was used with the
+\NNPDF[2.3lo] PDF set~\cite{Ball:2012cx} with $\alphas=0.13$.  
+The decays of bottom and charm hadrons were performed by \EVTGEN[1.2.0]~\cite{Lange:2001uf}.
+
+
+\paragraph{$N_\text{parton}$-sliced long description:}
+
+QCD $V$+jets production was simulated with LO-accurate matrix elements (ME) for up to four partons with 
+\MGNLO[2.2.2]~\cite{Alwall:2014hca}. The ME calculation was interfaced 
+with \PYTHIA[8.186]~\cite{Sjostrand:2007gs} for the modelling of the parton
+shower and underlying event. To remove overlap between the matrix
+element and the parton shower the CKKW-L merging
+procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx} was applied with a
+merging scale of 30~\GeV{} and a jet-clustering radius parameter of
+$0.4$. In order to better model the region of large jet \pt, the
+strong coupling constant \alphas was evaluated at the scale of each splitting to
+determine the weight. The matrix element calculation was performed with
+the \NNPDF[2.3lo] PDF set~\cite{Ball:2012cx} with $\alphas= 0.13$. The calculation was done
+in the five-flavour number scheme with massless $b$- and
+$c$-quarks. Quark masses were reinstated in the \PYTHIA[8] parton shower. 
+The renormalisation and factorisation scales were set to the \MADGRAPH default
+values, based on a clustering of the event. The A14 tune~\cite{ATL-PHYS-PUB-2014-021} 
+of \PYTHIA[8] was used with the \NNPDF[2.3lo] PDF set~\cite{Ball:2012cx} with $\alphas=0.13$.  
+The decays of bottom and charm hadrons were performed by \EVTGEN[1.2.0]~\cite{Lange:2001uf}.
+
+% No usable aMC@NLO \FXFX samples exist in ATLAS central production, therefore
+% the description is commented out to avoid confusion
+
+%% \subsection{\MGNLO (\FXFX)}
+%% \label{sec:vjets-mg5-fxfx}
+
+%% \begin{table}[!htbp]
+%% \caption{Samples with \MGNLOPYTHIA[8] using CKKW-L merging.}%
+%% \label{tab:mg5-fxfx}
+%% \centering
+%% \begin{tabular}{l l}
+%% \toprule
+%% DSID range & Description \\
+%% \midrule
+%% 999999-888888 & V+jets HT-sliced\\
+%% \bottomrule
+%% \end{tabular}
+%% \end{center}
+%% \end{table}
+
+%% Samples have also been generated using the \MGNLO program to 
+%% generate matrix elements for $V$ + 0, 1 and 2 partons at NLO accuracy. 
+%% The showering and subsequent hadronisation has been performed using \PYTHIA[8.210] with the A14 tune, using the \NNPDF[2.3lo]
+%% PDF set with $\alphas = 0.13$.
+%% The different jet multiplicities are merged using the 
+%% \FXFX prescription~\cite{Frederix:2012ps} implemented in the \MGNLO program 
+%% (version 2.3.3 is used here). 
+
+%% \MGNLO performs a 5FNS calculation with massless $b$- and $c$-quarks in the matrix element, and massive quarks in the
+%% \PYTHIA shower.
+%% The PDF input set in use for event generation is \NNPDF[2.3nlo] PDF set with $\alphas = 0.119$ 
+%% and the samples have been generated with additional weights for the PDF replicas as well as scale variations of 
+%% the renormalisation and the factorisation scales~\cite{Frederix:2011ss}.
+
+%% The impact of various merging scales (\muQ) has been studied,
+%% analysing three different values: 20\,\GeV\ (down variation), 25\,\GeV\ (nominal value) and 50\,\GeV\ (up variation).
+%% At the event-generation level, the minimum jet transverse momentum, $\pT^j$ is required to be at least 
+%% 8\,\GeV\ with no restriction on the absolute value of the jet pseudorapidity (jet $|\eta|$).
+%% %The cut on the $\pT^j$ should be at least half the value used for the merging scale,
+%% %in order to not introduce any bias in the MC generation.
+%% The samples have been generated using LHAPDF-6.1.5~\cite{Butterworth:2014efa} and FastJet-3.1.0~\cite{Cacciari:2006sm}.
+
+
+\subsection[Inclusive Powheg $V$]{Inclusive \POWHEG $V$}
+%\label{sec:v-powheg}
+
+The descriptions below correspond to the samples in Table~\ref{tab:v-powheg}.
+
+\begin{table}[!htbp]
+  \caption{Inclusive $V$ samples with \POWHEG.}%
+  \label{tab:v-powheg}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    361100--361108    & $W^+,W^-,Z/\gamma^\ast$ with $e,\mu,\tau$ decays\\
+    301000--301178, 344722    & high-mass slices: $W^+,W^-,Z$ with $e,\mu,\tau$ decays \\
+    361664--361669 & $Z/\gamma^\ast$ low-mass slices ($m=6$--10--60~\GeV)\\
+    426335--426336 & $Z/\gamma^\ast$ high-$p_{\text{T},\ell\ell} > 150$~\GeV\ slices \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The \POWHEGBOX[v1] MC generator~\cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd,Alioli:2008gx}
+was used for the simulation at NLO accuracy of the hard-scattering processes of $W$
+and $Z$ boson production and decay in the electron, muon, and $\tau$-lepton
+channels. It was interfaced to \PYTHIA[8.186]~\cite{Sjostrand:2007gs}
+for the modelling of the parton shower, hadronisation, and underlying
+event, with parameters set according to the \AZNLO
+tune~\cite{STDM-2012-23}. The \CT[10nlo] PDF set~\cite{Lai:2010vv} was used
+for the hard-scattering processes, whereas the \CTEQ[6L1] PDF
+set~\cite{Pumplin:2002vw} was used for the parton shower. The effect of
+QED final-state radiation was simulated with \PHOTOSpp[3.52]~\cite{Golonka:2005pn,Davidson:2010ew}. 
+The \EVTGEN[1.2.0] program~\cite{Lange:2001uf} was used to decay bottom and charm hadrons.
+
+% No usable \POWHEG \MINLO samples exist in ATLAS central production, therefore
+% the description is commented out to avoid confusion
+
+%% \subsection{\POWHEG \MINLO}
+%% \label{sec:vjets-minlo}
+
+%% Predictions from \POWHEG \MINLO~\cite{Alioli:2010xd,Hamilton:2012np,Hamilton:2012rf} 
+%% interfaced to \PYTHIA[8.210]~\cite{Sjostrand:2007gs} with the
+%% AZNLO tune~\cite{STDM-2012-23} are obtained to produce
+%% $V$+jets events, and will be referred to in the remainder of the note
+%% as \POWHEG \MINLO+\PYTHIA[8]. The \EVTGEN[1.2.0] program~\cite{Lange:2001uf}
+%% is used as an afterburner to better simulate the decays of bottom and charm hadrons.
+%% The \PHOTOSpp[3.61] program~\cite{Golonka:2005pn,Davidson:2010ew} is interfaced to \PYTHIA to accurately 
+%% describe the QED final state radiation, and the emission of lepton pairs is activated in this setup.
+%% The PDF set used in \POWHEG is \CT[14nnlo]~\cite{Dulat:2015mca} whereas the PDF set used in the parton shower 
+%% is the \CTEQ[6L1]~\cite{Pumplin:2002vw} leading order set.
+
+%% \POWHEG \MINLO is an improvement of the CKKW matching procedure to reach NLO accuracy for 
+%% boson production in association one jet, and smoothly
+%% merges to NLO single boson production at low boson \pt, using no external merging scale.
+%% NLO contributions from the CKKW Sudakov form factors are subtracted to the virtual corrections provided by \POWHEGBOX.
+%% Thanks to the optimal scale and to the Sudakov form factors, the
+%% \POWHEG \MINLO samples do not need any Born suppression cut, and their cross-sections are well-behaved at small boson \pt,
+%% contrary to fixed order predictions that diverge in this kinematic phase space.

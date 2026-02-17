@@ -1,0 +1,129 @@
+%-------------------------------------------------------------------------------
+% List of contributions to an ATLAS analysis.
+% This package requires hyperref to be loaded.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlascontribute}[2021/08/20 v11.6.0 ATLAS analysis contributions]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=ACTR,
+  prefix=ACTR@
+}
+\DeclareBoolOption[false]{xtab}
+\DeclareBoolOption[false]{longtable}
+\DeclareBoolOption[true]{authblk}
+\ProcessKeyvalOptions*
+
+% Use package xparse to process optional arguments.
+\RequirePackage{xparse}
+
+% \providecommand{\AtlasOrcid}[2]{\href{https://orcid.org/#2}{#1}}
+% Set up command for authors and ORCID
+\ProvideDocumentCommand \AtlasOrcid { o m } {%
+  \IfNoValueTF {#1} {%
+    #2%
+  }{%
+    \href{https://orcid.org/#1}{#2}%
+  }%
+}
+
+%\let\ifACTR@xtab\iffalse
+%\DeclareOption{xtab}{\let\ifACTR@xtab\iftrue}
+%\let\ifACTR@authblk\iftrue
+%\DeclareOption{noauthblk}{\let\ifACTR@authblk\iffalse}
+%
+%\ProcessOptions\relax
+
+% Include array package so \raggedright works
+\RequirePackage{array}
+% Include booktabs package to get a nicer table
+\RequirePackage{booktabs}
+
+% Include longtable or xtab package if necessary
+\ifthenelse{\boolean{ACTR@longtable}}{\RequirePackage{longtable}}{}
+\ifthenelse{\boolean{ACTR@xtab}}{\RequirePackage{xtab}}{}
+
+% If multiple authors/affiliations are needed, use the authblk package
+\ifthenelse{\boolean{ACTR@authblk}}{%
+  \RequirePackage{authblk}
+  \renewcommand\Authands{, } % avoid ``. and'' for last author
+  \renewcommand\Affilfont{\itshape\small} % affiliation formatting
+}{}
+
+% Analysis contributors: Name, Contributions
+\def\ACTR@Contributors{}
+\newcommand{\AtlasContributor}[2]{%
+  \g@addto@macro\ACTR@Contributors{%
+    #1 & #2 \tabularnewline
+  }
+}
+% \newcommand{\AtlasAuthorContributor}[3]{%
+%   \g@addto@macro\ACTR@Contributors{%
+%     #1 & #3 \tabularnewline
+%   }
+%   \author[#2]{#1}
+% }
+
+% Use xparse to process optional argument is ORCID
+\NewDocumentCommand \AtlasAuthorContributor { o m m m } {%
+  \IfNoValueTF {#1} {%
+    \g@addto@macro\ACTR@Contributors{%
+      #2 & #4 \tabularnewline
+    }%
+    \author[#3]{#2}%
+  }{%
+    \g@addto@macro\ACTR@Contributors{%
+      #2 & #4 \tabularnewline
+    }%
+    \author[#3]{\AtlasOrcid[#1]{#2}}%
+  }%
+}
+
+\newcommand*{\AtlasContributionsTitle}{List of contributions}
+
+\newcommand{\PrintAtlasContribute}[1]{%
+  \newlength{\ACTR@namewidth}
+  \newlength{\ACTR@linewidth}
+  \setlength{\ACTR@namewidth}{#1\linewidth}
+  \setlength{\ACTR@linewidth}{\linewidth}
+  \addtolength{\ACTR@linewidth}{-#1\linewidth}
+  \addtolength{\ACTR@linewidth}{-4\tabcolsep}
+  \section*{\AtlasContributionsTitle}
+  {\raggedright
+    \ifthenelse{\boolean{ACTR@longtable}}{%
+      \begin{longtable}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+        \toprule
+        \ACTR@Contributors
+        \bottomrule
+      \end{longtable}
+    }{%
+      \ifthenelse{\boolean{ACTR@xtab}}{%
+        \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+          \toprule
+          \ACTR@Contributors
+          \bottomrule
+        \end{xtabular}
+      }{%
+        \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+          \toprule
+          \ACTR@Contributors
+          \bottomrule
+        \end{tabular}
+      }
+    }
+  }
+}
+
+\endinput

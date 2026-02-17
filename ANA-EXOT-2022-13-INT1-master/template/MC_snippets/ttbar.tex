@@ -1,0 +1,391 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              ttbar                  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\ttbar production]{\ttbar production}
+\label{subsec:ttbar}
+
+This section describes the MC samples used for the modelling of \ttbar production.
+Section~\ref{subsubsec:ttbar_PP8} describes the \POWPY[8] samples,
+Section~\ref{subsubsec:ttbar_PH7} describes the \POWHER[7] samples,
+Section~\ref{subsubsec:ttbar_aMCP8} describes the \MGNLOPY[8] samples,
+and finally Section~\ref{subsubsec:ttbar_sherpa} describes the \SHERPA samples.
+
+The reference cross-section values are extracted from Ref.~\cite{LHCTopWGttbarXsec}.
+Studies of MC simulation performance including comparisons with unfolded data 
+are collected in the PUB notes~\cite{ATL-PHYS-PUB-2018-009,ATL-PHYS-PUB-2017-007,ATL-PHYS-PUB-2016-020}.
+
+\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\label{subsubsec:ttbar_PP8}
+
+\paragraph{Samples}
+%\label{par:ttbar_PP8_samples}
+
+The descriptions below correspond to the samples in Tables~\ref{tab:ttbar_PP8}, \ref{tab:ttbar_PP8_addRad} and \ref{tab:ttbar_PP8_hdampvar}.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttbar samples produced with \POWPY[8].
+    The \hdamp\ value is set to 1.5\,\mtop.}%
+  \label{tab:ttbar_PP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410470 & \ttbar non-all-hadronic \\
+    410471 & \ttbar dileptonic \\
+    410472 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \POWPY[8]
+    used to estimate initial-state radiation systematic uncertainties. 
+    The \hdamp value is set to 3.0\,\mtop.}%
+  \label{tab:ttbar_PP8_addRad}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410480 & \ttbar single lepton \\
+    410481 & \ttbar all-hadronic \\
+    410482 & \ttbar dileptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \POWPY[8] with alternative \hdamp values
+    which can be used to estimate the uncertainty due to the \POWPY[8] matching scheme.}%
+  \label{tab:ttbar_PP8_hdampvar}
+  \centering
+  \begin{tabular}{l l l l}
+    \toprule
+    DSID (1.3\,\mtop) & DSID (1.8\,\mtop) & DSID (2.0\,\mtop) & Description \\
+    \midrule
+    411350 & 411353 & 411356 & \ttbar single lepton \\
+    411351 & 411354 & 411357 & \ttbar all-hadronic \\
+    411352 & 411355 & 411358 & \ttbar dileptonic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \ttbar events was modelled using the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set
+and the \hdamp parameter\footnote{The
+  \hdamp parameter is a resummation damping factor and one of the
+  parameters that controls the matching of \POWHEG matrix elements to
+  the parton shower and thus effectively regulates the
+  high-\pt radiation against which the \ttbar system recoils.} set
+to 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.  The events were interfaced
+to \PYTHIA[8.230]~\cite{Sjostrand:2014zea} to model the parton shower,
+hadronisation, and underlying event, with parameters set according
+to the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and using the \NNPDF[2.3lo]
+set of PDFs~\cite{Ball:2012cx}. The decays of bottom and charm hadrons
+were performed by \EVTGEN[1.6.0]~\cite{Lange:2001uf}.
+
+\input{top_isrfsr_powpy_short}
+
+
+\paragraph{Long description:}
+
+The production of \ttbar events was modelled using the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator, which provided matrix elements at next-to-leading
+order~(NLO) in the strong coupling constant \alphas, and the
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). 
+The \hdamp parameter, which controls the matching in \POWHEG and
+effectively regulates the high-\pt\ radiation against which the
+\ttbar system recoils, was set to 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
+The functional form of the renormalisation and factorisation scales was
+set to the default scale $\sqrt{m_{\textrm{top}}^2 + p_{\textrm T}^2}$.
+The events were interfaced with
+\PYTHIA[8.230]~\cite{Sjostrand:2014zea} for the parton shower and
+hadronisation, using the A14 set of tuned
+parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo]
+set of PDFs~\cite{Ball:2012cx}.
+The decays of bottom and charm hadrons were simulated using the
+\EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+The \ttbar sample was normalised to the cross-section prediction at next-to-next-to-leading order (NNLO)
+in QCD including the resummation of next-to-next-to-leading logarithmic (NNLL) soft-gluon terms calculated using
+\TOPpp[2.0]~\cite{Beneke:2011mq,Cacciari:2011hy,Baernreuther:2012ws,Czakon:2012zr,Czakon:2012pz,Czakon:2013goa,Czakon:2011xx}.
+For proton--proton collisions at a centre-of-mass energy of \rts~=~\SI{13}{\TeV}, this cross-section corresponds to
+$\sigma(\ttbar)_{\textrm{NNLO+NNLL}} = \mathrm{832\pm51~fb}$ using a top-quark mass of $\mtop = 172.5\,\GeV$.
+The uncertainties in the cross-section due to the PDF and \alphas were calculated using the \PDFforLHC[15] prescription~\cite{Butterworth:2015oua}
+with the \MSTW[nnlo]~\cite{Martin:2009iq,Martin:2009bu}, \CT[10nnlo]~\cite{Lai:2010vv,Gao:2013xoa} 
+and \NNPDF[2.3lo]~\cite{Ball:2012cx} PDF sets in the five-flavour scheme, and were added in quadrature to the effect of the scale uncertainty.
+
+\input{top_isrfsr_powpy_long}
+
+The \NNPDF[3.0lo] replicas were used to evaluate the PDF uncertainties for the nominal PDF.
+In addition, the central value of this PDF was compared with the central values of the 
+\CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
+
+
+\subsubsection[Powheg+Herwig7.04]{\POWHER[7.04]}
+\label{subsubsec:ttbar_PH7}
+
+\paragraph{Samples}
+%\label{par:ttbar_PH7_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttbar_PH7}.
+
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \POWHER[7].}%
+  \label{tab:ttbar_PH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410557 & \ttbar single lepton  \\
+    410558 & \ttbar dileptonic  \\
+    410559 & \ttbar all-hadronic  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated
+by comparing the nominal \ttbar sample with another event sample produced with the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator using the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). 
+Events in the latter sample were interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, 
+using the H7UE set of tuned parameters~\cite{Bellm:2015jjp} and the 
+\MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+\paragraph{Long description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated
+by comparing the nominal \ttbar sample with an event sample also produced with the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd} 
+generator but interfaced with \HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the H7UE set
+of tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}. 
+\POWHEGBOX provided matrix elements at next-to-leading order~(NLO) in the 
+strong coupling constant \alphas, and used the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} 
+parton distribution function~(PDF) and an \hdamp parameter value of 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
+The functional form of the renormalisation and factorisation scales was
+set to the default scale $\sqrt{m_\text{top}^2 + \pt^2}$.
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+
+\subsubsection[Powheg+Herwig7.13]{\POWHER[7.13]}
+%\label{subsubsec:ttbar_PH713}
+
+\paragraph{Samples}
+%\label{par:ttbar_PH713_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttbar_PH713}.
+
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \POWHER[7.13].}%
+  \label{tab:ttbar_PH713}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    411233 & \ttbar single lepton  \\
+    411234 & \ttbar dileptonic  \\
+    411316 & \ttbar all-hadronic  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated
+by comparing the nominal \ttbar sample with another event sample produced with the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator using the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). 
+Events in the latter sample were interfaced with \HERWIG[7.13]~\cite{Bahr:2008pv,Bellm:2015jjp}, 
+using the \HERWIG[7.1] default set of tuned parameters~\cite{Bellm:2015jjp,Bellm:2017jjp} 
+and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+
+\paragraph{Long description:}
+
+The impact of using a different parton shower and hadronisation model was evaluated
+by comparing the nominal \ttbar sample with an event sample also produced with the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator but interfaced with \HERWIG[7.13]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the 
+\HERWIG[7.1] default set of tuned parameters~\cite{Bellm:2015jjp,Bellm:2017jjp} and the 
+\MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}. 
+\POWHEGBOX provided matrix elements at next-to-leading
+order~(NLO) in the strong coupling constant \alphas, and used the
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) and
+an \hdamp parameter value of 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
+The functional form of the renormalisation and factorisation scales was
+set to the default scale $\sqrt{m_{\textrm{top}}^2 + p_{\textrm T}^2}$.  
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:ttbar_aMCP8}
+
+\paragraph{Samples}
+%\label{par:ttbar_aMCP8_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttbar_aMCP8}.
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \MGNLOPY[8].}%
+  \label{tab:ttbar_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+  \toprule
+  DSID range & Description \\
+  \midrule
+  410464 & \ttbar single lepton \\
+  410465 & \ttbar dileptonic \\
+  410466 & \ttbar all-hadronic \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+To assess the uncertainty in the matching of NLO matrix elements to the
+parton shower, the \POWHEG sample was compared with a sample of events
+generated with \MGNLO[2.6.0] interfaced with
+\PYTHIA[8.230]~\cite{Sjostrand:2014zea}. The \MGNLO calculation used the
+\NNPDF[3.0nlo] set of PDFs~\cite{Ball:2014uwa} and \PYTHIA[8] used
+the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and
+the \NNPDF[2.3lo] set of PDFs~\cite{Ball:2012cx}.
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+\paragraph{Long description:}
+
+To assess the uncertainty due to the choice of matching scheme,
+the \POWHEG sample was compared with a sample generated by 
+\MGNLOPY[8]. For the calculation of the hard-scattering,
+\MGNLO[2.6.0] with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set was
+used. The events were interfaced with
+\PYTHIA[8.230]~\cite{Sjostrand:2014zea}, using the A14 set of tuned
+parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] set of PDFs~\cite{Ball:2012cx}.
+Top quarks were decayed at LO using
+\MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve spin
+correlations. The decays of bottom and charm hadrons were simulated
+using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.  The parton-shower starting
+scale had the functional form $\muQ = H_{\mathrm T}/2$~\cite{ATL-PHYS-PUB-2017-007}, 
+where $H_{\mathrm T}$ is defined as the scalar sum of the \pT of all outgoing partons.  
+The renormalisation and factorisation scale choice was the same as for the
+\POWHEGBOX set-up.
+
+\subsubsection[MadGraph5\_aMC@NLO+Herwig7.13]{\MGNLOHER[7.13]}
+%\label{subsubsec:ttbar_aMCH713}
+
+\paragraph{Samples}
+%\label{par:ttbar_aMCH713_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttbar_aMCH713}.
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \MGNLOHER[7.13].}%
+  \label{tab:ttbar_aMCH713}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    412116 & \ttbar single lepton \\
+    412117 & \ttbar dileptonic \\
+    412175 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+To assess the uncertainty in the matching of NLO matrix elements to the
+parton shower, a sample produced with the
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator was compared with a sample generated with \MGNLO[2.6.0], both using the 
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) and interfaced with
+\HERWIG[7.13]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the \HERWIG[7.1] default set of 
+tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
+The decays of bottom and charm hadrons
+were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+
+\paragraph{Long description:}
+
+To assess the uncertainty in the matching of NLO matrix elements to the parton shower, 
+a \POWHEG sample was compared with a sample generated by \MGNLO. 
+The first sample was produced with the same hard-scatter set-up as the nominal sample using the 
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+generator, which provided matrix elements at next-to-leading
+order~(NLO) in the strong coupling constant \alphas, with the
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) and
+the \hdamp parameter set to 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
+The functional form of the renormalisation and factorisation scales was
+set to the default scale $\sqrt{m_{\textrm{top}}^2 + p_{\textrm T}^2}$.  
+The second sample used \MGNLO[2.6.0] with the 
+\NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set for the calculation of the hard-scattering.
+Top quarks were decayed at LO using
+\MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve spin
+correlations. The parton-shower starting
+scale had the functional form $\muQ = H_{\mathrm T}/2$~\cite{ATL-PHYS-PUB-2017-007}, 
+where $H_{\mathrm T}$ is defined
+as the scalar sum of the \pT of all outgoing partons.
+The events from both generators were interfaced with
+\HERWIG[7.13]~\cite{Bahr:2008pv,Bellm:2015jjp}, using the \HERWIG[7.1] default set
+of tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set
+\cite{Harland-Lang:2014zoa}.
+The renormalisation and factorisation scale choice in the \MGNLO set-up was the same as for the
+\POWHEGBOX set-up. The decays of bottom and charm hadrons were simulated
+using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf} in both set-ups.
+
+
+\subsubsection[Sherpa 2.2.1]{\SHERPA[2.2.1]}
+\label{subsubsec:ttbar_sherpa}
+
+\paragraph{Samples}
+%\label{par:ttbar_sherpa_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttbar_sherpa}.
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \SHERPA[2.2.1].}%
+  \label{tab:ttbar_sherpa}
+  \centering
+  \begin{tabular}{l l}
+  \toprule
+  DSID range & Description \\
+  \midrule
+  410249 & \ttbar all-hadronic  \\
+  410250 & \ttbar single lepton  \\
+  410251 & \ttbar single lepton  \\
+  410252 & \ttbar dileptonic  \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Additional samples of \ttbar events were produced with the
+\SHERPA[2.2.1]~\cite{Bothmann:2019yzt} generator using NLO-accurate
+matrix elements for up to one additional parton, and LO-accurate
+matrix elements for up to four additional partons calculated with the
+Comix~\cite{Gleisberg:2008fv} and
+\OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg} libraries. They were
+matched with the \SHERPA parton shower~\cite{Schumann:2007mg} using
+the \MEPSatNLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}
+and the set of tuned parameters developed by the \SHERPA authors
+to match the \NNPDF[3.0nnlo] set of PDFs~\cite{Ball:2014uwa}.
+
+\textbf{Additional information}: The central scale had the functional
+form $\mu^{2} = m_{\text{top}}^{2} + 0.5\times(p_{\mathrm{T},t}^{2} +
+p_{\mathrm{T},\bar{t}}^{2})$. The CKKW matching scale of the
+additional emissions was set to 30\,\GeV.

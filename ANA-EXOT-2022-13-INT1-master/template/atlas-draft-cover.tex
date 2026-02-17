@@ -1,0 +1,102 @@
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
+%-------------------------------------------------------------------------------
+\documentclass[a4paper]{article}
+%-----------------------------------------------------------------------
+% Creates a standard ATLAS cover page for use during ATLAS circulation.
+% During the ATLAS editorial process you usually add the atlascover package
+% to append a cover page used to track the editorial details.
+% This file is for the case that you have to make the cover page separately.
+% You can also use the class latex/atlasdoc.
+% In this case you may need to specify the TeX Live version.
+%-----------------------------------------------------------------------
+
+\usepackage[centering,scale=0.75]{geometry}
+% Either use atlaspackage or specify packages explicitly.
+% \usepackage[minimal, biblatex=false]{atlaspackage}
+\usepackage{graphicx}
+
+% Need option coverpage to produce a cover.
+% Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft.
+\usepackage[coverpage]{atlascover}
+% \usepackage[CONF,coverpage]{atlascover}
+
+% hyperref is included in atlascover. Set options here if atlaspackage is not included.
+\hypersetup{colorlinks,breaklinks}
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+\hypersetup{pdftitle={ATLAS draft cover},pdfauthor={The ATLAS Collaboration}}
+
+% Package for creating list of authors and contributors to the analysis.
+% The file atlas-document-metadata.tex includes atlascontribute also.
+\usepackage{atlascontribute}
+
+% Paths for figures.
+\graphicspath{{logos/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Take information from the metadata file you have for your document,
+% \input{mydocument-metadata}
+
+% or specify all information in this document.
+% The paper title
+\AtlasTitle{Sample ATLAS Draft Cover Page}
+
+% Internal ATLAS number, to help ATLAS members to locate the paper.
+\AtlasRefCode{GROUP-2021-YY}
+
+% Paper draft version
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+\AtlasVersion{1.0}
+
+% Submission journal
+\AtlasJournal{Phys.\ Lett.\ B.}
+
+% Abstract
+\AtlasAbstract{ %
+  This is the abstract for this paper.
+  We looked hard for new physics from 2010 to 2014 and did not find anything unexpected.
+  We have continued to look very hard for new physics from 2015 onwards,
+  with increased energy and the luminosity; hopefully we find it.
+}
+
+% Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option),
+\AtlasCoverSupportingNote{Short title note 1}{https://cds.cern.ch/record/XXXXXXX}
+\AtlasCoverSupportingNote{Short title note 2}{https://cds.cern.ch/record/YYYYYYY}
+%
+% OR (the 2nd option is deprecated, especially for CONF and PUB notes).
+%
+% Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
+% \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+
+% Comment deadline
+\AtlasCoverCommentsDeadline{1 April 2021}
+
+% Analysis team members - contact editors should no longer be specified,
+% as there is a generic email list name for the editors.
+\AtlasCoverAnalysisTeam{Peter~Analyser, Anne~Editor1, Jane~Editor2, Alphonse~Physicien}
+
+% Editorial Board Members - indicate the Chair by a (chair) after his/her name.
+% Give either all members at once (then they appear on one line), or separately.
+% \AtlasCoverEdBoardMember{EdBoard~Chair~(chair), EB~Member~1, EB~Member~2, EB~Member~3}
+\AtlasCoverEdBoardMember{EdBoard~Chair~(chair)}
+\AtlasCoverEdBoardMember{EB~Member~1}
+\AtlasCoverEdBoardMember{EB~Member~2}
+\AtlasCoverEdBoardMember{EB~Member~3}
+
+% A PUB note has readers and not an EdBoard - give their names here (one line or several entries).
+\AtlasCoverReaderMember{Reader~1, Reader~2}
+% \AtlasCoverReaderMember{Reader~1}
+% \AtlasCoverReaderMember{Reader~2}
+
+% Editors egroup
+\AtlasCoverEgroupEditors{atlas-\AtlasRefCode-editors@cern.ch}
+
+% EdBoard egroup
+\AtlasCoverEgroupEdBoard{atlas-\AtlasRefCode-editorial-board@cern.ch}
+
+\begin{document}
+% Blank document, as only the cover page is created.
+\end{document}

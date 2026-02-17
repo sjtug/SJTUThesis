@@ -1,0 +1,72 @@
+%-------------------------------------------------------------------------------
+% Other definitions that used to be in atlasphysics.sty.
+% Include with other option in atlasphysics.sty.
+% Not included by default.
+% Also needs atlasmisc.sty (option misc) and
+% Also needs atlasparticle.sty (option particle).
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+\chardef\letterchar=11
+\chardef\otherchar=12
+\chardef\eolinechar=5
+
+\newcommand*{\etpt}{\ensuremath{1/p_{\text{T}} - 1/E_{\text{T}}}\xspace}
+\newcommand*{\etptsig}{\ensuremath{(1/p_{\text{T}} - 1/E_{\text{T}})/(\sigma(1/p_{\text{T}}))}\xspace}
+\newcommand*{\begL}{\ensuremath{\SI{E31}{\per\cm\squared\per\second}}\xspace}
+\newcommand*{\lowL}{\ensuremath{\SI{E33}{\per\cm\squared\per\second}}\xspace}
+\newcommand*{\highL}{\ensuremath{\SI{E34}{\per\cm\squared\per\second}}\xspace}
+
+\newcommand*{\Epsb}{\ensuremath{\epsilon_{b}}\xspace}
+\newcommand*{\Epsc}{\ensuremath{\epsilon_{c}}\xspace} % Subscript italic not roman (EE)
+
+% Conflicts with \mA in siunitx version 1
+\providecommand*{\mA}{\ensuremath{m_{A}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  sin2thetaW m_W m_Z etc.                                           |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+\newcommand*{\Mtau}{\ensuremath{m_{\tau}}\xspace}
+\newcommand*{\swsq}{\ensuremath{\sin^2\!\theta_{\text{W}}}\xspace}
+\newcommand*{\swel}{\ensuremath{\sin^2\!\theta_{\text{eff}}^{\text{lept}}}\xspace}
+\newcommand*{\swsqb}{\ensuremath{\sin^2\!\overline{\theta}_{\text{W}}}\xspace}
+\newcommand*{\swsqon}{\ensuremath{\swsq\equiv 1-\mW^2/\mZ^2}\xspace}
+\newcommand*{\gv}{\ensuremath{g_{\text{V}}}\xspace}
+\newcommand*{\ga}{\ensuremath{g_{\text{A}}}\xspace}
+\newcommand*{\gvbar}{\ensuremath{\bar{g}_\text{V}}\xspace}
+\newcommand*{\gabar}{\ensuremath{\bar{g}_\text{A}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  Useful Z0 type stuff    Gammas, asymmetries                       |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+\newcommand*{\Zzv}{\ensuremath{Z^{\textstyle *}}\xspace}
+\newcommand*{\Abb}{\ensuremath{A_{\bbbar}}\xspace}
+\newcommand*{\Acc}{\ensuremath{A_{\ccbar}}\xspace}
+\newcommand*{\Aqq}{\ensuremath{A_{\qqbar}}\xspace}
+\newcommand*{\Afb}{\ensuremath{A_{{\text{FB}}}}\xspace}
+\newcommand*{\GZ}{\ensuremath{\Gamma_{Z}}\xspace}
+\newcommand*{\GW}{\ensuremath{\Gamma_{W}}\xspace}
+\newcommand*{\GH}{\ensuremath{\Gamma_{H}}\xspace}
+\newcommand*{\GamHad}{\ensuremath{\Gamma_{\text{had}}}\xspace}
+\newcommand*{\Gbb}{\ensuremath{\Gamma_{\bbbar}}\xspace}
+\newcommand*{\Rbb}{\ensuremath{R_{\bbbar}}\xspace}
+\newcommand*{\Gcc}{\ensuremath{\Gamma_{\ccbar}}\xspace}
+\newcommand*{\Gvis}{\ensuremath{\Gamma_{\text{vis}}}\xspace}
+\newcommand*{\Ginv}{\ensuremath{\Gamma_{\text{inv}}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  Notation for the P-lines: \nspj211 -->  2 1P1, etc.               |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+\def\nsPj#1#2#3{\ensuremath{#1\,^{#2}\!P_{#3}}}%
+\let\nspj=\nsPj
+\def\nsSj#1#2#3{\ensuremath{#1\,^{#2}\!S_{#3}}}%
+\let\nssj=\nsSj

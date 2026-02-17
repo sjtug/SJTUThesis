@@ -1,0 +1,71 @@
+%
+The MVA discriminant distributions from each of the regions considered are combined to test for the presence of a signal.
+%Ten bins are used in the 2bex and 3bex regions, while only a single bin in the $\geq$4b regions. 
+The statistical analysis is based on a binned likelihood function ${\cal L}(\mu,\theta)$ constructed as
+a product of Poisson probability terms over all bins considered in the analysis:
+
+\begin{eqnarray}
+    L\left(\vec{n}|\mu, \vec{\theta}\right) = \prod_{r \in \text{region}}\prod_{i\in \text{bin}} \text{Pois}\left(n_{i,r}|\mu S_{i,r}(\vec{\theta}) + B_{i,r}(\vec{\theta})\right)\times\prod_{j\in \text{NP}}G\left(\theta_j\right),
+\label{eq:Likelihood}
+\end{eqnarray}
+
+\noindent where $\vec{n}$ represents the data vector, with $n_{i,r}$ representing data yields in the bin $i$ and region $r$.
+$\vec{\theta}$ denotes the NPs, that affect the number of signal events $S_{i,r}$ as well as the number of background events $B_{i,r}$ in the bin $i$ and region $r$. Finally, $\mu$ is the signal strength, which is the parameter of interest in the likelihood and it represents the ratio of the measured over reference cross section $\sigma_{4t}^{BSM}=12$ fb$^{-1}$). The terms, Pois and $G$, represent the Poisson and Gaussian distributions, respectively. It is clear from Eq.~\ref{eq:Likelihood} that the NPs are constrained by the Gaussian term\footnote{For the \emph{gamma} terms, representing the MC statistical uncertainty, the constraint term is Poisson --- in Bayesian statistics this would result in Gamma function posterior distribution, hence the name.} while the normalisation parameters, $\vec{k}$ are unconstrained. The full form of the likelihood can be found in the \emph{HistFactory} reference~\cite{Cranmer:1456844}.
+
+The total number of expected events in a given bin depends on $\mu$ and
+$\theta$. The nuisance parameters $\theta$ adjust the expectations for signal and background
+according to the corresponding systematic uncertainties, and their fitted values correspond to the deviations from
+the nominal expectations that globally provide the best fit to the data.
+This procedure allows a reduction of the impact of systematic uncertainties on 
+the search sensitivity by taking advantage of the highly populated background-dominated channels included in the likelihood fit.
+It requires a good understanding of the systematic effects affecting the shapes of the discriminant distributions.
+Detailed validation studies of the fitting procedure have been performed using the simulation.
+To verify the improved background prediction, fits are performed under the background-only hypothesis.
+Differences between the data and the background prediction are also checked relative to the smaller post-fit uncertainties
+in kinematic variables other than the ones used in the fit.
+Statistical uncertainties in each bin of the discriminant distributions are also taken into account by dedicated parameters in the fit, referred to as ``$\gamma$ factors".
+In order to speed up the fit, systematic uncertainties that have very a small effect on normalisation or shape are pruned, per process and analysis channel. 
+The pruning algorithm removes systematic uncertainties that have a $\leq$0.5\% impact on normalisation or those that cause
+a negligibly small impact on the shape of the final discriminant (all bins are within 0.5\% of the nominal shape).
+
+The test statistic $q(\mu)$ is defined as the profile likelihood ratio: 
+$q(\mu) = -2\ln({\cal L}(\mu,\hat{\hat{\theta}}_\mu)/{\cal L}(\hat{\mu},\hat{\theta}))$,
+where $\hat{\mu}$ and $\hat{\theta}$ are the values of the parameters that
+maximise the likelihood function (with the constraint $0\leq \hat{\mu} \leq \mu$), and $\hat{\hat{\theta}}_\mu$ are the values of the
+nuisance parameters that maximise the likelihood function for a given value of $\mu$. 
+The test statistic $q(\mu)$ is implemented in the {\sc RooFit} package~\cite{Verkerke:2003ir,RooFitManual} and
+is used to measure the compatibility of the observed data with the background-only hypothesis (i.e. the discovery test)  
+setting $\mu=0$ in the profile likelihood ratio: $q(0) = -2\ln({\cal L}(0,\hat{\hat{\theta}}_0)/{\cal L}(\hat{\mu},\hat{\theta}))$.
+The actual statistical analysis package used is {\sc TRexFitter}~\cite{TRexFitterTwiki}, which makes use of the {\sc RooFit} and {\sc RooStats} packages.
+The $p$-value (referred to as $p_0$) representing the compatibility of the data with the background-only hypothesis is estimated by integrating
+the distribution of $q(0)$ from background-only pseudo-experiments, approximated using the asymptotic formulae given in Refs.~\cite{Cowan:2010js,ErratumCowan:2010js}, 
+above the observed value of $q(0)$. Some model dependence exists
+in the estimation of the $p_0$-value, as a given signal scenario needs to be assumed in the calculation of the denominator of $q(\mu)$, even 
+if the overall signal normalisation is left floating and fitted to data. The observed $p_0$-value is checked for each explored signal scenario.
+In the absence of any significant excess above the background expectation, upper limits on $\mu$ for each of the 
+signal scenarios considered are derived by using $q(\mu)$ in the CL$_{\rm{s}}$ method~\cite{Junk:1999kv,Read:2002hq}.
+For a given signal scenario, values of $\mu$ yielding CL$_{\rm{s}}$<0.05,  
+where CL$_{\rm{s}}$ is computed using the asymptotic  approximation~\cite{Cowan:2010js}, are excluded at $\geq$95\% CL.
+
+%a smoothing based on ROOT implementation\footnote{Implementation in ROOT {\tiny{$https://root.cern.ch/doc/v606/TH1\_8cxx\_source.html\#l06440$}}, \\
+%usage in TRexFitter {\tiny{$https://gitlab.cern.ch/TRExStats/TRExFitter/blob/master/Root/Common.C\#L444$}}} is applied before an histogram 
+%is translated into a likelihood function as needed in cases where the input histograms suffer from large statistical fluctuations; affected samples are V+jets. 
+
+The profile likelihood fit is performed in Signal Regions (SRs) and Control Regions (CRs). The single lepton(dilepton opposite sign) channel includes 6(4) SRs ang 6(5) CRs respectively.  The six signal regions for 1L are 9j4b, 9j$\ge5$b, $\ge10$j3bH, $\ge10$j3bL, $\ge10$j4b, $\ge10$j$\ge5$b while six control regions are 8j3bH, 8j3bL, 8j4b, 8j$\ge5$b, 9j3bH, 9j3bL. Similarly for dilepton opposite sign channel, four signal regions include 7j$\ge4$b, $\ge8$j3bL, $\ge8$j3bH, $\ge8$j$\ge4$b while five control regions include 6j3bH, 6j3bL, 6j$\ge4$b, 7j3bH, 7j3bL.
+
+
+
+
+%Once unblinded, fits are performed to data under the signal-plus-background hypothesis, where the
+%signal strength parameter, $\mu$, is the parameter of interest in the fit and is allowed to float freely, 
+%but is required to be the same in all fitted regions.  In order to study the expected behavior of the fit,
+%fits are also performed to the ``Asimov dataset'', defined as the sum of the total expected background,
+%although for some tests (e.g. the calibration of the signal strength parameter $\mu$), simulated 
+%signal assuming a given branching ratio can also be included on the Asimov dataset.
+%Normalisation of all backgrounds is determined from the fit simultaneously with the
+%$\mu$. Contributions from $\ttbar$, $W/Z$+jets production, single 
+%top, diboson, $t\bar{t}H$ and $t\bar{t}V$ backgrounds are constrained by the uncertainties 
+%of the respective theoretical calculations, the uncertainty in the 
+%luminosity, and the data themselves.  Statistical uncertainties in each bin of the discriminant 
+%distributions are taken into account by dedicated parameters in the fit. 
+

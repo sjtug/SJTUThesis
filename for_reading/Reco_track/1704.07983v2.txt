@@ -1,0 +1,2225 @@
+
+
+===== PAGE 1 =====
+EUROPEAN ORGANISA TION FOR NUCLEAR RESEARCH (CERN)
+Eur. Phys. J. C 77 (2017) 673
+DOI: 10.1140/epjc/s10052-017-5225-7
+CERN-EP-2017-045
+27th October 2017
+Performance of the ATLAS track reconstruction
+algorithms in dense environments in LHC Run 2
+The ATLAS Collaboration
+With the increase in energy of the Large Hadron Collider to a centre-of-mass energy of
+13 TeV for Run 2, events with dense environments, such as in the cores of high-energy jets,
+became a focus for new physics searches as well as measurements of the Standard Model.
+These environments are characterized by charged-particle separations of the order of the
+tracking detectors sensor granularity. Basic track quantities are compared between 3.2 fb −1
+of data collected by the ATLAS experiment and simulation of proton–proton collisions pro-
+ducing high-transverse-momentum jets at a centre-of-mass energy of 13 TeV. The impact
+of charged-particle separations and multiplicities on the track reconstruction performance
+is discussed. The track reconstruction e ﬃciency in the cores of jets with transverse mo-
+menta between 200 GeV and 1600 GeV is quantiﬁed using a novel, data-driven, method. The
+method uses the energy loss, d E/dx, to identify pixel clusters originating from two charged
+particles. Of the charged particles creating these clusters, the measured fraction that fail to
+be reconstructed is 0.061±0.006 (stat.)±0.014 (syst.) and 0.093±0.017 (stat.)±0.021 (syst.)
+for jet transverse momenta of 200–400 GeV and 1400–1600 GeV, respectively.
+c⃝ 2017 CERN for the beneﬁt of the ATLAS Collaboration.
+Reproduction of this article or parts of it is allowed as speciﬁed in the CC-BY-4.0 license.
+arXiv:1704.07983v2  [hep-ex]  26 Oct 2017
+
+===== PAGE 2 =====
+1 Introduction
+The Large Hadron Collider (LHC) entered a new energy regime in 2015, at the start of Run 2, with
+proton–proton collisions at a centre-of-mass energy of 13 TeV. Events with TeV-scale jets showering in
+the detectors, or τ-leptons and b-hadrons that pass through multiple active layers of material, now occur
+at high enough rates to be studied in detail. These signatures also occur in potential new physics scen-
+arios including massive new resonances decaying to highly boosted bosons or top quarks whose decay
+products are often reconstructed as a single jet [1]. In the cores of highly energetic hadronic jets and
+τ-leptons, the average separation between highly collimated charged particles is comparable to the gran-
+ularity of individual sensors of the inner detector. This can create confusion within the algorithms used
+to reconstruct charged-particle trajectories, or tracks. Therefore, without careful consideration, the track
+reconstruction eﬃciency in these dense environments is limited, resulting in di ﬃculties in identifying
+long-lived b-hadrons and hadronic τ-decays, or in calibrating the energy and mass of jets. To prevent
+losses in eﬃciency, to increase the possibility of discovering new phenomena and to allow more detailed
+measurements of the newly opened kinematic regime, a dedicated optimization for dense environments
+was performed and deployed in the ATLAS [2] reconstruction for the start of Run 2. This updated recon-
+struction provides superior physics performance, reduces the required computing resources, and is now
+the default used by ATLAS.
+This paper ﬁrst describes the ATLAS detector (Section 2). Then, a general overview of the track recon-
+struction algorithm (Section 3) is given, focusing on the performance of charged-particle reconstruction
+in dense environments at the start of Run 2. The data set utilized is described in Section 4. The qual-
+ity of the expected performance is evaluated in dedicated single-particle and dijet simulation samples
+(Section 5), and comparisons between simulation and data are performed in events with energetic jets.
+Extending these mainly Monte Carlo (MC) simulation-based studies, a fully data-driven method is intro-
+duced in Section 6 which probes the fraction of tracks lost in reconstruction, due to the high density and
+collimation of charged particles in high-transverse-momentum 1 (pT) jets. This is achieved by using the
+ionization energy loss (dE/dx) in the pixel detector.
+2 The ATLAS detector
+The ATLAS experiment, a multipurpose particle detector at the LHC, covers almost the entire solid angle
+around the collision point, and consists of an inner detector (ID) tracking system surrounded by a thin
+superconducting solenoid magnet producing a 2 T axial magnetic ﬁeld, electromagnetic and hadronic
+calorimeters, and a muon spectrometer incorporating three large toroid magnet assemblies.
+The ID, shown in Figure 1, provides position measurements for charged particles in the range|η|< 2.5 by
+combining information from three subdetectors. It consists of a cylindrical barrel region (full coverage
+for|η| ≲ 1.5) arranged around the beam pipe, and two end-caps. Disks in the end-cap region are placed
+perpendicular to the beam axis, covering 1 .5 <|η| < 2.5. Starting from the interaction point, the high-
+granularity silicon pixel detector segmented inr–φ and z (including the new innermost layer, the insertable
+1 ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector
+and the z-axis along the beam pipe. The x-axis points from the IP to the centre of the LHC ring, and the y-axis points
+upwards. Cylindrical coordinates ( r,φ ) are used in the transverse plane, φ being the azimuthal angle around the z-axis.
+The pseudorapidty is deﬁned in terms of the polar angle θ as η = − ln tan(θ/2). Angular distance is deﬁned as ∆R ≡√
+(∆η)2 + (∆φ)2.
+2
+
+===== PAGE 3 =====
+B-layer (IBL) [3] added for Run 2) covers the vertex region and typically provides four measurements per
+track. The IBL has a mean radius of 33 mm and a typical IBL pixel has a size of 50µm by 250µm in the
+transverse and longitudinal directions with a sensor thickness of 200 µm. For the remaining three layers
+of the pixel system, located at mean radii of 50.5, 88.5, and 122.5 mm respectively, a typical pixel has a
+size of 50 µm by 400 µm in the transverse and longitudinal directions with a thickness of 250 µm. The
+pixel layer at a radius of 50.5 mm is referred to as the B-layer in this paper. The coverage in the end-cap
+region is enhanced by three disks on either side of the interaction point. The pixel detectors measure the
+charge collected in each individual pixel using the time over threshold (ToT) [4]. ToT is the time the pulse
+exceeds a given threshold and is proportional to the deposited energy.
+Outside the pixel volume, the barrel of the silicon microstrip detector (SCT) consists of four double strip
+layers at radii of 299 mm to 514 mm, complemented by nine disks in each of the end-caps. A typical strip
+of a barrel SCT sensor has a length of 126 mm and a pitch of 80µm. On each layer, the strips are parallel
+to the beam direction on one side and at a stereo angle of 40 mrad on the other. The information from the
+two sides of each layer can be combined to provide an average of four three-dimensional measurements
+per track. The SCT sensors are connected to binary read-out chips, which do not provide information
+about the collected charge. The silicon detectors are complemented by the transition radiation tracker
+(TRT) [5], which extends track reconstruction radially up to a radius of 1082 mm for charged particles
+within|η| = 2.0 while providing r–φ information. The raw timing information from its straw tubes is
+translated into calibrated drift circles that are matched to track candidates reconstructed from the silicon
+detectors [5].
+Figure 1:
+Sketch of the barrel region of the ATLAS inner detector.
+The solenoid is surrounded by sampling calorimeters. Calorimetry is provided by three distinct detectors
+outside the ID volume. A lead /liquid-argon sampling electromagnetic calorimeter is split into barrel (|η|
+< 1.5) and end-cap (1.5 <|η| < 3.2) sections. A steel /scintillator-tile hadronic calorimeter covers the
+3
+
+===== PAGE 4 =====
+barrel region (|η| < 1.7) and two end-cap copper /liquid-argon sections extend to higher pseudorapidity
+(1.5 <|η| < 3.2). Finally, the forward region (3.1 <|η| < 4.9) is covered by a liquid-argon calorimeter
+with a copper (tungsten) absorber in the electromagnetic (hadronic) section. In the outermost part, air-
+core toroids provide the magnetic ﬁeld for the muon spectrometer. It consists of three layers of gaseous
+detectors: monitored drift tubes and cathode strip chambers for muon identiﬁcation and momentum meas-
+urements for|η|< 2.7, and resistive-plate and thin-gap chambers for online event selection up to|η| = 2.4.
+A two-level trigger system, custom hardware followed by a software-based level, is used for online event
+selection and to reduce the event rate to about 1 kHz for oﬄine reconstruction and storage.
+3 ATLAS track reconstruction
+The following provides an overview of primary-track reconstruction in the pixel and SCT detectors. After
+cluster creation, the primary-track reconstruction algorithm utilizes iterative track-ﬁnding seeded from
+combinations of silicon detector measurements, while additional methods are employed to recover non-
+prompt tracks. A staged pattern-recognition approach is used: a loose track candidate search, which
+allows a number of combinatorial track candidates, is followed by a stringent ambiguity-solver that com-
+pares and rates the individual tracks by assigning a relativetrack score to each track. This follows current
+approaches to track reconstruction ﬁrst introduced in Ref. [6]. Further details, including a description of
+TRT track extensions, can be found in Ref. [7].
+3.1 Clusterization
+Charged-particle reconstruction in the pixel and SCT detectors begins by assembling clusters from the
+raw measurements. A connected component analysis (CCA) [8] groups pixels and strips in a given
+sensor, where the deposited energy yields a charge above threshold, with a common edge or corner into
+clusters. From these clusters, three-dimensional measurements referred to as space-points are created.
+They represent the point where the charged particle traversed the active material of the ID. In the pixel
+detector, each cluster equates to one space-point, while in the SCT, clusters from both sides of a strip
+layer must be combined to obtain a three-dimensional measurement.
+The charge in a pixel sensor is often collected on multiple adjacent pixels. In the data set described in
+Section 4, the average size of pixel clusters in the barrel is about two pixels in ther−φ plane and from one
+to three pixels in the longitudinal direction increasing withη. The total charge is proportional to the path
+length in the sensor and thus dependent on the incident angle of the particle. The particle’s intersection
+point with the sensor is determined from the pixels contributing to the cluster using a linear approximation
+reﬁned with a charge interpolation technique [9]. In dense environments, the spatial separation between
+charged particles traversing the sensor is only a few pixels, and the CCA algorithm, at times, reconstructs
+only one cluster which includes energy deposits from multiple particles. Identifying such clusters reliably
+and quickly is paramount for an eﬃcient charged-particle reconstruction in dense environments.
+It is useful to introduce the several classes of clusters identiﬁed by either the "truth information", only
+available in simulation and referring to information at MC generator level, or reconstructed quantities in
+both collision data and MC simulation. Clusters created by charge deposits from one particle are called
+single-particle clusters. Clusters created by charge deposits from multiple particles are called merged
+clusters. These deﬁnitions rely on truth information and both cases are illustrated in Figure 2. Based on
+4
+
+===== PAGE 5 =====
+information available in the track reconstruction algorithm described below, clusters which are compatible
+with a merged cluster can be identiﬁed. These are labelled identiﬁed as merged . Ideally, all clusters
+identiﬁed as merged are, in fact, merged clusters, and all merged clusters are identiﬁed as merged.Shared
+clusters are those which are used in multiple reconstructed tracks but are not suﬃciently compatible with
+the properties of a merged cluster to be identiﬁed as merged by the reconstruction.Multiply used clusters
+- clusters used by multiple tracks - are either identiﬁed as merged or shared but not both.
+(a) Single-particle pixel clusters
+ (b) Merged pixel cluster
+Figure 2: Illustration of (a) single-particle pixel clusters on a pixel sensor and (b) a merged pixel cluster due to very
+collimated charged particles. Diﬀerent colours represent energy deposits from diﬀerent charged particles traversing
+the sensor and the particles trajectories are shown as arrows.
+3.2 Iterative combinatorial track ﬁnding
+Track seeds are formed from sets of three space-points. This approach maximizes the possible number
+of combinations while still allowing a ﬁrst crude momentum estimate. The impact parameters of a track
+seed, with respect to the centre of the interaction region, are estimated by assuming a perfect helical
+trajectory in a uniform magnetic ﬁeld.
+The purity, or fraction of seeds that result in good-quality tracks, varies signiﬁcantly depending on which
+subdetector(s) recorded the space-points used in the seed. Therefore, seed types are considered start-
+ing with SCT-only, then pixel-only and ﬁnally mixed-detector seeds, representing the order of purity. A
+number of criteria are placed on the seeds to maximize purity: ﬁrst and foremost seed-type-dependent
+momentum and impact parameter requirements. Also, the use of space-points in multiple seeds is care-
+fully controlled. Purity is further improved by requiring that one additional space-point is compatible
+with the particle’s trajectory estimated from the seed. A combinatorial Kalman ﬁlter [10] is then used to
+build track candidates from the chosen seeds by incorporating additional space-points from the remaining
+layers of the pixel and SCT detectors which are compatible with the preliminary trajectory. The ﬁlter
+creates multiple track candidates per seed if more than one compatible space-point extension exists on
+the same layer.
+These criteria result in a very high eﬃciency for reconstructing primary particles (for example, the muon
+reconstruction eﬃciency is greater than 99% [11]) and the removal of tracks created from purely ran-
+dom collections of space-points. Suppressing such purely combinatorial tracks is essential in order to
+5
+
+===== PAGE 6 =====
+remain within the available CPU budget for event reconstruction. From approximately 13 space-point
+combinations created for an isolated charged particle traversing the entire ID, the time-intensive com-
+binatorial Kalman ﬁlter is, on average, called in its entirety 1.1 times. As all realistic combinations of
+space-points have been made, there are a number of track candidates where space-points overlap, or have
+been incorrectly assigned. This necessitates an ambiguity-solving stage.
+3.3 Track candidates and ambiguity solving
+In the ambiguity solver, track candidates considered to create the reconstructed track collection are pro-
+cessed individually in descending order of a track score, favouring tracks with a higher score. This design
+relies on having an appropriate track score deﬁnition that puts tracks into an order that scores more highly
+the candidates likely to correctly represent the trajectory of a charged primary particle.
+The method used to determine the track score, discussed in the following, applies a robust approach
+based largely on simple measures of the track quality. Clusters assigned to a track increase the track
+score according to conﬁgurable weight fractions reﬂecting the intrinsic resolutions and expected cluster
+multiplicities in the di ﬀerent subdetectors. Holes 2 reduce the score. The χ2 of the track ﬁt is also con-
+sidered to penalize candidates with a poor ﬁt. Finally, the logarithm of the track momentum is considered
+to promote energetic tracks and suppress the larger number of tracks with incorrectly assigned clusters,
+which typically have a low pT.
+After the track scores have been calculated, the ambiguity solver deals with clusters assigned to multiple
+track candidates. Clusters compatible with multiple track candidates are a natural consequence of having
+merged clusters in dense environments. High reconstruction e ﬃciency is facilitated by the identiﬁcation
+of merged clusters, as explained in Section 3.4. However, shared clusters, clusters used in multiple track
+candidates which are not identiﬁed as merged, must be limited as they are a strong indicator of incorrect
+assignments.
+To count shared clusters, a track candidate is only compared to those tracks previously accepted by the
+ambiguity solver. Clusters can be shared by no more than two tracks, giving preference to tracks processed
+ﬁrst in the ambiguity solver. Also, a track can have no more than two shared clusters. A cluster is removed
+from a track candidate if it causes either the candidate or an accepted track to not meet the shared-cluster
+criterion. The track candidate is then scored again and returned to the ordered list of remaining candidates.
+Track candidates are rejected by the ambiguity solver if they fail to meet any of the following basic quality
+criteria:
+• pT > 400 MeV,
+• |η|< 2.5,
+• Minimum of 7 pixel and SCT clusters (12 are expected),
+• Maximum of either one shared pixel cluster or two shared SCT clusters on the same layer,
+• Not more than two holes in the combined pixel and SCT detectors,
+2 Holes are deﬁned as intersections of the reconstructed track trajectory with a sensitive detector element that does not contain
+a matching cluster. These are estimated by following closely the track trajectory and comparing, within the uncertainties, the
+intersected sensors with the clusters on the track. Inactive sensors or regions, such as edge areas on the silicon sensors, are
+excluded from the hole deﬁnition.
+6
+
+===== PAGE 7 =====
+• Not more than one hole in the pixel detector,
+• |dBL
+0 |< 2.0 mm,
+• |zBL
+0 sinθ|< 3.0 mm,
+where dBL
+0 is the transverse impact parameter calculated with respect to the measured beam-line position,
+zBL
+0 is the longitudinal diﬀerence along the beam line between the point where dBL
+0 is measured and the
+primary vertex3, and θ is the polar angle of the track. In the remainder of the paper, all studied tracks
+fulﬁl these requirement. A simpliﬁed ﬂow of track candidates through the ambiguity solver is shown in
+Figure 3.
+Calculate
+track scores
+and
+Reject tracks 
+with bad score
+Order tracks 
+according to score 
+(process from 
+highest to lowest)
+Input tracks
+Create 
+stripped-down 
+track candidate
+Accept track candidate
+or
+Reject track candidate , if
+ too many holes
+ too few clusters 
+ problematic pixel cluster(s)
+or
+Recover track candidate , if
+ too many shared clusters 
+(Neural network used to 
+identify merged clusters)
+Output tracks
+Rejected
+tracks
+Fit tracks fulfilling 
+minimum requirements
+(Neural network used to 
+predict cluster positions) 
+Figure 3:
+Sketch of the ﬂow of tracks through the ambiguity solver.
+3.4 Neural–network pixel clustering
+To aid the ambiguity solver and minimize the loss of e ﬃciency due to limitations on the number of
+shared clusters per track, an artiﬁcial neural network (NN) trained to identify merged clusters is used.
+The measured charge, which is proportional to the deposited energy, and relative position of pixels in
+the cluster can be used to identify merged clusters. Additional information about the particle’s incident
+angle, provided from the track candidate, signiﬁcantly improves the NN’s performance [13]. For merged
+clusters created by two charged particles, the NN identiﬁcation eﬃciency of this cluster as being created
+by two particles is about 90%. Merged clusters created by three charged particles are identiﬁed as such
+with an eﬃciency of 85%. Only a few percent of single particle clusters are incorrectly identiﬁed as a
+two-particle merged cluster and a negligible amount are identiﬁed as three-particle merged clusters. The
+NN is not able to distinguish clusters from exactly three and more than three charged particles. It is
+3 All events considered in this analysis are required to have at least one reconstructed primary vertex with at least two associated
+tracks [12]. Only tracks compatible with the primary vertex having the highest sum of the squared transverse momenta of its
+associated tracks are considered.
+7
+
+===== PAGE 8 =====
+not possible for the NN to separate the energy deposits of each charged particle in an identiﬁed merged
+cluster and subsequently divide it into multiple clusters. Unlike the Run-1 reconstruction algorithm [7],
+the NN is consulted only when a cluster is used in multiple track candidates largely mitigating the impact
+of misidentiﬁcation of merged clusters by the NN.
+The inherent randomness of charged-particle interactions with thin silicon layers prevents the NN from
+performing perfectly. For example, the emission of δ-rays causes diﬃculties as they can lead to bigger
+clusters and larger energy deposits than expected from a single particle. These ine ﬃciencies can be mit-
+igated by correlating information from consecutive layers of the pixel detector. In general, the separation
+between collimated charged particles increases as they travel outward through the ID. Therefore, if a pair
+of tracks uses a merged cluster on a given layer, then the inner layer is likely to contain a merged cluster
+as well. Furthermore, both clusters should be used by the same track candidates in this logic.
+In summary, a cluster can be identiﬁed as merged in two ways. Either it is used by multiple track candid-
+ates and the NN identiﬁes it as a merged cluster, or if two track candidates compete for clusters on two
+consecutive layers, the cluster on the inner layer is identiﬁed as merged if the cluster on the outer layer
+is identiﬁed as merged. Clusters identiﬁed as merged are used by the competing track candidates without
+penalty. Clusters which are not identiﬁed as merged, shared clusters, can still be used in multiple tracks
+but with the penalty described in Section 3.3.
+3.5 Track ﬁt
+For track candidates fulﬁling the requirements listed in Section 3.3, a high-resolution ﬁt is performed us-
+ing all available information. Fitted tracks which pass through the ambiguity solver without modiﬁcation
+are added to the ﬁnal track collection. Delaying the track ﬁt until this stage minimizes the number of
+times the ﬁtter is called, which is advantageous as it is a relatively CPU-intensive process.
+For the high-resolution track ﬁts, the position and uncertainty of each cluster is determined by additional
+NNs [13]. They predict the positions where the charged particles intersected the sensor based on the
+same input to the NN described in Section 3.4. The predicted number of charged particles which created
+the cluster determines the number of particle intersections the additional NNs predict. This decreases
+the discrepancy between the reconstructed cluster position and the cluster’s ﬁtted track position at the
+detector surface, especially for merged clusters, resulting in more precise track parameters.
+4 Data and Monte Carlo samples
+Data from proton–proton collisions at √s = 13 TeV, collected during 2015 and corresponding to an
+integrated luminosity of 3.2 fb−1, are used in this paper. Events are selected using triggers requiring a
+single jet above various pT thresholds. The minimum jet trigger pT threshold is 100 GeV. The numbers
+of events selected by the triggers were reduced by a factor depending on the instantaneous luminosity and
+the jet pT threshold. This suppresses the number of low-pT jets while keeping all events with at least one
+jet with pT > 450 GeV. Standard ATLAS data-quality requirements are applied to all data sets, ensuring
+all detectors were operational.
+The data are compared to a leading-order dijet MC sample generated with Pythia 8.186 [14] with the A14
+tuned parameter set [15] and the NNPDF2.3LO parton distribution function (PDF) set [16]. MC samples
+8
+
+===== PAGE 9 =====
+generated with Herwig++ 2.7.1 [17], and S herpa 2.1 [18] are also studied. For Herwig ++, the UEEE5
+tuned parameter set is used with the CTEQ6L1 PDF set [19] and for S herpa, parameters corresponding
+to the CT10 PDF set [20] are used. The ATLAS detector response is fully simulated [21] using the Geant
+4 framework [22]. The average number of proton–proton interactions per bunch crossing (pile-up) was
+approximately 15 during the 2015 data-taking period. The expected contribution from additional proton–
+proton interactions is accounted for by overlaying minimum-bias events simulated with P ythia 8. The
+MC samples are reweighted to match the distribution of the number of interactions per bunch crossing
+and then reweighted to the inclusive jet- pT spectrum observed in collision data. In dense environments,
+the impact of pile-up on the track reconstruction performance is small. The change in tracking eﬃciency
+considering only one interaction per bunch crossing to an average pile-up of 40 in the dijet MC sample
+for jets with a pT above 200 GeV is below 0.3%.
+In order to perform detailed simulation-based studies on event topologies with highly collimated particles,
+four large MC samples, with a single particle decaying into a set of nearby charged particles, are em-
+ployed. The initial particles have di ﬀerent lifetimes and decay multiplicities, and are generated with a
+uniform transverse momentum spectrum from 10 GeV to 1 TeV within |η| of 1.0. Topologies with two
+highly collimated tracks are studied in a simulated ρ → π+π− sample. Simulated decays of a single
+τ-lepton to three charged hadrons ( τ± → π+π−π±ντ) are used to study topologies with three charged
+particles. To study the performance in topologies with higher charged-particle multiplicities, two addi-
+tional samples are created; a sample containing all decays of a B0 into multiple particles and a τ-lepton
+decaying to a ﬁnal state including ﬁve charged hadrons.
+5 Track reconstruction performance in dense environments
+This section ﬁrst compares basic properties of tracks inside jets in data with those in simulated dijet
+samples (Section 5.2). Using truth-based quantities, Section 5.3 studies single-particle decays with col-
+limated decay products. These relatively simple topologies allow the behaviour of the track reconstruction
+to be studied as a function of the momentum of the initial particle, and the spatial separation between the
+tracks. Section 5.4 presents analogous results, but derived from a dijet MC sample of high-pT jets.
+5.1 Classiﬁcation
+In simulation, tracks are classiﬁed using a truth-matching probability. It is the ratio of the weighted
+number of measurements originating, at least in part, from the same simulated particle, to the weighted
+number of all measurements used in a track. A subdetector-speciﬁc weight of ten for measurements
+in the pixel detector, ﬁve for the SCT and one for the TRT is used. These weights reﬂect the average
+number of expected measurements in each subdetector. A properly reconstructed track is required to have
+a truth-matching probability above 0.5. Such a requirement is imposed for all reconstruction e ﬃciencies
+presented in this paper.
+Fake tracks are those which have a truth-matching probability below 0.5. Due to the careful pruning of
+seeds, the majority of reconstructed fake tracks are from the misallocation of clusters from other particles
+to a track and not purely random combinations of clusters. The track reconstruction procedure described
+in Section 3 results in a negligible number of fake tracks in dense environments. For jets with a pT above
+200 GeV in the dijet MC sample described in Section 4, the fraction of fake tracks is below 0.5%. From
+9
+
+===== PAGE 10 =====
+only one pp interaction per bunch crossing to an average pile-up of 40, this fraction increases by about
+0.5%, still making it negligible. Consequently, fake tracks are not discussed in further detail.
+Jets are reconstructed from topological clusters [23] of energy deposits in the calorimeter using the anti-kt
+algorithm [24] with a radius parameter R = 0.4 and are selected requiring a minimum jet pT of 200 GeV
+and|ηjet| < 2.5. Jets are corrected for the e ﬀects of non-compensating response in the calorimeter and
+inactive material by using energy- and η-dependent calibration factors, based on MC simulation and pp
+collision data. Additional corrections are applied to reduce the dependence of the jet energy measure-
+ment on the longitudinal and transverse structure of the jets and also to correct for jets that are not fully
+contained in the calorimeter [25].
+5.2 Data and MC simulation comparison
+This section gives an overview of basic properties of tracks inside jets. Data and MC simulation compar-
+isons establish fair agreement between the two.
+The average number of tracks per unit of angular area versus the angular distance from the jet axis in
+data and MC events is compared in Figure 4. The charged-particle density in jets increases linearly with
+the logarithm of the jet momentum, which reﬂects the average number of tracks inside the jet. Moreover,
+most tracks are located within an angular distance of 0.05 from the jet axis. Jets in data tend to have a
+slightly wider distribution of reconstructed charged particles than those in simulation.
+R(jet,trk)
+Δ0
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 dN/dA
+0
+100
+200
+300
+400
+500
+600
+700
+800
+ATLAS
+-1
+ = 13 TeV, 3.2 fbs < 2.5
+jetηPythia 8 A14 NNPDF
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 Data
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 
+Figure 4: The average number of primary tracks per unit of angular area as a function of the angular distance from
+the jet axis. Data (markers) and dijet MC (lines) samples are compared in bins of jet pT showing the high density
+in the cores of energetic jets.
+Due to the large number of collimated charged particles the number of multiply used clusters rises steeply
+at small distances to the jet axis. Figure 5 shows the number of pixel clusters that are identiﬁed as
+merged and the number of shared pixel clusters on the track for data and MC simulation versus the
+angular distance from the jet axis. The average number of shared pixel clusters remains relatively low
+compared to the number of clusters identiﬁed as merged, down to the smallest distances, because the
+reconstruction algorithm identiﬁes merged clusters with high e ﬃciency, and these consequently are not
+counted as shared. MC simulation and data show reasonable agreement in the individual bins of jetpT.
+Ineﬃciencies in the identiﬁcation and treatment of merged clusters aﬀect the number of IBL clusters on
+tracks in dense environments. Figure 6 shows the average number of IBL clusters on the track, for data
+10
+
+===== PAGE 11 =====
+R(jet,trk)
+Δ0
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 〉
+N Pixel Clusters Identified as Merged 〈 0 0.2
+0.4
+0.6
+0.8
+1
+1.2
+ATLAS -1
+ = 13 TeV, 3.2 fbs < 2.5
+jetηPythia 8 A14 NNPDF
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 Data
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 
+(a) Pixel clusters identiﬁed as merged
+R(jet,trk)
+Δ0
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 〉
+N Pixel Shared Clusters 〈 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+ATLAS
+-1
+ = 13 TeV, 3.2 fbs < 2.5
+jetηPythia 8 A14 NNPDF
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 Data
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 (b) Shared pixel clusters
+Figure 5: The average number of (a) pixel clusters identiﬁed as merged and (b) shared pixel clusters on primary
+tracks (with a production vertex before the IBL) are shown as a function of the angular distance of the track from the
+jet axis. Data (markers) and dijet MC (lines) samples are compared in bins of jet pT. The rise in both populations
+at small distances from the jet axis is expected due to the increasingly dense environment.
+and MC simulation versus the angular distance from the jet axis. For small distances the number of IBL
+clusters shows a drop, explained by a residual ine ﬃciency in assigning clusters to the appropriate track.
+MC simulation and data agree within expectations in each of the individual jetpT bins. The overall lower
+average number of IBL clusters on track in data is due to a not fully functional IBL detector module,
+which is not correctly considered in MC simulation.
+R(jet,trk)
+Δ0
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 〉
+N IBL Clusters 〈 0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ATLAS -1
+ = 13 TeV, 3.2 fbs < 2.5
+jetηPythia 8 A14 NNPDF
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 Data
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 
+Figure 6: The average number of IBL clusters on primary tracks (with a production vertex before the IBL) shown
+as a function of the angular distance of the track from the jet axis. Data (markers) and dijet MC (lines)) samples
+are compared in bins of jet pT showing a slight drop at small distances explained by a residual cluster-to-track
+assignment ineﬃciency.
+Although the SCT sensors are located at much higher radii than the pixel sensors, the expected number
+of shared clusters is considerably larger than for the pixels as shown in Figure 7. This is due to the
+coarser segmentation of the SCT strips in one dimension and the lack of charge information hindering
+the identiﬁcation of merged SCT clusters. The average number of shared SCT clusters decreases with
+11
+
+===== PAGE 12 =====
+the angular distance from the jet axis, correlated with the decrease in charged-particle density visible in
+Figure 4 for data and MC simulation. In the studied jet- pT range, the average number of SCT clusters on
+tracks is approximately 7.7 with little variation with respect to angular distances from the jet axis. The
+MC simulation agrees within expectations with data in the individual bins of jet pT.
+R(jet,trk)
+Δ0
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 〉
+N SCT Shared Clusters 〈 0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+ATLAS
+-1
+ = 13 TeV, 3.2 fbs < 2.5
+jetηPythia 8 A14 NNPDF
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 Data
+ < 1600 GeV
+jet
+T
+ p≤1400  < 1000 GeV
+jet
+T
+ p≤800  < 400 GeV
+jet
+T
+ p≤200 
+Figure 7: The average number of shared SCT clusters for primary tracks with a production vertex before the IBL
+is shown as a function of the angular distance of the track from the jet axis. Data (markers) and dijet MC (lines)
+samples are compared in bins of jet pT. Due to the lack of charge information and the coarse sensor dimensions,
+the clusters cannot be readily identiﬁed as merged.
+5.3 Performance for collimated tracks
+Quantities such as cluster assignment and track reconstruction e ﬃciencies can be studied using truth
+information from simulation to elucidate the track reconstruction behaviour in the presence of highly
+collimated charged particles. This section utilizes the single-particle samples described in Section 4. Fig-
+ure 8 shows how the minimum separation between charged particles at the IBL sensor surfaces evolves
+with the initial particle’s pT. For the same pT, the density of the decay products may diﬀer signiﬁcantly:
+the lighter the initial particle, or the higher the multiplicity of its decay products, the smaller the dis-
+tance. The degradation of the track reconstruction performance is mainly driven by the distance between
+charged particles and the charged-particle multiplicity in their vicinity. The results presented hereafter
+are therefore representative of the reconstruction performance in many physics processes, provided these
+parameters are known. Throughout this section, unless otherwise noted, it is required that all charged
+particles are created before the IBL (production radius smaller than 29 mm) in all ﬁgures shown.
+The average number of merged clusters is compared to the average number of clusters identiﬁed as merged
+in Figure 9 for the singleρ and three-prongτ samples. The average charged-particle separation decreases
+with increasing initial-particle pT leading to more merged pixel clusters as shown in the points labelled
+Ideal. The average numbers of both the merged clusters and the clusters identiﬁed as merged fall to zero
+at the lowest initial-particle pT, conﬁrming a low rate of false-positives. Both grow at a similar rate with
+increasing initial-particle pT. The residual ine ﬃciency of the pixel NN is apparent in a lower number
+of clusters identiﬁed as merged compared to the ideal number of merged clusters at high initial-particle
+pT. The reconstruction performance correlates directly with the multiplicity and distances at a given
+initial-particle pT shown in Figure 8.
+12
+
+===== PAGE 13 =====
+ [GeV]TpInitial Particle’s 
+0 200 400 600 800 1000
+ [mm]〉Distance to Nearest Particle〈
+2−10
+1−10
+1
+10
+ATLAS Simulation
+­π+π→ρ
+±π3τν→τ
+X→0B
+±5Xτν→τ
+Figure 8: A comparison of the average minimum distance between charged decay products at the IBL sensor
+surfaces as a function of initial particle’s pT for single-particle samples.
+ [GeV]Tp ρ
+0 200 400 600 800 1000
+〉N Identified as Merged Pixel Clusters〈 0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+ATLAS Simulation
+­π+π→ρ
+Ideal
+Reconstruction
+(a) ρ→π+π− sample
+ [GeV]Tp τ
+0 200 400 600 800 1000
+〉N Identified as Merged Pixel Clusters〈 0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+ATLAS Simulation
+±π3τν→τ
+Ideal
+Reconstruction (b) τ±→π+π−π±ντ sample
+Figure 9: A comparison of the average number of merged pixel clusters expected for truth particles from simulation
+and pixel clusters identiﬁed as merged used in reconstructed tracks is shown as a function of theρ and three-prong
+τ (τ→ π+π−π±ντ) transverse momentum. Ideal represents the true number of merged clusters, which would be
+obtained as the number of identiﬁed merged clusters in the case of perfect performance. It is required that the stable
+charged particles are created before the IBL.
+13
+
+===== PAGE 14 =====
+Merged clusters failing identiﬁcation can result in shared clusters, which (as explained in Section 3.3)
+need to be limited. To study possible ineﬃciencies of the reconstruction algorithm, the cluster assignment
+eﬃciency is shown in Figure 10 as a function of the minimum truth particle separation at the sensor’s
+surface for the ﬁrst two layers of the pixel detector. It is deﬁned as the fraction of clusters created by
+a particle that are then used on the reconstructed track of said particle. With the closest truth particle
+separated by 400 µm at the IBL, the cluster assignment e ﬃciency at this layer is in excess of 99% for
+the ρ and three-prong τ samples, and 98% for the B0 samples. When going to smaller separations,
+individual clusters start to merge and eventually only a single merged cluster remains. Since in the simpler
+topology ρ→ π+π− the cluster has to be assigned to a maximum of two tracks, the cluster assignment
+eﬃciency is 99% down to the smallest distances shown. In case of the B0 and three-prong τ decays,
+several daughter particles are likely to contribute to a merged cluster. The NN described in Section 3.4
+lacks the ability to distinguish between merged clusters from more than three particles and those from
+exactly three particles [13]. Also, the track reconstruction algorithm limits the number of tracks using
+the same cluster without penalties to three. As a result, at much smaller particle separations, the cluster
+assignment eﬃciency is limited in the B0 and three-prongτ samples. The case of more than three charged
+particles contributing to a pixel cluster in the B0 decay results in an additional assignment ineﬃciency on
+the B-layer.
+Regardless of how well the ambiguity solver identiﬁes merged pixel clusters and assigns them to tracks,
+a substantial ine ﬃciency remains at high initial-particle momenta due to the necessary limitations on
+shared SCT clusters. Figure 11 shows the reconstructable eﬃciency of the ρ and three-prong τ decays
+utilizing MC truth information. This is deﬁned as the eﬃciency to be able to reconstruct all of the charged
+decay products from a given resonance having satisﬁed the cluster multiplicity requirements deﬁned in
+Section 3.3. All merged pixel clusters are assumed to have been identiﬁed, so for a ﬁxed maximum
+number of allowed shared SCT clusters, this represents the maximum achievable reconstruction eﬃciency.
+The loss in eﬃciency is exacerbated by increasing charged-particle multiplicities as in the three-prong τ
+sample. This limit is ﬁxed at two shared clusters. The e ﬃciency improvement obtained from loosening
+this limit is not suﬃcient to justify the associated increase in the proportion of fake tracks. In simulated
+events with several jets, the inclusive number of fake tracks increases by 25% when loosening the limit
+to three shared clusters.
+Finally, the per-track reconstruction e ﬃciency is shown in Figure 12 as a function of particle pT and
+production radius. The production radius is deﬁned as the radial distance of the decay of the parent
+particle from the beam axis. The eﬃciency degrades with increased multiplicity. The visible ineﬃciency
+in all samples at low initial-particle pT is due to inelastic interactions, such as hadronic interactions. At
+higher transverse momentum of the initial particle, a decrease in e ﬃciency is driven by the increasingly
+collimated nature of the decay products. A decrease in eﬃciency is also seen with a increasing production
+radius as the charged particles arrive at each active layer with less average separation. The requirement
+on the total number of clusters for track reconstruction leads to discrete drops in eﬃciency at each active
+layer.
+5.4 Performance for tracks in jets
+In the previous sections, the performance in simple topologies is discussed. These samples are crucial for
+understanding the eﬀects of charged-particle separations and multiplicities on the performance, but they
+are insuﬃcient to quantify the expected performance in the dense jet environments evident in Figure 4.
+14
+
+===== PAGE 15 =====
+Distance Local y [mm]
+2−10 1−10 1 10
+Cluster Assignment Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ATLAS Simulation
+­π+π→ρ
+IBL
+B­layer
+(a) ρ→π+π− sample
+Distance Local x [mm]
+2−10 1−10 1 10
+Cluster Assignment Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ATLAS Simulation
+­π+π→ρ
+IBL
+B­layer (b) ρ→π+π− sample
+Distance Local y [mm]
+2−10 1−10 1 10
+Cluster Assignment Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ATLAS Simulation
+±π3τν→τ
+IBL
+B­layer
+(c) τ→π+π−π±ντ sample
+Distance Local x [mm]
+2−10 1−10 1 10
+Cluster Assignment Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ATLAS Simulation
+±π3τν→τ
+IBL
+B­layer (d) τ→π+π−π±ντ sample
+Distance Local y [mm]
+2−10 1−10 1 10
+Cluster Assignment Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ATLAS Simulation
+X→0B
+IBL
+B­layer
+(e) B0→ X sample
+Distance Local x [mm]
+2−10 1−10 1 10
+Cluster Assignment Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ATLAS Simulation
+X→0B
+IBL
+B­layer (f) B0→ X sample
+Figure 10: For the ρ (top), three-prongτ (middle), and B0 (bottom) samples, the eﬃciency with which reconstructed
+clusters are properly assigned to a track is shown for the two innermost pixel layers (IBL and B-layer) as a function
+of the minimum truth-particle separation in local y (left) and x (right), corresponding to the pixel dimensions
+longitudinal and transverse to the beam axis. It is required that the stable charged particles are created before the
+IBL.
+15
+
+===== PAGE 16 =====
+ [GeV]Tp ρ
+0 200 400 600 800 1000
+ Reconstructable Efficiencyρ
+0.2
+0.4
+0.6
+0.8
+1
+1.2 ATLAS Simulation
+­π+π→ρ
+N Shared SCT Clusters
+Any  8≤  6≤
+ 4≤  2≤ = 0
+(a) ρ→π+π− sample
+ [GeV]Tp τ
+0 200 400 600 800 1000
+ Reconstructable Efficiencyτ
+0.2
+0.4
+0.6
+0.8
+1
+1.2 ATLAS Simulation
+±π3τν→τ
+N Shared SCT Clusters
+Any  8≤  6≤
+ 4≤  2≤ = 0 (b) τ±→π+π−π±ντ sample
+Figure 11: The reconstructable e ﬃciency, deﬁned as the eﬃciency to reconstruct all of the charged decay products
+of the parent particle, is shown for the ρ and three-prong τ samples with various limits on the number of shared
+clusters allowed on a track candidate assuming all the merged pixel clusters have been identiﬁed as merged. It is
+required that the stable charged particles are created before the IBL.
+ [GeV]TpInitial Particle’s 
+0 200 400 600 800 1000
+Track Reconstruction Efficiency
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+ATLAS Simulation
+­π+π→ρ
+±π3τν→τ
+X→0B ±5Xτν→τ
+(a) E ﬃciency versus initial particle’s pT
+Stable­Particle Production Radius [mm]
+0 10 20 30 40 50 60 70 80 90
+Track Reconstruction Efficiency
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+ATLAS Simulation
+±π3τν→τ
+X→0B ±5Xτν→τ (b) E ﬃciency versus production radius
+Figure 12: Single-track reconstruction e ﬃciency is shown as (a) a function of the initial particle’s pT when it is
+required that the parent particle decays before the IBL for the decay products of a ρ, three- and ﬁve-prongτ and a
+B0 and, (b) versus the production radius for the decay products of a three- and ﬁve-prong τ as well as a B0, where
+no requirement is imposed on the production radius of stable charged particles.
+16
+
+===== PAGE 17 =====
+As demonstrated in Section 5.2, samples of dijet MC events do provide a reasonable description of jets in
+data. The following contains studies of the track reconstruction eﬃciency in these samples.
+Figure 13 shows the charged-primary-particle reconstruction e ﬃciency dependence on the angular dis-
+tance of a particle to the jet axis for di ﬀerent jet η and pT ranges. All charged particles studied are
+required to be created before the IBL. The eﬃciency drops rapidly towards the centre of the jet, where the
+charged-particle density is maximal. A slight decrease in eﬃciency towards the edge of the jet is consist-
+ent with an isolated-track eﬃciency that rises with charged-particle pT [26] and a decrease in the average
+charged-particle pT with distance from the jet core. The dependence of the eﬃciency on the jet pT and on
+the production radius of the charged particle, where charged particles are not required to be created before
+the IBL, is shown in Figure 14. The decrease in e ﬃciency with production radius is from two e ﬀects.
+Firstly, particles created beyond the ﬁrst active layers of the ID create fewer clusters. Secondly, with the
+shorter ﬂight length to the next active layer, the average separation between particles is smaller compared
+to prompt decays, producing more merged clusters. The overall trend for all e ﬃciencies shown is the
+same at allη. However, the loss in absolute eﬃciency is exacerbated at high|η|, while the degradation at
+small separations between a track and the jet axis is alleviated.
+R(jet,particle)
+Δ0
+0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 Track Reconstruction Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+ < 400 GeV
+jet
+T
+ p≤200  < 1000 GeV
+jet
+T
+ p≤800  < 1600 GeV
+jet
+T
+ p≤1400 ATLAS
+Simulation  = 13 TeV
+s < 1.2
+jetη
+(a)
+R(jet,particle)
+Δ0
+0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 Track Reconstruction Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+ < 400 GeV
+jet
+T
+ p≤200  < 1000 GeV
+jet
+T
+ p≤800  < 1600 GeV
+jet
+T
+ p≤1400 ATLAS
+Simulation  = 13 TeV
+s > 1.2
+jetη (b)
+Figure 13: The e ﬃciency to reconstruct charged primary particles in jets with (a) |η| < 1.2 and (b) |η| > 1.2 is
+shown as a function of the angular distance of the particle from the jet axis for various jet pT for simulated dijet
+MC events.
+17
+
+===== PAGE 18 =====
+ [GeV]
+TJet p200
+400 600 800 1000 1200 1400 1600 Track Reconstruction Efficiency
+0.8
+0.85
+0.9
+0.95
+1
+ < 1.2
+jetη > 1.2
+jetηATLAS
+Simulation  = 13 TeV
+s
+(a)
+Production Radius [mm]
+1
+10 2 10Track Reconstruction Efficiency
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+ < 1.2
+jetη > 1.2
+jetηATLAS
+Simulation  = 13 TeV
+s > 200 GeV
+jetT
+p (b)
+Figure 14: The track reconstruction e ﬃciency is compared for charged primary particles in jets with |η| < 1.2
+(|η| > 1.2) for the entire jet- pT range as a function of (a) the jet pT and (b) the production radius of the charged
+particle for simulated dijet MC events, where charged particles are not required to be created before the IBL.
+6 Measurement of track reconstruction e ﬃciency in jets from data
+Previous sections discuss the performance of the track reconstruction in dense environments based mainly
+on MC simulation. This section introduces a novel method to probe this performance in data. A meas-
+urement of the fraction of tracks lost in reconstruction due to the high density and collimation of charged
+particles in high-pT jets is presented for the subset of tracks with a B-layer cluster created by two charged
+particles.
+The dE/dx of a charged particle traversing the pixel sensor is measured from the charge collected in the
+clusters associated with the reconstructed track. With single particles and thin layers, one expects the
+dE/dx measurements to approximately follow a Landau distribution [27]. A typical particle reconstructed
+from an LHC collision is expected to be a minimum-ionizing particle (MIP). Thus, two particles contrib-
+uting to the same cluster are expected to deposit twice the energy of a single MIP. In the context of this
+paper, dE/dx is normalized to the material density, and it therefore has units of MeVg−1cm2.
+As demonstrated in the previous sections, near the jet core the charged-particle density is high and
+particles can be highly collimated. The tracks of these particles are thus more likely to create merged
+clusters, as shown in Figure 5. By ﬁtting the cluster d E/dx for reconstructed tracks near the core of the
+jet, single-particle clusters can be statistically separated from merged clusters. The fraction of lost tracks
+can therefore be inferred from the number of times only one reconstructed track is associated with a
+cluster dE/dx compatible with two MIPs. At truth-level, this fraction is deﬁned as follows: the denomin-
+ator is the number of truth particles passing the analysis selections (listed in Section 6.1, and including
+a pT > 10 GeV requirement), which have a B-layer cluster created by exactly two charged particles; the
+numerator is the subset of these particles which failed to be reconstructed.
+For the IBL, ToT is encoded in four bits. Eight bits are available in each of the remaining three pixel
+layers, which therefore provide an enhanced ToT resolution compared to the IBL, resulting in a superior
+energy resolution. For this reason, the cluster d E/dx values corresponding to the B-layer are used in this
+study.
+18
+
+===== PAGE 19 =====
+6.1 Track selection
+To enhance the contribution of high-quality collimated tracks and suppress fake tracks to a negligible
+number, additional track selections beyond those outlined in Section 3.3 are required for all tracks used
+in this analysis:
+• Exactly one pixel cluster per layer,
+• pT > 10 GeV,
+• |η|< 1.2,
+• |dBL
+0 |< 1.5 mm,
+• |zBL
+0 sinθ|< 1.5 mm,
+• Minimum of six SCT clusters.
+6.2 Fit method
+A measurement distribution of cluster d E/dx of tracks inside the jet core is ﬁt using two d E/dx tem-
+plate distributions: a single-track template containing mainly tracks reconstructed from a single-particle
+cluster, and a multiple-track template mainly made up of tracks reconstructed from a merged cluster.
+Both templates are derived directly from collision data or from simulation for the corresponding e ﬃ-
+ciency measurements.
+As veriﬁed in simulation, most highly collimated tracks are expected to be within ∆R(jet,trk) < 0.05
+which then deﬁnes the jet core for this method. Outside the jet core, the contribution of collimated tracks
+is negligible, and therefore all tracks are expected to be reconstructed from a single-particle cluster. The
+single-track template is created using tracks reconstructed from clusters which are neither identiﬁed as
+merged nor shared and that are well outside the jet core ( ∆R(jet,trk)> 0.1). The multiple-track template
+is taken from tracks reconstructed from either B-layer clusters identiﬁed as merged or shared B-layer
+clusters inside the jet core. These multiply used clusters are likely to be merged clusters.
+Examples of the resulting distributions are shown in Figure 15. The single-track template, displayed as
+circles in Figure 15, contains a single peak at the dE/dx value expected for a MIP traversing the B-layer of
+the pixel detector and a long tail to higher values compatible with a Landau distribution. Contamination
+of merged clusters in this template is 0.3–0.5% in the simulation. The multiple-track template, displayed
+as squares in the same ﬁgure, instead exhibits a peak in the dE/dx range expected for two MIPs. A third,
+smaller peak occurs at d E/dx > 3.2 MeVg−1cm2 for clusters created by three particles. The peak in the
+multiple-track template dE/dx distribution at values expected for one MIP is due to the fact that multiply
+used clusters can also originate from shared clusters or clusters identiﬁed as merged which, in truth, are
+not merged clusters.
+The measurement distribution is created from tracks inside the jet core that are reconstructed from a
+cluster which is neither identiﬁed as merged nor shared. No additional requirements are made on other
+tracks using this cluster, including whether or not they satisfy the selections outlined in Section 6.1. The
+resulting dE/dx distribution contains single-particle clusters with a peak at the energy of one MIP and a
+long tail to high values, as well as an enhanced contribution of merged clusters from two particles. Contri-
+butions from clusters from more than two particles are negligible. The true two-MIP clusters are created
+19
+
+===== PAGE 20 =====
+]2 cm­1dE/dx [MeV g
+0 0.5 1 1.5 2 2.5 3 3.5 4
+Tracks
+0
+5000
+10000
+15000
+20000
+25000
+30000
+35000
+40000
+ATLAS     
+ < 400 GeV
+jet
+T200 GeV < p
+­1 = 13 TeV, 3.2 fbs
+Single­Track Template
+Multiple­Track Template
+Figure 15: Single-track and multiple-track templates for data with a jet pT in the range 200 GeV<pjet
+T < 400 GeV.
+from a pair of tracks where only one track is reconstructed. Therefore, for every reconstructed track in the
+measurement distribution with a merged cluster, there is one particle which is not reconstructed. Using
+this information, the number of tracks contributing to merged B-layer clusters from two particles (NTrue
+2 )
+is found from the sum of the number of reconstructed particles in the multiple-track template (NReco
+2 ) and
+twice the number of lost particles (NLost),
+NTrue
+2 = NReco
+2 + 2· NLost. (1)
+The sample of ρ decays discussed in Section 5.3 is used to conﬁrm that the multiple-track template
+captures merged clusters and that the second MIP peak in the measurement sample does in fact contain
+merged clusters where one contributing particle is not reconstructed. Therefore, to obtain the number of
+lost tracks ( NLost), the measurement distribution is ﬁt with the two templates. The fraction of merged
+clusters in the measurement distribution, Fmerged, is simply calculated from the post-ﬁt number of tracks
+in the multiple-track template divided by the total number of tracks ( NReco
+Data ). Finally, the fraction of lost
+tracks passing through the same detector element as a reconstructed track is given by:
+Flost2 = NLost
+NTrue
+2
+, (2)
+≈ NLost
+NReco
+2 + 2· NLost
+, (3)
+where
+NLost = Fmerged· NReco
+Data. (4)
+The relation is approximate due to the assumption that the lost track of a pair of tracks has the same
+properties (e.g. pT and hit content) as the reconstructed track. In simulation, this assumption can be
+explicitly checked by requiring the truth particle corresponding to the lost track to also pass the analysis
+selections. This conﬁrms that the deviation from the approximation results in a less than 1.5% change in
+Flost2.
+To minimize the eﬀect of clusters created by more than two particles, the ﬁt was performed over the range
+1.1–3.07 (1.26–3.2) MeVg−1cm2 for data (simulation). Contributions from clusters from more than two
+particles in this range are of the order of a few percent. An o ﬀset in the distributions observed in MC
+20
+
+===== PAGE 21 =====
+events compared to data requires an adjustment of the respective ﬁt ranges. The ranges are chosen to
+have the same fraction of clusters inside the ﬁt range with respect to all clusters in the distribution. An
+imperfect description of the leading edge of the measurement distribution by the single-track template
+would aﬀect the ﬁtted result. Since the area of interest lies at much higher dE/dx values, the lower edge of
+the ﬁt range was chosen to avoid as much as possible the leading edge of the single-particle dE/dx peak,
+while retaining a large sample for the remainder of the distribution.
+To study the dependence of lost tracks on jet pT, the ﬁt is performed in seven di ﬀerent bins of jet pT
+ranging from 200 GeV to 1600 GeV in steps of 200 GeV.
+The measurement is performed both on data and simulation samples. For simulation, separate templates
+are constructed for each jet- pT bin. For data, the single-track and multiple-track templates are derived
+from the lowest jet-pT bin, shown in Figure 15, due to the small number of events at higher jet pT. It was
+veriﬁed that within the statistical uncertainty of the high- pT bins, the templates derived from the lowest
+jet-pT bin have the same shape within the ﬁtted range.
+6.3 Systematic uncertainties
+The resulting Fmerged exhibits a statistical uncertainty due to the ﬁnite number of entries in both the
+template and the measurement distributions.
+Various potential sources of systematic bias were studied and are discussed below. The relative values for
+data are summarized in Table 1 and values for MC simulation are comparable. The measuredFlost2 varies
+as a function of the range in d E/dx for which the distribution is ﬁt. This is due to the di ﬀerent fractions
+of clusters with a d E/dx of two and three MIPs falling in the ﬁtted range. The e ﬀect was estimated by
+increasing the ﬁt range. The ﬁtting process was repeated for six di ﬀerent ranges with the upper edge
+increasing in 0.2 MeVg−1cm2 increments. A symmetric uncertainty, equal to the maximum change in
+Flost2, is applied to each jet- pT bin. The start of the ﬁtted range was chosen such that small variations
+have a negligible impact on Flost2.
+A systematic uncertainty considered for data is the result of ﬁtting all data jet-pT bins with the templates
+from the lowest jet-pT bin. This results in an overestimate of Flost2 increasing with jet pT. To account for
+this bias, a pT-dependent multiplicative correction was determined by comparing the Flost2 values ﬁtted
+in simulation with templates from the corresponding jet-pT bin with those obtained using a template from
+the lowest jet-pT bin. This correction increases from about 10% to 25% for jets with a pT ranging from
+400 GeV to 600 GeV and from 1400 GeV to 1600 GeV, respectively. This correction term was applied
+to data Flost2 values after completing the ﬁtting procedure. In addition, the di ﬀerence between the two
+simulation Flost2 values compared for the correction factor was also included as a systematic uncertainty.
+An additional check performed with a large simulated sample showed a 3% to 8% bias in Flost2 in the
+studied jet-pT range due to the fraction of tracks reconstructed from ≥ 3 particle clusters, relative to the
+two-particle contribution in the multiple-track template.
+To validate the method, and provide an estimate of any residual biases, a truth-based closure test was
+performed using simulated samples. At low jet pT, the residual d E/dx peak at values expected from
+one MIP in the multiple-track template contributes to a non-closure. Also, for all jet pT, isolated-track
+reconstruction eﬃciency, the composition of multiple-particle clusters, including particle composition
+and the calibration of d E/dx itself are all covered in this non-closure estimate. This is already covered
+by the systematic uncertainty determined from changing the ﬁt range described above, but also leads to a
+21
+
+===== PAGE 22 =====
+Jet pT [GeV] Flost2 Fit range [%] Low- pT temp. [%] Non-closure [%] Tot. syst. [%] Stat. [%]
+200–400 0.061 13 0 18 23 10
+400–600 0.063 12 7 11 17 6
+600–800 0.070 10 13 6 17 7
+800–1000 0.064 12 18 1 22 11
+1000–1200 0.067 12 21 0 24 15
+1200–1400 0.080 11 16 0 19 13
+1400–1600 0.093 15 16 0 22 18
+Table 1: Measured Flost2, relative values of leading systematic uncertainties, and total systematic and statistical
+uncertainty in the fraction of lost tracks for data in bins of jet pT.
+non-closure. In the lowest jet- pT bin, a non-closure of approximately +18% is observed, corresponding
+to an absolute overestimation of the true Flost2 of about 0.013, but then quickly decreases with increasing
+jet pT. This uncertainty is included for both simulation and data with the corresponding relative values in
+Table 1.
+Other possible sources of uncertainty are contributions to Flost2 not originating from the density of the
+environment. Such contributions could come from pile-up tracks creating merged clusters with tracks in
+the jets, as well as lost isolated tracks. Conservative estimates based on MC studies showed that such
+contributions are 2% to 6% of the total Flost2 in the studied jet- pT range. This e ﬀect is covered by the
+non-closure systematic uncertainty described above.
+Uncertainties in the jet energy scale calibration and resolution have negligible impact in the analysis.
+Possible eﬀects due to the binning of the dE/dx distributions were studied and found also to be insigniﬁc-
+ant.
+6.4 Results
+Figure 16 shows the ﬁt result for data in two bins of jet pT. The single-track and multiple-track d E/dx
+templates provide a good description of the dE/dx distribution as visible from the ratio in Figure 16.
+Diﬀerences between event generators, such as di ﬀerent hadronization models and ﬂavour compositions,
+can aﬀect Flost2 and the overall comparison of data and MC simulation. By comparing the ﬁt results
+from simulated samples made with the P ythia 8, S herpa and Herwig++ event generators, a generator
+uncertainty was derived for simulation only. For each jet- pT bin, results from P ythia are taken as the
+central value and the largest di ﬀerence of Flost2 between the three generators is symmetrized and taken
+as the generator uncertainty. The relative generator uncertainties in the fraction of lost tracks ranges from
+4% to 37% in the diﬀerent jet-pT bins.
+A comparison of Flost2 as a function of jet pT for data and simulation is shown in Figure 17. As the
+jet pT increases, so does Flost2, with a similar trend observed in both data and simulation. This increase
+is caused by an increasing density of charged particles, which thereby causes higher collimation of the
+track pair, and is not due to confusion in correctly assigning clusters to tracks. At a certain point, the two
+particles are so collimated that the reconstructed tracks start to overlap completely up to the radius of the
+SCT detector. At that point a similar e ﬀect as shown for tracks from the ρ decay in Figures 10 and 12
+22
+
+===== PAGE 23 =====
+Tracks
+210
+310
+410
+510
+610
+ATLAS
+­1 = 13 TeV, 3.2 fbs
+ < 400 GeV
+jet
+T200 GeV < p
+ 0.001(stat)± = 0.008 
+merged
+F
+Data 2015
+Fit
+Single­Track Contribution
+Multiple­Track Contribution
+]2 cm­1dE/dx [MeV g
+0.5 1 1.5 2 2.5 3 3.5 4
+Fit/Data0.9
+1
+1.1
+(a)
+Tracks
+10
+210
+310
+410
+ATLAS
+­1 = 13 TeV, 3.2 fbs
+ < 1200 GeV
+jet
+T1000 GeV < p
+ 0.005(stat)± = 0.028 
+merged
+F
+Data 2015
+Fit
+Single­Track Contribution
+Multiple­Track Contribution
+]2 cm­1dE/dx [MeV g
+0.5 1 1.5 2 2.5 3 3.5 4
+Fit/Data0.9
+1
+1.1 (b)
+Figure 16: Data d E/dx measurement distributions (black circles) with ﬁt results (solid line) are shown for (a)
+200 GeV< pjet
+T < 400 GeV and (b) 1000 GeV< pjet
+T < 1200 GeV. The single-track template scaled by 1− Fmerged
+is shown as the single-track contribution (dashed line) and the multiple-track template scaled by Fmerged is shown
+as the multiple-track contribution (dotted line). The bottom panel in each plot shows the ratio of the ﬁt to the data
+within the ﬁt range (1.1–3.07 MeVg−1cm2).
+occurs. The cluster assignment e ﬃciency for reconstructed tracks remains constant with increasing jet
+pT, indicating no degradation of performance due to the environmental e ﬀects besides the second track.
+Only because of their increasingly collimated nature, the probability of losing one of the tracks rises. This
+eﬀect was conﬁrmed in simulation for tracks selected by this analysis.
+The measurements in data and MC simulation are consistent across the whole studied jet-pT range.
+ [GeV]
+T
+Jet p
+200 400 600 800 1000 1200 1400 1600
+2lost
+F
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+ATLAS
+­1=13 TeV, 3.2 fbs 
+Data 2015
+Simulation (Pythia 8) Total Uncertainty
+Statistical Uncertainty
+Total Uncertainty
+Figure 17: The measured fraction of lost tracks, Flost2, in the jet core (∆R(jet,trk)< 0.05) as a function of jet pT for
+data (black circles) and simulation (red line). Vertical solid error bars indicate statistical uncertainty, while the total
+uncertainty is represented by dashed error bars for data and a shaded area for simulation.
+23
+
+===== PAGE 24 =====
+7 Conclusion
+This paper presents the performance of the ATLAS track reconstruction chain with detailed studies in ded-
+icated topologies, such as the cores of high- pT jets and the decays ofτ-leptons, that are characterized by
+charged-particle separations comparable to the inner detector’s sensor granularity. The ambiguity-solver
+stage of the reconstruction chain is described, including the usage of a neural-network-based approach
+to identify pixel clusters created by multiple charged particles. The current performance is demonstrated
+with simulated samples of a single particle decaying to a set of collimated charged particles. In the cores
+of jets, the number of IBL clusters on tracks, as well as the expected track reconstruction e ﬃciency, is
+robust up to the highest investigated pT values.
+A novel, fully data-driven technique, using the energy loss to identify clusters as originating from two
+charged particles is introduced to measure the fraction of charged particles, creating these clusters, that
+fail to be reconstructed. The results are presented using tracks with pT above 10 GeV in the core of a
+jet from 3.2 fb−1 of 13 TeV proton–proton collisions at the LHC. The measured fraction of lost tracks
+as a function of jet transverse momentum was found to range from 0.061± 0.006(stat.)± 0.014(syst.) to
+0.093±0.017(stat.)±0.021(syst.) as the jet pT increases from 200 GeV to 1600 GeV. Data and simulation
+are compatible for the full studied jet-pT range. This result can be used to minimize the uncertainty in the
+track reconstruction ineﬃciency in the cores of jets relevant for jet energy and mass calibrations as well
+as measurements of jet properties.
+Acknowledgements
+We thank CERN for the very successful operation of the LHC, as well as the support sta ﬀ from our
+institutions without whom ATLAS could not be operated eﬃciently.
+We acknowledge the support of ANPCyT, Argentina; YerPhI, Armenia; ARC, Australia; BMWFW
+and FWF, Austria; ANAS, Azerbaijan; SSTC, Belarus; CNPq and FAPESP, Brazil; NSERC, NRC and
+CFI, Canada; CERN; CONICYT, Chile; CAS, MOST and NSFC, China; COLCIENCIAS, Colombia;
+MSMT CR, MPO CR and VSC CR, Czech Republic; DNRF and DNSRC, Denmark; IN2P3-CNRS,
+CEA-DSM/IRFU, France; SRNSF, Georgia; BMBF, HGF, and MPG, Germany; GSRT, Greece; RGC,
+Hong Kong SAR, China; ISF, I-CORE and Benoziyo Center, Israel; INFN, Italy; MEXT and JSPS, Ja-
+pan; CNRST, Morocco; NWO, Netherlands; RCN, Norway; MNiSW and NCN, Poland; FCT, Portugal;
+MNE/IFA, Romania; MES of Russia and NRC KI, Russian Federation; JINR; MESTD, Serbia; MSSR,
+Slovakia; ARRS and MIZŠ, Slovenia; DST /NRF, South Africa; MINECO, Spain; SRC and Wallen-
+berg Foundation, Sweden; SERI, SNSF and Cantons of Bern and Geneva, Switzerland; MOST, Taiwan;
+TAEK, Turkey; STFC, United Kingdom; DOE and NSF, United States of America. In addition, indi-
+vidual groups and members have received support from BCKDF, the Canada Council, CANARIE, CRC,
+Compute Canada, FQRNT, and the Ontario Innovation Trust, Canada; EPLANET, ERC, ERDF, FP7,
+Horizon 2020 and Marie Skłodowska-Curie Actions, European Union; Investissements d’Avenir Labex
+and Idex, ANR, Région Auvergne and Fondation Partager le Savoir, France; DFG and AvH Foundation,
+Germany; Herakleitos, Thales and Aristeia programmes co-ﬁnanced by EU-ESF and the Greek NSRF;
+BSF, GIF and Minerva, Israel; BRF, Norway; CERCA Programme Generalitat de Catalunya, Generalitat
+Valenciana, Spain; the Royal Society and Leverhulme Trust, United Kingdom.
+24
+
+===== PAGE 25 =====
+The crucial computing support from all WLCG partners is acknowledged gratefully, in particular from
+CERN, the ATLAS Tier-1 facilities at TRIUMF (Canada), NDGF (Denmark, Norway, Sweden), CC-
+IN2P3 (France), KIT/GridKA (Germany), INFN-CNAF (Italy), NL-T1 (Netherlands), PIC (Spain), ASGC
+(Taiwan), RAL (UK) and BNL (USA), the Tier-2 facilities worldwide and large non-WLCG resource pro-
+viders. Major contributors of computing resources are listed in Ref. [28].
+25
+
+===== PAGE 26 =====
+References
+[1] J. M. Butterworth, A. R. Davison, M. Rubin and G. P. Salam,
+Jet substructure as a new Higgs search channel at the LHC, Phys. Rev. Lett. 100 (2008) 242001,
+arXiv: 0802.2470 [hep-ph].
+[2] ATLAS Collaboration, The ATLAS Experiment at the CERN Large Hadron Collider,
+JINST 3 (2008) S08003.
+[3] ATLAS Collaboration, ATLAS Insertable B-Layer Technical Design Report, ATLAS-TDR-19,
+2010, url: https://cds.cern.ch/record/1291633,
+ATLAS Insertable B-Layer Technical Design Report Addendum, ATLAS-TDR-19-ADD-1, 2012,
+URL: https://cds.cern.ch/record/1451888.
+[4] G. Aad et al., ATLAS pixel detector electronics and sensors, JINST 3 (2008) P07007.
+[5] ATLAS TRT Collaboration, E. Abat et al., The ATLAS TRT Barrel Detector,
+JINST 3 (2008) P02014.
+[6] D. Wicke, A New algorithm for solving tracking ambiguities,
+LC-TOOL-1999-007-TESLA (1999) 219,
+url: flc.desy.de/lcnotes/notes/LC-TOOL-1999-007-TESLA.ps.gz .
+[7] T. Cornelissen et al., The new ATLAS track reconstruction (NEWT),
+J. Phys. Conf. Ser. 119 (2008).
+[8] A. Rosenfeld and J. Faltz, Sequential Operations in Digital Picture Processing,
+J. ACM 13 (1966) 471.
+[9] E. Belau et al., Charge collection in silicon strip detectors, Nucl. Instrum. Meth. 214 (1983) 253.
+[10] R. Frühwirth, Application of Kalman Filtering to Track and Vertex Fitting,
+Nucl. Instrum. Meth.A 262 (1987) 444.
+[11] ATLAS Collaboration, Muon reconstruction performance of the ATLAS detector in proton–proton
+collision data at√s = 13 TeV, Eur. Phys. J. C 76 (2016) 292, arXiv: 1603.05598 [hep-ex].
+[12] ATLAS Collaboration, Reconstruction of primary vertices at the ATLAS experiment in Run 1
+proton–proton collisions at the LHC, (Submitted to Eur. Phys. J. C),
+arXiv: 1611.10235 [physics.ins-det].
+[13] ATLAS Collaboration,
+A neural network clustering algorithm for the ATLAS silicon pixel detector,
+JINST 9 (2014) P09009, arXiv: 1406.7690 [hep-ex].
+[14] T. Sjöstrand, S. Mrenna and P. Z. Skands, A Brief Introduction to PYTHIA 8.1,
+Comput. Phys. Commun. 178 (2008) 852, arXiv: 0710.3820 [hep-ph].
+[15] ATLAS Collaboration, ATLAS Run 1 Pythia8 tunes, ATL-PHYS-PUB-2014-021, 2014,
+url: https://cds.cern.ch/record/1966419.
+[16] NNPDF Collaboration, R. D. Ball et al., Parton distributions with LHC data,
+Nucl. Phys. B 867 (2013) 244, arXiv: 1207.1303 [hep-ph].
+[17] M. Bahr et al., Herwig++ Physics and Manual, Eur. Phys. J. C 58 (2008) 639,
+arXiv: 0803.0883 [hep-ph].
+26
+
+===== PAGE 27 =====
+[18] T. Gleisberg et al., Event generation with SHERPA 1.1, JHEP 02 (2009) 007,
+arXiv: 0811.4622 [hep-ph].
+[19] J. Pumplin et al.,
+New generation of parton distributions with uncertainties from global QCD analysis,
+JHEP 07 (2002) 012, arXiv: hep-ph/0201195 [hep-ph].
+[20] H.-L. Lai et al., New parton distributions for collider physics, Phys. Rev. D 82 (2010) 074024,
+arXiv: 1007.2241 [hep-ph].
+[21] ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur. Phys. J. C 70 (2010) 823,
+arXiv: 1005.4568 [hep-ex].
+[22] S. Agostinelli et al., GEANT4: A Simulation toolkit, Nucl. Instrum. Meth. A 506 (2003) 250.
+[23] ATLAS Collaboration,
+Topological cell clustering in the ATLAS calorimeters and its performance in LHC Run 1,
+(Submitted to Eur. Phys. J. C), arXiv: 1603.02934 [hep-ex].
+[24] M. Cacciari, G. P. Salam and G. Soyez, The anti-kt jet clustering algorithm, JHEP 04 (2008) 063,
+arXiv: 0802.1189 [hep-ph].
+[25] ATLAS Collaboration, Jet energy scale measurements and their systematic uncertainties in
+proton-proton collisions at sqrt(s) = 13 TeV with the ATLAS detector,
+(Submitted to Phys. Rev. D.), arXiv: 1703.09665 [hep-ex].
+[26] ATLAS Collaboration, Charged-particle distributions at low transverse momentum in√s = 13 TeV pp interactions measured with the ATLAS detector at the LHC,
+Eur. Phys. J. C 76 (2016) 502, arXiv: 1606.01133 [hep-ex].
+[27] Particle Data Group, Olive, K. A. et al, Review of Particle Physics,
+Chin. Phys. C 38 (2014) 090001.
+[28] ATLAS Collaboration, ATLAS Computing Acknowledgements 2016–2017,
+ATL-GEN-PUB-2016-002, url: https://cds.cern.ch/record/2202407.
+27
+
+===== PAGE 28 =====
+The ATLAS Collaboration
+M. Aaboud137d, G. Aad88, B. Abbott115, J. Abdallah8, O. Abdinov12,∗, B. Abeloos119, S.H. Abidi161,
+O.S. AbouZeid139, N.L. Abraham151, H. Abramowicz155, H. Abreu154, R. Abreu118, Y . Abulaiti148a,148b,
+B.S. Acharya167a,167b,a, S. Adachi157, L. Adamczyk41a, J. Adelman110, M. Adersberger102, T. Adye133,
+A.A. Aﬀolder139, T. Agatonovic-Jovin14, C. Agheorghiesei28c, J.A. Aguilar-Saavedra128a,128f,
+S.P. Ahlen24, F. Ahmadov68,b, G. Aielli135a,135b, S. Akatsuka71, H. Akerstedt148a,148b, T.P.A. Åkesson84,
+A.V . Akimov98, G.L. Alberghi22a,22b, J. Albert172, P. Albicocco50, M.J. Alconada Verzini74,
+M. Aleksa32, I.N. Aleksandrov68, C. Alexa28b, G. Alexander155, T. Alexopoulos10, M. Alhroob115,
+B. Ali130, M. Aliev76a,76b, G. Alimonti94a, J. Alison33, S.P. Alkire38, B.M.M. Allbrooke151,
+B.W. Allen118, P.P. Allport19, A. Aloisio106a,106b, A. Alonso39, F. Alonso74, C. Alpigiani140,
+A.A. Alshehri56, M. Alstaty88, B. Alvarez Gonzalez32, D. Álvarez Piqueras170, M.G. Alviggi106a,106b,
+B.T. Amadio16, Y . Amaral Coutinho26a, C. Amelung25, D. Amidei92, S.P. Amor Dos Santos128a,128c,
+A. Amorim128a,128b, S. Amoroso32, G. Amundsen25, C. Anastopoulos141, L.S. Ancu52, N. Andari19,
+T. Andeen11, C.F. Anders60b, J.K. Anders77, K.J. Anderson33, A. Andreazza94a,94b, V . Andrei60a,
+S. Angelidakis9, I. Angelozzi109, A. Angerami38, A.V . Anisenkov111,c, N. Anjos13, A. Annovi126a,126b,
+C. Antel60a, M. Antonelli50, A. Antonov100,∗, D.J. Antrim166, F. Anulli134a, M. Aoki69,
+L. Aperio Bella32, G. Arabidze93, Y . Arai69, J.P. Araque128a, V . Araujo Ferraz26a, A.T.H. Arce48,
+R.E. Ardell80, F.A. Arduh74, J-F. Arguin97, S. Argyropoulos66, M. Arik20a, A.J. Armbruster145,
+L.J. Armitage79, O. Arnaez161, H. Arnold51, M. Arratia30, O. Arslan23, A. Artamonov99, G. Artoni122,
+S. Artz86, S. Asai157, N. Asbah45, A. Ashkenazi155, L. Asquith151, K. Assamagan27, R. Astalos146a,
+M. Atkinson169, N.B. Atlay143, K. Augsten130, G. Avolio32, B. Axen16, M.K. Ayoub119, G. Azuelos97,d,
+A.E. Baas60a, M.J. Baca19, H. Bachacou138, K. Bachas76a,76b, M. Backes122, M. Backhaus32,
+P. Bagnaia134a,134b, H. Bahrasemani144, J.T. Baines133, M. Bajic39, O.K. Baker179, E.M. Baldin111,c,
+P. Balek175, F. Balli138, W.K. Balunas124, E. Banas42, Sw. Banerjee176,e, A.A.E. Bannoura178,
+L. Barak32, E.L. Barberio91, D. Barberis53a,53b, M. Barbero88, T. Barillari103, M-S Barisits32,
+T. Barklow145, N. Barlow30, S.L. Barnes36c, B.M. Barnett133, R.M. Barnett16, Z. Barnovska-Blenessy36a,
+A. Baroncelli136a, G. Barone25, A.J. Barr122, L. Barranco Navarro170, F. Barreiro85,
+J. Barreiro Guimarães da Costa35a, R. Bartoldus145, A.E. Barton75, P. Bartos146a, A. Basalaev125,
+A. Bassalat119, f , R.L. Bates56, S.J. Batista161, J.R. Batley30, M. Battaglia139, M. Bauce134a,134b,
+F. Bauer138, H.S. Bawa145,g, J.B. Beacham113, M.D. Beattie75, T. Beau83, P.H. Beauchemin165,
+P. Bechtle23, H.P. Beck18,h, K. Becker122, M. Becker86, M. Beckingham173, C. Becot112, A.J. Beddall20e,
+A. Beddall20b, V .A. Bednyakov68, M. Bedognetti109, C.P. Bee150, T.A. Beermann32, M. Begalli26a,
+M. Begel27, J.K. Behr45, A.S. Bell81, G. Bella155, L. Bellagamba22a, A. Bellerive31, M. Bellomo154,
+K. Belotskiy100, O. Beltramello32, N.L. Belyaev100, O. Benary155,∗, D. Benchekroun137a, M. Bender102,
+K. Bendtz148a,148b, N. Benekos10, Y . Benhammou155, E. Benhar Noccioli179, J. Benitez66,
+D.P. Benjamin48, M. Benoit52, J.R. Bensinger25, S. Bentvelsen109, L. Beresford122, M. Beretta50,
+D. Berge109, E. Bergeaas Kuutmann168, N. Berger5, J. Beringer16, S. Berlendis58, N.R. Bernard89,
+G. Bernardi83, C. Bernius145, F.U. Bernlochner23, T. Berry80, P. Berta131, C. Bertella35a,
+G. Bertoli148a,148b, F. Bertolucci126a,126b, I.A. Bertram75, C. Bertsche45, D. Bertsche115, G.J. Besjes39,
+O. Bessidskaia Bylund148a,148b, M. Bessner45, N. Besson138, C. Betancourt51, A. Bethani87,
+S. Bethke103, A.J. Bevan79, J. Beyer103, R.M. Bianchi127, O. Biebel102, D. Biedermann17, R. Bielski87,
+N.V . Biesuz126a,126b, M. Biglietti136a, J. Bilbao De Mendizabal52, T.R.V . Billoud97, H. Bilokon50,
+M. Bindi57, A. Bingul20b, C. Bini134a,134b, S. Biondi22a,22b, T. Bisanz57, C. Bittrich47, D.M. Bjergaard48,
+C.W. Black152, J.E. Black145, K.M. Black24, R.E. Blair6, T. Blazek146a, I. Bloch45, C. Blocker25,
+A. Blue56, W. Blum86,∗, U. Blumenschein79, S. Blunier34a, G.J. Bobbink109, V .S. Bobrovnikov111,c,
+28
+
+===== PAGE 29 =====
+S.S. Bocchetta84, A. Bocci48, C. Bock102, M. Boehler51, D. Boerner178, D. Bogavac102,
+A.G. Bogdanchikov111, C. Bohm148a, V . Boisvert80, P. Bokan168,i, T. Bold41a, A.S. Boldyrev101,
+A.E. Bolz60b, M. Bomben83, M. Bona79, M. Boonekamp138, A. Borisov132, G. Borissov75, J. Bortfeldt32,
+D. Bortoletto122, V . Bortolotto62a,62b,62c, D. Boscherini22a, M. Bosman13, J.D. Bossio Sola29,
+J. Boudreau127, J. Bouﬀard2, E.V . Bouhova-Thacker75, D. Boumediene37, C. Bourdarios119,
+S.K. Boutle56, A. Boveia113, J. Boyd32, I.R. Boyko68, J. Bracinik19, A. Brandt8, G. Brandt57,
+O. Brandt60a, U. Bratzler158, B. Brau89, J.E. Brau118, W.D. Breaden Madden56, K. Brendlinger45,
+A.J. Brennan91, L. Brenner109, R. Brenner168, S. Bressler175, D.L. Briglin19, T.M. Bristow49,
+D. Britton56, D. Britzger45, F.M. Brochu30, I. Brock23, R. Brock93, G. Brooijmans38, T. Brooks80,
+W.K. Brooks34b, J. Brosamer16, E. Brost110, J.H Broughton19, P.A. Bruckman de Renstrom42,
+D. Bruncko146b, A. Bruni22a, G. Bruni22a, L.S. Bruni109, BH Brunt30, M. Bruschi22a, N. Bruscino23,
+P. Bryant33, L. Bryngemark45, T. Buanes15, Q. Buat144, P. Buchholz143, A.G. Buckley56, I.A. Budagov68,
+F. Buehrer51, M.K. Bugge121, O. Bulekov100, D. Bullock8, T.J. Burch110, H. Burckhart32, S. Burdin77,
+C.D. Burgard51, A.M. Burger5, B. Burghgrave110, K. Burka42, S. Burke133, I. Burmeister46,
+J.T.P. Burr122, E. Busato37, D. Büscher51, V . Büscher86, P. Bussey56, J.M. Butler24, C.M. Buttar56,
+J.M. Butterworth81, P. Butti32, W. Buttinger27, A. Buzatu35c, A.R. Buzykaev111,c, S. Cabrera Urbán170,
+D. Caforio130, V .M. Cairo40a,40b, O. Cakir4a, N. Calace52, P. Calaﬁura16, A. Calandri88, G. Calderini83,
+P. Calfayan64, G. Callea40a,40b, L.P. Caloba26a, S. Calvente Lopez85, D. Calvet37, S. Calvet37,
+T.P. Calvet88, R. Camacho Toro33, S. Camarda32, P. Camarri135a,135b, D. Cameron121,
+R. Caminal Armadans169, C. Camincher58, S. Campana32, M. Campanelli81, A. Camplani94a,94b,
+A. Campoverde143, V . Canale106a,106b, M. Cano Bret36c, J. Cantero116, T. Cao155,
+M.D.M. Capeans Garrido32, I. Caprini28b, M. Caprini28b, M. Capua40a,40b, R.M. Carbone38,
+R. Cardarelli135a, F. Cardillo51, I. Carli131, T. Carli32, G. Carlino106a, B.T. Carlson127, L. Carminati94a,94b,
+R.M.D. Carney148a,148b, S. Caron108, E. Carquin34b, S. Carrá94a,94b, G.D. Carrillo-Montoya32,
+J. Carvalho128a,128c, D. Casadei19, M.P. Casado13, j, M. Casolino13, D.W. Casper166, R. Castelijn109,
+V . Castillo Gimenez170, N.F. Castro128a,k, A. Catinaccio32, J.R. Catmore121, A. Cattai32, J. Caudron23,
+V . Cavaliere169, E. Cavallaro13, D. Cavalli94a, M. Cavalli-Sforza13, V . Cavasinni126a,126b, E. Celebi20a,
+F. Ceradini136a,136b, L. Cerda Alberich170, A.S. Cerqueira26b, A. Cerri151, L. Cerrito135a,135b, F. Cerutti16,
+A. Cervelli18, S.A. Cetin20d, A. Chafaq137a, D. Chakraborty110, S.K. Chan59, W.S. Chan109,
+Y .L. Chan62a, P. Chang169, J.D. Chapman30, D.G. Charlton19, C.C. Chau161, C.A. Chavez Barajas151,
+S. Che113, S. Cheatham167a,167c, A. Chegwidden93, S. Chekanov6, S.V . Chekulaev163a, G.A. Chelkov68,l,
+M.A. Chelstowska32, C. Chen67, H. Chen27, S. Chen35b, S. Chen157, X. Chen35c,m, Y . Chen70,
+H.C. Cheng92, H.J. Cheng35a, A. Cheplakov68, E. Cheremushkina132, R. Cherkaoui El Moursli137e,
+V . Chernyatin27,∗, E. Cheu7, L. Chevalier138, V . Chiarella50, G. Chiarelli126a,126b, G. Chiodini76a,
+A.S. Chisholm32, A. Chitan28b, Y .H. Chiu172, M.V . Chizhov68, K. Choi64, A.R. Chomont37,
+S. Chouridou156, V . Christodoulou81, D. Chromek-Burckhart32, M.C. Chu62a, J. Chudoba129,
+A.J. Chuinard90, J.J. Chwastowski42, L. Chytka117, A.K. Ciftci4a, D. Cinca46, V . Cindro78, I.A. Cioara23,
+C. Ciocca22a,22b, A. Ciocio16, F. Cirotto106a,106b, Z.H. Citron175, M. Citterio94a, M. Ciubancan28b,
+A. Clark52, B.L. Clark59, M.R. Clark38, P.J. Clark49, R.N. Clarke16, C. Clement148a,148b, Y . Coadou88,
+M. Cobal167a,167c, A. Coccaro52, J. Cochran67, L. Colasurdo108, B. Cole38, A.P. Colijn109, J. Collot58,
+T. Colombo166, P. Conde Muiño128a,128b, E. Coniavitis51, S.H. Connell147b, I.A. Connelly87,
+S. Constantinescu28b, G. Conti32, F. Conventi106a,n, M. Cooke16, A.M. Cooper-Sarkar122, F. Cormier171,
+K.J.R. Cormier161, M. Corradi134a,134b, F. Corriveau90,o, A. Cortes-Gonzalez32, G. Cortiana103,
+G. Costa94a, M.J. Costa170, D. Costanzo141, G. Cottin30, G. Cowan80, B.E. Cox87, K. Cranmer112,
+S.J. Crawley56, R.A. Creager124, G. Cree31, S. Crépé-Renaudin58, F. Crescioli83, W.A. Cribbs148a,148b,
+M. Cristinziani23, V . Croft108, G. Crosetti40a,40b, A. Cueto85, T. Cuhadar Donszelmann141,
+A.R. Cukierman145, J. Cummings179, M. Curatolo50, J. Cúth86, H. Czirr143, P. Czodrowski32,
+29
+
+===== PAGE 30 =====
+G. D’amen22a,22b, S. D’Auria56, L. D’eramo83, M. D’Onofrio77,
+M.J. Da Cunha Sargedas De Sousa128a,128b, C. Da Via87, W. Dabrowski41a, T. Dado146a, T. Dai92,
+O. Dale15, F. Dallaire97, C. Dallapiccola89, M. Dam39, J.R. Dandoy124, M.F. Daneri29, N.P. Dang176,
+A.C. Daniells19, N.S. Dann87, M. Danninger171, M. Dano Hoﬀmann138, V . Dao150, G. Darbo53a,
+S. Darmora8, J. Dassoulas3, A. Dattagupta118, T. Daubney45, W. Davey23, C. David45, T. Davidek131,
+M. Davies155, D.R. Davis48, P. Davison81, E. Dawe91, I. Dawson141, K. De8, R. de Asmundis106a,
+A. De Benedetti115, S. De Castro22a,22b, S. De Cecco83, N. De Groot108, P. de Jong109, H. De la Torre93,
+F. De Lorenzi67, A. De Maria57, D. De Pedis134a, A. De Salvo134a, U. De Sanctis135a,135b,
+A. De Santo151, K. De Vasconcelos Corga88, J.B. De Vivie De Regie119, W.J. Dearnaley75, R. Debbe27,
+C. Debenedetti139, D.V . Dedovich68, N. Dehghanian3, I. Deigaard109, M. Del Gaudio40a,40b,
+J. Del Peso85, T. Del Prete126a,126b, D. Delgove119, F. Deliot138, C.M. Delitzsch52, A. Dell’Acqua32,
+L. Dell’Asta24, M. Dell’Orso126a,126b, M. Della Pietra106a,106b, D. della V olpe52, M. Delmastro5,
+C. Delporte119, P.A. Delsart58, D.A. DeMarco161, S. Demers179, M. Demichev68, A. Demilly83,
+S.P. Denisov132, D. Denysiuk138, D. Derendarz42, J.E. Derkaoui137d, F. Derue83, P. Dervan77,
+K. Desch23, C. Deterre45, K. Dette46, M.R. Devesa29, P.O. Deviveiros32, A. Dewhurst133, S. Dhaliwal25,
+F.A. Di Bello52, A. Di Ciaccio135a,135b, L. Di Ciaccio5, W.K. Di Clemente124, C. Di Donato106a,106b,
+A. Di Girolamo32, B. Di Girolamo32, B. Di Micco136a,136b, R. Di Nardo32, K.F. Di Petrillo59,
+A. Di Simone51, R. Di Sipio161, D. Di Valentino31, C. Diaconu88, M. Diamond161, F.A. Dias39,
+M.A. Diaz34a, E.B. Diehl92, J. Dietrich17, S. Díez Cornell45, A. Dimitrievska14, J. Dingfelder23,
+P. Dita28b, S. Dita28b, F. Dittus32, F. Djama88, T. Djobava54b, J.I. Djuvsland60a, M.A.B. do Vale26c,
+D. Dobos32, M. Dobre28b, C. Doglioni84, J. Dolejsi131, Z. Dolezal131, M. Donadelli26d,
+S. Donati126a,126b, P. Dondero123a,123b, J. Donini37, J. Dopke133, A. Doria106a, M.T. Dova74,
+A.T. Doyle56, E. Drechsler57, M. Dris10, Y . Du36b, J. Duarte-Campderros155, A. Dubreuil52,
+E. Duchovni175, G. Duckeck102, A. Ducourthial83, O.A. Ducu97,p, D. Duda109, A. Dudarev32,
+A.Chr. Dudder86, E.M. Duﬃeld16, L. Duﬂot 119, M. Dührssen32, M. Dumancic175, A.E. Dumitriu28b,
+A.K. Duncan56, M. Dunford60a, H. Duran Yildiz4a, M. Düren55, A. Durglishvili54b, D. Duschinger47,
+B. Dutta45, M. Dyndal45, C. Eckardt45, K.M. Ecker103, R.C. Edgar92, T. Eifert32, G. Eigen15,
+K. Einsweiler16, T. Ekelof168, M. El Kacimi137c, R. El Kosseiﬁ88, V . Ellajosyula88, M. Ellert168,
+S. Elles5, F. Ellinghaus178, A.A. Elliot172, N. Ellis32, J. Elmsheuser27, M. Elsing32, D. Emeliyanov133,
+Y . Enari157, O.C. Endner86, J.S. Ennis173, J. Erdmann46, A. Ereditato18, G. Ernis178, M. Ernst27,
+S. Errede169, M. Escalier119, C. Escobar127, B. Esposito50, O. Estrada Pastor170, A.I. Etienvre138,
+E. Etzion155, H. Evans64, A. Ezhilov125, M. Ezzi137e, F. Fabbri22a,22b, L. Fabbri22a,22b, G. Facini33,
+R.M. Fakhrutdinov132, S. Falciano134a, R.J. Falla81, J. Faltova32, Y . Fang35a, M. Fanti94a,94b, A. Farbin8,
+A. Farilla136a, C. Farina127, E.M. Farina123a,123b, T. Farooque93, S. Farrell16, S.M. Farrington173,
+P. Farthouat32, F. Fassi137e, P. Fassnacht32, D. Fassouliotis9, M. Faucci Giannelli80, A. Favareto53a,53b,
+W.J. Fawcett122, L. Fayard119, O.L. Fedin125,q, W. Fedorko171, S. Feigl121, L. Feligioni88, C. Feng36b,
+E.J. Feng32, H. Feng92, M.J. Fenton56, A.B. Fenyuk132, L. Feremenga8, P. Fernandez Martinez170,
+S. Fernandez Perez13, J. Ferrando45, A. Ferrari168, P. Ferrari109, R. Ferrari123a, D.E. Ferreira de Lima60b,
+A. Ferrer170, D. Ferrere52, C. Ferretti92, F. Fiedler86, A. Filipˇciˇc78, M. Filipuzzi45, F. Filthaut108,
+M. Fincke-Keeler172, K.D. Finelli152, M.C.N. Fiolhais128a,128c,r, L. Fiorini170, A. Fischer2, C. Fischer13,
+J. Fischer178, W.C. Fisher93, N. Flaschel45, I. Fleck143, P. Fleischmann92, R.R.M. Fletcher124,
+T. Flick178, B.M. Flierl102, L.R. Flores Castillo62a, M.J. Flowerdew103, G.T. Forcolin87, A. Formica138,
+F.A. Förster13, A. Forti87, A.G. Foster19, D. Fournier119, H. Fox75, S. Fracchia141, P. Francavilla83,
+M. Franchini22a,22b, S. Franchino60a, D. Francis32, L. Franconi121, M. Franklin59, M. Frate166,
+M. Fraternali123a,123b, D. Freeborn81, S.M. Fressard-Batraneanu32, B. Freund97, D. Froidevaux32,
+J.A. Frost122, C. Fukunaga158, T. Fusayasu104, J. Fuster170, C. Gabaldon58, O. Gabizon154,
+A. Gabrielli22a,22b, A. Gabrielli16, G.P. Gach41a, S. Gadatsch32, S. Gadomski80, G. Gagliardi53a,53b,
+30
+
+===== PAGE 31 =====
+L.G. Gagnon97, C. Galea108, B. Galhardo128a,128c, E.J. Gallas122, B.J. Gallop133, P. Gallus130,
+G. Galster39, K.K. Gan113, S. Ganguly37, Y . Gao77, Y .S. Gao145,g, F.M. Garay Walls49, C. García170,
+J.E. García Navarro170, M. Garcia-Sciveres16, R.W. Gardner33, N. Garelli145, V . Garonne121,
+A. Gascon Bravo45, K. Gasnikova45, C. Gatti50, A. Gaudiello53a,53b, G. Gaudio123a, I.L. Gavrilenko98,
+C. Gay171, G. Gaycken23, E.N. Gazis10, C.N.P. Gee133, J. Geisen57, M. Geisen86, M.P. Geisler60a,
+K. Gellerstedt148a,148b, C. Gemme53a, M.H. Genest58, C. Geng92, S. Gentile134a,134b, C. Gentsos156,
+S. George80, D. Gerbaudo13, A. Gershon155, G. Geßner46, S. Ghasemi143, M. Ghneimat23,
+B. Giacobbe22a, S. Giagu134a,134b, P. Giannetti126a,126b, S.M. Gibson80, M. Gignac171, M. Gilchriese16,
+D. Gillberg31, G. Gilles178, D.M. Gingrich3,d, N. Giokaris9,∗, M.P. Giordani167a,167c, F.M. Giorgi22a,
+P.F. Giraud138, P. Giromini59, D. Giugni94a, F. Giuli122, C. Giuliani103, M. Giulini60b, B.K. Gjelsten121,
+S. Gkaitatzis156, I. Gkialas9, E.L. Gkougkousis139, P. Gkountoumis10, L.K. Gladilin101, C. Glasman85,
+J. Glatzer13, P.C.F. Glaysher45, A. Glazov45, M. Goblirsch-Kolb25, J. Godlewski42, S. Goldfarb91,
+T. Golling52, D. Golubkov132, A. Gomes128a,128b,128d, R. Gonçalo128a, R. Goncalves Gama26a,
+J. Goncalves Pinto Firmino Da Costa138, G. Gonella51, L. Gonella19, A. Gongadze68,
+S. González de la Hoz170, S. Gonzalez-Sevilla52, L. Goossens32, P.A. Gorbounov99, H.A. Gordon27,
+I. Gorelov107, B. Gorini32, E. Gorini76a,76b, A. Gorišek78, A.T. Goshaw48, C. Gössling46, M.I. Gostkin68,
+C.A. Gottardo23, C.R. Goudet119, D. Goujdami137c, A.G. Goussiou140, N. Govender147b,s, E. Gozani154,
+L. Graber57, I. Grabowska-Bold41a, P.O.J. Gradin168, J. Gramling166, E. Gramstad121, S. Grancagnolo17,
+V . Gratchev125, P.M. Gravila28f, C. Gray56, H.M. Gray16, Z.D. Greenwood82,t, C. Grefe23,
+K. Gregersen81, I.M. Gregor45, P. Grenier145, K. Grevtsov5, J. Griﬃths8, A.A. Grillo139, K. Grimm75,
+S. Grinstein13,u, Ph. Gris37, J.-F. Grivaz119, S. Groh86, E. Gross175, J. Grosse-Knetter57, G.C. Grossi82,
+Z.J. Grout81, A. Grummer107, L. Guan92, W. Guan176, J. Guenther65, F. Guescini163a, D. Guest166,
+O. Gueta155, B. Gui113, E. Guido53a,53b, T. Guillemin5, S. Guindon2, U. Gul56, C. Gumpert32, J. Guo36c,
+W. Guo92, Y . Guo36a, R. Gupta43, S. Gupta122, G. Gustavino134a,134b, P. Gutierrez115,
+N.G. Gutierrez Ortiz81, C. Gutschow81, C. Guyot138, M.P. Guzik41a, C. Gwenlan122, C.B. Gwilliam77,
+A. Haas112, C. Haber16, H.K. Hadavand8, N. Haddad137e, A. Hadef88, S. Hageböck23, M. Hagihara164,
+H. Hakobyan180,∗, M. Haleem45, J. Haley116, G. Halladjian93, G.D. Hallewell88, K. Hamacher178,
+P. Hamal117, K. Hamano172, A. Hamilton147a, G.N. Hamity141, P.G. Hamnett45, L. Han36a, S. Han35a,
+K. Hanagaki69,v, K. Hanawa157, M. Hance139, B. Haney124, P. Hanke60a, J.B. Hansen39, J.D. Hansen39,
+M.C. Hansen23, P.H. Hansen39, K. Hara164, A.S. Hard176, T. Harenberg178, F. Hariri119, S. Harkusha95,
+R.D. Harrington49, P.F. Harrison173, N.M. Hartmann102, M. Hasegawa70, Y . Hasegawa142, A. Hasib49,
+S. Hassani138, S. Haug18, R. Hauser93, L. Hauswald47, L.B. Havener38, M. Havranek130,
+C.M. Hawkes19, R.J. Hawkings32, D. Hayakawa159, D. Hayden93, C.P. Hays122, J.M. Hays79,
+H.S. Hayward77, S.J. Haywood133, S.J. Head19, T. Heck86, V . Hedberg84, L. Heelan8, K.K. Heidegger51,
+S. Heim45, T. Heim16, B. Heinemann45,w, J.J. Heinrich102, L. Heinrich112, C. Heinz55, J. Hejbal129,
+L. Helary32, A. Held171, S. Hellman148a,148b, C. Helsens32, R.C.W. Henderson75, Y . Heng176,
+S. Henkelmann171, A.M. Henriques Correia32, S. Henrot-Versille119, G.H. Herbert17, H. Herde25,
+V . Herget177, Y . Hernández Jiménez147c, H. Herr86, G. Herten51, R. Hertenberger102, L. Hervas32,
+T.C. Herwig124, G.G. Hesketh81, N.P. Hessey163a, J.W. Hetherly43, S. Higashino69,
+E. Higón-Rodriguez170, E. Hill172, J.C. Hill30, K.H. Hiller45, S.J. Hillier19, M. Hils47, I. Hinchliﬀe16,
+M. Hirose51, D. Hirschbuehl178, B. Hiti78, O. Hladik129, X. Hoad49, J. Hobbs150, N. Hod163a,
+M.C. Hodgkinson141, P. Hodgson141, A. Hoecker32, M.R. Hoeferkamp107, F. Hoenig102, D. Hohn23,
+T.R. Holmes33, M. Homann46, S. Honda164, T. Honda69, T.M. Hong127, B.H. Hooberman169,
+W.H. Hopkins118, Y . Horii105, A.J. Horton144, J-Y . Hostachy58, S. Hou153, A. Hoummada137a,
+J. Howarth87, J. Hoya74, M. Hrabovsky117, J. Hrdinka32, I. Hristova17, J. Hrivnac119, T. Hryn’ova5,
+A. Hrynevich96, P.J. Hsu63, S.-C. Hsu140, Q. Hu36a, S. Hu36c, Y . Huang35a, Z. Hubacek130, F. Hubaut88,
+F. Huegging23, T.B. Huﬀman122, E.W. Hughes38, G. Hughes75, M. Huhtinen32, P. Huo150,
+31
+
+===== PAGE 32 =====
+N. Huseynov68,b, J. Huston93, J. Huth59, G. Iacobucci52, G. Iakovidis27, I. Ibragimov143,
+L. Iconomidou-Fayard119, Z. Idrissi137e, P. Iengo32, O. Igonkina109,x, T. Iizawa174, Y . Ikegami69,
+M. Ikeno69, Y . Ilchenko11,y, D. Iliadis156, N. Ilic145, G. Introzzi123a,123b, P. Ioannou9,∗, M. Iodice136a,
+K. Iordanidou38, V . Ippolito59, M.F. Isacson168, N. Ishijima120, M. Ishino157, M. Ishitsuka159,
+C. Issever122, S. Istin20a, F. Ito164, J.M. Iturbe Ponce87, R. Iuppa162a,162b, H. Iwasaki69, J.M. Izen44,
+V . Izzo106a, S. Jabbar3, P. Jackson1, R.M. Jacobs23, V . Jain2, K.B. Jakobi86, K. Jakobs51, S. Jakobsen65,
+T. Jakoubek129, D.O. Jamin116, D.K. Jana82, R. Jansky52, J. Janssen23, M. Janus57, P.A. Janus41a,
+G. Jarlskog84, N. Javadov68,b, T. Jav˚ urek51, M. Javurkova51, F. Jeanneau138, L. Jeanty16, J. Jejelava54a,z,
+A. Jelinskas173, P. Jenni51,aa, C. Jeske173, S. Jézéquel5, H. Ji176, J. Jia150, H. Jiang67, Y . Jiang36a,
+Z. Jiang145, S. Jiggins81, J. Jimenez Pena170, S. Jin35a, A. Jinaru28b, O. Jinnouchi159, H. Jivan147c,
+P. Johansson141, K.A. Johns7, C.A. Johnson64, W.J. Johnson140, K. Jon-And148a,148b, R.W.L. Jones75,
+S.D. Jones151, S. Jones7, T.J. Jones77, J. Jongmanns60a, P.M. Jorge128a,128b, J. Jovicevic163a, X. Ju176,
+A. Juste Rozas13,u, M.K. Köhler175, A. Kaczmarska42, M. Kado119, H. Kagan113, M. Kagan145,
+S.J. Kahn88, T. Kaji174, E. Kajomovitz48, C.W. Kalderon84, A. Kaluza86, S. Kama43,
+A. Kamenshchikov132, N. Kanaya157, L. Kanjir78, V .A. Kantserov100, J. Kanzaki69, B. Kaplan112,
+L.S. Kaplan176, D. Kar147c, K. Karakostas10, N. Karastathis10, M.J. Kareem57, E. Karentzos10,
+S.N. Karpov68, Z.M. Karpova68, K. Karthik112, V . Kartvelishvili75, A.N. Karyukhin132, K. Kasahara164,
+L. Kashif176, R.D. Kass113, A. Kastanas149, Y . Kataoka157, C. Kato157, A. Katre52, J. Katzy45,
+K. Kawade70, K. Kawagoe73, T. Kawamoto157, G. Kawamura57, E.F. Kay77, V .F. Kazanin111,c,
+R. Keeler172, R. Kehoe43, J.S. Keller31, J.J. Kempster80, J Kendrick19, H. Keoshkerian161, O. Kepka129,
+B.P. Kerševan78, S. Kersten178, R.A. Keyes90, M. Khader169, F. Khalil-zada12, A. Khanov116,
+A.G. Kharlamov111,c, T. Kharlamova111,c, A. Khodinov160, T.J. Khoo52, V . Khovanskiy99,∗,
+E. Khramov68, J. Khubua54b,ab, S. Kido70, C.R. Kilby80, H.Y . Kim8, S.H. Kim164, Y .K. Kim33,
+N. Kimura156, O.M. Kind17, B.T. King77, D. Kirchmeier47, J. Kirk133, A.E. Kiryunin103,
+T. Kishimoto157, D. Kisielewska41a, K. Kiuchi164, O. Kivernyk5, E. Kladiva146b,
+T. Klapdor-Kleingrothaus51, M.H. Klein38, M. Klein77, U. Klein77, K. Kleinknecht86, P. Klimek110,
+A. Klimentov27, R. Klingenberg46, T. Klingl23, T. Klioutchnikova32, E.-E. Kluge60a, P. Kluit109,
+S. Kluth103, E. Kneringer65, E.B.F.G. Knoops88, A. Knue103, A. Kobayashi157, D. Kobayashi159,
+T. Kobayashi157, M. Kobel47, M. Kocian145, P. Kodys131, T. Koﬀas31, E. Koﬀeman109, N.M. Köhler103,
+T. Koi145, M. Kolb60b, I. Koletsou5, A.A. Komar98,∗, Y . Komori157, T. Kondo69, N. Kondrashova36c,
+K. Köneke51, A.C. König108, T. Kono69,ac, R. Konoplich112,ad, N. Konstantinidis81, R. Kopeliansky64,
+S. Koperny41a, A.K. Kopp51, K. Korcyl42, K. Kordas156, A. Korn81, A.A. Korol111,c, I. Korolkov13,
+E.V . Korolkova141, O. Kortner103, S. Kortner103, T. Kosek131, V .V . Kostyukhin23, A. Kotwal48,
+A. Koulouris10, A. Kourkoumeli-Charalampidi123a,123b, C. Kourkoumelis9, E. Kourlitis141,
+V . Kouskoura27, A.B. Kowalewska42, R. Kowalewski172, T.Z. Kowalski41a, C. Kozakai157,
+W. Kozanecki138, A.S. Kozhin132, V .A. Kramarenko101, G. Kramberger78, D. Krasnopevtsev100,
+M.W. Krasny83, A. Krasznahorkay32, D. Krauss103, J.A. Kremer41a, J. Kretzschmar77, K. Kreutzfeldt55,
+P. Krieger161, K. Krizka33, K. Kroeninger46, H. Kroha103, J. Kroll129, J. Kroll124, J. Kroseberg23,
+J. Krstic14, U. Kruchonak68, H. Krüger23, N. Krumnack67, M.C. Kruse48, T. Kubota91, H. Kucuk81,
+S. Kuday4b, J.T. Kuechler178, S. Kuehn32, A. Kugel60c, F. Kuger177, T. Kuhl45, V . Kukhtin68, R. Kukla88,
+Y . Kulchitsky95, S. Kuleshov34b, Y .P. Kulinich169, M. Kuna134a,134b, T. Kunigo71, A. Kupco129,
+T. Kupfer46, O. Kuprash155, H. Kurashige70, L.L. Kurchaninov163a, Y .A. Kurochkin95, M.G. Kurth35a,
+V . Kus129, E.S. Kuwertz172, M. Kuze159, J. Kvita117, T. Kwan172, D. Kyriazopoulos141, A. La Rosa103,
+J.L. La Rosa Navarro26d, L. La Rotonda40a,40b, C. Lacasta170, F. Lacava134a,134b, J. Lacey45, H. Lacker17,
+D. Lacour83, E. Ladygin68, R. Lafaye5, B. Laforge83, T. Lagouri179, S. Lai57, S. Lammers64, W. Lampl7,
+E. Lançon27, U. Landgraf51, M.P.J. Landon79, M.C. Lanfermann52, V .S. Lang60a, J.C. Lange13,
+R.J. Langenberg32, A.J. Lankford166, F. Lanni27, K. Lantzsch23, A. Lanza123a, A. Lapertosa53a,53b,
+32
+
+===== PAGE 33 =====
+S. Laplace83, J.F. Laporte138, T. Lari94a, F. Lasagni Manghi22a,22b, M. Lassnig32, P. Laurelli50,
+W. Lavrijsen16, A.T. Law139, P. Laycock77, T. Lazovich59, M. Lazzaroni94a,94b, B. Le91, O. Le Dortz83,
+E. Le Guirriec88, E.P. Le Quilleuc138, M. LeBlanc172, T. LeCompte6, F. Ledroit-Guillon58, C.A. Lee27,
+G.R. Lee133,ae, S.C. Lee153, L. Lee59, B. Lefebvre90, G. Lefebvre83, M. Lefebvre172, F. Legger102,
+C. Leggett16, A. Lehan77, G. Lehmann Miotto32, X. Lei7, W.A. Leight45, M.A.L. Leite26d, R. Leitner131,
+D. Lellouch175, B. Lemmer57, K.J.C. Leney81, T. Lenz23, B. Lenzi32, R. Leone7, S. Leone126a,126b,
+C. Leonidopoulos49, G. Lerner151, C. Leroy97, A.A.J. Lesage138, C.G. Lester30, M. Levchenko125,
+J. Levêque5, D. Levin92, L.J. Levinson175, M. Levy19, D. Lewis79, B. Li36a,a f, C. Li36a, H. Li150,
+L. Li36c, Q. Li35a, S. Li48, X. Li36c, Y . Li143, Z. Liang35a, B. Liberti135a, A. Liblong161, K. Lie62c,
+J. Liebal23, W. Liebig15, A. Limosani152, S.C. Lin183, T.H. Lin86, B.E. Lindquist150, A.E. Lionti52,
+E. Lipeles124, A. Lipniacka15, M. Lisovyi60b, T.M. Liss169, A. Lister171, A.M. Litke139, B. Liu153,ag,
+H. Liu92, H. Liu27, J.K.K. Liu122, J. Liu36b, J.B. Liu36a, K. Liu88, L. Liu169, M. Liu36a, Y .L. Liu36a,
+Y . Liu36a, M. Livan123a,123b, A. Lleres58, J. Llorente Merino35a, S.L. Lloyd79, C.Y . Lo62b,
+F. Lo Sterzo153, E.M. Lobodzinska45, P. Loch7, F.K. Loebinger87, A. Loesle51, K.M. Loew25,
+A. Loginov179,∗, T. Lohse17, K. Lohwasser45, M. Lokajicek129, B.A. Long24, J.D. Long169, R.E. Long75,
+L. Longo76a,76b, K.A. Looper113, J.A. Lopez34b, D. Lopez Mateos59, I. Lopez Paz13, A. Lopez Solis83,
+J. Lorenz102, N. Lorenzo Martinez5, M. Losada21, P.J. Lösel102, X. Lou35a, A. Lounis119, J. Love6,
+P.A. Love75, H. Lu62a, N. Lu92, Y .J. Lu63, H.J. Lubatti140, C. Luci134a,134b, A. Lucotte58, C. Luedtke51,
+F. Luehring64, W. Lukas65, L. Luminari134a, O. Lundberg148a,148b, B. Lund-Jensen149, P.M. Luzi83,
+D. Lynn27, R. Lysak129, E. Lytken84, V . Lyubushkin68, H. Ma27, L.L. Ma36b, Y . Ma36b, G. Maccarrone50,
+A. Macchiolo103, C.M. Macdonald141, B. Maˇcek78, J. Machado Miguens124,128b, D. Madaﬀari88,
+R. Madar37, W.F. Mader47, A. Madsen45, J. Maeda70, S. Maeland15, T. Maeno27, A.S. Maevskiy101,
+E. Magradze57, J. Mahlstedt109, C. Maiani119, C. Maidantchik26a, A.A. Maier103, T. Maier102,
+A. Maio128a,128b,128d, O. Majersky146a, S. Majewski118, Y . Makida69, N. Makovec119, B. Malaescu83,
+Pa. Malecki42, V .P. Maleev125, F. Malek58, U. Mallik66, D. Malon6, C. Malone30, S. Maltezos10,
+S. Malyukov32, J. Mamuzic170, G. Mancini50, L. Mandelli94a, I. Mandi´c78, J. Maneira128a,128b,
+L. Manhaes de Andrade Filho26b, J. Manjarres Ramos47, A. Mann102, A. Manousos32, B. Mansoulie138,
+J.D. Mansour35a, R. Mantifel90, M. Mantoani57, S. Manzoni94a,94b, L. Mapelli32, G. Marceca29,
+L. March52, L. Marchese122, G. Marchiori83, M. Marcisovsky129, M. Marjanovic37, D.E. Marley92,
+F. Marroquim26a, S.P. Marsden87, Z. Marshall16, M.U.F Martensson168, S. Marti-Garcia170,
+C.B. Martin113, T.A. Martin173, V .J. Martin49, B. Martin dit Latour15, M. Martinez13,u,
+V .I. Martinez Outschoorn169, S. Martin-Haugh133, V .S. Martoiu28b, A.C. Martyniuk81, A. Marzin32,
+L. Masetti86, T. Mashimo157, R. Mashinistov98, J. Masik87, A.L. Maslennikov111,c, L. Massa135a,135b,
+P. Mastrandrea5, A. Mastroberardino40a,40b, T. Masubuchi157, P. Mättig178, J. Maurer28b, S.J. Maxﬁeld77,
+D.A. Maximov111,c, R. Mazini153, I. Maznas156, S.M. Mazza94a,94b, N.C. Mc Fadden107,
+G. Mc Goldrick161, S.P. Mc Kee92, A. McCarn92, R.L. McCarthy150, T.G. McCarthy103,
+L.I. McClymont81, E.F. McDonald91, J.A. Mcfayden81, G. Mchedlidze57, S.J. McMahon133,
+P.C. McNamara91, R.A. McPherson172,o, S. Meehan140, T.J. Megy51, S. Mehlhase102, A. Mehta77,
+T. Meideck58, K. Meier60a, B. Meirose44, D. Melini170,ah, B.R. Mellado Garcia147c, J.D. Mellenthin57,
+M. Melo146a, F. Meloni18, S.B. Menary87, L. Meng77, X.T. Meng92, A. Mengarelli22a,22b, S. Menke103,
+E. Meoni40a,40b, S. Mergelmeyer17, P. Mermod52, L. Merola106a,106b, C. Meroni94a, F.S. Merritt33,
+A. Messina134a,134b, J. Metcalfe6, A.S. Mete166, C. Meyer124, J-P. Meyer138, J. Meyer109,
+H. Meyer Zu Theenhausen60a, F. Miano151, R.P. Middleton133, S. Miglioranzi53a,53b, L. Mijovi´c49,
+G. Mikenberg175, M. Mikestikova129, M. Mikuž78, M. Milesi91, A. Milic161, D.W. Miller33, C. Mills49,
+A. Milov175, D.A. Milstead148a,148b, A.A. Minaenko132, Y . Minami157, I.A. Minashvili68, A.I. Mincer112,
+B. Mindur41a, M. Mineev68, Y . Minegishi157, Y . Ming176, L.M. Mir13, K.P. Mistry124, T. Mitani174,
+J. Mitrevski102, V .A. Mitsou170, A. Miucci18, P.S. Miyagawa141, A. Mizukami69, J.U. Mjörnmark84,
+33
+
+===== PAGE 34 =====
+T. Mkrtchyan180, M. Mlynarikova131, T. Moa148a,148b, K. Mochizuki97, P. Mogg51, S. Mohapatra38,
+S. Molander148a,148b, R. Moles-Valls23, R. Monden71, M.C. Mondragon93, K. Mönig45, J. Monk39,
+E. Monnier88, A. Montalbano150, J. Montejo Berlingen32, F. Monticelli74, S. Monzani94a,94b,
+R.W. Moore3, N. Morange119, D. Moreno21, M. Moreno Llácer32, P. Morettini53a, S. Morgenstern32,
+D. Mori144, T. Mori157, M. Morii59, M. Morinaga157, V . Morisbak121, A.K. Morley152, G. Mornacchi32,
+J.D. Morris79, L. Morvaj150, P. Moschovakos10, M. Mosidze54b, H.J. Moss141, J. Moss145,ai,
+K. Motohashi159, R. Mount145, E. Mountricha27, E.J.W. Moyse89, S. Muanza88, R.D. Mudd19,
+F. Mueller103, J. Mueller127, R.S.P. Mueller102, D. Muenstermann75, P. Mullen56, G.A. Mullier18,
+F.J. Munoz Sanchez87, W.J. Murray173,133, H. Musheghyan181, M. Muškinja78, A.G. Myagkov132,a j,
+M. Myska130, B.P. Nachman16, O. Nackenhorst52, K. Nagai122, R. Nagai69,ac, K. Nagano69,
+Y . Nagasaka61, K. Nagata164, M. Nagel51, E. Nagy88, A.M. Nairz32, Y . Nakahama105, K. Nakamura69,
+T. Nakamura157, I. Nakano114, R.F. Naranjo Garcia45, R. Narayan11, D.I. Narrias Villar60a,
+I. Naryshkin125, T. Naumann45, G. Navarro21, R. Nayyar7, H.A. Neal92, P.Yu. Nechaeva98, T.J. Neep138,
+A. Negri123a,123b, M. Negrini22a, S. Nektarijevic108, C. Nellist119, A. Nelson166, M.E. Nelson122,
+S. Nemecek129, P. Nemethy112, M. Nessi32,ak, M.S. Neubauer169, M. Neumann178, P.R. Newman19,
+T.Y . Ng62c, T. Nguyen Manh97, R.B. Nickerson122, R. Nicolaidou138, J. Nielsen139, V . Nikolaenko132,a j,
+I. Nikolic-Audit83, K. Nikolopoulos19, J.K. Nilsen121, P. Nilsson27, Y . Ninomiya157, A. Nisati134a,
+N. Nishu35c, R. Nisius103, I. Nitsche46, T. Nobe157, Y . Noguchi71, M. Nomachi120, I. Nomidis31,
+M.A. Nomura27, T. Nooney79, M. Nordberg32, N. Norjoharuddeen122, O. Novgorodova47, S. Nowak103,
+M. Nozaki69, L. Nozka117, K. Ntekas166, E. Nurse81, F. Nuti91, K. O’connor25, D.C. O’Neil144,
+A.A. O’Rourke45, V . O’Shea56, F.G. Oakham31,d, H. Oberlack103, T. Obermann23, J. Ocariz83,
+A. Ochi70, I. Ochoa38, J.P. Ochoa-Ricoux34a, S. Oda73, S. Odaka69, H. Ogren64, A. Oh87, S.H. Oh48,
+C.C. Ohm16, H. Ohman168, H. Oide53a,53b, H. Okawa164, Y . Okumura157, T. Okuyama69, A. Olariu28b,
+L.F. Oleiro Seabra128a, S.A. Olivares Pino49, D. Oliveira Damazio27, A. Olszewski42, J. Olszowska42,
+A. Onofre128a,128e, K. Onogi105, P.U.E. Onyisi11,y, M.J. Oreglia33, Y . Oren155, D. Orestano136a,136b,
+N. Orlando62b, R.S. Orr161, B. Osculati53a,53b,∗, R. Ospanov36a, G. Otero y Garzon29, H. Otono73,
+M. Ouchrif137d, F. Ould-Saada121, A. Ouraou138, K.P. Oussoren109, Q. Ouyang35a, M. Owen56,
+R.E. Owen19, V .E. Ozcan20a, N. Ozturk8, K. Pachal144, A. Pacheco Pages13, L. Pacheco Rodriguez138,
+C. Padilla Aranda13, S. Pagan Griso16, M. Paganini179, F. Paige27, G. Palacino64, S. Palazzo40a,40b,
+S. Palestini32, M. Palka41b, D. Pallin37, E.St. Panagiotopoulou10, I. Panagoulias10, C.E. Pandini83,
+J.G. Panduro Vazquez80, P. Pani32, S. Panitkin27, D. Pantea28b, L. Paolozzi52, Th.D. Papadopoulou10,
+K. Papageorgiou9, A. Paramonov6, D. Paredes Hernandez179, A.J. Parker75, M.A. Parker30,
+K.A. Parker45, F. Parodi53a,53b, J.A. Parsons38, U. Parzefall51, V .R. Pascuzzi161, J.M. Pasner139,
+E. Pasqualucci134a, S. Passaggio53a, Fr. Pastore80, S. Pataraia178, J.R. Pater87, T. Pauly32, B. Pearson103,
+S. Pedraza Lopez170, R. Pedro128a,128b, S.V . Peleganchuk111,c, O. Penc129, C. Peng35a, H. Peng36a,
+J. Penwell64, B.S. Peralva26b, M.M. Perego138, D.V . Perepelitsa27, L. Perini94a,94b, H. Pernegger32,
+S. Perrella106a,106b, R. Peschke45, V .D. Peshekhonov68,∗, K. Peters45, R.F.Y . Peters87, B.A. Petersen32,
+T.C. Petersen39, E. Petit58, A. Petridis1, C. Petridou156, P. Petroﬀ119, E. Petrolo134a, M. Petrov122,
+F. Petrucci136a,136b, N.E. Pettersson89, A. Peyaud138, R. Pezoa34b, F.H. Phillips93, P.W. Phillips133,
+G. Piacquadio150, E. Pianori173, A. Picazio89, E. Piccaro79, M.A. Pickering122, R. Piegaia29,
+J.E. Pilcher33, A.D. Pilkington87, A.W.J. Pin87, M. Pinamonti135a,135b, J.L. Pinfold3, H. Pirumov45,
+M. Pitt175, L. Plazak146a, M.-A. Pleier27, V . Pleskot86, E. Plotnikova68, D. Pluth67, P. Podberezko111,
+R. Poettgen148a,148b, R. Poggi123a,123b, L. Poggioli119, D. Pohl23, G. Polesello123a, A. Poley45,
+A. Policicchio40a,40b, R. Polifka32, A. Polini22a, C.S. Pollard56, V . Polychronakos27, K. Pommès32,
+D. Ponomarenko100, L. Pontecorvo134a, B.G. Pope93, G.A. Popeneciu28d, A. Poppleton32, S. Pospisil130,
+K. Potamianos16, I.N. Potrap68, C.J. Potter30, G. Poulard32, T. Poulsen84, J. Poveda32,
+M.E. Pozo Astigarraga32, P. Pralavorio88, A. Pranko16, S. Prell67, D. Price87, L.E. Price6,
+34
+
+===== PAGE 35 =====
+M. Primavera76a, S. Prince90, N. Proklova100, K. Prokoﬁev62c, F. Prokoshin34b, S. Protopopescu27,
+J. Proudfoot6, M. Przybycien41a, A. Puri169, P. Puzo119, J. Qian92, G. Qin56, Y . Qin87, A. Quadt57,
+M. Queitsch-Maitland45, D. Quilty56, S. Raddum121, V . Radeka27, V . Radescu122,
+S.K. Radhakrishnan150, P. Radloﬀ118, P. Rados91, F. Ragusa94a,94b, G. Rahal182, J.A. Raine87,
+S. Rajagopalan27, C. Rangel-Smith168, T. Rashid119, S. Raspopov5, M.G. Ratti94a,94b, D.M. Rauch45,
+F. Rauscher102, S. Rave86, I. Ravinovich175, J.H. Rawling87, M. Raymond32, A.L. Read121,
+N.P. Readioﬀ58, M. Reale76a,76b, D.M. Rebuzzi123a,123b, A. Redelbach177, G. Redlinger27, R. Reece139,
+R.G. Reed147c, K. Reeves44, L. Rehnisch17, J. Reichert124, A. Reiss86, C. Rembser32, H. Ren35a,
+M. Rescigno134a, S. Resconi94a, E.D. Resseguie124, S. Rettie171, E. Reynolds19, O.L. Rezanova111,c,
+P. Reznicek131, R. Rezvani97, R. Richter103, S. Richter81, E. Richter-Was41b, O. Ricken23, M. Ridel83,
+P. Rieck103, C.J. Riegel178, J. Rieger57, O. Rifki115, M. Rijssenbeek150, A. Rimoldi123a,123b,
+M. Rimoldi18, L. Rinaldi22a, G. Ripellino149, B. Risti´c32, E. Ritsch32, I. Riu13, F. Rizatdinova116,
+E. Rizvi79, C. Rizzi13, R.T. Roberts87, S.H. Robertson90,o, A. Robichaud-Veronneau90, D. Robinson30,
+J.E.M. Robinson45, A. Robson56, E. Rocco86, C. Roda126a,126b, Y . Rodina88,al, S. Rodriguez Bosca170,
+A. Rodriguez Perez13, D. Rodriguez Rodriguez170, S. Roe32, C.S. Rogan59, O. Røhne121, J. Roloﬀ59,
+A. Romaniouk100, M. Romano22a,22b, S.M. Romano Saez37, E. Romero Adam170, N. Rompotis77,
+M. Ronzani51, L. Roos83, S. Rosati134a, K. Rosbach51, P. Rose139, N.-A. Rosien57, E. Rossi106a,106b,
+L.P. Rossi53a, J.H.N. Rosten30, R. Rosten140, M. Rotaru28b, I. Roth175, J. Rothberg140, D. Rousseau119,
+A. Rozanov88, Y . Rozen154, X. Ruan147c, F. Rubbo145, F. Rühr51, A. Ruiz-Martinez31, Z. Rurikova51,
+N.A. Rusakovich68, H.L. Russell90, J.P. Rutherfoord7, N. Ruthmann32, Y .F. Ryabov125, M. Rybar169,
+G. Rybkin119, S. Ryu6, A. Ryzhov132, G.F. Rzehorz57, A.F. Saavedra152, G. Sabato109, S. Sacerdoti29,
+H.F-W. Sadrozinski139, R. Sadykov68, F. Safai Tehrani134a, P. Saha110, M. Sahinsoy60a, M. Saimpert45,
+M. Saito157, T. Saito157, H. Sakamoto157, Y . Sakurai174, G. Salamanna136a,136b, J.E. Salazar Loyola34b,
+D. Salek109, P.H. Sales De Bruin168, D. Salihagic103, A. Salnikov145, J. Salt170, D. Salvatore40a,40b,
+F. Salvatore151, A. Salvucci62a,62b,62c, A. Salzburger32, D. Sammel51, D. Sampsonidis156,
+D. Sampsonidou156, J. Sánchez170, V . Sanchez Martinez170, A. Sanchez Pineda167a,167c, H. Sandaker121,
+R.L. Sandbach79, C.O. Sander45, M. Sandhoﬀ178, C. Sandoval21, D.P.C. Sankey133, M. Sannino53a,53b,
+A. Sansoni50, C. Santoni37, R. Santonico135a,135b, H. Santos128a, I. Santoyo Castillo151, A. Sapronov68,
+J.G. Saraiva128a,128d, B. Sarrazin23, O. Sasaki69, K. Sato164, E. Sauvan5, G. Savage80, P. Savard161,d,
+N. Savic103, C. Sawyer133, L. Sawyer82,t, J. Saxon33, C. Sbarra22a, A. Sbrizzi22a,22b, T. Scanlon81,
+D.A. Scannicchio166, M. Scarcella152, V . Scarfone40a,40b, J. Schaarschmidt140, P. Schacht103,
+B.M. Schachtner102, D. Schaefer32, L. Schaefer124, R. Schaefer45, J. Schaeﬀer86, S. Schaepe23,
+S. Schaetzel60b, U. Schäfer86, A.C. Schaﬀer119, D. Schaile102, R.D. Schamberger150, V . Scharf60a,
+V .A. Schegelsky125, D. Scheirich131, M. Schernau166, C. Schiavi53a,53b, S. Schier139, L.K. Schildgen23,
+C. Schillo51, M. Schioppa40a,40b, S. Schlenker32, K.R. Schmidt-Sommerfeld103, K. Schmieden32,
+C. Schmitt86, S. Schmitt45, S. Schmitz86, U. Schnoor51, L. Schoeﬀel138, A. Schoening60b,
+B.D. Schoenrock93, E. Schopf23, M. Schott86, J.F.P. Schouwenberg108, J. Schovancova181,
+S. Schramm52, N. Schuh86, A. Schulte86, M.J. Schultens23, H.-C. Schultz-Coulon60a, H. Schulz17,
+M. Schumacher51, B.A. Schumm139, Ph. Schune138, A. Schwartzman145, T.A. Schwarz92,
+H. Schweiger87, Ph. Schwemling138, R. Schwienhorst93, J. Schwindling138, A. Sciandra23, G. Sciolla25,
+F. Scuri126a,126b, F. Scutti91, J. Searcy92, P. Seema23, S.C. Seidel107, A. Seiden139, J.M. Seixas26a,
+G. Sekhniaidze106a, K. Sekhon92, S.J. Sekula43, N. Semprini-Cesari22a,22b, S. Senkin37, C. Serfon121,
+L. Serin119, L. Serkin167a,167b, M. Sessa136a,136b, R. Seuster172, H. Severini115, T. Sﬁligoj78, F. Sforza32,
+A. Sfyrla52, E. Shabalina57, N.W. Shaikh148a,148b, L.Y . Shan35a, R. Shang169, J.T. Shank24, M. Shapiro16,
+P.B. Shatalov99, K. Shaw167a,167b, S.M. Shaw87, A. Shcherbakova148a,148b, C.Y . Shehu151, Y . Shen115,
+N. Sherafati31, P. Sherwood81, L. Shi153,am, S. Shimizu70, C.O. Shimmin179, M. Shimojima104,
+I.P.J. Shipsey122, S. Shirabe73, M. Shiyakova68,an, J. Shlomi175, A. Shmeleva98, D. Shoaleh Saadi97,
+35
+
+===== PAGE 36 =====
+M.J. Shochet33, S. Shojaii94a, D.R. Shope115, S. Shrestha113, E. Shulga100, M.A. Shupe7, P. Sicho129,
+A.M. Sickles169, P.E. Sidebo149, E. Sideras Haddad147c, O. Sidiropoulou177, A. Sidoti22a,22b, F. Siegert47,
+Dj. Sijacki14, J. Silva128a,128d, S.B. Silverstein148a, V . Simak130, Lj. Simic14, S. Simion119, E. Simioni86,
+B. Simmons81, M. Simon86, P. Sinervo161, N.B. Sinev118, M. Sioli22a,22b, G. Siragusa177, I. Siral92,
+S.Yu. Sivoklokov101, J. Sjölin148a,148b, M.B. Skinner75, P. Skubic115, M. Slater19, T. Slavicek130,
+M. Slawinska42, K. Sliwa165, R. Slovak131, V . Smakhtin175, B.H. Smart5, J. Smiesko146a, N. Smirnov100,
+S.Yu. Smirnov100, Y . Smirnov100, L.N. Smirnova101,ao, O. Smirnova84, J.W. Smith57, M.N.K. Smith38,
+R.W. Smith38, M. Smizanska75, K. Smolek130, A.A. Snesarev98, I.M. Snyder118, S. Snyder27,
+R. Sobie172,o, F. Socher47, A. Soﬀer155, D.A. Soh153, G. Sokhrannyi78, C.A. Solans Sanchez32,
+M. Solar130, E.Yu. Soldatov100, U. Soldevila170, A.A. Solodkov132, A. Soloshenko68,
+O.V . Solovyanov132, V . Solovyev125, P. Sommer51, H. Son165, A. Sopczak130, D. Sosa60b,
+C.L. Sotiropoulou126a,126b, R. Soualah167a,167c, A.M. Soukharev111,c, D. South45, B.C. Sowden80,
+S. Spagnolo76a,76b, M. Spalla126a,126b, M. Spangenberg173, F. Spanò80, D. Sperlich17, F. Spettel103,
+T.M. Spieker60a, R. Spighi22a, G. Spigo32, L.A. Spiller91, M. Spousta131, R.D. St. Denis56,∗,
+A. Stabile94a, R. Stamen60a, S. Stamm17, E. Stanecka42, R.W. Stanek6, C. Stanescu136a,
+M.M. Stanitzki45, B.S. Stapf109, S. Stapnes121, E.A. Starchenko132, G.H. Stark33, J. Stark58, S.H Stark39,
+P. Staroba129, P. Starovoitov60a, S. Stärz32, R. Staszewski42, P. Steinberg27, B. Stelzer144, H.J. Stelzer32,
+O. Stelzer-Chilton163a, H. Stenzel55, G.A. Stewart56, M.C. Stockton118, M. Stoebe90, G. Stoicea28b,
+P. Stolte57, S. Stonjek103, A.R. Stradling8, A. Straessner47, M.E. Stramaglia18, J. Strandberg149,
+S. Strandberg148a,148b, M. Strauss115, P. Strizenec146b, R. Ströhmer177, D.M. Strom118, R. Stroynowski43,
+A. Strubig108, S.A. Stucci27, B. Stugu15, N.A. Styles45, D. Su145, J. Su127, S. Suchek60a, Y . Sugaya120,
+M. Suk130, V .V . Sulin98, DMS Sultan162a,162b, S. Sultansoy4c, T. Sumida71, S. Sun59, X. Sun3,
+K. Suruliz151, C.J.E. Suster152, M.R. Sutton151, S. Suzuki69, M. Svatos129, M. Swiatlowski33, S.P. Swift2,
+I. Sykora146a, T. Sykora131, D. Ta51, K. Tackmann45, J. Taenzer155, A. Taﬀard166, R. Taﬁrout163a,
+N. Taiblum155, H. Takai27, R. Takashima72, E.H. Takasugi103, T. Takeshita142, Y . Takubo69, M. Talby88,
+A.A. Talyshev111,c, J. Tanaka157, M. Tanaka159, R. Tanaka119, S. Tanaka69, R. Tanioka70,
+B.B. Tannenwald113, S. Tapia Araya34b, S. Tapprogge86, S. Tarem154, G.F. Tartarelli94a, P. Tas131,
+M. Tasevsky129, T. Tashiro71, E. Tassi40a,40b, A. Tavares Delgado128a,128b, Y . Tayalati137e, A.C. Taylor107,
+G.N. Taylor91, P.T.E. Taylor91, W. Taylor163b, P. Teixeira-Dias80, D. Temple144, H. Ten Kate32,
+P.K. Teng153, J.J. Teoh120, F. Tepel178, S. Terada69, K. Terashi157, J. Terron85, S. Terzo13, M. Testa50,
+R.J. Teuscher161,o, T. Theveneaux-Pelzer88, J.P. Thomas19, J. Thomas-Wilsker80, P.D. Thompson19,
+A.S. Thompson56, L.A. Thomsen179, E. Thomson124, M.J. Tibbetts16, R.E. Ticse Torres88,
+V .O. Tikhomirov98,ap, Yu.A. Tikhonov111,c, S. Timoshenko100, P. Tipton179, S. Tisserant88,
+K. Todome159, S. Todorova-Nova5, J. Tojo73, S. Tokár146a, K. Tokushuku69, E. Tolley59, L. Tomlinson87,
+M. Tomoto105, L. Tompkins145,aq, K. Toms107, B. Tong59, P. Tornambe51, E. Torrence118, H. Torres144,
+E. Torró Pastor140, J. Toth88,ar, F. Touchard88, D.R. Tovey141, C.J. Treado112, T. Trefzger177,
+F. Tresoldi151, A. Tricoli27, I.M. Trigger163a, S. Trincaz-Duvoid83, M.F. Tripiana13, W. Trischuk161,
+B. Trocmé58, A. Trofymov45, C. Troncon94a, M. Trottier-McDonald16, M. Trovatelli172,
+L. Truong167a,167c, M. Trzebinski42, A. Trzupek42, K.W. Tsang62a, J.C-L. Tseng122, P.V . Tsiareshka95,
+G. Tsipolitis10, N. Tsirintanis9, S. Tsiskaridze13, V . Tsiskaridze51, E.G. Tskhadadze54a, K.M. Tsui62a,
+I.I. Tsukerman99, V . Tsulaia16, S. Tsuno69, D. Tsybychev150, Y . Tu62b, A. Tudorache28b,
+V . Tudorache28b, T.T. Tulbure28a, A.N. Tuna59, S.A. Tupputi22a,22b, S. Turchikhin68, D. Turgeman175,
+I. Turk Cakir4b,as, R. Turra94a, P.M. Tuts38, G. Ucchielli22a,22b, I. Ueda69, M. Ughetto148a,148b,
+F. Ukegawa164, G. Unal32, A. Undrus27, G. Unel166, F.C. Ungaro91, Y . Unno69, C. Unverdorben102,
+J. Urban146b, P. Urquijo91, P. Urrejola86, G. Usai8, J. Usui69, L. Vacavant88, V . Vacek130, B. Vachon90,
+C. Valderanis102, E. Valdes Santurio148a,148b, S. Valentinetti22a,22b, A. Valero170, L. Valéry13,
+S. Valkar131, A. Vallier5, J.A. Valls Ferrer170, W. Van Den Wollenberg109, H. van der Graaf109,
+36
+
+===== PAGE 37 =====
+P. van Gemmeren6, J. Van Nieuwkoop144, I. van Vulpen109, M.C. van Woerden109, M. Vanadia135a,135b,
+W. Vandelli32, A. Vaniachine160, P. Vankov109, G. Vardanyan180, R. Vari134a, E.W. Varnes7,
+C. Varni53a,53b, T. Varol43, D. Varouchas119, A. Vartapetian8, K.E. Varvell152, J.G. Vasquez179,
+G.A. Vasquez34b, F. Vazeille37, T. Vazquez Schroeder90, J. Veatch57, V . Veeraraghavan7, L.M. Veloce161,
+F. Veloso128a,128c, S. Veneziano134a, A. Ventura76a,76b, M. Venturi172, N. Venturi32, A. Venturini25,
+V . Vercesi123a, M. Verducci136a,136b, W. Verkerke109, A.T. Vermeulen109, J.C. Vermeulen109,
+M.C. Vetterli144,d, N. Viaux Maira34b, O. Viazlo84, I. Vichou169,∗, T. Vickey141, O.E. Vickey Boeriu141,
+G.H.A. Viehhauser122, S. Viel16, L. Vigani122, M. Villa22a,22b, M. Villaplana Perez94a,94b, E. Vilucchi50,
+M.G. Vincter31, V .B. Vinogradov68, A. Vishwakarma45, C. Vittori22a,22b, I. Vivarelli151, S. Vlachos10,
+M. Vlasak130, M. V ogel178, P. V okac130, G. V olpi126a,126b, H. von der Schmitt103, E. von Toerne23,
+V . V orobel131, K. V orobev100, M. V os170, R. V oss32, J.H. V ossebeld77, N. Vranjes14,
+M. Vranjes Milosavljevic14, V . Vrba130, M. Vreeswijk109, R. Vuillermet32, I. Vukotic33, P. Wagner23,
+W. Wagner178, J. Wagner-Kuhr102, H. Wahlberg74, S. Wahrmund47, J. Wakabayashi105, J. Walder75,
+R. Walker102, W. Walkowiak143, V . Wallangen148a,148b, C. Wang35b, C. Wang36b,at, F. Wang176,
+H. Wang16, H. Wang3, J. Wang45, J. Wang152, Q. Wang115, R. Wang6, S.M. Wang153, T. Wang38,
+W. Wang153,au, W. Wang36a, Z. Wang36c, C. Wanotayaroj118, A. Warburton90, C.P. Ward30,
+D.R. Wardrope81, A. Washbrook49, P.M. Watkins19, A.T. Watson19, M.F. Watson19, G. Watts140,
+S. Watts87, B.M. Waugh81, A.F. Webb11, S. Webb86, M.S. Weber18, S.W. Weber177, S.A. Weber31,
+J.S. Webster6, A.R. Weidberg122, B. Weinert64, J. Weingarten57, M. Weirich86, C. Weiser51, H. Weits109,
+P.S. Wells32, T. Wenaus27, T. Wengler32, S. Wenig32, N. Wermes23, M.D. Werner67, P. Werner32,
+M. Wessels60a, K. Whalen118, N.L. Whallon140, A.M. Wharton75, A.S. White92, A. White8, M.J. White1,
+R. White34b, D. Whiteson166, B.W. Whitmore75, F.J. Wickens133, W. Wiedenmann176, M. Wielers133,
+C. Wiglesworth39, L.A.M. Wiik-Fuchs23, A. Wildauer103, F. Wilk87, H.G. Wilkens32, H.H. Williams124,
+S. Williams109, C. Willis93, S. Willocq89, J.A. Wilson19, I. Wingerter-Seez5, E. Winkels151,
+F. Winklmeier118, O.J. Winston151, B.T. Winter23, M. Wittgen145, M. Wobisch82,t, T.M.H. Wolf109,
+R. Wolﬀ88, M.W. Wolter42, H. Wolters128a,128c, V .W.S. Wong171, S.D. Worm19, B.K. Wosiek42,
+J. Wotschack32, K.W. Wozniak42, M. Wu33, S.L. Wu176, X. Wu52, Y . Wu92, T.R. Wyatt87,
+B.M. Wynne49, S. Xella39, Z. Xi92, L. Xia35c, D. Xu35a, L. Xu27, B. Yabsley152, S. Yacoob147a,
+D. Yamaguchi159, Y . Yamaguchi120, A. Yamamoto69, S. Yamamoto157, T. Yamanaka157, M. Yamatani157,
+K. Yamauchi105, Y . Yamazaki70, Z. Yan24, H. Yang36c, H. Yang16, Y . Yang153, Z. Yang15, W-M. Yao16,
+Y .C. Yap83, Y . Yasu69, E. Yatsenko5, K.H. Yau Wong23, J. Ye43, S. Ye27, I. Yeletskikh68, E. Yigitbasi24,
+E. Yildirim86, K. Yorita174, K. Yoshihara124, C. Young145, C.J.S. Young32, J. Yu8, J. Yu67, S.P.Y . Yuen23,
+I. Yusuﬀ30,av, B. Zabinski42, G. Zacharis10, R. Zaidan13, A.M. Zaitsev132,a j, N. Zakharchuk45,
+J. Zalieckas15, A. Zaman150, S. Zambito59, D. Zanzi91, C. Zeitnitz178, G. Zemaityte122, A. Zemla41a,
+J.C. Zeng169, Q. Zeng145, O. Zenin132, T. Ženiš146a, D. Zerwas119, D. Zhang92, F. Zhang176,
+G. Zhang36a,aw, H. Zhang35b, J. Zhang6, L. Zhang51, L. Zhang36a, M. Zhang169, P. Zhang35b, R. Zhang23,
+R. Zhang36a,at, X. Zhang36b, Y . Zhang35a, Z. Zhang119, X. Zhao43, Y . Zhao36b,ax, Z. Zhao36a,
+A. Zhemchugov68, B. Zhou92, C. Zhou176, L. Zhou43, M. Zhou35a, M. Zhou150, N. Zhou35c,
+C.G. Zhu36b, H. Zhu35a, J. Zhu92, Y . Zhu36a, X. Zhuang35a, K. Zhukov98, A. Zibell177, D. Zieminska64,
+N.I. Zimine68, C. Zimmermann86, S. Zimmermann51, Z. Zinonos103, M. Zinser86, M. Ziolkowski143,
+L. Živkovi´c14, G. Zobernig176, A. Zoccoli22a,22b, R. Zou33, M. zur Nedden17, L. Zwalinski32.
+1 Department of Physics, University of Adelaide, Adelaide, Australia
+2 Physics Department, SUNY Albany, Albany NY , United States of America
+3 Department of Physics, University of Alberta, Edmonton AB, Canada
+4 ( a) Department of Physics, Ankara University, Ankara; (b) Istanbul Aydin University, Istanbul;(c)
+Division of Physics, TOBB University of Economics and Technology, Ankara, Turkey
+37
+
+===== PAGE 38 =====
+5 LAPP, CNRS/IN2P3 and Université Savoie Mont Blanc, Annecy-le-Vieux, France
+6 High Energy Physics Division, Argonne National Laboratory, Argonne IL, United States of America
+7 Department of Physics, University of Arizona, Tucson AZ, United States of America
+8 Department of Physics, The University of Texas at Arlington, Arlington TX, United States of America
+9 Physics Department, National and Kapodistrian University of Athens, Athens, Greece
+10 Physics Department, National Technical University of Athens, Zografou, Greece
+11 Department of Physics, The University of Texas at Austin, Austin TX, United States of America
+12 Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+13 Institut de Física d’Altes Energies (IFAE), The Barcelona Institute of Science and Technology,
+Barcelona, Spain
+14 Institute of Physics, University of Belgrade, Belgrade, Serbia
+15 Department for Physics and Technology, University of Bergen, Bergen, Norway
+16 Physics Division, Lawrence Berkeley National Laboratory and University of California, Berkeley CA,
+United States of America
+17 Department of Physics, Humboldt University, Berlin, Germany
+18 Albert Einstein Center for Fundamental Physics and Laboratory for High Energy Physics, University
+of Bern, Bern, Switzerland
+19 School of Physics and Astronomy, University of Birmingham, Birmingham, United Kingdom
+20 ( a) Department of Physics, Bogazici University, Istanbul; (b) Department of Physics Engineering,
+Gaziantep University, Gaziantep; (d) Istanbul Bilgi University, Faculty of Engineering and Natural
+Sciences, Istanbul; (e) Bahcesehir University, Faculty of Engineering and Natural Sciences, Istanbul,
+Turkey
+21 Centro de Investigaciones, Universidad Antonio Narino, Bogota, Colombia
+22 ( a) INFN Sezione di Bologna; (b) Dipartimento di Fisica e Astronomia, Università di Bologna,
+Bologna, Italy
+23 Physikalisches Institut, University of Bonn, Bonn, Germany
+24 Department of Physics, Boston University, Boston MA, United States of America
+25 Department of Physics, Brandeis University, Waltham MA, United States of America
+26 ( a) Universidade Federal do Rio De Janeiro COPPE/EE/IF, Rio de Janeiro; (b) Electrical Circuits
+Department, Federal University of Juiz de Fora (UFJF), Juiz de Fora; (c) Federal University of Sao Joao
+del Rei (UFSJ), Sao Joao del Rei; (d) Instituto de Fisica, Universidade de Sao Paulo, Sao Paulo, Brazil
+27 Physics Department, Brookhaven National Laboratory, Upton NY , United States of America
+28 ( a) Transilvania University of Brasov, Brasov;(b) Horia Hulubei National Institute of Physics and
+Nuclear Engineering, Bucharest; (c) Department of Physics, Alexandru Ioan Cuza University of Iasi,
+Iasi; (d) National Institute for Research and Development of Isotopic and Molecular Technologies,
+Physics Department, Cluj Napoca; (e) University Politehnica Bucharest, Bucharest; ( f ) West University
+in Timisoara, Timisoara, Romania
+29 Departamento de Física, Universidad de Buenos Aires, Buenos Aires, Argentina
+30 Cavendish Laboratory, University of Cambridge, Cambridge, United Kingdom
+31 Department of Physics, Carleton University, Ottawa ON, Canada
+32 CERN, Geneva, Switzerland
+33 Enrico Fermi Institute, University of Chicago, Chicago IL, United States of America
+34 ( a) Departamento de Física, Pontiﬁcia Universidad Católica de Chile, Santiago;(b) Departamento de
+Física, Universidad Técnica Federico Santa María, Valparaíso, Chile
+35 ( a) Institute of High Energy Physics, Chinese Academy of Sciences, Beijing; (b) Department of
+Physics, Nanjing University, Jiangsu; (c) Physics Department, Tsinghua University, Beijing 100084,
+China
+38
+
+===== PAGE 39 =====
+36 ( a) Department of Modern Physics and State Key Laboratory of Particle Detection and Electronics,
+University of Science and Technology of China, Anhui; (b) School of Physics, Shandong University,
+Shandong; (c) Department of Physics and Astronomy, Key Laboratory for Particle Physics, Astrophysics
+and Cosmology, Ministry of Education; Shanghai Key Laboratory for Particle Physics and Cosmology,
+Shanghai Jiao Tong University, Shanghai(also at PKU-CHEP);, China
+37 Université Clermont Auvergne, CNRS/IN2P3, LPC, Clermont-Ferrand, France
+38 Nevis Laboratory, Columbia University, Irvington NY , United States of America
+39 Niels Bohr Institute, University of Copenhagen, Kobenhavn, Denmark
+40 ( a) INFN Gruppo Collegato di Cosenza, Laboratori Nazionali di Frascati; (b) Dipartimento di Fisica,
+Università della Calabria, Rende, Italy
+41 ( a) AGH University of Science and Technology, Faculty of Physics and Applied Computer Science,
+Krakow; (b) Marian Smoluchowski Institute of Physics, Jagiellonian University, Krakow, Poland
+42 Institute of Nuclear Physics Polish Academy of Sciences, Krakow, Poland
+43 Physics Department, Southern Methodist University, Dallas TX, United States of America
+44 Physics Department, University of Texas at Dallas, Richardson TX, United States of America
+45 DESY , Hamburg and Zeuthen, Germany
+46 Lehrstuhl für Experimentelle Physik IV , Technische Universität Dortmund, Dortmund, Germany
+47 Institut für Kern- und Teilchenphysik, Technische Universität Dresden, Dresden, Germany
+48 Department of Physics, Duke University, Durham NC, United States of America
+49 SUPA - School of Physics and Astronomy, University of Edinburgh, Edinburgh, United Kingdom
+50 INFN Laboratori Nazionali di Frascati, Frascati, Italy
+51 Fakultät für Mathematik und Physik, Albert-Ludwigs-Universität, Freiburg, Germany
+52 Departement de Physique Nucleaire et Corpusculaire, Université de Genève, Geneva, Switzerland
+53 ( a) INFN Sezione di Genova; (b) Dipartimento di Fisica, Università di Genova, Genova, Italy
+54 ( a) E. Andronikashvili Institute of Physics, Iv. Javakhishvili Tbilisi State University, Tbilisi;(b) High
+Energy Physics Institute, Tbilisi State University, Tbilisi, Georgia
+55 II Physikalisches Institut, Justus-Liebig-Universität Giessen, Giessen, Germany
+56 SUPA - School of Physics and Astronomy, University of Glasgow, Glasgow, United Kingdom
+57 II Physikalisches Institut, Georg-August-Universität, Göttingen, Germany
+58 Laboratoire de Physique Subatomique et de Cosmologie, Université Grenoble-Alpes, CNRS/IN2P3,
+Grenoble, France
+59 Laboratory for Particle Physics and Cosmology, Harvard University, Cambridge MA, United States of
+America
+60 ( a) Kirchhoﬀ-Institut für Physik, Ruprecht-Karls-Universität Heidelberg, Heidelberg; (b)
+Physikalisches Institut, Ruprecht-Karls-Universität Heidelberg, Heidelberg; (c) ZITI Institut für
+technische Informatik, Ruprecht-Karls-Universität Heidelberg, Mannheim, Germany
+61 Faculty of Applied Information Science, Hiroshima Institute of Technology, Hiroshima, Japan
+62 ( a) Department of Physics, The Chinese University of Hong Kong, Shatin, N.T., Hong Kong;(b)
+Department of Physics, The University of Hong Kong, Hong Kong; (c) Department of Physics and
+Institute for Advanced Study, The Hong Kong University of Science and Technology, Clear Water Bay,
+Kowloon, Hong Kong, China
+63 Department of Physics, National Tsing Hua University, Taiwan, Taiwan
+64 Department of Physics, Indiana University, Bloomington IN, United States of America
+65 Institut für Astro- und Teilchenphysik, Leopold-Franzens-Universität, Innsbruck, Austria
+66 University of Iowa, Iowa City IA, United States of America
+67 Department of Physics and Astronomy, Iowa State University, Ames IA, United States of America
+68 Joint Institute for Nuclear Research, JINR Dubna, Dubna, Russia
+39
+
+===== PAGE 40 =====
+69 KEK, High Energy Accelerator Research Organization, Tsukuba, Japan
+70 Graduate School of Science, Kobe University, Kobe, Japan
+71 Faculty of Science, Kyoto University, Kyoto, Japan
+72 Kyoto University of Education, Kyoto, Japan
+73 Research Center for Advanced Particle Physics and Department of Physics, Kyushu University,
+Fukuoka, Japan
+74 Instituto de Física La Plata, Universidad Nacional de La Plata and CONICET, La Plata, Argentina
+75 Physics Department, Lancaster University, Lancaster, United Kingdom
+76 ( a) INFN Sezione di Lecce; (b) Dipartimento di Matematica e Fisica, Università del Salento, Lecce,
+Italy
+77 Oliver Lodge Laboratory, University of Liverpool, Liverpool, United Kingdom
+78 Department of Experimental Particle Physics, Jožef Stefan Institute and Department of Physics,
+University of Ljubljana, Ljubljana, Slovenia
+79 School of Physics and Astronomy, Queen Mary University of London, London, United Kingdom
+80 Department of Physics, Royal Holloway University of London, Surrey, United Kingdom
+81 Department of Physics and Astronomy, University College London, London, United Kingdom
+82 Louisiana Tech University, Ruston LA, United States of America
+83 Laboratoire de Physique Nucléaire et de Hautes Energies, UPMC and Université Paris-Diderot and
+CNRS/IN2P3, Paris, France
+84 Fysiska institutionen, Lunds universitet, Lund, Sweden
+85 Departamento de Fisica Teorica C-15, Universidad Autonoma de Madrid, Madrid, Spain
+86 Institut für Physik, Universität Mainz, Mainz, Germany
+87 School of Physics and Astronomy, University of Manchester, Manchester, United Kingdom
+88 CPPM, Aix-Marseille Université and CNRS/IN2P3, Marseille, France
+89 Department of Physics, University of Massachusetts, Amherst MA, United States of America
+90 Department of Physics, McGill University, Montreal QC, Canada
+91 School of Physics, University of Melbourne, Victoria, Australia
+92 Department of Physics, The University of Michigan, Ann Arbor MI, United States of America
+93 Department of Physics and Astronomy, Michigan State University, East Lansing MI, United States of
+America
+94 ( a) INFN Sezione di Milano; (b) Dipartimento di Fisica, Università di Milano, Milano, Italy
+95 B.I. Stepanov Institute of Physics, National Academy of Sciences of Belarus, Minsk, Republic of
+Belarus
+96 Research Institute for Nuclear Problems of Byelorussian State University, Minsk, Republic of Belarus
+97 Group of Particle Physics, University of Montreal, Montreal QC, Canada
+98 P.N. Lebedev Physical Institute of the Russian Academy of Sciences, Moscow, Russia
+99 Institute for Theoretical and Experimental Physics (ITEP), Moscow, Russia
+100 National Research Nuclear University MEPhI, Moscow, Russia
+101 D.V . Skobeltsyn Institute of Nuclear Physics, M.V . Lomonosov Moscow State University, Moscow,
+Russia
+102 Fakultät für Physik, Ludwig-Maximilians-Universität München, München, Germany
+103 Max-Planck-Institut für Physik (Werner-Heisenberg-Institut), München, Germany
+104 Nagasaki Institute of Applied Science, Nagasaki, Japan
+105 Graduate School of Science and Kobayashi-Maskawa Institute, Nagoya University, Nagoya, Japan
+106 ( a) INFN Sezione di Napoli; (b) Dipartimento di Fisica, Università di Napoli, Napoli, Italy
+107 Department of Physics and Astronomy, University of New Mexico, Albuquerque NM, United States
+of America
+40
+
+===== PAGE 41 =====
+108 Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef,
+Nijmegen, Netherlands
+109 Nikhef National Institute for Subatomic Physics and University of Amsterdam, Amsterdam,
+Netherlands
+110 Department of Physics, Northern Illinois University, DeKalb IL, United States of America
+111 Budker Institute of Nuclear Physics, SB RAS, Novosibirsk, Russia
+112 Department of Physics, New York University, New York NY , United States of America
+113 Ohio State University, Columbus OH, United States of America
+114 Faculty of Science, Okayama University, Okayama, Japan
+115 Homer L. Dodge Department of Physics and Astronomy, University of Oklahoma, Norman OK,
+United States of America
+116 Department of Physics, Oklahoma State University, Stillwater OK, United States of America
+117 Palacký University, RCPTM, Olomouc, Czech Republic
+118 Center for High Energy Physics, University of Oregon, Eugene OR, United States of America
+119 LAL, Univ. Paris-Sud, CNRS/IN2P3, Université Paris-Saclay, Orsay, France
+120 Graduate School of Science, Osaka University, Osaka, Japan
+121 Department of Physics, University of Oslo, Oslo, Norway
+122 Department of Physics, Oxford University, Oxford, United Kingdom
+123 ( a) INFN Sezione di Pavia; (b) Dipartimento di Fisica, Università di Pavia, Pavia, Italy
+124 Department of Physics, University of Pennsylvania, Philadelphia PA, United States of America
+125 National Research Centre "Kurchatov Institute" B.P.Konstantinov Petersburg Nuclear Physics
+Institute, St. Petersburg, Russia
+126 ( a) INFN Sezione di Pisa; (b) Dipartimento di Fisica E. Fermi, Università di Pisa, Pisa, Italy
+127 Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh PA, United States of
+America
+128 ( a) Laboratório de Instrumentação e Física Experimental de Partículas - LIP, Lisboa; (b) Faculdade de
+Ciências, Universidade de Lisboa, Lisboa; (c) Department of Physics, University of Coimbra, Coimbra;
+(d) Centro de Física Nuclear da Universidade de Lisboa, Lisboa; (e) Departamento de Fisica,
+Universidade do Minho, Braga; ( f ) Departamento de Fisica Teorica y del Cosmos and CAFPE,
+Universidad de Granada, Granada; (g) Dep Fisica and CEFITEC of Faculdade de Ciencias e Tecnologia,
+Universidade Nova de Lisboa, Caparica, Portugal
+129 Institute of Physics, Academy of Sciences of the Czech Republic, Praha, Czech Republic
+130 Czech Technical University in Prague, Praha, Czech Republic
+131 Charles University, Faculty of Mathematics and Physics, Prague, Czech Republic
+132 State Research Center Institute for High Energy Physics (Protvino), NRC KI, Russia
+133 Particle Physics Department, Rutherford Appleton Laboratory, Didcot, United Kingdom
+134 ( a) INFN Sezione di Roma; (b) Dipartimento di Fisica, Sapienza Università di Roma, Roma, Italy
+135 ( a) INFN Sezione di Roma Tor Vergata;(b) Dipartimento di Fisica, Università di Roma Tor Vergata,
+Roma, Italy
+136 ( a) INFN Sezione di Roma Tre; (b) Dipartimento di Matematica e Fisica, Università Roma Tre, Roma,
+Italy
+137 ( a) Faculté des Sciences Ain Chock, Réseau Universitaire de Physique des Hautes Energies -
+Université Hassan II, Casablanca; (b) Centre National de l’Energie des Sciences Techniques Nucleaires,
+Rabat; (c) Faculté des Sciences Semlalia, Université Cadi Ayyad, LPHEA-Marrakech; (d) Faculté des
+Sciences, Université Mohamed Premier and LPTPM, Oujda; (e) Faculté des sciences, Université
+Mohammed V , Rabat, Morocco
+138 DSM/IRFU (Institut de Recherches sur les Lois Fondamentales de l’Univers), CEA Saclay
+41
+
+===== PAGE 42 =====
+(Commissariat à l’Energie Atomique et aux Energies Alternatives), Gif-sur-Yvette, France
+139 Santa Cruz Institute for Particle Physics, University of California Santa Cruz, Santa Cruz CA, United
+States of America
+140 Department of Physics, University of Washington, Seattle W A, United States of America
+141 Department of Physics and Astronomy, University of Sheﬃeld, Sheﬃeld, United Kingdom
+142 Department of Physics, Shinshu University, Nagano, Japan
+143 Department Physik, Universität Siegen, Siegen, Germany
+144 Department of Physics, Simon Fraser University, Burnaby BC, Canada
+145 SLAC National Accelerator Laboratory, Stanford CA, United States of America
+146 ( a) Faculty of Mathematics, Physics & Informatics, Comenius University, Bratislava;(b) Department
+of Subnuclear Physics, Institute of Experimental Physics of the Slovak Academy of Sciences, Kosice,
+Slovak Republic
+147 ( a) Department of Physics, University of Cape Town, Cape Town;(b) Department of Physics,
+University of Johannesburg, Johannesburg; (c) School of Physics, University of the Witwatersrand,
+Johannesburg, South Africa
+148 ( a) Department of Physics, Stockholm University; (b) The Oskar Klein Centre, Stockholm, Sweden
+149 Physics Department, Royal Institute of Technology, Stockholm, Sweden
+150 Departments of Physics & Astronomy and Chemistry, Stony Brook University, Stony Brook NY ,
+United States of America
+151 Department of Physics and Astronomy, University of Sussex, Brighton, United Kingdom
+152 School of Physics, University of Sydney, Sydney, Australia
+153 Institute of Physics, Academia Sinica, Taipei, Taiwan
+154 Department of Physics, Technion: Israel Institute of Technology, Haifa, Israel
+155 Raymond and Beverly Sackler School of Physics and Astronomy, Tel Aviv University, Tel Aviv,
+Israel
+156 Department of Physics, Aristotle University of Thessaloniki, Thessaloniki, Greece
+157 International Center for Elementary Particle Physics and Department of Physics, The University of
+Tokyo, Tokyo, Japan
+158 Graduate School of Science and Technology, Tokyo Metropolitan University, Tokyo, Japan
+159 Department of Physics, Tokyo Institute of Technology, Tokyo, Japan
+160 Tomsk State University, Tomsk, Russia
+161 Department of Physics, University of Toronto, Toronto ON, Canada
+162 ( a) INFN-TIFPA; (b) University of Trento, Trento, Italy
+163 ( a) TRIUMF, Vancouver BC;(b) Department of Physics and Astronomy, York University, Toronto
+ON, Canada
+164 Faculty of Pure and Applied Sciences, and Center for Integrated Research in Fundamental Science
+and Engineering, University of Tsukuba, Tsukuba, Japan
+165 Department of Physics and Astronomy, Tufts University, Medford MA, United States of America
+166 Department of Physics and Astronomy, University of California Irvine, Irvine CA, United States of
+America
+167 ( a) INFN Gruppo Collegato di Udine, Sezione di Trieste, Udine; (b) ICTP, Trieste; (c) Dipartimento di
+Chimica, Fisica e Ambiente, Università di Udine, Udine, Italy
+168 Department of Physics and Astronomy, University of Uppsala, Uppsala, Sweden
+169 Department of Physics, University of Illinois, Urbana IL, United States of America
+170 Instituto de Fisica Corpuscular (IFIC), Centro Mixto Universidad de Valencia - CSIC, Spain
+171 Department of Physics, University of British Columbia, Vancouver BC, Canada
+172 Department of Physics and Astronomy, University of Victoria, Victoria BC, Canada
+42
+
+===== PAGE 43 =====
+173 Department of Physics, University of Warwick, Coventry, United Kingdom
+174 Waseda University, Tokyo, Japan
+175 Department of Particle Physics, The Weizmann Institute of Science, Rehovot, Israel
+176 Department of Physics, University of Wisconsin, Madison WI, United States of America
+177 Fakultät für Physik und Astronomie, Julius-Maximilians-Universität, Würzburg, Germany
+178 Fakultät für Mathematik und Naturwissenschaften, Fachgruppe Physik, Bergische Universität
+Wuppertal, Wuppertal, Germany
+179 Department of Physics, Yale University, New Haven CT, United States of America
+180 Yerevan Physics Institute, Yerevan, Armenia
+181 CH-1211 Geneva 23, Switzerland
+182 Centre de Calcul de l’Institut National de Physique Nucléaire et de Physique des Particules (IN2P3),
+Villeurbanne, France
+183 Academia Sinica Grid Computing, Institute of Physics, Academia Sinica, Taipei, Taiwan
+a Also at Department of Physics, King’s College London, London, United Kingdom
+b Also at Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+c Also at Novosibirsk State University, Novosibirsk, Russia
+d Also at TRIUMF, Vancouver BC, Canada
+e Also at Department of Physics & Astronomy, University of Louisville, Louisville, KY , United States of
+America
+f Also at Physics Department, An-Najah National University, Nablus, Palestine
+g Also at Department of Physics, California State University, Fresno CA, United States of America
+h Also at Department of Physics, University of Fribourg, Fribourg, Switzerland
+i Also at II Physikalisches Institut, Georg-August-Universität, Göttingen, Germany
+j Also at Departament de Fisica de la Universitat Autonoma de Barcelona, Barcelona, Spain
+k Also at Departamento de Fisica e Astronomia, Faculdade de Ciencias, Universidade do Porto, Portugal
+l Also at Tomsk State University, Tomsk, Russia
+m Also at The Collaborative Innovation Center of Quantum Matter (CICQM), Beijing, China
+n Also at Universita di Napoli Parthenope, Napoli, Italy
+o Also at Institute of Particle Physics (IPP), Canada
+p Also at Horia Hulubei National Institute of Physics and Nuclear Engineering, Bucharest, Romania
+q Also at Department of Physics, St. Petersburg State Polytechnical University, St. Petersburg, Russia
+r Also at Borough of Manhattan Community College, City University of New York, New York City,
+United States of America
+s Also at Centre for High Performance Computing, CSIR Campus, Rosebank, Cape Town, South Africa
+t Also at Louisiana Tech University, Ruston LA, United States of America
+u Also at Institucio Catalana de Recerca i Estudis Avancats, ICREA, Barcelona, Spain
+v Also at Graduate School of Science, Osaka University, Osaka, Japan
+w Also at Fakultät für Mathematik und Physik, Albert-Ludwigs-Universität, Freiburg, Germany
+x Also at Institute for Mathematics, Astrophysics and Particle Physics, Radboud University
+Nijmegen/Nikhef, Nijmegen, Netherlands
+y Also at Department of Physics, The University of Texas at Austin, Austin TX, United States of
+America
+z Also at Institute of Theoretical Physics, Ilia State University, Tbilisi, Georgia
+aa Also at CERN, Geneva, Switzerland
+ab Also at Georgian Technical University (GTU),Tbilisi, Georgia
+ac Also at Ochadai Academic Production, Ochanomizu University, Tokyo, Japan
+ad Also at Manhattan College, New York NY , United States of America
+43
+
+===== PAGE 44 =====
+ae Also at Departamento de Física, Pontiﬁcia Universidad Católica de Chile, Santiago, Chile
+a f Also at Department of Physics, The University of Michigan, Ann Arbor MI, United States of America
+ag Also at School of Physics, Shandong University, Shandong, China
+ah Also at Departamento de Fisica Teorica y del Cosmos and CAFPE, Universidad de Granada, Granada,
+Portugal
+ai Also at Department of Physics, California State University, Sacramento CA, United States of America
+a j Also at Moscow Institute of Physics and Technology State University, Dolgoprudny, Russia
+ak Also at Departement de Physique Nucleaire et Corpusculaire, Université de Genève, Geneva,
+Switzerland
+al Also at Institut de Física d’Altes Energies (IFAE), The Barcelona Institute of Science and Technology,
+Barcelona, Spain
+am Also at School of Physics, Sun Yat-sen University, Guangzhou, China
+an Also at Institute for Nuclear Research and Nuclear Energy (INRNE) of the Bulgarian Academy of
+Sciences, Soﬁa, Bulgaria
+ao Also at Faculty of Physics, M.V .Lomonosov Moscow State University, Moscow, Russia
+ap Also at National Research Nuclear University MEPhI, Moscow, Russia
+aq Also at Department of Physics, Stanford University, Stanford CA, United States of America
+ar Also at Institute for Particle and Nuclear Physics, Wigner Research Centre for Physics, Budapest,
+Hungary
+as Also at Giresun University, Faculty of Engineering, Turkey
+at Also at CPPM, Aix-Marseille Université and CNRS/IN2P3, Marseille, France
+au Also at Department of Physics, Nanjing University, Jiangsu, China
+av Also at University of Malaya, Department of Physics, Kuala Lumpur, Malaysia
+aw Also at Institute of Physics, Academia Sinica, Taipei, Taiwan
+ax Also at LAL, Univ. Paris-Sud, CNRS/IN2P3, Université Paris-Saclay, Orsay, France
+∗ Deceased
+44

@@ -1,0 +1,3012 @@
+
+
+===== PAGE 1 =====
+Eur. Phys. J. C (2023) 83:761
+https://doi.org/10.1140/epjc/s10052-023-11837-9
+Regular Article - Experimental Physics
+New techniques for jet calibration with the ATLAS detector
+ATLAS Collaboration⋆
+CERN, 1211 Geneva 23, Switzerland
+Received: 31 March 2023 / Accepted: 13 July 2023 / Published online: 29 August 2023
+© CERN for the beneﬁt of the ATLAS Collaboration 2023
+Abstract A determination of the jet energy scale is pre-
+sented using proton–proton collision data with a centre-of-
+mass energy of√ s = 13 TeV , corresponding to an integrated
+luminosity of 140 fb−1 collected using the ATLAS detector
+at the LHC. Jets are reconstructed using the ATLAS particle-
+ﬂow method that combines charged-particle tracks and topo-
+clusters formed from energy deposits in the calorimeter cells.
+The anti-k
+t jet algorithm with radius parameter R = 0.4i s
+used to deﬁne the jet. Novel jet energy scale calibration strate-
+gies developed for the LHC Run 2 are reported that lay the
+foundation for the jet calibration in Run 3. Jets are calibrated
+with a series of simulation-based corrections, including state-
+of-the-art techniques in jet calibration such as machine learn-
+ing methods and novel in situ calibrations to achieve better
+performance than the baseline calibration derived using up
+to 81 fb
+−1 of Run 2 data. The performance of these new
+techniques is then examined in the in situ measurements by
+exploiting the transverse momentum balance between a jet
+and a reference object. The b-quark jet energy scale using
+particle ﬂow jets is measured for the ﬁrst time with around
+1% precision using γ+jet events.
+Contents
+1 Introduction ..................... 1
+2 The ATLAS detector ................. 2
+3 Data samples and simulated events ......... 2
+3.1 Data samples .................. 2
+3.2 Monte Carlo simulation ............. 2
+3.3 Jet reconstruction ................ 3
+4 The simulation-based calibration .......... 4
+4.1 Event selection ................. 4
+4.2 Estimating the median p
+T density and the pile-
+up density correction .............. 4
+4.3 Residual pile-up correction ........... 5
+4.3.1 The 1D residual pile-up correction .... 5
+4.3.2 The 3D residual pile-up correction .... 6
+⋆ e-mail: atlas.publications@cern.ch
+4.3.3 Comparison of the different residual pile-
+up corrections ............... 7
+4.4 The jet energy scale and ηcalibration ...... 7
+4.4.1 Polynomial ﬁts .............. 7
+4.4.2 Penalised splines ............. 7
+4.4.3 Comparison of calibrations ........ 8
+4.4.4 Absolute MC jet ηcalibration ...... 9
+4.5 The global property calibration ......... 1 0
+4.5.1 The global sequential calibration ..... 1 0
+4.5.2 The global neural network calibration .. 1 2
+4.5.3 Comparison of the methods ....... 1 2
+4.5.4 Flavour uncertainties ........... 1 4
+5 In situ analysis .................... 1 4
+5.1 η-intercalibration ................ 1 6
+5.2 Z/γ+jet balance ................ 1 7
+5.3 b-quark jet energy scale in γ+jet balance .... 2 2
+6 Conclusion ...................... 2 2
+References ........................ 2 6
+1 Introduction
+The energetic proton–proton (pp) collisions produced by the
+Large Hadron Collider (LHC) yield ﬁnal states that are pre-
+dominantly characterised by jets, which are collimated sprays
+of charged and neutral hadrons and their decay products.
+Jets constitute an essential piece of the physics programme
+carried out using the ATLAS detector, and a precise under-
+standing of jet reconstruction is critical for a wide variety of
+processes. Measurements of both the jet energy scale (JES)
+and resolution (JER) of these complex objects are therefore
+essential for precision measurements of the Standard Model
+and for searches for new phenomena beyond it. Several new
+methods are presented for improving the jet energy scale cal-
+ibration and evaluating their performance in simulation and
+data, paving the way to achieving a better precision on the JES
+for Run 3 and beyond. These techniques were developed for
+jets reconstructed with the anti-k
+t algorithm [1,2] with radius
+parameter R = 0.4 using particle ﬂow inputs [3,4]. Previous
+123
+
+===== PAGE 2 =====
+761 Page 2 of 41 Eur. Phys. J. C (2023) 83 :761
+calibration strategies by the ATLAS Collaboration, that used
+up to 81 fb−1 data [4–9], are extended and improved by by
+taking advantage of the full Run 2 data sample of 140 fb−1.
+The jet energy scale calibration consists of a series of cal-
+ibration steps. The ﬁrst stage of the calibration uses simula-
+tion to derive corrections to the jet energy scale to reduce the
+impact of pile-up, detector effects, and other parameters. The
+second stage of the calibration is a residual in situ calibra-
+tion, correcting for remaining differences between data and
+Monte Carlo (MC) simulation, derived using well-measured
+reference objects, including photons and Z bosons.
+The structure of the paper is as follows. Section2 describes
+the ATLAS detector, and Sect.3 describes the recorded data
+and the MC simulation samples, and the inputs and algo-
+rithms used to reconstruct the jets. Section 4 describes the
+methods used and the result of the simulation-based calibra-
+tion, Sect.5 describes the in situ calibration, and conclusions
+are given in Sect.6.
+2 The ATLAS detector
+The ATLAS detector [10] at the LHC covers nearly the entire
+solid angle around the collision point.
+1 It consists of an
+inner tracking detector surrounded by a thin superconduct-
+ing solenoid, electromagnetic and hadron calorimeters, and a
+muon spectrometer incorporating three large superconduct-
+ing air-core toroidal magnets.
+The inner-detector system (ID) is immersed i na2T
+axial magnetic ﬁeld and provides charged-particle tracking
+in the range of |η| < 2.5. The high-granularity silicon pixel
+detector covers the vertex region and typically provides four
+measurements per track, the ﬁrst hit normally being in the
+insertable B-layer (IBL) installed before Run 2 [ 11,12]. It
+is followed by the silicon microstrip tracker (SCT), which
+usually provides eight measurements per track. These sili-
+con detectors are complemented by the transition radiation
+tracker (TRT), which enables radially extended track recon-
+struction up to |η|= 2.0. The TRT also provides electron
+identiﬁcation information based on the fraction of hits above
+a higher energy-deposit threshold corresponding to transition
+radiation.
+The calorimeter system covers the pseudorapidity range
+of |η| < 4.9. In the region |η| < 3.2, electromag-
+netic calorimetry is provided by barrel and endcap high-
+1 ATLAS uses a right-handed coordinate system with its origin at the
+nominal interaction point (IP) in the centre of the detector and the z-
+axis along the beam pipe. The x-axis points from the IP to the centre of
+the LHC ring, and the y-axis points upwards. Cylindrical coordinates
+(r,φ) are used in the transverse plane, φ being the azimuthal angle
+around the z-axis. The pseudorapidity is deﬁned in terms of the polar
+angle θas η=− ln tan(θ/2). Angular distance is measured in units of
+/Delta1R ≡
+√
+(/Delta1η)2 + (/Delta1φ)2.
+granularity lead/liquid-argon (LAr) calorimeters, with an
+additional thin LAr presampler covering |η| < 1.8 to cor-
+rect for energy loss in material upstream of the calorime-
+ters. Hadron calorimetry is provided by the steel/scintillator-
+tile calorimeter, segmented into three barrel structures within
+|η|= 1.7, and two copper/LAr hadron endcap calorimeters.
+The solid angle coverage is completed with forward cop-
+per/LAr and tungsten/LAr calorimeter modules optimised for
+electromagnetic and hadronic energy measurements respec-
+tively.
+The muon spectrometer (MS) comprises separate trigger
+and high-precision tracking chambers measuring the deﬂec-
+tion of muons in a magnetic ﬁeld generated by the super-
+conducting air-core toroidal magnets. The ﬁeld integral of
+the toroids ranges between 2.0 and 6.0 T m across most of
+the detector. Three layers of precision chambers, each con-
+sisting of layers of monitored drift tubes, cover the region
+|η| < 2.7, complemented by cathode-strip chambers in the
+forward region, where the background is highest. The muon
+trigger system covers the range of |η| < 2.4 with resistive-
+plate chambers in the barrel, and thin-gap chambers in the
+endcap regions.
+Interesting events are selected by the ﬁrst-level trigger sys-
+tem implemented in custom hardware, followed by selections
+made by algorithms implemented in software in the high-
+level trigger [13]. The ﬁrst-level trigger accepts events from
+the up-to 40 MHz bunch crossings at a rate below 100 kHz,
+which is further reduced by the high-level trigger to record
+events to disk at about 1 kHz.
+An extensive software suite [14] is used in the reconstruc-
+tion and analysis of real and simulated data, in detector oper-
+ations, and in the trigger and data acquisition systems of the
+experiment.
+3 Data samples and simulated events
+3.1 Data samples
+The data used for the calibration study were collected by
+ATLAS in the pp collisions at √
+s = 13 TeV from 2015 to
+2018 with all subdetectors operational, corresponding to an
+integrated luminosity of 140 fb
+−1. The proton bunch cross-
+ing interval was 25 ns during the data taking. The average
+number of interactions per bunch crossing (μ) for the Run 2
+data is 34. These conditions, and those of the detector conﬁg-
+uration and reconstruction thresholds, are taken into account
+in producing and reconstructing simulated data [15].
+3.2 Monte Carlo simulation
+The Monte-Carlo (MC) based calibration uses MC simulated
+dijet and multijet events. Pythia v8.230 [ 16]i su s e da s
+123
+
+===== PAGE 3 =====
+Eur. Phys. J. C (2023) 83 :761 Page 3 of 41 761
+the nominal MC generator for simulating dijets. Samples of
+2 → 2 dijet events are simulated using the A14 tune [17] and
+the NNPDF 2.3 [18] parton distribution function (PDF) set.
+Decays of heavy-ﬂavour hadrons are modeled using EvtGen
+[19].
+Several alternative samples are used to study the impact
+of the MC simulation on the calibration, and to determine
+uncertainties based on this. Two different dijet samples are
+simulated using the Sherpa 2.2.5 [20] generator. The matrix
+element calculation was included for the 2 → 2 process at
+leading-order, and the default Sherpa parton shower [ 21]
+based on Catani–Seymour dipole factorisation was used for
+the showering with p
+T ordering, using the CT 14nnlo PDF
+set [22]. The ﬁrst of these samples made use of the dedi-
+cated Sherpa AHADIC model for hadronisation [23], based
+on cluster fragmentation. A second sample was generated
+with the same conﬁguration but using the Sherpa interface
+to the Lund string fragmentation model of Pythia 6 [24]
+and its decay tables. These two sets of samples were used
+to evaluate uncertainties stemming from the hadronisation
+modelling.
+Two sets of samples are simulated using Herwig 7.1.6
+[25–27] with the NNPDF 2.3lo PDF set. These samples
+include the 2 → 2 process at the matrix element level, and
+either the default angular-ordered parton shower [ 28]o ra
+dipole parton shower [ 29,30] using splitting kernels based
+on the Catani–Seymour subtraction scheme [ 31,32], and in
+both the cases, using a cluster hadronisation.
+Alternative samples of multijet production at NLO accu-
+racy were produced withPowheg Box v2[33,34] interfaced
+to Pythia 8. These were generated with the dijet process as
+implemented in Powheg Box v2 [35]. The p
+T of the under-
+lying Born conﬁguration was taken as the renormalisation
+and factorisation scales and the NNPDF 3.0nlo [36]P D F
+was used. Pythia with the A14 tune and the NNPDF 2.3lo
+PDF was used for the shower and multi-parton interac-
+tions. These samples included per-event weight variations
+for different perturbative scales in the matrix element, dif-
+ferent parton distribution functions and their uncertainties,
+and the Pythia perturbative shower uncertainties. This mul-
+tijet sample is used as the nominal MC sample for in situ
+η-intercalibration, while Powheg Box v2[33,34] interfaced
+to Herwig [27] with an angular-ordered parton shower [28]
+and the NNPDF 2.3lo PDF is used as an alternative sam-
+ple.
+For the in situZ+jet analysis, samples ofZ boson with jets
+(Z+jet) are produced withMadGraph + Pythia8[ 37]u s i n g
+the NNPDF 3.0nnlo PDF set [ 20] and the AZNLO set of
+tuned parameters [38]. Sherpa 2.2.11 is used as the alterna-
+tive MC sample. The nominalγ+jets samples are generated
+with Pythia v8.230 [16] using the A14 set of tuned param-
+eters [17] and NNPDF 2.3 PDF set. The γ+jet samples are
+produced for the direct photon component and the fragmen-
+tation photon component separately. The alternative sample
+used in γ+jet events is Sherpa 2.2.2 with NNPDF 3.0nnlo
+PDF set [20].
+All samples are reconstructed using a full detector simula-
+tion and superimposed minimum-bias interactions simulated
+using Pythia 8 with the A3 set of tuned parameters [39] and
+NNPDF 2.3lo PDF set to represent multiple pp interactions
+during the same or nearby bunch crossings (pile-up). The
+distribution of the average number of pile-up interactions in
+simulation is reweighted during data analysis to match that
+observed in the Run 2 data.
+3.3 Jet reconstruction
+The jets in these studies are reconstructed with the anti- kt
+algorithm with a radius parameterR = 0.4 as implemented in
+the FastJet software package [40]. Four-momentum objects
+are used as inputs to the algorithm, and may be particles at the
+generator level of the MC, charged-particle tracks, calorime-
+ter energy deposits, or algorithmic combinations of the lat-
+ter two, as in the case of the particle-ﬂow (PFlow) recon-
+struction technique. Particles at the MC generator level are
+referred to as truth particles. Reconstructed jets use PFlow
+objects (PFOs) as inputs to jet reconstruction, which combine
+measurements from the tracker and the calorimeter to form
+the input signals for jet reconstruction. Speciﬁcally, energy
+deposited in the calorimeter by charged particles is subtracted
+from the observed topo-clusters and replaced by the momenta
+of tracks that are matched to those topo-clusters, as described
+in Ref. [3], and with the updates described in Ref. [4]. These
+resulting PFlow jets show improved energy and angular res-
+olution, reconstruction efﬁciency, and pile-up stability com-
+pared with jets reconstructed using only calorimeter infor-
+mation.
+Charged particle tracks are used for both the PFlow recon-
+struction and for deriving calibrations. These tracks are
+reconstructed in the full acceptance of the inner detector
+|η| < 2.5, and are required to have a p
+T > 500 MeV unless
+otherwise stated, and must satisfy criteria based on the num-
+ber of hits in the ID subdetectors. In addition, tracks must
+satisfy |z
+0sinθ| < 2 mm, where z0 is the distance of clos-
+est approach of the track to the hard-scatter primary vertex
+along the z-axis. Tracks used in the calibration are matched
+to jets using ghost association, a procedure that treats them as
+four-vectors of inﬁnitesimal magnitude during the jet recon-
+struction and assigns them to the jet with which they are
+clustered [41].
+Generator-level jets, referred to as truth jets, are recon-
+structed using stable ﬁnal-state particles, deﬁned as those
+with cτ> 10 mm, excluding muons, neutrinos, and particles
+from pile-up interactions. Generator-level jets are selected
+with p
+T > 7 GeV and |η| < 4.5, while reconstructed jets
+used for the MC calibration are selected with |η| < 4.5.
+123
+
+===== PAGE 4 =====
+761 Page 4 of 41 Eur. Phys. J. C (2023) 83 :761
+4 The simulation-based calibration
+This section details the simulation-based jet energy scale
+calibration, which restores the average jet energy to that of
+truth jets. The event selection for these steps is described in
+Sect. 4.1, and the calibration is done in four steps. The ﬁrst
+two steps apply pile-up corrections to remove the excess p
+T
+due to additional pp interactions in the same (in-time) or
+nearby (out-of-time) bunch crossings. The ﬁrst pile-up cor-
+rection, described in Sect. 4.2, applies a subtraction based
+on the median p
+T density measured in the event and the jet
+area (the ‘pile-up density correction’) [ 41,42], minimizing
+the sensitivity to the model of the pile-up used in the sim-
+ulation. Next, a correction for residual dependence on the
+number of reconstructed primary vertices in the event (NPV)
+and μis applied (the ‘residual pile-up correction’), based on
+corrections derived using simulated samples, as described in
+Sect. 4.3. The third step, the absolute JES calibration detailed
+in Sect. 4.4, corrects jets so that they agree, on average, in
+energy and direction with truth jets from dijet MC events.
+Finally, the global calibration improves the jet pT resolution
+and related uncertainties by reducing the dependence of the
+reconstructed jet response on observables constructed using
+information from the tracking, calorimeter, and muon cham-
+ber detector systems, as introduced in Sect. 4.5.
+4.1 Event selection
+All stages of the simulation-based jet energy scale calibration
+use the same event selection. The MC simulation is used to
+determine the energy scale and resolution of jets by compar-
+ing PFlow jets with truth jets. Truth and reconstructed jets are
+required to satisfy|η| < 4.5 to be fully contained in the detec-
+tor acceptance, and truth jets are additionally required to have
+p
+T > 7 GeV. Uncalibrated jets have a positive energy, but
+can become negative in energy after applying the corrections
+described in Sects. 4.2–4.3. Biases are reduced in the deter-
+mination of the average jet energy response ( E
+reco/Etrue)a t
+low energies, by requiring reconstructed jets to have pT > 0
+after the pile-up density correction described in Sect. 4.2,
+but making no requirement on the pT after the correction
+described in Sect. 4.3.
+Events are required to have at least one reconstructed pri-
+mary vertex with at least two matched tracks with pT >
+500 MeV. In simulated reconstructed events, the primary ver-
+tex is the reconstructed primary vertex with the largest sum
+of squared track momentum, while at the truth level, the pri-
+mary vertex corresponds to that of the simulated hard-scatter
+process, and not the collision with the highest momentum
+transfer. This results in some events where the pile-up col-
+lision has a larger momentum transfer than the hard-scatter
+collision. For MC samples, the reconstructed and truth pri-
+mary vertices are required to havez-positions within 0.2m m
+of each other. Events are required to have at least two recon-
+structed jets, and at least one truth jet. Truth jets are geomet-
+rically matched to PFlow jets using the angular distance/Delta1R
+with the requirement /Delta1R < 0.3. In addition, truth jets are
+required to be isolated from all other truth jets by/Delta1R > 1.0,
+while reconstructed jets are required to be isolated from all
+reconstructed jets by /Delta1R > 0.6. To reduce the contribution
+of events where the pile-up collision has a larger momentum
+transfer than the hard-scatter collision, the average p
+T of the
+two leading reconstructed jets is required to be no larger than
+1.4 × ptruth, leading
+T .
+4.2 Estimating the median pT density and the pile-up
+density correction
+Pile-up interactions change the jet energy scale, and jet recon-
+struction is affected by additionalpp interactions in the same
+or nearby bunch crossings. The ﬁrst stage of the jet calibra-
+tion, referred to as the ‘pile-up density correction’, subtracts
+the expected contribution from pile-up based on the area of
+the jet and the median p
+T density in the event [41]. To com-
+pute the jet area A, a dense, uniformly distributed in η× φ
+population of inﬁnitesimally soft ghost particles is overlaid
+on top of the event. Then, A is deﬁned as the transverse
+momentum of the sum of the four-momenta of all ghost con-
+stituents matched with a given jet after clustering, normalised
+by the ghost constituent transverse momentum density.
+The median pile-up pT density ρ is estimated for each
+event by the median pT density ( pT/A) of all jets clustered
+with the kt algorithm [43,44] with a radius parameter of 0.4:
+ρ = median
+{ pjet
+T,i
+Ajet
+i
+}
+,
+where the index i enumerates over the jets. For this cal-
+culation, only jets with |η| < 2 are used, since ρ falls off
+steeply beyond this region, due to a combination of physics
+and detector effects.
+Assuming the pile-up is a uniform, diffuse background,
+the pile-up contribution to the energy of the jet can then be
+approximated by the product of the jet area times the median
+p
+T density. The pile-up density-corrected jet pT, parea
+T ,i s
+then deﬁned as
+parea
+T = pT − ρ× A.
+The ratio of the parea
+T to the uncorrected jet pT is applied as
+a scale factor to the jet four-momentum and does hence not
+affect its direction.
+Previously, the inputs to the ρ calculation were the same
+as those used to build jets: the neutral PFlow objects and
+the charged PFlow objects that satisfy |z0 sin θ| < 2m m
+[4]. However, this results in a bias from the inclusion of
+hard-scatter tracks, shifting the median pT density to higher
+123
+
+===== PAGE 5 =====
+Eur. Phys. J. C (2023) 83 :761 Page 5 of 41 761
+values, particularly when the hard-scatter process has a
+large jet multiplicity. To prevent such biases, the ‘pile-up
+sideband’ (PUSB) ρ deﬁnition is studied, which uses neu-
+tral PFlow objects, and charged PFlow objects that satisfy
+2m m < |z
+0 sin θ| < 4 mm as inputs. The total amount of
+pile-up using the sideband cuts is expected to be similar to
+the nominal criteria, since a similar amount of pile-up will
+meet these criteria. This ensures a minimal loss of the event-
+by-event correlation of the charged pile-up component that
+is not removed by charged hadron subtraction cuts.
+The JES is measured in speciﬁc event selections as
+described in Sect. 5, but these calibrations are applied to
+many ﬁnal states. An uncertainty is required to cover poten-
+tial inadequacy of the model used in the simulation of the
+difference between the bias in ρ in different event topolo-
+gies, speciﬁcally the difference between the bias inρbetween
+dijet and Z(→ μμ)+jets events. TheZ(→ μμ)+jets events
+are distinctive from dijet events in several ways, including the
+quark-gluon composition, colour ﬂow, and momentum trans-
+fer of the process, making it a good topology to use to estimate
+the magnitude of a potential bias. This bias at a given μ is
+estimated by comparing the difference between the value of
+⟨ρ⟩ for the data sample in two different event topologies to
+measure potential inadequacy of the model used in the MC
+simulation of the data:
+/Delta1ρ(μ) =
+(
+ρ(μ)dijet
+MC − ρ(μ)Z+jet
+MC
+)
+−
+(
+ρ(μ)dijet
+data − ρ(μ)Z+jet
+data
+)
+,
+and the bias that is propagated to the jet energy scale uncer-
+tainties is the bias determined at the average value of μ for
+the data sample:
+bias[GeV]= /Delta1ρ(⟨μ⟩).
+The Z(→ μμ)+jets selection uses the lowest unprescaled
+single muon trigger, and requires two muons with pμ1
+T >
+30 GeV, pμ2
+T > 25 GeV, 80 < mμμ < 100 GeV, and
+pμμ
+T > 25 GeV, and the dijet selection uses the lowest
+unprescaled single jet trigger, and requires a leading jet with
+pT > 500 GeV, |η| < 2.4, and greater than 5% of the
+momentum carried by charged particle ﬂow objects.
+Figure 1 shows the dependence of ⟨ρ⟩ in the two pro-
+cesses as a function ofμ for data and simulation, comparing
+both the ρ deﬁnitions described above. The lower panels
+compare the values of ⟨ρ⟩ in the two processes. Two dif-
+ferent Sherpa dijet samples are shown: a 2.1.1 sample [45]
+that was used in the previous calibration [ 4], and the 2.2.5
+sample used now, while for Z(→ μμ)+jets, only Sherpa
+2.2.1 is used. TheSherpa 2.2.X samples include an improve-
+ment to the multi-parton interaction (MPI) model, which
+directly affects the bias inρ. Signiﬁcantly larger differences
+are seen between the dijet Sherpa 2.1.1 sample and the
+Z(→ μμ)+jets Sherpa 2.2.1 sample than between the dijet
+Sherpa 2.2.5 sample and the Z(→ μμ)+jets Sherpa 2.2.1
+sample, Previously, the bias was determined using the dijet
+Sherpa 2.1.1 sample and the Z(→ μμ)+jets Sherpa 2.2.1
+sample, which have different MPI models. Using the updated
+dijet Sherpa sample that uses a consistent MPI model with
+Z(→ μμ)+jets results in a factor of four reduction in the
+bias, showing the importance of MPI modelling in MC simu-
+lations. The new ρ deﬁnition, ρ
+PUSB, results in signiﬁcantly
+smaller differences between the different topologies, and a
+better description of the data by the simulation. Similarly,
+the improvements to the ρ deﬁnition result in almost a fac-
+tor of three improvement to the uncertainty, as seen by the
+difference between data and Sherpa for the two different
+ρ deﬁnitions. Together, these improvements reduce the JES
+uncertainty from theρ modelling by a factor of nearly seven.
+4.3 Residual pile-up correction
+To further reduce the impact of pile-up, a residual pile-up
+correction is applied, based on N
+PV, μ, the reconstructed
+jet pT ( preco
+T ), and the reconstructed jet η (ηreco). Due to
+the fast response of the silicon tracking detectors used to
+reconstruct the tracks used to ﬁnd the primary vertices,NPV is
+sensitive to the in-time pile-up, while μ is sensitive to the
+out-of-time pile-up, since it accounts for the average amount
+of pile-up around a given bunch crossing. Typically, in-time
+pile-up increases the energy of the jet, and out-of-time pile-
+up decreases it. The negative dependence of the jet energy
+scale on μ for out-of-time pile-up is a result of the liquid-
+argon calorimeter’s pulse shape, which is negative during the
+period soon after registering a signal [ 46]. Two options for
+the residual pile-up correction are compared.
+4.3.1 The 1D residual pile-up correction
+The ﬁrst strategy, referred to as the ‘1D residual pile-up cali-
+bration’, follows the method outlined in Ref. [4], where addi-
+tional corrections are applied based on the μ and N
+PV of the
+event, with
+p1D residual
+T = parea
+T − (∂pT/∂NPV)
+×(NPV − 1) − (∂pT/∂μ)× μ,
+where ∂pT/∂NPV and ∂pT/∂μare determined as follows. To
+determine ∂pT/∂NPV, ﬁrst, the dependence of/Delta1parea-truth
+T =
+parea
+T − ptruth
+T on NPV is ﬁt with a line in bins of μ, ptruth
+T ,
+and η. The slope of this function is taken as the dependence
+∂pT/∂NPV per μ bin. The average of these slopes across μ
+is taken to be the pT dependence on NPV for a given ptruth
+T
+and η bin. For each η bin, the average pT dependence is
+ﬁt as a function of ptruth
+T with a logarithmic function for
+20 GeV < ptruth
+T < 200 GeV. The value of the logarithmic
+ﬁt at 25 GeV is taken as the nominal correction, since pile-up
+effects are most relevant for low-p
+T jets. Finally, a piecewise
+123
+
+===== PAGE 6 =====
+761 Page 6 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 1 The distribution of ρ as a function of μfor the (top) Z(→
+μμ)+jets and (middle) dijet selections for data,Pythia 8, Sherpa 2.2.5,
+and Sherpa 2.1.1. The lower panel shows the difference between the
+two topologies which is used to determine the uncertainty from the
+extrapolation across topologies, indicated by the vertical arrows. The
+left plot shows ρ built from the jet constituents: neutral PFOs and
+charged PFOs with |z
+0 sin θ| < 2 mm, and the right plot shows ρ
+built using neutral PFOs and charged PFOs satisfying the new sideband
+selection
+linear function is ﬁt over the per|η| bin values of∂pT/∂NPV,
+reducing statistical ﬂuctuations and providing a continuous
+correction over the full η range. To determine ∂pT/∂μ,t h e
+same process is repeated with NPV and μ switched, to get
+the dependence of /Delta1parea-truth
+T on μ.
+4.3.2 The 3D residual pile-up correction
+The 1D residual pile-up correction does not account for corre-
+lations betweenμ and NPV, and does not account for changes
+in the pile-up contribution as a function of jet pT. The 3D
+residual pile-up correction is designed to include these cor-
+relations. In this calibration, derived in bins of η
+reco,t h ej e t
+pT scale is shifted to match the truth jet scale as a function
+of (NPV, μ, parea
+T ), simultaneously correcting for pile-up and
+detector effects. The ptruth
+T is used as a reference to compute
+a correction given by /Delta1parea-truth
+T . For extreme values of μ
+and NPV, where there are insufﬁcient events to determine an
+accurate correction, the correction is determined using the
+closest non-empty (μ, NPV) bin (with the same pT), and the
+result is smoothed. This average difference,/Delta1parea-truth
+T ,i sﬁ t
+as a function of parea
+T using a linear plus logarithmic func-
+tion, in bins of NPV, μ, and preco
+T , determined using jets with
+10 GeV < ptruth
+T < 200 GeV. The corrected value is given
+by
+p3D residual
+T = parea
+T − /Delta1parea-truth
+T (NPV,μ, parea
+T ).
+By construction, this residual pile-up calibration corrects
+the jet energy scale to the truth jet scale, combining correc-
+tions due to pile-up with corrections due to detector effects.
+This is contrasted with the 1D residual pile-up correction,
+which is designed to exclusively remove the impact of pile-up
+on the jetp
+T scale. Several options to only correct for the pile-
+up pT were studied, but these were found to either increase
+the pile-up dependence or result in problematic effects such
+as a large fraction of jets with negative p
+T.
+123
+
+===== PAGE 7 =====
+Eur. Phys. J. C (2023) 83 :761 Page 7 of 41 761
+4.3.3 Comparison of the different residual pile-up
+corrections
+A comparison of the different options for the residual pile-
+up corrections is shown in Fig. 2. As seen in this ﬁgure, the
+residual pile-up calibration is especially useful for improv-
+ing the pile-up dependence for jets with|η
+reco| > 2.5. Over-
+all, for the 1D residual pile-up correction, the absolute pile-
+up dependence increases for higher pT jets, but the relative
+impact on the pT response is smaller. While the 1D residual
+pile-up correction performs best for the pT range which it is
+optimised for (20–30 GeV), it has a sizeable pile-up depen-
+dence at other jet p
+T. In addition, since the 1D residual pile-
+up correction is optimised for this same bin, its performance
+appears enhanced by construction, while a more differential
+binning would show a worse performance. The 3D residual
+pile-up correction signiﬁcantly reduces the pile-up depen-
+dence of the calibration, particularly at high p
+T. Based on
+these results, the 3D residual pile-up calibration is used for
+the remainder of the reported studies.
+4.4 The jet energy scale and ηcalibration
+The absolute jet energy scale (MCJES) andηcorrections pro-
+vide calibration functions for the energy and ηas a function
+of η
+det and Ereco such that jets agree on average with the truth
+jet energy and η. Since the calorimeters measure the energy
+of particles, and not the transverse momenta, this correction
+is determined as a function of the jet energy. The jet energy
+response R, deﬁned as the mean of a ﬁt with a Gaussian func-
+tion to the core of the E
+reco/Etrue distribution, is measured
+in Etrue and ηdet bins, where ηdet is the jet η pointing from
+the geometric centre of the detector, which is used to remove
+any ambiguity about which region of the detector is measur-
+ing the jet. The difference in R from the expected value of
+one is referred to as the non-closure, and regions where the
+R has the expected value within the uncertainties are said to
+demonstrate closure.
+The jet energy response after the application of the resid-
+ual calibration is shown as a function of E
+true and ηdet in
+Fig. 3. This differs from previous JES calibrations by the
+ATLAS experiment, in that the jet energy response is already
+close to unity, meaning that the correction is relatively small.
+This is a feature of the 3D residual pile-up correction, which
+shifts the energy scale of the jets close to the truth scale,
+although there is some signiﬁcant difference from one at high
+η, where the residual calibration insufﬁciently captures the
+behaviour of the energy response. Since the/Delta1p
+T term in the
+3D residual pile-up correction is determined using jets with
+ptruth
+T < 200 GeV, the jet energy response shifts away from
+one at energies corresponding to pT > 200 GeV.
+Directly predicting the jet energy response from Ereco
+depends on the distribution of Etrue used to derive the cali-
+bration. Overall, the distribution of the response is approxi-
+mately Gaussian for a given Etrue, but not for a given Ereco
+[47]. Therefore, the calibration uses a numerical inversion
+technique [5], where, for each ηbin, the jet energy response
+is ﬁt as a function of Etrue, and the jet calibration factor as
+a function of Ereco is determined using the inverse of this
+function. The two methods of determining the ﬁt function,
+polynomial ﬁts of order N, and penalised splines are com-
+pared below.
+4.4.1 Polynomial ﬁts
+Following the procedure outlined in Ref. [4], polynomial ﬁts
+are deﬁned as a function of log (E), where Nmax = 8i st h e
+maximal order of the ﬁtted polynomials. Out of the given
+Nmax ﬁt functions, the best ﬁt function is identiﬁed using
+Pearson’s χ2 test [48]. The calibration factors are usually
+frozen at an η-dependent energy between 3 and 4 TeV to
+reduce statistical ﬂuctuations, while at for pT < 8G e V ,a
+linear extrapolation of the calibration factor is performed.
+4.4.2 Penalised splines
+In addition to the polynomial ﬁt functions, a new method
+using penalised splines is studied. A spline S(x) of degree
+N is a piecewise polynomial function of degree N, where
+pieces of the spline meet at points called knots, and the ﬁrst
+N − 1 derivatives are continuous across the knots. Splines
+may be deﬁned from b-spline basis functions Bi(x, t) [49]
+via
+S(x) =
+n−1∑
+i
+ai Bi(x, t),
+where n is the number of data ﬁt points,ai are control points
+weighting the individual basis functions Bi , and t are the
+knots. Since S(x) = 0f o rx outside of the range deﬁned by
+the knots, an extrapolation to lower (higher) energy values
+is added using a linear extrapolation based on the ﬁrst (last)
+ﬁve points for the low (high) end of the spline.
+A spline will overﬁt the data, since the basis function is
+required to exactly pass through the knots, where in this case,
+the knots correspond to the energies where the response is
+determined. For a set of points x
+i and their corresponding
+values yi , this can be mitigated by using penalised b-splines
+(p-splines), which include an additional smoothness penali-
+sation term P, minimizing
+L = χ2 + αP =
+n∑
+i=0
+(yi − S(xi))2
+  
+least squares
++α
+∫ b
+a
+(
+S′′(x)
+)2 dx
+  
+penalisation
+with a and b corresponding to the range over which the penal-
+isation term is included, with a < xi < b, and the penalisa-
+123
+
+===== PAGE 8 =====
+761 Page 8 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 2 Dependence of pT on (left) μand (right) NPV after the different residual pile-up corrections. The circles indicate the 1D residual pile-up
+correction, and the squares indicate the 3D residual pile-up correction. This is shown for jets with (top) 20 GeV < pT < 30 GeV, (bottom)
+30 GeV < pT < 60 GeV
+tion parameter α ≥ 0 is chosen and ﬁxed. For these studies,
+the x values correspond to Etrue, and the y values corre-
+spond to the jet energy response. As α increases from zero
+to ∞ , the result moves from a spline to a linear regression,
+and this parameter enables a compromise between the curva-
+ture penalisation and a close ﬁt to the data. The penalisation
+parameter α is deﬁned dynamically for each ηbin as
+α = λ
+n ·
+n∑
+i=0
+wi,
+where i runs over then data ﬁt points,λis a regulative param-
+eter, and wi are the point weights deﬁned as w = σ−1/2
+y ,
+where σy is the response ﬁt uncertainty from the iterative ﬁt
+to a Gaussian function.
+For these studies, the splines are implemented using the
+Splinter framework [50], and a spline of degree three is used,
+with λ empirically set to 0 .1. To check for overﬁtting, the
+calibration and the closure test are performed on statistically
+independent events.
+4.4.3 Comparison of calibrations
+A comparison of the MCJES closure for the ﬁtting tech-
+niques at different energy values is presented in Fig.4.B o t h
+the strategies can provide closure of 1% for high energies,
+while at low energies, the p-spline approach provides better
+closure than the polynomial ﬁt. Overall, the p-spline correc-
+tion provides closure within 1% across the p
+T and η range
+considered, except for a small number of bins where the cal-
+ibration becomes difﬁcult due to quickly changing response,
+and non-Gaussian terms in the energy response. The rest of
+the studies use the correction determined from the p-spline
+ﬁt, since it provides the best overall closure.
+123
+
+===== PAGE 9 =====
+Eur. Phys. J. C (2023) 83 :761 Page 9 of 41 761
+Fig. 3 The jet energy response before the MCJES calibrationa at ﬁxed
+energies as a function ofηdet,a n db at ﬁxedηdet as a function of truth jet
+energy. a The square shows the response for Etrue = 30 GeV, the plus-
+sign shows the response for Etrue = 50 GeV, the down-triangle shows
+the response for Etrue = 110 GeV, the up-triangle shows the response
+for Etrue = 500 GeV, and the circle shows the response for Etrue =
+1200 GeV. b The square shows the response for 0.0 <η det < 0.1, the
+plus-sign shows the response for 1 .0 <η det < 1.1, the down-triangle
+shows the response for 1 .4 <η det < 1.5, the up-triangle shows the
+response for 2.8 <η det < 2.9, and the circle shows the response for
+4.0 <η det < 4.1
+Fig. 4 Jet response at ﬁxed energies as a function of η a after the
+polynomial MCJES calibration step, and b after the p-spline MCJES
+calibration. The square sign shows the response forEtrue = 30 GeV, the
+plus sign shows the response for Etrue = 50 GeV, the down-pointing
+triangle shows the response for Etrue = 110 GeV, the up-pointing tri-
+angle shows the response for Etrue = 500 GeV, and the circle shows
+the response for Etrue = 1200 GeV
+4.4.4 Absolute MC jet η calibration
+In addition to the jet energy, the jet pseudorapidity η is
+calibrated with a similar approach as the JES calibration
+to correct for biases in the η reconstruction, following the
+strategy in Ref. [ 4]. This bias is most pronounced in the
+transition region between different parts of the calorimeter,
+where the discrepant response of the different detectors arti-
+ﬁcially shifts the reconstructed energy on one side of the jet,
+changing the reconstructedη. Theseηcorrections are partic-
+ularly needed in the barrel-endcap (|η|∼ 1.4) and forward-
+endcap (|η|∼ 3.1) transitions. The bias in η is deﬁned as
+ηbias =⟨ ηreco − ηtrue⟩, as determined by an iterative ﬁt to a
+Gaussian function, and the correction is performed on a jet-
+by-jet basis via η
+calib = ηreco − Rη. This correction is only
+applied to the pT and η of the jet, and is parameterised as a
+123
+
+===== PAGE 10 =====
+761 Page 10 of 41 Eur. Phys. J. C (2023) 83 :761
+function of Etrue and ηdet. For this correction, only polyno-
+mial ﬁts are studied, using up to an order three polynomial.
+There are small correlations between the corrections inηand
+E, so this correction is derived simultaneously with the JES.
+4.5 The global property calibration
+The absolute MCJES calibration corrects the jet energy
+response based on the E and η
+det of the jet. However, there
+are many other factors that contribute to the jet response,
+including the distribution of energy in the jet, the distribu-
+tion of energy deposits across different calorimeter layers,
+and the types of hadrons produced in the jet. Many of these
+characteristics depend on whether the jet is quark- or gluon-
+initiated. This can be seen in Fig.5, which shows an example
+of the jet response distribution for jets with different initiat-
+ing partons, and the jet p
+T response as a function of ptrue
+T ,
+where the parton label is deﬁned by the highest energy parton
+ghost-associated with the truth jet. Not only are there differ-
+ences between different jet ﬂavours (i.e. the ﬂavour of the
+initiating parton), but the behaviours change with the p
+T of
+the jet. Quark-initiated jets tend to have fewer hadrons, each
+with a higher fraction of the jetp
+T, which typically results in
+contributions further into the calorimeter. In contrast, gluon-
+initiated jets typically have more, lower-pT hadrons, leading
+to a lower calorimeter response and a wider transverse pro-
+ﬁle. These behaviours are further complicated by the use of
+particle ﬂow reconstruction, which adds further dependence
+based on the charged particles in the jet.
+The jet p
+T response is also impacted by the MC model, as
+seen by the differences between the jetpT response shown in
+Fig. 6. Overall, most MC predictions have similar behaviour
+for quark-initiated jets, while the differences between gluon-
+initiated jets can be sizeable. This is due to differences
+between predictions between MC generators for the amount
+of soft radiation and its topological distribution in the jet.
+There is some separation in the behaviour of models with
+the Lund string model for hadronisation compared with the
+other models, where the Lund string model tends to predict
+a higher gluon p
+T response, with larger differences for jets
+with pT < 100 GeV. This can primarily be attributed to the
+fraction of jet energy carried by baryons and kaons [51].
+The global jet property calibration applies further correc-
+tions to jets based on their individual characteristics. While
+these corrections only have a small effect on the overall clo-
+sure of the calibration, the closure is signiﬁcantly improved
+for different classes of jets, improving the JER. In addition,
+this calibration reduces differences between MC predictions
+for the JES, resulting in smaller modelling uncertainties.
+Two methods for deriving the global calibration are outlined
+below: the global sequential calibration (GSC), which was
+described in previous work [4], and a new method, the global
+neural network calibration (GNNC). Both the corrections
+are derived in |η
+det| bins corresponding to different detector
+regions, creating a balance between the statistical uncertainty
+and the generality of the results.
+4.5.1 The global sequential calibration
+The GSC is a series of multiplicative corrections to account
+for the differences between the calorimeter response to dif-
+ferent types of jets, which improves the jet resolution without
+changing the jet energy response. The GSC is based on global
+jet observables such as the longitudinal proﬁle of the energy
+deposits in the calorimeters, tracking information matched
+to the jet, and information related to the activity in the muon
+chambers behind a jet. Six observables that improve the JER
+and reduce modelling uncertainties are used as inputs to the
+GSC. Each GSC correction to the jet four-momentum is
+derived and applied independently and sequentially, using
+the following procedure. First, for a given GSC observable,
+the jet p
+T response distribution is ﬁt for each bin of|η|, ptrue
+T ,
+and the GSC observable, using the same procedure as in the
+MCJES calibration. Next, these ﬁtted values are divided by
+the inclusive value of the response in a given|η| and p
+true
+T bin
+to avoid changing the pT scale of the jet calibration. Then,
+for each bin of the GSC observable, the numerical inversion
+of the jet p
+T response is performed after a linear smoothing
+in a given bin of ( ptrue
+T , |ηdet|). The resulting responses for
+ag i v e n|ηdet| bin are then smoothed simultaneously in pT
+and the GSC observable using a Gaussian kernel. Because
+the GSC is applied sequentially, it is possible to validate each
+GSC correction in a systematic way, testing the impact of any
+mismodelling of the input variables using data. Such studies
+were performed to validate the sequential correction proce-
+dure.
+The six stages of the GSC, in the order of application, are
+• f
+charged: the fraction of the jet pT carried by charged
+particles, as measured using ghost-associated tracks with
+pT > 500 MeV, |ηdet| < 2.5,
+• fTile0: the fraction of jet energy ( Efrac) measured in the
+ﬁrst layer of the hadronic tile calorimeter, |ηdet| < 1.8,
+• fLAr3:t h e Efrac measured in the third layer of the elec-
+tromagnetic LAr calorimeter, |ηdet| < 3.5,
+• Ntrack: the number of tracks with pT > 1 GeV ghost-
+associated with the jet, |ηdet| < 2.5,
+• wtrack: also known as track width, the average pT-
+weighted transverse distance in the η-φ plane, between
+the jet axis and all tracks ofpT > 1 GeV ghost-associated
+with the jet, |ηdet| < 2.5,
+• Nsegments: the number of muon track segments ghost-
+associated with the jet, |ηdet| < 2.8.
+The Nsegments correction, also known as the punch-through
+correction, reduces the tails of the response distribution
+123
+
+===== PAGE 11 =====
+Eur. Phys. J. C (2023) 83 :761 Page 11 of 41 761
+Fig. 5 a The jet pT response distribution for different jet ﬂavours for
+jets with 20 GeV < ptrue
+T < 25 GeV, and b the jet pT response for sev-
+eral different ﬂavours of jets as a function ofptrue
+T . The solid line shows
+the response for gluon jets, the long dashed line shows the response for
+light quark jets, the short dashed line shows strange jets, the alternating
+medium and short dashed line shows charm jets, and the alternating
+long and short dashed line shows bottom jets
+Fig. 6 The jet pT response as a function of ptrue
+T for several differ-
+ent MC predictions for a quark jets, and b gluon jets. The solid line
+shows Pythia 8, the long dashed line shows Herwig with an angu-
+lar ordered parton shower, the short dashed line shows Herwig with
+a dipole shower, the alternating medium and short dashed line shows
+Sherpa with the AHADIC hadronisation model, the alternating long and
+short dashed line shows Sherpa with the string hadronisation model, and
+the long dash with three short dashes shows Powheg+Pythia
+caused by high- pT jets that are not fully contained in the
+calorimeter. Unlike the other corrections, the Nsegments cor-
+rection is applied as a function of the jet energy instead of
+the jet p
+T, since this effect is more strongly correlated with
+energy escaping the calorimeters.
+The jet pT response for PFlow jets in MC simulation after
+each of the GSC corrections is shown in Fig. 7 for one |η|
+bin. While the jet energy scale is within 1% at low energies,
+a small amount of non-closure is introduced when determin-
+ing the response usingpT instead of energy. The fractional jet
+resolution, denoted byσ, is used to determine the magnitude
+of the ﬂuctuations in the jet energy reconstruction, where σ
+is the width of the ﬁt to a Gaussian function for the jet pT
+response distribution divided by the mean of the ﬁt. This is
+shown for PFlow jets with 0.2 < |ηdet| < 0.7 in MC simula-
+tion in Fig.7. As more corrections are applied, the fractional
+jet resolution improves and the jet response dependence on
+the jet ﬂavour is reduced as the calibration is improved for
+123
+
+===== PAGE 12 =====
+761 Page 12 of 41 Eur. Phys. J. C (2023) 83 :761
+jets with varying features. The impact of fcharged and fTile0
+are most apparent in Fig.7, but the relative impact of the dif-
+ferent corrections varies as a function of |ηdet|. In addition,
+these corrections reduces effects that are less evident in the
+inclusive case. For instance, the punch-through correction
+scales with energy, and so it primarily impacts analyses that
+are sensitive to high-energy jets, but its impact is not obvious
+in the inclusive distribution.
+4.5.2 The global neural network calibration
+The GSC is limited to using relatively uncorrelated vari-
+ables for the correction, since otherwise, each sequential step
+would potentially interfere with previous corrections due to
+correlations between observables. This constraint is funda-
+mental to the method, limiting the set of corrections that may
+be applied. However when adding additional observables,
+and to account for their correlations, a simultaneous calibra-
+tion is more appropriate [52]. As an alternative to the sequen-
+tial calibration, a deep neural network (DNN) is trained to
+determine a simultaneous correction based on a wide variety
+of jet properties, enabling the use of correlated variables for
+determining the global jet property correction. Since analy-
+ses make selections based on the jetp
+T, the DNN is designed
+to correct the jet pT response, in contrast to the GSC, which
+leaves the energy response unchanged.
+To improve the performance based on the detector geom-
+etry, a DNN is trained for each|ηdet| region used to derive the
+GSC to provide a correction to the jetpT based on various jet-
+and event-level features. The DNNs are trained with Keras
+[53], using the Adam [54] optimisation algorithm. The net-
+work has three hidden layers with swish activation functions
+[55] and a single-node output layer with linear activation.
+The number of nodes is optimised for each |η
+det| bin, and
+ranges between 100 and 300. The network uses the leaky
+Gaussian kernel (LGK) loss function [56]
+Loss(x
+target, xpred) =− 1√
+2π
+exp
+(
+− (xtarget − xpred)2
+2α2
+)
++β|xtarget − xpred|,
+where xtarget is the jet pT response, xpred is the corresponding
+NN prediction, andα and β are tunable parameters. Asα →
+0, the LGK loss learns the mode, and the second term ensures
+that the gradient of the error function relative to the current
+weight does not vanish for large x
+target − xpred. Learning
+the mode is less biased by cases where the response is not a
+perfect Gaussian distribution, resulting in better closure than
+a loss function that learns the mean of the distribution.
+The architecture of the network was chosen as the result
+of a hyperparameter optimisation based on the closure of the
+result, where hyperparameters are parameters involving the
+network structure. The training is done with a batch size of
+10
+4 jets, and a learning rate of 10 −4. For the LGK loss, the
+parameters are chosen to beα = 10−1, and β = 10−6 based
+on the hyperparameter scan. The training is done to minimise
+the LGK loss function, and training continues until there are
+no improvements to the loss for ﬁve epochs. Increasing the
+patience did not have a noticeable effect on the quality of
+the results. Unweighted events are used because this avoids
+issues in the training due to large differences between the
+event weights. Since the target is the p
+T response, not the jet
+pT itself, the uniform weights do not have a large impact on
+the ﬁnal result. Only the two leading jets in the event are used
+in the training, since the events were simulated using a dijet
+process, and so this avoids potential biases from using jets
+that originate purely from the parton shower. For each|η
+det|
+bin, several networks were trained, and the one with the best
+closure was chosen for the ﬁnal result.
+Several sets of variables were considered as inputs to the
+NN, and the ﬁnal list of variables used in the training is
+given in Table1. This list includes all of the variables used in
+the GSC calibration, with the addition of more information
+about the jet kinematics, more granular information about the
+energy deposits in different calorimeter layers, and measures
+of pile-up. While the residual pile-up correction removes
+most of the pile-up dependence, some dependence is reintro-
+duced by the absolute MCJES calibration, and so N
+PV and
+μare included in the training. Some calorimeter layers are not
+present for certain |ηdet| regions, in which case their Efrac is
+set to zero. Explicitly removing these observables from the
+list of input variables used in the NN training had a negligible
+impact on the results, and so the set of training variables is
+kept the same for all |η
+det| regions.
+The jet pT closure from this calibration is typically bet-
+ter than 1%, but it also has some ﬂuctuations, which can
+sometimes slightly exceed this. The magnitude of these ﬂuc-
+tuations varies with each DNN training but were persistent
+across different DNN hyperparameters, loss functions, and
+training targets. To mitigate this, an additionalp
+T calibration
+is derived after the GNNC, using the p-spline method out-
+lined in Sect.4.4, but using the truth jetp
+T as the target instead
+of the energy. This is derived in|ηdet| bins with width of 0.1,
+which provides better performance than using the same|ηdet|
+bins as the GNNC correction. This has a negligible effect on
+the jet pT resolution, and only serves to improve the closure
+and smoothness of the calibration.
+4.5.3 Comparison of the methods
+Figure 8 shows a comparison of the jet pT response after the
+MCJES, GSC and GNNC for one representative |ηdet| bins.
+As designed, the GSC does not change the energy response
+of the jets. Since the JES calibration moves the reconstructed
+energy scale to match that of the truth scale, this can result in
+123
+
+===== PAGE 13 =====
+Eur. Phys. J. C (2023) 83 :761 Page 13 of 41 761
+Fig. 7 a The jet pT response after each stage of the GSC calibration, and b the jet pT resolution after the MCJES, after the fcharged correction,
+after the fTile0 correction, after the fLAr3 correction, after the Ntrack correction, after the wtrack correction, and after the Nsegments correction
+Table 1 List of variables used as input to the GNNC. Variables with a
+* correspond to those that are also used by the GSC
+Calorimeter fLAr0−3∗ The Efrac measured in the 0th-3rd
+layer of the EM LAr calorimeter
+fTile0∗−2 The Efrac measured in the 0th-2nd
+layer of the hadronic tile
+calorimeter
+f
+HEC,0−3 The Efrac measured in the 0th-3rd
+layer of the hadronic end cap
+calorimeter
+f
+FCAL,0−2 The Efrac measured in the 0th-2nd
+layer of the forward calorimeter
+N90% The minimum number of clusters
+containing 90% of the jet energy
+Jet kinematics pJES
+T *T h e j e t pT after the MCJES
+calibration
+ηdet The detector η
+Tracking wtrack* The average pT-weighted
+transverse distance in the η-φ
+plane between the jet axis and all
+tracks of p
+T > 1G e V
+ghost-associated with the jet
+Ntrack* The number of tracks with
+pT > 1 GeV ghost-associated
+with the jet
+fcharged* The fraction of the jet pT measured
+from ghost-associated tracks
+Muon segments Nsegments* The number of muon track
+segments ghost-associated with
+the jet
+Pile-up μ The average number of interactions
+per bunch crossing
+N
+PV The number of reconstructed
+primary vertices
+some nonclosure in the jet pT, which is particularly evident
+at low pT. The GNNC is designed to change the pT scale of
+the jets to match the truth jets, and so the closure in pT is
+better than that of the GSC closure. It is worth noting that
+while the GSC can instead be applied in a way that corrects
+the jet pT scale, this does not impact the resolution. Other
+|ηdet| bins show similar qualitative features, though the exact
+nonclosure seen in thepT response after the MCJES and GSC
+varies slightly.
+Figure 9 show a comparison of the jet pT resolution after
+the MCJES, GSC and GNNC for several representative|ηdet|
+bins. In a few cases, the jet pT resolution becomes worse in
+the lowest pT bins, but this is also where the pT nonclosure
+is most signiﬁcant, making it difﬁcult to have an accurate
+estimate of the resolution, particularly since the pT scale of
+the GNNC is different than that of the MCJES and GSC.
+Since the p
+T scale of the MCJES and GSC is above one
+and has a negative slope, the measured resolution is slightly
+underestimated [47] in these bins, while the GNNC resolu-
+tion is correctly estimated, since the response closes. In the
+0.2 < |η| < 0.7 bin, the GNNC has an average improvement
+in the jet pT resolution of over 15%, and maximum improve-
+ments of over 25%, when compared with the GSC. Other
+|η
+det| bins show similar average improvements of around 15–
+25%, with maximum improvements often over 30%, and the
+improvement generally becomes more pronounced at higher
+|η
+det|, where the resolution improvements are signiﬁcant,
+mostly due to the improvements from the additional detec-
+tor information. Studies comparing the GNNC performance
+with only the GSC observables as inputs ﬁnd a similar per-
+formance to the GSC, indicating that the improvement in
+the resolution of GNNC compared with GSC is due to the
+inclusion of additional observables. This is made possible
+by a simultaneous correction that accounts for correlations
+123
+
+===== PAGE 14 =====
+761 Page 14 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 8 The jet pT closure for 0.2 < |ηdet| < 0.7. The solid line shows
+the MCJES, the long dashed line shows the GSC, and the short dashed
+line shows the GNNC
+between observables. The GNNC provides a larger improve-
+ment to the jet energy resolution than the GSC, and so it is
+used for the remainder of the paper.
+4.5.4 Flavour uncertainties
+The two ﬂavour-dependence uncertainties in the JES are
+derived from simulation and account for relative ﬂavour frac-
+tions and differing responses to quark- and gluon-initiated
+jets. The ﬂavour response uncertainty accounts for the fact
+that, unlike the quark-initiated jet response R
+q , the gluon-
+initiated jet response Rg is found to differ signiﬁcantly
+between generators. This uncertainty is deﬁned as
+σresponse = fg(Rg,Pythia8 − Rg,Herwig),
+where fg is the fraction of gluon-initiated jets, andRg,Pythia8
+and Rg,Herwig are the gluon-initiated jet response Rg in
+Pythia 8 and Herwig respectively. The ﬂavour composi-
+tion uncertainty accounts for the fact that the jet response
+is different for quark- and gluon-initiated jets. This is deter-
+mined based on the fraction of gluon-initiated jets fg, where
+Rq and Rg are the quark and gluon jet responses measured
+in Pythia 8, and σ f
+g is the uncertainty in fg in the sample,
+with the uncertainty deﬁned as
+σcomposition = σ f
+g
+Rq − Rg
+fg Rg + (1 − fg)Rq
+.
+Figure 10 shows a comparison of the ﬂavour composition
+and ﬂavour response uncertainties for the MCJES, GNNC
+and GSC. After the MCJES calibration, R
+q − Rg becomes
+negative for jets above 100 GeV, which appears as a dip in the
+ﬂavour composition uncertainty. Both the GSC and GNNC
+can reduce these uncertainties, with the GNNC providing a
+greater reduction. For each |η
+det| bin, when compared with
+the GSC, the GNNC results in an average improvement of
+around 15–25% in the 40 ≤ p
+T < 300 GeV range for the
+ﬂavour response uncertainty, and up to 25% improvements
+for the ﬂavour composition uncertainty.
+5 In situ analysis
+The ﬁnal calibration step accounts for differences in the jet
+response between simulation and data. Such differences arise
+due to the imperfect simulation of detector response and
+detector material, and the modelling of physics processes
+involved: hard scatter, underlying events, pile-up, jet forma-
+tion and particle interactions with detector material. For the
+remainder of these studies, a single jet calibration is stud-
+ied, using the sideband ρ deﬁnition in Sect. 4.2 and the 3D
+residual calibration in Sect.4.3, the absolute MC calibration
+implemented with p-splines in Sect. 4.4, and the GNNC for
+the global calibration in Sect. 4.5. To fully understand the
+impact of these changes relative to the calibration procedure
+in Ref. [4], on the calibration and corresponding uncertain-
+ties, the in situ calibration is studied. The in situ calibration
+provides important validation of the new MC calibration of
+jets by comparing the data-to-MC difference between thep
+T
+balance of a jet against a well-calibrated object or system.
+In addition, novel studies are done to disentangle the physics
+effects and detector effects in theη-intercalibration to reduce
+the systematic uncertainties. Furthermore, the b−jet JES is
+evaluated in situ using PFlow jets, which is performed using
+γ+ jet events for the ﬁrst time.
+The in situ calibration response Rin situ is deﬁned as the
+average ratio of the jet pT to the transverse momentum of
+the reference object pref
+T , derived as a function of pref
+T .T h e
+Rin situ response is susceptible to effects such as the radi-
+ation of additional partons or the loss of energy outside the
+reconstructed jet cone. Dedicated event selections are applied
+to mitigate these effects. A double ratio, insensitive to these
+secondary effects provided they are well-modelled in simu-
+lations, is deﬁned
+C = R
+data
+in situ
+RMC
+in situ
+.
+The calibration factor to the jet four-momentum can be
+obtained by a numerical inversion of this double ratio
+as a function of jet p
+T, and as a function of ηdet in η-
+intercalibration.
+Two stages of in situ analyses are done sequentially to
+assess the performance of MC calibrations. First, a rela-
+tive in situ calibration referred to as the η-intercalibration
+is done, which corrects the energy scale of forward jets
+(0.8 < |η
+det| < 4.5) to match that of the central jets
+(|ηdet| < 0.8) using the pT balance in a dijet system. Sec-
+ond, an absolute calibration is done by measuring the pT
+balance of a central jet against a well-calibratedZ boson or a
+photon. The missing- ET projection fraction (MPF) method
+123
+
+===== PAGE 15 =====
+Eur. Phys. J. C (2023) 83 :761 Page 15 of 41 761
+Fig. 9 The jet pT resolution for a 0.2 < |ηdet| < 0.7, b 0.7 < |ηdet| < 1.3, c 1.8 < |ηdet| < 2.5, and (d) 3.2 < |ηdet| < 3.5. The solid line shows
+the MCJES, the long dashed line shows the GSC, and the short dashed line shows the GNNC
+[57]i su s e di nZ/γ+jet events to calculate the pT balance
+between the full hadronic recoil and a Z boson or a pho-
+ton. The method is less susceptible to effects of pile-up and
+the threshold of the jet reconstruction than the direct balance
+method, allowing a reliable measurement of the low- p
+T jet
+response below 100 GeV. The direct balance (DB) method
+measures the balance between a ( b−)jet recoiled against a
+photon in γ+jet events. By using the DB instead of MPF, the
+response of the b-jet itself is studied without including the
+effects of the hadronic recoil.
+For each in situ analysis, main sources of systematic uncer-
+tainties arise from the MC model of physics processes, the
+measurement of the reference object and the p
+T balance due
+to the selected event topology. Uncertainties related to MC
+model of physics effects are addressed by taking the differ-
+ence between the predictions between two distinct MC event
+generators. The difference between jet response in simula-
+tions depends on hadronisation models that cause different jet
+contents [51]. Uncertainties in the reference object are esti-
+mated by propagating its own ±1σ calibration uncertainties
+through the analysis. Uncertainties due to the selected event
+topology are evaluated by varying the event selection crite-
+ria and comparing the impact on the response ratios between
+data and MC simulation. To reduce the statistical ﬂuctua-
+tions when applying the systematic variations, a rebinning
+procedure similar to that used in previous publications [ 4]
+is employed to obtain statistically signiﬁcant results using
+pseudo-experiments. This rebinning procedure is only per-
+formed in regions where no sharp variations in p
+T response
+are observed to ensure no real physics effects are removed.
+Events must satisfy the common selection requirements
+in the in situ analysis. Each event is required to have at least
+123
+
+===== PAGE 16 =====
+761 Page 16 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 10 a The ﬂavour response uncertainty, and b the ﬂavour composition uncertainty for central jets. The solid line shows the MCJES, the long
+dashed line shows the GSC, and the short dashed line shows the GNNC
+one reconstructed primary vertex with at least two matched
+tracks of pT > 500 MeV. Jets arising from cosmic rays,
+non-collision background and calorimeter noise are vetoed
+by applying data-quality requirements [58]. In addition, jets
+with 20 < pT < 60 GeV and |ηdet| < 2.4 are required to
+satisfy the criteria of jet vertex tagging (JVT) [ 59,60]. The
+JVT criteria rejects jets from pile-up interactions by matching
+jets with the primary vertex; it has a selection efﬁciency of
+97% for hard scatter jets at the nominal operating point.
+5.1 η-intercalibration
+The jet response in the forward region (0.8 < |η
+det| < 4.5) is
+typically less understood due to the more complicated detec-
+tor structure. Theη-intercalibration provides a correction for
+forward jets (0.8 < |η
+det| < 4.5) to bring them to the same
+energy scale as central jets ( |ηdet| < 0.8). This calibration
+uses events with a dijet topology, requiring two back-to-back
+jets in the transverse plane in different η
+det regions. In order
+to increase the statistical precision, there is no requirement
+on whether or not one of the two jets is in the central reference
+region: instead, all regions will be calibrated relative to one
+another by solving a set of linear equations. This is referred
+to as the matrix method [ 4]. The momentum asymmetry is
+deﬁned to measure the jet p
+T balance between the two jets in
+two distinct detector regions (symbolically labelled left and
+right for simplicity)
+A = pleft
+T − pright
+T
+pavg
+T
+,
+where pavg
+T is the average of the transverse momentum of the
+left and right jets ( pavg
+T = ( pleft
+T + pright
+T )/2). For a narrow
+bin approximation in pavg
+T , the relative responseR of the left
+and right jets in terms of the calibration factor for each jet
+and the mean of A can be deﬁned as
+R = cright
+cleft = 2 + ⟨A⟩
+2 − ⟨A⟩ ≈
+⟨
+pleft
+T
+⟩
+⣨
+pright
+T
+⟩
+where R is measured in terms of ηdet for left and right jets
+and pavg
+T . The intercalibration factor c is deﬁned as c = cright
+cleft
+and hence the relative response R satisﬁes R = 1/c.
+Dijet events are selected using a combination of forward
+and central single-jet triggers, where each trigger is consid-
+ered in the range of p
+avg
+T that has an efﬁciency of at least
+99%. Prescaled jet triggers are used to accommodate band-
+width limits, and each selected event is weighted accordingly.
+The trigger combination method [4,61]i su s e dt om a x i m i s e
+the statistical precision. Each event must have at least two
+leading jets with p
+avg
+T > 25 GeV and |ηdet| < 4.5. Events
+containing a third jet with pjet 3
+T / pavg
+T > 0.25 are excluded.
+The two leading jets must be back-to-back in the transverse
+plane satisfying a requirement on their azimuthal angle dif-
+ference /Delta1φ1,2 > 2.5.
+The nominal calibration is estimated by taking the ratio
+of the simulated response in Powheg+Pythia8 to the mea-
+sured response in data. The binning inηdet and pavg
+T is chosen
+to ensure enough of a sample size in scarce reference regions
+and to capture granular variations in detector response. A
+two-dimensional Gaussian kernel is optimised to smooth sta-
+tistical ﬂuctuations while also capturing notable detector fea-
+tures.
+The 2017 data sample is representative of the high pile-up
+conditions and thus discussed here. The relative response,
+parameterised by η
+det in two pavg
+T regions and by pavg
+T in two
+123
+
+===== PAGE 17 =====
+Eur. Phys. J. C (2023) 83 :761 Page 17 of 41 761
+ηdet regions between the 2017 data sample and MC simula-
+tions from Powheg+Pythia8 and Powheg+Herwig 7 with
+an angular ordered shower, is shown in Fig.11. The predicted
+response in the two MC simulations is found to capture the
+overall shape of theηdet dependence. However, the response
+predicted from simulations is consistently lower than that
+measured in data for the forward detector regions across all
+p
+avg
+T bins.
+Uncertainties can arise due to the inaccurate descrip-
+tion of physics, detector response and the dijet topology
+on the momentum balance. They are evaluated in terms of
+pavg
+T and ηdet. Uncertainties arising from the MC mismod-
+elling are estimated by taking the difference between the
+smoothed residual correction between Powheg+Pythia8
+and Powheg+Herwig 7 with angular ordered shower. Other
+uncertainties due to the mismodelling in physics and event
+topology are estimated by modifying the requirement on the
+third jet veto, the /Delta1φ
+1,2 separation, and JVT.
+Further studies are performed at particle and reconstruc-
+tion level separately to disentangle physics and detector
+effects. The particle level can be used to study physics effects
+affecting the dijet balance due to additional parton radia-
+tions or out-of-cone corrections. It is performed using the
+same procedure as the reconstruction level except that no
+JVT requirements are applied. The matrix method is used as
+the nominal method while the central reference method [4]i s
+used as a cross-check. These physics effects induce a smooth
+and non trivial structure of the relative response 1 /c with a
+slight asymmetry between positive and negative η
+det in the
+forward region as shown in Fig.12a. A similar structure with
+sharper variations due to convolution with detector effects
+is also present at the reconstruction level shown in Fig. 11a.
+The systematic uncertainty /Delta1c on the intercalibration fac-
+tor at particle level is /Delta1c =
+⏐⏐
+⏐
+csyst
+cnominal − 1
+⏐⏐
+⏐, where c
+syst is the
+intercalibration coefﬁcient obtained with a different selec-
+tion of the events, either a different selection on pjet 3
+T / pavg
+T
+or /Delta1φ1,2. By comparing Fig. 12a, b, the magnitude of these
+physics effects at particle level is similar to the magnitude of
+the systematic uncertainties designed to cover them, which
+are evaluated by varying the selection criteria forpjet 3
+T / pavg
+T
+and /Delta1φ1,2 at reconstruction level in data and MC simultane-
+ously. Therefore, these uncertainties are not underestimated.
+Variations in parton showering and hadronisation mod-
+els can affect dijet balance that convolves both the physics
+and detector effects. The MC modelling uncertainty derived
+at particle level as a function of η
+det only considers the
+physics effects on the dijet balance and excludes impacts
+on the detector response which were evaluated in the jet
+ﬂavour response uncertainty using various MC simulations
+discussed in Sect. 4.5. Such a procedure will signiﬁcantly
+reduce the MC modelling uncertainty shown in Fig.12c and
+avoid possible double counting of uncertainties.
+Figure 13 shows the fractional uncertainties derived as a
+function of η
+det for two representative pT values. The sys-
+tematic uncertainty for |ηdet| < 0.8 is set to zero as they are
+determined from the absolute in situ JES measurements such
+as Z/γ+jet analysis. The fractional uncertainties increase
+with ηdet for |ηdet| > 0.8 and illustrate a signiﬁcant decrease
+with increasing pT. Dominant uncertainties arise from the
+choice of event generators and variations in the selection cri-
+teria on pjet 3
+T / pavg
+T . The total systematic uncertainty is sig-
+niﬁcantly reduced by using MC modelling uncertainty esti-
+mated at particle level instead of reconstruction level. It is
+worth noting that systematic variations in the selection cri-
+terion such as pjet 3
+T / pavg
+T are performed simultaneously in
+data and simulation at reconstruction level while Fig. 12b
+shows only the relative impact at particle level. If there is
+a difference between up and down variations, then the sys-
+tematic uncertainty is taken to be the larger absolute value.
+Systematic uncertainties are symmetrised around η
+det = 0
+between the positive and negativeηdet values using the most
+conservative approach, as whether the asymmetry of the sys-
+tematic uncertainty inηdet arises from statistical ﬂuctuations
+or detector effects is unknown.
+5.2 Z/γ+jet balance
+The next step in the jet calibration brings the absolute jet
+energy scale in data to the same scale in simulation by exploit-
+ing the p
+T balance between the hadronic recoil and a well-
+calibrated object such as a Z boson or a photon. The jet used
+in the in situ analysis is required to be from the central detec-
+tor region (|η| < 0.8), in which the derived correction can be
+applied to jets in the forward region via theηintercalibration.
+The Z/γ+jet balance measurement is built upon the precise
+determination of the energy of the photon ore/μ pair from a
+Z boson decay. These measurements beneﬁt from the accu-
+rate knowledge of the energy scale and resolution of the lep-
+tons. The calibration of electrons and photons is accurately
+known through measurements using Z → ee data and other
+ﬁnal states [62] while the muon calibration is determined to
+high precision through studies of J//Psi1→ μμ, Z → μμ
+and ϒ → μμ [63].
+Three independent measurements consisting of Z+jet for
+the Z → ee and Z → μμ decay channels, and γ+jet
+are used to do the absolute in situ calibration. The Z+jet
+measurement provides enough of a sample size at low and
+medium jet p
+T covering 17 < pT < 800 GeV with lim-
+ited precision above 800 GeV. The γ+jet analysis provides
+a complimentary measurement at medium and high pT cov-
+ering 30 < pT < 2000 GeV, with limited precision below
+100 GeV due to prescaled low-pT triggers, jets misidentiﬁed
+as photons, and MC event generator choices.
+123
+
+===== PAGE 18 =====
+761 Page 18 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 11 Relative jet response, 1 /c, calibrated with PFlow+JES as a
+function of ηdet in the ranges of a 25 GeV < pjet
+T < 40 GeV and b
+400 GeV < pjet
+T < 525 GeV, and as a function of pT in ranges of c
+1.2 <η det < 1.4a n dd 3.3 <η det < 3.4. The top panel presents the
+measured relative response for data (dots), Powheg+Pythia8( t r i a n -
+gles) andPowheg+Herwig 7(triangles). The bottom panel presents the
+MC-to-data response ratios represented by triangles and the smoothed
+in situ corrections are represented by overlayed curves, in which the
+solid line shows the derived calibration and the dashed line shows
+the extrapolated calibration to sparse detector regions using the two
+dimensional Gaussian Kernels. Two perpendicular lines are drawn at
+η
+det =± 0.8 to indicate the central ( |ηdet| < 0.8) and the forward
+(0.8 < |ηdet| < 4.5) detector region. Three horizontal dashed lines are
+drawn at 0.97, 1, and 1.03 to provide reference points for the viewer
+The MPF method measures the pT balance between the
+reference objects and the full hadronic recoil in Z/γ+jet
+events. This technique allows the calorimeter response to
+the hadronic showers to be computed directly. It has low
+susceptibility to pile-up and underlying event which is uni-
+form across the detector and thus cancelled out in the MPF
+method. According to conservation of transverse momentum,
+the transverse momentum of all of the hadronic activity in a
+Z/γ+jet event, p
+recoil
+T , should be equal and opposite to the
+transverse momentum of the reference boson,pref
+T , at particle
+level, such that
+⃗p ref
+T,truth +⃗p recoil
+T,truth = 0. (1)
+At the detector level, the well-calibrated objects have
+a response of one while the calorimeter response to the
+hadronic recoil rMPF is lower than unity, resulting in possible
+missing transverse momentum ⃗E miss
+T in the event. Therefore,
+equation 1 can be written as:
+⃗p ref
+T + rMPF ⃗p recoil
+T =− ⃗E miss
+T .
+Projecting the vector terms along the direction of the
+reference boson using a unit vector ˆnref in the transverse
+plane, then rMPF is only dependent on the missing transverse
+momentum and the transverse momentum of the reference
+boson. The average ofr
+MPF, RMPF, is measured as a function
+123
+
+===== PAGE 19 =====
+Eur. Phys. J. C (2023) 83 :761 Page 19 of 41 761
+Fig. 12 Intercalibration coefﬁcients and uncertainties derived at both
+the particle and reconstruction level, using MC simulated events recon-
+structed with the conditions of 2017 data-taking period. a Intercalibra-
+tion coefﬁcients obtained for different generators and different meth-
+ods. Powheg+Pythia8 is used as the nominal MC generator. Three
+horizontal dashed lines are drawn at 0.97, 1, and 1.03 to provide ref-
+erence points for the viewer. b Systematic uncertainties obtained with
+the matrix method and withPowheg+Pythia8 at particle level. The up
+and down variations are symmetrised by taking the maximum of either
+of them. A 2D smoothing is applied ( in p
+avg
+T and in η) with a Gaussian
+kernel. c MC modelling uncertainty, evaluated either at reconstruction
+level in the dashed line or at particle level in the solid line. A smoothing
+is applied after the computation of
+⏐⏐
+⏐
+cPowheg+Pythia8
+cPowheg+Herwig 7
+− 1
+⏐⏐
+⏐
+Fig. 13 Systematic uncertainties in theηintercalibration as a function
+of ηdet for PFlow+JES jets of a pT = 35 GeV, b pT = 450 GeV. The
+total systematic uncertainty is represented by the middle shaded band,
+which is a quadrature sum of different components of systematic uncer-
+tainties marked by coloured lines. The statistical uncertainty is indicated
+by the lowest shaded band. The highest shaded band shows the quadra-
+ture sum of different components of systematic uncertainties using MC
+modelling uncertainty estimated at reconstruction level. A smoothing
+procedure is applied to the systematic uncertainty to suppress statistical
+ﬂuctuations. The precision is limited by the MC modelling uncertainty
+estimated at particle level and variations in the selection criteria for
+p
+jet 3
+T / pavg
+T
+of pref
+T ,t h e pT of the reference Z/γ boson:
+RMPF =
+⟨
+1 + ˆnref · ⃗E miss
+T
+pref
+T
+⟩
+where ⃗E miss
+T is computed using particle-ﬂow objects cali-
+brated at the EM scale.
+Z+jet events are selected using either the lowest- pT
+unprescaled dielectron or dimuon trigger. The lowest- pT
+threshold in the dielectron trigger corresponds to 15 GeV for
+each electron while the lowest- pT threshold in the dimuon
+trigger corresponds to 14 GeV [64,65] for each muon. Both
+the leptons are required to have pT > 20 GeV to have fully
+efﬁcient triggers. Electrons or muons must satisfy loose iden-
+tiﬁcation and isolation criteria [62,63]. Electrons are required
+to fall within |η|= 2.47 and are rejected if they fall in the
+calorimeter crack region 1 .37 < |η| < 1.52. Muons must
+fall within |η|= 2.4. The oppositely charged electron and
+muon pair is required to have an invariant mass around the
+Z boson mass, 66 < mee/μμ < 116 GeV. γ+jet events are
+selected using a combination of prescaled and unprescaled
+single photon triggers in which the lowest prescaled trigger
+ET threshold is 10 GeV. Photon candidates entering the anal-
+ysis are required to have Eγ
+T > 25 GeV and|ηγ| < 1.37 and
+123
+
+===== PAGE 20 =====
+761 Page 20 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 14 The MPF response as a function of pref
+T measured in data and
+simulations in Z+jet events fora Z → ee and b Z → μμ. The data are
+represented by the black dots. The MadGraph+Pythia8 predictions
+are represented by the triangles while the Sherpa predictions are rep-
+resented by the inverted triangles. The MC-to-data response ratios are
+shown in the bottom panel. The error bars correspond to the statistical
+uncertainties
+to satisfy the tight identiﬁcation and isolation selection crite-
+ria [62]. The jet is removed if it falls within/Delta1R = 0.4 (0.35)
+of a photon (lepton).
+Further selection criteria are imposed in theZ/γ+jet mea-
+surements to reduce the impact from pile-up and additional
+parton radiations. To suppress contamination from pile-up,
+jets are required to satisfy the cleaning criteria and to sat-
+isfy the JVT requirement. Events must contain a jet with
+p
+T greater than 10 GeV that falls within |η|= 0.8. To
+suppress effects from additional parton radiations, further
+requirements are imposed on the azimuthal angle between
+the reference boson and the leading jet /Delta1φref, jet > 2.9 and
+pT of the subleading jet pT < max(0.3 × pref
+T , 12) GeV,
+where the subleading jet falls within |η|= 4.5.
+The MPF response as a function of reference boson pT is
+shown in Figs. 14 and 15 using Z+jet and γ+jet events for
+data and two distinct MC samples. The MC sample used to
+derive the nominal calibration forZ+jet (γ+jet) corresponds
+to MadGraph+Pythia8 (Pythia8). The alternative MC
+sample corresponds to Sherpa to determine the uncertainty
+from the MC event modelling. The dip in the MPF response
+at low pref
+T arises due to two opposing effects: the jet recon-
+struction threshold which tends to increase the response at
+the lowest jet pT values between 17 GeV and 20 GeV and the
+apparent rise in MPF response as a function of pT.T h eM C -
+Fig. 15 The MPF response as a function of pref
+T measured in data and
+simulations for γ+jet. The data are represented by the black dots. The
+Pythia8 predictions are represented by the triangles while theSherpa
+predictions are represented by the inverted triangles. The MC-to-data
+response ratios are shown in the bottom panel. The error bars correspond
+to the statistical uncertainties
+to-data response ratio are rather consistent between Z+jet
+and γ+jet.
+123
+
+===== PAGE 21 =====
+Eur. Phys. J. C (2023) 83 :761 Page 21 of 41 761
+Fig. 16 Systematic uncertainty in the MPF response ratios as a func-
+tion of pT for jets calibrated up to, and including, theηintercalibration
+for a Z(→ ee)+jet events and b Z(→ μμ)+jet events. Uncertainties
+arise from JVT, the subleading jet veto and /Delta1φref, jet requirement in
+the analysis selection. Uncertainties due to electron and muon energy
+scale and resolution are propagated through the analysis. The statistical
+uncertainty of the MC-to-data response ratios and the uncertainties due
+to choice of event generators are shown. Each uncertainty is smoothed
+to suppress statistical ﬂuctuations
+Several sources of systematic uncertainties are consid-
+ered. Uncertainties due to the energy scale and resolution
+of the reference objectse/μ/γ are derived from existing cal-
+ibrations for each object and propagated through the corre-
+sponding analysis. The impact of additional parton radiation
+on the response measurement is evaluated by varying the
+selection criteria for the subleading jet veto and /Delta1φ
+ref, jet.
+Uncertainties arising from pile-up suppression are estimated
+by comparing the response measurement between tighter
+and looser JVT working points. Uncertainties arising from
+photon purity in γ+jet events are assessed using the same
+methodology documented in [66], in which one of the jets is
+misreconstructed as a photon. The pseudo-experiments are
+implemented in the estimate of uncertainties to reduce sta-
+tistical ﬂuctuations.
+The uncertainties for the calibration are presented for the
+Z → ee and Z → μμ measurements in Fig. 16 and for the
+γ+jet measurement in Fig. 17. Uncertainties are dominated
+by the modelling in MC simulations in the low- and medium-
+p
+T regions, and by the energy scale of the photon/electron
+for pT > 100 GeV.
+The derived calibrations are stable over a range of pile-
+up conditions in Run 2. Figure 18 shows the MC-to-data
+response ratios as a function ofμ and NPV in γ+jet event for
+Fig. 17 Systematic uncertainty in the MPF response ratios as a func-
+tion of pT for jets calibrated up to, and including, theηintercalibration
+in γ+jet events. Uncertainties arise from JVT, the subleading jet veto
+and /Delta1φref, jet requirement in the analysis selection. Uncertainties due to
+photon energy scale and resolution are propagated through the analy-
+sis. The statistical uncertainty of the MC-to-data response ratios and the
+uncertainties due to choice of event generators and photon purities are
+shown. Each uncertainty is smoothed to suppress statistical ﬂuctuation
+123
+
+===== PAGE 22 =====
+761 Page 22 of 41 Eur. Phys. J. C (2023) 83 :761
+45 < pref
+T < 65 GeV. The in situ calibration is consistent as
+a function ofμ or NPV, demonstrating the expected stability.
+5.3 b-quark jet energy scale in γ+jet balance
+The measurement of the top-quark mass is limited by the
+b-quark jet energy scale ( bJES) and a measurement of the
+bJES can potentially improve the precision. The direct bal-
+ance (DB) technique is used in γ+jet events to measure the
+balance of a (b-tagged) jet against a well-calibrated photon. It
+represents the ﬁrst measurement determining the b−tagged
+jet energy scale using the PFlow jets in this event topol-
+ogy. p
+ref
+T is deﬁned in terms of the reference object pT,
+pref
+T = pT × cos /Delta1φ, where pT is the transverse momen-
+tum of the photon, and /Delta1φis the azimuthal angle difference
+between the photon and the leading jet.
+The selections are similar to theγ+jet selection in the MPF
+method unless stated otherwise. Events must have a jet with
+pT > 20 GeV instead of pT > 10 GeV in the central detec-
+tor region (|ηdet| < 0.8). The higher jet pT threshold arises
+due to the tighter requirement on the jet transverse momen-
+tum in the b−tagging algorithm used. To suppress addi-
+tional radiation, the DB technique requires the subleading jet
+p
+j2
+T < max(0.1 × pref
+T , 15) GeV and /Delta1φγ,jet > 2.8. Jets in
+the inner tracker coverage (|η| < 2.5) containing b−hadrons
+are identiﬁed (b−tagged) by a multivariate algorithm (DL1r)
+using information of impact parameters of tracks and dis-
+placed vertices [67]. The b−tagging working points with an
+average efﬁciency of 60%, 70%, 77% and 85% are used. The
+events are classiﬁed into inclusive and b-tagged categories.
+The b−tagged category is predominantly composed of the
+b− and c− quark jets while the light quark and gluon jets
+dominates the inclusive categories. A jet is labelled as b−
+(c−) quark jets if any b(c) parton or hadron at particle level
+is found to be within a cone of /Delta1R < 0.3 around a recon-
+structed jet, otherwise it is labelled as light quark or gluons.
+A summary of the jet ﬂavour composition for inclusive and
+b−tagged jets is documented in Table2. The 85%b−tagging
+working points are dominated by the presence of c−quark
+jets and the measurement can be used to constrain the cJES
+in H → c¯c analysis [68] for instance.
+Figure 19 shows the DB response as a function of the
+reference photon pT for the inclusive and b-tagged jets
+using b−tagging working points with an average efﬁciency
+of 77%. The MC simulations are in reasonable agreement
+with data. The MC-to-data response ratios are found to be
+slightly below one for b−tagged jets and above one for
+inclusive jets in almost all bins. The difference between DB
+response between Pythia8 and Sherpa arises due to dif-
+ferent b−quark fragmentation and decay models. Checks on
+the apparent rise of the DB response around 150 GeV for
+b−tagged jets are done such as the quality of the DB response
+ﬁt, b−tagging scale factors applied in simulations, the jet
+ﬂavour composition between neighbouring p
+T bins and a
+looser second jet veto with pj2
+T < 0.2 × pref
+T . None of the
+checks mentioned above is responsible for the DB response
+rise around 150 GeV. Hence these checks suggest that the
+feature is due to statistical ﬂuctuations. Figure 20 shows the
+uncertainties for the b-tagged case with a precision between
+1% and 5% and inclusive jets with a precision up to 1% for the
+chosen pT range. For b−tagged jets, uncertainties are dom-
+inated by the event generator modelling everywhere, while
+for inclusive jets the precision is limited by the event gener-
+ator modelling, photon purity and the subleading jet veto at
+lower p
+T and photon energy scale for pT > 70 GeV.
+A new observable ˜RbJES is deﬁned as a double ratio of
+b−tagged response to the inclusive jet response to further
+measure the energy scale differences between the b-tagged
+and inclusive jets,
+˜RbJES =
+RMC
+b-tagged/Rdata
+b-tagged
+RMC
+inclusive
+/Rdata
+inclusive
+.
+As the nominal jet calibration is determined relative to the
+inclusive jet, such a double ratio can be applied on top of the
+nominal jet calibration to correctbJES. The value of ˜RbJES is
+determined to be below one using both the MC samples with
+a slightly higher response in Pythia8 than Sherpa shown
+in Fig. 21. The difference between the two event generators
+arises from different fragmentation and decay models. The
+ratio, ˜R
+bJES, is also determined inclusively for photon pref
+T
+between 85 and 1000 GeV for various b-tagging working
+points in Table3 to increase statistical precision forPythia8
+and Sherpa, respectively. It is foreseen to provide MC spe-
+ciﬁc calibrations for the bJES to reduce the effects arising
+from MC modelling. The ratio, ˜RbJES, was measured with
+unprecedented precision up to 1%. This in turn will improve
+precision in measurements of top mass.
+6 Conclusion
+The determination of the jet energy scale (JES) is presented
+using data recorded by the ATLAS experiment in pp col-
+lisions at √
+s = 13 TeV. The calibration scheme used for
+anti-kt jets reconstructed using radius parameter R = 0.4
+consists of two steps: a Monte-Carlo-based calibration that
+corrects jets to the truth jet scale, and an in situ calibration
+correcting the scale of jets in data.
+The simulation-based calibration implements several new
+strategies to improve the pile-up stability at higher p
+T,c l o -
+sure, energy resolution, and modelling uncertainties of the
+jets. Biases related to the determination of the pile-up pT
+density were a dominant source of uncertainty for jets with
+pT below 30 GeV. The new procedure presented, combined
+123
+
+===== PAGE 23 =====
+Eur. Phys. J. C (2023) 83 :761 Page 23 of 41 761
+Fig. 18 The MPF response for 45 < pref
+T < 65 GeV measured in
+data and simulations as a function of a μ and b NPV. The data are rep-
+resented by the black dots. The Pythia8 predictions are represented
+by the triangles while the Sherpa predictions are represented by the
+inverted triangles. The MC-to-data response ratios are shown in the
+bottom panel. The error bars correspond to the statistical uncertainties
+Table 2 The average fractions of jet ﬂavours for various b−tagging working points and inclusive jet
+Hadron Label Inclusive jet WP 60% WP 70% WP 77% WP 85%
+Pythia8 Sherpa Pythia 8 Sherpa Pythia 8 Sherpa Pythia 8 Sherpa Pythia 8 Sherpa
+b 1.9% 2.0% 92.1% 85.8% 81.3% 79.2% 59.2% 61.7% 36.3% 39.2%
+c 14.2% 10.6% 2.3% 1.6% 13.4% 9.2% 35.4% 27.0% 57.4% 49.7%
+Light q or gluon 83.9% 87.4% 5.6% 12.6% 5.3% 11.6% 5.4% 11.3% 6.3% 11.1%
+with improvements to the multi-parton interactions model in
+Monte Carlo simulation, reduces this uncertainty by a factor
+of seven. Following this, a new residual calibration is applied,
+which reduces the effects of pile-up by simultaneously cor-
+recting forμ, N
+PV, and pT. For the absolute MCJES, a new ﬁt
+method based on splines is used, leading to better closure for
+jets with p
+T below 30 GeV. Finally, for the global calibration,
+which improves the resolution of jets and reduces the differ-
+ence between the energy scale for quark- and gluon-initiated
+jets, a new method using a DNN is used, which allows infor-
+mation from correlated observables to be used for this cal-
+ibration step. This DNN results in an average improvement
+of the JER of around 15% improvement compared with pre-
+vious methods, with maximum improvement of over 40%.
+Following these simulation-based calibration steps, the
+full Run 2 data sample is used to do a residual in situ cali-
+bration to correct the data-MC differences and constrain the
+uncertainties. Dijet events are used to calibrate jets in the
+forward region relative to the central region as a function of
+jet transverse momentum and pseudorapidity. The precision
+is improved by up to a factor of two in the forward detector
+region at low p
+T by evaluating the MC modelling uncertainty
+at particle level instead of reconstruction level. Central jets
+are calibrated by exploiting the balance between jets recoiling
+against either a photon or a Z boson. Unprecedented preci-
+sion up to 1% is achieved in the in situ analysis. For the ﬁrst
+time, the energy scale of b-tagged jets relative to inclusive
+jets is determined with precision up to 1% in γ+jet events.
+This result is important for improving precision in analysis
+sensitive to b−JES such as the top quark mass and H → b¯b
+measurements.
+123
+
+===== PAGE 24 =====
+761 Page 24 of 41 Eur. Phys. J. C (2023) 83 :761
+Fig. 19 The DB response as a function of pref
+T measured in data and
+simulations for a γ+jet and b γ+b-tagged jet. The data are represented
+by the black dots and thePythia8 are represented by the triangles, and
+the (Sherpa) predictions are represented by the inverted triangles. The
+MC-to-data response ratios are shown in the bottom panel. The error
+bars correspond to the statistical uncertainties
+Fig. 20 Summaries of uncertainties in the MC-to-data response ratio
+as a function ofpref
+T for aγ+jet andbγ+b-tagged jet. Uncertainties can
+arise from photon purity, b−tagging, JVT, /Delta1φand subleading jet veto
+requirement. Uncertainties due the photon energy scale and resolution
+are propagated through the analysis
+123
+
+===== PAGE 25 =====
+Eur. Phys. J. C (2023) 83 :761 Page 25 of 41 761
+Fig. 21 ˜RbJES as a function of reference photon pT determined using either Pythia8o r Sherpa for b-tagging working point with an efﬁciency of
+a 60%, b 70%, c 77% and d 85%. The error bars correspond to the statistical uncertainties
+Table 3 ˜RbJES obtained for various b−tagging working points using Pythia8a n dSherpa separately for 85 < pT < 1000 GeV
+WP Pythia 8S h e r p a
+60% 0 .990 ± 0.010 (stat.) ± 0.013 (syst.) 0 .984 ± 0.010 (stat.) ± 0.013 (syst.)
+70% 0 .984 ± 0.010 (stat.) ± 0.011 (syst.) 0 .974 ± 0.010 (stat.) ± 0.012 (syst.)
+77% 0 .978 ± 0.006 (stat.) ± 0.011 (syst.) 0 .966 ± 0.006 (stat.) ± 0.011 (syst.)
+85% 0 .989 ± 0.004 (stat.) ± 0.007 (syst.) 0 .979 ± 0.004 (stat.) ± 0.007 (syst.)
+Acknowledgements We thank CERN for the very successful oper-
+ation of the LHC, as well as the support staff from our institutions
+without whom ATLAS could not be operated efﬁciently. We acknowl-
+edge the support of ANPCyT, Argentina; YerPhI, Armenia; ARC, Aus-
+tralia; BMWFW and FWF, Austria; ANAS, Azerbaijan; CNPq and
+FAPESP, Brazil; NSERC, NRC and CFI, Canada; CERN; ANID, Chile;
+CAS, MOST and NSFC, China; Minciencias, Colombia; MEYS CR,
+Czech Republic; DNRF and DNSRC, Denmark; IN2P3-CNRS and
+CEA-DRF/IRFU, France; SRNSFG, Georgia; BMBF, HGF and MPG,
+Germany; GSRI, Greece; RGC and Hong Kong SAR, China; ISF and
+Benoziyo Center, Israel; INFN, Italy; MEXT and JSPS, Japan; CNRST,
+Morocco; NWO, Netherlands; RCN, Norway; MEiN, Poland; FCT, Por-
+tugal; MNE/IFA, Romania; MESTD, Serbia; MSSR, Slovakia; ARRS
+and MIZŠ, Slovenia; DSI/NRF, South Africa; MICINN, Spain; SRC
+and Wallenberg Foundation, Sweden; SERI, SNSF and Cantons of
+Bern and Geneva, Switzerland; MOST, Taiwan; TENMAK, Türkiye;
+STFC, United Kingdom; DOE and NSF, United States of America. In
+addition, individual groups and members have received support from
+BCKDF, CANARIE, Compute Canada and CRC, Canada; PRIMUS
+21/SCI/017 and UNCE SCI/013, Czech Republic; COST, ERC, ERDF,
+Horizon 2020 and Marie Skłodowska-Curie Actions, European Union;
+Investissements d’Avenir Labex, Investissements d’Avenir Idex and
+ANR, France; DFG and AvH Foundation, Germany; Herakleitos, Thales
+and Aristeia programmes co-ﬁnanced by EU-ESF and the Greek NSRF,
+123
+
+===== PAGE 26 =====
+761 Page 26 of 41 Eur. Phys. J. C (2023) 83 :761
+Greece; BSF-NSF and MINERV A, Israel; Norwegian Financial Mech-
+anism 2014-2021, Norway; NCN and NAW A, Poland; La Caixa Bank-
+ing Foundation, CERCA Programme Generalitat de Catalunya and
+PROMETEO and GenT Programmes Generalitat Valenciana, Spain;
+Göran Gustafssons Stiftelse, Sweden; The Royal Society and Lever-
+hulme Trust, United Kingdom. The crucial computing support from
+all WLCG partners is acknowledged gratefully, in particular from
+CERN, the ATLAS Tier-1 facilities at TRIUMF (Canada), NDGF (Den-
+mark, Norway, Sweden), CC-IN2P3 (France), KIT/GridKA (Germany),
+INFN-CNAF (Italy), NL-T1 (Netherlands), PIC (Spain), ASGC (Tai-
+wan), RAL (UK) and BNL (USA), the Tier-2 facilities worldwide and
+large non-WLCG resource providers. Major contributors of computing
+resources are listed in Ref. [69].
+Open Access This article is licensed under a Creative Commons Attri-
+bution 4.0 International License, which permits use, sharing, adaptation,
+distribution and reproduction in any medium or format, as long as you
+give appropriate credit to the original author(s) and the source, pro-
+vide a link to the Creative Commons licence, and indicate if changes
+were made. The images or other third party material in this article
+are included in the article’s Creative Commons licence, unless indi-
+cated otherwise in a credit line to the material. If material is not
+included in the article’s Creative Commons licence and your intended
+use is not permitted by statutory regulation or exceeds the permit-
+ted use, you will need to obtain permission directly from the copy-
+right holder. To view a copy of this licence, visit http://creativecomm
+ons.org/licenses/by/4.0/.
+Funded by SCOAP
+3.S C O A P3 supports the goals of the International
+Year of Basic Sciences for Sustainable Development.
+References
+1. M. Cacciari, G.P. Salam, G. Soyez, The anti-kt jet clustering algo-
+rithm. JHEP 04, 063 (2008). arXiv:0802.1189 [hep-ph]
+2. M. Cacciari, G.P. Salam, Dispelling the N3 myth for the kt jet-
+ﬁnder. Phys. Lett. B 641, 57 (2006). arXiv:hep-ph/0512210
+3. ATLAS Collaboration, Jet reconstruction and performance using
+particle ﬂow with the ATLAS detector. Eur. Phys. J. C 77, 466
+(2017). arXiv:1703.10485 [hep-ex]
+4. ATLAS Collaboration, Jet energy scale and resolution measured in
+proton–proton collisions at√ s = 13 TeV with the ATLAS detector.
+Eur. Phys. J. C 81, 689 (2020). arXiv:2007.02645 [hep-ex]
+5. ATLAS Collaboration, Jet energy measurement with the ATLAS
+detector in proton–proton collisions at √ s = 7 TeV. Eur. Phys. J.
+C 73, 2304 (2013). arXiv:1112.6426 [hep-ex]
+6. ATLAS Collaboration, Jet energy measurement and its systematic
+uncertainty in proton–proton collisions at √ s = 7T e V w i t h t h e
+ATLAS detector. Eur. Phys. J. C 75, 17 (2015). arXiv:1406.0076
+[hep-ex]
+7. ATLAS Collaboration, Determination of jet calibration and
+energy resolution in proton–proton collisions at √ s = 8T e V
+using the ATLAS detector, Eur. Phys. J. C 80, 1104 (2020).
+arXiv:1910.04482 [hep-ex]
+8. ATLAS Collaboration, Jet energy scale measurements and their
+systematic uncertainties in proton–proton collisions at √ s =
+13 TeV with the ATLAS detector. Phys. Rev. D96, 072002 (2017).
+arXiv:1703.09665 [hep-ex]
+9. ATLAS Collaboration, In situ calibration of large-radius jet energy
+and mass in 13 TeV proton–proton collisions with the ATLAS
+detector. Eur. Phys. J. C79, 135 (2019).arXiv:1807.09477 [hep-ex]
+10. ATLAS Collaboration, The ATLAS Experiment at the CERN Large
+Hadron Collider. JINST 3, S08003 (2008)
+11. ATLAS Collaboration, ATLAS Insertable B-Layer: Techni-
+cal Design Report, ATLAS-TDR-19; CERN-LHCC-2010-013,
+(2010). https://cds.cern.ch/record/1291633 [Addendum: ATLAS-
+TDR-19-ADD-1, CERN-LHCC-2012-009, 2012, https://cds.cern.
+ch/record/1451888]
+12. B. Abbott et al., Production and integration of the ATLAS
+Insertable B-Layer. JINST 13, T05008 (2018). arXiv:1803.00844
+[physics.ins-det]
+13. ATLAS Collaboration, Performance of the ATLAS trigger system
+in 2015. Eur. Phys. J. C77, 317 (2017).arXiv:1611.09661 [hep-ex]
+14. ATLAS Collaboration, The ATLAS Collaboration Software and
+Firmware, ATL-SOFT-PUB-2021-001 (2021).https://cds.cern.ch/
+record/2767187
+15. ATLAS Collaboration, ATLAS data quality operations and per-
+formance for 2015.2018 data-taking. JINST 15, P04003 (2020).
+arXiv:1911.04632 [physics.ins-det]
+16. T. Sjostrand et al., An introduction to PYTHIA 8.2. Comput. Phys.
+Commun. 191, 159 (2015). arXiv:1410.3012 [hep-ph]
+17. ATLAS Collaboration, ATLAS Pythia 8 tunes to 7 TeV data, ATL-
+PHYS-PUB-2014-021 (2014).https://cds.cern.ch/record/1966419
+18. R.D. Ball et al., Parton distributions with LHC data. Nucl. Phys. B
+867, 244 (2013). arXiv:1207.1303 [hep-ph]
+19. D.J. Lange, The EvtGen particle decay simulation package. Nucl.
+Instrum. Meth. A 462, 152 (2001)
+20. E. Bothmann et al., Event generation with Sherpa 2.2. SciPost Phys.
+7, 034 (2019). arXiv:1905.09127 [hep-ph]
+21. S. Schumann, F. Krauss, A parton shower algorithm based
+on Catani-Seymour dipole factorisation. JHEP 03, 038 (2008).
+arXiv:0709.1027 [hep-ph]
+22. S. Dulat et al., New parton distribution functions from a global
+analysis of quantum chromodynamics. Phys. Rev. D 93, 033006
+(2016). arXiv:1506.07443 [hep-ph]
+23. J.-C. Winter, F. Krauss, G. Soff, A modiﬁed cluster-hadronization
+model. Eur. Phys. J. C 36, 381 (2004). arXiv:hep-ph/0311085
+24. T. Sjöstrand, S. Mrenna, P.Z. Skands, PYTHIA 6.4 physics and
+manual. JHEP 05, 026 (2006). arXiv:hep-ph/0603175
+25. M. Bähr et al., Herwig++ physics and manual. Eur. Phys. J. C 58,
+639 (2008). arXiv:0803.0883 [hep-ph]
+26. J. Bellm et al., Herwig 7.0/Herwig++ 3.0 release note. Eur. Phys.
+J. C 76, 196 (2016). arXiv:1512.01178 [hep-ph]
+27. J. Bellm et al., Herwig 7.1 Release Note (2017).arXiv:1705.06919
+[hep-ph]
+28. S. Gieseke, P. Stephens, B. Webber, New formalism for QCD parton
+showers. JHEP 12, 045 (2003). arXiv:hep-ph/0310083
+29. S. Plätzer, S. Gieseke, Coherent parton showers with local recoils.
+JHEP 01, 024 (2011). arXiv:0909.5593 [hep-ph]
+30. S. Plätzer, S. Gieseke, Dipole showers and automated NLO match-
+ing in Herwig++. Eur. Phys. J. C72, 2187 (2012).arXiv:1109.6256
+[hep-ph]
+31. S. Catani, M.H. Seymour, A General algorithm for calculating jet
+cross-sections in NLO QCD. Nucl. Phys. B485, 291 (1997) [Erra-
+tum: Nucl. Phys. B 510, 503–504 (1998)]. arXiv:hep-ph/9605323
+32. S. Catani, S. Dittmaier, M.H. Seymour, Z. Trocsanyi, The dipole
+formalism for next-to-leading order QCD calculations with mas-
+sive partons. Nucl. Phys. B627, 189 (2002).arXiv:hep-ph/0201036
+33. P. Nason, A new method for combining NLO QCD with
+shower Monte Carlo algorithms. JHEP 11, 040 (2004).
+arXiv:hep-ph/0409146
+34. S. Frixione, P. Nason, C. Oleari, Matching NLO QCD computations
+with parton shower simulations: the POWHEG method. JHEP 11,
+070 (2007). arXiv:0709.2092 [hep-ph]
+35. S. Alioli, P. Nason, C. Oleari, E. Re, A general framework for
+implementing NLO calculations in shower Monte Carlo programs:
+the POWHEG BOX. JHEP06, 043 (2010).arXiv:1002.2581 [hep-
+ph]
+36. R.D. Ball et al., Parton distributions for the LHC run II. JHEP 04,
+040 (2015). arXiv:1410.8849 [hep-ph]
+123
+
+===== PAGE 27 =====
+Eur. Phys. J. C (2023) 83 :761 Page 27 of 41 761
+37. J. Alwall et al., The automated computation of tree-level and next-
+to-leading order differential cross sections, and their matching to
+parton shower simulations. JHEP07, 079 (2014).arXiv:1405.0301
+[hep-ph]
+38. ATLAS Collaboration, Example ATLAS tunes of Pythia8,
+Pythia6 and Powheg to an observable sensitive toZ boson trans-
+verse momentum, ATL-PHYS-PUB-2013-017 (2013).https://cds.
+cern.ch/record/1629317
+39. ATLAS Collaboration, The Pythia 8 A3 tune description of
+ATLAS minimum bias and inelastic measurements incorporating
+the Donnachie–Landshoff diffractive model, ATL-PHYS-PUB-
+2016-017 (2016). https://cds.cern.ch/record/2206965
+40. M. Cacciari, G.P. Salam, G. Soyez, FastJet user manual. Eur. Phys.
+J. C 72, 1896 (2012). arXiv:1111.6097 [hep-ph]
+41. M. Cacciari, G.P. Salam, Pileup subtraction using jet areas. Phys.
+Lett. B 659, 119 (2008). arXiv:0707.1378 [hep-ph]
+42. M. Cacciari, G.P. Salam, G. Soyez, The catchment area of jets.
+JHEP 04, 005 (2008). arXiv:0802.1188 [hep-ph]
+43. S.D. Ellis, D.E. Soper, Successive combination jet algo-
+rithm for hadron collisions. Phys. Rev. D 48, 3160 (1993).
+arXiv:hep-ph/9305266
+44. S. Catani, Y .L. Dokshitzer, M.H. Seymour, B.R. Webber,
+Longitudinally-invariant k
+⊥ -clustering algorithms for hadron-
+hadron collisions. Nucl. Phys. B 406, 187 (1993)
+45. T. Gleisberg et al., Event generation with SHERPA 1.1. JHEP 02,
+007 (2009). arXiv:0811.4622 [hep-ph]
+46. H. Abreu et al., Performance of the electronic readout of the ATLAS
+liquid argon calorimeters. J. Instrum. 5, P09003 (2010)
+47. A. Cukierman, B. Nachman, Mathematical properties of numerical
+inversion for jet calibrations. Nucl. Instrum. Meth. A858, 1 (2017).
+arXiv:1609.05195 [physics.data-an]
+48. K. Pearson, X. On the criterion that a given system of deviations
+from the probable in the case of a correlated system of variables is
+such that it can be reasonably supposed to have arisen from random
+sampling. Lond. Edinb. Dublin Philos. Mag. J. Sci.50, 157 (1900)
+49. H.B. Curry, I.J. Schoenberg, On Polya frequency functions IV: the
+fundamental spline functions and their limits. J. Anal. Math. 17,
+71 (1966)
+50. B. Grimstad et al., SPLINTER: a library for multivariate function
+approximation with splines (2015). http://github.com/bgrimstad/
+splinter. Accessed 16 May 2015
+51. ATLAS Collaboration, Dependence of the jet energy scale on
+the particle content of hadronic jets in the ATLAS detector sim-
+ulation, ATL-PHYS-PUB-2022-021 (2022). https://cds.cern.ch/
+record/2808016
+52. ATLAS Collaboration, Generalized numerical inversion: a neutral
+network approach to jet calibration, ATL-PHYS-PUB-2018-013
+(2018). https://cds.cern.ch/record/2630972
+53. F. Chollet et al., Keras (2015). https://keras.io
+54. D.P. Kingma, J. Ba, Adam: a method for stochastic optimization
+(2017). arXiv:1412.6980 [cs.LG]
+55. P. Ramachandran, B. Zoph, Q.V . Le, Searching for activation func-
+tions (2017). arXiv:1710.05941
+56. S. Cheong, A. Cukierman, B. Nachman, M. Safdari, A. Schwartz-
+man, Parametrizing the detector response with neural networks.
+JINST 15, P01030 (2020). arXiv:1910.03773 [physics.data-an]
+57. ATLAS Collaboration, Determination of the jet energy scale
+and resolution at ATLAS using Z/γ-jet events in data at√
+s = 8 TeV, ATLAS-CONF-2015-057 (2015). https://cds.cern.
+ch/record/2059846
+58. ATLAS Collaboration, Selection of jets produced in 13 TeV
+proton–proton collisions with the ATLAS detector, ATLAS-
+CONF-2015-029 (2015). https://cds.cern.ch/record/2037702
+59. ATLAS Collaboration, Tagging and suppression of pileup jets with
+the ATLAS detector, ATLAS-CONF-2014-018 (2014).https://cds.
+cern.ch/record/1700870
+60. ATLAS Collaboration, Performance of pile-up mitigation tech-
+niques for jets in pp collisions at √
+s = 8 TeV using the ATLAS
+detector. Eur. Phys. J. C76, 581 (2016).arXiv:1510.03823 [hep-ex]
+61. V . Lendermann et al., Combining triggers in HEP data analysis.
+Nucl. Instrum. Meth. A 604, 707 (2009). arXiv:0901.4118 [hep-
+ex]
+62. ATLAS Collaboration, Electron and photon performance measure-
+ments with the ATLAS detector using the 2015–2017 LHC proton–
+proton collision data. JINST14, P12006 (2019).arXiv:1908.00005
+[hep-ex]
+63. ATLAS Collaboration, Muon reconstruction and identiﬁcation efﬁ-
+ciency in ATLAS using the full Run 2 pp collision data set at√
+s = 13 TeV. Eur. Phys. J. C 81, 578 (2021). arXiv:2012.00578
+[hep-ex]
+64. ATLAS Collaboration, Performance of the ATLAS muon triggers
+in Run 2. JINST 15, P09015 (2020). arXiv:2004.13447 [hep-ex]
+65. ATLAS Collaboration, Performance of electron and photon trig-
+gers in ATLAS during LHC Run 2. Eur. Phys. J. C 80, 47 (2020).
+arXiv:1909.00761 [hep-ex]
+66. ATLAS Collaboration, Measurement of the ratio of cross sections
+for inclusive isolated-photon production in pp collisions at √ s =
+13 and 8 TeV with the ATLAS detector. JHEP 04, 093 (2019).
+arXiv:1901.10075 [hep-ex]
+67. ATLAS ﬂavour-tagging algorithms for the LHC Run 2pp collision
+dataset (2022). arXiv:2211.16345 [physics.data-an]
+68. ATLAS Collaboration, Direct constraint on the Higgs-charm cou-
+pling from a search for Higgs boson decays into charm quarks
+with the ATLAS detector. Eur. Phys. J. C 82, 717 (2022).
+arXiv:2201.11428 [hep-ex]
+69. ATLAS Collaboration, ATLAS Computing Acknowledgements,
+ATL-SOFT-PUB-2021-003 (2021). https://cds.cern.ch/record/
+2776662
+123
+
+===== PAGE 28 =====
+761 Page 28 of 41 Eur. Phys. J. C (2023) 83 :761
+ATLAS Collaboration⋆
+G. Aad102 , B. Abbott120 , K. Abeling55 , N. J. Abicht49 , S. H. Abidi29 , A. Aboulhorma35e , H. Abramowicz151 ,
+H. Abreu150 , Y . Abulaiti 117 , A. C. Abusleme Hoffman 137a , B. S. Acharya 69a,69b,n , C. Adam Bourdarios 4 ,
+L. Adamczyk85a , L. Adamek 155 , S. V . Addepalli 26 , M .J .A d d i s o n101, J. Adelman 115 , A. Adiguzel 21c ,
+T. Adye134 , A. A. Affolder 136 ,Y . A ﬁ k 36 , M .N .A g a r a s13 ,J . A g a r w a l a73a,73b , A. Aggarwal 100 ,
+C. Agheorghiesei27c , A. Ahmad36 , F. Ahmadov38,y , W. S. Ahmed104 , S. Ahuja95 ,X .A i62a , G. Aielli76a,76b ,
+M. Ait Tamlihat35e , B. Aitbenchikh35a , I. Aizenberg169 , M. Akbiyik100 ,T .P .A .Å k e s s o n98 ,A .V .A k i m o v37 ,
+D. Akiyama168 , N .N .A k o l k a r24 , K. Al Khoury 41 , G. L. Alberghi 23b , J. Albert 165 , P. Albicocco 53 ,
+G. L. Albouy60 , S. Alderweireldt 52 , M. Aleksa 36 , I. N. Aleksandrov 38 ,C . A l e x a27b , T. Alexopoulos 10 ,
+A. Alfonsi114 , F. Alfonsi 23b , M. Alhroob 120 ,B . A l i 132 ,S . A l i 148 , M. Aliev 37 , G. Alimonti 71a ,
+W. Alkakhi55 , C. Allaire66 ,B .M .M .A l l b r o o k e146 , C. A. Allendes Flores137f , P. P. Allport20 , A. Aloisio72a,72b ,
+F. Alonso90 , C. Alpigiani138 , M. Alvarez Estevez99 , A. Alvarez Fernandez100 ,M .G .A l v i g g i72a,72b ,M .A l y101 ,
+Y . Amaral Coutinho82b , A. Ambler 104 , C. Amelung 36, M. Amerl 101 , C. G. Ames 109 , D. Amidei 106 ,
+S. P. Amor Dos Santos130a , K. R. Amos163 , V . Ananiev125 , C. Anastopoulos139 , T. Andeen11 , J. K. Anders36 ,
+S. Y . Andrean47a,47b , A. Andreazza 71a,71b , S. Angelidakis 9 , A. Angerami 41,aa , A. V . Anisenkov 37 ,
+A. Annovi74a , C. Antel 56 , M. T. Anthony 139 , E. Antipov 145 , M. Antonelli 53 , D .J .A .A n t r i m17a ,
+F. Anulli75a , M. Aoki83 , T. Aoki153 , J. A. Aparisi Pozo163 , M. A. Aparo146 , L. Aperio Bella48 , C. Appelt18 ,
+N. Aranzabal36 , C. Arcangeletti 53 , A .T .H .A r c e51 , E. Arena 92 , J.-F. Arguin 108 , S. Argyropoulos 54 ,
+J.-H. Arling48 , A .J .A r m b r u s t e r36 , O. Arnaez 4 , H. Arnold 114 , Z. P. Arrubarrena Tame 109, G. Artoni 75a,75b ,
+H. Asada111 ,K . A s a i118 ,S . A s a i153 , N. A. Asbah 61 , J. Assahsah 35d , K. Assamagan 29 , R. Astalos 28a ,
+S. Atashi160 ,R .J .A t k i n33a , M. Atkinson162, N. B. Atlay18 , H. Atmani62b, P. A. Atmasiddha106 , K. Augsten132 ,
+S. Auricchio72a,72b ,A . D . A u r i o l20 , V .A .A u s t r u p171 , G. Avolio 36 , K. Axiotis 56 , G. Azuelos 108,ac ,
+D. Babal28b , H. Bachacou135 , K. Bachas152,q , A. Bachiu34 , F. Backman47a,47b , A. Badea61 , P. Bagnaia75a,75b ,
+M. Bahmani18 , A. J. Bailey 163 , V . R. Bailey162 , J. T. Baines134 , C. Bakalis 10 , O. K. Baker 172 , E. Bakos 15 ,
+D. Bakshi Gupta8 , R. Balasubramanian 114 , E. M. Baldin 37 , P. Balek 85a , E. Ballabene 23a,23b , F. Balli 135 ,
+L. M. Baltes63a , W. K. Balunas 32 ,J . B a l z100 , E. Banas 86 , M. Bandieramonte 129 , A. Bandyopadhyay 24 ,
+S. Bansal24 , L. Barak 151 , M. Barakat 48 , E. L. Barberio 105 , D. Barberis 57a,57b , M. Barbero 102 , G. Barbour 96,
+K. N. Barends33a , T. Barillari 110 , M-S. Barisits 36 , T. Barklow 143 , P. Baron 122 , D. A. Baron Moreno 101 ,
+A. Baroncelli62a , G. Barone 29 ,A . J . B a r r126 ,J . D . B a r r96 , L. Barranco Navarro 47a,47b , F. Barreiro 99 ,
+J. Barreiro Guimarães da Costa14a ,U . B a r r o n151 , M. G. Barros Teixeira 130a , S. Barsov 37 , F. Bartels 63a ,
+R. Bartoldus143 ,A .E .B a r t o n91 ,P .B a r t o s28a , A. Basan100 , M. Baselga49 , A. Bassalat66,ag , M. J. Basso156a ,
+C. R. Basson101 , R. L. Bates59 , S. Batlamous35e, J. R. Batley32 , B. Batool141 , M. Battaglia136 , D. Battulga18 ,
+M. Bauce75a,75b , M. Bauer 36 , P. Bauer 24 , L. T. Bazzano Hurrell 30 , J. B. Beacham 51 , T. Beau 127 ,
+P. H. Beauchemin158 , F. Becherer 54 , P. Bechtle 24 , H. P. Beck 19,p , K. Becker 167 , A. J. Beddall 21d ,
+V . A. Bednyakov38 ,C . P . B e e 145 , L. J. Beemster 15, T. A. Beermann 36 , M. Begalli 82d , M. Begel 29 ,
+A. Behera145 , J .K .B e h r48 ,J . F . B e i r e r55 , F. Beisiegel 24 ,M . B e l f k i r159 , G. Bella 151 , L. Bellagamba 23b ,
+A. Bellerive34 , P. Bellos 20 , K. Beloborodov 37 , N. L. Belyaev 37 , D. Benchekroun 35a , F. Bendebba 35a ,
+Y . Benhammou151 , M. Benoit 29 , J. R. Bensinger 26 , S. Bentvelsen 114 , L. Beresford 48 , M. Beretta 53 ,
+E. Bergeaas Kuutmann161 , N. Berger 4 , B. Bergmann 132 , J. Beringer 17a , G. Bernardi 5 , C. Bernius 143 ,
+F. U. Bernlochner24 , F. Bernon36,102 ,T .B e r r y95 ,P .B e r t a133 , A. Berthold50 ,I .A .B e r t r a m91 , S. Bethke110 ,
+A. Betti75a,75b , A .J .B e v a n94 , M. Bhamjee 33c , S. Bhatta 145 , D. S. Bhattacharya 166 , P. Bhattarai 26 ,
+V . S. Bhopatkar121 ,R .B i29,ae, R. M. Bianchi129 , G. Bianco23a,23b , O. Biebel109 , R. Bielski123 , M. Biglietti77a ,
+T. R. V . Billoud132 , M. Bindi 55 , A. Bingul 21b ,C . B i n i 75a,75b , A. Biondini 92 , C. J. Birch-sykes 101 ,
+G. A. Bird20,134 ,M . B i r m a n 169 ,M . B i r o s 133 , T. Bisanz 49 , E. Bisceglie 43a,43b ,D . B i s w a s 141 ,
+A. Bitadze101 ,K . B j ø r k e125 , I. Bloch 48 , C. Blocker 26 ,A . B l u e59 , U. Blumenschein 94 , J. Blumenthal 100 ,
+G. J. Bobbink114 , V . S. Bobrovnikov37 , M. Boehler 54 , B. Boehm 166 , D. Bogavac 36 , A. G. Bogdanchikov 37 ,
+C. Bohm47a , V . Boisvert 95 , P. Bokan 48 ,T . B o l d85a , M. Bomben 5 , M. Bona 94 , M. Boonekamp 135 ,
+C. D. Booth95 , A. G. Borbély 59 , I. S. Bordulev 37 , H. M. Borecka-Bielska 108 , L. S. Borgna 96 , G. Borissov 91 ,
+D. Bortoletto126 , D. Boscherini 23b ,M . B o s m a n13 , J .D .B o s s i oS o l a36 , K. Bouaouda 35a , N. Bouchhar 163 ,
+J. Boudreau129 , E. V . Bouhova-Thacker 91 , D. Boumediene 40 , R. Bouquet 5 , A. Boveia 119 ,J . B o y d36 ,
+D. Boye29 , I .R .B o y k o38 , J. Bracinik 20 , N. Brahimi 62d , G. Brandt 171 , O. Brandt 32 ,F . B r a r e n48 ,
+B. Brau103 ,J . E . B r a u123 , R. Brener 169 , L. Brenner 114 , R. Brenner 161 , S. Bressler 169 , D. Britton 59 ,
+123
+
+===== PAGE 29 =====
+Eur. Phys. J. C (2023) 83 :761 Page 29 of 41 761
+D. Britzger110 , I. Brock 24 , G. Brooijmans 41 , W. K. Brooks 137f ,E . B r o s t 29 , L .M .B r o w n 165,l ,
+L. E. Bruce61, T. L. Bruckler 126 , P. A. Bruckman de Renstrom 86 , B. Brüers 48 , D. Bruncko 28b,* , A. Bruni 23b ,
+G. Bruni23b , M. Bruschi 23b ,N . B r u s c i n o75a,75b , T. Buanes 16 , Q. Buat 138 , D. Buchin 110 , A. G. Buckley 59 ,
+M. K. Bugge125 , O. Bulekov 37 , B. A. Bullard 143 , A. T. Bunka 142 , S. Burdin 92 ,C . D . B u r g a r d49 ,
+A. M. Burger40 , B. Burghgrave 8 , O. Burlayenko 54 , J .T .P .B u r r32 ,C . D . B u r t o n11 , J. C. Burzynski 142 ,
+E. L. Busch41 , V . Büscher 100 , P. J. Bussey 59 , J .M .B u t l e r25 , C. M. Buttar 59 , J. M. Butterworth 96 ,
+W. Buttinger134 , C. J. Buxo Vazquez 107, A. R. Buzykaev 37 , G. Cabras 23b , S. Cabrera Urbán 163 , D. Caforio 58 ,
+H. Cai129 ,Y . C a i14a,14e , V .M .M .C a i r o36 , O. Cakir 3a , N. Calace 36 , P. Calaﬁura 17a , G. Calderini 127 ,
+P. Calfayan68 , G. Callea 59 , L. P. Caloba 82b,D . C a l v e t40 ,S . C a l v e t40 ,T . P . C a l v e t102 , M. Calvetti 74a,74b ,
+R. Camacho Toro127 , S. Camarda 36 , D. Camarero Munoz 26 , P. Camarri 76a,76b , M. T. Camerlingo 72a,72b ,
+D. Cameron125 , C. Camincher 165 , M. Campanelli 96 , A. Camplani 42 , V . Canale 72a,72b , A. Canesse 104 ,
+M. Cano Bret80 , J. Cantero 163 ,Y . C a o 162 , F. Capocasa 26 , M. Capua 43a,43b , A. Carbone 71a,71b ,
+R. Cardarelli76a , J. C. J. Cardenas 8 , F. Cardillo 163 ,T . C a r l i 36 , G. Carlino 72a , J. I. Carlotto 13 ,
+B. T. Carlson129,r , E. M. Carlson 156a,165 , L. Carminati 71a,71b , M. Carnesale 75a,75b , S. Caron 113 ,
+E. Carquin137f , S. Carrá 71a,71b , G. Carratta 23a,23b , F. Carrio Argos 33g , J .W .S .C a r t e r155 ,T . M . C a r t e r52 ,
+M. P. Casado13,i , M. Caspar48 , E. G. Castiglia172 , F. L. Castillo4 , L. Castillo Garcia13 , V . Castillo Gimenez163 ,
+N. F. Castro130a,130e , A. Catinaccio36 ,J .R .C a t m o r e125 , V . Cavaliere29 , N. Cavalli23a,23b , V . Cavasinni74a,74b ,
+Y . C. Cekmecelioglu48 , E. Celebi 21a , F. Celli 126 , M. S. Centonze 70a,70b ,K . C e r n y122 , A. S. Cerqueira 82a ,
+A. Cerri146 , L. Cerrito 76a,76b , F. Cerutti 17a ,B . C e r v a t o141 , A. Cervelli 23b , G. Cesarini 53 , S. A. Cetin 21d ,
+Z. Chadi35a , D. Chakraborty115 , M. Chala130f , J. Chan170 , W. Y . Chan153 , J. D. Chapman32 , E. Chapon135 ,
+B. Chargeishvili149b , D. G. Charlton 20 , T. P. Charman 94 , M. Chatterjee 19 , C. Chauhan 133 , S. Chekanov 6 ,
+S. V . Chekulaev156a , G .A .C h e l k o v38,a , A. Chen 106 , B. Chen 151 , B. Chen 165 , H. Chen 14c , H. Chen 29 ,
+J. Chen62c , J. Chen 142 , M. Chen 126 , S. Chen 153 , S. J. Chen 14c , X. Chen 62c , X. Chen 14b,ab , Y . Chen62a ,
+C. L. Cheng170 , H. C. Cheng 64a , S. Cheong 143 , A. Cheplakov 38 , E. Cheremushkina 48 , E. Cherepanova 114 ,
+R. Cherkaoui El Moursli35e , E. Cheu 7 , K. Cheung 65 , L. Chevalier 135 , V . Chiarella 53 , G. Chiarelli 74a ,
+N. Chiedde102 , G. Chiodini 70a , A. S. Chisholm 20 , A. Chitan 27b , M. Chitishvili 163 , M. V . Chizhov 38 ,
+K. Choi11 , A. R. Chomont 75a,75b , Y . Chou103 , E .Y .S .C h o w114 , T. Chowdhury 33g , L. D. Christopher 33g ,
+K. L. Chu169,M .C .C h u64a ,X .C h u14a,14e , J. Chudoba131 , J. J. Chwastowski86 ,D .C i e r i110 ,K .M .C i e s l a85a ,
+V . Cindro93 , A. Ciocio 17a , F. Cirotto 72a,72b , Z .H .C i t r o n 169 , M. Citterio 71a , D. A. Ciubotaru 27b,
+B. M. Ciungu155 ,A . C l a r k56 ,P . J . C l a r k52 , J. M. Clavijo Columbie 48 ,S . E . C l a w s o n48 , C. Clement 47a,47b ,
+J. Clercx48 , L. Clissa 23a,23b , Y . Coadou 102 , M. Cobal 69a,69c , A. Coccaro 57b , R. F. Coelho Barrue 130a ,
+R. Coelho Lopes De Sa103 , S. Coelli 71a , H. Cohen 151 , A .E .C .C o i m b r a71a,71b ,B . C o l e41 , J. Collot 60 ,
+P. Conde Muiño130a,130g , M. P. Connell 33c , S. H. Connell 33c , I. A. Connelly 59 , E .I .C o n r o y 126 ,
+F. Conventi72a,ad , H .G .C o o k e20 , A. M. Cooper-Sarkar 126 , A. Cordeiro Oudot Choi 127 , F. Cormier 164 ,
+L. D. Corpe40 , M. Corradi 75a,75b , F. Corriveau 104,w , A. Cortes-Gonzalez 18 , M .J .C o s t a163 , F. Costanza 4 ,
+D. Costanzo139 , B .M .C o t e119 ,G . C o w a n95 , K. Cranmer 117 , D. Cremonini 23a,23b , S. Crépé-Renaudin 60 ,
+F. Crescioli127 , M. Cristinziani 141 , M. Cristoforetti 78a,78b , V . Croft114 ,J . E . C r o s b y121 , G. Crosetti 43a,43b ,
+A. Cueto99 , T. Cuhadar Donszelmann 160 ,H . C u i14a,14e ,Z . C u i7 , W. R. Cunningham 59 , F. Curcio 43a,43b ,
+P. Czodrowski36 , M. M. Czurylo 63b , M. J. Da Cunha Sargedas De Sousa 62a , J. V . Da Fonseca Pinto 82b ,
+C. Da Via101 , W. Dabrowski 85a , T. Dado 49 , S. Dahbi 33g ,T . D a i106 , C. Dallapiccola 103 ,M . D a m 42 ,
+G. D’amen29 , V . D’Amico109 ,J . D a m p100 , J. R. Dandoy 128 , M. F. Daneri 30 , M. Danninger 142 ,V . D a o36 ,
+G. Darbo57b ,S .D a r m o r a6 ,S .J .D a s29 ,S .D ’ A u r i a71a,71b ,C .D a v i d156b , T. Davidek133 , B. Davis-Purcell34 ,
+I. Dawson94 , H. A. Day-hall 132 ,K . D e 8 , R. De Asmundis 72a ,N . D e B i a s e48 ,S . D e C a s t r o23a,23b ,
+N. De Groot113 , P. de Jong 114 ,H . D e l a T o r r e107 ,A . D e M a r i a14c , A. De Salvo 75a , U. De Sanctis 76a,76b ,
+A. De Santo146 ,J .B .D eV i v i eD eR e g i e60 , D. V . Dedovich38, J. Degens114 , A. M. Deiana44 ,F .D e lC o r s o23a,23b ,
+J. Del Peso99 ,F . D e l R i o63a , F. Deliot 135 , C. M. Delitzsch 49 , M. Della Pietra 72a,72b , D. Della V olpe 56 ,
+A. Dell’Acqua36 , L. Dell’Asta 71a,71b ,M . D e l m a s t r o4 , P. A. Delsart 60 , S. Demers 172 , M. Demichev 38 ,
+S. P. Denisov37 ,L . D ’ E r a m o40 , D. Derendarz 86 , F. Derue 127 ,P . D e r v a n92 , K. Desch 24 , C. Deutsch 24 ,
+F. A. Di Bello57a,57b , A. Di Ciaccio 76a,76b , L. Di Ciaccio 4 , A. Di Domenico 75a,75b , C. Di Donato 72a,72b ,
+A. Di Girolamo36 , G .D iG r e g o r i o5 , A .D iL u c a 78a,78b , B. Di Micco 77a,77b , R. Di Nardo 77a,77b ,
+C. Diaconu102 ,F .A .D i a s114 ,T .D i a sD oV a l e142 ,M .A .D i a z137a,137b , F. G. Diaz Capriles24 , M. Didenko163 ,
+E. B. Diehl106 , L. Diehl 54 , S. Díez Cornell 48 , C. Diez Pardos 141 , C. Dimitriadi 24,161 , A. Dimitrievska 17a ,
+J. Dingfelder24 , I-M. Dinu 27b , S. J. Dittmeier 63b , F. Dittus 36 ,F . D j a m a 102 , T. Djobava 149b ,
+123
+
+===== PAGE 30 =====
+761 Page 30 of 41 Eur. Phys. J. C (2023) 83 :761
+J. I. Djuvsland16 , C. Doglioni101,98 , J. Dolejsi133 , Z. Dolezal133 , M. Donadelli82c , B. Dong107 , J. Donini40 ,
+A. D’Onofrio77a,77b , M. D’Onofrio92 , J. Dopke134 ,A .D o r i a72a , N. Dos Santos Fernandes130a ,M .T .D o v a90 ,
+A. T. Doyle59 , M. A. Draguet 126 , E. Dreyer 169 , I. Drivas-koulouris 10 , A. S. Drobac 158 , M. Drozdova 56 ,
+D. Du62a ,T .A .d uP r e e114 , F. Dubinin37 , M. Dubovsky28a , E. Duchovni169 , G. Duckeck109 , O. A. Ducu27b ,
+D. Duda52 , A. Dudarev 36 , E. R. Duden 26 , M. D’ufﬁzi 101 , L. Duﬂot 66 , M. Dührssen 36 ,C . D ü l s e n171 ,
+A. E. Dumitriu27b , M. Dunford 63a , S. Dungs 49 , K. Dunne 47a,47b , A. Duperrin 102 , H. Duran Yildiz 3a ,
+M. Düren58 , A. Durglishvili 149b , B. L. Dwyer 115 , G. I. Dyckes 17a , M. Dyndal 85a , S. Dysch 101 ,
+B. S. Dziedzic86 , Z. O. Earnshaw 146 , G .H .E b e r w e i n126 , B. Eckerova28a , S. Eggebrecht 55 , M. G. Eggleston 51,
+E. Egidio Purcino De Souza127 , L .F .E h r k e56 , G. Eigen 16 , K. Einsweiler 17a ,T . E k e l o f161 , P. A. Ekman 98 ,
+Y . El Ghazali35b , H .E lJ a r r a r i35e,148 , A. El Moussaouy 35a , V . Ellajosyula161 , M. Ellert 161 , F. Ellinghaus 171 ,
+A. A. Elliot94 , N. Ellis 36 , J. Elmsheuser 29 , M. Elsing 36 , D. Emeliyanov 134 , Y . Enari 153 ,I . E n e 17a ,
+S. Epari13 , J. Erdmann 49 , P. A. Erland 86 , M. Errenst 171 , M. Escalier 66 , C. Escobar 163 , E. Etzion 151 ,
+G. Evans130a , H. Evans 68 , L .S .E v a n s95 , M .O .E v a n s146 , A. Ezhilov 37 , S. Ezzarqtouni 35a , F. Fabbri 59 ,
+L. Fabbri23a,23b , G. Facini96 , V . Fadeyev136 , R. M. Fakhrutdinov37 , S. Falciano75a , L. F. Falda Ulhoa Coelho36 ,
+P. J. Falke24 , J. Faltova 133 ,C . F a n 162 ,Y . F a n 14a , Y . Fang 14a,14e , M. Fanti 71a,71b , M. Faraj 69a,69b ,
+Z. Farazpay97, A. Farbin 8 , A. Farilla 77a , T. Farooque 107 , S. M. Farrington 52 , F. Fassi 35e , D. Fassouliotis 9 ,
+M. Faucci Giannelli76a,76b , W. J. Fawcett 32 , L. Fayard 66 , P. Federic 133 , P. Federicova 131 , O. L. Fedin 37,a ,
+G. Fedotov37 , M. Feickert 170 , L. Feligioni 102 , A. Fell 139 , D. E. Fellers 123 , C. Feng 62b , M. Feng 14b ,
+Z. Feng114 , M. J. Fenton 160 , A. B. Fenyuk 37, L. Ferencz 48 , R. A. M. Ferguson 91 , S. I. Fernandez Luengo 137f ,
+M. J. V . Fernoux102 , J. Ferrando 48 , A. Ferrari 161 , P. Ferrari 113,114 , R. Ferrari 73a , D. Ferrere 56 ,
+C. Ferretti106 , F. Fiedler 100 , A. Filipˇ ciˇc93 , E .K .F i l m e r1 , F. Filthaut 113 , M .C .N .F i o l h a i s130a,130c,c ,
+L. Fiorini163 , W. C. Fisher107 , T. Fitschen101 , P. M. Fitzhugh135, I. Fleck 141 , P. Fleischmann106 , T. Flick171 ,
+L. Flores128 ,M . F l o r e s33d , L. R. Flores Castillo 64a , F .M .F o l l e g a78a,78b ,N . F o m i n16 ,J . H . F o o 155 ,
+B. C. Forland68, A. Formica 135 , A .C .F o r t i101 , E. Fortin 36 , A. W. Fortman 61 , M .G .F o t i17a , L. Fountas 9 ,
+D. Fournier66 ,H . F o x91 , P. Francavilla 74a,74b , S. Francescato 61 , S. Franchellucci 56 , M. Franchini 23a,23b ,
+S. Franchino63a , D. Francis 36, L. Franco 113 , L. Franconi 48 , M. Franklin 61 , G. Frattari 26 ,A . C . F r e e g a r d94 ,
+W. S. Freund82b ,Y . Y . F r i d151 , N. Fritzsche 50 , A. Froch 54 , D. Froidevaux 36 , J .A .F r o s t126 ,Y . F u 62a ,
+M. Fujimoto118 , E. Fullana Torregrosa 163,* , E. Furtado De Simas Filho 82b , M. Furukawa 153 , J. Fuster 163 ,
+A. Gabrielli23a,23b , A. Gabrielli 155 , P. Gadow 48 , G. Gagliardi 57a,57b , L. G. Gagnon 17a , E .J .G a l l a s126 ,
+B. J. Gallop134 ,K .K .G a n119 , S. Ganguly153 ,J .G a o62a ,Y .G a o52 ,F .M .G a r a yW a l l s137a,137b , B. Garcia29,ae,
+C. García163 , A. Garcia Alonso 114 , A. G. Garcia Caffaro 172 , J. E. García Navarro 163 , M. Garcia-Sciveres 17a ,
+G. L. Gardner128 , R. W. Gardner39 , N. Garelli 158 ,D . G a r g80 ,R . B . G a r g143 , J .M .G a r g a n52, C. A. Garner 155,
+S. J. Gasiorowski138 , P. Gaspar 82b , G. Gaudio 73a , V . Gautam 13, P. Gauzzi 75a,75b , I .L .G a v r i l e n k o37 ,
+A. Gavrilyuk37 ,C . G a y164 , G. Gaycken 48 , E. N. Gazis 10 , A. A. Geanta 27b ,C . M . G e e136 , C. Gemme 57b ,
+M. H. Genest60 , S. Gentile 75a,75b , S. George 95 , W. F. George 20 , T. Geralis 46 , P. Gessinger-Befurt 36 ,
+M. E. Geyik171 , M. Ghneimat141 , K. Ghorbanian94 , A. Ghosal141 , A. Ghosh160 , A. Ghosh7 , B. Giacobbe23b ,
+S. Giagu75a,75b , P. Giannetti74a , A. Giannini62a ,S .M .G i b s o n95 , M. Gignac136 ,D .T .G i l85b , A. K. Gilbert85a ,
+B. J. Gilbert41 , D. Gillberg 34 , G. Gilles 114 , N. E. K. Gillwald 48 , L. Ginabat 127 , D. M. Gingrich 2,ac ,
+M. P. Giordani69a,69c , P .F .G i r a u d135 , G. Giugliarelli 69a,69c , D. Giugni 71a , F. Giuli 36 , I. Gkialas 9,j ,
+L. K. Gladilin37 ,C .G l a s m a n99 , G. R. Gledhill123 , M. Glisic123, I. Gnesi43b,f ,Y .G o29,ae , M. Goblirsch-Kolb36 ,
+B. Gocke49 , D. Godin 108, B. Gokturk 21a , S. Goldfarb 105 , T. Golling 56 , M .G .D .G o l o l o33g, D. Golubkov 37 ,
+J. P. Gombas107 , A. Gomes 130a,130b , G. Gomes Da Silva 141 , A. J. Gomez Delegido 163 , R. Gonçalo 130a,130c ,
+G. Gonella123 , L. Gonella 20 , A. Gongadze 38 , F. Gonnella 20 , J. L. Gonski 41 , R. Y . González Andana 52 ,
+S. González de la Hoz163 , S. Gonzalez Fernandez 13 , R. Gonzalez Lopez 92 , C. Gonzalez Renteria 17a ,
+R. Gonzalez Suarez161 , S. Gonzalez-Sevilla56 , G. R. Gonzalvo Rodriguez163 , L. Goossens36 , P. A. Gorbounov37 ,
+B. Gorini36 ,E . G o r i n i70a,70b , A. Gorišek 93 , T. C. Gosart 128 , A. T. Goshaw 51 , M. I. Gostkin 38 ,
+S. Goswami121 , C. A. Gottardo 36 , M. Gouighri 35b , V . Goumarre 48 , A. G. Goussiou 138 , N. Govender 33c ,
+I. Grabowska-Bold85a , K. Graham 34 ,E . G r a m s t a d 125 , S. Grancagnolo 70a,70b , M. Grandi 146 ,
+V . Gratchev37,*, P. M. Gravila 27f , F .G .G r a v i l i70a,70b ,H . M . G r a y 17a , M. Greco 70a,70b ,C . G r e f e 24 ,
+I. M. Gregor48 , P. Grenier 143 , C. Grieco 13 , A. A. Grillo 136 ,K . G r i m m 31 , S. Grinstein 13,t ,
+J.-F. Grivaz66 ,E . G r o s s169 , J. Grosse-Knetter 55 ,C . G r u d106, J. C. Grundy 126 , L. Guan 106 , W. Guan 170 ,
+C. Gubbels164 ,J .G .R .G u e r r e r oR o j a s163 , G. Guerrieri69a,69b , F. Guescini110 , R. Gugel100 , J. A. M. Guhit106 ,
+A. Guida18 , T. Guillemin 4 , E. Guilloton 167,134 , S. Guindon 36 ,F . G u o 14a,14e ,J . G u o 62c ,L . G u o 48 ,
+123
+
+===== PAGE 31 =====
+Eur. Phys. J. C (2023) 83 :761 Page 31 of 41 761
+Y. G u o106 , R. Gupta 48 ,S . G u r b u z24 , S. S. Gurdasani 54 , G. Gustavino 36 ,M . G u t h56 , P. Gutierrez 120 ,
+L. F. Gutierrez Zagazeta128 , C. Gutschow96 , C. Gwenlan126 , C. B. Gwilliam92 , E. S. Haaland125 , A. Haas117 ,
+M. Habedank48 , C. Haber 17a , H. K. Hadavand 8 , A. Hadef 100 , S. Hadzic 110 , J. J. Hahn 141 , E. H. Haines 96 ,
+M. Haleem166 ,J .H a l e y121 ,J .J .H a l l139 , G. D. Hallewell102 ,L .H a l s e r19 , K. Hamano165 , H. Hamdaoui35e ,
+M. Hamer24 , G. N. Hamity 52 , E. J. Hampshire 95 ,J . H a n 62b ,K . H a n 62a ,L . H a n 14c ,L . H a n 62a ,
+S. Han17a , Y .F .H a n155 , K. Hanagaki 83 , M. Hance 136 , D. A. Hangal 41,aa , H. Hanif 142 , M. D. Hank 128 ,
+R. Hankache101 , J. B. Hansen42 , J. D. Hansen42 , P. H. Hansen42 ,K .H a r a157 , D. Harada56 , T. Harenberg171 ,
+S. Harkusha37 ,Y . T . H a r r i s126 , N. M. Harrison 119 , P. F. Harrison 167, N .M .H a r t m a n143 , N. M. Hartmann 109 ,
+Y. H a s eg aw a140 ,A . H a s i b 52 , S. Haug 19 , R. Hauser 107 ,C . M . H a w k e s20 , R. J. Hawkings 36 ,
+Y . Hayashi153 , S. Hayashida 111 , D. Hayden 107 , C. Hayes 106 , R. L. Hayes 114 , C. P. Hays126 , J .M .H a y s94 ,
+H. S. Hayward92 ,F . H e 62a ,Y . H e 154 ,Y . H e 127 , N. B. Heatley 94 , V . Hedberg 98 , A. L. Heggelund 125 ,
+N. D. Hehir94 , C. Heidegger 54 , K. K. Heidegger 54 , W. D. Heidorn 81 , J. Heilman 34 ,S . H e i m 48 ,
+T. Heim17a , J. G. Heinlein 128 , J. J. Heinrich 123 , L. Heinrich 110 , J. Hejbal 131 , L. Helary 48 ,A . H e l d170 ,
+S. Hellesund16 , C. M. Helling 164 , S. Hellman 47a,47b , C. Helsens 36 , R. C. W. Henderson 91, L. Henkelmann 32 ,
+A. M. Henriques Correia36, H. Herde 98 , Y . Hernández Jiménez 145 , L. M. Herrmann 24 , T. Herrmann 50 ,
+G. Herten54 , R. Hertenberger109 ,L .H e r v a s36 , M. E. Hesping100 , N. P. Hessey156a ,H .H i b i84 , S. J. Hillier20 ,
+J. R. Hinds107, F. Hinterkeuser 24 ,M . H i r o s e124 ,S . H i r o s e157 , D. Hirschbuehl 171 , T. G. Hitchings 101 ,
+B. Hiti93 , J. Hobbs145 , R. Hobincu27e ,N .H o d169 , M. C. Hodgkinson139 , B. H. Hodkinson32 , A. Hoecker36 ,
+J. Hofer48 ,T .H o l m24 , M. Holzbock110 ,L .B .A .H .H o m m e l s32 , B. P. Honan101 , J. Hong62c , T. M. Hong129 ,
+B. H. Hooberman162 , W. H. Hopkins 6 ,Y . H o r i i111 ,S . H o u148 ,A . S . H o w a r d93 ,J . H o w a r t h59 ,J . H o y a6 ,
+M. Hrabovsky122 , A. Hrynevich 48 , T. Hryn’ova 4 ,P . J . H s u65 ,S . - C . H s u138 ,Q . H u 41 ,Y . F . H u14a,14e ,
+D. P. Huang96 , S. Huang 64b , X. Huang 14c , Y . Huang 62a , Y . Huang 14a , Z. Huang 101 , Z. Hubacek 132 ,
+M. Huebner24 , F. Huegging 24 , T. B. Huffman 126 , C .A .H u g l i48 , M. Huhtinen 36 , S. K. Huiberts 16 ,
+R. Hulsken104 , N. Huseynov 12,a ,J . H u s t o n107 ,J . H u t h61 , R. Hyneman 143 , G. Iacobucci 56 , G. Iakovidis 29 ,
+I. Ibragimov141 , L. Iconomidou-Fayard 66 , P. Iengo 72a,72b , R. Iguchi 153 ,T . I i z a w a56 ,Y . I k e g a m i83 ,
+N. Ilic155 ,H . I m a m35a , T. Ingebretsen Carlson 47a,47b , G. Introzzi 73a,73b , M. Iodice 77a , V . Ippolito 75a,75b ,
+R. K. Irwin92 , M. Ishino 153 , W. Islam 170 , C. Issever 18,48 , S. Istin 21a ,H . I t o168 , J. M. Iturbe Ponce 64a ,
+R. Iuppa78a,78b , A. Ivina 169 , J .M .I z e n45 , V . Izzo 72a , P. Jacka 131,132 , P. Jackson 1 , R. M. Jacobs 48 ,
+B. P. Jaeger142 , C. S. Jagfeld 109 ,P . J a i n54 , G. Jäkel 171 , K. Jakobs 54 , T. Jakoubek 169 ,J . J a m i e s o n59 ,
+K. W. Janas85a , A. E. Jaspan92 , M. Javurkova103 , F. Jeanneau135 , L. Jeanty123 , J. Jejelava149a,z , P. Jenni54,g ,
+C. E. Jessiman34 , S. Jézéquel4 ,C .J i a62b,J .J i a145 ,X .J i a61 ,X .J i a14a,14e ,Z .J i a14c , Y . Jiang62a, S. Jiggins48 ,
+J. Jimenez Pena110 ,S .J i n14c , A. Jinaru27b , O. Jinnouchi154 , P. Johansson139 , K. A. Johns7 , J. W. Johnson136 ,
+D. M. Jones32 , E. Jones 48 , P. Jones 32 , R. W. L. Jones 91 , T. J. Jones 92 , R. Joshi 119 , J. Jovicevic 15 ,
+X. Ju17a , J. J. Junggeburth 36 , T. Junkermann 63a , A. Juste Rozas 13,t , M. K. Juzek 86 , S. Kabana 137e ,
+A. Kaczmarska86 , M. Kado110 , H. Kagan119 , M. Kagan143 , A. Kahn41, A. Kahn128 , C. Kahra100 ,T .K a j i168 ,
+E. Kajomovitz150 , N. Kakati169 , I. Kalaitzidou54 , C. W. Kalderon29 , A. Kamenshchikov155 , S. Kanayama154 ,
+N. J. Kang136 ,D .K a r33g ,K .K a r a v a126 , M. J. Kareem156b , E. Karentzos54 , I. Karkanias152 , O. Karkout114 ,
+S. N. Karpov38 , Z .M .K a r p o v a38 , V . Kartvelishvili 91 , A. N. Karyukhin 37 ,E . K a s i m i152 , J. Katzy 48 ,
+S. Kaur34 , K. Kawade 140 , T. Kawamoto 135 ,E . F . K a y36 , F. I. Kaya 158 , S. Kazakos 13 , V . F. Kazanin37 ,
+Y. Ke145 , J. M. Keaveney 33a , R. Keeler 165 , G. V . Kehris61 , J .S .K e l l e r34 , A. S. Kelly 96, J. J. Kempster 146 ,
+K. E. Kennedy41 , P. D. Kennedy 100 , O. Kepka 131 , B .P .K e r r i d g e167 , S. Kersten 171 , B. P. Kerševan 93 ,
+S. Keshri66 , L. Keszeghova28a , S. Ketabchi Haghighat155 , M. Khandoga127 , A. Khanov121 ,A .G .K h a r l a m o v37 ,
+T. Kharlamova37 , E. E. Khoda 138 , T .J .K h o o18 , G. Khoriauli 166 , J. Khubua 149b , Y .A .R .K h w a i r a66 ,
+M. Kiehn36 , A. Kilgallon 123 , D .W .K i m47a,47b , Y .K .K i m39 ,N . K i m u r a96 , A. Kirchhoff 55 , C. Kirfel 24 ,
+F. Kirfel24 ,J . K i r k134 , A. E. Kiryunin 110 , C. Kitsaki 10 ,O . K i v e r n y k24 , M. Klassen 63a , C. Klein 34 ,
+L. Klein166 , M .H .K l e i n106 , M. Klein 92 , S. B. Klein 56 , U. Klein 92 , P. Klimek 36 , A. Klimentov 29 ,
+T. Klioutchnikova36 , P. Kluit114 , S. Kluth110 , E. Kneringer79 , T. M. Knight155 , A. Knue54 , R. Kobayashi87 ,
+S. F. Koch126 , M. Kocian 143 , P. Kodyš 133 , D. M. Koeck 123 , P. T. Koenig 24 ,T . K o f f a s34 ,M . K o l b135 ,
+I. Koletsou4 , T. Komarek122 , K. Köneke 54 , A .X .Y .K o n g1 , T. Kono118 , N. Konstantinidis 96 , B. Konya 98 ,
+R. Kopeliansky68 , S. Koperny 85a ,K . K o r c y l86 , K. Kordas 152,e , G. Koren 151 ,A . K o r n96 ,S . K o r n55 ,
+I. Korolkov13 , N. Korotkova 37 , B. Kortman 114 , O. Kortner 110 , S. Kortner 110 , W. H. Kostecka 115 ,
+V . V . Kostyukhin141 , A. Kotsokechagia135 ,A . K o t w a l51 , A. Koulouris 36 , A. Kourkoumeli-Charalampidi73a,73b ,
+C. Kourkoumelis9 , E. Kourlitis 6 , O. Kovanda 146 , R. Kowalewski 165 , W. Kozanecki 135 , A. S. Kozhin 37 ,
+123
+
+===== PAGE 32 =====
+761 Page 32 of 41 Eur. Phys. J. C (2023) 83 :761
+V . A. Kramarenko37 , G. Kramberger93 ,P .K r a m e r100 , M. W. Krasny127 , A. Krasznahorkay36 ,J .A .K r e m e r100 ,
+T. Kresse50 , J. Kretzschmar 92 , K. Kreul 18 , P. Krieger155 , S. Krishnamurthy103 ,M .K r i v o s133 , K. Krizka 20 ,
+K. Kroeninger49 , H. Kroha 110 ,J .K r o l l131 ,J .K r o l l128 , K. S. Krowpman107 , U. Kruchonak 38 , H. Krüger 24 ,
+N. Krumnack81,M .C .K r u s e51 ,J .A .K r z y s i a k86 , O. Kuchinskaia37 , S. Kuday3a , S. Kuehn36 , R. Kuesters54 ,
+T. Kuhl48 , V . Kukhtin 38 , Y . Kulchitsky 37,a , S. Kuleshov 137d,137b , M. Kumar 33g , N. Kumari 102 ,
+A. Kupco131 , T. Kupfer49, A. Kupich37 , O. Kuprash54 , H. Kurashige84 , L. L. Kurchaninov156a , O. Kurdysh66 ,
+Y . A. Kurochkin37 ,A .K u r o v a37 , M. Kuze154 ,A .K .K v a m103 , J. Kvita122 ,T .K w a n104 , N. G. Kyriacou106 ,
+L. A. O. Laatu102 , C. Lacasta 163 , F. Lacava75a,75b , H. Lacker 18 , D. Lacour 127 , N .N .L a d96 , E. Ladygin 38 ,
+B. Laforge127 , T. Lagouri137e ,S .L a i55 , I. K. Lakomiec85a , N. Lalloue60 , J. E. Lambert165,l , S. Lammers68 ,
+W. Lampl7 , C. Lampoudis 152,e , A. N. Lancaster 115 , E. Lançon 29 , U. Landgraf 54 , M. P. J. Landon 94 ,
+V . S. Lang54 , R. J. Langenberg 103 , O. K. B. Langrekken 125 , A. J. Lankford 160 , F. Lanni 36 , K. Lantzsch 24 ,
+A. Lanza73a , A. Lapertosa 57a,57b , J. F. Laporte 135 ,T . L a r i 71a , F. Lasagni Manghi 23b , M. Lassnig 36 ,
+V . Latonova131 , A. Laudrain 100 , A. Laurier 150 ,S . D . L a w l o r95 , Z. Lawrence 101 , M. Lazzaroni 71a,71b ,
+B. Le101, E. M. Le Boulicaut 51 , B. Leban 93 , A. Lebedev 81 , M. LeBlanc 36 , F. Ledroit-Guillon 60 ,
+A. C. A. Lee96,S . C . L e e148 ,S . L e e47a,47b ,T . F . L e e92 , L. L. Leeuw 33c , H. P. Lefebvre 95 , M. Lefebvre 165 ,
+C. Leggett17a , K. Lehmann 142 , G. Lehmann Miotto 36 , M. Leigh 56 , W. A. Leight 103 , W. Leinonen 113 ,
+A. Leisos152,s , M .A .L .L e i t e82c , C. E. Leitgeb 48 , R. Leitner 133 , K .J .C .L e n e y44 , T. Lenz24 , S. Leone 74a ,
+C. Leonidopoulos52 , A. Leopold 144 ,C . L e r o y 108 ,R . L e s 107 ,C . G . L e s t e r32 , M. Levchenko 37 ,
+J. Levêque4 ,D . L e v i n106 , L .J .L e v i n s o n169 , M. P. Lewicki 86 , D .J .L e w i s4 ,A . L i5 ,B . L i62b ,C . L i62a,
+C.-Q. Li62c ,H . L i 62a ,H . L i 62b ,H . L i 14c ,H . L i 62b ,K . L i 138 ,L . L i 62c ,M . L i 14a,14e , Q .Y .L i62a ,
+S. Li14a,14e ,S . L i 62c,62d,d ,T . L i5,b ,X . L i 104 ,Z . L i 126 ,Z . L i 104 ,Z . L i 92 ,Z . L i 14a,14e , Z. Liang 14a ,
+M. Liberatore48 , B. Liberti 76a ,K . L i e 64c , J. Lieber Marin 82b ,H . L i e n68 ,K . L i n 107 , R. E. Lindley 7 ,
+J. H. Lindon2 ,A . L i n s s48 , E. Lipeles 128 , A. Lipniacka 16 , A. Lister 164 , J. D. Little 4 ,B . L i u 14a ,
+B. X. Liu142 ,D . L i u 62c,62d , J .B .L i u 62a , J .K .K .L i u 32 ,K . L i u 62c,62d ,M . L i u 62a ,M . Y . L i u62a ,
+P. Liu14a ,Q . L i u62c,62d,138 ,X . L i u62a ,Y . L i u14d,14e ,Y . L . L i u106 ,Y . W . L i u62a , J. Llorente Merino 142 ,
+S. L. Lloyd94 , E. M. Lobodzinska 48 , P. Loch 7 , S. Loffredo 76a,76b , T. Lohse 18 , K. Lohwasser 139 ,
+E. Loiacono48 , M. Lokajicek 131 , J. D. Lomas 20 , J .D .L o n g 162 , I. Longarini 160 , L. Longo 70a,70b ,
+R. Longo162 , I. Lopez Paz 67 , A. Lopez Solis 48 , J. Lorenz 109 , N. Lorenzo Martinez 4 , A .M .L o r y109 ,
+O. Loseva37 ,X . L o u47a,47b ,X . L o u14a,14e , A. Lounis 66 , J. Love 6 , P. A. Love91 ,G . L u14a,14e ,M . L u80 ,
+S. Lu128 ,Y . J . L u65 , H .J .L u b a t t i138 , C. Luci 75a,75b , F. L. Lucio Alves 14c , A. Lucotte 60 , F. Luehring 68 ,
+I. Luise145 , O. Lukianchuk 66 , O. Lundberg 144 , B. Lund-Jensen 144 , N. A. Luongo 123 , M .S .L u t z151 ,
+D. Lynn29 , H. Lyons 92, R. Lysak 131 ,E . L y t k e n98 , V . Lyubushkin38 , T. Lyubushkina 38 , M .M .L y u k o v a145 ,
+H. Ma29 ,L .L .M a62b ,Y .M a121 , D. M. Mac Donell165 , G. Maccarrone53 , J. C. MacDonald100 , R. Madar40 ,
+W. F. Mader50 , J. Maeda 84 , T. Maeno 29 , M. Maerker 50 , H. Maguire 139 ,A . M a i o130a,130b,130d ,K . M a j85a ,
+O. Majersky48 ,S . M a j e w s k i123 , N. Makovec 66 , V . Maksimovic 15 , B. Malaescu 127 , Pa. Malecki 86 ,
+V. P. M a l e ev37 , F. Malek 60 ,M . M a l i 93 , D. Malito 95,o , U. Mallik 80 , S. Maltezos 10, S. Malyukov 38,
+J. Mamuzic13 , G. Mancini53 , G. Manco73a,73b , J. P. Mandalia94 , I. Mandi´c93 , L. Manhaes de Andrade Filho82a ,
+I. M. Maniatis169 , J. Manjarres Ramos 102 , D. C. Mankad 169 , A. Mann 109 , B. Mansoulie 135 , S. Manzoni 36 ,
+A. Marantis152 , G. Marchiori 5 , M. Marcisovsky 131 , C. Marcon 71a,71b , M. Marinescu 20 , M. Marjanovic 120 ,
+E. J. Marshall91 , Z. Marshall 17a , S. Marti-Garcia 163 , T. A. Martin 167 , V .J .M a r t i n52 , B. Martin dit Latour 16 ,
+L. Martinelli75a,75b , M. Martinez13,t , P. Martinez Agullo163 , V . I. Martinez Outschoorn103 , P. Martinez Suarez13 ,
+S. Martin-Haugh134 , V . S. Martoiu27b , A. C. Martyniuk 96 , A. Marzin 36 , D. Mascione 78a,78b , L. Masetti 100 ,
+T. Mashimo153 ,J . M a s i k101 , A. L. Maslennikov 37 , L. Massa 23b , P. Massarotti 72a,72b , P. Mastrandrea 74a,74b ,
+A. Mastroberardino43a,43b , T. Masubuchi 153 , T. Mathisen 161 , J. Matousek 133 , N. Matsuzawa 153, J. Maurer 27b ,
+B. Maˇcek93 , D. A. Maximov37 , R. Mazini148 , I. Maznas152 , M. Mazza107 , S. M. Mazza136 , E. Mazzeo71a,71b ,
+C. Mc Ginn29 ,J . P . M c G o w a n 104 , S .P .M cK e e 106 , E. F. McDonald 105 , A. E. McDougall 114 ,
+J. A. Mcfayden146 , R. P. McGovern 128 , G. Mchedlidze 149b , R. P. Mckenzie 33g , T. C. Mclachlan 48 ,
+D. J. Mclaughlin96 , K. D. McLean 165 , S. J. McMahon 134 , P. C. McNamara 105 , C. M. Mcpartland 92 ,
+R. A. McPherson165,w , S. Mehlhase 109 , A. Mehta 92 , D. Melini 150 , B. R. Mellado Garcia 33g , A .H .M e l o55 ,
+F. Meloni48 , A. M. Mendes Jacques Da Costa 101 , H .Y .M e n g155 , L. Meng 91 , S. Menke 110 , M. Mentink 36 ,
+E. Meoni43a,43b , C. Merlassino 126 , L. Merola 72a,72b , C. Meroni 71a ,G . M e r z 106, O. Meshkov 37 ,
+J. Metcalfe6 ,A . S . M e t e6 , C. Meyer 68 , J-P. Meyer135 , R. P. Middleton134 , L. Mijovi´c52 , G. Mikenberg 169 ,
+M. Mikestikova131 , M. Mikuž 93 , H. Mildner 100 , A. Milic 36 , C. D. Milke 44 , D. W. Miller39 , L. S. Miller 34 ,
+123
+
+===== PAGE 33 =====
+Eur. Phys. J. C (2023) 83 :761 Page 33 of 41 761
+A. Milov169 , D .A .M i l s t e a d47a,47b,T . M i n 14c, A. A. Minaenko 37 , I. A. Minashvili 149b , L. Mince 59 ,
+A. I. Mincer117 , B. Mindur 85a , M. Mineev 38 ,Y . M i n o 87 , L .M .M i r 13 , M. Miralles Lopez 163 ,
+M. Mironova17a ,A . M i s h i m a153, M .C .M i s s i o113 , T. Mitani 168 , A. Mitra 167 , V . A. Mitsou163 ,O . M i u155 ,
+P. S. Miyagawa94 , Y . Miyazaki 89, A. Mizukami 83 , T. Mkrtchyan 63a , M. Mlinarevic 96 , T. Mlinarevic 96 ,
+M. Mlynarikova36 , S. Mobius 55 , K. Mochizuki 108 , P. Moder 48 , P. Mogg 109 , A. F. Mohammed 14a,14e ,
+S. Mohapatra41 , G. Mokgatitswane 33g , L. Moleri 169 , B. Mondal 141 , S. Mondal 132 , G. Monig 146 ,
+K. Mönig48 , E. Monnier102 , L. Monsonis Romero163, J. Montejo Berlingen13,83 , M. Montella119 , F. Monticelli90 ,
+S. Monzani69a,69c , N. Morange66 , A. L. Moreira De Carvalho130a , M. Moreno Llácer163 , C. Moreno Martinez56 ,
+P. Morettini57b , S. Morgenstern 36 ,M . M o r i i61 , M. Morinaga 153 ,A . K . M o r l e y36 , F. Morodei 75a,75b ,
+L. Morvaj36 , P. Moschovakos36 , B. Moser36 , M. Mosidze149b, T. Moskalets54 , P. Moskvitina113 ,J .M o s s31,m ,
+E. J. W. Moyse103 , O. Mtintsilana 33g , S. Muanza 102 , J. Mueller 129 , D. Muenstermann 91 , R. Müller 19 ,
+G. A. Mullier161 , A. J. Mullin 32, J. J. Mullin 128, D. P. Mungo 155 , D. Munoz Perez 163 , F. J. Munoz Sanchez 101 ,
+M. Murin101 ,W . J . M u r r a y167,134 , A. Murrone 71a,71b , J .M .M u s e120 , M. Muškinja 17a ,C . M w e w a29 ,
+A. G. Myagkov37,a , A. J. Myers 8 , A .A .M y e r s 129, G. Myers 68 , M. Myska 132 , B. P. Nachman 17a ,
+O. Nackenhorst49 ,A . N a g50 , K. Nagai 126 , K. Nagano 83 , J .L .N a g l e29,ae , E. Nagy 102 ,A . M . N a i r z36 ,
+Y . Nakahama83 , K. Nakamura 83 , K. Nakkalil 5 , H. Nanjo 124 , R. Narayan 44 , E. A. Narayanan 112 ,
+I. Naryshkin37 , M. Naseri 34 ,S . N a s r i159 ,C . N a s s24 , G. Navarro22a , J. Navarro-Gonzalez163 , R. Nayak 151 ,
+A. Nayaz18 , P. Y . Nechaeva37 , F. Nechansky48 , L. Nedic 126 , T. J. Neep 20 ,A . N e g r i73a,73b ,M . N e g r i n i23b ,
+C. Nellist114 ,C . N e l s o n 104 ,K . N e l s o n 106 , S. Nemecek 131 , M. Nessi 36,h , M. S. Neubauer 162 ,
+F. Neuhaus100 , J. Neundorf 48 , R. Newhouse 164 , P. R. Newman 20 ,C . W . N g 129 , Y .W .Y .N g 48 ,
+B. Ngair35e , H. D. N. Nguyen 108 , R. B. Nickerson 126 , R. Nicolaidou 135 , J. Nielsen 136 , M. Niemeyer 55 ,
+J. Niermann55,36 , N. Nikiforou 36 , V . Nikolaenko37,a , I. Nikolic-Audit 127 , K. Nikolopoulos 20 , P. Nilsson 29 ,
+I. Ninca48 , H. R. Nindhito 56 , G. Ninio 151 ,A . N i s a t i75a ,N . N i s h u2 , R. Nisius 110 , J.-E. Nitschke 50 ,
+E. K. Nkadimeng33g , S. J. Noacco Rosende90 , T. Nobe153 ,D .L .N o e l32 , T. Nommensen147 , M. B. Norfolk139 ,
+R. R. B. Norisam96 ,B . J . N o r m a n34 ,J . N o v a k 93 ,T . N o v a k 48 , L. Novotny 132 , R. Novotny 112 ,
+L. Nozka122 , K. Ntekas 160 , N. M. J. Nunes De Moura Junior 82b ,E . N u r s e96, J. Ocariz 127 , A. Ochi 84 ,
+I. Ochoa130a , S. Oerdek 161 , J. T. Offermann 39 , A. Ogrodnik 133 ,A . O h 101 ,C . C . O h m144 ,H . O i d e83 ,
+R. Oishi153 , M .L .O j e d a48 , Y . Okazaki 87 , M. W. O’Keefe 92, Y . Okumura 153 , L. F. Oleiro Seabra 130a ,
+S. A. Olivares Pino137d , D. Oliveira Damazio 29 , D. Oliveira Goncalves 82a ,J . L . O l i v e r160 , M .J .R .O l s s o n160 ,
+A. Olszewski86 , Ö. O. Öncel 54 ,D . C . O ’ N e i l142 , A. P. O’Neill 19 , A. Onofre 130a,130e , P .U .E .O n y i s i11 ,
+M. J. Oreglia39 , G. E. Orellana 90 , D. Orestano 77a,77b , N. Orlando 13 ,R . S . O r r 155 , V . O’Shea 59 ,
+R. Ospanov62a , G. Otero y Garzon30 , H. Otono89 ,P .S .O t t63a , G. J. Ottino17a , M. Ouchrif35d , J. Ouellette29 ,
+F. Ould-Saada125 , M. Owen 59 , R. E. Owen 134 , K. Y . Oyulmaz 21a , V . E. Ozcan 21a , N. Ozturk 8 ,
+S. Ozturk21d ,H .A .P a c e y32 , A. Pacheco Pages13 , C. Padilla Aranda13 , G. Padovano75a,75b , S. Pagan Griso17a ,
+G. Palacino68 , A. Palazzo 70a,70b , S. Palestini 36 ,J . P a n172 ,T . P a n64a , D. K. Panchal 11 , C. E. Pandini 114 ,
+J. G. Panduro Vazquez95 , H. Pang 14b , P. Pani 48 , G. Panizzo 69a,69c , L. Paolozzi 56 , C. Papadatos 108 ,
+S. Parajuli44 , A. Paramonov6 , C. Paraskevopoulos10 , D. Paredes Hernandez64b ,T .H .P a r k155 ,M .A .P a r k e r32 ,
+F. Parodi57a,57b , E .W .P a r r i s h115 ,V . A . P a r r i s h52 , J .A .P a r s o n s41 , U. Parzefall 54 , B. Pascual Dias 108 ,
+L. Pascual Dominguez151 , F. Pasquali114 , E. Pasqualucci75a , S. Passaggio57b ,F .P a s t o r e95 , P. Pasuwan47a,47b ,
+P. Patel86 , U. M. Patel 51 , J .R .P a t e r101 , T. Pauly 36 , J. Pearkes 143 , M. Pedersen 125 , R. Pedro 130a ,
+S. V . Peleganchuk37 , O. Penc36 , E. A. Pender52, H. Peng62a , K. E. Penski109 , M. Penzin37 , B. S. Peralva82d,82d ,
+A. P. Pereira Peixoto60 , L. Pereira Sanchez 47a,47b , D. V . Perepelitsa29,ae , E. Perez Codina 156a , M. Perganti 10 ,
+L. Perini71a,71b,* , H. Pernegger36 , S. Perrella36 , A. Perrevoort113 , O. Perrin40 , K. Peters48 , R. F. Y . Peters101 ,
+B. A. Petersen36 , T. C. Petersen 42 , E. Petit 102 , V . Petousis 132 , C. Petridou 152,e , A. Petrukhin 141 ,
+M. Pettee17a , N. E. Pettersson 36 , A. Petukhov 37 , K. Petukhova 133 , A. Peyaud 135 , R. Pezoa 137f ,
+L. Pezzotti36 , G. Pezzullo 172 , T. M. Pham 170 , T. Pham 105 , P. W. Phillips 134 , G. Piacquadio 145 ,
+E. Pianori17a , F. Piazza 71a,71b , R. Piegaia 30 , D. Pietreanu 27b , A. D. Pilkington 101 , M. Pinamonti 69a,69c ,
+J. L. Pinfold2 , B. C. Pinheiro Pereira 130a , A. E. Pinto Pinoargote 135 , C. Pitman Donaldson 96, D .A .P i z z i34 ,
+L. Pizzimento76a,76b , A. Pizzini 114 , M.-A. Pleier 29 , V . Plesanovs54,V .P l e s k o t133 , E. Plotnikova38, G. Poddar 4 ,
+R. Poettgen98 , L. Poggioli 127 , D. Pohl 24 , I. Pokharel 55 , S. Polacek 133 , G. Polesello 73a , A. Poley 142,156a ,
+R. Polifka132 , A. Polini 23b , C. S. Pollard 167 , Z. B. Pollock 119 , V . Polychronakos29 , E. Pompa Pacchi 75a,75b ,
+D. Ponomarenko113 , L. Pontecorvo 36 , S. Popa 27a , G. A. Popeneciu 27d , D. M. Portillo Quintero 156a ,
+S. Pospisil132 , M. A. Postill 139 , P. Postolache 27c , K. Potamianos 167 , P. P. Potepa 85a , I .N .P o t r a p38 ,
+123
+
+===== PAGE 34 =====
+761 Page 34 of 41 Eur. Phys. J. C (2023) 83 :761
+C. J. Potter32 , H. Potti 1 , T. Poulsen 48 , J. Poveda 163 , M. E. Pozo Astigarraga 36 , A. Prades Ibanez 163 ,
+M. M. Prapa46 ,J . P r e t e l54 ,D . P r i c e101 ,M . P r i m a v e r a70a , M. A. Principe Martin 99 , R. Privara 122 ,
+T. Procter59 ,M . L . P r o f ﬁ t t138 , N. Proklova 128 , K. Prokoﬁev 64c ,G . P r o t o76a,76b , S. Protopopescu 29 ,
+J. Proudfoot6 , M. Przybycien85a , W. W. Przygoda85b , J. E. Puddefoot139 , D. Pudzha37 , D. Pyatiizbyantseva37 ,
+J. Qian106 , D. Qichen 101 ,Y . Q i n101 ,T . Q i u52 , A. Quadt 55 , M. Queitsch-Maitland 101 , G. Quetant 56 ,
+G. Rabanal Bolanos61 , D. Rafanoharana54 , F. Ragusa71a,71b , J. L. Rainbolt39 ,J .A .R a i n e56 , S. Rajagopalan29 ,
+E. Ramakoti37 ,K . R a n 48,14e , N. P. Rapheeha 33g , H. Rasheed 27b , V . Raskina 127 , D .F .R a s s l o f f63a ,
+S. Rave100 ,B . R a v i n a 55 , I. Ravinovich 169 , M. Raymond 36 , A .L .R e a d 125 , N. P. Readioff 139 ,
+D. M. Rebuzzi73a,73b , G. Redlinger 29 , A. S. Reed 110 ,K . R e e v e s26 , J. A. Reidelsturz 171 , D. Reikher 151 ,
+A. Rej141 , C. Rembser 36 , A. Renardi 48 , M. Renda 27b , M. B. Rendel 110, F. Renner 48 , A. G. Rennie 59 ,
+S. Resconi71a , M. Ressegotti 57a,57b , E. D. Resseguie 17a , S. Rettie 36 , J. G. Reyes Rivera 107 , B. Reynolds 119,
+E. Reynolds17a , M. Rezaei Estabragh 171 , O. L. Rezanova 37 , P. Reznicek 133 , N. Ribaric 91 , E. Ricci 78a,78b ,
+R. Richter110 , S. Richter 47a,47b , E. Richter-Was85b , M. Ridel 127 , S. Ridouani 35d , P. Rieck117 , P. Riedler36 ,
+M. Rijssenbeek145 , A. Rimoldi 73a,73b , M. Rimoldi 48 , L. Rinaldi 23a,23b ,T . T . R i n n29 , M. P. Rinnagel 109 ,
+G. Ripellino161 ,I . R i u 13 , P. Rivadeneira 48 , J. C. Rivera Vergara 165 , F. Rizatdinova 121 , E. Rizvi 94 ,
+C. Rizzi56 , B. A. Roberts 167 , B. R. Roberts 17a , S. H. Robertson 104,w , M. Robin 48 , D. Robinson 32 ,
+C. M. Robles Gajardo137f, M. Robles Manzano 100 , A. Robson 59 , A. Rocchi 76a,76b , C. Roda 74a,74b ,
+S. Rodriguez Bosca63a , Y . Rodriguez Garcia22a , A. Rodriguez Rodriguez 54 , A. M. Rodríguez Vera156b ,S . R o e36,
+J. T. Roemer160 , A. R. Roepe-Gier 136 , J. Roggel 171 , O. Røhne 125 , R .A .R o j a s103 , C. P. A. Roland 68 ,
+J. Roloff29 , A. Romaniouk37 , E. Romano73a,73b , M. Romano23b , A. C. Romero Hernandez162 , N. Rompotis92 ,
+L. Roos127 , S. Rosati 75a , B. J. Rosser 39 , E. Rossi 126 , E. Rossi 72a,72b , L. P. Rossi 57b , L. Rossini 48 ,
+R. Rosten119 , M. Rotaru 27b , B. Rottler 54 , C. Rougier 102 , D. Rousseau 66 , D. Rousso 32 ,A . R o y 162 ,
+S. Roy-Garand155 , A. Rozanov 102 , Y . Rozen 150 , X. Ruan 33g , A. Rubio Jimenez 163 , A. J. Ruby 92 ,
+V . H. Ruelas Rivera18 , T. A. Ruggeri1 , A. Ruggiero 126 , A. Ruiz-Martinez 163 , A. Rummler 36 ,Z . R u r i k o v a54 ,
+N. A. Rusakovich38 , H. L. Russell 165 , G. Russo 75a,75b , J. P. Rutherfoord 7 , S. Rutherford Colmenares 32 ,
+K. Rybacki91, M. Rybar 133 ,E . B . R y e 125 , A. Ryzhov 37 , J. A. Sabater Iglesias 56 , P. Sabatini 163 ,
+L. Sabetta75a,75b , H.F-W. Sadrozinski 136 , F. Safai Tehrani 75a , B. Safarzadeh Samani 146 , M. Safdari 143 ,
+S. Saha104 , M. Sahinsoy 110 , M. Saimpert 135 , M. Saito 153 , T. Saito 153 , D. Salamani 36 , A. Salnikov 143 ,
+J. Salt163 , A. Salvador Salas 13 , D. Salvatore 43a,43b , F. Salvatore 146 , A. Salzburger 36 , D. Sammel 54 ,
+D. Sampsonidis152,e , D. Sampsonidou 123 , J. Sánchez 163 , A. Sanchez Pineda 4 , V . Sanchez Sebastian 163 ,
+H. Sandaker125 , C. O. Sander 48 , J. A. Sandesara 103 , M. Sandhoff 171 , C. Sandoval 22b , D. P. C. Sankey 134 ,
+T. Sano87 , A. Sansoni 53 , L. Santi 75a,75b , C. Santoni 40 , H. Santos 130a,130b , S. N. Santpur 17a , A. Santra 169 ,
+K. A. Saoucha139 , J. G. Saraiva130a,130d , J. Sardain 7 , O. Sasaki 83 , K. Sato 157 , C. Sauer 63b, F. Sauerburger54 ,
+E. Sauvan4 ,P . S a v a r d155,ac , R. Sawada 153 , C. Sawyer 134 , L. Sawyer 97 , I. Sayago Galvan 163, C. Sbarra 23b ,
+A. Sbrizzi23a,23b , T. Scanlon 96 , J. Schaarschmidt 138 , P. Schacht 110 , D. Schaefer 39 , U. Schäfer 100 ,
+A. C. Schaffer66,44 , D. Schaile 109 , R. D. Schamberger145 , C. Scharf 18 , M. M. Schefer 19 , V . A. Schegelsky37 ,
+D. Scheirich133 , F. Schenck 18 , M. Schernau 160 , C. Scheulen 55 , C. Schiavi 57a,57b , E. J. Schioppa 70a,70b ,
+M. Schioppa43a,43b , B. Schlag 143 , K. E. Schleicher 54 , S. Schlenker 36 , J. Schmeing 171 , M. A. Schmidt 171 ,
+K. Schmieden100 , C. Schmitt 100 , S. Schmitt 48 , L. Schoeffel 135 , A. Schoening 63b , P. G. Scholer 54 ,
+E. Schopf126 , M. Schott 100 , J. Schovancova 36 , S. Schramm 56 , F. Schroeder 171 , H.-C. Schultz-Coulon 63a ,
+M. Schumacher54 , B. A. Schumm136 , Ph. Schune135 , A. J. Schuy138 , H. R. Schwartz136 , A. Schwartzman143 ,
+T. A. Schwarz106 , Ph. Schwemling 135 , R. Schwienhorst 107 , A. Sciandra 136 , G. Sciolla 26 , F. Scuri 74a ,
+C. D. Sebastiani92 , K. Sedlaczek115 , P. Seema18 , S. C. Seidel112 , A. Seiden136 , B. D. Seidlitz41 , C. Seitz48 ,
+J. M. Seixas82b , G. Sekhniaidze 72a , S. J. Sekula 44 , L. Selem 60 , N. Semprini-Cesari 23a,23b , D. Sengupta 56 ,
+V . Senthilkumar163 , L. Serin 66 , L. Serkin 69a,69b , M. Sessa 76a,76b ,H . S e v e r i n i120 , F. Sforza 57a,57b ,
+A. Sfyrla56 , E. Shabalina 55 , R. Shaheen 144 , J. D. Shahinian 128 , D. Shaked Renous 169 , L. Y . Shan 14a ,
+M. Shapiro17a , A. Sharma 36 , A. S. Sharma 164 , P. Sharma 80 , S. Sharma 48 , P. B. Shatalov 37 , K. Shaw 146 ,
+S. M. Shaw101 , A. Shcherbakova 37 , Q. Shen 62c,5 , P. Sherwood96 , L. Shi 96 , X. Shi 14a , C. O. Shimmin 172 ,
+Y . Shimogama168 , J. D. Shinner 95 , I .P .J .S h i p s e y126 , S. Shirabe 56,h , M. Shiyakova 38 , J. Shlomi 169 ,
+M. J. Shochet39 , J. Shojaii105 , D. R. Shope125 , S. Shrestha119,af ,E .M .S h r i f33g , M. J. Shroff165 , P. Sicho131 ,
+A. M. Sickles162 , E. Sideras Haddad 33g , A. Sidoti 23b , F. Siegert 50 , Dj. Sijacki 15 ,R . S i k o r a85a , F. Sili 90 ,
+J. M. Silva20 , M. V . Silva Oliveira 29 , S. B. Silverstein 47a , S. Simion 66, R. Simoniello 36 , E. L. Simpson 59 ,
+H. Simpson146 , L. R. Simpson 106 , N .D .S i m p s o n98,S . S i m s e k21d , S. Sindhu 55 , P. Sinervo155 , S. Singh 155 ,
+123
+
+===== PAGE 35 =====
+Eur. Phys. J. C (2023) 83 :761 Page 35 of 41 761
+S. Sinha48 , S. Sinha 101 , M. Sioli 23a,23b ,I . S i r a l36 , E. Sitnikova 48 , S.Yu. Sivoklokov 37,* , J. Sjölin 47a,47b ,
+A. Skaf55 ,E . S k o r d a98 , P. Skubic 120 , M. Slawinska 86 , V . Smakhtin 169, B .H .S m a r t134 ,J . S m i e s k o36 ,
+S.Yu. Smirnov37 ,Y . S m i r n o v37 ,L . N . S m i r n o v a37,a ,O . S m i r n o v a98 , A. C. Smith 41 , E .A .S m i t h39 ,
+H. A. Smith126 , J. L. Smith92 , R. Smith143, M. Smizanska91 ,K .S m o l e k132 , A. A. Snesarev37 , S. R. Snider155 ,
+H. L. Snoek114 , S. Snyder 29 , R. Sobie 165,w , A. Soffer 151 , C. A. Solans Sanchez 36 , E.Yu. Soldatov 37 ,
+U. Soldevila163 , A. A. Solodkov 37 , S. Solomon 26 , A. Soloshenko 38 , K. Solovieva 54 , O. V . Solovyanov40 ,
+V . Solovyev37 , P. Sommer 36 , A. Sonay 13 , W. Y . Song 156b , J. M. Sonneveld 114 , A. Sopczak 132 ,
+A. L. Sopio96 , F. Sopkova 28b , V . Sothilingam 63a, S. Sottocornola 68 , R. Soualah 116b , Z. Soumaimi 35e ,
+D. South48 , S. Spagnolo 70a,70b , M. Spalla 110 , D. Sperlich 54 , G. Spigo 36 , M. Spina 146 , S. Spinali 91 ,
+D. P. Spiteri59 , M. Spousta 133 , E. J. Staats 34 , A. Stabile 71a,71b ,R . S t a m e n63a , M. Stamenkovic 114 ,
+A. Stampekis20 , M. Standke 24 , E. Stanecka 86 , M. V . Stange 50 , B. Stanislaus 17a , M. M. Stanitzki 48 ,
+M. Stankaityte126 , B. Stapf48 , E. A. Starchenko37 ,G .H .S t a r k136 ,J .S t a r k102 ,D .M .S t a r k o156b, P. Staroba131 ,
+P. Starovoitov63a ,S . S t ä r z104 , R. Staszewski 86 , G. Stavropoulos 46 , J. Steentoft 161 , P. Steinberg 29 ,
+B. Stelzer142,156a , H .J .S t e l z e r129 , O. Stelzer-Chilton 156a , H. Stenzel 58 , T. J. Stevenson146 ,G . A . S t e w a r t36 ,
+J. R. Stewart121 , M. C. Stockton 36 , G. Stoicea 27b , M. Stolarski 130a , S. Stonjek 110 , A. Straessner 50 ,
+J. Strandberg144 , S. Strandberg 47a,47b , M. Strauss 120 , T. Strebler 102 , P. Strizenec 28b , R. Ströhmer 166 ,
+D. M. Strom123 ,L . R . S t r o m48 , R. Stroynowski 44 , A. Strubig 47a,47b , S. A. Stucci 29 , B. Stugu 16 ,
+J. Stupak120 , N. A. Styles 48 ,D . S u143 ,S . S u62a ,W . S u62d ,X . S u62a,66 , K. Sugizaki 153 , V . V . Sulin37 ,
+M. J. Sullivan92 , D .M .S .S u l t a n78a,78b , L. Sultanaliyeva 37 , S. Sultansoy 3b , T. Sumida 87 , S. Sun 106 ,
+S. Sun170 , O. Sunneborn Gudnadottir 161 , M .R .S u t t o n146 ,M . S v a t o s131 , M. Swiatlowski 156a , T. Swirski166 ,
+I. Sykora28a , M. Sykora 133 , T. Sykora 133 ,D . T a 100 , K. Tackmann 48,u ,A . T a f f a r d160 , R. Taﬁrout 156a ,
+J. S. Tafoya Vargas66 , R. Takashima 88 , E. P. Takeva 52 , Y . Takubo 83 , M. Talby 102 , A. A. Talyshev 37 ,
+K. C. Tam64b , N .M .T a m i r151, A. Tanaka 153 , J. Tanaka 153 , R. Tanaka 66 , M. Tanasini 57a,57b ,Z . T a o164 ,
+S. Tapia Araya137f , S. Tapprogge 100 , A. Tarek Abouelfadl Mohamed 107 , S. Tarem 150 ,K . T a r i q 62b ,
+G. Tarna102,27b , G. F. Tartarelli71a ,P . T a s133 ,M . T a s e v s k y131 , E. Tassi43a,43b ,A . C . T a t e162 , G. Tateno153 ,
+Y . Tayalati35e,v , G. N. Taylor 105 , W. Taylor 156b , H. Teagle 92,A . S . T e e 170 , R. Teixeira De Lima 143 ,
+P. Teixeira-Dias95 , J. J. Teoh 155 , K. Terashi 153 ,J . T e r r o n99 , S. Terzo 13 ,M . T e s t a53 , R. J. Teuscher 155,w ,
+A. Thaler79 , O. Theiner 56 , N. Themistokleous 52 , T. Theveneaux-Pelzer102 , O. Thielmann 171 , D. W. Thomas95,
+J. P. Thomas20 , E. A. Thompson 17a , P. D. Thompson 20 , E. Thomson 128 ,Y . T i a n55 , V . Tikhomirov 37,a ,
+Yu.A. Tikhonov37 , S. Timoshenko37,D .T i m o s h y n133 ,E .X .L .T i n g1 , P. Tipton172 ,S .H .T l o u33g , A. Tnourji40 ,
+K. Todome23a,23b , S. Todorova-Nova 133 , S. Todt 50,M . T o g a w a83 ,J . T o j o89 , S. Tokár 28a , K. Tokushuku 83 ,
+O. Toldaiev68 , R. Tombs 32 , M. Tomoto 83,111 , L. Tompkins 143 , K. W. Topolnicki 85b , E. Torrence 123 ,
+H. Torres102 , E. Torró Pastor 163 , M. Toscani 30 , C. Tosciri 39 ,M . T o s t11 , D. R. Tovey 139 , A. Traeet 16,
+I. S. Trandaﬁr27b , T. Trefzger 166 , A. Tricoli 29 , I. M. Trigger 156a , S. Trincaz-Duvoid 127 , D. A. Trischuk 26 ,
+B. Trocmé60 , C. Troncon 71a , L. Truong 33c , M. Trzebinski 86 , A. Trzupek 86 ,F . T s a i145 ,M . T s a i106 ,
+A. Tsiamis152,e , P. V . Tsiareshka37, S. Tsigaridas 156a , A. Tsirigotis 152,s , V . Tsiskaridze155 , E. G. Tskhadadze 149a,
+M. Tsopoulou152,e , Y . Tsujikawa87 , I. I. Tsukerman 37 , V . Tsulaia17a , S. Tsuno 83 ,O . T s u r150, K. Tsuri 118,
+D. Tsybychev145 ,Y . T u 64b , A. Tudorache 27b , V . Tudorache 27b , A. N. Tuna 36 , S. Turchikhin 38 ,
+I. Turk Cakir3a ,R .T u r r a71a , T. Turtuvshin38,x ,P .M .T u t s41 , S. Tzamarias 152,e , P. Tzanis10 ,E .T z o v a r a100 ,
+K. Uchida153,F . U k e g a w a157 , P. A. Ulloa Poblete 137c,137b , E. N. Umaka 29 , G. Unal 36 , M. Unal 11 ,
+A. Undrus29 , G. Unel160 , J. Urban28b , P. Urquijo105 ,G .U s a i8 ,R .U s h i o d a154 ,M .U s m a n108 ,Z .U y s a l21b ,
+L. Vacavant102 , V . Vacek132 , B. Vachon104 ,K .O .H .V a d l a125 , T. Vafeiadis36 , A. Vaitkus96 , C. Valderanis109 ,
+E. Valdes Santurio47a,47b , M. Valente 156a , S. Valentinetti 23a,23b , A. Valero 163 , E. Valiente Moreno 163 ,
+A. Vallier102 , J. A. Valls Ferrer 163 , D. R. Van Arneman 114 , T. R. Van Daalen 138 , A. Van Der Graaf 49 ,
+P. Van Gemmeren6 , M. Van Rijnbach 125,36 , S. Van Stroud 96 , I. Van Vulpen 114 , M. Vanadia 76a,76b ,
+W. Vandelli36 , M. Vandenbroucke 135 , E. R. Vandewall 121 , D. Vannicola 151 , L. Vannoli 57a,57b ,
+R. Vari75a , E. W. Varnes 7 , C. Varni 17a , T. Varol 148 , D. Varouchas 66 , L. Varriale 163 ,K . E . V a r v e l l147 ,
+M. E. Vasile27b , L. Vaslin 40, G. A. Vasquez 165 , F. Vazeille 40 , T. Vazquez Schroeder 36 , J. Veatch 31 ,
+V . Vecchio101 , M .J .V e e n 103 , I. Veliscek 126 , L. M. Veloce 155 , F. Veloso 130a,130c , S. Veneziano 75a ,
+A. Ventura70a,70b , A. Verbytskyi 110 , M. Verducci 74a,74b , C. Vergis 24 , M. Verissimo De Araujo 82b ,
+W. Verkerke114 , J. C. Vermeulen114 , C. Vernieri143 , P. J. Verschuuren95 , M. Vessella103 , M. C. Vetterli142,ac ,
+A. Vgenopoulos152,e , N. Viaux Maira 137f ,T . V i c k e y139 , O .E .V i c k e yB o e r i u139 , G. H. A. Viehhauser 126 ,
+L. Vigani63b , M. Villa 23a,23b , M. Villaplana Perez 163 , E. M. Villhauer 52, E. Vilucchi 53 , M. G. Vincter 34 ,
+123
+
+===== PAGE 36 =====
+761 Page 36 of 41 Eur. Phys. J. C (2023) 83 :761
+G. S. Virdee20 , A. Vishwakarma52 , C. Vittori36 , I. Vivarelli146 , V . Vladimirov167, E. V oevodina110 , F. V ogel109 ,
+P. V okac132 , J. V on Ahnen48 , E. V on Toerne24 , B. V ormwald36 , V . V orobel133 , K. V orobev37 ,M . V o s163 ,
+K. V oss141 , J. H. V ossebeld 92 , M. V ozak 114 , L. V ozdecky 94 , N. Vranjes 15 , M. Vranjes Milosavljevic 15 ,
+M. Vreeswijk114 , R. Vuillermet36 , O. Vujinovic100 , I. Vukotic39 , S. Wada157 , C. Wagner103, J. M. Wagner17a ,
+W. Wagner171 , S. Wahdan 171 , H. Wahlberg 90 , R. Wakasa 157 , M. Wakida 111 , J. Walder 134 ,R . W a l k e r109 ,
+W. Walkowiak141 ,A . W a l l128 , T. Wamorkar 6 , A. Z. Wang 170 , C. Wang 100 , C. Wang 62c , H. Wang 17a ,
+J. Wang64a , R.-J. Wang100 , R. Wang61 , R. Wang6 , S. M. Wang148 , S. Wang62b , T. Wang62a ,W .T .W a n g80 ,
+X. Wang14c , X. Wang 162 , X. Wang 62c , Y . Wang 62d , Y . Wang 14c , Z. Wang 106 , Z. Wang 51,62c,62d ,
+Z. Wang106 , A. Warburton104 , R .J .W a r d20 , N. Warrack59 ,A . T . W a t s o n20 ,H . W a t s o n59 ,M . F . W a t s o n20 ,
+G. Watts138 , B. M. Waugh 96 , C. Weber 29 , H. A. Weber 18 , M. S. Weber 19 , S. M. Weber 63a ,C . W e i62a,
+Y. We i126 , A. R. Weidberg 126 , E .J .W e i k117 , J. Weingarten 49 , M. Weirich 100 ,C . W e i s e r54 , C .J .W e l l s48 ,
+T. Wenaus29 , B. Wendland 49 , T. Wengler 36 , N. S. Wenke 110,N . W e r m e s24 , M. Wessels 63a , K. Whalen 123 ,
+A. M. Wharton91 , A. S. White 61 , A. White 8 , M .J .W h i t e1 , D. Whiteson 160 , L. Wickremasinghe 124 ,
+W. Wiedenmann170 ,C . W i e l 50 , M. Wielers 134 , C. Wiglesworth 42 , D .J .W i l b e r n120, H. G. Wilkens 36 ,
+D. M. Williams41 , H. H. Williams 128, S. Williams 32 , S. Willocq 103 , B .J .W i l s o n101 , P. J. Windischhofer 39 ,
+F. I. Winkel30 , F. Winklmeier123 ,B .T .W i n t e r54 ,J .K .W i n t e r101 , M. Wittgen143, M. Wobisch97 ,Z .W o l f f s114 ,
+R. Wölker126 , J. Wollrath 160, M .W .W o l t e r86 , H. Wolters 130a,130c , A. F. Wongel 48 , S .D .W o r m 48 ,
+B. K. Wosiek86 , K .W .W o ´zniak86 , S. Wozniewski 55 , K. Wraight 59 ,C . W u 20 ,J . W u 14a,14e ,M . W u 64a ,
+M. Wu113 ,S .L .W u170 ,X .W u56 ,Y .W u62a ,Z .W u135 , J. Wuerzinger110 , T. R. Wyatt101 , B. M. Wynne52 ,
+S. Xella42 ,L .X i a14c ,M .X i a14b, J. Xiang64c ,X .X i a o106 ,M .X i e62a ,X .X i e62a ,S .X i n14a,14e , J. Xiong17a ,
+D. Xu14a ,H . X u 62a ,L . X u 62a ,R . X u 128 ,T . X u 106 ,Y . X u14b ,Z . X u 52 ,Z . X u 14a , B. Yabsley 147 ,
+S. Yacoob33a , N. Yamaguchi 89 , Y . Yamaguchi 154 , E. Yamashita 153 , H. Yamauchi 157 , T. Yamazaki 17a ,
+Y . Yamazaki84 ,J . Y a n62c,S . Y a n126 ,Z . Y a n25 , H .J .Y a n g62c,62d , H. T. Yang62a , S. Yang 62a , T. Yang64c ,
+X. Yang62a , X. Yang 14a , Y . Yang 44 , Y . Yang 62a, Z. Yang 62a ,W - M . Y a o17a ,Y . C . Y a p48 ,H . Y e 14c ,
+H. Ye55 ,J .Y e44 ,S .Y e29 ,X .Y e62a ,Y .Y e h96 , I. Yeletskikh38 ,B .K .Y e o17a ,M .R .Y e x l e y96 ,P .Y i n41 ,
+K. Yorita168 , S. Younas 27b , C. J. S. Young 54 , C. Young 143 ,Y . Y u 62a , M. Yuan 106 , R. Yuan 62b,k ,
+L. Yue96 , M. Zaazoua 62a , B. Zabinski 86 ,E . Z a i d52, T. Zakareishvili 149b , N. Zakharchuk 34 , S. Zambito 56 ,
+J. A. Zamora Saa137d,137b , J. Zang153 , D. Zanzi54 , O. Zaplatilek132 , C. Zeitnitz171 , H. Zeng14a , J. C. Zeng162 ,
+D. T. Zenger Jr26 , O. Zenin 37 , T. Ženiš 28a , S. Zenz 94 , S. Zerradi 35a ,D . Z e r w a s66 , M. Zhai 14a,14e ,
+B. Zhang14c , D. F. Zhang 139 , J. Zhang 62b , J. Zhang 6 , K. Zhang 14a,14e , L. Zhang 14c , P. Zhang 14a,14e,
+R. Zhang170 , S. Zhang106 , T. Zhang153 , X. Zhang62c , X. Zhang62b , Y . Zhang62c,5 , Y . Zhang96 , Z. Zhang17a ,
+Z. Zhang66 , H. Zhao138 , P. Zhao51 , T. Zhao62b , Y . Zhao136 , Z. Zhao62a , A. Zhemchugov38 , K. Zheng162 ,
+X. Zheng62a , Z. Zheng 143 , D. Zhong 162 , B. Zhou 106, H. Zhou 7 , N. Zhou 62c , Y . Zhou 7,C . G . Z h u62b ,
+J. Zhu106 ,Y .Z h u62c ,Y .Z h u62a , X. Zhuang14a , K. Zhukov37 , V . Zhulanov37 ,N .I .Z i m i n e38 , J. Zinsser63b ,
+M. Ziolkowski141 ,L . Ž i v k o v i ´c15 , A. Zoccoli 23a,23b , K. Zoch 56 , T. G. Zorbas 139 ,O . Z o r m p a46 ,W . Z o u41 ,
+L. Zwalinski36
+1 Department of Physics, University of Adelaide, Adelaide, Australia
+2 Department of Physics, University of Alberta, Edmonton, AB, Canada
+3 (a)Department of Physics, Ankara University, Ankara, Türkiye;(b)Division of Physics, TOBB University of Economics
+and Technology, Ankara, Türkiye
+4 LAPP, Univ. Savoie Mont Blanc, CNRS/IN2P3, Annecy, France
+5 APC, Université Paris Cité, CNRS/IN2P3, Paris, France
+6 High Energy Physics Division, Argonne National Laboratory, Argonne, IL, USA
+7 Department of Physics, University of Arizona, Tucson, AZ, USA
+8 Department of Physics, University of Texas at Arlington, Arlington, TX, USA
+9 Physics Department, National and Kapodistrian University of Athens, Athens, Greece
+10 Physics Department, National Technical University of Athens, Zografou, Greece
+11 Department of Physics, University of Texas at Austin, Austin, TX, USA
+12 Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+13 Institut de Física d’Altes Energies (IFAE), Barcelona Institute of Science and Technology, Barcelona, Spain
+14 (a)Institute of High Energy Physics, Chinese Academy of Sciences, Beijing, China; (b)Physics Department, Tsinghua
+University, Beijing, China;(c)Department of Physics, Nanjing University, Nanjing, China;(d)School of Science,
+123
+
+===== PAGE 37 =====
+Eur. Phys. J. C (2023) 83 :761 Page 37 of 41 761
+Shenzhen Campus of Sun Yat-sen University, Shenzhen, China;(e)University of Chinese Academy of Science (UCAS),
+Beijing, China
+15 Institute of Physics, University of Belgrade, Belgrade, Serbia
+16 Department for Physics and Technology, University of Bergen, Bergen, Norway
+17 (a)Physics Division, Lawrence Berkeley National Laboratory, Berkeley, CA, USA;(b)University of California, Berkeley,
+CA, USA
+18 Institut für Physik, Humboldt Universität zu Berlin, Berlin, Germany
+19 Albert Einstein Center for Fundamental Physics and Laboratory for High Energy Physics, University of Bern, Bern,
+Switzerland
+20 School of Physics and Astronomy, University of Birmingham, Birmingham, UK
+21 (a)Department of Physics, Bogazici University, Istanbul, Türkiye;(b)Department of Physics Engineering, Gaziantep
+University, Gaziantep, Türkiye;(c)Department of Physics, Istanbul University, Istanbul, Türkiye;(d)Istinye University,
+Sariyer, Istanbul, Türkiye
+22 (a)Facultad de Ciencias y Centro de Investigaciónes, Universidad Antonio Nariño, Bogotá, Colombia;(b)Departamento
+de Física, Universidad Nacional de Colombia, Bogotá, Colombia;(c)Pontiﬁcia Universidad Javeriana, Bogotá, Colombia
+23 (a)Dipartimento di Fisica e Astronomia A. Righi, Università di Bologna, Bologna, Italy;(b)INFN Sezione di Bologna,
+Bologna, Italy
+24 Physikalisches Institut, Universität Bonn, Bonn, Germany
+25 Department of Physics, Boston University, Boston, MA, USA
+26 Department of Physics, Brandeis University, Waltham, MA, USA
+27 (a)Transilvania University of Brasov, Brasov, Romania;(b)Horia Hulubei National Institute of Physics and Nuclear
+Engineering, Bucharest, Romania; (c)Department of Physics, Alexandru Ioan Cuza University of Iasi, Iasi,
+Romania; (d)Physics Department, National Institute for Research and Development of Isotopic and Molecular
+Technologies, Cluj-Napoca, Romania;(e)University Politehnica Bucharest, Bucharest, Romania;(f)West University in
+Timisoara, Timisoara, Romania;(g)Faculty of Physics, University of Bucharest, Bucharest, Romania
+28 (a)Faculty of Mathematics, Physics and Informatics, Comenius University, Bratislava, Slovak Republic;(b)Department of
+Subnuclear Physics, Institute of Experimental Physics of the Slovak Academy of Sciences, Kosice, Slovak Republic
+29 Physics Department, Brookhaven National Laboratory, Upton, NY, USA
+30 Departamento de Física, y CONICET, Facultad de Ciencias Exactas y Naturales, Instituto de Física de Buenos Aires
+(IFIBA), Universidad de Buenos Aires, Buenos Aires, Argentina
+31 California State University, Northridge, CA, USA
+32 Cavendish Laboratory, University of Cambridge, Cambridge, UK
+33 (a)Department of Physics, University of Cape Town, Cape Town, South Africa;(b)iThemba Labs, Western Cape, South
+Africa; (c)Department of Mechanical Engineering Science, University of Johannesburg, Johannesburg,
+South Africa; (d)National Institute of Physics, University of the Philippines, Diliman, Philippines;(e)Department of
+Physics, University of South Africa, Pretoria, South Africa;(f)University of Zululand, KwaDlangezwa,
+South Africa; (g)School of Physics, University of the Witwatersrand, Johannesburg, South Africa
+34 Department of Physics, Carleton University, Ottawa, ON, Canada
+35 (a)Faculté des Sciences Ain Chock, Réseau Universitaire de Physique des Hautes Energies, Université Hassan II,
+Casablanca, Morocco; (b)Faculté des Sciences, Université Ibn-Tofail, Kénitra, Morocco;(c)Faculté des Sciences
+Semlalia, Université Cadi Ayyad, LPHEA-Marrakech, Morocco;(d)LPMR, Faculté des Sciences, Université Mohamed
+Premier, Oujda, Morocco; (e)Faculté des sciences, Université Mohammed V, Rabat, Morocco;(f)Institute of Applied
+Physics, Mohammed VI Polytechnic University, Ben Guerir, Morocco
+36 CERN, Geneva, Switzerland
+37 Afﬁliated with an institute covered by a cooperation agreement with CERN, Geneva, Switzerland
+38 Afﬁliated with an international laboratory covered by a cooperation agreement with CERN, Geneva, Switzerland
+39 Enrico Fermi Institute, University of Chicago, Chicago, IL, USA
+40 LPC, Université Clermont Auvergne, CNRS/IN2P3, Clermont-Ferrand, France
+41 Nevis Laboratory, Columbia University, Irvington, NY, USA
+42 Niels Bohr Institute, University of Copenhagen, Copenhagen, Denmark
+43 (a)Dipartimento di Fisica, Università della Calabria, Rende, Italy;(b)INFN Gruppo Collegato di Cosenza, Laboratori
+Nazionali di Frascati, Frascati, Italy
+44 Physics Department, Southern Methodist University, Dallas, TX, USA
+123
+
+===== PAGE 38 =====
+761 Page 38 of 41 Eur. Phys. J. C (2023) 83 :761
+45 Physics Department, University of Texas at Dallas, Richardson, TX, USA
+46 National Centre for Scientiﬁc Research “Demokritos”, Agia Paraskevi, Greece
+47 (a)Department of Physics, Stockholm University, Stockholm, Sweden;(b)Oskar Klein Centre, Stockholm, Sweden
+48 Deutsches Elektronen-Synchrotron DESY, Hamburg and Zeuthen, Germany
+49 Fakultät Physik , Technische Universität Dortmund, Dortmund, Germany
+50 Institut für Kern- und Teilchenphysik, Technische Universität Dresden, Dresden, Germany
+51 Department of Physics, Duke University, Durham, NC, USA
+52 SUPA-School of Physics and Astronomy, University of Edinburgh, Edinburgh, UK
+53 INFN e Laboratori Nazionali di Frascati, Frascati, Italy
+54 Physikalisches Institut, Albert-Ludwigs-Universität Freiburg, Freiburg, Germany
+55 II. Physikalisches Institut, Georg-August-Universität Göttingen, Göttingen, Germany
+56 Département de Physique Nucléaire et Corpusculaire, Université de Genève, Geneva, Switzerland
+57 (a)Dipartimento di Fisica, Università di Genova, Genoa, Italy;(b)INFN Sezione di Genova, Genoa, Italy
+58 II. Physikalisches Institut, Justus-Liebig-Universität Giessen, Giessen, Germany
+59 SUPA - School of Physics and Astronomy, University of Glasgow, Glasgow, UK
+60 LPSC, Université Grenoble Alpes, CNRS/IN2P3, Grenoble INP, Grenoble, France
+61 Laboratory for Particle Physics and Cosmology, Harvard University, Cambridge, MA, USA
+62 (a)Department of Modern Physics and State Key Laboratory of Particle Detection and Electronics, University of Science
+and Technology of China, Hefei, China;(b)Institute of Frontier and Interdisciplinary Science and Key Laboratory of
+Particle Physics and Particle Irradiation (MOE), Shandong University, Qingdao, China;(c)School of Physics and
+Astronomy, Shanghai Jiao Tong University, Key Laboratory for Particle Astrophysics and Cosmology (MOE), SKLPPC,
+Shanghai, China; (d)Tsung-Dao Lee Institute, Shanghai, China
+63 (a)Kirchhoff-Institut für Physik, Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany;(b)Physikalisches Institut,
+Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany
+64 (a)Department of Physics, Chinese University of Hong Kong, Shatin, N.T., Hong Kong, China;(b)Department of Physics,
+University of Hong Kong, Hong Kong, China;(c)Department of Physics and Institute for Advanced Study, Hong Kong
+University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong, China
+65 Department of Physics, National Tsing Hua University, Hsinchu, Taiwan
+66 IJCLab, Université Paris-Saclay, CNRS/IN2P3, 91405 Orsay, France
+67 Centro Nacional de Microelectrónica (IMB-CNM-CSIC), Barcelona, Spain
+68 Department of Physics, Indiana University, Bloomington, IN, USA
+69 (a)INFN Gruppo Collegato di Udine, Sezione di Trieste, Udine, Italy;(b)ICTP, Trieste, Italy;(c)Dipartimento Politecnico
+di Ingegneria e Architettura, Università di Udine, Udine, Italy
+70 (a)INFN Sezione di Lecce, Lecce, Italy; (b)Dipartimento di Matematica e Fisica, Università del Salento, Lecce, Italy
+71 (a)INFN Sezione di Milano, Milan, Italy; (b)Dipartimento di Fisica, Università di Milano, Milan, Italy
+72 (a)INFN Sezione di Napoli, Naples, Italy; (b)Dipartimento di Fisica, Università di Napoli, Naples, Italy
+73 (a)INFN Sezione di Pavia, Pavia, Italy;(b)Dipartimento di Fisica, Università di Pavia, Pavia, Italy
+74 (a)INFN Sezione di Pisa, Pisa, Italy; (b)Dipartimento di Fisica E. Fermi, Università di Pisa, Pisa, Italy
+75 (a)INFN Sezione di Roma, Rome, Italy; (b)Dipartimento di Fisica, Sapienza Università di Roma, Rome, Italy
+76 (a)INFN Sezione di Roma Tor Vergata, Rome, Italy;(b)Dipartimento di Fisica, Università di Roma Tor Vergata, Rome,
+Italy
+77 (a)INFN Sezione di Roma Tre, Rome, Italy;(b)Dipartimento di Matematica e Fisica, Università Roma Tre, Rome, Italy
+78 (a)INFN-TIFPA, Povo, Italy;(b)Università degli Studi di Trento, Trento, Italy
+79 Department of Astro and Particle Physics, Universität Innsbruck, Innsbruck, Austria
+80 University of Iowa, Iowa City, IA, USA
+81 Department of Physics and Astronomy, Iowa State University, Ames, IA, USA
+82 (a)Departamento de Engenharia Elétrica, Universidade Federal de Juiz de Fora (UFJF), Juiz de Fora,
+Brazil; (b)Universidade Federal do Rio de Janeiro COPPE/EE/IF, Rio de Janeiro, Brazil;(c)Instituto de Física,
+Universidade de São Paulo, São Paulo, Brazil;(d)Rio de Janeiro State University, Rio de Janeiro, Brazil
+83 KEK, High Energy Accelerator Research Organization, Tsukuba, Japan
+84 Graduate School of Science, Kobe University, Kobe, Japan
+85 (a)Faculty of Physics and Applied Computer Science, AGH University of Science and Technology, Krakow,
+Poland; (b)Marian Smoluchowski Institute of Physics, Jagiellonian University, Krakow, Poland
+123
+
+===== PAGE 39 =====
+Eur. Phys. J. C (2023) 83 :761 Page 39 of 41 761
+86 Institute of Nuclear Physics Polish Academy of Sciences, Krakow, Poland
+87 Faculty of Science, Kyoto University, Kyoto, Japan
+88 Kyoto University of Education, Kyoto, Japan
+89 Research Center for Advanced Particle Physics and Department of Physics, Kyushu University, Fukuoka, Japan
+90 Instituto de Física La Plata, Universidad Nacional de La Plata and CONICET, La Plata, Argentina
+91 Physics Department, Lancaster University, Lancaster, UK
+92 Oliver Lodge Laboratory, University of Liverpool, Liverpool, UK
+93 Department of Experimental Particle Physics, Jožef Stefan Institute and Department of Physics, University of Ljubljana,
+Ljubljana, Slovenia
+94 School of Physics and Astronomy, Queen Mary University of London, London, UK
+95 Department of Physics, Royal Holloway University of London, Egham, UK
+96 Department of Physics and Astronomy, University College London, London, UK
+97 Louisiana Tech University, Ruston, LA, USA
+98 Fysiska institutionen, Lunds universitet, Lund, Sweden
+99 Departamento de Física Teorica C-15 and CIAFF, Universidad Autónoma de Madrid, Madrid, Spain
+100 Institut für Physik, Universität Mainz, Mainz, Germany
+101 School of Physics and Astronomy, University of Manchester, Manchester, UK
+102 CPPM, Aix-Marseille Université, CNRS/IN2P3, Marseille, France
+103 Department of Physics, University of Massachusetts, Amherst, MA, USA
+104 Department of Physics, McGill University, Montreal, QC, Canada
+105 School of Physics, University of Melbourne, Victoria, Australia
+106 Department of Physics, University of Michigan, Ann Arbor, MI, USA
+107 Department of Physics and Astronomy, Michigan State University, East Lansing, MI, USA
+108 Group of Particle Physics, University of Montreal, Montreal, QC, Canada
+109 Fakultät für Physik, Ludwig-Maximilians-Universität München, Munich, Germany
+110 Max-Planck-Institut für Physik (Werner-Heisenberg-Institut), Munich, Germany
+111 Graduate School of Science and Kobayashi-Maskawa Institute, Nagoya University, Nagoya, Japan
+112 Department of Physics and Astronomy, University of New Mexico, Albuquerque, NM, USA
+113 Institute for Mathematics, Astrophysics and Particle Physics, Radboud University/Nikhef, Nijmegen, The Netherlands
+114 Nikhef National Institute for Subatomic Physics and University of Amsterdam, Amsterdam, The Netherlands
+115 Department of Physics, Northern Illinois University, DeKalb, IL, USA
+116 (a)New York University Abu Dhabi, Abu Dhabi, United Arab Emirates;(b)University of Sharjah, Sharjah, United Arab
+Emirates
+117 Department of Physics, New York University, New York, NY, USA
+118 Ochanomizu University, Otsuka, Bunkyo-ku, Tokyo, Japan
+119 Ohio State University, Columbus, OH, USA
+120 Homer L. Dodge Department of Physics and Astronomy, University of Oklahoma, Norman, OK, USA
+121 Department of Physics, Oklahoma State University, Stillwater, OK, USA
+122 Palacký University, Joint Laboratory of Optics, Olomouc, Czech Republic
+123 Institute for Fundamental Science, University of Oregon, Eugene, OR, USA
+124 Graduate School of Science, Osaka University, Osaka, Japan
+125 Department of Physics, University of Oslo, Oslo, Norway
+126 Department of Physics, Oxford University, Oxford, UK
+127 LPNHE, Sorbonne Université, Université Paris Cité, CNRS/IN2P3, Paris, France
+128 Department of Physics, University of Pennsylvania, Philadelphia, PA, USA
+129 Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh, PA, USA
+130 (a)Laboratório de Instrumentação e Física Experimental de Partículas-LIP, Lisbon, Portugal; (b)Departamento de Física,
+Faculdade de Ciências, Universidade de Lisboa, Lisbon, Portugal;(c)Departamento de Física, Universidade de Coimbra,
+Coimbra, Portugal; (d)Centro de Física Nuclear da Universidade de Lisboa, Lisbon, Portugal;(e)Departamento de Física,
+Universidade do Minho, Braga, Portugal;(f)Departamento de Física Teórica y del Cosmos, Universidad de Granada,
+Granada, Spain; (g)Departamento de Física, Instituto Superior Técnico, Universidade de Lisboa, Lisbon, Portugal
+131 Institute of Physics of the Czech Academy of Sciences, Prague, Czech Republic
+132 Czech Technical University in Prague, Prague, Czech Republic
+123
+
+===== PAGE 40 =====
+761 Page 40 of 41 Eur. Phys. J. C (2023) 83 :761
+133 Faculty of Mathematics and Physics, Charles University, Prague, Czech Republic
+134 Particle Physics Department, Rutherford Appleton Laboratory, Didcot, UK
+135 IRFU, CEA, Université Paris-Saclay, Gif-sur-Yvette, France
+136 Santa Cruz Institute for Particle Physics, University of California Santa Cruz, Santa Cruz, CA, USA
+137 (a)Departamento de Física, Pontiﬁcia Universidad Católica de Chile, Santiago, Chile;(b)Millennium Institute for
+Subatomic Physics at High Energy Frontier (SAPHIR), Santiago, Chile; (c)Instituto de Investigación Multidisciplinario
+en Ciencia y Tecnología y Departamento de Física, Universidad de La Serena, La Serena, Chile;(d)Department of
+Physics, Universidad Andres Bello, Santiago, Chile;(e)Instituto de Alta Investigación, Universidad de Tarapacá, Arica,
+Chile; (f)Departamento de Física, Universidad Técnica Federico Santa María, Valparaíso, Chile
+138 Department of Physics, University of Washington, Seattle, W A, USA
+139 Department of Physics and Astronomy, University of Shefﬁeld, Shefﬁeld, UK
+140 Department of Physics, Shinshu University, Nagano, Japan
+141 Department Physik, Universität Siegen, Siegen, Germany
+142 Department of Physics, Simon Fraser University, Burnaby, BC, Canada
+143 SLAC National Accelerator Laboratory, Stanford, CA, USA
+144 Department of Physics, Royal Institute of Technology, Stockholm, Sweden
+145 Departments of Physics and Astronomy, Stony Brook University, Stony Brook, NY, USA
+146 Department of Physics and Astronomy, University of Sussex, Brighton, UK
+147 School of Physics, University of Sydney, Sydney, Australia
+148 Institute of Physics, Academia Sinica, Taipei, Taiwan
+149 (a)E. Andronikashvili Institute of Physics, Iv. Javakhishvili Tbilisi State University, Tbilisi, Georgia;(b)High Energy
+Physics Institute, Tbilisi State University, Tbilisi, Georgia;(c)University of Georgia, Tbilisi, Georgia
+150 Department of Physics, Technion, Israel Institute of Technology, Haifa, Israel
+151 Raymond and Beverly Sackler School of Physics and Astronomy, Tel Aviv University, Tel Aviv, Israel
+152 Department of Physics, Aristotle University of Thessaloniki, Thessaloniki, Greece
+153 International Center for Elementary Particle Physics and Department of Physics, University of Tokyo, Tokyo, Japan
+154 Department of Physics, Tokyo Institute of Technology, Tokyo, Japan
+155 Department of Physics, University of Toronto, Toronto, ON, Canada
+156 (a)TRIUMF, Vancouver, BC, Canada;(b)Department of Physics and Astronomy, York University, Toronto, ON, Canada
+157 Division of Physics and Tomonaga Center for the History of the Universe, Faculty of Pure and Applied Sciences,
+University of Tsukuba, Tsukuba, Japan
+158 Department of Physics and Astronomy, Tufts University, Medford, MA, USA
+159 United Arab Emirates University, Al Ain, United Arab Emirates
+160 Department of Physics and Astronomy, University of California Irvine, Irvine, CA, USA
+161 Department of Physics and Astronomy, University of Uppsala, Uppsala, Sweden
+162 Department of Physics, University of Illinois, Urbana, IL, USA
+163 Instituto de Física Corpuscular (IFIC), Centro Mixto Universidad de Valencia-CSIC, Valencia, Spain
+164 Department of Physics, University of British Columbia, Vancouver, BC, Canada
+165 Department of Physics and Astronomy, University of Victoria, Victoria, BC, Canada
+166 Fakultät für Physik und Astronomie, Julius-Maximilians-Universität Würzburg, Würzburg, Germany
+167 Department of Physics, University of Warwick, Coventry, UK
+168 Waseda University, Tokyo, Japan
+169 Department of Particle Physics and Astrophysics, Weizmann Institute of Science, Rehovot, Israel
+170 Department of Physics, University of Wisconsin, Madison, WI, USA
+171 Fakultät für Mathematik und Naturwissenschaften, Fachgruppe Physik, Bergische Universität Wuppertal, Wuppertal,
+Germany
+172 Department of Physics, Yale University, New Haven, CT, USA
+a Also at Also Afﬁliated with an institute covered by a cooperation agreement with CERN, Geneva, Switzerland
+b Also at APC, Université Paris Cité, CNRS/IN2P3, Paris, France
+c Also at Borough of Manhattan Community College, City University of New York, New York, NY, USA
+d Also at Center for High Energy Physics, Peking University, Beijing, China
+e Also at Center for Interdisciplinary Research and Innovation (CIRI-AUTH), Thessaloniki , Greece
+123
+
+===== PAGE 41 =====
+Eur. Phys. J. C (2023) 83 :761 Page 41 of 41 761
+f Also at Centro Studi e Ricerche Enrico Fermi, Rome, Italy
+g Also at CERN, Geneva, Switzerland
+h Also at Département de Physique Nucléaire et Corpusculaire, Université de Genève, Geneva, Switzerland
+i Also at Departament de Fisica de la Universitat Autonoma de Barcelona, Barcelona, Spain
+j Also at Department of Financial and Management Engineering, University of the Aegean, Chios, Greece
+k Also at Department of Physics and Astronomy, Michigan State University, East Lansing, MI, USA
+l Also at Department of Physics and Astronomy, University of Victoria, Victoria, BC, Canada
+m Also at Department of Physics, California State University, Sacramento, USA
+n Also at Department of Physics, King’s College London, London, UK
+o Also at Department of Physics, Royal Holloway University of London, Egham, UK
+p Also at Department of Physics, University of Fribourg, Fribourg, Switzerland
+q Also at Department of Physics, University of Thessaly, Thessaly, Greece
+r Also at Department of Physics, Westmont College, Santa Barbara, USA
+s Also at Hellenic Open University, Patras, Greece
+t Also at Institucio Catalana de Recerca i Estudis Avancats, ICREA, Barcelona, Spain
+u Also at Institut für Experimentalphysik, Universität Hamburg, Hamburg, Germany
+v Also at Institute of Applied Physics, Mohammed VI Polytechnic University, Ben Guerir, Morocco
+w Also at Institute of Particle Physics (IPP), Toronto, Canada
+x Also at Institute of Physics and Technology, Ulaanbaatar, Mongolia
+y Also at Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+z Also at Institute of Theoretical Physics, Ilia State University, Tbilisi, Georgia
+aa Also at Lawrence Livermore National Laboratory, Livermore, USA
+ab Also at The Collaborative Innovation Center of Quantum Matter (CICQM), Beijing, China
+ac Also at TRIUMF, Vancouver, BC, Canada
+ad Also at Università di Napoli Parthenope, Naples, Italy
+ae Also at Department of Physics, University of Colorado Boulder, Boulder, CO, USA
+af Also at Washington College, Chestertown, MD, USA
+ag Also at Physics Department, An-Najah National University, Nablus, Palestine
+∗ Deceased
+123

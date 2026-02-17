@@ -1,0 +1,151 @@
+%-------------------------------------------------------------------------------
+% This file provides snippets for MC generator descriptions
+%-------------------------------------------------------------------------------
+% \pdfoutput=1
+% The \pdfoutput command is needed by arXiv/JHEP/JINST to ensure use of pdflatex.
+% It should be included in the first 5 lines of the file.
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\makeatletter
+\def\input@path{{../../latex/}}
+\makeatother
+%-------------------------------------------------------------------------------
+\documentclass[NOTE, atlasdraft=false, UKenglish, texlive=2016]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  txfonts=true|false    Use txfonts rather than the default newtx - needed for arXiv submission.
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+%-------------------------------------------------------------------------------
+% Extra packages:
+\usepackage{atlaspackage}
+
+%-------------------------------------------------------------------------------
+% Style file with biblatex options for ATLAS documents.
+\usepackage{atlasbiblatex}
+
+%-------------------------------------------------------------------------------
+% Useful macros
+\usepackage[process]{atlasphysics}
+% See doc/atlas_physics.pdf for a list of the defined symbols.
+% Default options are:
+%   true:  journal, misc, particle, unit, xref
+%   false: BSM, heppparticle, hepprocess, hion, jetetmiss, math, process, other, texmf
+% See the package for details on the options.
+
+% Files with references for use with biblatex.
+% Note that biber gives an error if it finds empty bib files.
+%\addbibresource{MC_snippets.bib}
+
+\addbibresource{../../bib/ATLAS.bib}
+\addbibresource{../../bib/ATLAS-errata.bib}
+\addbibresource{../../bib/ATLAS-useful.bib}
+\addbibresource{../../bib/CMS.bib}
+\addbibresource{../../bib/ConfNotes.bib}
+\addbibresource{../../bib/PubNotes.bib}
+ 
+% Paths for figures - do not forget the / at the end of the directory name.
+\graphicspath{{../../logos/}{figures/}}
+
+% Add your own definitions here (file MC_snippets-defs.sty).
+\usepackage{MC_snippets-defs}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Title, abstract and document 
+% \input{MC_snippets-metadata}
+% Title
+\AtlasTitle{References and set-up descriptions for the MC16 campaign}
+
+% Author - this does not work with revtex (add it after \begin{document})
+\author{The ATLAS Collaboration}
+
+% Comment or remove in final version.
+\AtlasRefCode{Version \ATPackageVersion}
+
+% Abstract - % directly after { is important for correct indentation
+\AtlasAbstract{%
+    This document is intended as a template for referencing ATLAS Monte Carlo
+    set-ups for Standard Model processes produced in the MC16
+    campaign. It includes descriptions of the generator configurations and
+    the appropriate references.
+}
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS document},pdfauthor={The ATLAS Collaboration}}
+
+%-------------------------------------------------------------------------------
+% Content
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+%-------------------------------------------------------------------------------
+% Intro
+\section{Introduction}
+
+This document is a collection of short descriptions of the baseline Standard Model processes
+produced as part of the ATLAS MC16 production campaign. Often a short and a long description 
+is provided, depending on whether a sample is used as a background or a signal sample in an
+analysis, respectively.
+
+It is assumed that paper editors will make a final pass through the wording, e.g.\ to avoid
+acronyms being introduced multiple times.
+The descriptions contain the appropriate citations which are included by default in 
+the \texttt{atlaslatex} package as well.
+These citations often reflect decades of theory work and would have typically been agreed upon 
+with the generator developers, who rely on them to secure funding for future generator development.
+PMG therefore strongly encourages \emph{keeping all recommended citations} for any given snippet.
+
+Please note that the generator versions can generally change from sample to sample. 
+A change in the third digit typically indicates some sort of technical bug fix that
+does not affect the physics modelling otherwise. 
+In order to save CPU time, samples are often regenerated only when they are affected 
+by a (sufficiently severe) bug and so even within a set of final states 
+of any given process, the generator version may differ.
+
+You may have to add the \texttt{process} or \texttt{hepprocess} option to the \texttt{atlasphysics} package for some generators.
+In addition, some useful macros for processes are defined in the style file \texttt{MC\_snippets-defs.sty}.
+
+%-------------------------------------------------------------------------------
+% Common generator details
+%\include{MC}
+%-------------------------------------------------------------------------------
+% Minbias
+\include{Pileup}
+%-------------------------------------------------------------------------------
+% V+jets
+\include{BJ}
+%-------------------------------------------------------------------------------
+% Multiboson
+\include{MB}
+%-------------------------------------------------------------------------------
+% Higgs processes                                                                                             
+\include{Higgs}
+%-------------------------------------------------------------------------------
+% Top
+\include{TQ}
+%-------------------------------------------------------------------------------
+% RareTop
+\include{RT}
+%-------------------------------------------------------------------------------                         
+% Jets
+\include{MJ}
+%-------------------------------------------------------------------------------
+% Photon processes                                                                                             
+\include{GJ}
+
+%-------------------------------------------------------------------------------
+% Print the bibliography
+\printbibliography
+%-------------------------------------------------------------------------------
+
+\end{document}

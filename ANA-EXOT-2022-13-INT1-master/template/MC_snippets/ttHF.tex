@@ -1,0 +1,120 @@
+\subsection[\ttHF]{\ttHF}
+\label{subsec:ttHF}
+
+In the following subsections, the set-ups of the current baseline samples for the production of \ttbar quark pairs in association with
+$b$-quarks (\ttHF) are described. NLO predictions with massive $b$-quarks in the matrix element and matched to parton shower
+programs are available within the \SHERPAOL, \MGNLO and, more recently, \POWHEGBOX frameworks.
+
+\subsubsection[Sherpa]{\SHERPA}
+%\label{subsubsec:ttHF_sherpa}
+The descriptions below refer to the \SHERPA[2.2.1] samples. 
+Details of the set-up are given in Ref.~\cite{ATL-PHYS-PUB-2016-016} and reported below. 
+
+\paragraph{Samples} 
+%\label{par:ttHF_sherpa_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttHF_Sh}.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttbar+HF samples produced with \SHERPA.
+      Variation samples are not explicitly listed.}%
+  \label{tab:ttHF_Sh}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410323--4 & \ttbar single lepton \\
+    410325 & \ttbar dilepton \\
+    410369 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Samples for \ttHF processes were produced with the \SHERPA[2.2.1]~\cite{Bothmann:2019yzt} generator,
+using the MEPS@NLO prescription~\cite{Hoeche:2012yf} and interfaced with \OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}
+to provide the virtual corrections for matrix elements at NLO accuracy.
+The four-flavour scheme is used with the $b$-quark mass set to 4.75\,\GeV.  
+The renormalisation scale \muR has the functional form 
+$\sqrt[4]{m_\text{T}(t) \cdot m_\text{T}(\bar{t}) \cdot m_\text{T}(b) \cdot m_\text{T}(\bar{b})}$. The 
+factorisation scale \muF was set to $H_\text{T}/2$, where $H_\text{T}$ is the transverse-mass sum of the
+partons in the matrix element, and this value was also the resummation scale \muQ of the parton shower.
+The \CT[10nlo] PDF set was used in conjunction with a dedicated PS tune developed by the \SHERPA authors. 
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+%\label{subsubsec:ttHF_aMCP8}
+In the following, set-ups are described for \PYTHIA only. 
+Details of the set-up are given in Ref.~\cite{ATL-PHYS-PUB-2016-016} and reported below. 
+
+\paragraph{Samples}
+%\label{par:ttHF_aMCP8_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttHF_amc}.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttbar+HF samples produced with \MGNLOPY[8].}%
+  \label{tab:ttHF_amc}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410265 & \ttbar non-all-hadronic \\
+    410266 & \ttbar dileptonic \\
+    410267 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Samples for \ttHF processes were produced with the \MGNLO generator 
+with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set. It was interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea},
+using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] PDF.
+The four-flavour scheme was used with the $b$-quark mass set to 4.75\,\GeV.  
+The renormalisation scale \muR has the functional form 
+$\sqrt[4]{m_\text{T}(t) \cdot m_\text{T}(\bar{t}) \cdot m_\text{T}(b) \cdot m_\text{T}(\bar{b})}$. The 
+factorisation scale \muF was set to $H_\text{T}/2$, where $H_\text{T}$ is the transverse-mass sum of the partons in the matrix
+element.
+The resummation scale \muQ has the form $\muQ = f_\text{Q} \sqrt{\hat{s}}$, where 
+the prefactor $f_\text{Q}$ is an external parameter randomly distributed in the 
+range $[f^\text{min}_\text{Q}$, $f^\text{max}_\text{Q}]=[0.1,0.25]$.    
+
+
+\subsubsection[PowhegBoxRes+Pythia8]{\POWHEGBOXRES+\PYTHIA[8]}
+%\label{subsubsec:ttHF_PP8}
+In the following, set-ups are described for \PYTHIA[8] only. 
+
+\paragraph{Samples}
+%\label{par:ttHF_PP8_samples}
+The descriptions below correspond to the samples in Table~\ref{tab:ttHF_pp8}.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttbar+HF samples produced with \POWHEGBOXRES+\PYTHIA[8].}%
+  \label{tab:ttHF_pp8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    411179--80 & \ttbar non-all-hadronic \\
+    411178    & \ttbar dileptonic \\
+    411275    & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Samples for \ttHF processes were produced with the \POWHEGBOXRES~\cite{Jezo:2018yaf}
+generator and \OPENLOOPS~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}, using a pre-release 
+of the implementation of this process in \POWHEGBOXRES provided by the authors~\cite{ttbbPowheg}, 
+with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set. It was interfaced with \PYTHIA[8.240]~\cite{Sjostrand:2014zea},
+using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo] PDF set.
+The four-flavour scheme was used with the $b$-quark mass set to 4.95\,\GeV.
+The factorisation scale was set to $0.5\times\Sigma_{i=t,\bar{t},b,\bar{b},j}m_{\mathrm{T},i}$,
+the renormalisation scale was set to $\sqrt[4]{m_{\text{T}}(t)\cdot m_{\text{T}}(\bar{t})\cdot m_{\text{T}}(b)\cdot m_{\text{T}}(\bar{b})}$,
+and the \hdamp parameter was set to $0.5\times\Sigma_{i=t,\bar{t},b,\bar{b}}m_{\mathrm{T},i}$.

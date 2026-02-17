@@ -1,0 +1,58 @@
+%-------------------------------------------------------------------------------
+% Style file with useful commands for language editors.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlascomment}[2021/08/20 v11.6.0 ATLAS language editing style]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Process option. Use kvoptions package.
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=ACOMM,
+  prefix=ACOMM@
+}
+\DeclareBoolOption[true]{comment}
+\ProcessKeyvalOptions*
+
+\RequirePackage{xspace}
+
+\ifthenelse{\boolean{ACOMM@comment}}{%
+  \typeout{atlascomment: showing comments}
+  \typeout{Sizes before changing settings:}
+  \typeout{text height and width \the\textheight, \the\textwidth}
+  % \typeout{line width \the\linewidth}
+  \typeout{margin width and sep \the\marginparwidth, \the\marginparsep}
+  \KOMAoptions{BCOR=-5mm}
+  \KOMAoptions{DIV=last}
+  \addtolength{\marginparwidth}{10mm}
+  % BCOR changed from 5mmm in atlasdoc to -5mm here, so adjust text width
+  \addtolength{\textwidth}{-7.86mm}
+  \typeout{Sizes after changing settings:}
+  \typeout{text height and width \the\textheight, \the\textwidth}
+  % \typeout{line width \the\linewidth}
+  \typeout{margin width and sep \the\marginparwidth, \the\marginparsep}
+  \RequirePackage{todonotes}
+  \newcommand{\LEcomment}[3][]{%
+    \ifthenelse{ \equal{#1}{} }
+      {\textcolor{magenta}{#2}\todo[color=pink, linecolor=magenta]{#3}\xspace}
+      {\textcolor{magenta}{#2}\todo[color=pink, linecolor=magenta, #1]{#3}\xspace}
+  }
+}{%
+  \typeout{atlascomment: not showing comments}
+  \RequirePackage[disable]{todonotes}
+  \newcommand{\LEcomment}[3][]{\todo[#1]{#2}\xspace}
+}
+
+% \presetkeys{todonotes}{fancyline, color=blue!30}{}
+\presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}
+% \newcommand{\LEsuggest}[2]{\textcolor{orange!90}{#1}\todo[color=orange!40]{#2}\xspace}
+% \newcommand{\LEexplain}[2]{\textcolor{darkgreen!90}{#1}\todo[color=green!40]{#2}\xspace}

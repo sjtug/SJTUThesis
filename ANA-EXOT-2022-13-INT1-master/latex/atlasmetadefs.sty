@@ -1,0 +1,124 @@
+%-------------------------------------------------------------------------------
+% The following macros are usually used in atlas-documemnt-metadata.tex.
+% They are defined here so that this file does not have to be changed 
+% when adapting an ATLAS document for journal submission
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+% If statements for checking if things are defined.
+\newif\ifADOC@abstract
+\newif\ifACOV@support
+
+% \renewcommand{\@title}{Dummy title in atlasmetadefs\\ Use \textbackslash AtlasTitle to set it}
+\providecommand{\AtlasTitleText}{Dummy AtlasTitle in atlasmetadefs: use \textbackslash AtlasTitle to set it}
+\providecommand{\AtlasTitle}[1]{%
+  \renewcommand{\@title}{#1}%
+  \renewcommand{\AtlasTitleText}{#1}%
+}
+
+% Draft version
+\providecommand*{\ADOC@draftversion}{}
+\providecommand*{\draftversion}[1]{\renewcommand*{\ADOC@draftversion}{#1}}
+\providecommand*{\AtlasVersion}[1]{\renewcommand*{\ADOC@draftversion}{#1}}
+  
+% ATLAS reference code - empty by default
+% Also create variable with web page
+\providecommand*{\ADOC@refcode}{}
+\providecommand*{\AtlasRefCode}[1]{\renewcommand*{\ADOC@refcode}{#1}}
+\providecommand*{\AtlasPaperWebpage}{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/\ADOC@refcode}
+  
+% ATLAS note number
+\providecommand*{\ADOC@atlasnote}{}
+\providecommand*{\AtlasNote}[1]{\renewcommand*{\ADOC@atlasnote}{#1}}
+
+% ATLAS date - arXiv submission; to be filled in by the Physics Office
+\providecommand*{\ADOC@atlasdate}{\today}
+\providecommand*{\AtlasDate}[1]{\renewcommand*{\ADOC@atlasdate}{#1}}
+
+% Journal
+\providecommand*{\ADOC@journal}{}
+\providecommand*{\journal}[1]{\renewcommand*{\ADOC@journal}{#1}}
+\providecommand*{\AtlasJournal}[1]{\renewcommand*{\ADOC@journal}{#1}}
+
+% Preprint
+\providecommand*{\ADOC@preprintnumber}{}
+\providecommand*{\PreprintIdNumber}[1]{\renewcommand*{\ADOC@preprintnumber}{#1}}
+
+% Journal reference
+\providecommand*{\ADOC@journalref}{}
+\providecommand*{\AtlasJournalRef}[1]{\renewcommand*{\ADOC@journalref}{#1}}
+
+% DOI
+\providecommand*{\ADOC@doi}{}
+\providecommand*{\AtlasDOI}[1]{\renewcommand*{\ADOC@doi}{#1}}
+
+% arXiv
+\providecommand*{\AtlasArXivId}{}
+\providecommand*{\AtlasArXivURL}{}
+\providecommand*{\arXivId}[1]{\renewcommand*{\AtlasArXivId}{#1}\renewcommand*{\AtlasArXivURL}{http://arXiv.org/abs/#1}}
+\providecommand*{\AtlasArXivCat}{[hep-ex]}
+
+% HEP Data
+\providecommand*{\AtlasHepDataRecord}{}
+\providecommand*{\HepDataRecord}[1]{\renewcommand*{\AtlasHepDataRecord}{http://hepdata.cedar.ac.uk/view/ins#1}}
+
+% Abstract text
+\providecommand{\AtlasAbstractText}{}
+\providecommand{\AtlasAbstract}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
+\providecommand{\abstracttext}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
+
+\providecommand*{\ACOV@CommentsDeadline}{Comments deadline}
+\providecommand{\AtlasCoverCommentsDeadline}[1]{\renewcommand*{\ACOV@CommentsDeadline}{#1}}
+
+\providecommand*{\ACOV@AnalysisTeam}{Analysis team}
+\providecommand{\AtlasCoverAnalysisTeam}[1]{\renewcommand*{\ACOV@AnalysisTeam}{#1}}
+
+\providecommand*{\ACOV@EgroupEditors}{Editor egroup}
+\providecommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupEditors}{#1}}
+
+\providecommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
+\providecommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
+
+% Multiple corresponding editors
+% \providecommand{\ACOV@Editors}{}
+% \providecommand{\AtlasCoverEditor}[2]{%
+%   \g@addto@macro\ACOV@Editors{%
+%     #1 & (\texttt{#2}) \\
+%   }%
+% }
+
+% EdBoard members
+\providecommand{\ACOV@EdBoardMembers}{}
+\providecommand{\AtlasCoverEdBoardMember}[1]{%
+  \g@addto@macro\ACOV@EdBoardMembers{%
+    #1\par
+  }%
+}
+
+% Readers (for PUB notes)
+\providecommand{\ACOV@ReaderMembers}{}
+\providecommand{\AtlasCoverReaderMember}[1]{%
+  \g@addto@macro\ACOV@ReaderMembers{%
+    #1\par
+  }%
+}
+
+% Language editor
+\providecommand*{\ACOV@LangEditor}{language editor contact}
+\providecommand{\LEcontact}[1]{\renewcommand*{\ACOV@LangEditor}{#1}}
+
+\providecommand*{\ACOV@TwikiURL}{}
+\providecommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\renewcommand*{\ACOV@TwikiURL}{\url{#1}}}
+
+% Supporting note list
+\providecommand\ACOV@Notes{}
+\providecommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
+  \g@addto@macro\ACOV@Notes{%
+    #1: \url{#2}\newline
+  }%
+}
+
+\endinput

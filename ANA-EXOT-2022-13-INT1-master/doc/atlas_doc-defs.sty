@@ -1,0 +1,60 @@
+% Useful extra commands
+\newcommand*{\pho}{\phantom{0}}
+\newcommand*{\phoo}{\phantom{00}}
+\newcommand*{\phd}{\phantom{.}}
+\newcommand*{\phdo}{\phantom{.0}}
+\newcommand*{\phdoo}{\phantom{.00}}
+\newcommand{\BibTeX}{\textsc{Bib\TeX}}
+\newcommand{\File}[1]{\texttt{#1}\xspace}
+\newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
+\newcommand{\Option}[1]{\textsf{#1}\xspace}
+\newcommand{\Package}[1]{\texttt{#1}\xspace}
+
+% Useful macros for rounding
+\newcommand*{\numR}[2]{\num[round-precision=#2]{#1}}
+\newcommand*{\numRF}[2]{\num[round-mode=figures,round-precision=#2]{#1}}
+\newcommand*{\numRP}[2]{\num[round-mode=places, round-precision=#2]{#1}}
+\newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3]{#1}}_{\num[round-precision=#3]{#2}}}}
+\newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures,round-precision=#3]{#1}}_{\num[round-mode=figures,round-precision=#3]{#2}}}}
+\newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3]{#1}}_{\num[round-mode=places, round-precision=#3]{#2}}}}
+
+% Use tcolorbox for listings
+\RequirePackage[listings, breakable]{tcolorbox}
+\tcbset{colframe=Blue, colback=Azure}
+\newtcblisting{bashlisting}{%
+  colback=Honeydew, colframe=Green,
+  listing only, listing options={language=bash},
+  fontupper=\ttfamily\small
+}
+
+% Boxes to indicate changes
+% \RequirePackage{marginnote}
+\newtcbox{ADOC@new}{on line, size=minimal, sharp corners,
+  colback=LightPink, colframe=DarkOliveGreen,
+  boxrule=0pt, toprule=1pt, bottomrule=1pt}
+\newtcbox{ADOC@old}{on line, size=minimal, sharp corners,
+  colback=Gainsboro, colframe=DarkSlateGrey,
+  boxrule=0pt, toprule=1pt, bottomrule=1pt}
+\newcommand{\ADOCnew}[1]{\par\noindent\hspace*{-2em}\ADOC@new{\normalsize N: #1}}
+\newcommand{\ADOCold}[1]{\par\noindent\hspace*{-2em}\ADOC@old{\normalsize O: #1}}
+% \newcommand{\ADOCnew}[1]{\marginnote[\flushright\begin{ADOC@new}\scriptsize N: #1\end{ADOC@new}]{RIGHT}}
+% \newcommand{\ADOCnew}[1]{\reversemarginpar\marginpar{\flushright\scriptsize N: #1}\normalmarginpar}
+
+% Listings package cannot handle UTF-8 directly.
+% his is a fix from https://tex.stackexchange.com/questions/317289/tcolorbox-and-vietnamese/317448
+% \lstset{literate=%
+%   {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+%   {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+%   {ß}{{\ss}}1
+% }
+
+% Listing and result of listing
+% \RequirePackage{showexpl}
+
+% \definecolor{Comments}{rgb}{0,0.63,1}
+% \definecolor{Keywords}{rgb}{0,0,1}
+% \definecolor{Numbers}{rgb}{0.5,0,0}
+% \definecolor{Strings}{rgb}{0,0.63,0}
+
+% \renewcommand\ResultBox{\fcolorbox{blue}{lightgray}}
+% \setlength\ResultBoxRule{1pt}% default: \fboxrule

@@ -1,0 +1,65 @@
+\section{Executive Summary}
+
+This section, ideally less than two pages, should be placed at the beginning of the supporting note.
+It should give a high-level overview of the analysis including (but not limited to):
+\begin{itemize}
+\item physics target and the general characteristics of the signal;
+\item analysis strategy;
+\item general characteristics of the control, validation, and signal regions;
+\item a background estimation strategy overview;
+\item highlights of major or most important points of the analysis;
+\item a table or list of all critical tasks and who is responsible for each.
+\end{itemize}
+
+This section should include explicit pointers to the items required for the PAR and FAR\@.  For reference, those items are listed below. Please feel free to modify these lists into references to document sections.
+
+For a PAR (ed board request), the SUSY group looks for:
+\begin{itemize}
+\item A definition of the target scenarios
+\item A brief run-down of the signal grids, in particular pointing to any production problems or places where the production has not yet begun
+\item A discussion of any non-standard object definitions in the analysis, and any on-going development that might affect the object definition
+\item A discussion of the derivations: whether any reprocessing is needed, and whether the required samples have been requested
+\item Data/MC comparisons in some inclusive regions (demonstrating the technical ability to use the data from all periods in the team's framework)
+\item Any signal region definitions that are available, with some preliminary optimization in place and some description of the optimization procedure
+\item Plans for further optimization (e.g.\ optimization for different model space regions, or use of an MVA or multi-bin fit)
+\item An outline of the plans to get from here to a paper (plan of work, noting if person power is insufficient for any of the areas), as a part of this summary
+\item An explicit list of differences in object definitions from the recommendations of the \href{https://gitlab.cern.ch/atlas-phys-susy-wg/Combinations/readme/wikis/home}{Combination Team}, with justification.
+\item The location of the analysis code in GIT and demonstration that you have set up containers (\href{https://recast-docs.web.cern.ch/recast-docs/building_images_on_ci/}{described here}).
+\end{itemize}
+
+If you are using SUSYTools, please include the current configuration file in the \href{http://gitlab.cern.ch/atlas-phys-susy-wg/AnalysisSUSYToolsConfigurations}{archive}.
+
+For a FAR, the SUSY group looks for:
+\begin{itemize}
+\item Definitions of SR, CR, VR, including expected yields with the targeted luminosity for all backgrounds that will be estimated with transfer factors or pure MC\@.
+    Include signal contamination in CR and VR\@.
+\item Cutflow for the background and for representative signal points.
+\item Outline of background estimation strategies, including validation and closure tests for data-driven estimations. Statistical uncertainties for transfer-factor (TF) estimated and data-driven estimated backgrounds.
+\item Comparison of data and MC with the relevant dataset in CR and VR\@. Strategy for mitigation of mis-modelling wherever needed with proof of feasibility.
+\item Estimate of the detector level systematic uncertainties through propagation of CP recommendations.
+\item A clear statement on how all others systematic uncertainties will be evaluated, including theory uncertainties on both backgrounds and signal: all the procedures need to be defined before unblinding.
+\item A clear plan for ``discovery regions'' as well as the statistical treatment of the signal regions.
+\item Background only fit with pull plot for the nuisance parameters.
+\item Estimated exclusion, including depth of exclusion within the normal exclusion contour, with Asimov fit.
+\item To-do list for achieving final result and possible bottlenecks (can the rest of the SUSY WG help with anything?)
+\item For analyses using machine learning methods, additional diagnostics are required, which are explained \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/SusyMachineLearning}{here}.
+\item The location in GIT where your code is using containers and the first implementation of workflows towards recast (\href{https://recast-docs.web.cern.ch/recast-docs/workflowauthoring/intro/}{described here}).
+\end{itemize}
+
+The background forum recommends the following diagnostic plots:
+\begin{itemize}
+\item Standard occupancy maps and plots that can reveal detector or non-collision background issues --- plot for CRs, VRs and SRs of MET phi, the leading jet and/or leading lepton eta vs.\ phi 2D map, and the leading jet and/or leading lepton phi distributions
+\item Selection efficiencies as a function of mu (VR, SR, and CR): to check how dependent the analysis is on pileup (primarily for MC)
+\item Run number and data period dependencies: plot lumi-normalized yields in CRs, VRs and SRs as a function of the run number and data period (data only).
+    This is to check for potential temporary issues in the data present only for certain runs, and to reveal potential chunks of data not processed by mistake.
+    You should normalize the per-run yield using the lumi as reported from an independent source (not the in-file metadata!),
+    e.g.\ simply use \href{https://svnweb.cern.ch/trac/atlasoff/browser/PhysicsAnalysis/SUSYPhys/SUSYTools/trunk/scripts/ilumi2histo.py}{this script in SUSYTools} to build the luminosity-vs-run histogram from your \texttt{iLumiCalc} file.
+\item In particular, for Full Run 2 dataset analyses, a plot of data from 2018 vs period, specifically to compare the efficiencies for the period with two dead tile modules to the periods without.
+\item Check for missing data: Compare the total number of processed data events and compare to the reference numbers for the combination of GRL and derivation you're running over in \href{https://docs.google.com/spreadsheets/d/1LMioo0nvALkKgoCKRW_ihQThHyVwcOQVRJe4aXiENUs/edit#gid=424865170}{this spreadsheet}. If your total does not match this reference number, feel free to contact BG forum conveners and derivation contacts for help with debugging.
+\item Check for duplicated events: several bugs in MC and DAOD production have caused duplicated events to appear in the derivations in the past. This can potentially happen in both MC and data. Please check that there are no duplicated events in your CRs, VRs or SRs. If you notice duplicated events in your derivations, please get in touch with the Background Forum conveners immediately.
+\item Comparisons of data and MC in the CRs and VRs, as well as MC in the SRs, for 2015+2016, 2017, and 2018 separately, for key distributions and yields.
+\item Debug stream yields in SR and CR\@. The full name of the debug stream is \texttt{debugrec\_hlt}, and derivation datasets can be found for both 2015 and 2016 data with a query like \texttt{rucio ls --short --filter type=container data*\_13TeV.00*.debugrec\_hlt*DAOD\_SUSY1*p2709*}.
+\item Pileup reweighting check: plot the nvtx distribution before and after pileup reweighting (data Vs MC). Purpose: check that the pileup reweighting works as intended.
+\end{itemize}
+
+Again, if you are using SUSYTools, please include the current configuration file in the \href{http://gitlab.cern.ch/atlas-phys-susy-wg/AnalysisSUSYToolsConfigurations}{archive}.  Please also take care that you have looked into the \href{https://twiki.cern.ch/twiki/bin/viewauth/Atlas/DataPreparationCheckListForPhysicsAnalysis}{items recommended by DataPrep}.

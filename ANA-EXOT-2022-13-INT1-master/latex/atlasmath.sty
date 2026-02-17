@@ -1,0 +1,38 @@
+%-------------------------------------------------------------------------------
+% A few extra math definitions.
+% You can probably find equivalent definition in the physics package.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  "Box-squared" operator, as in Klein-Gordon. Command is "\boxsq".  |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+%
+\newbox\boxsqbox
+\newdimen\boxsize\boxsize=1.2ex%
+\def\boxop{%
+\setbox\boxsqbox=\vbox{\hrule depth0.8pt width0.8\boxsize height0pt%
+                       \kern0.8\boxsize
+                       \hrule height0.8pt width0.8\boxsize depth0pt}%
+           \hbox{%
+           \vrule height1.0\boxsize width0.8pt depth0pt%
+           \copy\boxsqbox
+           \vrule height1.0\boxsize width0.8pt depth0pt\kern1.5pt}}%
+\newcommand*{\boxsq}{\ensuremath{\boxop^2}\xspace}
+
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  Theoretical notations                                             |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+\newcommand{\spinor}[1]{\ensuremath{\left(\begin{matrix}#1_1\cr#1_2\cr#1_3\cr#1_4\cr\end{matrix}\right)}}
+\def\pmb#1{\setbox0=\hbox{\(#1\)}%  This is "poor man's boldface".
+  \kern-.025em\copy0\kern-1.0\wd0%
+  \kern.05em\copy0\kern-1.0\wd0%
+  \kern-.025em\raise.0433em\box0}
+\newcommand*{\grad}{\pmb{\nabla}\xspace}

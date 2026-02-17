@@ -1,0 +1,67 @@
+\newpage
+\onecolumn
+%-------------------------------------------------------------------------------
+\section{\File{atlassnippets.sty}}
+
+Turn on including these definitions with the option \Option{snippets} and off with the option \Option{snippets=false}.
+
+\input{atlassnippets}
+\twocolumn
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasunit.sty}}
+
+Turn on including these definitions with the option \Option{unit} and off with the option \Option{unit=false}.
+
+\input{atlasunit}
+
+\noindent Lower case versions of the units also exist, e.g.\ \verb|\tev|, \verb|\gev|, \verb|\mev|, \verb|\kev|, and
+\verb|\ev|.
+
+As mentioned above, it is highly recommended to use a units package instead of
+these definitions. \Package{siunitx} is the preferred package; a good alternative is \Package{hepunits}.
+If either of these packages are used \File{atlasunit.sty} is not needed.
+
+Most units that are needed in ATLAS documents are already defined by \Package{siunitx} or
+are defined in \File{atlaspackage.sty}.
+A selection of them is given below.
+In order to use them in your document the unit should be included in
+\verb|\si| or \verb|\SI|:\\
+\begin{xtabular}{ll}
+\verb|\si{\TeV}| & \si{\TeV} \\
+\verb|\si{\GeV}| & \si{\GeV} \\
+\verb|\si{\MeV}| & \si{\MeV} \\
+\verb|\si{\keV}| & \si{\keV} \\
+\verb|\si{\eV}|  & \si{\eV} \\
+\verb|\si{\TeVc}| & \si{\TeVc} \\
+\verb|\si{\GeVc}| & \si{\GeVc} \\
+\verb|\si{\MeVc}| & \si{\MeVc} \\
+\verb|\si{\keVc}| & \si{\keVc} \\
+\verb|\si{\eVc}|  & \si{\eVc} \\
+\verb|\si{\TeVcc}| & \si{\TeVcc} \\
+\verb|\si{\GeVcc}| & \si{\GeVcc} \\
+\verb|\si{\MeVcc}| & \si{\MeVcc} \\
+\verb|\si{\keVcc}| & \si{\keVcc} \\
+\verb|\si{\eVcc}|  & \si{\eVcc} \\
+\verb|\si{\nb}| & \si{\nb} \\
+\verb|\si{\pb}| & \si{\pb} \\
+\verb|\si{\fb}| & \si{\fb} \\
+\verb|\si{\per\fb}| & \si{\per\fb} \\
+\verb|\si{\per\pb}| & \si{\per\pb} \\
+\verb|\si{\per\nb}| & \si{\per\nb} \\
+\verb|\si{\ifb}| & \si{\ifb} \\
+\verb|\si{\ipb}| & \si{\ipb} \\
+\verb|\si{\inb}| & \si{\inb} \\
+\verb|\si{\Hz}|  & \si{\Hz} \\
+\verb|\si{\kHz}| & \si{\kHz} \\
+\verb|\si{\MHz}| & \si{\MHz} \\
+\verb|\si{\GHz}| & \si{\GHz} \\
+\verb|\si{\degr}| & \si{\degr} \\
+\verb|\si{\m}| & \si{\m} \\
+\verb|\si{\cm}| & \si{\cm} \\
+\verb|\si{\mm}| & \si{\mm} \\
+\verb|\si{\um}| & \si{\um} \\
+\verb|\si{\micron}| & \si{\micron} \\
+\end{xtabular}

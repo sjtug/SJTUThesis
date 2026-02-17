@@ -1,0 +1,62 @@
+%
+The binning of the MVA discriminants is broadly optimised simultaneously for all signals.  
+The method is based on the implementation available in the software framework~\cite{TRexFitterTwiki}.  
+The main idea is to define the binning in an iterative manner based on the variable
+
+\begin{equation}
+Z=Z_{b}\frac{n_{b}}{N_{b}}+Z_{s}\frac{n_{s}}{N_{s}}
+\end{equation}
+where ``s'' and ``b'' refers to ``signal'' and ``background''.
+The two input parameters of the algorithm are $Z_{b}$ and $Z_{s}$, their sum is taken to the total number of bins. In order to define each bin, 
+a boundary is obtained from the condition: $Z\geq 1$. The variable $n_{X}$ (X=s,b) is defined as signal or background yields in a single bin
+\begin{equation}
+n_{X}^{i}==n_{X}=\sum_{i=s,b}n_{X}^{i}
+\end{equation}
+and $N_{X}$ (X=s,b) is signal and background yields in all bins
+\begin{equation}
+N_{X}=\sum_{i=1}^{N_{\mathrm{bins}}}n_{X}^{i}
+\end{equation}
+
+The algorithm starts from the lowest boundary, integrating signal and background yields to obtain $n_x$ until $Z\geq 1$ is found. 
+Then the value when $Z\geq 1$ is firstly found is defined as the upper boundary of the first bin. Then the algorithm iterates to find the next bin edges.
+As example, for $Z_{b}=N_{bins}$ and $Z_{s}=0$, the corresponding binning will have $n_{b}=N_{b}$ in each bin, that is the binning will be 
+constructed in a way that makes the background flat in the investigated MVA discriminant. 
+For this search we use multiple settings of the $Z_{b}$ and $Z_{s}$ parameters depending on the expected fraction of the signal in a give region, a summary 
+of the binning setting is given in Tab.~\ref{tab:binning}.  
+
+
+%%%%%%%%%%
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|} 
+\hline
+1L  &  3bL & 3bH & 4b & $\geq$ 5b\\ 
+\hline
+8j        &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$    &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$  & $Z_{b}$=1, $Z_{s}$=0, Var=H$_{T}$ \\
+9j        &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$    &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=3,  $Z_{s}$=1, Var=MVA      &  $Z_{b}$=1,  $Z_{s}$=0, Var=MVA     \\
+$\geq$10j &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA        &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      &  $Z_{b}$=1,  $Z_{s}$=0, Var=MVA     \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|} 
+\hline
+2LOS  &  3bL & 3bH & $\geq$ 4b \\ 
+\hline
+6j        &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$     &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$  \\
+7j        &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$     &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      \\
+$\geq$8j  &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA         &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      \\
+\hline
+\end{tabular}
+
+\caption{Choice of the fitted variable (Var) along with the used binning setting ($Z_{b}$ and $Z_{s}$ parameters) in all fit regions for the 1L and 2LOS channels.}
+\label{tab:binning}
+\end{center}
+\end{table}
+%%%%%%%%%%
+
+In all regions with large statistics and sizeable expected signal yields MVA score is used with a binning setting $Z_{b}=N_{bins}/2$ and $Z_{s}=N_{bins}/2$ with $N_{bins}=4$.  
+Regions with large statistics and small expected signal yields use the H$_{T}$ distribution with a binning defined by $Z_{b}$=4 for 1L and $Z_{b}$=3 for 2LOS,  $Z_{s}$=0.
+Finally regions with low statistics use either H$_{T}$ or the MVA score (depending on the expected signal yields) and 1 bin only. 
+The binning choice depends on the assumed signal mass.
+
+The definition of the current binning configuration was cross checked against alternative choices using more bins or using different parameters configuration. The impact on the expected analysis sensitivity was found to be negligible. The current binning configuration ensures that enough SM background events pupulate each analysis bin and facilitate the estimation of their systematic uncertainties with reduced impact from statistical fluctuations.  

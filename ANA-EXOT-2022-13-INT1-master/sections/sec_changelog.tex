@@ -1,0 +1,87 @@
+\subsection{Changes between versions 0.6 and 0.7}
+
+\begin{itemize}
+  \item Fixed signal normalization (now it is normalized to 12 fb. Previously it was normalized to ${\sim}8$ fb.)
+  \item Included high-pt b-tagging uncertainties in the fits.
+  \item Added renormalization and factorization scale uncertainty for the signal samples.
+  \item Changed the smoothing method for \ttbin modeling systematics (NLO matching, parton shower+haronization, 4FS) from ttbarresonances to maxVariation. Uptated red/blue plots are in Appendix \ref{app:TTB_modeling}. Added a new subsection with brief description of smoothing: Section \ref{sec:smoothing}.
+  \item Unblinding was allowed:
+  \begin{itemize}
+    \item Added sections with unblinded data fits: Background-only in Section \ref{sec:unblinded_Bonly} and Signal+Background in Section \ref{sec:unblinded_SplusB})
+    \item Added subsection comparing the three data fits (blinded, unblinded B-only, unblinded S+B): Section \ref{sec:fits_comparison}
+    \item Added appendices with studies to understand unblinded fits, Appendix \ref{app:injection}, \ref{app:decorrelation_ttb_4FS}, and \ref{app:decorrelation_mu}.
+  \end{itemize}
+  \item Added section showing the combination with SSML channel (2HDM interpretation): Section \ref{sec:combination}
+\end{itemize}
+
+
+\subsection{Changes between versions 0.5 and 0.6}
+
+\begin{itemize}
+  \item Added clarification about wrong limits in figure \ref{sec:limits_data}.
+  \item Updated the plots in Appendix M.1 to fulfill the blinding policy.
+\end{itemize}
+
+
+
+\subsection{Changes between versions 0.4 and 0.5}
+
+\begin{itemize}
+  \item Fixed a bug for the evaluation of the NN reweighting uncertainty using the dropout method (updated red/blue plots in Appendix E).
+  \item Symmetrizing the non-ttbar normalization uncertainty in NN reweighting (this is to avoid underconstraint for this nuisance parameter which was observed in version 0.4).
+  \item Added two new nuisance parameters for TTL normalization uncertainty ($5\%$) for 1L and 2L.
+  \item Using Minos option in the fit for nuisance parameters ttbar\_reweighting\_1L,ttbar\_reweighting\_2L,NN\_reweighting\_nonttbarXS (this is to ensure any problems with underconstraint observed in version 0.4).
+  \item Added a first version of the official high-pt PCB uncertainties from the Flavour Tagging group. Unfortunately the uncertainties are applied only to a subset of samples (this is because we are missing the jet true flavour). Removed the previous ad-hoc implementation of these uncertainties.
+  \item Rerun all fit results with the above updates.
+  \item Added red/blue plots for non-ttbar normalization uncertainty propagated via NN reweighting and red/blue plots for the NN reweighting uncertainty with the dropout method (Appendix E)
+  \item Added red/blue plots with total MC vs Data comparison for the TTC normalization uncertainty (Appendix M.1)
+  \item Added postfit Data/MC comparison for the variables used in the MVA training (Appendix L.2)
+  \item Added distributions for the GNN input variables in the inclusive signal region with a cut on the GNN score to see where the signal is concentrated (Appendix O)
+  \item Added prefit and postfit plots for mass points 700 GeV and 1000 GeV and also correlation matrices (Appendix P)
+\end{itemize}
+
+
+
+
+\subsection{Changes between versions 0.3 and 0.4}
+
+\begin{itemize}
+  \item Updated SM 4tops cross section and its uncertainty to use the latest prediction from Ref.~\cite{vanBeekveld:2022hty}.
+  \item Updated V+jets cross section uncertainty to 60\% (previously used 40\%)
+  \item Disabled smoothing for all weight systematics.
+  \item Added one new nuisance parameter originating from the non-ttbar cross section uncertainty propagated via NN reweighting as described in Section \ref{sec:NN_reweighting:uncertainty}.
+  \item Rerun all fit results with the above updates.
+  \item Improved explanation of the MC dropout method in Section \ref{sec:NN_reweighting:uncertainty}.
+  \item Checked the normalization changes after NN reweighting (Table \ref{tab:Rew_NoRew_YieldsRatio})
+  \item Checked the HF SFs for ttbar modeling weight systemmatics (Appendix \ref{app:HFweights_weightSystematics}).
+  \item Added prefit and postfit Data/Prediction plots for GNN input variables (Appendix \ref{app:validation_GNN_input_1L_ge10j4b} and \ref{app:validation_GNN_input_2L_ge8j3bL}).
+  \item Added distributions before and after NN kinematic reweighting (Appendix \ref{app:NNRewPlots})
+  \item Added Appendix \ref{app:TTC_pull} where the opposite pulls for ttc normalization between 1L and 2L is investigated.
+\end{itemize}
+
+
+
+
+\subsection{Changes between versions 0.1 and 0.2}
+
+\begin{itemize}
+
+\item \textbf{Included high-pt b-tagging uncertainties in the fit model}. using the same strategy as used in a similar analysis by Javier (TODO: add reference).
+
+\item \textbf{Included ttbar kinematic reweighting uncertainty} -  (Section \ref{sec:NN_reweighting:uncertainty})
+
+\item \textbf{Updated GNN plots} - The new GNN plots trained by using new samples including \texttt{``ATLAS work in progress''} label. See~\ref{sec:mva_gnn}).
+
+\item \textbf{Included BDT vs GNN sensitivity comparison} - See Appendix~\ref{app:BDTvsGNN}.
+
+\item \textbf{Included ttH and SM tttt generator uncertainties in the fit model}.
+
+\item \textbf{Included 3-top samples among the background samples}. Also assigned normalization uncertainty for this sample.
+
+\item \textbf{Extended Appendix~\ref{app:background_modeling_comp}  to illustrate data/MC agreements for all the features used in GNN}.
+
+\item \textbf{Rerun all the fits with the above updates} - All the fit results are updated.
+
+\item \textbf{Many small updates to address the comments received from the FAR review, see the comments on CDS.}
+
+\end{itemize}

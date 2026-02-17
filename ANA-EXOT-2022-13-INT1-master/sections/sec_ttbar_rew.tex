@@ -1,0 +1,19 @@
+The Monte Carlo (MC) prediction of the nominal \ttbar + jets production samples (Powheg+Pythia8) up to six additional jets is not fully reliable. Therefore, data-based corrections, derived and applied before the fit to extract the signal, are a key ingredient in this analysis.
+
+The two sources of mismodelling individually corrected by using data-driven correction factors. First, the rate of the \ttbar production in association with heavy-flavor jets (referred to as \ttbar +HF) is under-estimated, as observed by several previous searches and measurements. This is corrected by rescaling the normalization of each \ttbar +jets category based on the flavor of the extra jets, by comparing the yields of the data and the MC prediction in regions with different $b$-tagging requirements.
+
+The jet multiplicity and the kinematic features of the additional jets are known to be mismodelled by the MC predictions at  multiplicity. A correction is then deployed by applying reweighting factors on the mismodelled observables, derived by comparing their distributions between the data and the MC prediction in the 2b region.
+In this second step, a neural network-based approach is used to estimate the probability density functions of the data and the MC prediction, to derive reweighting factor as a ratio of them. This method allows to correct multiple observables at the same time, thus the MVA strategy used to define a signal-to-background discriminant has further flexibility on the input features choice as their modelling will typically be corrected.
+
+%\subsection{\ttbar + jets truth classification}
+
+\subsection{Flavor rescaling}
+\label{sec:hf_rew}
+\include{sections/sub_sec_HF_rew}
+
+
+\clearpage
+%%%%
+\subsection{Neural-network based kinematic reweighting}
+\label{sec:nn_rew}
+\include{sections/sub_sec_NN_rew}

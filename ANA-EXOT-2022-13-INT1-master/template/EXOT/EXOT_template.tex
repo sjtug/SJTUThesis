@@ -1,0 +1,165 @@
+%-------------------------------------------------------------------------------
+% This file provides template EXOT group object descriptions and cuts.
+% \pdfinclusioncopyfonts=1
+% This command may be needed in order to get \ell in PDF plots to appear. Found in
+% https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\makeatletter
+\def\input@path{{../../latex/}}
+\makeatother
+%-------------------------------------------------------------------------------
+\documentclass[NOTE, atlasdraft=false, texlive=2016, USenglish]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  txfonts=true|false    Use txfonts rather than the default newtx
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+%-------------------------------------------------------------------------------
+% Extra packages:
+\usepackage[biblatex=false]{atlaspackage}
+% Commonly used options:
+%  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
+%-------------------------------------------------------------------------------
+\usepackage{multirow}
+
+% Useful macros
+\usepackage[jetetmiss]{atlasphysics}
+% See doc/atlas_physics.pdf for a list of the defined symbols.
+% Default options are:
+%   true:  journal, misc, particle, unit, xref
+%   false: BSM, heppparticle, hepprocess, hion, jetetmiss, math, process,
+%          other, snippets, texmf
+% See the package for details on the options.
+
+% Add your own definitions here (file atlas-document-defs.sty).
+% \usepackage{atlas-document-defs}
+
+% Paths for figures - do not forget the / at the end of the directory name.
+\graphicspath{{../../logos/}{figures/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+\AtlasTitle{EXOT group text snippets for INT notes}
+
+\author{ATLAS EXOT Group}
+
+\AtlasRefCode{Version \ATPackageVersion}
+
+\AtlasAbstract{%
+  This note contains text snippets and tables that should be included in supporting notes
+  from the EXOT group.
+
+  The templates are in American English.
+  If wanted, some adaption to British English could be made. 
+
+  % \emph{2018-10-23: This file is a work in progress (WIP) and will probably be updated.
+  % Backwards incompatible changes may be made as the examples develop.}
+}
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS EXOT supporting note},pdfauthor={ATLAS EXOT group}}
+
+%-------------------------------------------------------------------------------
+% Main document
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+\textit{This is a very brief, almost ``abstract-like'' section.  Immediately following is the 
+Executive Summary, which should include all of the components that are sometimes in an 
+introduction but they are organized in a way that will facilitate review by conveners
+since they are in a standard way}
+
+
+\section{Executive Summary}
+\textit{This section, ideally 2-pages (max), should be placed at the beginning of the internal 
+note following the more conventional introduction.  It should be split as highlighted here and should 
+give a high-level overview of the analysis including (but not limited to):}
+
+\begin{itemize}
+\item \textit{Motivation, physics target, and the general characteristics of the signal}
+\item \textit{Analysis strategy}
+\item \textit{General characteristics of the control, validation, and signal regions}
+\item \textit{Background estimation strategy overview}
+\item \textit{Highlight major or most important points of the analysis}
+\item \textit{Team overview task list including a list of all critical tasks, who is responsible for each task, and what else they are working on outside of this analysis.  This should be presented in the format shown in Table~\ref{tab:Miles_Ahead}.}
+\item \textit{List of outstanding items in the analysis that still need to be addressed}
+\end{itemize}
+
+\include{executive_summary}
+
+\section{Data and MC}
+\textit{Dataset used with blinding strategy, full list of background samples and details of the signal samples.}
+
+
+\section{Object selection}
+\textit{The supporting notes should now include the following standardized tables of properties: 
+each analysis should simply fill them in by writing / replacing the value with the appropriate 
+number or by choosing the appropriate option. The idea of these tables is to harmonize some sections 
+of the supporting notes as to make review and analysis comparisons simpler.}
+
+\textit{If you use non-standard selections which do not fit in these tables, this should of course 
+be noted and discussed in more detail in the text.}
+
+\textit{Object selection tables (following template) and detailed event selection: there may, of 
+course, still be some minor open items, as long as they don’t significantly affect the analysis 
+strategy, but these should be well defined and clearly indicated (e.g. coloured/bold) in the text 
+in this section and in the list of outstanding tasks within the executive summary. Both should 
+be updated as the analysis progresses.}
+ 
+\include{egamma_selection}
+\include{muon_selection}
+\include{tau_selection}
+\include{jet_selection}
+\include{btagging_selection}
+\include{tracks_selection}
+\include{overlap_removal}
+
+
+\section{Event selection}
+\textit{The following items should also be filled in for the event selection.  There may, of course, 
+still be some minor open items, as long as they don’t significantly affect the analysis strategy, 
+but these should be well defined and clearly indicated (e.g. coloured/bold) in the text in this 
+section and in the list of outstanding tasks within the executive summary. 
+Both should be updated as the analysis progresses.}
+
+\include{event_cleaning}
+
+
+\section{Background Modelling}
+\textit{After outlining the object and event selection, noting possible outstanding points that still
+need to be addressed to freeze the selection, you should demonstrate that you can analyze
+the dataset that you intend to publish.  This should include CR/VR plots for
+the main backgrounds with the full data (full run-2 analyses) or at least a representative
+majority of the data (analyses during data-taking); for the more minor backgrounds this may
+still be in progress but an outline of the planned method should be present.}
+
+
+\section{Systematic Uncertainties}
+
+\textit{Several systematics may still be missing but the note should include a proposed plan listing the CP systematics 
+you will need to consider in this analysis (+ timescale on which they will be available if not already) and 
+an outline of how the systematics on the backgrounds are proposed to be determined. If not statistics-limited, 
+the most dominant systematic(s) should be present.}
+
+\include{systematics}
+
+\section{Statistical Model/Results}
+
+\textit{An overview of the final fit setup including the final discriminating variables(s),
+the (SR/CR) regions to be included in the fit and the floating normalisation parameters.
+Some rough first  expected limits/discovery sensitivity plots are useful if you have them but
+not necessary. In this case the binning of the final variable(s) and the systematics
+smoothing/pruning should be indicated.}
+
+
+\end{document}

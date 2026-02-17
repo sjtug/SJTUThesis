@@ -1,0 +1,75 @@
+\onecolumn
+%-------------------------------------------------------------------------------
+\section{Changes}
+\label{sec:change}
+%-------------------------------------------------------------------------------
+
+\textbf{Version 05-08-00} of \Package{atlaslatex} includes a new \File{atlassnippets.sty} style file.
+This is supposed to contain snippets of text that are useful in many papers and/or notes.
+
+\textbf{Version 01-08-01} of \Package{atlaslatex} includes quite a few definitions from the Jet/Etmiss group.
+A new style file has been created \File{atlasjetetmiss.sty} that is not included by default.
+Some of the definitions from the Jet/ETmiss group are of more general use and so have been merged into existing style files:
+\begin{description}
+\item[atlasmisc.sty] List of Monte Carlo generators expanded:
+  \Macro{POWHEGBOX}, \Macro{POWPYTHIA}.
+  Add MC macros with suffix \enquote{V} for version number.
+  \Macro{kt}, \Macro{antikt}, \Macro{Antikt}, \Macro{LO}, \Macro{NLO}, \Macro{NLL}, \Macro{NNLO},
+  \Macro{muF}, \Macro{muR}.
+  Added macros \Macro{Runone}, \Macro{Runtwo}, \Macro{Runthr},
+  Added \Macro{radlength} and \Macro{StoB}.
+  Added some standard \(b\)-tagging terms:
+  \Macro{btag}, \Macro{btagged}, \Macro{bquark}, \Macro{bquarks}, \Macro{bjet}, \Macro{bjets}.
+\item[atlasparticle.sty] Now includes \Macro{pp}, \Macro{enu}, \Macro{munu},
+\item[atlasprocess.sty] Added \Macro{Zbb}, \Macro{Ztt},
+  \Macro{Zlplm}, \Macro{Zepem}, \Macro{Zmpmm}, \Macro{Ztptm},
+  \Macro{tWb}, \Macro{Wqqbar},
+  \Macro{Wlnu}, \Macro{Wenu}, \Macro{Wmunu},
+  \Macro{Wjets}, \Macro{Zjets}.
+  The definition of \Macro{Hllll} was corrected.
+\item[atlasheavyion.sty] \Macro{pp} moved to \File{atlasparticle.sty}.
+\end{description}
+
+This version also introduced the (optional) use of the \Package{heppennames} package.
+The style files \File{atlashepparticle.sty} and \File{atlashepprocess.sty}
+are intended to replace \File{atlasparticle.sty} and \File{atlasprocess.sty}.
+Several particle definitions were removed from the \Package{atlasparticle} package,
+as they just enable a few Greek letters: \(\pi\), \(\eta\) and \(\psi\) to be used directly in text mode.
+In addition, the primed \(\Upsilon\) resonances, e.g.\ \(\Upsilon''\),
+as well as \(D^{**}\) were removed.
+as the official names are \Ups{3} etc.,
+
+The definitions of \MeV, \GeV\ etc.\ in \texttt{atlasunit.sty} were updated in order to remove the \texttt{if} tests in them.
+The \texttt{if} tests caused a problem in a paper draft, although the reason was not understood.
+The new definitions do not introduce extra space before the unit in math mode.
+
+
+%-------------------------------------------------------------------------------
+\section{Old macros}
+\label{sec:old}
+%-------------------------------------------------------------------------------
+
+With the introduction of \Package{atlaslatex} several macro names have been changed to make them more consistent.
+A few have been removed. The changes include:
+\begin{itemize}
+\item Kaons now have a capital \enquote{K} in the macro name, e.g.\ \verb|\Kplus| for \Kplus;
+\item \verb|\Ztau|, \verb|\Wtau|, \verb|\Htau| \verb|\Atau| have been replaced by
+  \verb|\Ztautau|, \verb|\Wtautau|, \verb|\Htautau| \verb|\Atautau|;
+\item \verb|\Ups| replaces \verb|\ups|;
+  the use of \verb|\ups| to produce \(\Upsilon\) in text mode has been removed;
+\item \verb|\cm| has been removed, as it was the only length unit defined for text and math mode;
+\item \verb|\mass| has been removed, as \verb|\twomass| can do the same thing and the name is more intuitive;
+\item \verb|\mA| has been removed as it conflicts with \Package{siunitx} Version 1, which uses the name
+  for milliamp.
+\item \Macro{mathcal} rather than \Macro{mathscr} is recommended for luminosity and aplanarity.
+\end{itemize}
+
+Quite a few macros are more related to \Zboson physics than they are to LHC physics and have
+been moved to the \File{atlasother.sty} file, which is not included by default.
+There are also macros for various decay processes, \File{atlasprocess.sty} which are not included by default,
+but may be useful for how you can define your favourite process.
+
+It used to be the case that you had to use \verb|\MET{}| rather than just \verb|\MET| to get the spacing right,
+as somehow \Package{xspace} did not do a good job for \met.
+However, with the latest version of the packages both forms work fine.
+You can compare \MET and \MET\ and see that the spacing is correct in both cases.

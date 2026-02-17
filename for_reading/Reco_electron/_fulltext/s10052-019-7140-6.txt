@@ -1,0 +1,3638 @@
+
+
+===== PAGE 1 =====
+Eur. Phys. J. C (2019) 79:639
+https://doi.org/10.1140/epjc/s10052-019-7140-6
+Regular Article - Experimental Physics
+Electron reconstruction and identiﬁcation in the ATLAS
+experiment using the 2015 and 2016 LHC proton–proton collision
+data at √ s = 13 TeV
+ATLAS Collaboration⋆
+CERN, 1211 Geneva 23, Switzerland
+Received: 14 February 2019 / Accepted: 17 July 2019 / Published online: 3 August 2019
+© CERN for the beneﬁt of the ATLAS collaboration 2019
+Abstract Algorithms used for the reconstruction and iden-
+tiﬁcation of electrons in the central region of the ATLAS
+detector at the Large Hadron Collider (LHC) are presented
+in this paper; these algorithms are used in ATLAS physics
+analyses that involve electrons in the ﬁnal state and which
+are based on the 2015 and 2016 proton–proton collision data
+produced by the LHC at√
+s = 13 TeV. The performance of the
+electron reconstruction, identiﬁcation, isolation, and charge
+identiﬁcation algorithms is evaluated in data and in simu-
+lated samples using electrons from Z → ee and J/ψ → ee
+decays. Typical examples of combinations of electron recon-
+struction, identiﬁcation, and isolation operating points used
+in ATLAS physics analyses are shown.
+Contents
+1 Introduction ..................... 1
+2 The ATLAS detector ................. 2
+3 Datasets and simulated-event samples ........ 3
+4 Electron-efﬁciency measurements .......... 3
+4.1 Measurements using Z → ee events ...... 5
+4.2 Measurements using J/ψ → ee events ..... 5
+5 Electron reconstruction ............... 6
+5.1 Seed-cluster reconstruction ........... 6
+5.2 Track reconstruction ............... 7
+5.3 Electron-candidate reconstruction ........ 8
+6 Electron identiﬁcation ................ 1 0
+6.1 The likelihood identiﬁcation .......... 1 1
+6.2 The pdfs for the LH-identiﬁcation ....... 1 1
+6.3 LH-identiﬁcation operating points and their cor-
+responding efﬁciencies ............. 1 3
+7 Electron isolation .................. 1 6
+7.1 Calorimeter-based isolation ........... 1 7
+7.2 Track-based isolation .............. 1 8
+⋆ e-mail: atlas.publications@cern.ch
+7.3 Optimisation of isolation criteria and resulting
+efﬁciency measurements ............ 1 9
+8 Electron-charge identiﬁcation ............ 1 9
+8.1 Reconstruction of electric charge ........ 1 9
+8.2 Suppression of charge misidentiﬁcation .... 2 2
+8.3 Measurement of the probability of charge misiden-
+tiﬁcation ..................... 2 2
+9 Usage of electron selections in physics measurements 23
+10 Conclusions ..................... 2 5
+References ........................ 2 6
+1 Introduction
+Stable particles that interact primarily via the electromag-
+netic interaction, such as electrons, muons, and photons, are
+found in many ﬁnal states of proton–proton (pp) collisions at
+the Large Hadron Collider (LHC) located at the CERN Labo-
+ratory. These particles are essential ingredients of the ATLAS
+experiment’s Standard Model and Higgs-boson physics pro-
+gramme as well as in searches for physics beyond the Stan-
+dard Model. Hence, the ability to effectively reconstruct elec-
+trons
+1 originating from the prompt decay of particles such as
+the Z boson, to identify them as such with high efﬁciency,
+and to isolate them from misidentiﬁed hadrons, electrons
+from photon conversions, and non-isolated electrons origi-
+nating from heavy-ﬂavour decays are all essential steps to a
+successful scientiﬁc programme.
+The ATLAS Collaboration has presented electron-perfor-
+mance results in several publications since the start of the
+high-energy data-taking in 2010 [1–3]. The gradual increase
+in peak luminosity and the number of overlapping colli-
+sions (pile-up) in ATLAS has necessitated an evolution of
+the electron reconstruction and identiﬁcation techniques. In
+addition, the LHC shutdown period of 2013–2014 brought a
+1 Throughout this paper, the term “electron” usually indicates both elec-
+trons and positrons.
+123
+
+===== PAGE 2 =====
+639 Page 2 of 40 Eur. Phys. J. C (2019) 79 :639
+new charged-particle detection layer to the centre of ATLAS
+and a restructuring of the trigger system, both of which
+impact physics analyses with electrons in the ﬁnal state.
+These changes require a new benchmarking of electron-
+performance parameters. The electron efﬁciency measure-
+ments presented in this paper are from the data recorded dur-
+ing the 2015–2016 LHC pp collision run at centre-of-mass
+energy √
+s = 13 TeV. During the period relevant to this
+paper, the LHC circulated 6.5 TeVproton beams with a 25 ns
+bunch spacing. The peak delivered instantaneous luminosity
+was L = 1.37 × 10
+34 cm−2 s−1 and the mean number of pp
+interactions per bunch crossing (hard scattering and pile-up
+events) was ⟨μ⟩= 23.5. The total integrated luminosity [4]
+used for most of the measurements presented in this paper
+is 37.1 fb
+−1. Another important goal of this paper is to doc-
+ument the methods used by the ATLAS experiment at the
+start of Run 2 of the LHC (2015 and beyond) to reconstruct,
+identify, and isolate prompt-electron candidates with high
+efﬁciency, as well as to suppress electron-charge misidenti-
+ﬁcation. The methods presented here would be of value to
+other experiments with similar experimental conditions of
+ﬁne granularity detection devices but also substantial inac-
+tive material in front of the active detector, or with signiﬁcant
+activity from pile-up events.
+The structure of the paper is described in the following,
+highlighting additions and new developments with respect
+to Ref. [3]. Section 2 provides a brief summary of the main
+components of the detector germane to this paper, with spe-
+cial emphasis on the changes since the 2010-2012 data-taking
+period. Section 3 itemises the datasets and simulated-event
+samples used in this paper. Given that the method for cal-
+culating efﬁciencies is common to all measurements, it is
+described in Sect. 4, before the individual measurements are
+presented. The algorithms and resulting measurements for
+electron reconstruction efﬁciencies are described in Sect. 5,
+including a detailed discussion of the Gaussian Sum Fil-
+ter algorithm. Electron identiﬁcation and the corresponding
+measurement of efﬁciencies are described in Sect. 6.N e w
+developments here include the optimisation based on simu-
+lated events and the treatment of electrons with high trans-
+verse momentum. The algorithms used to identify isolated
+electron candidates and the resulting measured benchmark
+efﬁciencies are published for the ﬁrst time; these are pre-
+sented in Sect. 7. This paper also presents detailed discus-
+sion of studies of the probability to mismeasure the charge of
+an electron; these are presented in Sect. 8. This section also
+includes a discussion of the sources of charge misidentiﬁca-
+tion and a new Boosted Decision Tree algorithm that reduces
+the rate of charge-misidentiﬁed electrons signiﬁcantly. A few
+examples of combined reconstruction, identiﬁcation, and iso-
+lation efﬁciencies for typical working points used in ATLAS
+physics analyses but illustrated with a common Z → ee
+sample are shown in Sect. 9. The summary of the work is
+given in Sect. 10.
+2 The ATLAS detector
+The ATLAS detector [5] is designed to observe particles pro-
+duced in the high-energy pp and heavy-ion LHC collisions.
+It is composed of an inner detector, used for charged-particle
+tracking, immersed in a 2 T axial magnetic ﬁeld produced
+by a thin superconducting solenoid; electromagnetic (EM)
+and hadronic calorimeters outside the solenoid; and a muon
+spectrometer. A two-level triggering system reduces the total
+data-taking rate to approximately 1 kHz. The second level,
+the high-level trigger (HLT), employs selection algorithms
+using full-granularity detector information; likelihood-based
+electron identiﬁcation and its HLT variant are described in
+Sect. 6.
+The inner detector provides precise reconstruction of
+tracks within a pseudorapidity range
+2 |η| ≲ 2.5. The inner-
+most part of the inner detector consists of a high-granularity
+silicon pixel detector and includes the insertable B-layer [6,
+7], a new tracking layer closest to the beamline designed
+to improve impact parameter resolution, which is impor-
+tant primarily for heavy-ﬂavour identiﬁcation. The silicon
+pixel detector provides typically four measurement points for
+charged particles originating in the beam-interaction region.
+A semiconductor tracker (SCT) consisting of modules with
+two layers of silicon microstrip sensors surrounds the pixel
+detector and provides typically eight hits per track at inter-
+mediate radii. The outermost region of the inner detector is
+covered by a transition radiation tracker (TRT) consisting
+of straw drift tubes ﬁlled with a xenon-based gas mixture,
+interleaved with polypropylene/polyethylene radiators. The
+TRT offers electron identiﬁcation capability via the detec-
+tion of transition-radiation photons generated by the radia-
+tors for highly relativistic particles. Some of the TRT modules
+instead contain an argon-based gas mixture, as mitigation for
+gas leaks that cannot be repaired without an invasive open-
+ing of the inner detector. The presence of this gas mixture
+is taken into account in the simulation. ATLAS has devel-
+oped a TRT particle-identiﬁcation algorithm that partially
+mitigates the loss in identiﬁcation power caused by the use
+of this argon-based gas mixture. For charged particles with
+transverse momentum p
+T > 0.5 GeV within its pseudora-
+2 ATLAS uses a right-handed coordinate system with its origin at the
+nominal interaction point (IP) in the centre of the detector and the z-
+axis along the beam pipe. The x-axis points from the IP to the centre of
+the LHC ring, and the y-axis points upwards. Cylindrical coordinates
+(r,φ) are used in the transverse plane, φ being the azimuthal angle
+around the z-axis. The pseudorapidity is deﬁned in terms of the polar
+angle θas η=− ln tan(θ/2). Angular distance is measured in units of
+/Delta1R ≡
+√
+(/Delta1η)2 + (/Delta1φ)2.
+123
+
+===== PAGE 3 =====
+Eur. Phys. J. C (2019) 79 :639 Page 3 of 40 639
+pidity coverage (|η| ≲ 2), the TRT provides typically 35 hits
+per track.
+The ATLAS calorimeter system has both electromag-
+netic and hadronic components and covers the pseudorapid-
+ity range |η| < 4.9, with ﬁner granularity over the region
+matching the inner detector. The central EM calorimeters
+are of an accordion-geometry design made from lead/liquid-
+argon (LAr) detectors, providing a full φ coverage. These
+detectors are divided into two half-barrels (−1.475 <η< 0
+and 0 <η< 1.475) and two endcap components (1.375 <
+|η| < 3.2), with a transition region between the barrel and
+the endcap (1.37 < |η| < 1.52) which contains a relatively
+large amount of inactive material. Over the region devoted
+to precision measurements (|η| < 2.47, excluding the tran-
+sition regions), the EM calorimeter is segmented into longi-
+tudinal (depth) compartments called the ﬁrst (also known as
+strips), second, and third layers. The ﬁrst layer consists of
+strips ﬁnely segmented in η, offering excellent discrimina-
+tion between photons and π
+0 → γγ decays. At electron or
+photon energies relevant to this paper, most of the energy is
+collected in the second layer, which has a lateral granular-
+ity of 0 .025 × 0.025 in (η, φ)space, while the third layer
+provides measurements of energy deposited in the tails of
+the shower. The central EM calorimeter is complemented by
+two presampler detectors in the region|η| < 1.52 (barrel) and
+1.5 < |η| < 1.8 (endcaps), made of a thin LAr layer, provid-
+ing a sampling for particles that start showering in front of
+the EM calorimeters. Hadronic calorimetry is provided by the
+steel/scintillating-tile calorimeter, segmented into three bar-
+rel structures within|η| < 1.7, and two copper/LAr hadronic
+endcap calorimeters. They surround the EM calorimeters
+and provide additional discrimination through further energy
+measurements of possible EM shower tails as well as rejec-
+tion of events with activity of hadronic origin.
+3 Datasets and simulated-event samples
+All data collected by the ATLAS detector undergo careful
+scrutiny to ensure the quality of the recorded information;
+data used for the efﬁciency measurements are ﬁltered by
+requiring that all detector subsystems needed in the analy-
+sis (calorimeters and tracking detectors) are operating nom-
+inally. After all data-quality requirements (94% efﬁcient),
+37.1 fb
+−1 of pp collision data from the 2015–2016 dataset
+are available for analysis. Some results in this paper are based
+on the 2016 dataset only, and contain approximately 10% less
+data.
+Samples of simulated Z → ee and J/ψ → ee decays
+as well as single-electron samples are used to benchmark
+the expected electron efﬁciencies and to deﬁne the electron-
+identiﬁcation criteria. The Z → ee Monte Carlo (MC) sam-
+ples were generated with the Powheg-Box v2 MC pro-
+gram [8–12] interfaced to the Pythia v.8.186 [13] parton
+shower model. The CT10 parton distribution function (PDF)
+set [ 14] was used in the event generation with the matrix
+element, and the AZNLO [ 15] set of generator-parameter
+values (tune) with the CTEQ6L1 [16] PDF set were used for
+the modelling of non-perturbative effects. The J/ψ → ee
+samples were generated with Pythia v.8.186; the A14 set of
+tuned parameters [17] was used together with the CTEQ6L1
+PDF set for event generation and the parton shower. The
+simulated single-electron samples were produced with a ﬂat
+distribution in η as well as in p
+T in the region 3 .5G e Vt o
+100 GeV, followed by a linear ramp down to 300 GeV, and
+then a ﬂat distribution again to 3 TeV. For studies of electrons
+in simulated event samples, the reconstructed-electron track
+is required to have hits in the inner detector which originate
+from the true electron during simulation.
+Backgrounds that may mimic the signature of prompt
+electrons were simulated with two-to-two processes in the
+Pythia v.8.186 event generator using the A14 set of tuned
+parameters and the NNPDF2.3LO PDF set [18]. These pro-
+cesses include multijet production, qg → qγ, q ¯q → gγ,
+W - and Z-boson production (as well as other electroweak
+processes), and top-quark production. A ﬁlter was applied to
+the simulation to enrich the ﬁnal sample in electron back-
+grounds. This ﬁlter retains events in which particles pro-
+duced in the hard scatter (excluding muons and neutrinos)
+have a summed energy that exceeds 17 GeV in an area of
+/Delta1η× /Delta1φ= 0.1 × 0.1, which mimics the highly localised
+energy deposits that are characteristic of electrons. When
+using this background sample, prompt electrons from W -
+and Z-boson decays are excluded using generator-level sim-
+ulation information.
+Multiple overlaid pp collisions were simulated with
+the soft QCD processes of Pythia v.8.186 using the
+MSTW2008LO PDF [ 19]. The Monte Carlo events were
+reweighted so that the ⟨μ⟩ distribution matches the one
+observed in the data. All samples were processed with the
+Geant4-based simulation [20,21] of the ATLAS detector.
+4 Electron-efﬁciency measurements
+Electrons isolated from other particles are important ingre-
+dients in Standard Model measurements and in searches for
+physics beyond the Standard Model. However, the experi-
+mentally determined electron spectra must be corrected for
+the selection efﬁciencies, such as those related to the trig-
+ger, as well as particle isolation, identiﬁcation, and recon-
+struction, before absolute measurements can be made. These
+efﬁciencies may be estimated directly from data using tag-
+and-probe methods. These methods select, from known res-
+onances such as Z → ee or J/ψ → ee, unbiased samples of
+electrons (probes) by using strict selection requirements on
+123
+
+===== PAGE 4 =====
+639 Page 4 of 40 Eur. Phys. J. C (2019) 79 :639
+the second object (tags) produced from the particle’s decay.
+The events are selected on the basis of the electron–positron
+invariant mass. The efﬁciency of a given requirement can
+then be determined by applying it to the probe sample after
+accounting for residual background contamination.
+The total efﬁciency ϵ
+total may be factorised as a product
+of different efﬁciency terms:
+ϵtotal = ϵEMclus × ϵreco × ϵid × ϵiso × ϵtrig
+=
+( Ncluster
+Nall
+)
+×
+( Nreco
+Ncluster
+)
+×
+( Nid
+Nreco
+)
+×
+( Niso
+Nid
+)
+×
+( Ntrig
+Niso
+)
+. (1)
+The efﬁciency to reconstruct in the electromagnetic calorime-
+ter EM-cluster candidates (localised energy deposits) associ-
+ated with all produced electrons,ϵ
+EMclus, is given by the num-
+ber of reconstructed EM calorimeter clustersNcluster divided
+by the number of produced electrons Nall. This efﬁciency is
+evaluated entirely from simulation, where the reconstructed
+cluster is associated to a genuine electron produced at genera-
+tor level. The reconstruction efﬁciency,ϵreco, is given by the
+number of reconstructed electron candidates Nreco divided
+by the number of EM-cluster candidatesNcluster. This recon-
+struction efﬁciency, as well as the efﬁciency to reconstruct
+electromagnetic clusters, is described in Sect.5. The identiﬁ-
+cation efﬁciency,ϵid, is given by the number of identiﬁed and
+reconstructed electron candidates Nid divided by Nreco, and
+is described in Sect. 6. The isolation efﬁciency is calculated
+as the number of identiﬁed electron candidates satisfying
+the isolation, identiﬁcation, and reconstruction requirements
+Niso divided by Nid, and is explained in Sect. 7. Finally, the
+trigger efﬁciency is calculated as the number of triggered (and
+isolated, identiﬁed, reconstructed) electron candidates N
+trig
+divided by Niso (see for example Ref. [22]; trigger efﬁciency
+is not discussed further in this paper).
+Isolated electrons selected for physics analyses are subject
+to large backgrounds from misidentiﬁed hadrons, electrons
+from photon conversions, and non-isolated electrons origi-
+nating from heavy-ﬂavour decays. The biggest challenge in
+the efﬁciency measurements presented in this paper is the
+estimation of probes that originate from background rather
+than signal processes. This background is largest for the sam-
+ple of cluster probes, but the fraction of such events is reduced
+with each efﬁciency step, from left to right, as given in Eq. (1).
+The accuracy with which the detector simulation models
+the observed electron efﬁciency plays an important role when
+using simulation to predict physics processes, for exam-
+ple the signal or background of a measurement. In order
+to achieve reliable results, the simulated events need to be
+corrected to reproduce as closely as possible the efﬁciencies
+measured in data. This is achieved by applying a multiplica-
+tive correction factor to the event weight in simulation. This
+correction factor is deﬁned as the ratio of the efﬁciency mea-
+sured in data to that determined from Monte Carlo events.
+These correction weights are normally close to unity; devi-
+ations from unity usually arise from mismodelling in the
+simulation of tracking properties or shower shapes in the
+calorimeters.
+Systematic uncertainties in the correction factors are eval-
+uated by varying the requirements on the selection of both
+the tag and the probe electron candidates as well as vary-
+ing the details of the background-subtraction method. The
+central value of the measurement is extracted by averaging
+the measurement results over all variations. The statistical
+uncertainty in a single variation of the measurement is cal-
+culated following the approach in Ref. [ 23], i.e. assuming
+a binomial distribution. If the evaluation of the number of
+events (before or after the selection under investigation) is
+the result of a background subtraction, the corresponding
+statistical uncertainties are also included in the overall sta-
+tistical uncertainty, rather than in the systematic uncertainty.
+The systematic uncertainty in the averaged result is obtained
+from the root-mean-square (RMS) of the individual results,
+and in the case of non-Gaussian behaviour, it is inﬂated to
+cover 68% of the variations.
+The tag-and-probe measurements are based on samples
+of Z → ee and J/ψ → ee events. Whereas the Z → ee
+sample is used to extract all terms in Eq. (1), the J/ψ → ee
+sample is only used to extract the identiﬁcation efﬁciencyϵ
+id
+since the signiﬁcant background as well as the difﬁculties in
+designing a trigger for this process prevent its use in deter-
+mining the reconstruction efﬁciency. The combination of the
+two samples allows identiﬁcation efﬁciency measurements
+over a signiﬁcant transverse energy E
+T range of 4.5 GeV
+to 20 GeV for the J/ψ → ee sample, and above 15 GeV
+(4.5 GeV for the isolation efﬁciency measurement) for the
+Z → ee sample, while still providing overlapping measure-
+ments between the samples in theET range 15–20 GeV where
+the correction factors of the two results are combined using
+a χ2 minimisation [2,24]. Combining the correction factors
+instead of the individual measured and simulated efﬁcien-
+cies reduces the dependence on kinematic differences of the
+physics processes as they cancel out in the ratio.
+Due to the number of events available in the sample, the
+Z → ee tag-and-probe measurements provide limited infor-
+mation about electron efﬁciencies beyond approximately
+electron E
+T = 150 GeV. The following procedure is used
+to assign correction factors for candidate electrons with high
+ET:
+• reconstruction: the same η-dependent correction factors
+are used for all ET > 80 GeV,
+• identiﬁcation: correction factors determined up to ET =
+250 GeV are applicable beyond,
+123
+
+===== PAGE 5 =====
+Eur. Phys. J. C (2019) 79 :639 Page 5 of 40 639
+• isolation: correction factors of unity are used for ET >
+150 GeV.
+The following subsections give a brief overview of the
+methods used to extract efﬁciencies in the data. Efﬁciency
+extraction using simulated events is performed in a very
+similar fashion, except that no background subtraction is per-
+formed. More detailed descriptions may be found in Ref. [3].
+4.1 Measurements using Z → ee events
+Z → ee events with two electron candidates in the cen-
+tral region of the detector, |η| < 2.47, were collected using
+two triggers designed to identify at least one electron in the
+event. One trigger has a minimum E
+T threshold of 24 GeV
+(which was changed to 26 GeV during 2016 data-taking), and
+requires Tight trigger identiﬁcation (see Sect. 6) and track
+isolation (see Sect.7), while the other trigger has a minimum
+E
+T threshold of 60 GeV and Medium trigger identiﬁcation.
+The tag electron is required to have ET > 27 GeV and to
+lie outside of the calorimeter transition region, 1.37 < |η| <
+1.52. It must be associated with the object that ﬁred the trig-
+ger, and must also pass Tight-identiﬁcation (see Sect.6) and
+isolation requirements. If both electrons pass the tag require-
+ments, the event will provide two probes. The invariant-
+mass distribution constructed from the tag electron and the
+cluster probe is used to discriminate prompt electrons from
+background. The signal efﬁciency is extracted in a window
+of ± 15 GeV around the Z-boson mass peak at 91.2 GeV.
+Approximately 35 million electron-candidate probes from
+Z → ee data events are available for analysis.
+The probe electrons in the denominator of the recon-
+struction-efﬁciency measurement (see Eq. ( 1)) are electro-
+magnetic clusters both with and without associated tracks,
+while those in the numerator consist of clusters with matched
+tracks, i.e. reconstructed electrons (see Sect.5). These tracks
+are required to have at least seven hits in the silicon detec-
+tors (i.e. both pixel and SCT) and at least one hit in the pixel
+detector. The background for electron candidates without a
+matched track is estimated by ﬁtting a polynomial to the side-
+band regions of the invariant-mass distribution of the can-
+didate electron pairs, after subtracting the remaining signal
+contamination using simulation. The background for elec-
+tron candidates with a matched track is estimated by con-
+structing a background template by inverting identiﬁcation
+or isolation criteria for the probe electron candidate and nor-
+malising it to the invariant-mass sideband regions, after sub-
+traction of the signal events in both the template and the
+sidebands.
+The probe electrons used in the denominator of the iden-
+tiﬁcation efﬁciency measurement are the same as those used
+in the numerator of the reconstruction efﬁciency measure-
+ment, with an additional opposite-charge requirement on
+the tag–probe pair; this method assumes that the charge
+of the candidate is correctly identiﬁed. The numerator of
+the identiﬁcation measurement consists of probes satisfying
+the identiﬁcation criteria under evaluation. Two methods are
+used in the identiﬁcation measurements to estimate the non-
+prompt background [ 2,3]; they are treated as variations of
+the same measurement: the Zmass method uses the invari-
+ant mass of the tag–probe pair while the Ziso method uses
+the isolation distribution of probes in the signal mass win-
+dow around the Z-boson peak. In both cases, and as dis-
+cussed for the reconstruction-efﬁciency measurement, back-
+ground templates are formed and normalised to the sideband
+regions, after subtraction of the signal events. The contam-
+ination from charge-misidentiﬁed candidates is negligible
+in this sample. In the Zmass method, the numerator of the
+identiﬁcation efﬁciency uses same-charge events to obtain
+a normalisation factor for the template in opposite-charge
+events, in order to reduce the contamination from signal
+events.
+The isolation-efﬁciency measurements are performed
+using the Zmass method, as described above. The denomina-
+tor in the efﬁciency ratio is the number of identiﬁed electron
+candidates, while the numerator consists of candidates that
+also satisfy the isolation criteria under evaluation.
+In all cases, systematic uncertainties in the data-MC cor-
+rection factors are evaluated from the background-subtraction
+method as well as variations of the quality of the probed elec-
+trons via changes in the window around the Z-boson mass
+peak. They are also evaluated by varying the identiﬁcation
+and isolation requirements on the tag, the sideband regions
+used in the ﬁts, and the template deﬁnitions.
+4.2 Measurements using J/ψ → ee events
+J/ψ → ee events with at least two electron candidates with
+ET > 4.5 GeV and |η| < 2.47 were collected with dedi-
+cated dielectron triggers with electronET thresholds ranging
+from 4 to 14 GeV. Each of these triggers requires Tight trig-
+ger identiﬁcation and ET above a certain threshold for one
+trigger object, while only demanding the electromagnetic
+cluster ET to be higher than some other (lower) threshold
+for the second object. The J/ψ → ee selection consists of
+one electron candidate passing a Tight-identiﬁcation selec-
+tion (see Sect. 6) and one reconstructed-electron candidate
+(see Sect. 5). The tag electron is required to be outside the
+calorimeter transition region 1 .37 < |η| < 1.52 and to be
+associated with the Tight trigger object. The probe electron
+must be matched to the second trigger object. Due to the
+nature of the sample (a mixture of prompt and non-prompt
+decays) as well as signiﬁcant background, isolation require-
+ments are applied on both the tag and the probe electrons,
+although for the latter the requirement is very loose so as
+to not bias the identiﬁcation-efﬁciency measurement. Fur-
+123
+
+===== PAGE 6 =====
+639 Page 6 of 40 Eur. Phys. J. C (2019) 79 :639
+thermore, the tag and the probe electron candidates must be
+separated from each other in η–φ space by /Delta1R > 0.15.
+If both electrons pass the tag requirements, the event will
+provide two probes. Approximately 80 thousand electron-
+candidate probes from J/ψ → ee data events are available
+for analysis.
+The invariant-mass distribution of the two electron can-
+didates in the range 1.8–4.6 GeV is ﬁt with functions to
+extract three contributions: J/ψ events, ψ( 2S) events, and
+the background from hadronic jets, heavy ﬂavour, and elec-
+trons from conversions. The J/ψ and ψ( 2S) contributions
+are each modelled with a Crystal Ball function convolved
+with a Gaussian function, and the background is estimated
+using same-charge events and ﬁt with a second-order Cheby-
+shev polynomial.
+J/ψ → ee events come from a mixture of prompt and
+non-prompt J/ψ production, with relative fractions depend-
+ing both on the triggers used to collect the data and on the
+E
+T of the probe electrons. Prompt J/ψ mesons are pro-
+duced directly in pp collisions and in radiative decays of
+directly produced heavier charmonium states. Non-prompt
+J/ψ production occurs when the J/ψ is produced in the
+decay of a b-hadron. Only the prompt production yields
+isolated electrons, which are expected to have efﬁcien-
+cies similar to those of electrons from physics processes
+of interest such as H → ZZ
+∗ → 4ℓ. Given the dif-
+ﬁculties associated with the fact that electrons from non-
+prompt decays are often surrounded by hadronic activity,
+two methods have been developed to measure the efﬁciency
+for isolated electrons at low E
+T, both exploiting the pseudo-
+proper time variable 3 t0.I nt h e cut method, a require-
+ment is imposed on the pseudo-proper time, so that the
+prompt component is enhanced, thereby limiting the non-
+prompt contribution. The residual non-prompt fraction is
+estimated using simulated samples and ATLAS measure-
+ments of J/ψ → μμ [26]. In the ﬁt method, a ﬁt to the
+pseudo-proper time distribution is used to extract the prompt
+fraction, after subtracting the background using the pseudo-
+proper time distribution in sideband regions around theJ/ψ
+peak.
+The systematic uncertainties in the data-to-simulation
+correction factors of both methods are estimated by vary-
+ing the isolation criteria for the tag and the probe elec-
+tron candidates, the ﬁt models for the signal and back-
+ground, the signal invariant-mass range, the pseudo-proper
+time requirement in the cut method, and the ﬁt range in the
+ﬁt method.
+3 The pseudo-proper time is deﬁned as t0 = Lxy · m J/ψ
+PDG/ p J/ψ
+T ,w h e r e
+Lxy is the displacement of the J/ψ vertex from the primary vertex
+projected onto the ﬂight direction of the J/ψ in the transverse plane,
+m J/ψ
+PDG is the nominal J/ψ mass [25]a n dp J/ψ
+T is the J/ψ -reconstructed
+transverse momentum.
+5 Electron reconstruction
+An electron can lose a signiﬁcant amount of its energy due
+to bremsstrahlung when interacting with the material it tra-
+verses. The radiated photon may convert into an electron–
+positron pair which itself can interact with the detector mate-
+rial. These positrons, electrons, and photons are usually emit-
+ted in a very collimated fashion and are normally recon-
+structed as part of the same electromagnetic cluster. These
+interactions can occur inside the inner-detector volume or
+even in the beam pipe, generating multiple tracks in the inner
+detector, or can instead occur downstream of the inner detec-
+tor, only impacting the shower in the calorimeter. As a result,
+it is possible to produce and match multiple tracks to the
+same electromagnetic cluster, all originating from the same
+primary electron.
+The reconstruction of electron candidates within the kine-
+matic region encompassed by the high-granularity electro-
+magnetic calorimeter and the inner detector is based on
+three fundamental components characterising the signature
+of electrons: localised clusters of energy deposits found
+within the electromagnetic calorimeter, charged-particle
+tracks identiﬁed in the inner detector, and close matching
+in η× φ space of the tracks to the clusters to form the ﬁnal
+electron candidates. Therefore, electron reconstruction in the
+precision region of the ATLAS detector ( |η| < 2.47) pro-
+ceeds along those steps, described below in this order. Fig-
+ure 1 provides a schematic illustration of the elements that
+enter into the reconstruction and identiﬁcation (see Sect. 6)
+of an electron.
+5.1 Seed-cluster reconstruction
+The η × φ space of the EM calorimeter is divided into a
+grid of 200 × 256 elements (towers) of size /Delta1η× /Delta1φ=
+0.025 × 0.025, corresponding to the granularity of the sec-
+ond layer of the EM calorimeter. For each element, the energy
+(approximately calibrated at the EM scale), collected in the
+ﬁrst, second, and third calorimeter layers as well as in the
+presampler (only for|η| < 1.8, the region where the presam-
+pler is located) is summed to form the energy of the tower.
+Electromagnetic-energy cluster candidates are then seeded
+from localised energy deposits using a sliding-window algo-
+rithm [27]o fs i z e3 × 5t o w e r si nη × φ, whose summed
+transverse energy exceeds 2.5 GeV. The centre of the 3 × 5
+seed cluster moves in steps of 0 .025 in either the η or φ
+direction, searching for localised energy deposits; the seed-
+cluster reconstruction process is repeated until this has been
+performed for every element in the calorimeter. If two seed-
+cluster candidates are found in close proximity (if their tow-
+ers overlap within an area of /Delta1η× /Delta1φ= 5 × 9 units of
+0.025 × 0
+.025), the candidate with the higher transverse
+energy is retained, if its ET is at least 10% higher than the
+123
+
+===== PAGE 7 =====
+Eur. Phys. J. C (2019) 79 :639 Page 7 of 40 639
+Fig. 1 A schematic illustration of the path of an electron through the
+detector. The red trajectory shows the hypothetical path of an electron,
+which ﬁrst traverses the tracking system (pixel detectors, then silicon-
+strip detectors and lastly the TRT) and then enters the electromagnetic
+calorimeter. The dashed red trajectory indicates the path of a photon
+produced by the interaction of the electron with the material in the
+tracking system
+other candidate. If their ET values are within 10% of each
+other, the candidate containing the highest-ET central tower
+is kept. The duplicate cluster is thereby removed. The recon-
+struction efﬁciency of this seed-cluster algorithm (effectively
+ϵ
+EMclus in Eq. (1)) depends on|η| and ET. As a function ofET,
+it ranges from 65% atET = 4.5 GeV, to 96% atET = 7G e V ,
+to more than 99% above ET = 15 GeV, as can be seen in
+Fig. 2. This efﬁciency is determined entirely from simula-
+tion. Efﬁciency losses due to seed-cluster reconstruction for
+ET > 15 GeV are negligible compared with the uncertainties
+attributed to the next two steps of the reconstruction (track
+reconstruction and track–cluster matching).
+5.2 Track reconstruction
+The basic building block for track reconstruction is a ‘hit’ in
+one of the inner-detector tracking layers. Charged-particle
+reconstruction in the pixel and SCT detectors begins by
+assembling clusters from these hits [ 28]. From these clus-
+ters, three-dimensional measurements referred to as space-
+points are created. In the pixel detector, each cluster equates
+to one space-point, while in the SCT, clusters from both stereo
+views of a strip layer must be combined to obtain a three-
+dimensional measurement. Track seeds are formed from sets
+of three space-points in the silicon-detector layers. The track
+reconstruction then proceeds in three steps: pattern recog-
+nition, ambiguity resolution, and TRT extension (for more
+details of the TRT extension, see Ref. [ 29]). The pattern-
+recognition algorithm uses the pion hypothesis for the model
+of energy loss from interactions of the particle with the detec-
+tor material. However, if a track seed with p
+T > 1G e V
+cannot be successfully extended to a full track of at least
+seven silicon hits per candidate track and the EM cluster sat-
+isﬁes requirements on the shower width and depth, a second
+attempt with modiﬁed pattern recognition, one which allows
+up to 30% energy loss for bremsstrahlung at each intersection
+of the track with the detector material, is made. Track candi-
+dates with p
+T > 400 MeV are ﬁt, according to the hypothesis
+used in the pattern recognition, using the ATLAS Globalχ2
+Track Fitter [30]. Any ambiguity resulting from track can-
+didates sharing hits is resolved at the same stage. In order
+to avoid inefﬁciencies for electron tracks with signiﬁcant
+bremsstrahlung, if the ﬁt fails under the pion hypothesis and
+its polar and azimuthal separation to the EM cluster is below
+a value, a second ﬁt is attempted under an electron hypothe-
+sis (an extra degree of freedom, in the form of an additional
+Gaussian term, is added to theχ
+2 to compensate for the addi-
+tional bremsstrahlung losses coming from electrons; such an
+energy-loss term is neglected in the pion-hypothesis ﬁt). Fig-
+ure 2 (top) shows that the reconstruction efﬁciency of the
+track-ﬁtting step ranges from 80% at E
+T = 1G e Vt om o r e
+than 98% above ET = 10 GeV.
+123
+
+===== PAGE 8 =====
+639 Page 8 of 40 Eur. Phys. J. C (2019) 79 :639
+0 5 10 15 20 25
+ [GeV]TTrue E
+0
+0.2
+0.4
+0.6
+0.8
+1
+Efficiency
+ Reconstructed seed cluster
+ Reconstructed seed track
+ Reconstructed cluster and track
+ Reconstructed electron candidate
+ATLAS Simulation
+ = 13 TeVs
+ [GeV]TE
+20 40 60 80 100 120 140
+Efficiency
+0.95
+0.96
+0.97
+0.98
+0.99
+1
+recoεReconstruction efficiency 
+ Data
+ MC
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+Fig. 2 Top: the total reconstruction efﬁciency for simulated electrons
+in a single-electron sample is shown as a function of the true (generator)
+transverse energy E
+T for each step of the electron-candidate formation:
+/Delta1η× /Delta1φ= 3 × 5 (in units of 0.025 × 0.025) seed-cluster reconstruc-
+tion (red triangles), seed-track reconstruction using the Globalχ2 Track
+Fitter (blue open circles), both of these steps together but instead using
+GSF tracking (yellow squares), and the ﬁnal reconstructed electron can-
+didate, which includes the track-to-cluster matching (black closed cir-
+cles). As the cluster reconstruction requires uncalibrated cluster seeds
+with E
+T > 2.5 GeV, the total reconstruction efﬁciency is less than 60%
+below 4.5 GeV (dashed line). Bottom: the reconstruction efﬁciency rel-
+ative to reconstructed clusters,ϵreco, as a function of electron transverse
+energy ET for Z → ee events, comparing data (closed circles) with
+simulation (open circles). The inner uncertainties are statistical while
+the total uncertainties include both the statistical and systematic com-
+ponents
+A subsequent ﬁtting procedure, using an optimised
+Gaussian-sum ﬁlter (GSF) [ 31] designed to better account
+for energy loss of charged particles in material, is applied
+to the clusters of raw measurements. This procedure is used
+for tracks which have at least four silicon hits and that are
+loosely matched to EM clusters. The separation of the cluster-
+barycentre position and the position of the track extrapolated
+from the perigee to the second layer of the calorimeter must
+satisfy |η
+cluster − ηtrack| < 0.05 and one of two alterna-
+tive requirements on the azimuthal separation between the
+cluster position and the track: −0.20 </Delta1 φ<0.05 or
+−0.10 </Delta1 φres < 0.05, where q is the sign of the electric
+charge of the particle, and /Delta1φand /Delta1φres are calculated as
+− q × (φcluster − φtrack) with the momentum of the track
+rescaled to the energy of the cluster for/Delta1φres. The asymmet-
+ric condition for the matching in φ mitigates the effects of
+energy loss due to bremsstrahlung where tracks with nega-
+tive (positive) electric charge bend due to the magnetic ﬁeld
+in the positive (negative)φ direction.
+The GSF method [ 32] is based on a generalisation of
+the Kalman ﬁlter [33] and takes into account the non-linear
+effects related to bremsstrahlung. Within the GSF, experi-
+mental noise is modelled by a sum of Gaussian functions.
+The GSF therefore consists of a number of Kalman ﬁlters
+running in parallel, the result of which is that each track
+parameter is approximated by a weighted sum of Gaussian
+functions. Six Gaussian functions are used to describe the
+material-induced energy losses and up to twelve to describe
+the track parameters. In the ﬁnal step, the mode of the energy
+distribution is used to represent the energy loss.
+Radiative losses of energy lead to a decrease in momen-
+tum, resulting in increased curvature of the electron’s trajec-
+tory in the magnetic ﬁeld. When accounting for such losses
+via the GSF method, all track parameters relevant to the
+bending-plane are expected to improve. Such a parameter
+is the transverse impact parameter signiﬁcance: d
+0 divided
+by its estimated uncertaintyσ(d0). Since the curvature, in the
+ATLAS coordinate frame, is positive for negative particles
+and negative for positive particles, the signed impact param-
+eter signiﬁcance (i.e. multiplied by the sign of the recon-
+structed electric charge q of the electron) is used. Figure 3
+shows q × d
+0/σ(d0) for the track associated with the elec-
+tron, i.e. the primary electron track. A clear improvement
+in q × d0/σ(d0) for genuine electron tracks ﬁtted with the
+GSF over tracks with the ATLAS Global χ2 Track Fitter
+is observed; the distribution is narrower and better centred
+at zero. Figure 3 also shows, for the ratio of the electron-
+candidate charge to its momentum q/ p, the relative differ-
+ence between the true generator value and the reconstructed
+value; the GSF method shows a sharper and better-centred
+distribution near zero with smaller tails. The reconstruction
+efﬁciency for ﬁnding both a seed cluster and a GSF track is
+shown in Fig. 2 (top).
+5.3 Electron-candidate reconstruction
+The matching of the GSF-track candidate to the candi-
+date calorimeter seed cluster and the determination of the
+ﬁnal cluster size complete the electron-reconstruction pro-
+cedure. This matching procedure is similar to the loose
+matching discussed above prior to the GSF step, but with
+stricter requirements; the track-matching in φ is tightened
+123
+
+===== PAGE 9 =====
+Eur. Phys. J. C (2019) 79 :639 Page 9 of 40 639
+)0(dσ/0d×q
+−10 −8 −6 −4 −20 2 468 10
+Fraction of events
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+ Gaussian-Sum Filter (GSF)
+ Track Fitter2χ Global 
+ATLAS Simulation
+ = 13 TeVs
+true(q/p)
+true-(q/p)reco(q/p)
+−1 −0.5 0 0.5 11 . 5
+Fraction of events
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+ Gaussian-Sum Filter (GSF)
+ Track Fitter2χ Global 
+ATLAS Simulation
+ = 13 TeVs
+Fig. 3 Distributions of the reconstructed electric charge of the can-
+didate electron multiplied by the transverse impact parameter signiﬁ-
+cance, q×d
+0/σ(d0) (top) and the relative difference between the recon-
+structed value of the candidate-electron charge divided by its momen-
+tum, q/ p, and the true generator value (bottom). The distributions are
+shown for tracks ﬁtted with the Globalχ
+2 Track Fitter (dashed red lines)
+and for tracks ﬁtted with the GSF (solid blue line). The distributions
+were obtained from a simulated single-electron sample
+to −0.10 </Delta1 φ<0.05, keeping the original alternative
+requirement −0.10 </Delta1 φres < 0.05 the same. If several
+tracks fulﬁl the matching criteria, the track considered to
+be the primary electron track is selected using an algorithm
+that takes into account the distance in η and φ between the
+extrapolated tracks and the cluster barycentres measured in
+the second layer of the calorimeter, the number of hits in the
+silicon detectors, and the number of hits in the innermost
+silicon layer; a candidate with an associated track with at
+least four hits in the silicon layers and no association with
+a vertex from a photon conversion [ 34] is considered as an
+electron candidate. However, if the primary candidate track
+can be matched to a secondary vertex and has no pixel hits,
+then this object is classiﬁed as a photon candidate (likely a
+conversion). A further classiﬁcation is performed using the
+candidate electron’s E/ p and p
+T, the presence of a pixel hit,
+and the secondary-vertex information, to determine unam-
+biguously whether the object is only to be considered as an
+electron candidate or if it should be ambiguously classiﬁed
+as potentially either a photon candidate or an electron can-
+didate. However, this classiﬁcation scheme is mainly for the
+beneﬁt of keeping a high photon-reconstruction efﬁciency.
+Since all electron identiﬁcation operating points described
+in Sect. 6 require a track with a hit in the innermost sil-
+icon layer (or in the next-to-innermost layer if the inner-
+most layer is non-operational), most candidates fall into the
+‘unambiguous’ category after applying an identiﬁcation cri-
+terion.
+Finally, reconstructed clusters are formed around the seed
+clusters using an extended window of size 3× 7 in the barrel
+region (|η| < 1.37) or 5×5 in the endcap (1.52 < |η| < 2.47)
+by simply expanding the cluster size in φ or η, respectively,
+on either side of the original seed cluster. A method using
+both elements of the extended-window size is used in the
+transition region of 1 .37 < |η| < 1.52. The energy of
+the clusters must ultimately be calibrated to correspond to
+the original electron energy. This detailed calibration is per-
+formed using multivariate techniques [35,36] based on data
+and simulated samples, and only after the step of select-
+ing electron candidates rather than during the reconstruc-
+tion step, which relies on approximate EM-scale energy clus-
+ters. The energy of the ﬁnal electron candidate is computed
+from the calibrated energy of the extended-window clus-
+ter while the φ and η directions are taken from the corre-
+sponding track parameters, measured relative to the beam
+spot, of the track best matched to the original seed clus-
+ter.
+Above E
+T = 15 GeV, the efﬁciency to reconstruct an
+electron having a track of good quality (at least one pixel
+hit and at least seven silicon hits) varies from approximately
+97–99%. The simulation has lower efﬁciency than data in
+the low E
+T region ( ET < 30 GeV) while the opposite is
+true for the higher ET region ( ET > 30 GeV), as demon-
+s t r a t e di nF i g s .2 and 4, which show the reconstruction efﬁ-
+ciency as a function of ET and as a function of η in bins of
+ET, respectively, from Z → ee events. All measurements
+are binned in two dimensions. The uncertainty in the efﬁ-
+ciency in data is typically 1% in the E
+T = 15−20 GeV
+bin and reaches the per-mille level at higher ET and the
+uncertainty in simulation is almost an order of magnitude
+smaller than for data. The systematic uncertainty domi-
+nates at low E
+T for data, with the estimation of back-
+ground from clusters with no associated track giving the
+largest contribution. Below ET = 15 GeV, the reconstruc-
+tion efﬁciency is determined solely from the simulation;
+a 2% (5%) uncertainty is assigned in the barrel (endcap)
+region.
+123
+
+===== PAGE 10 =====
+639 Page 10 of 40 Eur. Phys. J. C (2019) 79 :639
+Efficiency
+0.96
+0.97
+0.98
+0.99
+1
+1.01
+1.02
+recoεReconstruction efficiency 
+ Data
+ MC
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ < 20 GeVT15 GeV < E
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.96
+0.98
+1
+1.02
+1.04
+Efficiency
+0.96
+0.97
+0.98
+0.99
+1.01
+1.02
+recoεReconstruction efficiency 
+ Data
+ MC
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ < 30 GeVT25 GeV < E
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.96
+0.98
+1.02
+1.04
+Efficiency
+0.96
+0.97
+0.98
+0.99
+1
+1.01
+1.02 recoεReconstruction efficiency 
+ Data
+ MC
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ < 45 GeVT40 GeV < E
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.96
+0.98
+1
+1.02
+1.04
+Efficiency
+0.96
+0.97
+0.98
+0.99
+1
+1.01
+1.02 recoεReconstruction efficiency 
+ Data
+ MC
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ < 150 GeVT80 GeV < E
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.96
+0.98
+1
+1.02
+1.04
+Fig. 4 Reconstruction efﬁciencies relative to reconstructed clusters,
+ϵreco, evaluated in the 2015–2016 dataset (closed points) and in simu-
+lation (open points), and their ratio, using the Z → ee process, as a
+function of η in four illustrative ET bins: 15–20 GeV (top left), 25–
+30 GeV (top right), 40–45 GeV (bottom left), and 80–150 GeV (bottom
+right). The inner uncertainties are statistical while the total uncertainties
+include both the statistical and systematic components
+6 Electron identiﬁcation
+Prompt electrons entering the central region of the detec-
+tor (|η| < 2.47) are selected using a likelihood-based (LH)
+identiﬁcation. The inputs to the LH include measurements
+from the tracking system, the calorimeter system, and quan-
+tities that combine both tracking and calorimeter information.
+The various inputs are described in Table 1 and the compo-
+nents of the quantities described in this table are illustrated
+schematically in Fig. 1. The LH identiﬁcation is very simi-
+lar in method to the electron LH identiﬁcation used in Run 1
+(2010–2012) [3], but there are some important differences.
+To prepare for the start of data-taking with a higher center-
+of-mass energy and different detector conditions it was nec-
+essary to construct probability density functions (pdfs) based
+on simulated events rather than data events, and correct the
+123
+
+===== PAGE 11 =====
+Eur. Phys. J. C (2019) 79 :639 Page 11 of 40 639
+resulting distributions for any mismodelling. Furthermore,
+the efﬁciency was smoothed as a function of ET and the
+likelihood was adjusted to allow its use for electrons with
+ET > 300 GeV.
+6.1 The likelihood identiﬁcation
+The electron LH is based on the products for signal,L S, and
+for background, L B ,o f n pdfs, P:
+L S(B)(x) =
+n∏
+i=1
+PS(B),i(xi), (2)
+where x is the vector of the various quantities speciﬁed in
+Table 1. PS,i(xi) is the value of the signal pdf for quantity
+i at value xi and PB,i(xi) is the corresponding value of the
+background pdf. The signal is prompt electrons, while the
+background is the combination of jets that mimic the signa-
+ture of prompt electrons, electrons from photon conversions
+in the detector material, and non-prompt electrons from the
+decay of hadrons containing heavy ﬂavours. Correlations in
+the quantities selected for the LH are neglected.
+For each electron candidate, a discriminantd
+L is formed:
+dL = L S
+L S + L B
+; (3)
+the electron LH identiﬁcation is based on this discriminant.
+The discriminant dL has a sharp peak at unity (zero) for sig-
+nal (background); this sharp peak makes it inconvenient to
+select operating points as it would require extremely ﬁne bin-
+ning. An inverse sigmoid function is used to transform the
+distribution of the discriminant of Eq. (3):
+d
+′
+L =− τ−1 ln(d−1
+L − 1),
+where the parameterτis ﬁxed to 15 [37]. As a consequence,
+the range of values of the transformed discriminant no longer
+varies between zero and unity. For each operating point, a
+value of the transformed discriminant is chosen: electron
+candidates with values ofd
+′
+L larger than this value are consid-
+ered signal. An example of the distribution of a transformed
+discriminant is shown in Fig. 5 for prompt electrons from
+Z-boson decays and for background. This distribution illus-
+trates the effective separation between signal and background
+encapsulated in this single quantity.
+There are two advantages to using a LH-based electron
+identiﬁcation over a selection-criteria-based (so-called “cut-
+based”) identiﬁcation. First, a prompt electron may fail the
+cut-based identiﬁcation because it does not satisfy the selec-
+tion criterion for a single quantity. In the LH-based selec-
+tion, this electron can still satisfy the identiﬁcation criteria,
+because the LH combines the information of all of the dis-
+criminating quantities. Second, discriminating quantities that
+have distributions too similar to be used in a cut-based iden-
+tiﬁcation without suffering large losses in efﬁciency may be
+added to the LH-based identiﬁcation without penalty. Two
+examples of quantities that are used in the LH-based identi-
+ﬁcation, but not in cut-based identiﬁcations, are R
+φ and f1,
+which are deﬁned in Table 1. Figure 6 compares the dis-
+tributions of these two quantities for prompt electrons and
+background.
+6.2 The pdfs for the LH-identiﬁcation
+The pdfs for the electron LH are derived from the simula-
+tion samples described in Sect. 3. As described below, dis-
+tinct pdfs are determined for each identiﬁcation quantity in
+separate bins of electron-candidate E
+T and η. The pdfs are
+created from ﬁnely binned histograms of the individual iden-
+tiﬁcation quantities. To avoid non-physical ﬂuctuations in the
+pdfs arising from the limited size of the simulation samples,
+the histograms are smoothed using an adaptive kernel density
+estimation (KDE) implemented in the TMV A toolkit [37].
+Imperfect detector modelling causes differences between
+the simulation quantities used to form the LH-identiﬁcation
+and the corresponding quantities in data. Some simulation
+quantities are corrected to account for these differences so
+that the simulation models the data more accurately and
+hence the determination of the LH-identiﬁcation operating
+points is made using a simulation that reproduces the data as
+closely as possible. These corrections are determined using
+simulation and data obtained with theZ → ee tag-and-probe
+method.
+The differences between the data and the simulation typi-
+cally appear as either a constant offset between the quantities
+(i.e., a shift of the distributions) or a difference in the width,
+quantiﬁed here as the full-width at half-maximum (FWHM)
+of the distribution of the quantity. In some cases, both shift
+and width corrections are applied. The quantities f
+1, f3, Rη,
+wη2 and Rφ have η-dependent offsets, and the quantities f1,
+f3, Rhad, /Delta1η1 and /Delta1φres have differences in FWHM.
+In the case that the difference is a shift, the value in the sim-
+ulation is shifted by a ﬁxed ( η-dependent) amount to make
+the distribution in the simulation agree better with the distri-
+bution in the data. In the case of a difference in FWHM, the
+value in the simulation is scaled by a multiplicative factor.
+The optimal values of the shifts and width-scaling factors are
+determined by minimising a χ
+2 that compares the distribu-
+tions in the data and the simulation. An example of applying
+an offset is shown in the top panel of Fig. 7, while an exam-
+ple of applying a width-scaling factor is shown in the bottom
+panel of Fig. 7.
+The pdfs for the ET range of 4.5 GeV to 15 GeV are deter-
+mined using J/ψ → ee Monte Carlo simulation and the
+123
+
+===== PAGE 12 =====
+639 Page 12 of 40 Eur. Phys. J. C (2019) 79 :639
+Table 1 Type and description of the quantities used in the electron
+identiﬁcation. The columns labelled “Rejects” indicate whether a quan-
+tity has signiﬁcant discrimination power between prompt electrons and
+light-ﬂavour (LF) jets, photon conversions (γ), or non-prompt electrons
+from the semileptonic decay of hadrons containing heavy-ﬂavour (HF)
+quarks (b-o r c-quarks). In the column labelled “Usage,” an “LH” indi-
+cates that the pdf of this quantity is used in formingL
+S and L B (deﬁned
+in Eq. ( 2)) and a “C” indicates that this quantity is used directly as a
+selection criterion. In the description of the quantities formed using the
+second layer of the calorimeter, 3×3, 3×5, 3×7, and 7×7 refer to areas
+of /Delta1η× /Delta1φspace in units of 0.025 × 0.025
+Type Description Name Rejects Usage
+LF γ HF
+Hadronic leakage Ratio of ET in the ﬁrst layer of the
+hadronic calorimeter to ET of the
+EM cluster (used over the range
+|η| < 0.8o r |η| > 1.37)
+R
+had1 xx L H
+Ratio of ET in the hadronic
+calorimeter to ET of the EM
+cluster (used over the range
+0.8 < |η| < 1.37)
+R
+had xx L H
+Third layer of EM calorimeter Ratio of the energy in the third
+layer to the total energy in the
+EM calorimeter. This variable is
+only used for E
+T < 80 GeV, due
+to inefﬁciencies at high ET,a n d
+is also removed from the LH for
+|η| > 2.37, where it is poorly
+modelled by the simulation.
+f
+3 xL H
+Second layer of EM calorimeter Lateral shower width,√
+(/Sigma1Ei η2
+i )/(/Sigma1Ei ) − ((/Sigma1Ei ηi )/(/Sigma1Ei ))2,
+where Ei is the energy and ηi is
+the pseudorapidity of cell i and
+the sum is calculated within a
+window of 3×5 cells
+w
+η2 xx L H
+Ratio of the energy in 3×3 cells
+over the energy in 3×7 cells
+centred at the electron cluster
+position
+R
+φ xx L H
+Ratio of the energy in 3×7 cells
+over the energy in 7×7 cells
+centred at the electron cluster
+position
+R
+η xx xL H
+First layer of EM calorimeter Shower width,√
+(/Sigma1Ei (i − imax)2)/(/Sigma1Ei ),
+where i runs over all strips in a
+window of
+/Delta1η× /Delta1φ≈ 0.0625 × 0.2,
+corresponding typically to 20
+strips in η,a n di
+max is the index
+of the highest-energy strip, used
+for ET > 150 GeV only
+wstot xx xC
+Ratio of the energy difference
+between the maximum energy
+deposit and the energy deposit in
+a secondary maximum in the
+cluster to the sum of these
+energies
+E
+ratio xx L H
+Ratio of the energy in the ﬁrst layer
+to the total energy in the EM
+calorimeter
+f
+1 xL H
+123
+
+===== PAGE 13 =====
+Eur. Phys. J. C (2019) 79 :639 Page 13 of 40 639
+Table 1 continued
+Type Description Name Rejects Usage
+LF γ HF
+Track conditions Number of hits in the innermost
+pixel layer
+nBlayer xC
+Number of hits in the pixel detector nPixel xC
+Total number of hits in the pixel
+and SCT detectors
+nSi xC
+Transverse impact parameter
+relative to the beam-line
+d0 xx L H
+Signiﬁcance of transverse impact
+parameter deﬁned as the ratio of
+d
+0 to its uncertainty
+|d0/σ(d0)|x x L H
+Momentum lost by the track
+between the perigee and the last
+measurement point divided by
+the momentum at perigee
+/Delta1p/ p xL H
+TRT Likelihood probability based on
+transition radiation in the TRT
+eProbabilityHT x LH
+Track–cluster matching /Delta1ηbetween the cluster position in
+the ﬁrst layer and the
+extrapolated track
+/Delta1η
+1 xx L H
+/Delta1φbetween the cluster position in
+the second layer of the EM
+calorimeter and the
+momentum-rescaled track,
+extrapolated from the perigee,
+times the charge q
+/Delta1φ
+res xx L H
+Ratio of the cluster energy to the
+track momentum, used for ET >
+150 GeV only
+E/ p xx C
+Log-transformed likelihood discriminant
+4− 3− 2− 1− 0 1 2
+Fraction of events
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09  Signal
+ Background
+ATLAS Simulation
+ = 13 TeVs
+|<0.6η<35 GeV, |T30 GeV<E
+Fig. 5 The transformed LH-based identiﬁcation discriminant d′
+L
+for reconstructed electron candidates with good quality tracks with
+30 GeV < ET < 35 GeV and |η| < 0.6. The black histogram is for
+prompt electrons in a Z → ee simulation sample, and the red (dashed-
+line) histogram is for backgrounds in a generic two-to-two process sim-
+ulation sample (both simulation samples are described in Sect. 3). The
+histograms are normalised to unit area
+pdfs for ET > 15 GeV are determined using Z → ee Monte
+Carlo simulation.
+6.3 LH-identiﬁcation operating points and their
+corresponding efﬁciencies
+To cover the various required prompt-electron signal efﬁcien-
+cies and corresponding background rejection factors needed
+by the physics analyses carried out within the ATLAS Col-
+laboration, four ﬁxed values of the LH discriminant are used
+to deﬁne four operating points. These operating points are
+referred to as VeryLoose, Loose, Medium, and Tight in the
+text below, and correspond to increasing thresholds for the
+LH discriminant. The numerical values of the discriminant
+are determined using the simulation. As shown in more detail
+later in this section, the efﬁciencies for identifying a prompt
+electron with E
+T = 40 GeV are 93%, 88%, and 80% for the
+Loose, Medium, and Tight operating points, respectively.
+The identiﬁcation is optimised in bins of cluster η (spec-
+iﬁed in Table 2) and bins of ET (speciﬁed in Table 3). The
+selected bins in clusterηare based on calorimeter geometry,
+detector acceptances and the variation of the material in the
+123
+
+===== PAGE 14 =====
+639 Page 14 of 40 Eur. Phys. J. C (2019) 79 :639
+φR
+0.5 0.6 0.7 0.8 0.9 1
+Fraction of events
+0
+0.005
+0.01
+0.015
+ Signal
+ Background
+ATLAS Simulation
+ = 13 TeVs
+|<0.8η<30 GeV, 0.6<|T20 GeV<E
+1f
+0 0.1 0.2 0.3 0.4 0.5 0.6
+Fraction of events
+0
+0.002
+0.004
+0.006
+0.008
+ Signal
+ Background
+ATLAS Simulation
+ = 13 TeVs
+|<0.8η<30 GeV, 0.6<|T20 GeV<E
+Fig. 6 Examples of distributions of two quantitiesRφ (top) and f1 (bot-
+tom), both deﬁned in Table 1 and shown for 20 GeV < ET < 30 GeV
+and 0.6 < |η| < 0.8, that would be inefﬁcient if used in a cut-based
+identiﬁcation, but which, nonetheless, have signiﬁcant discriminating
+power against background and, therefore, can be used to improve a
+LH-based identiﬁcation. In each ﬁgure, the red-dashed distribution is
+determined from a background simulation sample and the black-line
+distribution is determined from a Z → ee simulation sample. These
+distributions are for reconstructed electron candidates before applying
+any identiﬁcation. They are smoothed using an adaptive KDE and have
+been corrected for offsets or differences in widths between the distri-
+butions in data and simulation as described in Sect. 6.2
+inner detector. The pdfs of the various electron-identiﬁcation
+quantities vary with particle energy, which motivates the bins
+in E
+T. The rate and composition of the background also varies
+with ηand ET.
+To have a relatively smooth variation of electron-identi-
+ﬁcation efﬁciency with electronET, the discriminant require-
+ments are varied in ﬁner bins (speciﬁed in Table 3) than the
+pdfs. To avoid large discontinuities in electron-identiﬁcation
+efﬁciency at the bin boundaries in electron ET, the pdf val-
+ues and discriminant requirements are linearly interpolated
+between the centres of two adjacent bins in ET.
+All of the operating points have ﬁxed requirements on
+tracking criteria: the Loose, Medium, and Tight operating
+3f
+−0.01 −0.005 0 0.005 0.01 0.015 0.02 0.025 0.03
+Fraction of events
+0
+0.02
+0.04
+0.06  Data
+ Simulation
+ Simulation corrected
+ATLAS
+-1 = 13 TeV, 33.9 fbs
+|<1.15η<40 GeV, 0.80<|T30 GeV<E
+hadR
+−0.04 −0.02 0 0.02 0.04 0.06 0.08
+Fraction of events
+0
+0.02
+0.04
+0.06
+0.08
+ Data
+ Simulation
+ Simulation corrected
+ATLAS
+-1 = 13 TeV, 33.9 fbs
+|<1.15η<40 GeV, 0.80<|T30 GeV<E
+Fig. 7 The f3 (top) and Rhad (bottom) pdf distributions in data and
+simulation for prompt electrons that satisfy 30 GeV < ET < 40 GeV
+and 0.80 < |η| < 1.15. The distributions for both simulation and data
+are obtained using the Z → ee tag-and-probe method. KDE smoothing
+has been applied to all distributions. The simulation is shown before
+(shaded histogram) and after (open histogram) applying a constant shift
+( f
+3, top) and a width-scaling factor (Rhad, bottom). Although some |η|
+bins of f3 additionally have a width-scaling factor, this particular |η|
+bin only has a constant shift applied
+points require at least two hits in the pixel detector and
+seven hits total in the pixel and silicon-strip detectors com-
+bined. For the Medium and Tight operating points, one of
+these pixel hits must be in the innermost pixel layer (or in
+the next-to-innermost layer if the innermost layer is non-
+operational). This requirement helps to reduce the back-
+ground from photon conversions. A variation of the Loose
+operating point—LooseAndBLayer—uses the same thresh-
+old for the LH discriminant as the Loose operating point and
+also adds the requirement of a hit in the innermost pixel layer.
+The VeryLoose operating point does not include an explicit
+requirement on the innermost pixel layer and requires only
+one hit in the pixel detector; the goal of this operating point
+is to provide relaxed identiﬁcation requirements for back-
+ground studies.
+123
+
+===== PAGE 15 =====
+Eur. Phys. J. C (2019) 79 :639 Page 15 of 40 639
+Table 2 Boundaries in absolute cluster pseudorapidity used to deﬁne
+the nine bins for the LH pdfs and LH discriminant requirements
+Bin boundaries in |η|
+0.0 0.6 0.8 1.15 1.37 1.52 1.81 2.01 2.37 2.47
+The pdfs of some of the LH quantities—particularly Rhad
+and Rη—are affected by additional activity in the calorime-
+ter due to pile-up, making them more background-like. The
+number of additional inelastic pp collisions in each event is
+quantiﬁed using the number of reconstructed primary ver-
+tices n
+vtx. In each ηbin and ET bin, the LH discriminant d′
+L
+is adjusted to include a linear variation with nvtx. Imposing
+a constraint of constant prompt-electron efﬁciency with nvtx
+leads to an unacceptable increase in backgrounds. Instead,
+the background efﬁciency is constrained to remain approx-
+imately constant as a function of nvtx, and this constraint
+results in a small (≤ 5 %) decrease in signal efﬁciency with
+nvtx.
+The minimum ET of the electron identiﬁcation was
+reduced from 7 GeV in Run 1 to 4.5 GeV in Run 2. The
+use of J/ψ → ee to determine LH pdfs at low E
+T is also
+new in Run 2. The push towards lower ET was motivated in
+part by searches for supersymmetric particles in compressed
+scenarios. In these scenarios, small differences between the
+masses of supersymmetric particles can lead to leptons with
+low transverse momentum.
+Special treatment is required for electrons with E
+T >
+80 GeV. The f3 quantity (deﬁned in Table 1) degrades the
+capability to distinguish signal from background because
+high-ET electrons deposit a larger fraction of their energy
+in the third layer of the EM calorimeter (making them more
+hadron-like) than low-E
+T electrons. For this reason and since
+it is not modelled well in the simulation, the pdf for f3
+is removed from the LH for ET > 80 GeV. Furthermore,
+changes with increasing prompt-electron ET in the Rhad and
+f1 quantities cause a large decrease in identiﬁcation efﬁ-
+ciency for ET > 300 GeV. Studies during development of
+the identiﬁcation algorithm showed that this loss in efﬁciency
+was very large for the Tight operating point (the identiﬁca-
+tion efﬁciency fell from 95% at ET = 300 GeV to 73% for
+ET = 2000 GeV). To mitigate this loss, for electron candi-
+dates with ET > 150 GeV, the LH discriminant threshold
+for the Tight operating point is set to be the same as for the
+Medium operating point, and two additional selection criteria
+are added to the Tight selection:E/ p and w
+stot. The require-
+ment on wstot depends on the electron candidateη, while the
+requirement on E/ p is E/ p < 10. The high value of the
+latter requirement takes into account the decreased momen-
+tum resolution in track ﬁts of a few 100 GeV and above.
+With these modiﬁcations, good signal efﬁciency and back-
+ground rejection are maintained for very high E
+T electrons
+in searches for physics beyond the Standard Model, such as
+W′ → eν.
+In Run 1, electron candidates satisfying tighter operating
+points did not necessarily satisfy the more efﬁcient looser
+operating points. This situation was a result of using differ-
+ent quantities in the electron LH for the different operating
+points. In Run 2, electron candidates satisfying tighter oper-
+ating points also satisfy less restrictive operating points, i.e.
+an electron candidate that satisﬁes the Tight criteria will also
+pass the Medium, Loose, and VeryLoose criteria.
+Another important difference in the electron identiﬁcation
+between Run 1 and Run 2 is that the LH identiﬁcation is used
+in the online event selection (the high-level trigger, HLT) in
+Run 2, instead of a cut-based identiﬁcation in Run 1. This
+change helps to reduce losses in efﬁciency incurred by apply-
+ing the ofﬂine identiﬁcation criteria in addition to the online
+criteria. The LH identiﬁcation in the trigger is designed to be
+as close as possible to the LH used in ofﬂine data analysis;
+however, there are some important differences. The /Delta1p/ p
+quantity is removed from the LH because it relies on the
+GSF algorithm (see Sect. 5.2), which is too CPU-intensive
+for use in the HLT. The average number of interactions per
+bunch crossing, ⟨μ⟩, is used to quantify the amount of pile-
+up, again because the determination of the number of pri-
+mary vertices, n
+vtx, is too CPU-intensive for the HLT. Both
+the d0 and d0/σ(d0) quantities are removed from the LH
+used in the trigger in order to preserve efﬁciency for elec-
+trons from exotic processes which might have non-zero track
+impact parameters. Finally, the LH identiﬁcation in the trig-
+ger uses quantities reconstructed in the trigger, which gener-
+ally have poorer resolution than the same quantities recon-
+structed ofﬂine. The online operating points corresponding to
+VeryLoose, Loose, Medium, and Tight are designed to have
+efﬁciencies relative to reconstruction like those of the corre-
+sponding ofﬂine operating points. Due to these differences,
+the inefﬁciency of the online selection for electrons fulﬁlling
+the same operating point as the ofﬂine selection is typically
+a few percent (absolute), up to 7% for the Tight operating
+point.
+The efﬁciencies of the LH-based electron identiﬁcation for
+the Loose, Medium, and Tight operating points for data and
+the corresponding data-to-simulation ratios are summarised
+in Figs. 8 and 9. They are extracted from J/ψ → ee and
+Z → ee events, as discussed in Sect. 4. The variations of
+the efﬁciencies with E
+T, η, and the number of reconstructed
+primary vertices are shown. Requirements on the transverse
+(d
+0) and longitudinal (z0) impact parameters measured as the
+distance of closest approach of the track to the measured pri-
+mary vertex (taking into account the beam-spot and the tilt of
+the beam-line) are applied when evaluating the numerator of
+the identiﬁcation efﬁciency. For the Tight operating point, the
+identiﬁcation efﬁciency varies from 55% at E
+T = 4.5G e V
+to 90% at ET = 100 GeV, while it ranges from 85% at
+123
+
+===== PAGE 16 =====
+639 Page 16 of 40 Eur. Phys. J. C (2019) 79 :639
+Table 3 Boundaries in electron
+transverse energy used to deﬁne
+the seven bins for the LH pdfs
+and the twelve bins for LH
+discriminant requirements
+Bin boundaries in ET [GeV]
+p d f s 4 . 571 01 52 0 3 0 4 0 ∞
+Discriminant 4.5 7 10 15 20 25 30 35 40 45 80 150 ∞
+ET = 20 GeV to 96% at ET = 100 GeV for the Loose oper-
+ating point. The uncertainties in these measured efﬁciencies
+for the Loose (Tight) operating point range from 3% (4%) at
+ET = 4.5 GeV to 0.1% (0.3%) for ET = 40 GeV. As men-
+tioned earlier in this section, simulation was used to deter-
+mine the discriminant values that deﬁne the various operating
+points, with the intended outcome that the efﬁciencies would
+fall smoothly with decreasing electron E
+T, while keeping
+the rapidly increasing background at acceptable levels. The
+simple offsets and width variations applied to the simulation
+to account for mismodelling of the EM-calorimeter shower
+shapes (see Sect.6.2) work well at higher electronE
+T, but are
+unable to fully correct the simulation at lower electron ET.
+This leads to an unintended larger efﬁciency in data for sig-
+nal electrons at lower E
+T, as can be seen in Fig.8. The ﬁgure
+also shows the corresponding rise in the data-to-simulation
+ratios.
+The lower efﬁciencies of the Medium and Tight operat-
+ing points compared to Loose result in an increased rejection
+of background; the rejection factors for misidentiﬁed elec-
+trons from multijet production (evaluated with the two-to-
+two process simulation sample described in Sect.3) increase
+typically by factors of approximately 2.5 for Medium and 5
+for Tight compared to Loose, in the E
+T range of 4–50 GeV.
+Computations and measurements of the rejection, especially
+absolute rejections, are typically associated with large uncer-
+tainties due to ambiguities in the deﬁnition of the denomi-
+nator, and the diversity of the sources of background. The
+factors mentioned above are similar to those published in
+Table 3 of the ATLAS Run-1 publication [ 3] when these
+considerations are taken into account.
+7 Electron isolation
+A considerable challenge at the LHC experiments is to dif-
+ferentiate the prompt production of electrons, muons, and
+photons in signal processes (from the hard-scattering vertex,
+or from the decay of heavy resonances such as Higgs,W , and
+Z bosons) from background processes such as semileptonic
+decays of heavy quarks, hadrons misidentiﬁed as leptons
+and photons, and photons converting into electron–positron
+pairs in the detector material upstream of the electromag-
+netic calorimeter. A characteristic signature of such a signal
+is represented by little activity (both in the calorimeter and
+in the inner detector) in an area of /Delta1η× /Delta1φsurrounding
+Efficiency
+0.55
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+idεData identification efficiency 
+ Loose
+ Medium
+ Tight
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ [GeV]TE
+20 40 60 80 100 120 140
+Data / MC 0.9
+1
+1.1
+Efficiency
+0.55
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+idεData identification efficiency 
+ Loose
+ Medium
+ Tight
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+>4.5 GeVTE
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 0.9
+1
+1.1
+Fig. 8 Measured LH electron-identiﬁcation efﬁciencies in Z → ee
+events for the Loose (blue circle), Medium (red square), and Tight (black
+triangle) operating points as a function ofE
+T (top) and η(bottom). The
+vertical uncertainty bars (barely visible because they are small) rep-
+resent the statistical (inner bars) and total (outer bars) uncertainties.
+The data efﬁciencies are obtained by applying data-to-simulation efﬁ-
+ciency ratios that are measured in J/ψ → ee and Z → ee events to
+the Z → ee simulation. For both plots, the bottom panel shows the
+data-to-simulation ratios
+123
+
+===== PAGE 17 =====
+Eur. Phys. J. C (2019) 79 :639 Page 17 of 40 639
+Efficiency
+0.55
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+idεData identification efficiency 
+ Loose
+ Medium
+ Tight>30 GeVTE
+ATLAS
+-1 = 13 TeV, 33.9 fbs
+Number of primary vertices
+5 10 15 20 25 30
+Data / MC 0.9
+1
+1.1
+Fig. 9 The LH electron-identiﬁcation efﬁciencies for electron candi-
+dates with ET > 30 GeV for the Loose (blue circle), Medium (red
+square), and Tight (black triangle) operating points as a function of
+the number of primary vertices in the 2016 data using the Z → ee
+process. The shaded histogram shows the distribution of the number of
+primary vertices for the 2016 data. The inner uncertainties are statistical
+while the total uncertainties include both the statistical and systematic
+components. The bottom panel shows the data-to-simulation ratios
+the candidate object. However, the production of boosted
+particles decaying, for example, into collimated electron–
+positron pairs or the production of prompt electrons, muons,
+and photons within a busy experimental environment such
+as in t
+t production can obscure the picture. Variables are
+constructed that quantify the amount of activity in the vicin-
+ity of the candidate object, something usually performed by
+summing the transverse energies of clusters in the calorime-
+ter or the transverse momenta of tracks in a cone of radius
+/Delta1R =
+√
+(/Delta1η)2 + (/Delta1φ)2 around the direction of the electron
+candidate, excluding the candidate itself.
+Several components enter into building such isolation
+variables: identifying the candidate object itself, its direction,
+and its contribution to the activity within the cone, and sum-
+ming, in a pile-up and underlying-event robust way, the other
+activity found within the cone. The two classes of isolation
+variables considered in this paper are based on calorimeter
+and tracking measurements, and are respectively discussed
+in Sects. 7.1 and 7.2.
+7.1 Calorimeter-based isolation
+The reconstruction of electron candidates is described in
+Sect. 5. To build an isolation variable, a cone of size /Delta1R is
+then delineated around the candidate electron’s cluster posi-
+tion.
+The computation of calorimeter-based isolation in the
+early running period of ATLAS simply summed the trans-
+verse energies of the calorimeter cells (from both the electro-
+magnetic and hadronic calorimeters) within a cone aligned
+with the electron direction, excluding the candidate’s con-
+tribution. This type of calorimeter-based variable exhib-
+ited a lack of pile-up resilience and demonstrated poor
+data–simulation agreement. A signiﬁcant improvement was
+achieved by using the transverse energies of topological clus-
+ters [38] instead of cells, thus effectively applying a noise-
+suppression algorithm to the collection of cells.
+Topological clusters are seeded by cells with a deposited
+electromagnetic-scale energy of more than four times the
+expected noise-level threshold of that cell; this includes both
+electronic noise and the effects of pileup. The clusters are
+then expanded, in the three spatial directions across all elec-
+tromagnetic and hadronic calorimeter layers, by iteratively
+adding neighbouring cells that contain a deposited energy
+more than twice the noise level. After the expansion around
+the cluster stops due to a lack of cells satisfying the energy
+threshold requirements, a ﬁnal shell of cells surrounding the
+agglomeration is added to the cluster. The topological clus-
+ters used in the isolation computation are not further cali-
+brated: they remain at the electromagnetic scale, regardless
+of the origin of the particle.
+The energies of all positive-energy topological clusters,
+whose barycentres fall within the cone of radius/Delta1R, as illus-
+trated in Fig. 10, are summed into the raw isolation energy
+variable E
+isol
+T,raw. This raw isolation energy still includes the
+energy deposited by the candidate electron, called the core
+energy E
+T,core. The core energy is subtracted by removing
+the cells included in a /Delta1η× /Delta1φ= 0.125 × 0.175 rectangle
+around the candidate’s direction, as illustrated in Fig.10.T h e
+advantage of this method is its simplicity and stable subtrac-
+tion scheme for both the signal and background candidates. A
+disadvantage of this method is that the candidate object may
+deposit energy outside of this ﬁxed rectangular area which
+may be incorrectly assigned as additional activity, requiring
+an additional leakage correction to the subtracted core energy.
+The core leakage correction is evaluated using samples of
+simulated single electrons (without additional pile-up activ-
+ity). The energy leaking into the cone is then ﬁt to a Crystal
+Ball function; its most probable value μ
+CB is parameterised
+as a function of ET and is used as an estimator of the average
+leakage, ET,leakage(ET). The corrections are derived in ten
+bins of the associated cluster ηposition.
+Figure 11 shows the isolation energy corrected with a rect-
+angular core, without and with the calculated leakage correc-
+tion, as a function of the electron ET for a sample of simu-
+lated single electrons which includes the effects of pile-up; a
+123
+
+===== PAGE 18 =====
+639 Page 18 of 40 Eur. Phys. J. C (2019) 79 :639
+φ
+η
+Fig. 10 Schema of the calorimeter isolation method: the grid repre-
+sents the second-layer calorimeter cells in the η and φ directions. The
+candidate electron is located in the centre of the purple circle represent-
+ing the isolation cone. All topological clusters, represented in red, for
+which the barycentres fall within the isolation cone are included in the
+computation of the isolation variable. The 5 × 7 cells (which cover an
+area of/Delta1η×/Delta1φ= 0.125×0.175) represented by the yellow rectangle
+correspond to the subtracted cells in the core subtraction method
+leakage correction is essential when using a rectangular core
+region.
+The pile-up and underlying-event contribution to the isola-
+tion cone is estimated from the ambient energy density [39].
+For each event, the entire calorimeter acceptance up to
+|η|= 5 is used to gather positive-energy topological clus-
+ters using the kt jet-clustering algorithm [40,41] with radius
+parameter R = 0.5, with no jet pT threshold. The area A
+of each jet is estimated and the transverse energy density ρ
+of each jet is computed as ρ = pT/A. The median energy
+density ρmedian of the distribution of jet densities in the event
+is used as an estimator of the transverse energy density of
+the event. For a simulated Z → ee sample at √ s = 13 TeV
+with average pile-up ⟨μ⟩= 22, ρmedian is approximately
+4 GeV per unit of η − φ space in the central η region of
+the calorimeter, decreasing to 2 GeV at |η|= 2.5. The pile-
+up/underlying-event correction is then evaluated as:
+ET,pile-up(η)= ρmedian(η)×
+(
+π/Delta1R2 − Acore
+)
+,
+where /Delta1R is the radius of the isolation cone and Acore is the
+area of the signal core that was subtracted. Theηdependence
+of ρ is estimated in two bins: |η| < 1.5 and 1 .5 < |η| <
+3.0. Figure 11 shows the size of this pile-up correction for a
+simulated single-electron sample with ⟨μ⟩= 13.5 pile-up.
+ [GeV]TE
+20 40 60 80 100 120 140
+ [GeV]〉T
+isolE〈
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+=13.5〉μ〈
+T,core - ET,raw
+isol E
+T,leakage - ET,core - ET,raw
+isol
+ E
+T,pile-up - ET,leakage - ET,core - ET,raw
+isol E
+ATLAS Simulation
+ = 13 TeVs
+Fig. 11 Isolation transverse energy built with a cone of radius /Delta1R =
+0.2, corrected with a rectangular core without (black dashed line) and
+with (red dot-dashed line) the leakage correctionET,leakage as a function
+of the electron ET, for a simulated sample with electron candidates
+in the central region of the detector ( |η| < 2.47) that satisfy a Tight
+electron identiﬁcation criterion. This ﬁgure also shows the size of the
+pile-up correction E
+T,pile-up (the difference between the red dot-dashed
+line and solid blue line). The curves were obtained from a simulated
+single-electron sample that includes the effects of ⟨μ⟩= 13.5 pile-up
+The fully corrected calorimeter-based isolation variable
+Eisol
+T,cone calculated within the cone of radius /Delta1R is then
+obtained after subtracting the components described above,
+namely
+E
+isol
+T,cone = Eisol
+T,raw − ET,core − ET,leakage − ET,pile-up.
+Figure 11 shows the resulting distribution as a function of
+the transverse energy of the electron for a simulated single-
+electron sample. The distribution is slightly positive since
+only positive-energy clusters are summed, allowing for only
+positive ﬂuctuations from noise.
+7.2 Track-based isolation
+The computation of track-based isolation variables uses
+tracks with p
+T > 1 GeV, reconstructed within a ﬁducial
+region of the inner detector, |η| < 2.5, and that satisfy basic
+track-quality requirements. This track selection, optimised
+using candidate muons from simulated t
+t samples, includes
+a minimum number of hits identiﬁed in the silicon detec-
+tors and a maximum number of inoperable detector regions
+crossed by the track. In order to minimise the impact of
+pile-up, a requirement is placed on the longitudinal impact
+parameter, z
+0, corrected for the reconstructed position of the
+primary vertex and multiplied by the sine of the track polar
+angle: |z0 sin θ| < 3 mm. This requirement on|z0 sin θ| aims
+to select tracks that originate from the vertex that is chosen to
+be the relevant vertex of the process. In most cases, the rele-
+123
+
+===== PAGE 19 =====
+Eur. Phys. J. C (2019) 79 :639 Page 19 of 40 639
+vant vertex corresponds to the “hardest” vertex of the event,
+i.e. the vertex for which the sum of the squares of the trans-
+verse momenta of the associated tracks is the largest; this is
+the vertex used by default in the track-isolation computation.
+Track-based isolation variables are constructed by summing
+the transverse momenta of the tracks found within a cone
+of radius /Delta1R aligned with the electron track, excluding the
+candidate’s own contribution.
+The track-p
+T contribution of the candidate electron to the
+track-isolation variable must be subtracted from the cone.
+Electrons can undergo bremsstrahlung radiation with the
+radiated photons converting into secondary electrons; such
+additional particles should be counted as part of the initial
+particle’s energy. For this reason, tracks are extrapolated to
+the second layer of the EM calorimeter. All extrapolated
+tracks that fall within a /Delta1η× /Delta1φ= 0.05 × 0.1 window
+around the cluster position are considered to be part of the
+candidate and are removed from the track-isolation-variable
+computation. The resulting track-isolation variable is called
+p
+isol
+T .
+Unlike calorimeter isolation, where a cone with a radius
+much less than /Delta1R = 0.2 is difﬁcult to build due to the
+ﬁnite granularity of the calorimeter, the much smaller tracker
+granularity allows the use of narrower cone sizes. For exam-
+ple, in boosted decay signatures or very busy environments,
+other objects can be close to the signal lepton direction. For
+such cases, a variable-cone-size track isolation, p
+isol
+T,var, can
+be used, one that progressively decreases in size as a function
+of the pT of the candidate:
+/Delta1R = min
+( 10 GeV
+pT[GeV], Rmax
+)
+,
+where Rmax is the maximum cone size (typically 0 .2–0.4).
+The value of 10 GeV in the argument is derived with a sim-
+ulated tt sample, and designed to maximise the rejection of
+background.
+7.3 Optimisation of isolation criteria and resulting
+efﬁciency measurements
+The implementation of isolation criteria is speciﬁc to the
+physics analysis needs, be it to identify isolated prompt elec-
+trons or electrons produced in a busy environment, or to reject
+light hadrons misidentiﬁed as electrons. Precision measure-
+ments with copious signal at lowerp
+T may favour tighter iso-
+lation requirements, and be willing to sacriﬁce some signal in
+order to ensure high background rejection, whereas searches
+at high pT may instead favour looser requirements in order to
+maintain high signal efﬁciency. Therefore, several isolation
+operating points were established that use calorimeter-based
+isolation in a cone of radius /Delta1R = 0.2 (Sect. 7.1) or track-
+based isolation using a variable-size cone withRmax = 0.2o r
+0.4 (Sect. 7.2), or both types of isolation simultaneously. The
+requirements for each efﬁciency-targeted operating point are
+established in bins of electron E
+T and ηwith edges:
+• ET [GeV]: 7, 10, 15, 20, 25, 27.5, 30, 32.5, 35–45 (1 GeV
+bins), 47.5, 50, 60, 80, ∞ ,
+•| η|: 0, 0.1, 0.6, 0.8, 1.15, 1.37, 1.52, 1.81, 2.01, 2.37,
+2.47.
+The operating points are deﬁned in three categories:
+• targeting a ﬁxed value of the isolation efﬁciency ϵiso,
+uniform in the ET,η of the electron (‘Loose’ isolation),
+• targeting a ﬁxed value of the isolation efﬁciency ϵiso,
+dependent on the ET of the electron but uniform in η
+(‘Gradient’ isolation),
+• imposing ﬁxed requirements on the value of the isolation
+variable (‘Fix’).
+Figure 12 shows the isolation efﬁciencies measured in data
+and the corresponding data-to-simulation ratios as a func-
+tion of the electron E
+T and η for the operating points given
+in Table 4 and for candidate electrons satisfying Tight iden-
+tiﬁcation requirements. The efﬁciencies that determine the
+values of the requirements given in Table 4 are evaluated in
+simulation from a J/ψ → ee sample for E
+T < 15 GeV and
+from a Z → ee sample for ET > 15 GeV. Since the value
+of the efﬁciency is process dependent, this can result in a
+jump in efﬁciency at the transition point of E
+T = 15 GeV,
+as can be seen in the top-left plot of Fig. 12, which was pro-
+duced with a Z → ee sample over the full ET range. The
+overall differences between data and simulation are less than
+approximately 2–4%; the operating point ‘Fix (Tight)’ has
+the most signiﬁcant difference in shape in η.
+8 Electron-charge identiﬁcation
+8.1 Reconstruction of electric charge
+The electric charge of an electron is determined from the
+curvature of the associated track reconstructed in the inner
+detector. The misidentiﬁcation of electron charge can result
+from the matching of an incorrect track to the electron can-
+didate or from a mismeasurement of the curvature of the
+primary electron track.
+The probability of bremsstrahlung emission and subse-
+quent photon conversion to an electron–positron pair (see
+Sect. 5) depends signiﬁcantly on the amount of detector mate-
+rial traversed. As shown in Fig. 13 (top, left) for a simu-
+lated Z → ee sample, most electrons for which the wrong
+charge was assigned are found in the pseudorapidity region
+123
+
+===== PAGE 20 =====
+639 Page 20 of 40 Eur. Phys. J. C (2019) 79 :639
+Efficiency
+0.85
+0.9
+0.95
+1
+1.05
+isoεData isolation efficiency 
+ Loose (Track Only)
+ Loose
+ Gradient (Loose)
+ Gradient
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ [GeV]TE
+20 40 60 80 100 120 140
+Data / MC 
+0.98
+0.99
+1
+1.01
+Efficiency
+0.85
+0.9
+0.95
+1
+1.05
+isoεData isolation efficiency 
+ Loose (Track Only)
+ Loose
+ Gradient (Loose)
+ Gradient
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+>4.5 GeVTE
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.98
+0.99
+1
+1.01
+Efficiency
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+isoεData isolation efficiency 
+ Fix (Loose)
+ Fix (Tight, Track Only)
+ Fix (Calo only)
+ = 0.4)max Fix (Track R
+ Fix (Tight)
+ATLAS
+-1 = 13 TeV, 37.1 fbs -1 = 13 TeV, 37.1 fbs
+ [GeV]TE
+20 40 60 80 100 120 140
+Data / MC 
+0.96
+0.98
+1
+1.02
+1.04
+Efficiency
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+isoεData isolation efficiency 
+ Fix (Loose)
+ Fix (Tight, Track Only)
+ Fix (Calo only)
+ = 0.4)max Fix (Track R
+ Fix (Tight)
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+>4.5 GeVTE
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.96
+0.98
+1
+1.02
+1.04
+Fig. 12 Isolation efﬁciencies for data (in the upper panels) and the ratio
+to simulation (lower panels) for the operating points given in Table 4
+as a function of candidate-electron ET (left) and η (right) in Z → ee
+events. Top plots: efﬁciencies for optimised operating points target-
+ing speciﬁc efﬁciencies. Bottom plots: efﬁciencies for operating points
+where ﬁxed requirements are applied to the isolation variables. Cone
+sizes of /Delta1R = 0.2 for calorimeter isolation and R
+max = 0.2 for track
+isolation are used (except for “Fix (Track Rmax = 0.4)” where a twice
+larger radius cone is used). The inner uncertainties are statistical while
+the total uncertainties include both the statistical and systematic com-
+ponents
+1.5 < |η| < 2.2, corresponding to a region in the detector
+with a relatively large amount of inactive material.
+Pair production resulting from bremsstrahlung is the main
+reason why a wrong track can be matched to the electron
+candidate; three tracks in close proximity are present, two
+of which have the correct charge assignment, causing an
+ambiguity in the selection of the primary electron track.
+In this context, “correct track” means the primary electron
+track while “correct charge” means the track has the same
+reconstructed charge as the primary electron. The number of
+reconstructed tracks passing the requirements described in
+Sect. 5.3 i ss h o w ni nF i g .13 (top, right); events with electrons
+123
+
+===== PAGE 21 =====
+Eur. Phys. J. C (2019) 79 :639 Page 21 of 40 639
+Table 4 Deﬁnition of the electron-isolation operating points and isola-
+tion efﬁciency ϵiso. For the ‘Gradient’ operating points, the units of pT
+are GeV. All operating points use a cone size of/Delta1R = 0.2 for calorime-
+ter isolation and Rmax = 0.2 for track isolation except for the ﬁnal entry
+‘Fix (Track)’ which uses Rmax = 0.4. The values are obtained from a
+simulated Z → ee sample where electrons satisfy Tight identiﬁcation
+requirements
+Operating point Eisol
+T,cone pisol
+T,var Total ϵiso
+(/Delta1R = 0.2) ( Rmax = 0.2)
+Loose (Track Only) – ϵiso = 99% 99%
+Loose ϵiso = 99% ϵiso = 99% 98%
+Gradient ϵiso = 0.1143 × pT + 92.14% ϵiso = 0.1143 × pT + 92.14% 90 (99)%a t2 5(60) GeV
+Gradient (Loose) ϵiso = 0.057 × pT + 95.57% ϵiso = 0.057 × pT + 95.57% 95 (99)%a t2 5(60) GeV
+Fix (Loose) Eisol
+T,cone/ pT < 0.20 pisol
+T,var/ pT < 0.15 –
+Fix (Tight) Eisol
+T,cone/ pT < 0.06 pisol
+T,var/ pT < 0.06 –
+Fix (Tight, Track Only) – pisol
+T,var/ pT < 0.06 –
+Fix (Calo Only) Eisol
+T,cone < 3.5G e V – –
+Fix (Track Rmax = 0.4) Eisol
+T,cone/ pT < 0.11 pisol
+T,var/ pT < 0.06 –
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Fraction of events
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+ correct track and charge
+ correct track, wrong charge
+ wrong track, correct charge 
+ wrong track and charge
+ATLAS Simulation
+ = 13 TeVs
+tracksn
+123456789
+Fraction of events
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+ correct track and charge
+ correct track, wrong charge
+ wrong track, correct charge 
+ wrong track and charge
+ATLAS Simulation
+ = 13 TeVs
+)0(dσ/0d×q
+10− 8− 6− 4− 2− 02468 1 0
+Fraction of events
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+ correct track and charge
+ correct track, wrong charge
+ wrong track, correct charge 
+ wrong track and charge
+ATLAS Simulation
+ = 13 TeVs
+E/p
+0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
+Fraction of events
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+ correct track and charge
+ correct track, wrong charge
+ wrong track, correct charge 
+ wrong track and charge
+ATLAS Simulation
+ = 13 TeVs
+Fig. 13 Kinematic and tracking properties of electrons from a simu-
+lated Z → ee sample. Top, left: track pseudorapidity. Top, right: mul-
+tiplicity of associated tracks. Bottom, left: electric charge multiplied
+by the transverse impact parameter signiﬁcance. Bottom, right: energy-
+to-momentum ratio, in each case for electrons with the correctly and
+incorrectly reconstructed charge with respect to the particle that caused
+the track and the correctly and incorrectly assigned track with respect
+to the primary electron. The distributions are normalised to the same
+area 123
+
+===== PAGE 22 =====
+639 Page 22 of 40 Eur. Phys. J. C (2019) 79 :639
+that have a wrongly assigned track tend to have higher track
+multiplicities. Electrons produced in conversions of photons
+originating from the primary electron have a most probable
+value of three tracks regardless of whether the charge was
+correctly reconstructed or not, illustrating the probabilistic
+nature of the process.
+The presence of additional electrons and positrons in close
+proximity can cause the track to be reconstructed from hits of
+primary and secondary electrons and positrons. Signiﬁcant
+energy loss can also distort the shape of the track. At very high
+energies or large pseudorapidities, the tracks can also become
+straighter and hence it is difﬁcult to determine their curvature.
+All of these effects impact the ability to correctly ﬁt the track,
+as can be seen from the comparison of the correct charge and
+wrong charge distributions for the correctly assigned track.
+These effects are more pronounced as a function of increased
+passive material, located at large values of η, as shown by
+comparing the equivalent two distributions in Fig. 13 (top,
+left).
+Figure 13 (bottom, left) and (bottom, right) show the dis-
+tributions of the electric charge multiplied by the transverse
+impact parameter signiﬁcance q × d
+0/σ(d0) and the E/ p,
+respectively, for electron candidates with correctly and incor-
+rectly reconstructed charge and assigned track. As expected,
+electrons with incorrectly reconstructed charge tend to have
+a larger magnitude of d
+0/σ(d0). Their q × d0/σ(d0) tends
+to be more negative due to the incorrect measurement of the
+electric charge. The distributions have a signiﬁcant fraction
+of events with E/ p ̸= 1, due to either the wrong track being
+matched to the candidate electron or the wrong track curva-
+ture being measured, resulting in an erroneous measurement
+of the electron’s momentum.
+8.2 Suppression of charge misidentiﬁcation
+The charge-misidentiﬁcation rate for reconstructed electron
+candidates can be reduced with an additional selection crite-
+rion based on the output discriminant of a boosted decision
+tree (BDT) trained using the TMV A toolkit. The training of
+the BDT is performed on a simulated single-electron sample.
+A set of eight variables related to the quality of the chosen
+primary electron track, the lateral development of the elec-
+tromagnetic shower (which is expected to be narrower for
+electrons that don’t undergo bremsstrahlung), and combined
+tracking and calorimeter quantities is used to separate elec-
+trons with the correctly reconstructed electric charge from
+those reconstructed with the wrong charge. The list of these
+quantities, ranked by their contribution to the discriminating
+power of the selection (highest to lowest, as evaluated with a
+simulated Z → ee sample), is: E/ p, /Delta1φ
+res, q ×d0, the pseu-
+dorapidity η of the electron, Rφ, (q/ p)/σ(q/ p), /Delta1φ1, and
+the transverse energy ET of the electron. Table 1 provides
+the deﬁnitions of these variables except for the charge-to-
+momentum ratio q/ p divided by its uncertaintyσ(q/ p) and
+the distance inφ between the cluster position in the ﬁrst layer
+of the calorimeter and the extrapolated track, /Delta1φ1.
+The BDT parameters are optimised to achieve the best
+possible rejection of electrons reconstructed with the wrong
+charge given an efﬁciency loss of 3% for electrons with
+correctly reconstructed charge. The resulting efﬁciencies
+from applying the additional BDT requirement for electrons
+already identiﬁed with a Medium requirement (see Sect. 6)
+are shown in Fig. 14 for candidate electrons from Z → ee
+events. The inclusion of the kinematic properties E
+T and η
+in the BDT introduces a dependence of the efﬁciency on
+these quantities (in particular forη), even for electron candi-
+dates reconstructed with the correct charge. The differences
+observed between data and simulation arise not only from
+mismodelling of some of the electromagnetic shower shapes
+in the simulation but also from the modelling of compli-
+cated objects such as the beam-spot. For this reason, data-to-
+simulation scale factors are calculated; they are also shown
+in Fig. 14.A tv e r yh i g h|η|, the efﬁciency in data is approx-
+imately 76%. The corresponding efﬁciency in simulation is
+about 8% higher, due to mismodelling. Analyses using same-
+charge dilepton pairs such as searches for supersymmetry in
+same-charge signatures [ 42] or the search for Higgs boson
+production in association with a top-quark pair [ 43] beneﬁt
+from a suppression of electrons from charge misidentiﬁca-
+tion with the BDT requirement.
+8.3 Measurement of the probability of charge
+misidentiﬁcation
+A measurement of the probability of charge misidentiﬁca-
+tion is performed using a sample of Z → ee events where
+both electrons are required to satisfy the same identiﬁcation
+and isolation criteria. The probability ϵ for an electron to be
+reconstructed with the wrong charge in a given (η, E
+T) bin
+is obtained from the numbers of events where both electrons
+have the same (SC) and opposite electric charges (OC). The
+average expected number of same-charge events for a pair
+of electrons falling into their respective (η, E
+T) bins i and
+j, NSC
+ij , follows from the total number of observed events
+nOC+SC
+ij in these same two(η, ET) bins regardless of charge,
+corrected for the charge-misidentiﬁcation probability in each
+bin ϵi, j :
+NSC
+ij = nOC+SC
+ij [(1 − ϵi)ϵ j + (1 − ϵ j)ϵi].
+The probabilities ϵi and ϵ j are obtained by maximising the
+Poisson likelihood to observe the number of same-charge
+events nSC
+ij in these bins. The non-prompt-background con-
+tributions to nOC
+ij and nSC
+ij are estimated by taking equal-size
+sideband invariant-mass regions about theZ-boson peak and
+123
+
+===== PAGE 23 =====
+Eur. Phys. J. C (2019) 79 :639 Page 23 of 40 639
+Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+εCharge BDT selection efficiency 
+ Data
+ MC
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+ [GeV]TE
+40 60 80 100 120 140
+Data / MC 
+0.85
+0.9
+0.95
+1
+1.05
+Efficiency
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+εCharge BDT selection efficiency 
+ Data
+ MC
+ > 25 GeVTE
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC 
+0.85
+0.9
+0.95
+1
+1.05
+Fig. 14 Efﬁciency of applying the additional BDT selection criterion
+to choose Medium-identiﬁed electrons reconstructed with the correct
+charge, as evaluated inZ → ee events. The criterion is based on a BDT
+discriminant optimised to select electrons with a correct charge assign-
+ment with an efﬁciency of 97%. Top: vs.E
+T; bottom: vs.η. Open points:
+data; closed points: simulation; and lower panels: data-to-simulation
+ratios. The uncertainties are smaller than the markers and hence not
+visible
+linearly interpolating to estimate the number of events under
+the mass peak.
+Systematic uncertainties associated with the Z-boson
+mass window are evaluated by increasing and decreasing
+its range. Systematic uncertainties from other sources are
+evaluated by not performing the background subtraction, by
+taking differences between probabilities in events where both
+electrons ﬁred the trigger and probabilities in events where
+only one electron ﬁred the trigger, and by comparing the
+charge-misidentiﬁcation rates extracted using the likelihood
+method with the rates extracted from a comparison with the
+true charge as determined in simulation.
+Figure 15 shows the charge-misidentiﬁcation rates in
+data and simulation for Medium electrons in Z → ee
+events as a function of E
+T and |η|, demonstrating the
+impact of applying the BDT requirement to suppress charge
+misidentiﬁcation, as explained in Sect. 8.2. As expected,
+the charge-misidentiﬁcation rates are larger at high E
+T and
+|η|. Two identiﬁcation operating points are also contrasted
+showing the impact of using a Tight identiﬁcation require-
+ment without the BDT requirement compared with using
+Medium identiﬁcation but also including this BDT require-
+ment.
+The knowledge of electron charge-misidentiﬁcation rates
+is crucial for the estimation of background from charge
+misidentiﬁcation in measurements, e.g. in the observa-
+tion of the electroweak W
+±W± jj production [ 44]o rt h e
+search for doubly charged Higgs boson production [ 45].
+To account for disagreements between data and simula-
+tion, data-to-simulation ratios, extracted from the efﬁcien-
+cies described above, are provided as correction factors for
+analyses to account for this mismodelling in the simula-
+tion.
+9 Usage of electron selections in physics measurements
+Efﬁciencies for electron reconstruction, identiﬁcation, isola-
+tion, and charge identiﬁcation are shown for several operat-
+ing points in Sects. 5, 6, 7, and 8, respectively. The prod-
+uct of these efﬁciencies (and their corresponding data-to-
+simulation correction factors) is relevant in physics mea-
+surements. In this section, electron efﬁciencies for data
+from a Z → ee sample are presented for the combination
+ϵ
+reco×ϵid×ϵiso (see Eq. (1)) for some typical operating points
+used in ATLAS physics analyses. The results are shown in
+Fig. 16 for the following operating points (listed as Identiﬁ-
+cation + Isolation):
+• Loose + Fix (Loose): used in cross-section measure-
+ments of H → 4ℓ [46] and Standard Model ZZ pro-
+duction [47],
+• Medium + Gradient (Loose): used in searches for direct
+top-squark-pair production in ﬁnal states with two lep-
+tons [48] and to identify the Z-boson candidate in mea-
+surements of Standard Model WZ production [49],
+• Tight + Gradient: used in measurements of single-top-
+quark production in association with aZ or W boson [50,
+51] and Standard Model WW production [52],
+123
+
+===== PAGE 24 =====
+639 Page 24 of 40 Eur. Phys. J. C (2019) 79 :639
+Charge misidentification probability
+3−10
+2−10
+1−10
+εData misidentification probability 
+ Tight + Fix (Tight)
+ Medium + Fix (Tight)
+ Medium + Fix (Tight) + BDT
+ATLAS
+-1 = 13 TeV, 33.9 fbs
+ [GeV]TE
+50 100 150 200 250
+Data / MC 
+0
+0.5
+1
+1.5
+2
+Charge misidentification probability
+3−10
+2−10
+1−10
+εData misidentification probability 
+ Tight + Fix (Tight)
+ Medium + Fix (Tight)
+ Medium + Fix (Tight) + BDT
+ATLAS
+-1 = 13 TeV, 33.9 fbs
+>25 GeVTE
+|η|
+0 0.5 1 1.5 22 . 5
+Data / MC 
+0
+0.5
+1
+1.5
+2
+Fig. 15 Charge-misidentiﬁcation rates in 2016 data and simulated
+Z → ee events as a function of ET (top) and |η| (bottom) showing the
+impact of applying the BDT requirement to suppress charge misidentiﬁ-
+cation (red squares vs. blue triangles). Medium identiﬁcation with BDT
+vs. Tight identiﬁcation without BDT is also explored (black circles vs.
+blue triangles). The Fix (Tight) isolation requirement is applied in all
+cases (see Table4). The inner uncertainties are statistical while the total
+uncertainties include both the statistical and systematic components
+• Tight + Fix (Track Rmax = 0.4) used in cross-section
+measurements of gluon–gluon fusion and vector-boson-
+fusion Higgs-boson production in the H → WW ∗ →
+eνμνdecay channel [53].
+Efficiency
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+isoε×idε×recoεData efficiency 
+ Loose + Fix (Loose)
+ Medium + Gradient (Loose)
+ Tight + Gradient
+ = 0.4)max Tight + Fix (Track R
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+Data / MC 
+0.9
+1
+1.1
+ [GeV]TE
+20 40 60 80 100 120 140
+Uncertainty
+4−10
+3−10
+2−10
+ stat. unc. syst. unc.⊕ stat.
+Efficiency
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+isoε×idε×recoεData efficiency 
+ Loose + Fix (Loose)
+ Medium + Gradient (Loose)
+ Tight + Gradient
+ = 0.4)max Tight + Fix (Track R
+ATLAS
+-1 = 13 TeV, 37.1 fbs
+>4.5 GeVTE
+Data / MC 
+0.9
+1
+1.1
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Uncertainty
+4−10
+3−10
+2−10
+ stat. unc. syst. unc.⊕ stat.
+Fig. 16 The product of reconstruction, identiﬁcation, and isolation
+efﬁciencies ϵreco × ϵid × ϵiso for data from a Z → ee sample as a
+function of electron ET (top) and η for ET > 4.5 GeV (bottom),
+for the following operating points: “Loose + Fix (Loose)” (black
+circles), “Medium + Gradient (Loose)” (yellow upside-down trian-
+gles), “Tight + Gradient” (blue squares) and “Tight + Fix” (Track
+R
+max = 0.4) (red triangles). The inner uncertainties are statistical while
+the total uncertainties include both the statistical and systematic com-
+ponents. The lower panels show data-to-simulation ratios as well as
+the relative statistical and total uncertainties (statistical and systematic
+added in quadrature) applicable to both the data efﬁciencies and cor-
+rection factors
+123
+
+===== PAGE 25 =====
+Eur. Phys. J. C (2019) 79 :639 Page 25 of 40 639
+10 Conclusions
+The focus of this paper is to document the methods used by
+the ATLAS experiment at the LHC in Run 2 to reconstruct,
+identify, and isolate prompt-electron candidates with high
+efﬁciency, as well as to suppress electron-charge misidentiﬁ-
+cation. Efﬁciency measurements as evaluated with 37.1 fb
+−1
+of 13 TeV pp collision data recorded in 2015–2016 are then
+compared with those determined from simulation.
+The method used to reconstruct electron candidates is
+explained for candidates in the central region of the detector
+(|η| < 2.47). Illustrative measurements of the reconstruc-
+tion efﬁciency are presented for candidates with transverse
+energy ET > 4.5G e V .F o rET > 15 GeV, the reconstruction
+efﬁciencies range from 96 to 99%, with the data uncertain-
+ties typically 1% for E
+T = 15−20 GeV and reaching the
+per-mille level at higher ET.
+The likelihood method used to identify electrons given
+the existence of a reconstructed electron candidate is also
+explained for candidates in the central region of the detector
+(|η| < 2.47). The minimum E
+T of the identiﬁed electron is
+reduced from 7 GeV in Run 1 to 4.5 GeV in Run 2. Bench-
+mark efﬁciency measurements for three identiﬁcation oper-
+ating points are provided: for the Tight operating point, the
+identiﬁcation efﬁciency varies from 55% at E
+T = 4.5G e V
+to 90% at ET = 100 GeV, while it ranges from 85% at
+ET = 20 GeV to 96% at ET = 100 GeV for the Loose oper-
+ating point. The uncertainties in these measured efﬁciencies
+for the Loose (Tight) operating point range from 3% (4%) at
+ET = 4.5 GeV to 0.1% (0.3%) for ET = 40 GeV.
+The ability to identify electron candidates isolated from
+any other local activity in the detector is documented. Two
+varieties of isolation variables, calorimeter- and tracking-
+based, are considered. Since the implementation of isola-
+tion criteria is speciﬁc to the physics analysis needs, several
+operating points are illustrated; their typical isolation efﬁ-
+ciencies are measured in data and determined from simula-
+tion, ranging from approximately 90% for the tightest oper-
+ating points to nearly 99% for the loosest, for electrons with
+E
+T = 40 GeV.
+Possible sources of electron-charge misidentiﬁcation are
+explored and an algorithm to suppress such effects is out-
+lined. The efﬁciency for correct charge reconstruction is
+illustrated for candidates passing the Medium identiﬁcation
+requirements. The efﬁciency is approximately 96% in both
+data and simulation and is mostly independent of E
+T, while
+it varies from 90 to 99% over most of the electron η region
+except at very high|η| where the efﬁciency in data is approx-
+imately 76%. The corresponding efﬁciency in simulation is
+about 8% higher, due to mismodelling.
+Finally, since total efﬁciencies are used in ATLAS physics
+analyses, the product of the electron efﬁcienciesϵ
+reco ×ϵid ×
+ϵiso measured in data and presented in this paper for some typ-
+ical operating points demonstrate the impact of these efﬁcien-
+cies on ATLAS measurements and searches for new physics.
+Acknowledgements We thank CERN for the very successful oper-
+ation of the LHC, as well as the support staff from our institutions
+without whom ATLAS could not be operated efﬁciently. We acknowl-
+edge the support of ANPCyT, Argentina; YerPhI, Armenia; ARC,
+Australia; BMWFW and FWF, Austria; ANAS, Azerbaijan; SSTC,
+Belarus; CNPq and FAPESP, Brazil; NSERC, NRC and CFI, Canada;
+CERN; CONICYT, Chile; CAS, MOST and NSFC, China; COLCIEN-
+CIAS, Colombia; MSMT CR, MPO CR and VSC CR, Czech Repub-
+lic; DNRF and DNSRC, Denmark; IN2P3-CNRS, CEA-DRF/IRFU,
+France; SRNSFG, Georgia; BMBF, HGF, and MPG, Germany; GSRT,
+Greece; RGC, Hong Kong SAR, China; ISF and Benoziyo Center,
+Israel; INFN, Italy; MEXT and JSPS, Japan; CNRST, Morocco; NWO,
+The Netherlands; RCN, Norway; MNiSW and NCN, Poland; FCT,
+Portugal; MNE/IFA, Romania; MES of Russia and NRC KI, Rus-
+sian Federation; JINR; MESTD, Serbia; MSSR, Slovakia; ARRS and
+MIZŠ, Slovenia; DST/NRF, South Africa; MINECO, Spain; SRC and
+Wallenberg Foundation, Sweden; SERI, SNSF and Cantons of Bern
+and Geneva, Switzerland; MOST, Taiwan; TAEK, Turkey; STFC, UK;
+DOE and NSF, USA. In addition, individual groups and members have
+received support from BCKDF, CANARIE, CRC and Compute Canada,
+Canada; COST, ERC, ERDF, Horizon 2020, and Marie Skłodowska-
+Curie Actions, European Union; Investissements d’ Avenir Labex and
+Idex, ANR, France; DFG and AvH Foundation, Germany; Herakleitos,
+Thales and Aristeia programmes co-ﬁnanced by EU-ESF and the Greek
+NSRF, Greece; BSF-NSF and GIF, Israel; CERCA Programme General-
+itat de Catalunya, Spain; The Royal Society and Leverhulme Trust, UK.
+The crucial computing support from all WLCG partners is acknowl-
+edged gratefully, in particular from CERN, the ATLAS Tier-1 facili-
+ties at TRIUMF (Canada), NDGF (Denmark, Norway, Sweden), CC-
+IN2P3 (France), KIT/GridKA (Germany), INFN-CNAF (Italy), NL-
+T1 (The Netherlands), PIC (Spain), ASGC (Taiwan), RAL (UK) and
+BNL (USA), the Tier-2 facilities worldwide and large non-WLCG
+resource providers. Major contributors of computing resources are listed
+in Ref. [54].
+Data A vailability Statement This manuscript has no associated data
+or the data will not be deposited. [Authors’ comment: All ATLAS sci-
+entiﬁc output is published in journals, and preliminary results are made
+available in Conference Notes. All are openly available, without restric-
+tion on use by external parties beyond copyright law and the standard
+conditions agreed by CERN. Data associated with journal publications
+are also made available: tables and data from plots (e.g. cross section
+values, likelihood proﬁles, selection efﬁciencies, cross section limits,
+...) are stored in appropriate repositories such as HEPDATA ( http://
+hepdata.cedar.ac.uk/). ATLAS also strives to make additional material
+related to the paper available that allows a reinterpretation of the data
+in the context of new theoretical models. For example, an extended
+encapsulation of the analysis is often provided for measurements in the
+framework of RIVET (http://rivet.hepforge.org/).” This information is
+taken from the ATLAS Data Access Policy, which is a public docu-
+ment that can be downloaded from http://opendata.cern.ch/record/413
+[opendata.cern.ch].]
+Open Access This article is distributed under the terms of the Creative
+Commons Attribution 4.0 International License ( http://creativecomm
+ons.org/licenses/by/4.0/), which permits unrestricted use, distribution,
+and reproduction in any medium, provided you give appropriate credit
+to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made.
+Funded by SCOAP
+3.
+123
+
+===== PAGE 26 =====
+639 Page 26 of 40 Eur. Phys. J. C (2019) 79 :639
+References
+1. ATLAS Collaboration, Electron performance measurements with
+the ATLAS detector using the 2010 LHC proton–proton collision
+data, Eur. Phys. J. C 72, 1909 (2012) arXiv:1110.3174 [hep-ex]
+2. ATLAS Collaboration, Electron reconstruction and identiﬁcation
+efﬁciency measurements with the ATLAS detector using the 2011
+LHC proton–proton collision data, Eur. Phys. J. C74, 2941 (2014)
+arXiv:1404.2240 [hep-ex]
+3. ATLAS Collaboration, Electron efﬁciency measurements with the
+ATLAS detector using 2012 LHC proton–proton collision data,
+Eur. Phys. J. C 77, 195 (2017) arXiv:1612.01456 [hep-ex]
+4. ATLAS Collaboration, Luminosity determination in pp collisions
+at √
+s = 8 TeV using the ATLAS detector at the LHC, Eur. Phys.
+J. C 76, 653 (2016) arXiv:1608.03953 [hep-ex]
+5. ATLAS Collaboration, The ATLAS Experiment at the CERN Large
+Hadron Collider, JINST 3, S08003 (2008)
+6. B. Abbott et al., Production and integration of the ATLAS
+Insertable B-Layer. JINST 13, T05008 (2018). arXiv:1803.00844
+[physics.ins-det]
+7. ATLAS Collaboration, ATLAS Insertable B-Layer Technical
+Design Report, ATLAS-TDR-19, (2010), https://cds.cern.ch/
+record/1291633, ATLAS Insertable B-Layer Technical Design
+Report Addendum, ATLAS-TDR-19-ADD-1, (2012) https://cds.
+cern.ch/record/1451888
+8. P. Nason, A new method for combining NLO QCD with
+shower Monte Carlo algorithms. JHEP 11, 040 (2004).
+arXiv:hep-ph/0409146
+9. S. Frixione, P. Nason, C. Oleari, Matching NLO QCD computations
+with parton shower simulations: the POWHEG method. JHEP 11,
+070 (2007). arXiv:0709.2092 [hep-ph]
+10. S. Alioli, P. Nason, C. Oleari, E. Re, A general framework for
+implementing NLO calculations in shower Monte Carlo programs:
+the POWHEG BOX. JHEP06, 043 (2010).arXiv:1002.2581 [hep-
+ph]
+11. S. Alioli, P. Nason, C. Oleari, E. Re, NLO vector-boson produc-
+tion matched with shower in POWHEG. JHEP 07, 060 (2008).
+arXiv:0805.4802 [hep-ph]
+12. S. Frixione, P. Nason, G. Ridolﬁ, A positive-weight next-to-
+leading-order Monte Carlo for heavy ﬂavour hadroproduction.
+JHEP 09, 126 (2007). arXiv:0707.3088 [hep-ph]
+13. T. Sjöstrand, S. Mrenna, P.Z. Skands, A brief introduction
+to PYTHIA 8.1. Comput. Phys. Commun. 178, 852 (2008).
+arXiv:0710.3820 [hep-ph]
+14. H.-L. Lai et al., New parton distributions for collider physics. Phys.
+Rev. D 82, 074024 (2010). arXiv:1007.2241 [hep-ph]
+15. ATLAS Collaboration, Measurement of the Z/γ
+∗ boson transverse
+momentum distribution in pp collisions at √ s = 7 TeV with the
+ATLAS detector, JHEP09, 145 (2014). arXiv:1406.3660 [hep-ex]
+16. J. Pumplin et al., New generation of parton distributions with
+uncertainties from global QCD analysis. JHEP 07, 012 (2002).
+arXiv:hep-ph/0201195 [hep-ph]
+17. ATLAS Collaboration, ATLAS Pythia 8 tunes to 7 TeV
+data, ATL-PHYS-PUB-2014-021 (2014). https://cdsweb.cern.ch/
+record/1966419
+18. R.D. Ball et al., Parton distributions with LHC data. Nucl. Phys. B
+867, 244 (2013). arXiv:1207.1303 [hep-ph]
+19. A.D. Martin, W.J. Stirling, R.S. Thorne, G. Watt, Parton distribu-
+tions for the LHC. Eur. Phys. J. C63, 189 (2009).arXiv:0901.0002
+[hep-ph]
+20. S. Agostinelli et al., GEANT4–a simulation toolkit. Nucl. Instrum.
+Meth. A 506, 250 (2003)
+21. ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur.
+Phys. J. C 70, 823 (2010). arXiv:1005.4568 [physics.ins-det]
+22. ATLAS Collaboration, Performance of the ATLAS trigger system
+in 2015, Eur. Phys. J. C77, 317 (2017).arXiv:1611.09661 [hep-ex]
+23. C. Blocker, Uncertainties on Efﬁciencies, CDF/MEMO/
+STATISTICS/PUBLIC/7168. http://www-cdf.fnal.gov/physics/
+statistics/notes/cdf7168_eff_uncertainties.ps
+24. H1 Collaboration, Measurement of the inclusive ep scattering cross
+section at low Q2 and x at HERA. Eur. Phys. J. C 63, 625 (2009).
+arXiv:0904.0929 [hep-ex]
+25. C. Patrignani et al., Review of particle physics. Chin. Phys. C 40,
+100001 (2016)
+26. ATLAS Collaboration, Measurement of the difﬁerential cross-
+sections of inclusive, prompt and non-prompt J/ψ production in
+proton–proton collisions at √ s = 7 TeV , Nucl. Phys. B850, 387
+(2011). arXiv:1104.3038 [hep-ex]
+27. W. Lampl et al., Calorimeter clustering algorithms: description
+and performance. ATL-LARG-PUB-2008-002 (2008).https://cds.
+cern.ch/record/1099735
+28. ATLAS Collaboration, Performance of the ATLAS track recon-
+struction algorithms in dense environments in LHC Run 2, Eur.
+P h y s .J .C77, 673 (2017). arXiv: 1704.07983 [hep-ex]
+29. T. Cornelissen et al., The new ATLAS track reconstruction
+(NEWT). J. Phys. Conf. Ser. 119, 032014 (2008)
+30. T. Cornelissen et al., The global χ
+2 track ﬁtter in ATLAS. J. Phys.
+Conf. Ser. 119, 032013 (2008)
+31. ATLAS Collaboration, Improved electron reconstruction in
+ATLAS using the Gaussian Sum Filter-based model for
+bremsstrahlung, ATLAS-CONF-2012-047 (2012). https://cds.
+cern.ch/record/1449796
+32. R. Frühwirth, A Gaussian-mixture approximation of the Bethe-
+Heitler model of electron energy loss by bremsstrahlung. Comp.
+Phys. Comm. 154, 131 (2003). ISSN: 0010-4655
+33. R. Frühwirth, Application of Kalman ﬁltering to track and vertex
+ﬁtting. Nucl. Instrum. Meth. A 262, 444 (1987)
+34. ATLAS Collaboration, Measurement of the photon identiﬁcation
+efﬁciencies with the ATLAS detector using LHC Run 2 data col-
+lected in 2015 and 2016. Eur. Phys. J. C 79, 205 (2019). https://
+doi.org/10.1140/epjc/s10052-019-6650-6
+35. ATLAS Collaboration, Electron and photon energy calibration with
+the ATLAS detector using LHC Run 1 data. Eur. Phys. J. C74, 3071
+(2014). arXiv:1407.5063 [hep-ex]
+36. ATLAS Collaboration, Electron and photon energy calibration
+with the ATLAS detector using 2015–2016 LHC proton–proton
+collision data. JINST 14, P03017 (2019). https://doi.org/10.1088/
+1748-0221/14/03/P03017
+37. A. Hoecker et al., TMV A: Toolkit for Multivariate Data Analy-
+sis, PoS ACAT 040 (2007). arXiv:physics/0703039, http://tmva.
+sourceforge.net/
+38. ATLAS Collaboration, Topological cell clustering in the ATLAS
+calorimeters and its performance in LHC Run 1. Eur. Phys. J. C
+77, 490 (2017). arXiv:1603.02934 [hep-ex]
+39. M. Cacciari, G.P. Salam, Pileup subtraction using jet areas. Phys.
+Lett. B 659, 119 (2008). arXiv:0707.1378 [hep-ph]
+40. S.D. Ellis, D.E. Soper, Successive combination jet algo-
+rithm for hadron collisions. Phys. Rev. D 48, 3160 (1993).
+arXiv:hep-ph/9305266 [hep-ph]
+41. S. Catani, Y .L. Dokshitzer, M.H. Seymour, B.R. Webber, Longitu-
+dinally invariant K
+t clustering algorithms for hadron hadron colli-
+sions. Nucl. Phys. B 406, 187 (1993)
+42. ATLAS Collaboration, Search for supersymmetry in ﬁnal states
+with two same-sign or three leptons and jets using 36 fb−1 of √ s =
+13 TeV pp collision data with the ATLAS detector. JHEP 09, 084
+(2017). arXiv:1706.03731 [hep-ex]
+43. ATLAS Collaboration, Evidence for the associated production of
+the Higgs boson and a top quark pair with the ATLAS detector.
+P h y s .R e v .D .97, 072003 (2018). arXiv: 1712.08891 [hep-ex]
+123
+
+===== PAGE 27 =====
+Eur. Phys. J. C (2019) 79 :639 Page 27 of 40 639
+44. ATLAS Collaboration, Observation of electroweak production of
+a same-sign W boson pair in association with two jets in pp colli-
+sions at √
+s = 13 TeV with the ATLAS detector. Eur. Phys. J. C
+79 535 (2019). https://doi.org/10.1140/epjc/s10052-019-7027-6
+45. ATLAS Collaboration, Search for doubly charged Higgs boson pro-
+duction in multi-lepton ﬁnal states with the ATLAS detector using
+proton–proton collisions at √
+s = 13 TeV . Eur. Phys. J. C78, 199
+(2018). arXiv:1710.09748 [hep-ex]
+46. ATLAS Collaboration, Measurement of inclusive and difﬁeren-
+tial cross sections in the H → ZZ ∗ → 4ℓ decay channel in pp
+collisions at √ s = 13 TeV with the ATLAS detector. JHEP 10,
+132(2017). arXiv:1708.02810 [hep-ex]
+47. ATLAS Collaboration, ZZ → ℓ+ℓ− ℓ′+ℓ′− cross-section mea-
+surements and search for anomalous triple gauge couplings in
+13 TeV pp collisions with the ATLAS detector. Phys. Rev. D 97,
+032005 (2018). arXiv:1709.07703 [hep-ex]
+48. ATLAS Collaboration, Search for direct top squark pair produc-
+tion in ﬁnal states with two leptons in √ s = 13 TeV pp colli-
+sions with the ATLAS detector. Eur. Phys. J. C 77, 898 (2017).
+arXiv:1708.03247 [hep-ex]
+49. ATLAS Collaboration, Measurement of W± Z production cross
+sections and gauge boson polarisation in pp collisions at√ s = 13 TeV with the ATLAS detector. Eur. Phys. J. C 79, 535
+(2019). https://doi.org/10.1140/epjc/s10052-019-7027-6
+50. ATLAS Collaboration, Measurement of difﬁerential cross-sections
+of a single top quark produced in association with a W boson
+at √
+s = 13 TeV with ATLAS. Eur. Phys. J. C 78, 186 (2018).
+arXiv:1712.01602 [hep-ex]
+51. ATLAS Collaboration, Measurement of the production cross-
+section of a single top quark in association with a Z boson in
+proton–proton collisions at 13 TeV with the ATLAS detector. Phys.
+Lett. B 780, 557 (2018). arXiv:1905.04242 [hep-ex]
+52. ATLAS Collaboration, Measurement of ﬁducial and differen-
+tial W
++ W− production cross-sections at √ s =13 TeV with the
+ATLAS detector (2019). arXiv:1905.04242 [hep-ex]
+53. ATLAS Collaboration, Measurements of gluon-gluon fusion and
+vector-boson fusion Higgs bosonproduction cross-sections in the
+H → WW ∗ → eνμνdecay channel in pp collisions at √ s = 13
+TeV with the ATLAS detector (2018).arXiv:1808.09054 [hep-ex]
+54. ATLAS Collaboration, ATLAS computing acknowledgements,
+ATL-GEN-PUB-2016-002. https://cds.cern.ch/record/2202407
+ATLAS Collaboration
+M. Aaboud34d,G . A a d 99, B. Abbott 125, D. C. Abbott 100, O. Abdinov 13,*, B. Abeloos 129, D. K. Abhayasinghe 91,
+S. H. Abidi164, O. S. AbouZeid39, N. L. Abraham153, H. Abramowicz158, H. Abreu157, Y . Abulaiti6, B. S. Acharya64a,64b,p,
+S. Adachi160, L. Adam 97, L. Adamczyk 81a, L. Adamek 164, J. Adelman 119, M. Adersberger 112, A. Adiguzel 12c,ai,
+T. Adye141, A. A. Affolder 143,Y . A ﬁ k157, C. Agheorghiesei 27c, J. A. Aguilar-Saavedra 137a,137f,ah, F. Ahmadov 77,af,
+G. Aielli71a,71b, S. Akatsuka 83, T .P .A .Å k e s s o n94, E. Akilli 52,A . V . A k i m o v108, G. L. Alberghi 23a,23b, J. Albert 173,
+P. Albicocco49, M. J. Alconada Verzini 86, S. Alderweireldt 117, M. Aleksa 35, I. N. Aleksandrov 77,C . A l e x a27b,
+D. Alexandre19, T. Alexopoulos 10, M. Alhroob 125,B . A l i139, G. Alimonti 66a, J. Alison 36, S .P .A l k i r e145, C. Allaire 129,
+B. M. M. Allbrooke153, B .W .A l l e n128, P .P .A l l p o r t21, A. Aloisio 67a,67b, A. Alonso 39, F. Alonso 86, C. Alpigiani 145,
+A. A. Alshehri55, M. I. Alstaty 99, B. Alvarez Gonzalez 35, D. Álvarez Piqueras 171, M. G. Alviggi 67a,67b, B .T .A m a d i o18,
+Y . Amaral Coutinho78b, A. Ambler 101, L. Ambroz 132, C. Amelung 26, D. Amidei 103, S. P. Amor Dos Santos 137a,137c,
+S. Amoroso44, C. S. Amrouche 52,F . A n 76, C. Anastopoulos 146, L. S. Ancu 52, N. Andari 142, T. Andeen 11,
+C. F. Anders59b, J. K. Anders 20, K .J .A n d e r s o n36, A. Andreazza 66a,66b, V . Andrei59a, C. R. Anelli 173, S. Angelidakis 37,
+I. Angelozzi118, A. Angerami 38, A. V . Anisenkov120a,120b, A. Annovi 69a, C. Antel 59a, M. T. Anthony146, M. Antonelli 49,
+D. J. A. Antrim168, F. Anulli 70a, M. Aoki 79, J. A. Aparisi Pozo 171, L. Aperio Bella 35, G. Arabidze 104, J. P. Araque 137a,
+V . Araujo Ferraz78b, R. Araujo Pereira78b,A .T .H .A r c e47, R. E. Ardell91, F. A. Arduh86, J-F. Arguin107, S. Argyropoulos75,
+J.-H. Arling44, A .J .A r m b r u s t e r35, L .J .A r m i t a g e90, A. Armstrong 168, O. Arnaez 164, H. Arnold 118, M. Arratia 31,
+O. Arslan24, A. Artamonov 109,*, G. Artoni 132,S . A r t z 97,S . A s a i 160, N. Asbah 57, E. M. Asimakopoulou 169,
+L. Asquith153, K. Assamagan 29, R. Astalos 28a, R .J .A t k i n32a, M. Atkinson 170, N .B .A t l a y148, K. Augsten 139,
+G. Avolio35, R. Avramidou 58a, M. K. Ayoub 15a, A. M. Azoulay 165b, G. Azuelos 107,av, A. E. Baas 59a, M. J. Baca 21,
+H. Bachacou142, K. Bachas 65a,65b, M. Backes 132, P. Bagnaia 70a,70b, M. Bahmani 82, H. Bahrasemani 149, A .J .B a i l e y171,
+V . R. Bailey170, J. T. Baines141, M. Bajic39, C. Bakalis10,O .K .B a k e r180, P. J. Bakker118, D. Bakshi Gupta 8, S. Balaji154,
+E. M. Baldin120a,120b, P. Balek 177, F. Balli 142, W. K. Balunas 134,J . B a l z 97, E. Banas 82, A. Bandyopadhyay 24,
+S. Banerjee178,l, A. A. E. Bannoura 179, L. Barak 158, W .M .B a r b e37, E. L. Barberio 102, D. Barberis 53a,53b, M. Barbero 99,
+T. Barillari113, M-S. Barisits 35,J . B a r k e l o o128, T. Barklow 150, R. Barnea 157, S. L. Barnes 58c, B. M. Barnett 141,
+R. M. Barnett18, Z. Barnovska-Blenessy 58a, A. Baroncelli 72a, G. Barone 29, A .J .B a r r132, L. Barranco Navarro 171,
+F. Barreiro96, J. Barreiro Guimarães da Costa 15a, R. Bartoldus 150, A .E .B a r t o n87,P . B a r t o s28a, A. Basalaev 135,
+A. Bassalat129, R. L. Bates 55, S. J. Batista 164, S. Batlamous 34e, J .R .B a t l e y31, M. Battaglia 143, M. Bauce 70a,70b,
+F. Bauer142, K. T. Bauer 168, H .S .B a w a 150, J. B. Beacham 123, T. Beau 133, P. H. Beauchemin 167, P. Bechtle 24,
+H. C. Beck51, H. P. Beck20,s, K. Becker 50, M. Becker 97, C. Becot 44, A. Beddall 12d, A. J. Beddall 12a, V . A. Bednyakov77,
+M. Bedognetti118,C . P . B e e152, T. A. Beermann74, M. Begalli 78b, M. Begel 29, A. Behera 152, J. K. Behr 44, F. Beisiegel24,
+A. S. Bell92, G. Bella158, L. Bellagamba23b, A. Bellerive33, M. Bellomo157, P. Bellos9, K. Belotskiy110, N. L. Belyaev110,
+O. Benary158,*, D. Benchekroun34a, M. Bender112, N. Benekos10, Y . Benhammou158, E. Benhar Noccioli180, J. Benitez75,
+123
+
+===== PAGE 28 =====
+639 Page 28 of 40 Eur. Phys. J. C (2019) 79 :639
+D. P. Benjamin6, M. Benoit 52, J. R. Bensinger 26, S. Bentvelsen 118, L. Beresford 132, M. Beretta 49, D. Berge 44,
+E. Bergeaas Kuutmann169, N. Berger 5, B. Bergmann 139, L. J. Bergsten 26, J. Beringer 18, S. Berlendis 7, N. R. Bernard 100,
+G. Bernardi133, C. Bernius150, F. U. Bernlochner24,T .B e r r y91,P .B e r t a97, C. Bertella15a, G. Bertoli43a,43b, I. A. Bertram87,
+G. J. Besjes39, O. Bessidskaia Bylund 179, M. Bessner 44, N. Besson 142, A. Bethani 98, S. Bethke 113, A. Betti 24,
+A. J. Bevan90, J. Beyer 113,R . B i136, R. M. Bianchi 136, O. Biebel 112, D. Biedermann 19, R. Bielski 35, K. Bierwagen 97,
+N. V . Biesuz69a,69b, M. Biglietti 72a, T .R .V .B i l l o u d107, M. Bindi 51, A. Bingul 12d,C . B i n i70a,70b, S. Biondi 23a,23b,
+M. Birman177, T. Bisanz51,J . P . B i s w a l158, C. Bittrich 46, D. M. Bjergaard 47, J. E. Black 150, K. M. Black 25, T. Blazek28a,
+I. Bloch44, C. Blocker 26,A . B l u e55, U. Blumenschein 90, Dr. Blunier 144a, G. J. Bobbink 118, V . S. Bobrovnikov120a,120b,
+S. S. Bocchetta94, A. Bocci 47, D. Boerner 179, D. Bogavac 112, A. G. Bogdanchikov 120a,120b, C. Bohm 43a, V . Boisvert91,
+P. Bokan169,T .B o l d81a, A. S. Boldyrev111,A .E .B o l z59b, M. Bomben133, M. Bona90, J. S. Bonilla128, M. Boonekamp142,
+H. M. Borecka-Bielska88,A . B o r i s o v121, G. Borissov 87, J. Bortfeldt 35, D. Bortoletto 132, V . Bortolotto 71a,71b,
+D. Boscherini23b,M . B o s m a n14, J .D .B o s s i oS o l a30, K. Bouaouda 34a, J. Boudreau 136, E. V . Bouhova-Thacker 87,
+D. Boumediene37, C. Bourdarios 129, S. K. Boutle 55, A. Boveia 123,J . B o y d35,D . B o y e32b, I .R .B o y k o77, A. J. Bozson 91,
+J. Bracinik21, N. Brahimi99, A. Brandt8, G. Brandt179, O. Brandt59a,F .B r a r e n44, U. Bratzler161,B .B r a u100,J .E .B r a u128,
+W. D. Breaden Madden55, K. Brendlinger44, L. Brenner44, R. Brenner169, S. Bressler177, B. Brickwedde97, D. L. Briglin21,
+D. Britton55, D. Britzger 113, I. Brock 24, R. Brock 104, G. Brooijmans 38, T. Brooks 91, W. K. Brooks 144b, E. Brost 119,
+J. H. Broughton21, P. A. Bruckman de Renstrom82, D. Bruncko28b, A. Bruni23b, G. Bruni23b,L .S .B r u n i118, S. Bruno71a,71b,
+B. H. Brunt31, M. Bruschi 23b,N . B r u s c i n o136, P. Bryant 36, L. Bryngemark 94, T. Buanes 17, Q. Buat 35, P. Buchholz 148,
+A. G. Buckley55, I. A. Budagov77, M. K. Bugge 131, F. Bührer50, O. Bulekov110, D. Bullock 8,T .J .B u r c h119, S. Burdin 88,
+C. D. Burgard118, A. M. Burger 5, B. Burghgrave 119, K. Burka 82,S . B u r k e141, I. Burmeister 45,J . T . P . B u r r132,
+V . Büscher97, E. Buschmann51, P. Bussey55,J .M .B u t l e r25,C .M .B u t t a r55, J. M. Butterworth92, P. Butti35, W. Buttinger35,
+A. Buzatu155, A. R. Buzykaev120a,120b, G. Cabras 23a,23b, S. Cabrera Urbán 171, D. Caforio 139,H . C a i170, V .M .M .C a i r o2,
+O. Cakir4a, N. Calace 35, P. Calaﬁura 18, A. Calandri 99, G. Calderini 133, P. Calfayan 63, G. Callea 55, L. P. Caloba 78b,
+S. Calvente Lopez96,D . C a l v e t37,S . C a l v e t37,T . P . C a l v e t152, M. Calvetti 69a,69b, R. Camacho Toro 133, S. Camarda 35,
+D. Camarero Munoz96, P. Camarri 71a,71b, D. Cameron 131, R. Caminal Armadans 100, C. Camincher 35, S. Campana 35,
+M. Campanelli92, A. Camplani 39, A. Campoverde 148, V . Canale 67a,67b, M. Cano Bret 58c, J. Cantero 126,T . C a o158,
+Y. C a o170, M. D. M. Capeans Garrido 35, I. Caprini27b, M. Caprini27b, M. Capua40b,40a, R. M. Carbone38, R. Cardarelli71a,
+F. C. Cardillo146,I . C a r l i140,T . C a r l i35, G. Carlino 67a, B. T. Carlson 136, L. Carminati 66a,66b, R .M .D .C a r n e y43a,43b,
+S. Caron117, E. Carquin 144b,S . C a r r á66a,66b, J .W .S .C a r t e r164, D. Casadei 32b, M. P. Casado 14,g, A. F. Casha 164,
+D. W. Casper168, R. Castelijn 118, F. L. Castillo 171, V . Castillo Gimenez 171,N . F . C a s t r o137a,137e, A. Catinaccio 35,
+J. R. Catmore131, A. Cattai 35, J. Caudron 24, V . Cavaliere 29, E. Cavallaro 14, D. Cavalli 66a, M. Cavalli-Sforza 14,
+V . Cavasinni69a,69b, E. Celebi12b, F. Ceradini72a,72b, L. Cerda Alberich171, A. S. Cerqueira78a,A .C e r r i153, L. Cerrito71a,71b,
+F. Cerutti18, A. Cervelli 23a,23b, S .A .C e t i n12b, A. Chafaq 34a, D. Chakraborty 119, S. K. Chan 57, W. S. Chan 118,
+J. D. Chapman31, B. Chargeishvili 156b, D. G. Charlton 21, C. C. Chau 33, C. A. Chavez Barajas 153,S . C h e 123,
+A. Chegwidden104, S. Chekanov6, S. V . Chekulaev165a,G .A .C h e l k o v77,au,M .A .C h e l s t o w s k a35, B. Chen76, C. Chen58a,
+C. H. Chen76, H. Chen 29, J. Chen 58a, J. Chen 38, S. Chen 134, S. J. Chen 15c, X. Chen 15b,at, Y . Chen80, Y-H. Chen 44,
+H. C. Cheng61a, H. J. Cheng 15d, A. Cheplakov 77, E. Cheremushkina 121, R. Cherkaoui El Moursli 34e, E. Cheu 7,
+K. Cheung62,T .J .A .C h e v a l é r i a s142, L. Chevalier142, V . Chiarella49, G. Chiarelli69a, G. Chiodini65a, A. S. Chisholm35,21,
+A. Chitan27b,I . C h i u160,Y . H . C h i u173, M. V . Chizhov77, K. Choi 63, A. R. Chomont 129, S. Chouridou 159,Y . S . C h o w118,
+V . Christodoulou92,M . C . C h u61a, J. Chudoba 138, A. J. Chuinard 101, J. J. Chwastowski 82,L . C h y t k a127, D. Cinca 45,
+V . Cindro89, I .A .C i o a r ˘a24, A. Ciocio 18, F. Cirotto 67a,67b, Z. H. Citron 177, M. Citterio 66a,A . C l a r k52, M .R .C l a r k38,
+P. J. Clark48, C. Clement 43a,43b, Y . Coadou 99, M. Cobal 64a,64c, A. Coccaro 53a,53b, J. Cochran 76, H. Cohen 158,
+A. E. C. Coimbra177, L. Colasurdo 117,B . C o l e38, A. P. Colijn 118, J. Collot 56, P. Conde Muiño 137a,i, E. Coniavitis 50,
+S. H. Connell32b, I. A. Connelly 98, S. Constantinescu 27b, F. Conventi 67a,aw, A. M. Cooper-Sarkar 132, F. Cormier 172,
+K. J. R. Cormier164, L. D. Corpe 92, M. Corradi 70a,70b, E .E .C o r r i g a n94, F. Corriveau 101,ad, A. Cortes-Gonzalez 35,
+M. J. Costa171, F. Costanza 5, D. Costanzo 146, G. Cottin 31,G . C o w a n91,B . E . C o x98, J. Crane 98, K. Cranmer 122,
+S. J. Crawley55, R. A. Creager 134,G . C r e e33, S. Crépé-Renaudin 56, F. Crescioli 133, M. Cristinziani 24, V . Croft 122,
+G. Crosetti40b,40a, A. Cueto 96, T. Cuhadar Donszelmann 146, A. R. Cukierman 150, S. Czekierda 82, P. Czodrowski 35,
+M. J. Da Cunha Sargedas De Sousa58b,C .D aV i a98, W. Dabrowski81a, T. Dado28a,y, S. Dahbi34e,T .D a i103, F. Dallaire107,
+C. Dallapiccola100,M . D a m 39,G . D ’ a m e n23a,23b,J . D a m p 97, J. R. Dandoy 134, M. F. Daneri 30, N. P. Dang 178,l,
+N. D. Dann98, M. Danninger 172,V . D a o35, G. Darbo 53b,S . D a r m o r a8,O . D a r t s i5, A. Dattagupta 128, T. Daubney 44,
+S. D’Auria66a,66b, W. Davey 24,C . D a v i d44, T. Davidek 140,D . R . D a v i s47,E . D a w e102,I . D a w s o n146,K . D e 8,
+R. De Asmundis67a, A. De Benedetti 125, M. De Beurs 118,S . D e C a s t r o23a,23b, S. De Cecco 70a,70b, N. De Groot 117,
+123
+
+===== PAGE 29 =====
+Eur. Phys. J. C (2019) 79 :639 Page 29 of 40 639
+P. de Jong118,H .D el aT o r r e104, F. De Lorenzi76,A .D eM a r i a69a,69b, D. De Pedis70a, A. De Salvo70a, U. De Sanctis71a,71b,
+M. De Santis71a,71b, A. De Santo 153, K. De Vasconcelos Corga 99, J .B .D eV i v i eD eR e g i e129, C. Debenedetti 143,
+D. V . Dedovich77, N. Dehghanian 3, M. Del Gaudio 40b,40a, J. Del Peso 96, Y . Delabat Diaz44, D. Delgove 129, F. Deliot 142,
+C. M. Delitzsch7, M. Della Pietra 67a,67b, D. Della V olpe 52, A. Dell’Acqua 35, L. Dell’Asta 25,M . D e l m a s t r o5,
+C. Delporte129,P . A . D e l s a r t56, D. A. DeMarco 164, S. Demers 180, M. Demichev 77, S. P. Denisov 121, D. Denysiuk 118,
+L. D’Eramo133, D. Derendarz 82, J. E. Derkaoui 34d, F. Derue 133,P . D e r v a n88, K. Desch 24, C. Deterre 44, K. Dette 164,
+M. R. Devesa30,P .O .D e v i v e i r o s35, A. Dewhurst141, S. Dhaliwal26,F .A .D iB e l l o52, A. Di Ciaccio71a,71b, L. Di Ciaccio5,
+W. K. Di Clemente134, C. Di Donato 67a,67b,A .D iG i r o l a m o35,G .D iG r e g o r i o69a,69b, B. Di Micco 72a,72b, R. Di Nardo 100,
+K. F. Di Petrillo57, R .D iS i p i o164, D. Di Valentino 33, C. Diaconu 99, M. Diamond 164,F . A . D i a s39,T . D i a s D o V a l e137a,
+M. A. Diaz144a, J. Dickinson 18, E. B. Diehl 103, J. Dietrich 19, S. Díez Cornell 44, A. Dimitrievska 18, J. Dingfelder 24,
+F. Dittus35,F . D j a m a99, T. Djobava 156b, J. I. Djuvsland 59a, M .A .B .D oV a l e78c, M. Dobre 27b, D. Dodsworth 26,
+C. Doglioni94, J. Dolejsi 140, Z. Dolezal 140, M. Donadelli 78d, J. Donini 37, A. D’onofrio 90, M. D’Onofrio 88, J. Dopke 141,
+A. Doria67a, M .T .D o v a86,A . T . D o y l e55, E. Drechsler 149, E. Dreyer 149, T. Dreyer 51,Y . D u 58b, F. Dubinin 108,
+M. Dubovsky28a, A. Dubreuil 52, E. Duchovni 177, G. Duckeck 112, A. Ducourthial 133, O. A. Ducu 107,x, D. Duda 113,
+A. Dudarev35, A. C. Dudder 97, E. M. Dufﬁeld 18, L. Duﬂot 129, M. Dührssen 35,C . D ü l s e n179, M. Dumancic 177,
+A. E. Dumitriu27b,e, A. K. Duncan 55, M. Dunford 59a, A. Duperrin 99, H. Duran Yildiz 4a, M. Düren 54, A. Durglishvili 156b,
+D. Duschinger46, B. Dutta 44, D. Duvnjak 1, M. Dyndal 44, S. Dysch 98, B. S. Dziedzic 82, K .M .E c k e r113, R. C. Edgar 103,
+T. Eifert35, G. Eigen 17, K. Einsweiler 18,T . E k e l o f169, M. El Kacimi 34c, R. El Kosseiﬁ 99, V . Ellajosyula99, M. Ellert 169,
+F. Ellinghaus179, A. A. Elliot 90, N. Ellis 35, J. Elmsheuser 29, M. Elsing 35, D. Emeliyanov 141,A . E m e r m a n38,
+Y . Enari160, J .S .E n n i s175, M. B. Epland 47, J. Erdmann 45, A. Ereditato 20, S. Errede 170, M. Escalier 129, C. Escobar 171,
+O. Estrada Pastor171, A .I .E t i e n v r e142, E. Etzion 158, H. Evans 63, A. Ezhilov 135, M. Ezzi 34e, F. Fabbri55, L. Fabbri 23a,23b,
+V . Fabiani117, G. Facini 92, R. M. Faisca Rodrigues Pereira 137a, R. M. Fakhrutdinov 121, S. Falciano 70a,P . J . F a l k e5,
+S. Falke5, J. Faltova 140, Y . Fang 15a, M. Fanti 66a,66b, A. Farbin 8, A. Farilla 72a, E .M .F a r i n a68a,68b, T. Farooque 104,
+S. Farrell18, S. M. Farrington 175, P. Farthouat 35, F. Fassi 34e, P. Fassnacht 35, D. Fassouliotis 9, M. Faucci Giannelli 48,
+A. Favareto53a,53b, W. J. Fawcett 31, L. Fayard 129, O. L. Fedin 135,q, W. Fedorko 172, M. Feickert 41, S. Feigl 131,
+L. Feligioni99, C. Feng 58b, E. J. Feng 35, M. Feng 47, M. J. Fenton 55, A. B. Fenyuk 121, L. Feremenga 8, J. Ferrando 44,
+A. Ferrari169, P. Ferrari118, R. Ferrari68a, D. E. Ferreira de Lima 59b, A. Ferrer171, D. Ferrere52, C. Ferretti103, F. Fiedler97,
+A. Filipˇciˇc89, F. Filthaut 117, K. D. Finelli 25, M .C .N .F i o l h a i s137a,137c,a,L . F i o r i n i171, C. Fischer 14, W. C. Fisher 104,
+N. Flaschel44, I. Fleck 148, P. Fleischmann 103, R. R. M. Fletcher 134, T. Flick 179, B. M. Flierl 112,L . M . F l o r e s134,
+L. R. Flores Castillo61a, F. M. Follega 73a,73b,N . F o m i n17, G. T. Forcolin 73a,73b, A. Formica 142, F .A .F ö r s t e r14,
+A. C. Forti98, A .G .F o s t e r21, D. Fournier 129,H . F o x 87, S. Fracchia 146, P. Francavilla 69a,69b, M. Franchini 23a,23b,
+S. Franchino59a, D. Francis35, L. Franconi143, M. Franklin57,M .F r a t e168, M. Fraternali68a,68b,A .N .F r a y90, D. Freeborn92,
+B. Freund107, W. S. Freund 78b, E. M. Freundlich 45, D. C. Frizzell 125, D. Froidevaux 35, J .A .F r o s t132, C. Fukunaga 161,
+E. Fullana Torregrosa171, T. Fusayasu 114, J. Fuster 171, O. Gabizon 157, A. Gabrielli 23a,23b, A. Gabrielli 18, G. P. Gach 81a,
+S. Gadatsch52, P. Gadow 113, G. Gagliardi 53a,53b, L. G. Gagnon 107, C. Galea 27b, B. Galhardo 137a,137c, E .J .G a l l a s132,
+B. J. Gallop141, P. Gallus 139, G. Galster 39, R. Gamboa Goni 90, K .K .G a n123, S. Ganguly 177,J . G a o58a,Y . G a o88,
+Y. S . G a o150,n, C. García 171, J. E. García Navarro 171, J. A. García Pascual 15a, M. Garcia-Sciveres 18, R. W. Gardner 36,
+N. Garelli150, S. Gargiulo 50, V . Garonne 131, K. Gasnikova 44, A. Gaudiello 53a,53b, G. Gaudio 68a, I .L .G a v r i l e n k o108,
+A. Gavrilyuk109,C . G a y172, G. Gaycken 24, E .N .G a z i s10, C .N .P .G e e141,J . G e i s e n51,M . G e i s e n97, M. P. Geisler 59a,
+C. Gemme53b, M. H. Genest 56, C. Geng 103, S. Gentile 70a,70b, S. George 91, D. Gerbaudo 14, G. Gessner 45, S. Ghasemi 148,
+M. Ghasemi Bostanabad173, M. Ghneimat 24, B. Giacobbe 23b, S. Giagu 70a,70b, N. Giangiacomi 23a,23b, P. Giannetti 69a,
+A. Giannini67a,67b,S . M . G i b s o n91, M. Gignac 143, D. Gillberg 33, G. Gilles 179, D .M .G i n g r i c h3,av, M. P. Giordani64a,64c,
+F. M. Giorgi23b, P .F .G i r a u d142, P. Giromini 57, G. Giugliarelli 64a,64c, D. Giugni 66a, F. Giuli 132, M. Giulini 59b,
+S. Gkaitatzis159, I. Gkialas 9,k, E. L. Gkougkousis 14, P. Gkountoumis 10, L. K. Gladilin 111,C . G l a s m a n96, J. Glatzer 14,
+P. C. F. Glaysher44, A. Glazov 44, M. Goblirsch-Kolb 26, J. Godlewski 82, S. Goldfarb 102, T. Golling 52, D. Golubkov 121,
+A. Gomes137a,137b, R. Goncalves Gama 51, R. Gonçalo 137a, G. Gonella 50, L. Gonella 21, A. Gongadze 77, F. Gonnella 21,
+J. L. Gonski57, S. González de la Hoz 171, S. Gonzalez-Sevilla 52, L. Goossens 35, P. A. Gorbounov 109, H. A. Gordon 29,
+B. Gorini35,E . G o r i n i65a,65b, A. Gorišek 89, A. T. Goshaw 47, C. Gössling 45, M .I .G o s t k i n77, C. A. Gottardo 24,
+C. R. Goudet129, D. Goujdami 34c, A .G .G o u s s i o u145, N. Govender 32b,c,C . G o y5, E. Gozani 157, I. Grabowska-Bold 81a,
+P. O. J. Gradin169, E. C. Graham 88, J. Gramling 168,E . G r a m s t a d131, S. Grancagnolo 19, V . Gratchev135,P . M . G r a v i l a27f,
+F. G. Gravili65a,65b,C . G r a y55, H .M .G r a y18, Z. D. Greenwood 93,al,C . G r e f e24, K. Gregersen 94, I .M .G r e g o r44,
+P. Grenier150,K . G r e v t s o v44, N. A. Grieser 125,J . G r i f ﬁ t h s8, A. A. Grillo 143,K . G r i m m150,b, S. Grinstein 14,z,
+Ph. Gris37,J . - F . G r i v a z129,S . G r o h97, E. Gross 177, J. Grosse-Knetter 51, G. C. Grossi 93, Z .J .G r o u t92,C . G r u d103,
+123
+
+===== PAGE 30 =====
+639 Page 30 of 40 Eur. Phys. J. C (2019) 79 :639
+A. Grummer116, L. Guan 103, W. Guan 178, J. Guenther 35, A. Guerguichon 129, F. Guescini 165a, D. Guest 168, R. Gugel 50,
+B. Gui123, T. Guillemin 5, S. Guindon 35,U . G u l 55,J . G u o 58c,W . G u o 103,Y . G u o 58a,t,Z . G u o 99, R. Gupta 44,
+S. Gurbuz12c, G. Gustavino 125, P. Gutierrez 125, C. Gutschow 92, C. Guyot 142, M. P. Guzik 81a, C. Gwenlan 132,
+C. B. Gwilliam88, A. Haas122, C. Haber18, H. K. Hadavand8, N. Haddad34e, A. Hadef58a, S. Hageböck24, M. Hagihara166,
+H. Hakobyan181,*, M. Haleem 174,J . H a l e y126, G. Halladjian 104, G. D. Hallewell 99, K. Hamacher 179, P. Hamal 127,
+K. Hamano173, A. Hamilton 32a, G .N .H a m i t y146,K . H a n58a,ak,L . H a n58a,S . H a n15d, K. Hanagaki 79,v, M. Hance 143,
+D. M. Handl112, B. Haney134, R. Hankache133, P. Hanke59a, E. Hansen94, J. B. Hansen39, J. D. Hansen39, M. C. Hansen24,
+P. H. Hansen39,K . H a r a166,A . S . H a r d178, T. Harenberg 179, S. Harkusha 105, P .F .H a r r i s o n175, N. M. Hartmann 112,
+Y. H a s eg aw a147,A . H a s i b48, S. Hassani 142, S. Haug 20, R. Hauser 104, L. Hauswald 46, L. B. Havener 38, M. Havranek 139,
+C. M. Hawkes21, R. J. Hawkings 35, D. Hayden 104, C. Hayes 152, C. P. Hays 132, J .M .H a y s90, H. S. Hayward 88,
+S. J. Haywood141,F . H e 58a, M. P. Heath 48, V . Hedberg 94, L. Heelan 8, S. Heer 24, K. K. Heidegger 50, J. Heilman 33,
+S. Heim44,T . H e i m18, B. Heinemann 44,aq, J. J. Heinrich 112, L. Heinrich 122, C. Heinz 54, J. Hejbal 138, L. Helary 35,
+A. Held172, S. Hellesund 131, C. M. Helling 143, S. Hellman 43a,43b, C. Helsens 35, R. C. W. Henderson 87, Y . Heng 178,
+S. Henkelmann172, A. M. Henriques Correia 35, G. H. Herbert 19, H. Herde 26, V . Herget 174, Y . Hernández Jiménez 32c,
+H. Herr97, M .G .H e r r m a n n112, T. Herrmann 46,G . H e r t e n50, R. Hertenberger 112,L . H e r v a s35,T . C . H e r w i g134,
+G. G. Hesketh92, N. P. Hessey165a, A. Higashida 160, S. Higashino 79, E. Higón-Rodriguez 171, K. Hildebrand 36, E. Hill 173,
+J. C. Hill31, K .K .H i l l29, K. H. Hiller 44, S. J. Hillier 21, M. Hils 46, I. Hinchliffe 18, F. Hinterkeuser 24,M . H i r o s e130,
+D. Hirschbuehl179, B. Hiti 89, O. Hladik 138, D .R .H l a l u k u32c, X. Hoad 48, J. Hobbs 152,N . H o d165a, M. C. Hodgkinson 146,
+A. Hoecker35, M. R. Hoeferkamp 116, F. Hoenig 112, D. Hohn 50, D. Hohov 129, T .R .H o l m e s36, M. Holzbock 112,
+M. Homann45, B .H .H o m m e l s31, S. Honda 166, T. Honda 79, T .M .H o n g136, A. Hönle 113, B. H. Hooberman 170,
+W. H. Hopkins128,Y . H o r i i115,P . H o r n46, A .J .H o r t o n149, L .A .H o r y n36, J-Y . Hostachy56, A. Hostiuc 145,S . H o u155,
+A. Hoummada34a,J .H o w a r t h98,J .H o y a86, M. Hrabovsky127,I .H r i s t o v a19, J. Hrivnac129, A. Hrynevich106, T. Hryn’ova5,
+P. J. Hsu62,S . - C . H s u145,Q . H u29,S . H u58c, Y . Huang15a, Z. Hubacek 139, F. Hubaut 99, M. Huebner 24, F. Huegging 24,
+T. B. Huffman132, M. Huhtinen35, R. F. H. Hunter33,P .H u o152,A .M .H u p e33, N. Huseynov77,af,J .H u s t o n104,J .H u t h57,
+R. Hyneman103, G. Iacobucci 52, G. Iakovidis 29, I. Ibragimov 148, L. Iconomidou-Fayard 129, Z. Idrissi 34e, P. Iengo 35,
+R. Ignazzi39, O. Igonkina118,ab, R. Iguchi160,T .I i z a w a52,Y .I k e g a m i79, M. Ikeno79, D. Iliadis159, N. Ilic117, F. Iltzsche46,
+G. Introzzi68a,68b, M. Iodice 72a, K. Iordanidou 38, V . Ippolito 70a,70b, M. F. Isacson 169, N. Ishijima 130,M . I s h i n o160,
+M. Ishitsuka162,W . I s l a m126, C. Issever 132, S. Istin 157,F . I t o166, J. M. Iturbe Ponce 61a, R. Iuppa 73a,73b, A. Ivina 177,
+H. Iwasaki79, J .M .I z e n42, V . Izzo67a, P. Jacka 138, P. Jackson 1, R. M. Jacobs 24,V . J a i n2, G. Jäkel 179, K. B. Jakobi 97,
+K. Jakobs50, S. Jakobsen 74, T. Jakoubek 138, D .O .J a m i n126, R. Jansky 52, J. Janssen 24, M. Janus 51, P. A. Janus 81a,
+G. Jarlskog94, N. Javadov77,af,T .J a v ˚urek35, M. Javurkova50, F. Jeanneau142, L. Jeanty18, J. Jejelava156a,ag, A. Jelinskas175,
+P. Jenni50,d, J. Jeong 44, N. Jeong 44, S. Jézéquel 5,H . J i178,J . J i a152, H. Jiang 76, Y . Jiang58a, Z. Jiang 150,r, S. Jiggins 50,
+F. A. Jimenez Morales37, J. Jimenez Pena 171,S . J i n15c, A. Jinaru 27b, O. Jinnouchi 162,H . J i v a n32c, P. Johansson 146,
+K. A. Johns7, C. A. Johnson63, K. Jon-And43a,43b, R. W. L. Jones87, S. D. Jones153, S. Jones7, T. J. Jones88, J. Jongmanns59a,
+P. M. Jorge137a,137b, J. Jovicevic 165a,X . J u 18, J. J. Junggeburth 113, A. Juste Rozas 14,z, A. Kaczmarska 82, M. Kado 129,
+H. Kagan123, M. Kagan150,T .K a j i176, E. Kajomovitz157, C. W. Kalderon94, A. Kaluza97,S .K a m a41, A. Kamenshchikov121,
+L. Kanjir89, Y . Kano160, V . A. Kantserov110, J. Kanzaki 79, L. S. Kaplan 178,D . K a r32c, M. J. Kareem 165b, E. Karentzos 10,
+S. N. Karpov77,Z .M .K a r p o v a77, V . Kartvelishvili87, A. N. Karyukhin121, L. Kashif178,R .D .K a s s123, A. Kastanas43a,43b,
+Y . Kataoka160,C .K a t o58d,58c, J. Katzy44, K. Kawade80, K. Kawagoe85, T. Kawaguchi115, T. Kawamoto160, G. Kawamura51,
+E. F. Kay88, V . F. Kazanin 120a,120b, R. Keeler 173, R. Kehoe 41, J .S .K e l l e r33, E. Kellermann 94, J. J. Kempster 21,
+J. Kendrick21, O. Kepka 138, S. Kersten 179, B. P. Kerševan 89, S. Ketabchi Haghighat 164, R. A. Keyes 101, M. Khader 170,
+F. Khalil-Zada13, A. Khanov 126, A .G .K h a r l a m o v120a,120b, T. Kharlamova 120a,120b, E. E. Khoda 172, A. Khodinov 163,
+T. J. Khoo52, E. Khramov 77, J. Khubua 156b,S . K i d o80, M. Kiehn 52, C. R. Kilby 91,Y . K . K i m36,N . K i m u r a64a,64c,
+O. M. Kind19,B .T .K i n g88, D. Kirchmeier46,J .K i r k141, A. E. Kiryunin113, T. Kishimoto160, D. Kisielewska81a, V . Kitali44,
+O. Kivernyk5, E. Kladiva 28b,*, T. Klapdor-Kleingrothaus 50, M .H .K l e i n103, M. Klein 88, U. Klein 88, K. Kleinknecht 97,
+P. Klimek119, A. Klimentov29, T. Klingl24, T. Klioutchnikova35, F. F. Klitzner112, P. Kluit118, S. Kluth113, E. Kneringer74,
+E. B. F. G. Knoops99, A. Knue 50, A. Kobayashi 160, D. Kobayashi 85, T. Kobayashi 160, M. Kobel 46, M. Kocian 150,
+P. Kodys140, P. T. Koenig 24,T . K o f f a s33,E . K o f f e m a n118, N. M. Köhler 113,T . K o i150,M . K o l b59b, I. Koletsou 5,
+T. Kondo79, N. Kondrashova 58c, K. Köneke 50, A. C. König 117, T. Kono 79, R. Konoplich 122,an, V . Konstantinides 92,
+N. Konstantinidis92, B. Konya 94, R. Kopeliansky 63, S. Koperny 81a,K . K o r c y l82, K. Kordas 159, G. Koren 158,A . K o r n92,
+I. Korolkov14, E. V . Korolkova146, N. Korotkova 111, O. Kortner 113, S. Kortner 113, T. Kosek 140, V . V . Kostyukhin24,
+A. Kotwal47, A. Koulouris 10, A. Kourkoumeli-Charalampidi 68a,68b, C. Kourkoumelis 9, E. Kourlitis 146, V . Kouskoura29,
+A. B. Kowalewska82, R. Kowalewski 173,T . Z . K o w a l s k i81a, C. Kozakai 160, W. Kozanecki 142, A. S. Kozhin 121,
+123
+
+===== PAGE 31 =====
+Eur. Phys. J. C (2019) 79 :639 Page 31 of 40 639
+V . A. Kramarenko111, G. Kramberger 89, D. Krasnopevtsev 58a,M . W . K r a s n y133, A. Krasznahorkay 35, D. Krauss 113,
+J. A. Kremer81a, J. Kretzschmar 88, P. Krieger 164, K. Krizka 18, K. Kroeninger 45, H. Kroha 113,J . K r o l l138,J . K r o l l134,
+J. Krstic16, U. Kruchonak 77, H. Krüger 24, N. Krumnack 76, M. C. Kruse 47, T. Kubota 102, S. Kuday 4b, J. T. Kuechler 179,
+S. Kuehn35, A. Kugel 59a, T. Kuhl 44, V . Kukhtin77, R. Kukla 99, Y . Kulchitsky105,aj, S. Kuleshov 144b, Y . P. Kulinich170,
+M. Kuna56, T. Kunigo 83, A. Kupco 138, T. Kupfer 45, O. Kuprash 158, H. Kurashige 80, L. L. Kurchaninov 165a,
+Y . A. Kurochkin105,A .K u r o v a110,M .G .K u r t h15d, E. S. Kuwertz35, M. Kuze162, J. Kvita127,T .K w a n101,A .L aR o s a113,
+J. L. La Rosa Navarro78d, L. La Rotonda 40b,40a,F . L a R u f f a40b,40a, C. Lacasta 171, F. Lacava 70a,70b, J. Lacey 44,
+D. P. J. Lack98, H. Lacker19, D. Lacour133, E. Ladygin77, R. Lafaye5, B. Laforge133, T. Lagouri32c,S .L a i51, S. Lammers63,
+W. Lampl7, E. Lançon 29, U. Landgraf 50, M. P. J. Landon 90, M. C. Lanfermann 52, V . S. Lang 44, J. C. Lange 51,
+R. J. Langenberg35, A. J. Lankford 168, F. Lanni 29, K. Lantzsch 24, A. Lanza 68a, A. Lapertosa 53a,53b, S. Laplace 133,
+J. F. Laporte142,T . L a r i66a, F. Lasagni Manghi 23a,23b, M. Lassnig 35,T . S . L a u61a, A. Laudrain 129, M. Lavorgna 67a,67b,
+M. Lazzaroni66a,66b,B . L e 102,O . L e D o r t z133, E. Le Guirriec 99, E. P. Le Quilleuc 142, M. LeBlanc 7, T. LeCompte 6,
+F. Ledroit-Guillon56,C . A . L e e29, G .R .L e e144a,L . L e e57,S . C . L e e155, B. Lefebvre 101, M. Lefebvre 173, F. Legger 112,
+C. Leggett18, K. Lehmann 149, N. Lehmann 179, G. Lehmann Miotto 35, W. A. Leight 44,A . L e i s o s159,w, M .A .L .L e i t e78d,
+R. Leitner140, D. Lellouch 177, K .J .C .L e n e y92, T. Lenz 24, B. Lenzi 35, R. Leone 7, S. Leone 69a, C. Leonidopoulos 48,
+G. Lerner153,C . L e r o y107,R . L e s164, A .A .J .L e s a g e142,C . G . L e s t e r31, M. Levchenko 135, J. Levêque 5,D . L e v i n103,
+L. J. Levinson177,D .L e w i s90,B .L i15b,B .L i103,C - Q .L i58a,am,H .L i58a,H .L i58b,L .L i58c,M .L i15a,Q .L i15d,Q .Y .L i58a,
+S. Li58d,58c,X .L i58c,Y .L i148, Z. Liang15a, B. Liberti71a, A. Liblong164,K .L i e61c,S .L i e m118, A. Limosani154,C .Y .L i n31,
+K. Lin104,T . H . L i n97, R .A .L i n c k63, J. H. Lindon 21, B. E. Lindquist 152, A. L. Lionti 52, E. Lipeles 134, A. Lipniacka 17,
+M. Lisovyi59b, T .M .L i s s170,as, A. Lister 172, A .M .L i t k e143, J. D. Little 8,B . L i u76,B . L . L i u6,H . B . L i u29,H . L i u103,
+J. B. Liu58a,J . K . K . L i u132,K . L i u133,M . L i u58a,P . L i u18,Y . L i u15a,Y . L . L i u58a, Y .W .L i u58a,M . L i v a n68a,68b,
+A. Lleres56, J. Llorente Merino15a,S .L .L l o y d90,C .Y .L o61b,F .L oS t e r z o41, E. M. Lobodzinska44, P. Loch7, T. Lohse19,
+K. Lohwasser146, M. Lokajicek 138, J .D .L o n g170, R. E. Long 87, L. Longo 65a,65b, K. A. Looper 123, J. A. Lopez 144b,
+I. Lopez Paz98, A. Lopez Solis 146, J. Lorenz 112, N. Lorenzo Martinez 5, M. Losada 22, P .J .L ö s e l112,A . L ö s l e50,
+X. Lou44,X . L o u15a, A. Lounis 129, J. Love 6, P. A. Love 87, J. J. Lozano Bahilo 171,H . L u 61a,M . L u 58a,Y . J . L u62,
+H. J. Lubatti145, C. Luci70a,70b, A. Lucotte56, C. Luedtke50, F. Luehring63,I .L u i s e133, L. Luminari70a, B. Lund-Jensen151,
+M. S. Lutz100, P. M. Luzi 133, D. Lynn 29, R. Lysak 138,E . L y t k e n94,F . L y u15a, V . Lyubushkin 77, T. Lyubushkina 77,
+H. Ma29,L . L . M a58b,Y . M a58b, G. Maccarrone 49, A. Macchiolo 113, C. M. Macdonald 146, J. Machado Miguens 134,137b,
+D. Madaffari171, R. Madar 37, W. F. Mader 46, N. Madysa 46, J. Maeda 80, K. Maekawa 160, S. Maeland 17, T. Maeno 29,
+M. Maerker46, A. S. Maevskiy 111, V . Magerl50, D. J. Mahon 38, C. Maidantchik 78b, T. Maier 112,A . M a i o137a,137b,137d,
+O. Majersky28a,S . M a j e w s k i128, Y . Makida 79, N. Makovec 129, B. Malaescu 133, Pa. Malecki 82, V . P. Maleev 135,
+F. Malek56, U. Mallik 75, D. Malon 6, C. Malone 31, S. Maltezos 10, S. Malyukov 35, J. Mamuzic 171, G. Mancini 49,
+I. Mandi´c89, J. Maneira 137a, L. Manhaes de Andrade Filho 78a, J. Manjarres Ramos 46, K. H. Mankinen 94, A. Mann 112,
+A. Manousos74, B. Mansoulie 142, S. Manzoni 66a,66b, A. Marantis 159, G. Marceca 30, L. March 52, L. Marchese 132,
+G. Marchiori133, M. Marcisovsky138, C. Marcon94, C. A. Marin Tobon35, M. Marjanovic37, F. Marroquim78b, Z. Marshall18,
+M.U.F Martensson169, S. Marti-Garcia 171, C. B. Martin 123, T .A .M a r t i n175, V .J .M a r t i n48, B. Martin dit Latour 17,
+M. Martinez14,z, V . I. Martinez Outschoorn100, S. Martin-Haugh 141, V . S. Martoiu27b, A. C. Martyniuk 92, A. Marzin 35,
+L. Masetti97, T. Mashimo160, R. Mashinistov108,J . M a s i k98, A. L. Maslennikov120a,120b, L. H. Mason102, L. Massa71a,71b,
+P. Massarotti67a,67b, P. Mastrandrea152, A. Mastroberardino40b,40a, T. Masubuchi160, P. Mättig24, J. Maurer27b,B .M a ˇcek89,
+S. J. Maxﬁeld88, D .A .M a x i m o v120a,120b, R. Mazini 155, I. Maznas 159, S. M. Mazza 143,S . P . M c K e e103, A. McCarn 41,
+T. G. McCarthy113, L. I. McClymont 92, W. P. McCormack 18, E. F. McDonald 102, J. A. Mcfayden 35, G. Mchedlidze 51,
+M. A. McKay41, K. D. McLean 173, S. J. McMahon 141, P. C. McNamara 102, C. J. McNicol 175, R. A. McPherson 173,ad,
+J. E. Mdhluli32c, Z. A. Meadows100, S. Meehan145,T .M .M e g y50, S. Mehlhase112, A. Mehta88, T. Meideck56, B. Meirose42,
+D. Melini171,h, B. R. Mellado Garcia 32c, J. D. Mellenthin 51,M . M e l o28a, F. Meloni 44, A. Melzer 24, S. B. Menary 98,
+E. D. Mendes Gouveia137a, L. Meng88, X. T. Meng103, S. Menke113, E. Meoni40b,40a, S. Mergelmeyer19,S .A .M .M e r k t136,
+C. Merlassino20,P . M e r m o d52, L. Merola 67a,67b, C. Meroni 66a, F .S .M e r r i t t36, A. Messina 70a,70b, J. Metcalfe 6,
+A. S. Mete168, C. Meyer 63, J. Meyer 157, J-P. Meyer 142, H. Meyer Zu Theenhausen 59a, F. Miano 153, R. P. Middleton 141,
+L. Mijovi´c48, G. Mikenberg177, M. Mikestikova138, M. Mikuž89, M. Milesi102, A. Milic164, D. A. Millar90, D. W. Miller36,
+A. Milov177, D .A .M i l s t e a d43a,43b, R .A .M i n a150,r, A. A. Minaenko 121, M. Miñano Moya 171, I. A. Minashvili 156b,
+A. I. Mincer122, B. Mindur 81a, M. Mineev 77, Y . Minegishi160,Y . M i n g178, L .M .M i r14, A. Mirto 65a,65b, K. P. Mistry134,
+T. Mitani176, J. Mitrevski 112, V . A. Mitsou 171, M. Mittal 58c, A. Miucci 20, P. S. Miyagawa 146, A. Mizukami 79,
+J. U. Mjörnmark94, T. Mkrtchyan 181, M. Mlynarikova 140,T . M o a43a,43b, K. Mochizuki 107, P. Mogg 50, S. Mohapatra 38,
+S. Molander43a,43b, R. Moles-Valls 24, M. C. Mondragon 104, K. Mönig 44, J. Monk 39, E. Monnier 99, A. Montalbano 149,
+123
+
+===== PAGE 32 =====
+639 Page 32 of 40 Eur. Phys. J. C (2019) 79 :639
+J. Montejo Berlingen35, F. Monticelli86, S. Monzani66a, N. Morange129, D. Moreno22, M. Moreno Llácer35, P. Morettini53b,
+M. Morgenstern118, S. Morgenstern 46,D . M o r i149,M . M o r i i57, M. Morinaga 176, V . Morisbak 131,A . K . M o r l e y35,
+G. Mornacchi35,A . P . M o r r i s92, J .D .M o r r i s90,L . M o r v a j152, P. Moschovakos 10, M. Mosidze 156b, H .J .M o s s146,
+J. Moss150,o, K. Motohashi162, R. Mount150, E. Mountricha35,E .J .W .M o y s e100, S. Muanza99, F. Mueller113, J. Mueller136,
+R. S. P. Mueller112, D. Muenstermann 87, G. A. Mullier 94, F. J. Munoz Sanchez 98,P . M u r i n28b, W .J .M u r r a y175,141,
+A. Murrone66a,66b, M. Muškinja 89,C . M w e w a32a, A. G. Myagkov 121,ao, J. Myers 128, M. Myska 139, B. P. Nachman 18,
+O. Nackenhorst45, K. Nagai 132, K. Nagano 79, Y . Nagasaka60, M. Nagel 50, E. Nagy 99, A .M .N a i r z35, Y . Nakahama115,
+K. Nakamura79, T. Nakamura 160, I. Nakano 124, H. Nanjo 130, F. Napolitano 59a, R. F. Naranjo Garcia 44, R. Narayan 11,
+D. I. Narrias Villar59a, I. Naryshkin 135, T. Naumann 44,G . N a v a r r o22, R. Nayyar 7, H. A. Neal 103,*, P. Y . Nechaeva108,
+T. J. Neep142,A . N e g r i68a,68b,M . N e g r i n i23b, S. Nektarijevic 117, C. Nellist 51,M . E . N e l s o n132, S. Nemecek 138,
+P. Nemethy122, M. Nessi35,f, M. S. Neubauer170, M. Neumann179, P. R. Newman21,T .Y .N g61c,Y .S .N g19,Y .W .Y .N g168,
+H. D. N. Nguyen99, T. Nguyen Manh 107, E. Nibigira 37, R. B. Nickerson 132, R. Nicolaidou 142, D. S. Nielsen 39,
+J. Nielsen143, N. Nikiforou11, V . Nikolaenko121,ao, I. Nikolic-Audit133, K. Nikolopoulos21, P. Nilsson29, H. R. Nindhito52,
+Y . Ninomiya79,A .N i s a t i70a,N .N i s h u58c, R. Nisius113, I. Nitsche45, T. Nitta176, T. Nobe160, Y . Noguchi83, M. Nomachi130,
+I. Nomidis133, M .A .N o m u r a29, T. Nooney 90, M. Nordberg 35, N. Norjoharuddeen 132,T . N o v a k89, O. Novgorodova 46,
+R. Novotny139, L. Nozka 127, K. Ntekas 168,E . N u r s e92,F . N u t i102, F. G. Oakham 33,av, H. Oberlack 113, J. Ocariz 133,
+A. Ochi80, I. Ochoa 38, J. P. Ochoa-Ricoux 144a, K. O’Connor 26,S . O d a 85, S. Odaka 79, S. Oerdek 51,A . O h 98,
+S. H. Oh47,C . C . O h m151,H . O i d e53a,53b, M. L. Ojeda 164,H . O k a w a166, Y . Okazaki83, Y . Okumura160, T. Okuyama 79,
+A. Olariu27b, L. F. Oleiro Seabra 137a, S. A. Olivares Pino 144a, D. Oliveira Damazio 29, J .L .O l i v e r1, M .J .R .O l s s o n36,
+A. Olszewski82, J. Olszowska 82,D . C . O ’ N e i l149, A. Onofre 137a,137e, K. Onogi 115, P .U .E .O n y i s i11, H. Oppen 131,
+M. J. Oreglia36, G. E. Orellana 86,Y . O r e n158, D. Orestano 72a,72b, E. C. Orgill 98, N. Orlando 61b, A .A .O ’ R o u r k e44,
+R. S. Orr164, B. Osculati 53a,53b,*, V . O’Shea 55, R. Ospanov 58a, G. Otero y Garzon 30, H. Otono 85, M. Ouchrif 34d,
+F. Ould-Saada131, A. Ouraou 142, Q. Ouyang 15a, M. Owen 55, R. E. Owen 21, V . E. Ozcan12c, N. Ozturk 8, J. Pacalt 127,
+H. A. Pacey31, K. Pachal 149, A. Pacheco Pages 14, L. Pacheco Rodriguez 142, C. Padilla Aranda 14, S. Pagan Griso 18,
+M. Paganini180, G. Palacino 63, S. Palazzo 48, S. Palestini 35, M. Palka 81b, D. Pallin 37, I. Panagoulias 10, C. E. Pandini 35,
+J. G. Panduro Vazquez91, P. Pani 35, G. Panizzo 64a,64c, L. Paolozzi 52, T. D. Papadopoulou 10, K. Papageorgiou 9,k,
+A. Paramonov6, D. Paredes Hernandez61b, S. R. Paredes Saenz132,B .P a r i d a163,T .H .P a r k33,A .J .P a r k e r87,K .A .P a r k e r44,
+M. A. Parker31, F. Parodi 53a,53b, J. A. Parsons 38, U. Parzefall 50, V . R. Pascuzzi164, J. M. P. Pasner 143, E. Pasqualucci 70a,
+S. Passaggio53b,F . P a s t o r e91, P. Pasuwan 43a,43b, S. Pataraia 97, J .R .P a t e r98, A. Pathak 178,l, T. Pauly 35, B. Pearson 113,
+M. Pedersen131, L. Pedraza Diaz 117, R. Pedro 137a,137b, S. V . Peleganchuk120a,120b, O. Penc 138, C. Peng 15d, H. Peng 58a,
+B. S. Peralva78a,M .M .P e r e g o129, A. P. Pereira Peixoto137a, D. V . Perepelitsa29, F. Peri19, L. Perini66a,66b, H. Pernegger35,
+S. Perrella67a,67b, V . D. Peshekhonov77,*, K. Peters 44, R. F. Y . Peters98, B. A. Petersen 35, T. C. Petersen 39, E. Petit 56,
+A. Petridis1, C. Petridou159, P. Petroff129, M. Petrov132, F. Petrucci72a,72b, M. Pettee180, N. E. Pettersson100, A. Peyaud142,
+R. Pezoa144b, T. Pham 102, F. H. Phillips 104, P. W. Phillips 141, M. W. Phipps 170, G. Piacquadio 152, E. Pianori 18,
+A. Picazio100, R. H. Pickles 98, R. Piegaia 30, J. E. Pilcher 36, A. D. Pilkington 98, M. Pinamonti 71a,71b, J. L. Pinfold 3,
+M. Pitt177, L. Pizzimento 71a,71b, M.-A. Pleier 29,V . P l e s k o t140, E. Plotnikova 77, D. Pluth 76, P. Podberezko 120a,120b,
+R. Poettgen94, R. Poggi 52, L. Poggioli 129, I. Pogrebnyak 104, D. Pohl 24, I. Pokharel 51, G. Polesello 68a, A. Poley 18,
+A. Policicchio70a,70b, R. Polifka35, A. Polini23b, C. S. Pollard44, V . Polychronakos29, D. Ponomarenko110, L. Pontecorvo35,
+G. A. Popeneciu27d, D. M. Portillo Quintero 133, S. Pospisil 139, K. Potamianos 44, I .N .P o t r a p77, C. J. Potter 31,
+H. Potti11, T. Poulsen 94, J. Poveda 35,T . D . P o w e l l146, M. E. Pozo Astigarraga 35, P. Pralavorio 99,S . P r e l l76,D . P r i c e98,
+M. Primavera65a, S. Prince 101,M . L . P r o f ﬁ t t145, N. Proklova 110, K. Prokoﬁev 61c, F. Prokoshin 144b, S. Protopopescu 29,
+J. Proudfoot6, M. Przybycien 81a, A. Puri 170, P. Puzo 129,J . Q i a n103,Y . Q i n98, A. Quadt 51, M. Queitsch-Maitland 44,
+A. Qureshi1, P. Rados102, F. Ragusa66a,66b, G. Rahal95,J .A .R a i n e52, S. Rajagopalan29, A. Ramirez Morales90,K .R a n15a,
+T. Rashid129, S. Raspopov5,M .G .R a t t i66a,66b, D. M. Rauch44, F. Rauscher112,S .R a v e97,B .R a v i n a146, I. Ravinovich177,
+J. H. Rawling98, M. Raymond35, A. L. Read131, N. P. Readioff56, M. Reale65a,65b, D. M. Rebuzzi68a,68b, A. Redelbach174,
+G. Redlinger29, R. Reece 143, R .G .R e e d32c,K . R e e v e s42, L. Rehnisch 19, J. Reichert 134, D. Reikher 158,A . R e i s s97,
+A. Rej148, C. Rembser 35,H . R e n15d, M. Rescigno 70a, S. Resconi 66a, E. D. Resseguie 134, S. Rettie 172, E. Reynolds 21,
+O. L. Rezanova120a,120b, P. Reznicek 140, E. Ricci 73a,73b, R. Richter 113, S. Richter 44, E. Richter-Was 81b,O . R i c k e n24,
+M. Ridel133, P. Rieck113, C. J. Riegel 179,O . R i f k i44, M. Rijssenbeek 152, A. Rimoldi 68a,68b, M. Rimoldi 20, L. Rinaldi 23b,
+G. Ripellino151, B. Risti´c87, E. Ritsch 35,I . R i u14, J .C .R i v e r aV e r g a r a144a, F. Rizatdinova 126, E. Rizvi 90, C. Rizzi 14,
+R. T. Roberts98, S. H. Robertson 101,ad, D. Robinson 31, J. E. M. Robinson 44, A. Robson 55, E. Rocco 97, C. Roda 69a,69b,
+Y . Rodina99, S. Rodriguez Bosca 171, A. Rodriguez Perez 14, D. Rodriguez Rodriguez 171, A. M. Rodríguez Vera 165b,
+S. Roe35, C. S. Rogan57, O. Røhne131, R. Röhrig113, C. P. A. Roland63, J. Roloff57, A. Romaniouk110, M. Romano23a,23b,
+123
+
+===== PAGE 33 =====
+Eur. Phys. J. C (2019) 79 :639 Page 33 of 40 639
+N. Rompotis88, M. Ronzani 122, L. Roos 133, S. Rosati 70a, K. Rosbach 50,N - A . R o s i e n51, B .J .R o s s e r134, E. Rossi 44,
+E. Rossi72a,72b, E. Rossi 67a,67b, L. P. Rossi 53b, L. Rossini 66a,66b, J .H .N .R o s t e n31,R . R o s t e n14, M. Rotaru 27b,
+J. Rothberg145, D. Rousseau 129,D . R o y 32c, A. Rozanov 99, Y . Rozen 157, X. Ruan 32c, F. Rubbo 150, F. Rühr 50,
+A. Ruiz-Martinez171,Z . R u r i k o v a50, N. A. Rusakovich 77, H. L. Russell 101, J. P. Rutherfoord 7, E. M. Rüttinger 44,m,
+Y . F. Ryabov135, M. Rybar 38, G. Rybkin 129,S . R y u6, A. Ryzhov 121, G. F. Rzehorz 51, P. Sabatini 51, G. Sabato 118,
+S. Sacerdoti129, H.F-W. Sadrozinski 143, R. Sadykov 77, F. Safai Tehrani 70a, P. Saha 119, M. Sahinsoy 59a, A. Sahu 179,
+M. Saimpert44, M. Saito 160, T. Saito 160, H. Sakamoto 160, A. Sakharov 122,an, D. Salamani 52, G. Salamanna 72a,72b,
+J. E. Salazar Loyola144b, P. H. Sales De Bruin 169, D. Salihagic 113, A. Salnikov 150, J. Salt 171, D. Salvatore 40b,40a,
+F. Salvatore153, A. Salvucci61a,61b,61c, A. Salzburger35, J. Samarati35, D. Sammel50, D. Sampsonidis159, D. Sampsonidou159,
+J. Sánchez171, A. Sanchez Pineda 64a,64c, H. Sandaker 131, C. O. Sander 44, M. Sandhoff 179, C. Sandoval 22,
+D. P. C. Sankey141, M. Sannino 53a,53b, Y . Sano115, A. Sansoni 49, C. Santoni 37, H. Santos 137a, I. Santoyo Castillo 153,
+A. Santra171, A. Sapronov 77, J. G. Saraiva 137a,137d, O. Sasaki 79, K. Sato 166, E. Sauvan 5,P . S a v a r d164,av,N . S a v i c113,
+R. Sawada160, C. Sawyer 141, L. Sawyer 93,al, C. Sbarra 23b, A. Sbrizzi 23a, T. Scanlon 92, J. Schaarschmidt 145,
+P. Schacht113, B. M. Schachtner 112, D. Schaefer 36, L. Schaefer 134, J. Schaeffer 97, S. Schaepe 35, U. Schäfer 97,
+A. C. Schaffer129, D. Schaile 112, R. D. Schamberger 152, N. Scharmberg 98, V . A. Schegelsky 135, D. Scheirich 140,
+F. Schenck19, M. Schernau 168, C. Schiavi 53a,53b, S. Schier 143, L. K. Schildgen 24, Z. M. Schillaci 26, E. J. Schioppa 35,
+M. Schioppa40b,40a, K. E. Schleicher 50, S. Schlenker 35, K. R. Schmidt-Sommerfeld 113, K. Schmieden 35, C. Schmitt 97,
+S. Schmitt44, S. Schmitz97, J. C. Schmoeckel44, U. Schnoor50, L. Schoeffel142, A. Schoening59b, E. Schopf132, M. Schott97,
+J. F. P. Schouwenberg117, J. Schovancova 35, S. Schramm 52, A. Schulte 97, H-C. Schultz-Coulon 59a, M. Schumacher 50,
+B. A. Schumm143, Ph. Schune 142, A. Schwartzman 150, T. A. Schwarz 103, Ph. Schwemling 142, R. Schwienhorst 104,
+A. Sciandra24, G. Sciolla 26, M. Scornajenghi 40b,40a, F. Scuri 69a, F. Scutti 102, L. M. Scyboz 113, C. D. Sebastiani 70a,70b,
+P. Seema19, S. C. Seidel 116, A. Seiden 143, T. Seiss 36, J. M. Seixas 78b, G. Sekhniaidze 67a, K. Sekhon 103, S. J. Sekula 41,
+N. Semprini-Cesari23a,23b, S. Sen 47, S. Senkin 37, C. Serfon 131, L. Serin 129, L. Serkin 64a,64b, M. Sessa 58a,H . S e v e r i n i125,
+F. Sforza167, A. Sfyrla 52, E. Shabalina 51, J. D. Shahinian 143, N. W. Shaikh 43a,43b, D. Shaked Renous 177, L. Y . Shan15a,
+R. Shang170, J. T. Shank 25, M. Shapiro 18, A. S. Sharma 1, A. Sharma 132, P. B. Shatalov 109, K. Shaw 153, S. M. Shaw 98,
+A. Shcherbakova135, Y . Shen 125, N. Sherafati 33, A. D. Sherman 25, P. Sherwood 92, L. Shi 155,ar, S. Shimizu 79,
+C. O. Shimmin180, Y . Shimogama176, M. Shimojima 114, I .P .J .S h i p s e y132, S. Shirabe 85, M. Shiyakova 77, J. Shlomi 177,
+A. Shmeleva108, D. Shoaleh Saadi 107, M. J. Shochet 36, S. Shojaii 102, D. R. Shope 125, S. Shrestha 123, E. Shulga 110,
+P. Sicho138, A. M. Sickles 170, P. E. Sidebo 151, E. Sideras Haddad 32c, O. Sidiropoulou 35, A. Sidoti 23a,23b, F. Siegert 46,
+Dj. Sijacki16, J. Silva 137a, M. Silva Jr. 178, M. V . Silva Oliveira 78a, S. B. Silverstein 43a, S. Simion 129, E. Simioni 97,
+M. Simon97, R. Simoniello97, P. Sinervo164,N .B .S i n e v128, M. Sioli23a,23b,I .S i r a l103, S. Yu. Sivoklokov111, J. Sjölin43a,43b,
+P. Skubic125, M. Slater 21, T. Slavicek 139, M. Slawinska 82, K. Sliwa 167,R . S l o v a k140, V . Smakhtin177, B .H .S m a r t5,
+J. Smiesko28a,N . S m i r n o v110, S. Yu. Smirnov 110,Y . S m i r n o v110,L . N . S m i r n o v a111,O . S m i r n o v a94, J. W. Smith 51,
+M. Smizanska87,K . S m o l e k139, A. Smykiewicz 82, A. A. Snesarev 108, I. M. Snyder 128, S. Snyder 29, R. Sobie 173,ad,
+A. M. Soffa168, A. Soffer 158, A. Søgaard 48, F. Sohns 51, G. Sokhrannyi 89, C. A. Solans Sanchez 35, M. Solar 139,
+E. Yu. Soldatov110, U. Soldevila 171, A. A. Solodkov 121, A. Soloshenko 77, O. V . Solovyanov 121, V . Solovyev 135,
+P. Sommer146, H. Son 167, W. Song 141, W. Y . Song 165b, A. Sopczak 139, F. Sopkova 28b, C. L. Sotiropoulou 69a,69b,
+S. Sottocornola68a,68b, R. Soualah 64a,64c,j, A. M. Soukharev 120a,120b, D. South 44, S. Spagnolo 65a,65b, M. Spalla 113,
+M. Spangenberg175, F. Spanò91, D. Sperlich19, T. M. Spieker59a, R. Spighi23b, G. Spigo35, L. A. Spiller102, D. P. Spiteri55,
+M. Spousta140, A. Stabile66a,66b,R .S t a m e n59a,S .S t a m m19, E. Stanecka82, R. W. Stanek6, C. Stanescu72a, B. Stanislaus132,
+M. M. Stanitzki44, B. Stapf 118, S. Stapnes 131, E. A. Starchenko 121, G .H .S t a r k143,J . S t a r k56,S . H . S t a r k39,
+P. Staroba138, P. Starovoitov59a,S . S t ä r z101, R. Staszewski 82, M. Stegler 44, P. Steinberg29, B. Stelzer 149, H .J .S t e l z e r35,
+O. Stelzer-Chilton165a, H. Stenzel 54, T. J. Stevenson 90,G . A . S t e w a r t35, M. C. Stockton 35, G. Stoicea 27b, P. Stolte 51,
+S. Stonjek113, A. Straessner 46, J. Strandberg 151, S. Strandberg 43a,43b, M. Strauss 125, P. Strizenec 28b, R. Ströhmer 174,
+D. M. Strom128, R. Stroynowski 41, A. Strubig 48, S. A. Stucci 29, B. Stugu 17, J. Stupak 125, N. A. Styles 44,D . S u 150,
+J. Su136, S. Suchek 59a, Y . Sugaya130, M. Suk 139, V . V . Sulin108, M .J .S u l l i v a n88, D .M .S .S u l t a n52, S. Sultansoy 4c,
+T. Sumida83, S. Sun 103, X. Sun 3, K. Suruliz 153, C .J .E .S u s t e r154, M. R. Sutton 153, S. Suzuki 79,M . S v a t o s138,
+M. Swiatlowski36,S . P . S w i f t2, A. Sydorenko 97, I. Sykora 28a, M. Sykora 140, T. Sykora 140,D . T a97, K. Tackmann 44,aa,
+J. Taenzer158,A .T a f f a r d168, R. Taﬁrout165a, E. Tahirovic90, N. Taiblum158, H. Takai29, R. Takashima84, E. H. Takasugi113,
+K. Takeda80, T. Takeshita 147, Y . Takubo 79, M. Talby 99, A. A. Talyshev 120a,120b, J. Tanaka 160, M. Tanaka 162,
+R. Tanaka129, B. B. Tannenwald123, S. Tapia Araya 144b, S. Tapprogge97, A. Tarek Abouelfadl Mohamed 133, S. Tarem157,
+G. Tarna27b,e, G. F. Tartarelli 66a,P . T a s140,M . T a s e v s k y138, T. Tashiro 83, E. Tassi 40b,40a, A. Tavares Delgado 137a,137b,
+Y . Tayalati34e, A. C. Taylor 116, A. J. Taylor 48, G. N. Taylor 102, P. T. E. Taylor 102, W. Taylor 165b,A . S . T e e 87,
+123
+
+===== PAGE 34 =====
+639 Page 34 of 40 Eur. Phys. J. C (2019) 79 :639
+R. Teixeira De Lima150, P. Teixeira-Dias 91,H . T e n K a t e35, J. J. Teoh 118, S. Terada 79, K. Terashi 160,J . T e r r o n96,
+S. Terzo14,M . T e s t a49, R. J. Teuscher 164,ad, S .J .T h a i s180, T. Theveneaux-Pelzer 44, F. Thiele 39, D. W. Thomas 91,
+J. P. Thomas21, A. S. Thompson55, P. D. Thompson21, L. A. Thomsen180, E. Thomson134,Y .T i a n38, R. E. Ticse Torres51,
+V . O. Tikhomirov108,ap, Yu. A. Tikhonov 120a,120b, S. Timoshenko 110, P. Tipton 180, S. Tisserant 99, K. Todome 162,
+S. Todorova-Nova5, S. Todt 46,J . T o j o85, S. Tokár 28a, K. Tokushuku 79, E. Tolley 123,K . G . T o m i w a32c, M. Tomoto 115,
+L. Tompkins150,r,K . T o m s116, B. Tong 57, P. Tornambe50, E. Torrence 128,H . T o r r e s46, E. Torró Pastor 145, C. Tosciri 132,
+J. Toth99,ac, F. Touchard99, D. R. Tovey146, C. J. Treado 122, T. Trefzger174,F . T r e s o l d i153, A. Tricoli 29, I. M. Trigger 165a,
+S. Trincaz-Duvoid133, W. Trischuk 164, B. Trocmé 56, A. Trofymov 129, C. Troncon 66a, M. Trovatelli 173,F . T r o v a t o153,
+L. Truong32b, M. Trzebinski 82, A. Trzupek 82,F . T s a i44, J.C-L. Tseng 132, P. V . Tsiareshka 105,aj, A. Tsirigotis 159,
+N. Tsirintanis9, V . Tsiskaridze152, E. G. Tskhadadze156a,I .I .T s u k e r m a n109, V . Tsulaia18, S. Tsuno79, D. Tsybychev152,163,
+Y. Tu61b, A. Tudorache 27b, V . Tudorache 27b,T . T . T u l b u r e27a, A. N. Tuna 57, S. Turchikhin 77, D. Turgeman 177,
+I. Turk Cakir4b,u, R. Turra 66a,P . M . T u t s38, S Tzamarias 159,E . T z o v a r a97, G. Ucchielli 45, I. Ueda 79, M. Ughetto 43a,43b,
+F. Ukegawa166, G. Unal 35, A. Undrus 29, G. Unel 168, F. C. Ungaro 102, Y . Unno79,K . U n o160, J. Urban 28b, P. Urquijo102,
+G. Usai8,J . U s u i79, L. Vacavant 99, V . Vacek 139, B. Vachon 101, K .O .H .V a d l a131, A. Vaidya 92, C. Valderanis 112,
+E. Valdes Santurio43a,43b, M. Valente 52, S. Valentinetti 23a,23b, A. Valero 171, L. Valéry 44, R. A. Vallance 21, A. Vallier 5,
+J. A. Valls Ferrer171, T. R. Van Daalen 14, H. Van der Graaf 118, P. Van Gemmeren6, I. Van Vulpen 118, M. Vanadia 71a,71b,
+W. Vandelli35, A. Vaniachine 163, P. Vankov118,R . V a r i70a, E. W. Varnes7, C. Varni 53a,53b, T. Varol 41, D. Varouchas 129,
+K. E. Varvell154, G. A. Vasquez 144b, J. G. Vasquez 180, F. Vazeille 37, D. Vazquez Furelos 14, T. Vazquez Schroeder 35,
+J. Veatch51, V . Vecchio72a,72b, L. M. Veloce 164, F. Veloso 137a,137c, S. Veneziano 70a, A. Ventura 65a,65b, N. Venturi 35,
+V . Vercesi68a, M. Verducci 72a,72b, C. M. Vergel Infante 76, C. Vergis 24,W . V e r k e r k e118, A. T. Vermeulen 118,
+J. C. Vermeulen118, M. C. Vetterli 149,av, N. Viaux Maira 144b, M. Vicente Barreto Pinto 52, I. Vichou 170,*,T . V i c k e y146,
+O. E. Vickey Boeriu146, G. H. A. Viehhauser 132,S . V i e l18, L. Vigani 132, M. Villa 23a,23b, M. Villaplana Perez 66a,66b,
+E. Vilucchi49, M. G. Vincter 33, V . B. Vinogradov77, A. Vishwakarma 44, C. Vittori 23a,23b, I. Vivarelli 153, S. Vlachos 10,
+M. V ogel179, P. V okac 139, G. V olpi 14, S. E. von Buddenbrock 32c, E. V on Toerne 24, V . V orobel140, K. V orobev 110,
+M. V os171, J. H. V ossebeld 88, N. Vranjes 16, M. Vranjes Milosavljevic 16,V . V r b a139, M. Vreeswijk 118, T. Šﬁligoj 89,
+R. Vuillermet35, I. Vukotic36, T. Ženiš28a,L . Ž i v k o v i ´c16, P. Wagner24, W. Wagner179, J. Wagner-Kuhr112, H. Wahlberg86,
+S. Wahrmund46, K. Wakamiya 80, V . M. Walbrecht113, J. Walder 87,R . W a l k e r112,S . D . W a l k e r91, W. Walkowiak 148,
+V . Wallangen43a,43b, A .M .W a n g57, C. Wang58b, F. Wang178, H. Wang18, H. Wang3, J. Wang154, J. Wang59b, P. Wang41,
+Q. Wang125, R.-J. Wang 133, R. Wang 58a, R. Wang 6, S .M .W a n g155, W. T. Wang58a, W. Wang 15c,ae, W. X. Wang 58a,ae,
+Y . Wang58a,am, Z. Wang 58c, C. Wanotayaroj 44, A. Warburton 101,C . P . W a r d31, D. R. Wardrope 92, A. Washbrook 48,
+P. M. Watkins21,A . T . W a t s o n21,M . F . W a t s o n21, G. Watts 145, S. Watts 98, B. M. Waugh 92, A. F. Webb 11, S. Webb 97,
+C. Weber180, M. S. Weber 20, S. A. Weber 33, S. M. Weber 59a, A. R. Weidberg 132, J. Weingarten 45, M. Weirich 97,
+C. Weiser50, P. S. Wells 35, T. Wenaus 29, T. Wengler 35, S. Wenig 35,N . W e r m e s24, M. D. Werner 76, P. Werner 35,
+M. Wessels59a,T . D . W e s t o n20, K. Whalen 128, N. L. Whallon 145, A .M .W h a r t o n87, A. S. White 103, A. White 8,
+M. J. White1, R. White 144b, D. Whiteson 168, B. W. Whitmore 87, F. J. Wickens 141, W. Wiedenmann 178, M. Wielers 141,
+C. Wiglesworth39, L. A. M. Wiik-Fuchs 50, F. Wilk98, H .G .W i l k e n s35, L. J. Wilkins91, H. H. Williams134, S. Williams31,
+C. Willis104, S. Willocq 100, J. A. Wilson 21, I. Wingerter-Seez 5, E. Winkels 153, F. Winklmeier 128,O . J . W i n s t o n153,
+B. T. Winter50, M. Wittgen 150, M. Wobisch 93,A . W o l f97, T .M .H .W o l f118,R . W o l f f99, J. Wollrath 50, M. W. Wolter 82,
+H. Wolters137a,137c, V .W .S .W o n g172, N. L. Woods 143, S .D .W o r m21,B . K . W o s i e k82,K . W . W o ´zniak82, K. Wraight 55,
+M. Wu36,S . L . W u178,X . W u52,Y . W u58a, T. R. Wyatt 98, B. M. Wynne 48, S. Xella 39,Z . X i103,L . X i a175,D . X u15a,
+H. Xu58a,e,L . X u 29,T . X u 142,W . X u 103,Z . X u 150, B. Yabsley 154, S. Yacoob 32a, K. Yajima 130, D. P. Yallup 92,
+D. Yamaguchi162, Y . Yamaguchi162, A. Yamamoto 79, T. Yamanaka 160, F. Yamane 80, M. Yamatani 160, T. Yamazaki 160,
+Y . Yamazaki80,Z . Y a n25, H .J .Y a n g58c,58d, H. T. Yang18, S. Yang 75, Y . Yang160, Z. Yang 17,W - M . Y a o18,Y . C . Y a p44,
+Y. Ya s u79, E. Yatsenko58c,58d,J .Y e41,S .Y e29, I. Yeletskikh77, E. Yigitbasi25, E. Yildirim97, K. Yorita176, K. Yoshihara134,
+C. J. S. Young35, C. Young 150,J . Y u8,J . Y u76,X . Y u e59a, S .P .Y .Y u e n24, B. Zabinski 82, G. Zacharis 10, E. Zaffaroni 52,
+R. Zaidan14, A .M .Z a i t s e v121,ao, T. Zakareishvili 156b, N. Zakharchuk 33, S. Zambito 57, D. Zanzi 35, D. R. Zaripovas 55,
+S. V . Zeißner45, C. Zeitnitz 179, G. Zemaityte 132, J. C. Zeng 170, Q. Zeng 150, O. Zenin 121,D . Z e r w a s129, M. Zgubiˇc132,
+D. F. Zhang58b, D. Zhang 103, F. Zhang178, G. Zhang 58a, G. Zhang 15b, H. Zhang 15c, J. Zhang 6, L. Zhang 15c, L. Zhang 58a,
+M. Zhang170, P. Zhang15c, R. Zhang58a, R. Zhang24, X. Zhang58b, Y . Zhang15d, Z. Zhang129, P. Zhao47, Y . Zhao58b,129,ak,
+Z. Zhao58a, A. Zhemchugov77, Z. Zheng103, D. Zhong170, B. Zhou103, C. Zhou178, M. S. Zhou15d, M. Zhou152, N. Zhou58c,
+Y . Zhou7,C .G .Z h u58b,H .L .Z h u58a,H .Z h u15a,J .Z h u103,Y .Z h u58a, X. Zhuang15a, K. Zhukov108, V . Zhulanov120a,120b,
+A. Zibell174, D. Zieminska 63, N. I. Zimine 77, S. Zimmermann 50, Z. Zinonos 113, M. Ziolkowski 148, G. Zobernig 178,
+A. Zoccoli23a,23b, K. Zoch51, T. G. Zorbas146,R .Z o u36, M. Zur Nedden19, L. Zwalinski35
+123
+
+===== PAGE 35 =====
+Eur. Phys. J. C (2019) 79 :639 Page 35 of 40 639
+1 Department of Physics, University of Adelaide, Adelaide, Australia
+2 Physics Department, SUNY Albany, Albany, NY, USA
+3 Department of Physics, University of Alberta, Edmonton, AB, Canada
+4 (a)Department of Physics, Ankara University, Ankara, Turkey;(b)Istanbul Aydin University, Istanbul, Turkey;(c)Division
+of Physics, TOBB University of Economics and Technology, Ankara, Turkey
+5 LAPP, Université Grenoble Alpes, Université Savoie Mont Blanc, CNRS/IN2P3, Annecy, France
+6 High Energy Physics Division, Argonne National Laboratory, Argonne, IL, USA
+7 Department of Physics, University of Arizona, Tucson, AZ, USA
+8 Department of Physics, University of Texas at Arlington, Arlington, TX, USA
+9 Physics Department, National and Kapodistrian University of Athens, Athens, Greece
+10 Physics Department, National Technical University of Athens, Zografou, Greece
+11 Department of Physics, University of Texas at Austin, Austin, TX, USA
+12 (a)Bahcesehir University, Faculty of Engineering and Natural Sciences, Istanbul, Turkey;(b)Istanbul Bilgi University,
+Faculty of Engineering and Natural Sciences, Istanbul, Turkey;(c)Department of Physics, Bogazici University, Istanbul,
+Turkey;(d)Department of Physics Engineering, Gaziantep University, Gaziantep, Turkey
+13 Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+14 Institut de Física d’Altes Energies (IFAE), Barcelona Institute of Science and Technology, Barcelona, Spain
+15 (a)Institute of High Energy Physics, Chinese Academy of Sciences, Beijing, China; (b)Physics Department, Tsinghua
+University, Beijing, China;(c)Department of Physics, Nanjing University, Nanjing, China;(d)University of Chinese
+Academy of Science (UCAS), Beijing, China
+16 Institute of Physics, University of Belgrade, Belgrade, Serbia
+17 Department for Physics and Technology, University of Bergen, Bergen, Norway
+18 Physics Division, Lawrence Berkeley National Laboratory and University of California, Berkeley, CA, USA
+19 Institut für Physik, Humboldt Universität zu Berlin, Berlin, Germany
+20 Albert Einstein Center for Fundamental Physics and Laboratory for High Energy Physics, University of Bern, Bern,
+Switzerland
+21 School of Physics and Astronomy, University of Birmingham, Birmingham, UK
+22 Centro de Investigaciónes, Universidad Antonio Nariño, Bogota, Colombia
+23 (a)Dipartimento di Fisica e Astronomia, Università di Bologna, Bologna, Italy;(b)INFN Sezione di Bologna, Bologna,
+Italy
+24 Physikalisches Institut, Universität Bonn, Bonn, Germany
+25 Department of Physics, Boston University, Boston, MA, USA
+26 Department of Physics, Brandeis University, Waltham, MA, USA
+27 (a)Transilvania University of Brasov, Brasov, Romania;(b)Horia Hulubei National Institute of Physics and Nuclear
+Engineering, Bucharest, Romania; (c)Department of Physics, Alexandru Ioan Cuza University of Iasi, Iasi,
+Romania; (d)National Institute for Research and Development of Isotopic and Molecular Technologies, Physics
+Department, Cluj-Napoca, Romania; (e)University Politehnica Bucharest, Bucharest, Romania;(f)West University in
+Timisoara, Timisoara, Romania
+28 (a)Faculty of Mathematics, Physics and Informatics, Comenius University, Bratislava, Slovak Republic;(b)Department of
+Subnuclear Physics, Institute of Experimental Physics of the Slovak Academy of Sciences, Kosice, Slovak Republic
+29 Physics Department, Brookhaven National Laboratory, Upton, NY, USA
+30 Departamento de Física, Universidad de Buenos Aires, Buenos Aires, Argentina
+31 Cavendish Laboratory, University of Cambridge, Cambridge, UK
+32 (a)Department of Physics, University of Cape Town, Cape Town, South Africa;(b)Department of Mechanical
+Engineering Science, University of Johannesburg, Johannesburg, South Africa;(c)School of Physics, University of the
+Witwatersrand, Johannesburg, South Africa
+33 Department of Physics, Carleton University, Ottawa, ON, Canada
+34 (a)Faculté des Sciences Ain Chock, Réseau Universitaire de Physique des Hautes Energies-Université Hassan II,
+Casablanca, Morocco; (b)Centre National de l’Energie des Sciences Techniques Nucleaires (CNESTEN), Rabat,
+Morocco; (c)Faculté des Sciences Semlalia, Université Cadi Ayyad, LPHEA-Marrakech, Morocco;(d)Faculté des
+Sciences, Université Mohamed Premier and LPTPM, Oujda, Morocco;(e)Faculté des sciences, Université Mohammed V,
+Rabat, Morocco
+35 CERN, Geneva, Switzerland
+123
+
+===== PAGE 36 =====
+639 Page 36 of 40 Eur. Phys. J. C (2019) 79 :639
+36 Enrico Fermi Institute, University of Chicago, Chicago, IL, USA
+37 LPC, Université Clermont Auvergne, CNRS/IN2P3, Clermont-Ferrand, France
+38 Nevis Laboratory, Columbia University, Irvington, NY, USA
+39 Niels Bohr Institute, University of Copenhagen, Copenhagen, Denmark
+40 (a)Dipartimento di Fisica, Università della Calabria, Rende, Italy;(b)INFN Gruppo Collegato di Cosenza, Laboratori
+Nazionali di Frascati, Italy
+41 Physics Department, Southern Methodist University, Dallas, TX, USA
+42 Physics Department, University of Texas at Dallas, Richardson, TX, USA
+43 (a)Department of Physics, Stockholm University, Sweden;(b)Oskar Klein Centre, Stockholm, Sweden
+44 Deutsches Elektronen-Synchrotron DESY, Hamburg and Zeuthen, Germany
+45 Lehrstuhl für Experimentelle Physik IV, Technische Universität Dortmund, Dortmund, Germany
+46 Institut für Kern- und Teilchenphysik, Technische Universität Dresden, Dresden, Germany
+47 Department of Physics, Duke University, Durham, NC, USA
+48 SUPA-School of Physics and Astronomy, University of Edinburgh, Edinburgh, UK
+49 INFN e Laboratori Nazionali di Frascati, Frascati, Italy
+50 Physikalisches Institut, Albert-Ludwigs-Universität Freiburg, Freiburg, Germany
+51 II. Physikalisches Institut, Georg-August-Universität Göttingen, Göttingen, Germany
+52 Département de Physique Nucléaire et Corpusculaire, Université de Genève, Genève, Switzerland
+53 (a)Dipartimento di Fisica, Università di Genova, Genova, Italy;(b)INFN Sezione di Genova, Genoa, Italy
+54 II. Physikalisches Institut, Justus-Liebig-Universität Giessen, Giessen, Germany
+55 SUPA-School of Physics and Astronomy, University of Glasgow, Glasgow, UK
+56 LPSC, Université Grenoble Alpes, CNRS/IN2P3, Grenoble INP, Grenoble, France
+57 Laboratory for Particle Physics and Cosmology, Harvard University, Cambridge, MA, USA
+58 (a)Department of Modern Physics and State Key Laboratory of Particle Detection and Electronics, University of Science
+and Technology of China, Hefei, China;(b)Institute of Frontier and Interdisciplinary Science and Key Laboratory of
+Particle Physics and Particle Irradiation (MOE), Shandong University, Qingdao, China;(c)School of Physics and
+Astronomy, Shanghai Jiao Tong University, KLPPAC-MoE, SKLPPC, Shanghai, China;(d)Tsung-Dao Lee Institute,
+Shanghai, China
+59 (a)Kirchhoff-Institut für Physik, Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany;(b)Physikalisches Institut,
+Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany
+60 Faculty of Applied Information Science, Hiroshima Institute of Technology, Hiroshima, Japan
+61 (a)Department of Physics, Chinese University of Hong Kong, Shatin, N.T., Hong Kong, China;(b)Department of Physics,
+University of Hong Kong, Hong Kong, China;(c)Department of Physics and Institute for Advanced Study, Hong Kong
+University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong, China
+62 Department of Physics, National Tsing Hua University, Hsinchu, Taiwan
+63 Department of Physics, Indiana University, Bloomington, IN, USA
+64 (a)INFN Gruppo Collegato di Udine, Sezione di Trieste, Udine, Italy;(b)ICTP, Trieste, Italy;(c)Dipartimento di Chimica,
+Fisica e Ambiente, Università di Udine, Udine, Italy
+65 (a)INFN Sezione di Lecce, Zona Monte, Italy; (b)Dipartimento di Matematica e Fisica, Università del Salento, Lecce,
+Italy
+66 (a)INFN Sezione di Milano, Milan, Italy; (b)Dipartimento di Fisica, Università di Milano, Milano, Italy
+67 (a)INFN Sezione di Napoli, Naples, Italy; (b)Dipartimento di Fisica, Università di Napoli, Napoli, Italy
+68 (a)INFN Sezione di Pavia, Pavia, Italy;(b)Dipartimento di Fisica, Università di Pavia, Pavia, Italy
+69 (a)INFN Sezione di Pisa, Pisa, Italy; (b)Dipartimento di Fisica E. Fermi, Università di Pisa, Pisa, Italy
+70 (a)INFN Sezione di Roma, Rome, Italy; (b)Dipartimento di Fisica, Sapienza Università di Roma, Roma, Italy
+71 (a)INFN Sezione di Roma, Tor Vergata, Italy;(b)Dipartimento di Fisica, Università di Roma Tor Vergata, Roma, Italy
+72 (a)INFN Sezione di Roma Tre, Rome, Italy;(b)Dipartimento di Matematica e Fisica, Università Roma Tre, Roma, Italy
+73 (a)INFN-TIFPA, Povo, Italy;(b)Università degli Studi di Trento, Trento, Italy
+74 Institut für Astro- und Teilchenphysik, Leopold-Franzens-Universität, Innsbruck, Austria
+75 University of Iowa, Iowa City, IA, USA
+76 Department of Physics and Astronomy, Iowa State University, Ames, IA, USA
+77 Joint Institute for Nuclear Research, Dubna, Russia
+123
+
+===== PAGE 37 =====
+Eur. Phys. J. C (2019) 79 :639 Page 37 of 40 639
+78 (a)Departamento de Engenharia Elétrica, Universidade Federal de Juiz de Fora (UFJF), Juiz de Fora,
+Brazil; (b)Universidade Federal do Rio De Janeiro COPPE/EE/IF, Rio de Janeiro, Brazil;(c)Universidade Federal de São
+João del Rei (UFSJ), São João del Rei, Brazil; (d)Instituto de Física, Universidade de São Paulo, São Paulo, Brazil
+79 KEK, High Energy Accelerator Research Organization, Tsukuba, Japan
+80 Graduate School of Science, Kobe University, Kobe, Japan
+81 (a)AGH University of Science and Technology, Faculty of Physics and Applied Computer Science, Krakow,
+Poland; (b)Marian Smoluchowski Institute of Physics, Jagiellonian University, Krakow, Poland
+82 Institute of Nuclear Physics Polish Academy of Sciences, Krakow, Poland
+83 Faculty of Science, Kyoto University, Kyoto, Japan
+84 Kyoto University of Education, Kyoto, Japan
+85 Research Center for Advanced Particle Physics and Department of Physics, Kyushu University, Fukuoka , Japan
+86 Instituto de Física La Plata, Universidad Nacional de La Plata and CONICET, La Plata, Argentina
+87 Physics Department, Lancaster University, Lancaster, UK
+88 Oliver Lodge Laboratory, University of Liverpool, Liverpool, UK
+89 Department of Experimental Particle Physics, Jožef Stefan Institute and Department of Physics, University of Ljubljana,
+Ljubljana, Slovenia
+90 School of Physics and Astronomy, Queen Mary University of London, London, UK
+91 Department of Physics, Royal Holloway University of London, Egham, UK
+92 Department of Physics and Astronomy, University College London, London, UK
+93 Louisiana Tech University, Ruston, LA, USA
+94 Fysiska institutionen, Lunds universitet, Lund, Sweden
+95 Centre de Calcul de l’Institut National de Physique Nucléaire et de Physique des Particules (IN2P3), Villeurbanne,
+France
+96 Departamento de Física Teorica C-15 and CIAFF, Universidad Autónoma de Madrid, Madrid, Spain
+97 Institut für Physik, Universität Mainz, Mainz, Germany
+98 School of Physics and Astronomy, University of Manchester, Manchester, UK
+99 CPPM, Aix-Marseille Université, CNRS/IN2P3, Marseille, France
+100 Department of Physics, University of Massachusetts, Amherst, MA, USA
+101 Department of Physics, McGill University, Montreal, QC, Canada
+102 School of Physics, University of Melbourne, Victoria, Australia
+103 Department of Physics, University of Michigan, Ann Arbor, MI, USA
+104 Department of Physics and Astronomy, Michigan State University, East Lansing, MI, USA
+105 B.I. Stepanov Institute of Physics, National Academy of Sciences of Belarus, Minsk, Belarus
+106 Research Institute for Nuclear Problems of Byelorussian State University, Minsk, Belarus
+107 Group of Particle Physics, University of Montreal, Montreal, QC, Canada
+108 P.N. Lebedev Physical Institute of the Russian Academy of Sciences, Moscow, Russia
+109 Institute for Theoretical and Experimental Physics (ITEP), Moscow, Russia
+110 National Research Nuclear University MEPhI, Moscow, Russia
+111 D.V . Skobeltsyn Institute of Nuclear Physics, M.V . Lomonosov Moscow State University, Moscow, Russia
+112 Fakultät für Physik, Ludwig-Maximilians-Universität München, München, Germany
+113 Max-Planck-Institut für Physik (Werner-Heisenberg-Institut), München, Germany
+114 Nagasaki Institute of Applied Science, Nagasaki, Japan
+115 Graduate School of Science and Kobayashi-Maskawa Institute, Nagoya University, Nagoya, Japan
+116 Department of Physics and Astronomy, University of New Mexico, Albuquerque, NM, USA
+117 Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef, Nijmegen, The
+Netherlands
+118 Nikhef National Institute for Subatomic Physics and University of Amsterdam, Amsterdam, The Netherlands
+119 Department of Physics, Northern Illinois University, DeKalb, IL, USA
+120 (a)Budker Institute of Nuclear Physics and NSU, SB RAS, Novosibirsk, Russia;(b)Novosibirsk State University
+Novosibirsk, Novosibirsk, Russia
+121 Institute for High Energy Physics of the National Research Centre Kurchatov Institute, Protvino, Russia
+122 Department of Physics, New York University, New York, NY, USA
+123 Ohio State University, Columbus, OH, USA
+123
+
+===== PAGE 38 =====
+639 Page 38 of 40 Eur. Phys. J. C (2019) 79 :639
+124 Faculty of Science, Okayama University, Okayama, Japan
+125 Homer L. Dodge Department of Physics and Astronomy, University of Oklahoma, Norman, OK, USA
+126 Department of Physics, Oklahoma State University, Stillwater, OK, USA
+127 Palacký University, RCPTM, Joint Laboratory of Optics, Olomouc, Czech Republic
+128 Center for High Energy Physics, University of Oregon, Eugene, OR, USA
+129 LAL, Université Paris-Sud, CNRS/IN2P3, Université Paris-Saclay, Orsay, France
+130 Graduate School of Science, Osaka University, Osaka, Japan
+131 Department of Physics, University of Oslo, Oslo, Norway
+132 Department of Physics, Oxford University, Oxford, UK
+133 LPNHE, Sorbonne Université, Paris Diderot Sorbonne Paris Cité, CNRS/IN2P3, Paris, France
+134 Department of Physics, University of Pennsylvania, Philadelphia, PA, USA
+135 Konstantinov Nuclear Physics Institute of National Research Centre “Kurchatov Institute”, PNPI, St. Petersburg, Russia
+136 Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh, PA, USA
+137 (a)Laboratório de Instrumentação e Física Experimental de Partículas-LIP, Lisbon, Portugal; (b)Departamento de Física,
+Faculdade de Ciências, Universidade de Lisboa, Lisboa, Portugal;(c)Departamento de Física, Universidade de Coimbra,
+Coimbra, Portugal; (d)Centro de Física Nuclear da Universidade de Lisboa, Lisboa, Portugal;(e)Departamento de Física,
+Universidade do Minho, Braga, Portugal;(f)Departamento de Física Teorica y del Cosmos, Universidad de Granada,
+Granada (Spain), Portugal; (g)Dep Física and CEFITEC of Faculdade de Ciências e Tecnologia, Universidade Nova de
+Lisboa, Caparica, Portugal
+138 Institute of Physics, Academy of Sciences of the Czech Republic, Prague, Czech Republic
+139 Czech Technical University in Prague, Prague, Czech Republic
+140 Charles University, Faculty of Mathematics and Physics, Prague, Czech Republic
+141 Particle Physics Department, Rutherford Appleton Laboratory, Didcot, UK
+142 IRFU, CEA, Université Paris-Saclay, Gif-sur-Yvette, France
+143 Santa Cruz Institute for Particle Physics, University of California Santa Cruz, Santa Cruz, CA, USA
+144 (a)Departamento de Física, Pontiﬁcia Universidad Católica de Chile, Santiago, Chile;(b)Departamento de Física,
+Universidad Técnica Federico Santa María, Valparaíso, Chile
+145 Department of Physics, University of Washington, Seattle, W A, USA
+146 Department of Physics and Astronomy, University of Shefﬁeld, Shefﬁeld, UK
+147 Department of Physics, Shinshu University, Nagano, Japan
+148 Department Physik, Universität Siegen, Siegen, Germany
+149 Department of Physics, Simon Fraser University, Burnaby, BC, Canada
+150 SLAC National Accelerator Laboratory, Stanford, CA, USA
+151 Physics Department, Royal Institute of Technology, Stockholm, Sweden
+152 Departments of Physics and Astronomy, Stony Brook University, Stony Brook, NY, USA
+153 Department of Physics and Astronomy, University of Sussex, Brighton, UK
+154 School of Physics, University of Sydney, Sydney, Australia
+155 Institute of Physics, Academia Sinica, Taipei, Taiwan
+156 (a)E. Andronikashvili Institute of Physics, Iv. Javakhishvili Tbilisi State University, Tbilisi, Georgia;(b)High Energy
+Physics Institute, Tbilisi State University, Tbilisi, Georgia
+157 Department of Physics, Technion, Israel Institute of Technology, Haifa, Israel
+158 Raymond and Beverly Sackler School of Physics and Astronomy, Tel Aviv University, Tel Aviv, Israel
+159 Department of Physics, Aristotle University of Thessaloniki, Thessaloniki, Greece
+160 International Center for Elementary Particle Physics and Department of Physics, University of Tokyo, Tokyo, Japan
+161 Graduate School of Science and Technology, Tokyo Metropolitan University, Tokyo, Japan
+162 Department of Physics, Tokyo Institute of Technology, Tokyo, Japan
+163 Tomsk State University, Tomsk, Russia
+164 Department of Physics, University of Toronto, Toronto, ON, Canada
+165 (a)TRIUMF, Vancouver, BC, Canada;(b)Department of Physics and Astronomy, York University, Toronto, ON, Canada
+166 Division of Physics and Tomonaga Center for the History of the Universe, Faculty of Pure and Applied Sciences,
+University of Tsukuba, Tsukuba, Japan
+167 Department of Physics and Astronomy, Tufts University, Medford, MA, USA
+168 Department of Physics and Astronomy, University of California Irvine, Irvine, CA, USA
+123
+
+===== PAGE 39 =====
+Eur. Phys. J. C (2019) 79 :639 Page 39 of 40 639
+169 Department of Physics and Astronomy, University of Uppsala, Uppsala, Sweden
+170 Department of Physics, University of Illinois, Urbana, IL, USA
+171 Instituto de Física Corpuscular (IFIC), Centro Mixto Universidad de Valencia-CSIC, Valencia, Spain
+172 Department of Physics, University of British Columbia, Vancouver, BC, Canada
+173 Department of Physics and Astronomy, University of Victoria, Victoria, BC, Canada
+174 Fakultät für Physik und Astronomie, Julius-Maximilians-Universität Würzburg, Würzburg, Germany
+175 Department of Physics, University of Warwick, Coventry, UK
+176 Waseda University, Tokyo, Japan
+177 Department of Particle Physics, Weizmann Institute of Science, Rehovot, Israel
+178 Department of Physics, University of Wisconsin, Madison, WI, USA
+179 Fakultät für Mathematik und Naturwissenschaften, Fachgruppe Physik, Bergische Universität Wuppertal, Wuppertal,
+Germany
+180 Department of Physics, Yale University, New Haven, CT, USA
+181 Yerevan Physics Institute, Yerevan, Armenia
+a Also at Borough of Manhattan Community College, City University of New York, NY , USA
+b Also at California State University, East Bay, USA
+c Also at Centre for High Performance Computing, CSIR Campus, Rosebank, Cape Town, South Africa
+d Also at CERN, Geneva, Switzerland
+e Also at CPPM, Aix-Marseille Université, CNRS/IN2P3, Marseille, France
+f Also at Département de Physique Nucléaire et Corpusculaire, Université de Genève, Genève, Switzerland
+g Also at Departament de Fisica de la Universitat Autonoma de Barcelona, Barcelona, Spain
+h Also at Departamento de Física Teorica y del Cosmos, Universidad de Granada, Granada (Spain), Spain
+i Also at Departamento de Física, Instituto Superior Técnico, Universidade de Lisboa, Lisboa, Portugal
+j Also at Department of Applied Physics and Astronomy, University of Sharjah, Sharjah, United Arab Emirates
+k Also at Department of Financial and Management Engineering, University of the Aegean, Chios, Greece
+l Also at Department of Physics and Astronomy, University of Louisville, Louisville, KY , USA
+m Also at Department of Physics and Astronomy, University of Shefﬁeld, Shefﬁeld, UK
+n Also at Department of Physics, California State University, Fresno CA, USA
+o Also at Department of Physics, California State University, Sacramento CA, USA
+p Also at Department of Physics, King’s College London, London, UK
+q Also at Department of Physics, St. Petersburg State Polytechnical University, St. Petersburg, Russia
+r Also at Department of Physics, Stanford University, USA
+s Also at Department of Physics, University of Fribourg, Fribourg, Switzerland
+t Also at Department of Physics, University of Michigan, Ann Arbor MI, USA
+u Also at Giresun University, Faculty of Engineering, Giresun, Turkey
+v Also at Graduate School of Science, Osaka University, Osaka, Japan
+w Also at Hellenic Open University, Patras, Greece
+x Also at Horia Hulubei National Institute of Physics and Nuclear Engineering, Bucharest, Romania
+y Also at II. Physikalisches Institut, Georg-August-Universität Göttingen, Göttingen, Germany
+z Also at Institucio Catalana de Recerca i Estudis Avancats, ICREA, Barcelona, Spain
+aa Also at Institut für Experimentalphysik, Universität Hamburg, Hamburg, Germany
+ab Also at Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef, Nijmegen,
+The Netherlands
+ac Also at Institute for Particle and Nuclear Physics, Wigner Research Centre for Physics, Budapest, Hungary
+ad Also at Institute of Particle Physics (IPP), Canada
+ae Also at Institute of Physics, Academia Sinica, Taipei, Taiwan
+af Also at Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+ag Also at Institute of Theoretical Physics, Ilia State University, Tbilisi, Georgia
+ah Also at Instituto de Física Teórica de la Universidad Autónoma de Madrid, Spain
+ai Also at Istanbul University, Dept. of Physics, Istanbul, Turkey
+aj Also at Joint Institute for Nuclear Research, Dubna, Russia
+ak Also at LAL, Université Paris-Sud, CNRS/IN2P3, Université Paris-Saclay, Orsay, France
+123
+
+===== PAGE 40 =====
+639 Page 40 of 40 Eur. Phys. J. C (2019) 79 :639
+al Also at Louisiana Tech University, Ruston LA, USA
+am Also at LPNHE, Sorbonne Université, Paris Diderot Sorbonne Paris Cité, CNRS/IN2P3, Paris, France
+an Also at Manhattan College, New York NY , USA
+ao Also at Moscow Institute of Physics and Technology State University, Dolgoprudny, Russia
+ap Also at National Research Nuclear University MEPhI, Moscow, Russia
+aq Also at Physikalisches Institut, Albert-Ludwigs-Universität Freiburg, Freiburg, Germany
+ar Also at School of Physics, Sun Yat-sen University, Guangzhou, China
+as Also at The City College of New York, New York NY , USA
+at Also at The Collaborative Innovation Center of Quantum Matter (CICQM), Beijing, China
+au Also at Tomsk State University, Tomsk, and Moscow Institute of Physics and Technology State University, Dolgoprudny,
+Russia
+av Also at TRIUMF, Vancouver BC, Canada
+aw Also at Universita di Napoli Parthenope, Napoli, Italy
+∗Deceased
+123

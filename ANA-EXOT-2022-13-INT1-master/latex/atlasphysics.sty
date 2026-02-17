@@ -1,0 +1,108 @@
+%-------------------------------------------------------------------------------
+% Steer usage of physics style files for ATLAS documents.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlasphysics}[2021/08/20 v11.6.0 ATLAS physics macros]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% xspace is always needed
+\RequirePackage{xspace}
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=APHY,
+  prefix=APHY@
+}
+\DeclareBoolOption[false]{BSM}
+\DeclareBoolOption[false]{bsm}
+\DeclareBoolOption[false]{hion}
+\DeclareBoolOption[false]{jetetmiss}
+\DeclareBoolOption[true]{journal}
+\DeclareBoolOption[false]{math}
+\DeclareBoolOption[true]{misc}
+\DeclareBoolOption[false]{other}
+\DeclareBoolOption[true]{hepitalic}
+\DeclareBoolOption[false]{hepparticle}
+\DeclareBoolOption[false]{hepprocess}
+\DeclareBoolOption[true]{particle}
+\DeclareBoolOption[false]{process}
+\DeclareBoolOption[false]{snippets}
+\DeclareBoolOption[true]{unit}
+\DeclareBoolOption[true]{xref}
+\DeclareStringOption[2016]{texlive}
+\DeclareBoolOption[false]{eVkern}
+\DeclareBoolOption[true]{texmf}
+\ProcessKeyvalOptions*
+
+\typeout{atlasphysics: APHY@texlive is [\APHY@texlive]}
+\ifthenelse{\boolean{APHY@eVkern}}{%
+  \typeout{atlasphysics: APHY@eVkern is true}
+}{%
+  \typeout{atlasphysics: APHY@eVkern is false}
+}
+
+% BSM particles including SUSY - also allow option bsm!
+\ifthenelse{\boolean{APHY@BSM}}{\RequirePackage{atlasbsm}}{}
+\ifthenelse{\boolean{APHY@bsm}}{\RequirePackage{atlasbsm}}{}
+
+% Heavy ion physics
+\ifthenelse{\boolean{APHY@hion}}{\RequirePackage{atlasheavyion}}{}
+
+% Jet/ETmiss group abbreviations
+\ifthenelse{\boolean{APHY@jetetmiss}}{\RequirePackage{atlasjetetmiss}}{}
+
+% Journal abbreviations
+\ifthenelse{\boolean{APHY@journal}}{\RequirePackage{atlasjournal}}{}
+
+% Useful math related definitions
+\ifthenelse{\boolean{APHY@math}}{\RequirePackage{atlasmath}}{}
+
+% Miscellaneous useful definitions
+\ifthenelse{\boolean{APHY@misc}}{\RequirePackage{atlasmisc}}{}
+
+% Other maybe useful definitions
+\ifthenelse{\boolean{APHY@other}}{\RequirePackage{atlasother}}{}
+
+% Text snippets
+\ifthenelse{\boolean{APHY@snippets}}{\RequirePackage{atlassnippets}}{}
+
+% Particles
+% Load either atlasparticle or atlashepparticle, but not both.
+% Priority given to atlashepparticle.
+\ifthenelse{\boolean{APHY@hepparticle}}{%
+  \RequirePackage{atlashepparticle}
+}{%
+  \ifthenelse{\boolean{APHY@particle}}{\RequirePackage{atlasparticle}}{}
+}
+
+% Processes
+% Load either atlasprocess or atlashepprocess, but not both.
+% Priority given to atlashepprocess.
+\ifthenelse{\boolean{APHY@hepprocess}}{%
+  \RequirePackage{atlashepprocess}
+}{%
+  \ifthenelse{\boolean{APHY@process}}{\RequirePackage{atlasprocess}}{}
+}
+
+% Units
+\ifthenelse{\boolean{APHY@unit}}{%
+  \ifthenelse{\boolean{APHY@eVkern}}{%
+    \RequirePackage[eVkern]{atlasunit}
+  }{%
+    \RequirePackage{atlasunit}
+  }
+}{}
+
+% Abbreviations when cross referencing
+\ifthenelse{\boolean{APHY@xref}}{\RequirePackage{atlasxref}}{}
+
+\endinput

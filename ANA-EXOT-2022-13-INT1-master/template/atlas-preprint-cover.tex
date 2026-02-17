@@ -1,0 +1,62 @@
+% ----------------------------------------------------------- 
+% Standalone title page for CERN preprints.
+% atlaspackage and/or atlasphysics are only needed if symbols
+% defined in them are used in the abstract
+% ----------------------------------------------------------- 
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
+%-------------------------------------------------------------------------------
+\documentclass[cernpreprint, atlasdraft=true, texlive=2016, UKenglish]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Relevant options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  txfonts=true|false    Use txfonts rather than the default newtx.
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+% Use minimal version of atlaspackage without bibliography - probably not needed.
+% \usepackage[minimal, biblatex=false]{atlaspackage}
+
+% CERN preprint frontpage.
+% \usepackage[cernpreprint]{atlascover}
+
+% Useful macros - probably not needed. Include journals though.
+% \usepackage{atlasphysics}
+\usepackage{atlasjournal}
+
+% Paths for figures - ATLAS and CERN logos
+\graphicspath{{logos/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Take information from the metadata file you have for your document
+% \input{mydocument-metadata}
+
+% or specify all information in this document
+% The paper title:
+\AtlasTitle{A standalone title page for CERN preprints}
+
+% CERN preprint number -> can be found in CDS entry for Draft 2!
+\PreprintIdNumber{CERN-EP-2021-XX}
+
+% Submission journal
+\AtlasJournal{\PRL}
+
+% Abstract
+\AtlasAbstract{%
+  This is a test of how a title page for ATLAS-CERN preprints can be produced
+  as a standalone document.
+  The idea is that it should be included before the paper is in the journal format.
+  With this, there is no need for CDS to stamp the CERN logo and preprint number
+  and risk an overlapping with the title and/or other information.
+}
+
+\begin{document}
+
+\maketitle
+
+\end{document}

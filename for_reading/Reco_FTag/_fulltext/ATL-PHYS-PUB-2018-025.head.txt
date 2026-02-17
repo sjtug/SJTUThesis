@@ -1,0 +1,1819 @@
+
+
+===== PAGE 1 =====
+ATL-PHYS-PUB-2018-025
+31 October 2018
+ATLAS NOTE
+ATL-PHYS-PUB-2018-025
+29th October 2018
+Topological B hadron decay reconstruction and identiﬁcation of
+b-jets with JetFitter in the ATLAS experiment at the LHC
+The ATLAS Collaboration
+Abstract
+The identiﬁcation of jets containing heavy ﬂavour hadron decays, in particular bottom quark
+initiated jets, plays a major role in the LHC physics program. The topology of b→ c→ s
+decays gives rise to two detached vertices corresponding to theb- and c-ﬂavoured hadron de-
+cays. The vertices can each have high invariant mass and several associated charged tracks,
+giving a very distinctive signature for the identiﬁcation of b-jets. This note discusses the
+algorithm developed for the topological reconstruction of b-ﬂavoured hadron decays in AT-
+LAS, its implementation and performance based on simulation and 13 TeV collision data.
+© 2018 CERN for the beneﬁt of the ATLAS Collaboration.
+Reproduction of this article or parts of it is allowed as speciﬁed in the CC-BY-3.0 license.
+
+===== PAGE 2 =====
+1 Introduction
+The identiﬁcation of jets containing bottom or charm hadrons plays a major role in the LHC physics
+program. Top-quark decays proceed almost exclusively through a b-quark, due to the hierarchy of the
+CKM mixing matrix elements. The Standard Model (SM) Higgs boson decays predominantly tob¯b pairs,
+since the b-quark is the heaviest fermion that can be pair produced in its decay. Several scenarios of
+new physics result in an enhanced production of fermions of the third generation, such as models with an
+extended Higgs sector or scalar top and bottom quark production in Supersymmetry. SM measurements
+and searches for New Physics in such ﬁnal states require e ﬃcient identiﬁcation of b-ﬂavoured hadron
+decays with small mis-identiﬁcation probability over a broad kinematical range.
+The ATLAS detector [1] is well equipped for the identiﬁcation and reconstruction of B and D hadron
+decays1. With the start of Run 2, the Insertable B Layer (IBL) [2], an additional layer of pixel sensors
+surrounding a new beam pipe of smaller radius, has further enhanced the ATLAS tracking capabilities.
+It provides precise space point measurements along the charged particle trajectories in closer proximity
+to the LHC interaction region (see section 2.2), thus improving the ability to reconstruct primary and
+secondary interaction vertices [3, 4].
+The identiﬁcation of decays fromB-hadrons is based on their relatively long lifetime (< cτ >∼ 470 µm)
+and large charged decay multiplicity (∼5 charged particles on average) [5]. These properties result in
+a secondary decay vertex that is signiﬁcantly displaced with respect to the primary interaction vertex,
+and thus well identiﬁable. The identiﬁcation of the secondary decay system is further favoured by the
+hard b-quark fragmentation function, with a large fraction xb of the b-quark energy transferred to the
+b-ﬂavoured hadron (< xb >∼ 0.8), and by the large invariant mass ofB-hadrons (∼5.2 GeV). In addition,
+the b-ﬂavoured hadron decays, in most cases, into at least one c-ﬂavoured hadron, which decays itself
+with appreciable lifetime. This corresponds to a chain of b → c → s weak decays giving rise to a
+topological conﬁguration with two detached vertices. While B-hadron decays diﬀer from D-hadron and
+τ-lepton decays in kinematics and decay length, additional discrimination can be obtained by identifying
+this unique topology of secondary and tertiary vertices.
+The identiﬁcation of b- and c-jets can be performed either by analysing the individual properties of
+charged particle tracks associated to a hadronic jet, or by explicitly reconstructing an inclusive detached
+vertex, or by reconstructing the full structure of decay vertices originating from the B- to D-hadron de-
+cay chain and analysing their topological and kinematical properties. All three methods highlighted here
+are implemented in ATLAS, respectively in the IPTag, SV and JetFitter algorithms, and have been used
+since Run-1 as the low-level algorithms that are combined in the ATLAS baseline multivariateb-tagging
+algorithm [6].
+The aim of this note is to describe the JetFitter vertex reconstruction algorithm and its performance,
+including technical details about how the Kalman Filter (KF) formalism widely used for single vertex
+reconstruction [7] has been extended to determine the topological structure of weak B- and D-hadron
+decays expected inside a b-jet. The note is organised as follows. Generalities on B-hadron decays and
+details on the reconstruction of the relevant physics objects used in this study are brieﬂy reviewed in
+section 2. The JetFitter algorithm is presented in section 3. The performance of the JetFitter algorithm is
+studied in section 4, using a combination of simulation and √s = 13 TeV ATLAS data. The impact of
+1 In the following, the notation B- and D- hadrons is used to indicate b- and c-ﬂavoured hadrons, inclusive of mesons and
+baryons. Speciﬁc meson states are indicated by their charge.
+2
+
+===== PAGE 3 =====
+topological vertex reconstruction on the ﬂavor tagging performance is presented in section 5. Conclusions
+are given in section 6.
+2 Topological reconstruction of b Decays at LHC with ATLAS
+The topological decay reconstruction aims at measuring the characteristic properties of B-hadron decays
+in an optimal way for their use in the identiﬁcation of b-jets and their discrimination from c- and light-
+quark jets. A robust reconstruction of charged-particle tracks and hadronic jets is required to cope with
+the challenging conditions presented by the LHC. The broad kinematic range of the jets produced in pp
+collisions corresponds to a large variation of the charged particle multiplicity in the jet. The increasing
+LHC luminosity brings a corresponding increase in event pile-up (PU) due to additional pp collisions
+within the same bunch crossing. Both e ﬀects constitute additional challenges for the discrimination of
+the B-decay products and their topological reconstruction.
+2.1 Topology and kinematics of b Decays
+The topological vertex reconstruction is sensitive to the charged particle multiplicity in the jet and to the
+angle between the direction of the jet and that of theB-hadron. The B-hadron charged decay multiplicity,
+with about the same number of decay products expected at the B- and D-hadron vertices, must be com-
+pared to the number of charged particles originating in the fragmentation process. The latter increases
+logarithmically with the jet energy and it is subject to large ﬂuctuations, and constitutes a combinatorial
+background that the topological vertex reconstruction must reject. As an example, charged particles from
+B- and subsequent D-hadron decays account for approximately 20% of the charged particles associated
+to a R = 0.4 anti-kt jet [8] with transverse momentum pT of 100 GeV , decreasing to∼13% for a jet with
+a pT of 500 GeV . The increase in the number of tracks from fragmentation, especially when hard gluon
+radiation occurs, and the potential overlap with hadronic activity unrelated to the jet originating from the
+b-quark at higher jet pT result also in a degradation of the correlation between the jet direction and the
+B-hadron direction. These e ﬀects need to be taken into account when using the jet axis as an estimator
+of the heavy ﬂavor ﬂight direction: the RMS of the angle between the B-hadron direction and the jet axis
+scales from 27 mrad for a 100 GeV pT jet to 45 mrad for a 350 GeV jet in t¯t events, as will be illustrated
+in more detail in section 3.4.
+The topological decay reconstruction of separate B- and D-decay vertices requires that at least one
+charged particle must be emitted from each of the B- and D-hadron decay vertices. On average 85%
+of decays of b-ﬂavoured hadrons have at least one charged particle emitted at both the B- and D-hadron
+decay vertices and 52% of the decays have two or more. The lifetime of the majority of weakly-decaying
+B-hadrons is very similar, and the average lifetime of a mixture of B-hadrons representative of those
+produced in b-jets is 1.566 ps [5]. The lifetime corresponding to di ﬀerent D-hadron species varies more
+widely, and is in the range of approximately 0.1 to 1 ps, and in average about half of the B-hadron life-
+time [5]. The decay distance of B- and D-hadrons from the primary vertex (PV) and the distance between
+the B- and D-hadron decay vertices in b-jets are shown as a function of jet pT in Fig. 1. The average
+distance between B- and D-hadron decay vertices ranges from 5 to 15 mm. This separation must be
+compared to the experimental decay length resolution that ranges from∼0.4 mm to∼1.1 mm, depending
+on vertex multiplicity, mass and jet momentum, as studied in detail in section 4.2.
+3
+
+===== PAGE 4 =====
+ [GeV]
+T
+Jet p200
+400 600 800 3D decay distance [mm]
+0
+20
+40
+60
+Dist(B Dec Vtx - PV) (b-jets)
+Dist(D Dec Vtx - B Dec Vtx) (b-jets)
+Dist(D Dec Vtx - PV) (c-jets)
+ATLAS
+ Simulation  Preliminary =
+s cc, bb →13 TeV, Z' 
+Figure 1: Average decay distance of the B- and D-hadrons with respect to the primary interaction vertex, and
+distance between the B- and D-hadron decay vertices as a function of the jet pT obtained for a sample of broad Z′
+bosons decaying to quark pairs [9].
+2.2 Reconstruction of particle tracks and hadronic jets in ATLAS
+The ATLAS detector [1], with a near cylindrical geometry 2 consists of an inner tracking detector (ID),
+surrounded by a thin 2 T superconducting solenoid, a calorimeter system, and a muon spectrometer (MS)
+that measures the deﬂection of muon tracks in the ﬁeld of three superconducting toroidal magnets.
+Charged particle reconstruction is based on the hits reconstructed in the Pixel, Semiconductor Tracker
+(SCT) and Transition Radiation Tracker (TRT) detectors. The Pixel detector consists of four concentric
+barrel layers and its measurements determine how precisely tracks can be extrapolated to their point of
+production. Since the start of Run 2, a new innermost pixel layer, the Insertable B Layer (IBL), surrounds
+a new and thinner beam pipe at an average radius of 33.5 mm. The barrel section is completed by three
+pixel disks in the forward region covering the interval 1.9 <|η| < 2.9. The pixel hit position and error
+and the identiﬁcation of clusters created by multiple charged particles are obtained with a series of Neural
+Network (NN) clustering algorithms [10, 11]. The measured single point resolution of the reconstructed
+pixel hits is 10 µm in the transverse and 55, 110 µm on average in the longitudinal direction for the IBL
+and other layers, respectively.
+The reconstruction of charged particle tracks [12] relies on the correct assignment of hits to tracks, a
+pattern recognition task that is made more challenging by the presence of additional tracks from PU
+events and due to collimated tracks in jets. Track reconstruction starts from track seeds formed from sets
+of three hits, recorded in either the Pixel or the SCT detector, or both. These are then extended to include
+2 ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point in the centre of the detector and
+the z-axis along the beam pipe. The x-axis points from the interaction point to the centre of the LHC ring, and the y-axis
+points upward. Cylindrical coordinates (r,φ ) are used in the transverse plane, φ being the azimuthal angle around the z-axis.
+The pseudorapidity is deﬁned in terms of the polar angle θ as η =− ln tan(θ/2). Angular distance is measured in units of
+∆R =
+√
+(∆η)2 + (∆φ)2.
+4
+
+===== PAGE 5 =====
+additional hits from the remaining layers of the Pixel and SCT detectors, creating track candidates, to
+be later extended to the TRT detector. At this stage many of such candidates have either overlaps or
+wrongly assigned hits. To improve the quality of reconstructed tracks a dedicated processing step is
+implemented, deﬁned as the ambiguity solver. This algorithm ranks track candidates according to a
+score that depends on their quality, and either solves or limits ambiguous hit to track assignments by
+iteratively rejecting tracks with a low score. In this process the information provided by the NN-based
+pixel clustering algorithm [10] about merged clusters from multiple hits is combined with information
+about hits shared by multiple track candidates. After pattern recognition and ambiguity solving a ﬁnal
+χ2-based track ﬁt is performed. Only tracks with pT larger than 400 MeV are kept. In addition, further
+Loose selection criteria are applied to reject fake and poorly measured tracks [3]. With these, the track
+reconstruction eﬃciency, evaluated by using minimum bias simulated events, in which more than 98% of
+charged particles are pions, scales from 91% in the central (|η| < 0.1) to 73% in the forward (2.3<|η| <
+2.5) region. Customised selections are applied in the JetFitter algorithm, on top of the loose tracking
+cut to which these eﬃciency values refer to, to select B- and D-hadron decay track candidates and reject
+tracks from PU particles.
+The primary vertex (PV) reconstruction is performed by iteratively associating the reconstructed particle
+tracks to vertex seed positions. Tracks incompatible with the vertex seed position are dropped and the
+whole procedure is repeated with the remaining unassociated tracks. Both the vertex seed positions of the
+vertices and the vertex in the χ2 ﬁts are constrained to be compatible with the interaction region of the
+LHC proton beams, whose transverse projection is deﬁned as the beam spot. This poses a tight constraint
+on the position of the primary vertex in the transverse plane. A longitudinal vertex position resolution
+of∼30 µm is achieved for events with high multiplicity of reconstructed tracks while the transverse
+resolution is 10-30 µm depending on the LHC running conditions that determine the beam spot size [13,
+14].
+Particle trajectories are fully speciﬁed by ﬁve deﬁning helix parameters: d0, z0, q/p, φ and θ, deﬁned
+at the perigee, i.e. the position of closest approach in the transverse plane to a reference position. Such
+reference position, in the following, is always chosen to be the reconstructed primary vertex. The perigee
+parameters d0 and z0 represent the transverse and longitudinal projections, respectively, of the point of
+closest approach and their errors are estimators of the the track extrapolation resolution. The transverse
+impact parameter component IP rφ corresponds to the perigee parameter, |d0|, deﬁned above, while the
+longitudinal component IPz is|z0 sinθ|. The impact parameter resolution depends on the track transverse
+momentum, pT , and pseudorapidity, η, due to multiple scattering e ﬀects, and is typically parameterised
+as a⊕ b(η)/pT . Here a is the asymptotic resolution reached for high pT tracks,∼10 and∼40 µm in the
+IPrφ and IP z projections, respectively, and b(η) the multiple scattering term, b(0)∼ 60 and b(1.5)∼
+90 µm/GeV in the IPrφ projection [2, 3].
+Hadronic jets are reconstructed from topological clusters [15] formed from energy deposits in the calori-
+meter system, using the anti-kt algorithm [8] with a radius parameter of R = 0.4 and implemented in the
+FastJet package [16]. The calorimetric clusters are calibrated at the electromagnetic energy scale, and the
+ﬁnal hadronic jet energy scale is calibrated through a series of corrections [17]. These include a Monte
+Carlo-based calibration to bring the scale to that of stable particles and in-situ techniques on pp collision
+data that reduce residual diﬀerences between data and Monte Carlo.
+A common jet selection is used as a basis for all the studies reported here. Only jets with pT above 20
+GeV and|η| < 2.5 are selected. In order to reject jets originating from PU interactions, a requirement on
+the output of the Jet Vertex Tagger algorithm (JVT) [18] is used. This algorithm is based on track-based
+variables combined in a multivariate discriminant and is designed to suppress PU jets so that the eﬃciency
+5
+
+===== PAGE 6 =====
+for jets from the hard scattering collision is stable as a function of the number of primary vertices in the
+event. Jets with pT < 60 GeV and jet |η| < 2.4 are discarded if the JVT score is less than 0.59. This
+algorithm working point has been evaluated using 36.5 fb−1 of proton-proton collision data recorded by
+the ATLAS in 2015 and 2016, by selecting a sample ofZ-boson events decaying into muons with at least
+one extra jet. This results in an e ﬃciency for jets from the hard-scatter interaction of 92% for a residual
+observed rate from PU jets of 2%.
+The jet axis, which is based entirely on calorimetric information, can be used in b-tagging as an initial
+estimator of the B-hadron direction. Particle tracks are therefore associated to reconstructed jets by
+using the angular separation ∆R between their momentum (deﬁned at the point of closest approach to the
+primary vertex) and the jet axis. The ∆R requirement varies as a function of jet pT, being wider for low
+pT jets (0.45 for jet pT = 20 GeV) and narrower for high pT jets (0.26 for jet pT = 150 GeV) since decay
+products from high pT B hadrons are more collimated [6].
+Jets in the simulation are labelled b-, c- or light-ﬂavour jets. Jets are ﬁrst matched to B- and D-hadrons
+having pT >5 GeV within a cone of radius ∆R=0.3 around the jet axis. The labelling is performed by ﬁrst
+searching for b-ﬂavoured hadrons within this cone. If nob-ﬂavoured hadron is found,c-ﬂavoured hadrons
+and ﬁnallyτ leptons are searched for. The remaining jets which are not matched to a heavy-ﬂavoured
+hadron orτ lepton are considered to be light-ﬂavour jets. A requirement on the possible overlap between
+jets and leptons is also applied. Jets are removed if they overlap with a truth electron or muon from W or
+Z boson decays in a cone of ∆R<0.3.
+3 The JetFitter algorithm
+In the SV inclusive secondary vertex ﬁnding algorithm used in ATLAS [19], displaced tracks are selected
+and an inclusive single vertex is obtained using a Billoir-basedχ2 ﬁt [20, 21]. The topological algorithm
+used in JetFitter is based on a di ﬀerent strategy, where several vertices can be reconstructed simultan-
+eously along a common line that approximates the B- and D-hadron ﬂight directions. Generated and
+reconstructed track and vertex topologies for a simulated B0 meson decay are shown in Figure 2.
+The task of the vertex ﬁnder is to ﬁnd the correct vertex topology (number of vertices and associated track-
+to-vertex assignments) inside the jet, while the vertex ﬁtter is responsible for reconstructing the positions
+of the vertices and their uncertainties for a ﬁxed topology. The assumptions made in the algorithms
+are discussed in section 3.1. The variables that describe the decay chain reconstructed by the JetFitter
+algorithm are introduced in section 3.2. Finally, the vertex ﬁnding and ﬁtting algorithms are described in
+detail in sections 3.3 and 3.4.
+3.1 Underlying topological assumption
+The JetFitter algorithm assumes the B- and D-hadron decay vertices to be aligned on the line deﬁned by
+the B-hadron ﬂight path. Under this hypothesis, all charged particle tracks stemming from either the B-
+or D-hadron decay intersect this axis. There are several advantages to this method:
+• Incomplete topologies can be reconstructed, including topologies with a single track from the B-
+hadron decay and a single track from the D-hadron decay;
+6
+
+===== PAGE 7 =====
+ATLAS Simulation Preliminary
+s = 13 TeV, tt
+ATLAS Simulation Preliminary
+s = 13 TeV, tt
+Figure 2: Event display of a simulated B0 decay showing generated (left panel) and reconstructed (right panel)
+particle trajectories. Only charged particles originating from the B0 meson decay are shown. In the right panel,
+reconstructed particles (in green those originating from the secondary and in red those from the tertiary vertex) are
+extrapolated to the point of closest approach to the beam collision point. The axes give the coordinates in mm.
+JetFitter performs a multi-vertex ﬁt constraining all vertices to lie on a single ﬂight axis, indicated by an orange line
+in both ﬁgures, which is initialised using the jet direction.
+• The ﬁt evaluates the compatibility of the given set of tracks with a B → D-like cascade decay
+topology, increasing the discrimination power against c- and light-ﬂavoured jets;
+• Constraining the tracks to lie on the B-hadron ﬂight axis reduces the number of degrees of freedom
+of the ﬁt, increasing the chance of separating theB- and D-hadron vertices.
+This hypothesis is justiﬁed by the kinematics of the particles involved, determined by the hard b-quark
+fragmentation function and the masses of B- and D-hadrons. The lateral displacement of the D-hadron
+decay vertex perpendicular to the B-hadron ﬂight path needs to be small enough not to signiﬁcantly
+undermine the basic assumption within the typical resolution of the tracking detector. It is in the transverse
+plane that such comparison is most critical, since this is where the smallest detector resolution is achieved.
+The lateral displacement was studied in more detail on t¯t simulated events looking for B- and D-hadrons
+in b-jets. The B- and D-hadron decays are modelled by the EvtGen [22] 1.6.0 program with an ATLAS
+tuned decay table. Considering b-jets with an average transverse momentum of ≈ 60 GeV , the average
+transverse ﬂight length of B-hadrons is 4.3 mm, while the subsequent transverse ﬂight length of the D-
+hadrons produced at theB-vertex is on average 1.9 mm. The average lateral displacement of theD-hadron
+perpendicularly to the B-hadron ﬂight direction, projected onto the transverse plane, is≈ 30 µm.
+Figure 3 shows a comparison of the lateral displacement normalised to the decay length ( ∆T ) and based
+on generator (MC-truth) level information, to the same quantity as estimated from reconstructed ver-
+tices, thus including experimental resolution eﬀects. In most cases, the hypothesis made is well justiﬁed.
+However, the vertex resolution, which depends on the number, topology and pT of the tracks, can oc-
+casionally be smaller than this displacement and therefore can cause a possible large contribution to the
+overall ﬁtχ2. This is taken into account by just making the requirement on the overall χ2 probability of
+7
+
+===== PAGE 8 =====
+ / Decay Distance
+TΔ0
+0.02 0.04 0.06 0.08 0.1 Fraction of Jets
+0
+0.05
+0.1
+0.15
+ATLAS
+ Simulation  Preliminary =
+st 13 TeV, t  MC Truth
+JetFitter Reconstruction
+Figure 3: Average lateral displacement ∆T of the generated (continuous line) and reconstructed (dashed line) D
+hadron decay vertex with respect to the B-hadron ﬂight direction, normalised to the D-hadron decay distance from
+the interaction point. Only reconstructed vertices with a decay length compatible with the generated value for the
+true D-hadron vertex within 2.5 times the experimental resolution are considered.
+the decay chain vertex ﬁt slightly looser (0.1%) when testing for diﬀerent possible conﬁgurations of the
+decay chain topology.
+The hypothesis of a negligible lateral displacement of the D-hadron decay vertex with respect to the B
+hadron ﬂight path was adopted for the ﬁrst time in the “ghost track algorithm” developed by the SLD
+Collaboration [23]. The B-hadron ﬂight axis was substituted by a “ghost track” and a numerical global
+χ2 minimisation procedure used to perform the multi-vertex ﬁt. The use of a dedicated Kalman Filter
+in JetFitter has several advantages compared to a conventional global χ2 minimisation, in particular the
+higher execution speed, especially during the clustering process where any arbitrary merging of two pre-
+existing vertices can be performed with one single processing step.
+3.2 Deﬁnition of decay chain variables
+Figure 4: Schematic view of a track crossing the heavy hadron ﬂight axis with the deﬁnition of the variables used
+by JetFitter in the decay chain ﬁt.
+8
+
+===== PAGE 9 =====
+While in a conventional vertex ﬁnder there is only a single vertex with position variable⃗x, in JetFitter the
+decay chain is described through the following variables as illustrated in Figure 4:
+⃗d = (x PV, yPV, zPV,φ,θ, d1, d2,..., d N ) (1)
+with:
+• x PV, yPV, zPV : the primary vertex position.
+• φ,θ : the azimuthal and polar directions of the B-hadron ﬂight axis.
+• d1, d2,..., d N : the distances of the ﬁtted vertices, deﬁned as the intersections of one or more tracks
+and the B-hadron ﬂight axis, to the primary vertex position along the ﬂight axis (N representing the
+number of vertices).
+3.3 Vertex ﬁnder
+In this section the basic ﬁnding algorithm implemented in JetFitter starting withN input tracks to be used
+for the topological reconstruction of the PV→ B→ D hadron decay chain is described.
+The selection of input tracks is designed to minimise the number of charged particles not originating from
+a B- or D-hadron decay considered in the decay chain ﬁt. This includes both prompt charged particles
+from fragmentation, and, to a minor extent, secondary particles from other sources. Tracks that are
+compatible with the primary vertex are removed with a cut that depends on the lifetime sign, computed
+with respect to the jet direction. For tracks with positive lifetime sign the χ2 probability P is required
+to be below 10%. Tracks with a negative life time sign are less likely to originate from a heavy hadron
+decay, and must satisfy a tighter requirement P < 5%.
+Tracks compatible with originating from hadronic material interactions are identiﬁed and rejected. The
+procedure selects pairs of tracks forming a vertex, using a conventional χ2 vertex ﬁtting minimization
+procedure. Vertices with a χ2 probability >3% (or 5%) and lifetime-signed decay length signiﬁcance
+L/σ(L) >1.5 (or 1) are tested for the compatibility of the vertex position with the location of one of the
+pixel barrel layers. In this selection phase, no attempt is made to reduce combinatorics. As a result, each
+track can be associated to zero, one or multiple two-track vertices. Tracks associated to at least one two-
+track vertex, but not associated to any two-track vertex compatible with material interactions, are used
+as input to the heavy hadron decay reconstruction. Further requirements are applied to these tracks with
+respect to the Loose requirement applied during track reconstruction:|IPrφ| < 3.5 mm,|IPz| < 5 mm and
+the track pT must exceed 0.5 GeV .
+Additionally, the algorithm includes a procedure to reject tracks originating from photon conversions,K0
+S
+or Λ0 decays. In this case, the same vertexing procedure used to identify material interactions is applied,
+and tracks associated to two-track vertices compatible with photon conversions ( me+e− < 30 MeV), K0
+S
+(|mπ+π−− mK 0| < 18 MeV), Λ0 decays (|mpπ− mΛ| < 30 MeV) are rejected. Although the fraction
+of these vertices being rejected is comparable for b-, c- and light-ﬂavoured jets, the removal of photon
+conversions, K0
+S and Λ0 decays reduces the overall number of light-ﬂavoured jets with secondary vertices
+resulting in a modest increase of the achievable b-tagging purity. This rejection is however not applied as
+default in the current production version of the JetFitter code.
+A ﬁrst vertex ﬁt is performed on the selected tracks using the JetFitter vertex ﬁtting algorithm (described
+in Section 3.4) under the hypothesis that each of the selected tracks represents a single vertex along the
+9
+
+===== PAGE 10 =====
+B-hadron ﬂight axis, initialised as the jet axis. This results in a ﬁrst set of ﬁtted ( φ,θ, d1, d2,..., d N )
+values, where N corresponds initially to the number of tracks used as input to the ﬁt. Vertices having
+a χ2 contribution to the overall decay chain ﬁt corresponding to a probability below 0.1% are removed.
+Such χ2 contribution typically includes two terms: the compatibility of the tracks assigned to the vertex
+and the compatibility of the vertex to the overall decay chain. The latter depends on how well aligned
+that vertex is with respect to all other vertices along the commonB-hadron ﬂight axis, compared to the ﬁt
+uncertainties. A clustering procedure is then performed, where all combinations of two vertices (picked up
+among the vertices lying on the B-hadron ﬂight axis plus the primary vertex) are taken into consideration.
+The probability of each combination of vertices to form a common vertex and simultaneously for this
+vertex to be compatible with the overall decay chain is computed, using the previously mentioned χ2
+computation, ﬁlling a “table of probabilities” as exempliﬁed in Table 1.
+Table 1: Table of probabilities generated during the clustering phase. A compatibility test is performed between
+all pairs of vertices along the B-hadron ﬂight axis and the table of probabilities is ﬁlled accordingly, where Px y is
+deﬁned as the probability for vertex x and vertex y to form a common vertex and Px P is the probability for vertex
+x to be compatible with the primary vertex.
+Vertex 1 2 3 ... Primary vtx
+1 - P12 P13 ... P1P
+2 ... - P23 ... P2P
+3 ... ... - ... P3P
+... ... ... ... - ...
+Primary vtx ... ... ... ... -
+After this table of probabilities is ﬁlled, the two vertices x and y with the highest probability value Px y
+are merged, a new complete ﬁt is performed with the new decay chain structure and a new table of
+probabilities is ﬁlled. This procedure is iterated until all pairs of vertices with a probability above a
+threshold are exhausted. The threshold for merging any displaced vertex with the primary vertex is ﬁxed
+to 0.1%. In order to optimise the reconstruction e ﬃciency for tertiary vertices, the χ2 probability cut
+applied to decide whether to merge or not two-track vertices into a single secondary vertex depends on
+the actual reconstructed secondary vertex mass, mJF
+sec. This is determined as follows. The invariant mass
+of tracks reconstructed from truth particles belonging to the secondary vertex, mtruth
+sec is ﬁrst computed for
+simulated events. This mass distribution is integrated to obtain the probability to observe on average a
+massvalue mtruth
+sec larger than that of the vertex under study. The χ2 probability cut applied to merge a
+two-track vertex to the secondary vertex is then rescaled according to this probability, so that the merging
+is less likely if the probability to have mtruth
+sec > mJF
+sec is small and more likely if this probability is large.
+This procedure improves the eﬃciency for reconstructing a tertiary vertex in a B-hadron decay by∼15%,
+without signiﬁcantly aﬀecting the rate of fake tertiary vertices in c and light jets. It also ensures that
+the reconstructed secondary vertex mass, mJF
+sec, does not exceed the expected invariant mass of charged
+particle tracks originating from the B-hadron decay vertex.
+In a second iteration, additional tracks, not forming any of the two-track vertices considered in the ﬁrst
+pass, are considered if they fulﬁll a tighter selection:|IPrφ| < 1.5 mm,|IPz| <3 mm and pT >0.75 GeV .
+Since non-prompt single tracks may originate from PU tracks with high impact parameter signiﬁcance in
+the longitudinal direction,|z0 sinθ|/σ(z0) >5, but small impact parameter signiﬁcance in the transverse
+direction,|IPrφ|/σ <2, are not considered. The sensitivity to PU is discussed in detail in Section 4.6. This
+iteration starts with initializing the decay chain ﬁt to the topology found in the ﬁrst stage and this second
+10
+
+===== PAGE 11 =====
+set of tracks is tested for forming additional single-track vertices along the decay chain, by re-running the
+full vertex ﬁtting algorithm including the additional tracks. The vertex ﬁnding procedure then proceeds
+again through incompatible vertex removal and clustering/merging.
+The result of this clustering procedure is a well-deﬁned decay chain topology with a unique association
+of tracks to vertices along the B-hadron ﬂight axis, where each vertex has at least one associated track.
+3.4 Vertex ﬁtter
+The vertexing task is mathematically implemented in JetFitter as an extension of the KF formalism for ver-
+tex reconstruction [7]. While in a conventional KF vertex ﬁt the variables to be iteratively updated in the
+ﬁt are the three-dimensional components of the vertex position⃗x, in the case of JetFitter the variables that
+are iteratively updated and describe the full decay chain are ⃗d = (x PV, yPV, zPV,φ,θ, d1, d2,..., d N ).
+Before starting the ﬁt, the variables are initialised with their prior knowledge:
+• The primary vertex position x PV, yPV, zPV (with covariance matrix), as provided by the primary
+vertex ﬁnding algorithm.
+• The B-hadron ﬂight direction (φ, θ), approximated by the direction of the jet axis, with an uncer-
+tainty that includes the eﬀect of the jet direction resolution and the average displacement of the jet
+direction relative to the B-hadron ﬂight axis.
+B Hadron pT [GeV]
+0
+50 100 150 200 250  )  [rad]
+Jet φ  - B Hadron φ RMS ( 0
+0.02
+0.04
+0.06
+0.08
+0.1
+ATLAS
+ Simulation  Preliminary =
+st 13 TeV, t  
+Jet pT [GeV]
+0
+100 200 300 400 500  )  [rad]
+Jet φ  - B Hadron φ RMS ( 0
+0.02
+0.04
+0.06
+0.08
+0.1
+ATLAS
+ Simulation  Preliminary =
+st 13 TeV, t  
+Figure 5: Residual RMS of the reconstructed jet direction with respect to the B-hadron direction in the azimuthal
+angle as a function of the hadron pT (left) and as a function of the jet pT (right), as obtained in simulated t¯t events.
+For the left plot, only jets with pT up to 350 GeV have been considered to reduce the impact of nearby jet activity.
+The root mean square (RMS) of the distribution of residuals of the reconstructed jet direction with respect
+to the real B-hadron direction for b-jets in simulated t¯t events is shown in Figure 5 as a function of the
+B-hadron pT (left panel) and the jet pT (right panel). While the former plot shows that in this energy
+regime where hard gluon radiation is still sub-dominant the resolution improves with B-hadron pT , the
+11
+
+===== PAGE 12 =====
+latter plot shows that nearby jet activity starts to signiﬁcantly degrade the resolution at high jet pT when
+the b-jet merges with the other top quark decay products. The residual distributions shown here refer to
+the azimuthal angle, but the behaviour for the polar angle is analogous. The jet directional resolution for
+describing the B-hadron ﬂight axis direction is parametrised as a function of the jet pT and|η| and used
+as a constraint in the ﬁt.
+The ﬁt is performed by adding iteratively as input the track parameters of the individual tracks, specifying
+at each iteration the vertex number to be updated. The main input needed by the KF is the measurement
+equation, that relates the track measurement vector (the helix parameters ⃗q) to the position of the vertices
+to be updated and to the momentum of the track evaluated at the vertex. In the case of the single-vertex
+ﬁt the measurement equation is [7]:
+⃗q = ⃗C + A⃗x + B⃗p (2)
+where ⃗x = (x, y, z) is the (single) vertex position and⃗p = (px, py, pz ) is the track momentum at the vertex,
+while the Jacobians A and B and the constant vector C encode the linearisation parameters. In JetFitter
+the single vertex position ⃗x is replaced with the full decay chain conﬁguration expressed by ⃗d, resulting
+in a new measurement equation:
+⃗q = ˆ⃗C + ˆA ⃗d + ˆB⃗p
+= ⃗q( ⃗d, ⃗p) = ⃗q( ⃗d, ⃗p) ⃗d= ⃗d0, ⃗ p= ⃗ p0
++ δ⃗q( ⃗d, ⃗p)
+δ ⃗d
+ ⃗d= ⃗d0
+(⃗d− ⃗d0
+)
++ δ⃗q( ⃗d, ⃗p)
+δ⃗p
+ ⃗ p= ⃗ p0
+(⃗p− ⃗p0
+) (3)
+In order to be used in a KF, the measurement equation needs to be linearised, which corresponds to a
+ﬁrst-order Taylor expansion. This is equivalent to computing the Jacobian matrices ˆA and ˆB, and the
+vector ˆ⃗C in the formula above for a ﬁxed set of ⃗d0 and ⃗p0.
+As highlighted in Section 3.3, in the ﬁrst sequence of KF update iterations only single-track vertices
+are considered, therefore the number of vertices N in ⃗d is initialised to the number of tracks. A ﬁrst
+approximate estimate of ⃗d0 needed to compute the Jacobians for the measurement equation is provided by
+the points along the ﬂight axis (as estimated from the jet direction and having as origin the primary vertex)
+corresponding to the minimum distance to the single tracks. Since this task cannot be solved analytically,
+the minimum distance is obtained through a Newton-based iterative method, which minimises the distance
+between a straight line (the B-hadron ﬂight axis) and the track helix, assuming a constant magnetic
+ﬁeld.
+Taking ⃗x = (x, y, z) to be the position of the vertex on the B-hadron ﬂight axis to be updated by the track
+added to the ﬁt, the relation between⃗x and ⃗d is:
+x = x PV + di· sinθ cosφ
+y = yPV + di· sinθ sinφ (4)
+z = zPV + di· cosθ,
+where di is the ﬂight length corresponding to the vertex considered, so that one can relate back the
+measurement equation for JetFitter (equation 4) to the equivalent one for a single-vertex ﬁt (equation 2)
+by the equality:
+⃗x− ⃗x0 = ⃗x( ⃗d)− ⃗x( ⃗d0) = d⃗x( ⃗d)
+d ⃗d
+ ⃗d= ⃗d0
+(⃗d− ⃗d0
+)
+, (5)
+12
+
+===== PAGE 13 =====
+where x0 is the three-dimensional position of the vertex corresponding to the ﬂight lengthd0. This means
+the matrices ˆA and ˆ⃗B, and the vector ˆC of equation 4 can be related, through equation 5, to the equivalent
+single vertex quantities A, B and C of equation 2, which are implemented in the main ATLAS vertex
+reconstruction package [13]. This is e ﬀectively equivalent to a change of coordinates from Cartesian to
+spherical coordinates. In particular, ˆ⃗C = ⃗C and ˆB = B, while ˆA can be obtained from A by computing: ˆA
+= A d ⃗ x( ⃗d)
+d ⃗d
+ ⃗d= ⃗d0
+, where the transformation matrix d ⃗ x( ⃗d)
+d ⃗d is:
+d⃗x( ⃗d)
+d ⃗d
+=
+*.....
+,
+1 0 0 −di sinθ sinφ di cosθ cosφ ... sinθ cosφ ...
+0 1 0 di sinθ cosφ di cosθ sinφ ... sinθ sinφ ...
+0 0 1 0 −di sinθ ... cosθ ...
++/////
+-
+(6)
+and the columns numbered (6,..., i + 4,i + 6,..., N + 5) related to the vertices not considered in the current
+iteration (d1, d2,..., di−1, di+1,..., d N ) are identically zero.
+Once the linearised measurement equation is deﬁned, the KF formalism can be used to iteratively add
+tracks to the ﬁt, yielding at each iteration an updated decay chain ⃗d and related covariance matrix. The
+ﬁnal conﬁguration is equivalent to minimizing the overall χ2 of all track to vertex residuals, with the
+B-hadron ﬂight axis constraint applied.
+The original Jacobian A of a single-vertex ﬁt is quite insensitive to small changes of the position of
+the vertex ⃗x. In contrast, the transformation matrix and thus the Jacobian ˆA has a highly non-linear
+dependence on the distance from the primary vertex di of the vertex formed by one or more intersecting
+tracks. For this reason, several iterations of the decay chain ﬁt are needed for the ﬁt to converge, and
+during each new iteration the position Jacobian ˆA needs to be recomputed. The procedure can be sped
+up signiﬁcantly by keeping A ﬁxed at the old linearisation point, and only updating the transformation
+matrix and thus ˆA, as explained in more detail in [24]. In a typical decay chain ﬁt around 4-5 iterations
+are required before the ﬁt converges: the convergence criterion is that, after a new iteration,χ2
+new− χ2
+old
+
+is required to be smaller than 10−3.
+The ﬁt procedure remains perfectly deﬁned if more than one track is ﬁtted to the same vertex along the
+ﬂight axis. In this case, when the tracks corresponding to this vertex are added iteratively to the decay
+chain ﬁt, they both contribute the same ﬂight lengthdi corresponding to the vertex to be updated.
+Once the assignment of tracks to vertices is made, the vertex ﬁtting procedure yields the optimal values
+for the B-hadron ﬂight axis direction and the positions of the ﬁtted vertices along it.
+4 Performance
+The data and simulated samples used and the event selection employed are described in Section 4.1.
+The performance of the JetFitter algorithm is ﬁrst studied in Section 4.2 in terms of secondary vertex
+reconstruction eﬃciency and resolution, and of how often particles are correctly associated to their vertex
+of origin, either from a B hadron, or from a B→ D cascade decay. This study requires detailed truth level
+information and is thus carried out on true b-jets in simulated samples. The performance of the algorithm
+is then studied in data in Section 4.3, based on observables representing B hadron production and decay
+properties that stem from the topological vertex reconstruction. The study is carried out separately on two
+13
+
+===== PAGE 14 =====
+data samples, one enriched in b-jets, the other in light-ﬂavoured jets. The distributions observed in data
+are compared to simulations. A good modelling of the data is essential to make sure that the optimization
+and performance studies carried out based on simulations are applicable to data.
+The ability of simulations to correctly model the data also depends on how sensitive the JetFitter algorithm
+is on the B hadron fragmentation function and on the B and D hadron charged decay multiplicity, which
+are only known with ﬁnite precision. The dependence of the algorithm on these physical parameters,
+within their uncertainties, is studied in Section 4.4. The modelling of B hadron decays is also studied in
+Section 4.5 on a sample of D meson decays reconstructed exclusively and semi-exclusively. Finally, the
+robustness of the algorithm with respect to contamination from PU events is discussed in Section 4.6.
+4.1 Samples and Event Selection
+The optimisation and the performance evaluation forb-jets are carried out using a MC sample oft¯t events
+produced in proton-proton collisions generated at a centre-of-mass energy of√s = 13 TeV and simulated
+with Powheg [25] interfaced with Pythia8 [26] for parton shower and hadronization. The CT10 [27]
+parton distribution function set is used in the simulation. The EvtGen [22] program is used to model the
+decays of B and D hadrons. Only t¯t decays with at least one lepton from a subsequent W-boson decay
+are included in the simulation. Minimum bias interactions are produced with Pythia8 and included in the
+simulation in order to model additional inelastic pp collisions accompanying the hard-scatter interactions
+(PU). Single top Wt events generated with Powheg interfaced with Pythia6 [28] are also included. The
+simulation is generated with an average< µ>= 25 PU interactions per bunch-crossing.
+The response to light-ﬂavour jets is studied in t¯t and Z + jets, Z→ µµ events generated with Powheg
+interfaced with Pythia8. The jet multiplicity distribution in the Powheg Z + jets sample is re-weighted to
+the distribution predicted by MadGraph+Pythia 8 [29], which is known to give a better description of the
+Z +jets data. A similar re-weighting is applied to theb-jet ﬂavour fraction, for which again the MadGraph
+sample is expected to provide better modeling. The propagation of particles through the detector and the
+detector response is simulated using Geant4 [30, 31]. The ATLAS reconstruction software is run on the
+simulated samples.
+Subsets of the data collected by the ATLAS detector from proton-proton collisions in 2016 at a centre-of-
+mass energy of 13 TeV have been used to compare the response on data to that obtained on simulation.
+This comparison is based on two samples: selectede±µ∓ events, enriched in b jets from top quark decays,
+and Z→ µ+µ− + jets events, where light-ﬂavoured jets are dominant. Muons and electrons must satisfy
+isolation requirements based on inner-detector tracks and topological clusters in the calorimeter. The
+eµ + jets sample consists of events with a pair of opposite-sign e±µ∓ having leading and subleading
+pT (e/µ) > 25/20 GeV and > 15 GeV , respectively, invariant mass in excess of 10 GeV , and between 2
+and 7 selected jets. Requirements for jets to be tagged by MV2MuRNN high-level ﬂavour tagger [9] are
+imposed, as described below for the diﬀerent studies. No pT -dependent, data-based calibration has been
+applied to the tagging e ﬃciency of the MV2MuRNN tagger in simulation. Aside from the dominant t¯t
+contribution the main additional source of events in theeµ+jets sample is due to the associated production
+of a single top quark and a W boson. The Z→ µµ + jets, sample is selected by requiring two oppositely-
+signed muons, with pT > 25 GeV for the leading and pT > 20 GeV for the other muon, with invariant
+mass 76< m(µµ) < 106 GeV and at least one selected jet. No ﬂavour tagging requirements are imposed
+on the Z → µµ + jets sample. The main background is given by t¯t events, which are included in the
+simulation. The selected eµ + jets events corresponds to a total integrated luminosity of 2.5 fb −1 and
+14
+
+===== PAGE 15 =====
+the selected Z→ µµ + jets events to 0.5 fb−1. These sets of data have been chosen to sample the data
+collected at diﬀerent PU conditions, in a way to roughly cover the full spectrum of PU conditions of the
+2016 data. In both cases, simulated events have been reweighted to reproduce the PU distributions of the
+data samples, for the data/MC comparisons.
+4.2 Topological reconstruction
+The topological decay reconstruction relies on the ability of the vertexing algorithm to reconstruct the
+secondary and tertiary vertices and to correctly associate the charged particle tracks originating from the
+B- and D-hadron decays. Using simulated B-hadron decays int¯t events, the eﬃciency for reconstructing a
+JetFitter vertex with at least two associated tracks inb-jets with two or more charged particles generated in
+the sum of B- and the D-hadron decays is 84%. The true fraction of these decays with at least two charged
+particles is 97%. The eﬃciency for reconstructing two distinct vertices in decays with at least two charged
+particles emitted at each decay vertex is∼30%. The reconstruction performance is characterised in terms
+of the fraction of selected b-jets with reconstructed JetFitter vertices of a given topology and their purity,
+deﬁned as the fraction of tracks associated to the vertex that originate from a heavy-ﬂavoured hadron
+decay. Results are given in Table 2 for diﬀerent topologies of JetFitter vertices. The corresponding rates
+of reconstructed JetFitter vertices observed in simulation for charm- and light-ﬂavoured jets are given in a
+corresponding table in Section 5. In addition, the table compares the average number of charged particles
+from B-hadron and subsequent D-hadron decays successfully associated to a JetFitter vertex,< NJF
+Bdec >,
+with the average generated B-hadron charged decay multiplicity, < NBdec >, of decays corresponding
+to each topology of reconstructed vertices. Apart from the single track vertex topology, the secondary
+particle purity in the reconstructed vertices is rather stable for the di ﬀerent topologies. A signiﬁcant
+correlation between the generated charged decay multiplicity of the heavy hadrons, the JetFitter vertex
+topology and the number of tracks associated to the reconstructed vertices is observed.
+The rate of reconstructed vertices in diﬀerent reconstructed topologies and the corresponding purities of
+tracks associated to these vertices depend on several parameters. Some of the most important are: the
+B-hadron decay distance from the PV , upon which the ability to discriminate secondary from primary
+tracks depends, and the D-hadron decay distance from the B-hadron vertex, upon which the separation of
+tertiary from secondary particles depends.
+Table 2: Fractions of selected b-jets with JetFitter vertices reconstructed in diﬀerent topologies, their purity and the
+average generated, < NBdec >, and reconstructed, < NJF
+Bdec >, B-hadron charged decay multiplicity for JetFitter
+decay chains in simulated t¯t events.
+JF Vert. ≥1 Single Trk 0 Single Trk ≥1 Single Trk
+All 0 Multi Trk 1 Multi Trk 1 Multi Trk 2 Multi Trk ≥3 Multi Trk
+Fraction 0.893 0.147 0.414 0.227 0.102 0.004
+Purity 0.846 0.684 0.894 0.825 0.839 0.769
+< NBdec > 4.9 3.8 4.8 5.1 6.3 7.3
+< NJF
+Bdec > 3.0 1.1 2.9 3.7 4.9 6.0
+The purity, deﬁned above as the fraction of tracks associated at JetFitter vertices that stem from true
+B- or D-hadron decays, is∼85% when averaging over all topologies in b-jets from simulated t¯t events.
+The performance of the track-to-vertex association is studied in more detail in jets where a secondary
+15
+
+===== PAGE 16 =====
+and tertiary vertex are reconstructed. Figure 6 presents the fraction of correctly assigned tracks to the
+secondary vertex as a function of the B-hadron decay radius, with the points labelled B → B in the
+leftmost panel. The result for the tertiary vertex is labelled D→ D in the rightmost panel. The fraction
+of incorrectly assigned tracks is broken down by origin. The D→ B and B→ D categories represents
+tracks from the tertiary vertices incorrectly assigned to the secondary vertex, and vice versa. The "Others"
+category includes tracks form the primary vertex, from pile-up and material interactions. For very short
+decay distances, when the distance between two vertices is comparable to the decay length resolution, the
+contamination from particles from the adjacent vertex is signiﬁcant. As expected, the ability to separate
+secondary from primary and tertiary from secondary vertices depends, critically, on the their relative
+distance. On average approximately 40-50% of the tracks are correctly assigned to the their vertex of
+origin.
+B Vtx R [mm]
+0
+5 10 15 20 25 30 Fraction of Tracks at Vertex
+0
+0.2
+0.4
+0.6
+0.8
+1
+ B
+→B  B
+→D  B
+→Others ATLAS
+     Simulation  Preliminary =
+st 13 TeV, t   D Vtx R [mm]
+0
+5 10 15 20 25 30 Fraction of Tracks at Vertex
+0
+0.2
+0.4
+0.6
+0.8
+1
+ D
+→B  D
+→D  D
+→Others ATLAS
+     Simulation  Preliminary =
+st 13 TeV, t   
+Figure 6: Fraction of tracks associated to the secondary (B) (left) and tertiary (D) (right) JetFitter vertices with at
+least two particles, originating from B hadron (B), b→ c hadron (D) decays and not originating from an heavy
+hadron decay (Other) as a function of the radius of the corresponding generated vertex. Only b-jets with recon-
+structed secondary and tertiary JetFitter vertices are considered here. The fraction of tracks correctly associated to
+their vertex of origin are shown by the ﬁlled circular markers in both plots.
+Once the decay length resolution is ﬁxed by the track opening angles at the vertex and the track extra-
+polation resolutions, the ability to separate secondary from primary, and tertiary from secondary vertices
+depends critically, jet-by-jet, on their relative distance.
+The vertex position resolution is studied ﬁrst in terms of the geometrical resolution, i.e. the position
+resolution due to the track extrapolation accuracy, track multiplicity and decay angles. This is computed
+by comparing the reconstructed decay position to the generated value for decay chains where JetFitter
+correctly associates all the tracks to their vertex of origin. The dependence of the vertex resolution on
+the particle multiplicity at the vertex, the vertex invariant mass and the energy of the decayingB-hadrons
+is shown in Figure 7, where the resolution is deﬁned as the RMS of the central 90% (RMS90) of the
+distribution of the diﬀerences between the generated and reconstructed decay distance. The geometrical
+resolution, given by the white ﬁlled markers in Figure 7, improves with increasing vertex decay multipli-
+city and with increasing vertex mass, ensuring a larger opening angle and thus a better constraint along
+16
+
+===== PAGE 17 =====
+Nb. of Tracks at Vertex
+1
+2 3 4 5 6 B Vtx 3D resolution [mm]
+0
+0.5
+1
+1.5
+2
+ATLAS
+ Simulation  Preliminary =
+st 13 TeV, t  Resolution
+Geometrical Resolution
+Secondary Vertex Mass [GeV]
+0
+1 2 3 4 5 B Vtx 3D resolution [mm]
+0
+0.5
+1
+1.5
+2
+ATLAS
+ Simulation  Preliminary =
+st 13 TeV, t  Resolution
+Geometrical Resolution
+B Hadron Energy [GeV]
+100
+200 300 400 B Vtx 3D resolution [mm]
+0
+0.5
+1
+1.5
+2
+ATLAS
+ Simulation  Preliminary =
+st 13 TeV, t  Resolution
+Geometrical Resolution
+Figure 7: Resolution of the JetFitter secondary vertex position as a function of (left) the number of tracks associated
+to the vertex, (center) the reconstructed vertex invariant mass and (right) the B-hadron energy. The open markers
+represent the geometrical component of the resolution obtained selecting vertices to which JetFitter correctly as-
+sociated all tracks, i.e. having exclusively tracks from B-hadron decay products. The ﬁlled points represent the
+resolution for vertices to which JetFitter associated at least one B-hadron decay product track.
+the B-hadron direction of ﬂight, and degrades with theB-hadron energy, due to the increasing collimation
+of particles emitted in the decay. In the topological vertex reconstruction, this degradation is approxim-
+ately balanced by the linear increase of the decay length with heavy hadron energy. A resolution of ∼
+0.3 mm for the vertex position along the line of ﬂight for su ﬃciently large multiplicity and mass values
+is obtained for B-hadrons with an energy of 50-100 GeV . The ﬁlled black markers in Figure 7 correspond
+to the ﬁnal resolution that takes into account additional e ﬀects such as wrong assignments of tracks to
+vertices.
+The resolution of the decay distance of the secondary vertex from the position of origin of the B-hadrons
+is studied for an inclusive sample of JetFitter vertices having at least one track correctly associated to the
+vertex of origin. This shows the additional resolution e ﬀects on the vertex position resolution due to the
+track-to-vertex mis-association. The resolution, including the e ﬀect of incorrectly associated tracks, is
+compared to the geometrical resolution in Figure 7.
+4.3 Modelling of JetFitter observables
+The topological decay information from JetFitter can be encoded in a set of observables that can be used
+to discriminate b-jets from c- and light jets. The ﬁrst topological observable is the rate of secondary and
+tertiary vertices reconstructed by JetFitter. This rate is measured in candidate t¯t→ eµ + jets events, with
+the sub-leading jet tagged by the MV2MuRNN BDT discriminant [9] at a working point corresponding to
+77% b jet eﬃciency, and in Z→ µµ + jets, where the b jet contribution is predicted by the simulation to
+be smaller by a factor∼2.5. Only the jets other than the one tagged are considered in thet¯t→ eµ + jets to
+avoid biases. The rate observed in t¯t→ eµ + jets data for at least one (more than one) multi-prong vertex
+is 0.287±0.008 (0.072±0.005), compared to 0.144±0.009 (0.0280± 0.0004) for Z→ µµ + jets events.
+The same rates measured in simulation are 0.286 (0.070) and 0.140 (0.0256) for thet¯t and Z→ µµ + jets
+samples respectively. The rate of jets with more than one multi-prong vertices, where the contribution of
+b jets is expected to be dominant (see Table 3), scales as the predictedb-jet content of the samples in both
+data and simulation.
+17
+
+===== PAGE 18 =====
+1/N dN/dNVtx
+2−10
+1−10
+1
+ATLAS  Preliminary
+=s  -113 TeV, 2.5 fb  + jetsµe Data 2016Simulationb Jetsc Jetslight flavour Jets
+Nb. of JF Vertices
+0 1 2 3
+Data/MC0.6
+0.8
+1
+1.2
+1.4
+1/N dN/dNVtx
+2−10
+1−10
+1
+ATLAS  Preliminary
+=s  -113 TeV, 0.5 fb  + jetsµµZ Data 2016Simulationb Jetsc Jetslight flavour Jets
+Nb. of JF Vertices
+0 1 2 3
+Data/MC0.6
+0.8
+1
+1.2
+1.4
+Figure 8: Number of detached vertices reconstructed by JetFitter in 2016 collision data (points with error bars) and
+simulation (histograms) for jets from selectedt¯t (left) and Z→ µµ +jets (right) events. The contribution ofb, c and
+light-ﬂavoured jets in simulation is also shown. The error bars on the data points represent statistical uncertainties.
+No uncertainties are included for the Monte Carlo prediction.
+Figure 8 presents the normalized distribution of the number of displaced (single- and multi-prong) vertices
+per jet reconstructed by JetFitter. The result in the left panel corresponds to the eµ + jets selection, the
+result in the right panel to theZ→ µµ +jets sample. In both cases, the measured distribution is compared
+to a prediction based on a Monte Carlo simulation of the t¯t and Z→ µµ + jets processes. The estimated
+contribution from b, c and light-ﬂavoured jets, based on the labelling explained in Section 2.2, is indicated
+with diﬀerent ﬁll colours. Overall, excellent agreement is found.
+In addition to the number of single-prong and multi-prong decay vertices, other observables stemming
+from the topological vertex reconstruction are: the multiplicity of the tracks associated to the reconstruc-
+ted vertices, the vertex decay length normalised by its uncertainty the invariant mass of the reconstructed
+secondary system and the fraction of the jet energy carried by all the particles at the detached vertices.
+The distributions of the invariant mass and number of tracks associated to the JetFitter vertices are shown
+in Figure 9 for three classes of vertices: 1) vertices in jets which have only a single reconstructed vertex,
+2) secondary and 3) tertiary vertices in jets with two distinct vertices. It should be noted that in simulation
+no jet-pT dependent data-based calibration has been applied to the tagging eﬃciency of the MV2MuRNN
+tagger. However, dedicated studies show that the impact of the calibration scale factors is at most at
+the 3% level, and thus does not signiﬁcantly a ﬀect the results of the comparisons of data to simulation
+18
+
+===== PAGE 19 =====
+Single Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Secondary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15 ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Tertiary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.1
+0.2
+0.3
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Single Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Secondary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+0.6
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Single Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Secondary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15 ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Tertiary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.1
+0.2
+0.3
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Single Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Secondary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+0.6
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Single Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Secondary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15 ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Tertiary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.1
+0.2
+0.3
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Single Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Secondary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+0.6
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Single Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Secondary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15 ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Tertiary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.1
+0.2
+0.3
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Single Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Secondary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+0.6
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Single Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Secondary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15 ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Tertiary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.1
+0.2
+0.3
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Single Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Secondary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+0.6
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Single Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Secondary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.05
+0.1
+0.15 ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Tertiary Vtx Mass [GeV]
+0.5 1 1.5 2 2.5 3 3.5 4 4.5
+1/N dN/dm
+0
+0.1
+0.2
+0.3
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Single Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Secondary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+ATLAS    I    Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+1 2 3 4 5 6 7
+1/N dN/dNTrk
+0
+0.2
+0.4
+0.6
+ATLAS        Preliminary
+s=13 TeV, 2.5 fb-1
+Data 2016
+Simulation
+ b Jets
+ c Jets
+ light flavour Jets
+Figure 9: Invariant mass (top) and number of tracks (bottom) associated to detached vertices reconstructed by
+JetFitter in 2016 collision data (points with error bars) and simulation (histograms) for jets from selected t¯t events.
+The left column shows the variables for jets with a single reconstructed vertex, the other columns for jets with two
+vertices, with the secondary vertex in the center and the tertiary vertex on the right. The contribution of b, c and
+light (q) jets in simulation is also shown. The error bars on the data points represent statistical uncertainties. No
+uncertainties are included for the Monte Carlo prediction.
+presented here. In general, the agreement of simulation with data in all these distributions is found to be
+good.
+4.4 Sensitivity to B-hadron production and decay modelling
+Finally, the eﬀects of the modelling of B-hadron production and decays on the e ﬃciency of vertex re-
+construction have been studied. The b-quark fragmentation function, deﬁned as the fraction of the b-
+quark energy transferred to the weakly decaying B-hadron, x B = EB/Eb and the charged decay mul-
+tiplicity, Ncha
+dec have been considered. The b-quark fragmentation function has been studied in detail at
+LEP and SLC [32–35]. The favourable kinematics of the e+e−→ Z0→ b¯b process at the resonance
+peak made possible to determine the average value, < x B >, and the x B distribution. In this study, b-
+jets in simulated t¯t events are linearly reweighted to reproduce the 68% range of LEP measurement of
+< x B >= 0.7094± 0.0025 [35]. The corresponding relative change of the eﬃciency for reconstructing at
+least one or two JetFitter vertices is±0.004 and±0.006, respectively.
+19
+
+===== PAGE 20 =====
+The average charged decay multiplicity of b-ﬂavoured hadrons was measured for B−
+u and B0
+d mesons by
+CLEO at the Υ(4S) [36] resonance and by DELPHI at LEP, inclusive for all b-ﬂavoured hadron species,
+obtaining 4.97± 0.03± 0.06 [37]. By linearly reweighting b-jets in simulated t¯t events to reproduce
+the changes of the average multiplicity by±0.07, the corresponding relative change of the e ﬃciency for
+reconstructing at least one vertex, or more than one, with JetFitter is±0.005 and±0.013, respectively. In
+summary, the impact of these systematics on the JetFitter reconstruction are found to be small, making
+the algorithm more robust. Residual e ﬀects from production and decay modelling in simulation are then
+corrected in the ﬁnal data-based calibration: in this procedure data control samples are used to extract the
+b-tagging eﬃciency of the multi-variate taggers that include the JetFitter observables, and the simulation
+is then corrected accordingly.
+4.5 Exclusive decay reconstruction
+Exclusive and semi-exclusive B-hadron decays can be used to evaluate the performance of the JetFitter
+vertex reconstruction algorithm on topologies with a well-deﬁned invariant mass, such as decays with
+all-charged decay products as in D→ Knπ. Comparisons with simulation of the invariant mass spectrum
+and particle track multiplicity reconstructed in data can also help to understand whether reconstruction ef-
+ﬁciency, combinatorial contributions and vertexing features are correctly reproduced by the simulation.
+The study is performed ﬁrst on t¯t events selected as discussed in Section 4.1. In addition, events are
+required to have (at least) two selected jets tagged by MV2MuRNN high-level ﬂavour tagger at the work-
+ing point corresponding to 80% b-jet eﬃciency. All selected jets having at least two JetFitter vertices, of
+which at least one vertex has two or more associated tracks, are considered. Simulation predicts 81% of
+selected jets to contain a B-hadron, 4% only a D-hadron decay and 15% to be light-ﬂavoured jets.
+Semi-exclusive decays are reconstructed in the D0, D± → Knπ (n =1-5) mode. The invariant mass
+of the particles at the vertex at largest radius is computed by iteratively assigning the K± mass to one
+of the particle tracks associated to the vertex, while others are given the π± mass. The conﬁguration
+giving the invariant mass closest to the average D0 and D± meson masses is kept. The resulting tertiary
+vertex mJF
+3 (Knπ) invariant mass distribution for vertices having total charge of 0 or 1, shown in Figure 10,
+exhibits a clear peak atmJF
+3 (Knπ) = (1.872±0.004) GeV . Simulation shows that most of this enhancement
+is due to genuine reconstructed D0 and D± mesons with fully reconstructed decays accounting for 25%
+of the reconstructed vertices in the mass region within a ±0.075 GeV mass window around the peak
+position.
+The multiplicity of the tracks associated to tertiary JetFitter vertices in the mass region 1.795< mJF
+3 (Knπ) <
+1.945 is shown in Figure 10.
+This shows that the JetFitter algorithm fully reconstructs heavy hadrons decaying into charged ﬁnal states
+and the simulation describes the invariant mass distribution observed in data for decay multiplicities from
+2 to 5 quite well. The discrepancy observed in the multiplicity spectrum may be due to various factors
+such as a diﬀerent eﬃciency as a function of vertex multiplicity in data and MC or an imperfect modeling
+of the decay branching fractions and kinematics.
+Finally, the same analysis is applied to Z + jets ( Z → µµ) selected events, without requiring either
+b-tagged jets in the event or reconstructed JetFitter vertices in the jet. A rate of D0, D± candidates in
+the mass region 1.795 < mJF
+3 (Knπ) < 1.945 of (5±0.5)×10−4 and 6×10−4 is obtained in data and MC,
+respectively. The low rate observed in this sample, where the b-jet content is low as discussed above,
+20
+
+===== PAGE 21 =====
+ Mass [GeV]
+πTertiary Vtx K n 0.5
+1 1.5 2 2.5 3 3.5 1/N dN/dM [Vtx / 0.040 GeV]
+0
+0.01
+0.02
+0.03
+0.04
+ATLAS
+ Preliminary =
+s -1 13 TeV, 2.5 fb + jets
+µe Data 2016
+Simulation
+ All Charged
+→b Jets: D b Jets
+c Jets
+light flavour Jets
+Nb. of Tracks at Tertiary Vtx
+2
+3 4 5 1/N dN/dNTrk
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+ATLAS
+ Preliminary =
+s -1 13 TeV, 2.5 fb + jets
+µe Data 2016
+Simulation
+ All Charged
+→b Jets: D b Jets
+c Jets
+light flavour Jets
+Figure 10: Knπ invariant mass (left) and track multiplicity in theD0, D± meson peak region of the JetFitter tertiary
+vertex reconstructed in jets from selected t¯t events in 2016 collision data (points with error bars) and simulation
+(histograms). The contribution of b-, c- and light- ( q) jets in simulation is shown. In addition, the light shaded
+histogram shows the predicted contribution of b-jets with D0 and D± mesons decaying to all-charged ﬁnal states.
+The error bars on the data points represent statistical uncertainties. No uncertainties are included for the Monte
+Carlo prediction.
+shows that the probability of reconstructiong spurious vertices yielding a relatively large invariant mass
+is small in non-b jets, as predicted by simulation.
+4.6 Sensitivity to event pile-up
+The JetFitter algorithm response has been studied in relation to the mean number of interactions per
+bunch crossing, to understand the robustness of the algorithm with respect to contamination from PU
+events. Speciﬁc requirements are included in the track selection to mitigate the PU eﬀects in the algorithm
+performance, as mentioned in Section 3.3. Figure 11 shows the two-dimensional distributions of the IPrφ
+and IP z impact parameter signiﬁcance for tracks from single-track vertices in heavy ﬂavoured hadron
+decays and for tracks generated from PU. PU tracks are found to populate the region of large longitudinal
+impact parameter signiﬁcance and small transverse impact parameter signiﬁcance. Tracks with large
+|IPz|/σ(IPz ) (>5) and small|IPrφ|/σ(IPrφ ) (<2) are removed when adding single-tracks in the second
+pass of JetFitter vertex ﬁnding. The change in the rates of vertex reconstruction as a function of the
+average number of PU interactions per bunch crossing is shown in Figure 12. Thanks to the selection
+implemented against tracks from PU, the vertex reconstruction rate is rather stable as a function of the
+PU conditions, although a mild increase in the probability to reconstruct a single vertex is seen for light
+jets, due to tracks from PU being occasionally ﬁtted into a displaced vertex.
+21
+
+===== PAGE 22 =====
+Figure 11: IP rφ/σ(IPrφ ) vs. IPz/σ(IPz ) impact parameter signiﬁcance for tracks used to build a JetFitter single-
+track vertex and originating from heavy ﬂavour decays (left) and pile-up (right). The boxes show the 2D cuts
+applied to reduce the eﬀect of PU tracks in the vertex reconstruction.
+ < µ > 
+0 10 20 30 40 50 60
+JF vertex reconstruction efficiency
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+l-jets 
+c-jets 
+b-jets 
+ATLAS Simulation 
+s = 13 TeV, tt
+l-jets  1 vtx 
+c-jets 1 vtx 
+b-jets 1 vtx 
+l-jets  >1 vtx 
+c-jets >1 vtx 
+b-jets >1 vtx 
+Preliminary
+Figure 12: Rate of vertices reconstructed by JetFitter in b-, c- and light-ﬂavoured jets as a function of the number
+of pile-up events. The rates for reconstructing one ( == 1 vtx) and more than one ( > 1 vtx) vertex in the jet are
+given separately.
+5 Jet ﬂavour tagging with topological variables
+The topological reconstruction of heavy hadron decays with JetFitter yields a set of observables well
+suited for the identiﬁcation and the discrimination of heavy-ﬂavour jets. The e ﬃciencies for vertex re-
+construction in b-, c- and light-ﬂavoured jets with pT > 20 GeV are summarised in Table 3 for the same
+topologies already considered in Table 2. Considering jet variables, the eﬃciency of vertex reconstruction
+is given as a function of the jet pT and|η| in simulated t¯t events in Figure 13, separating vertices with
+one or more associated tracks from all reconstructed vertices. After a rise at low pT values, where the
+separation between the secondary vertex and the PV is comparable to the decay length resolution, the
+22
+
+===== PAGE 23 =====
+eﬃciency for b-jets reaches a plateau around 95%, when including single-track vertices, and around 86%
+when requiring at least two tracks. The e ﬃciency for reconstructing two vertices reaches its plateau at
+∼55%, including single prong vertices, and∼20%, considering only multi-prong vertices, in b-jets with
+pT > 150 GeV . This has to be compared to the probability to reconstruct two vertices in ac- and a light-
+jet, in the same pT range, of 10 (4)% and 5 (2)%, respectively, when considering also single prong (or
+only multi-prong) vertices. The identiﬁcation of the two-vertex topology is one of the most discriminant
+single observables available for b-jet identiﬁcation.
+ [GeV]
+T
+jet p
+50 100 150 200 250
+JF vertex reconstruction efficiency0.2
+0.4
+0.6
+0.8
+1
+1.2 ATLAS Simulation 
+s = 13 TeV, tt
+l-jets 
+c-jets 
+b-jets 
+l-jets  1 vtx 
+c-jets 1 vtx 
+b-jets 1 vtx 
+l-jets  >1 vtx 
+c-jets >1 vtx 
+b-jets >1 vtx 
+Preliminary
+ηjet 
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+JF vertex reconstruction efficiency0.2
+0.4
+0.6
+0.8
+1
+1.2 ATLAS Simulation 
+s = 13 TeV, tt
+l-jets 
+c-jets 
+b-jets 
+l-jets  1 vtx 
+c-jets 1 vtx 
+b-jets 1 vtx 
+l-jets  >1 vtx 
+c-jets >1 vtx 
+b-jets >1 vtx 
+Preliminary
+Figure 13: Eﬃciency for reconstructing one and more vertices in simulated t¯t events as function of the jet (left) pT
+and (right)η for b-, c- and light-ﬂavoured jets. The rates for reconstructing one (== 1 vtx) and more than one (> 1
+vtx) vertex in the jet are given separately.
+Table 3: E ﬃciencies for JetFitter vertex reconstruction in di ﬀerent topologies in b-, c- and light-ﬂavoured jets
+having pT > 20 GeV and|η| < 2.5 from simulated t¯t events.
+JF Vertices ≥1 Single Trk 0 Single Trk ≥1 Single Trk
+All 0 Multi Trk 1 Multi Trk 1 Multi Trk 2 Multi Trk ≥3 Multi Trk
+b-jets 0.893 0.147 0.414 0.227 0.102 0.0040
+c-jets 0.556 0.246 0.258 0.044 0.008 0.0001
+light jets 0.234 0.155 0.069 0.010 0.001 0.0001
+In order to evaluate the performance of the JetFitter algorithm applied to ﬂavour tagging, a multivariate
+b-tagging algorithm based on Boosted Decisions Trees (BDT) is implemented to combine the jet-ﬂavour
+discrimination powers of several observables extracted from the multi-vertex reconstruction. This al-
+gorithm is based on the ROOT Toolkit for Multivariate Data Analysis (TMV A) [38]. The BDT training
+is performed assigning b-jets as signal and a mixture of 93% light-jets and 7% c-jets as background. The
+training parameters are optimised for the best discrimination power between signal and background. A
+scan of the minimum node size parameter deﬁning the minimal fraction of jets in a leaf over the total
+number of jets in the training, the number of trees in the BDT forest, the typical depth of the trees, and
+the number of cuts in the training, i.e. the number of grid points over the variable range used to ﬁnd the
+23
+
+===== PAGE 24 =====
+optimal cut in node splitting, has been performed. The chosen values are 0.25 for the minimum node size,
+800 for the number of trees, 5 for the maximal tree depth.
+Table 4: Input variables used for the three trainings of the multivariate tagging algorithm. All the variables up to
+the “Baseline” variable set are used as the JetFitter inputs to the ATLAS MV2 tagger [9]. The “Full” variable set
+brings additional information from to the full topological properties of the reconstructed decay chain.
+Input Variable Description
+Kinematics pT Jet pT
+η Jet|η|
+Reduced
+m Invariant mass of tracks from displaced vertices
+f E Fraction of the charged jet energy in the secondary vertices
+∆R(⃗pjet, ⃗pvtx) ∆R between jet axis and vectorial sum of momenta of all tracks
+attached to displaced vertices
+Sxyz Signiﬁcance of average distance between PV and displaced vertices
+NTrkAtVtx Number of tracks from multi-prong displaced vertices
+Baseline
+above variables +
+N2TrkVtx Number of 2-track vertex candidates (prior to decay chain ﬁt)
+N1-trk vertices Number of single-prong displaced vertices
+N≥2-trk vertices Number of multi-prong displaced vertices
+Full
+above variables +
+L x y z(2nd/3rdvtx) Distance of 2nd or 3nd vertex from PV
+L x y(2nd/3rdvtx) Transverse displacement of the 2nd or 3nd vertex
+mTrk(2nd/3rdvtx) Invariant mass of tracks associated to 2nd or 3nd vertex
+ETrk(2nd/3rdvtx) Energy of charged tracks associated to 2nd or 3nd vertex
+f E (2nd/3rdvtx) Fraction of charged jet energy in 2nd or 3nd vertex
+NTrkAtVtx(2nd/3rdvtx) Number of tracks associated to 2nd or 3nd vertex
+The list of observables used as input for the training of the algorithm is given in Table 4. These vari-
+ables are divided in three sets. The ﬁrst set (“Reduced”) consists of the variables related to the particles
+associated to reconstructed displaces vertices – number of particles, invariant mass and fraction of the
+charged jet energy, signiﬁcance of the average decay distance – without use of the information from the
+multi-vertex topology. These are representative of the observables available from an inclusive secondary
+vertex reconstruction algorithm. Then, information on the number of reconstructed detached vertices is
+added to the above variables (“Baseline”). This consists of the number of single-prong and multi-prong
+vertices and the number of two-track vertices prior the decay chain ﬁt. These two ﬁrst variable sets rep-
+resent the JetFitter inputs to the ATLAS MV2 tagger [9], used as the baseline b-tagging algorithm by the
+ATLAS collaboration since beginning of the LHC run II. Finally, the full information of the kinematics
+of the reconstructed topological decay chain (“Full”) – number of particles, invariant mass and jet energy
+fraction – is used in addition. The use of these three sets of variables allows to evaluate the discrimination
+power added by the detailed information from the topological decay reconstruction. This third variable
+set is also included to the MV2 tagger for charm-tagging application.
+The values of the jet pT and|η| (“Kinematics”) are also included in the training to take advantage of their
+correlations with the input variables. To avoid any diﬀerences in the kinematic distributions of signal and
+background being interpreted as discriminating by the training, signal jets as well as c-jet background
+are reweighted in pT and|η| to match the spectrum of light-ﬂavour background jets. No kinematic
+reweighting is applied at the evaluation stage of the multivariate classiﬁer.
+24
+
+===== PAGE 25 =====
+The BDT algorithm returns a continuous discriminating variable peaking around+1 for signal and−1 for
+background jets. The b-jet tagging eﬃciency and the c- and light-jet rejection, deﬁned as the inverse of
+their mis-identiﬁcation probability, are determined for jets from t¯t simulated events as a function of the
+threshold on the BDT discriminant. Figure 14 shows their values for the training obtained on the three
+sets of JetFitter variables. A signiﬁcant improvement of the discrimination of b-jets, with an increase of
+the rejection of light-ﬂavoured jets by a factor of 1.4 and 2.0 and of that for c jets by a factor of 1.45 and
+2.0 at constant b-tagging eﬃciency of 50%, when adding the information on the number of reconstructed
+detached vertices in the decay chain and their full kinematical properties.
+b-jet efficiency
+0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+ratio
+2
+4
+0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+light-flavour jet rejection
+1
+10
+210
+310
+410
+510
+Variable sets used for training
+Reduced
+Baseline
+Full
+ATLAS Simulation Preliminary
+s = 13 TeV, tt
+(a)
+b-jet efficiency
+0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+ratio
+1
+2
+3
+0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+c-jet rejection
+1
+10
+210
+310
+410
+Variable sets used for training
+Reduced
+Baseline
+Full
+ATLAS Simulation Preliminary
+s = 13 TeV, tt (b)
+Figure 14: Rejection of (left) light- and (right) c-jets as a function of the b-jets eﬃciency obtained with the BDT
+multivariate discriminant trained with three diﬀerent sets of JetFitter variables.
+The sensitivity to the PU conditions is estimated by computing the rejection for simulated events with
+diﬀerent average numbers of PU events. The light-ﬂavoured and c-jets rejection at constant 50% b-jet
+eﬃciency is reduced by 38% and 18% when increasing the average PU values from 25 to 60, without
+re-training the BDT discriminant.
+6 Conclusions
+The topological reconstruction of B-hadron decays is important to eﬃciently and cleanly separate b- from
+c- and light-ﬂavoured jets. The JetFitter algorithm adopted by ATLAS for the reconstruction of the decay
+chain in hadronic jets and applied in jet ﬂavour tagging is based on an extension of the Kalman Filter
+25
+
+===== PAGE 26 =====
+formalism for single-vertex reconstruction and uses the jet direction as an initial estimator of the heavy
+hadron line of ﬂight. Its principles and implementation have been presented in this note together with
+highlights of its performance in simulation and data.
+The reconstruction of the structure of decay vertices originating from the B- to D-hadron decay chain
+and the analysis of their topological and kinematical properties from the JetFitter algorithm have been
+characterised in terms of the e ﬃciency for reconstructing one or more secondary vertices in the decay
+chain, their spatial resolution, the ability to fully reconstructD meson decays originating from B-hadrons
+and the sensitivity to PU.
+In b-jets of pT∼ 150 GeV , the eﬃciency for reconstructing at least one vertex has been estimated to
+be 95%, when including single-track vertices, and ∼86%, when requiring at least two tracks per vertex.
+Analogously, the eﬃciency for reconstructing two vertices was found to be∼55%, when including single-
+track vertices, or ∼20%, when considering only multi-track vertices. This has to be compared to the
+probability to reconstruct two vertices in c- and light-jets, in the same pT range, which was estimated to
+be 10 (4)% and 5 (2)%, respectively, when considering also single-track (or only multi-track) vertices,
+highlighting the power of the topological reconstruction in separating b- from non-b jets.
+The resolution of the position of the vertices reconstructed by JetFitter along the direction of ﬂight of the
+B-hadron is estimated to be ∼ 0.3 mm for su ﬃciently large track multiplicities and reconstructed mass
+values and for B-hadrons with an energy of 50-100 GeV . The resolution increases to ∼ 1 mm for B-
+hadrons with an energy of 200-300 GeV . These values are small compared to the average decay distance
+of D-hadrons with respect to the B-hadron decay vertex, corresponding to 5 to 15 mm in the same energy
+ranges, thus ensuring the reconstruction of the decay chain.
+The rate of jets with more than one multi-track vertex reconstructed by JetFitter, where the contribution
+of b-jets is expected to be dominant, has been measured for a sample enriched in t¯t events and one of
+selected Z→ µµ + jets events and found to scale between the two samples as the predicted b-jet content
+of the samples, in both data and simulation. The track multiplicity and the invariant mass of both second-
+ary vertices and tertiary ones (when reconstructed) show good agreement between data and simulation,
+conﬁrming the good modelling of the JetFitter observables that provide discrimination betweenb-, c- and
+light-ﬂavoured jets.
+A mass peak corresponding to the D mass signals fully and correctly reconstructed D-mesons, in two-
+to four-prong topologies, in the decay chain of B-hadrons. In addition, the JetFitter vertex reconstruction
+rate has been found to be rather stable as a function of the PU conditions, and the eﬀects of the imperfect
+modelling of B-hadron production and decays on the eﬃciency of vertex reconstruction have been found
+to be small.
+The role of the detailed information provided by JetFitter on the reconstructed topology and kinematics
+of detached vertices in the ﬂavour tagging of jets has been studied using a dedicated Boosted Decision
+Tree multi-variate analysis. The comparison of the non-b jet rejection of three multivariate discriminants,
+the ﬁrst trained on observables typically available from an inclusive secondary vertex reconstruction,
+the second on improved information on the number of detached vertices reconstructed by JetFitter and
+the third with the full information of the kinematics of the JetFitter topological decay chain, has been
+used to quantify the gain provided the JetFitter topological reconstruction. Factors of 1.4 (1.45) and 2.0
+(2.0) improvement in terms of the light ﬂavoured ( c-) jet rejection are observed at a constant b-tagging
+eﬃciency of 50%, when adding the information on the number of reconstructed vertices in the decay
+chain and their full kinematical properties. These results conﬁrm the advantages brought by the use
+of topological and kinematical variables obtained from the JetFitter topological reconstruction strategy,
+26
+
+===== PAGE 27 =====
+in particular for applications requiring higher levels of c- and light-jet rejection at intermediate b-jet
+eﬃciencies or as input to a high-level multi-variate tagger, as used in ATLAS.
+References
+[1] ATLAS Collaboration, The ATLAS Experiment at the CERN Large Hadron Collider,
+JINST 3 (2008) S08003.
+[2] ATLAS Collaboration, ATLAS Insertable B-Layer Technical Design Report,
+CERN-LHCC-2010-013. ATLAS-TDR-19 (2010),
+url: https://cds.cern.ch/record/1291633.
+[3] ATLAS Collaboration,
+Early Inner Detector Tracking Performance in the 2015 data at√s = 13 TeV,
+ATL-PHYS-PUB-2015-051, Geneva, 2015,url: https://cds.cern.ch/record/2110140.
+[4] ATLAS Collaboration,
+Track Reconstruction Performance of the ATLAS Inner Detector at√s = 13 TeV,
+ATL-PHYS-PUB-2015-018, Geneva, 2015,url: https://cds.cern.ch/record/2037683.
+[5] C. Patrignani et al., Review of Particle Physics, Chin. Phys. C40.10 (2016) 100001.
+[6] ATLAS Collaboration, Performance of b-Jet Identiﬁcation in the ATLAS Experiment,
+JINST 11.04 (2016) P04008, arXiv: 1512.01094 [hep-ex].
+[7] R. Frühwirth, Application of Kalman ﬁltering to track and vertex ﬁtting,
+Nucl. Instrum. Meth. A262 (1987) 444–450.
+[8] M. Cacciari, G. P. Salam and G. Soyez, The anti-k t jet clustering algorithm, JHEP 04 (2008) 063.
+[9] ATLAS Collaboration, Optimisation and performance studies of the ATLAS b-tagging algorithms
+for the 2017-18 LHC run, ATL-PHYS-PUB-2017-013, Geneva, 2017,
+url: https://cds.cern.ch/record/2273281.
+[10] ATLAS Collaboration,
+A neural network clustering algorithm for the ATLAS silicon pixel detector,
+JINST 9 (2014) P09009, arXiv: 1406.7690 [hep-ex].
+[11] ATLAS Collaboration, Measurement of performance of the pixel neural network clustering
+algorithm of the ATLAS experiment at√s = 13 TeV, ATL-PHYS-PUB-2015-044, Geneva, 2015,
+url: https://cds.cern.ch/record/2054921.
+[12] ATLAS Collaboration, Performance of the ATLAS Track Reconstruction Algorithms in Dense
+Environments in LHC Run 2, Eur. Phys. J. C77.10 (2017) 673, arXiv: 1704.07983 [hep-ex].
+[13] ATLAS Collaboration, Reconstruction of primary vertices at the ATLAS experiment in Run 1
+proton–proton collisions at the LHC, Eur. Phys. J. C77.5 (2017) 332,
+arXiv: 1611.10235 [physics.ins-det].
+[14] ATLAS Collaboration,
+Vertex Reconstruction Performance of the ATLAS Detector at√s = 13 TeV,
+ATL-PHYS-PUB-2015-026, Geneva, 2015,url: https://cds.cern.ch/record/2037717.
+27
+
+===== PAGE 28 =====
+[15] ATLAS Collaboration,
+Topological cell clustering in the ATLAS calorimeters and its performance in LHC Run 1,
+Eur. Phys. J. C77 (2017) 490, arXiv: 1603.02934 [hep-ex].
+[16] M. Cacciari, G. P. Salam and G. Soyez, FastJet User Manual, Eur. Phys. J. C72 (2012) 1896,
+arXiv: 1111.6097 [hep-ph].
+[17] ATLAS Collaboration, Jet energy measurement and its systematic uncertainty in proton-proton
+collisions at√s = 7 TeV with the ATLAS detector, Eur. Phys. J. C75 (2015) 17.
+[18] ATLAS Collaboration, Tagging and suppression of pileup jets with the ATLAS detector,
+ATLAS-CONF-2014-018, url: https://cds.cern.ch/record/1700870.
+[19] ATLAS Collaboration,
+Secondary vertex ﬁnding for jet ﬂavour identiﬁcation with the ATLAS detector,
+ATL-PHYS-PUB-2017-011, Geneva, 2017,url: https://cds.cern.ch/record/2270366.
+[20] P. Billoir, R. Frühwirth and M. Regler,
+Track element merging strategy and vertex ﬁtting in complex modular detectors,
+Nucl. Instrum. Meth. A241 (1985) 115–131.
+[21] P. Billoir and S. Qian, Fast vertex ﬁtting with a local parametrization of tracks,
+Nucl. Instrum. Meth. A311 (1992) 139–150.
+[22] D. J. Lange, The EvtGen particle decay simulation package,
+Nucl. Instrum. Meth. A462 (2001) 152–155.
+[23] K. Abe et al.,
+Time dependent B0(s)-anti-B0(s) mixing using inclusive and semileptonic B decays at SLD
+(1999), url: http://www.slac.stanford.edu/econf/C990809/.
+[24] G. Piacquadio and K. Jakobs, Identiﬁcation of b-jets and investigation of the discovery potential
+of a Higgs boson in the W H→ℓνb¯b channel with the ATLAS experiment
+(2010), Presented on 11 Jan 2010, url: https://cds.cern.ch/record/1243771.
+[25] P. Nason, A new method for combining NLO QCD with shower Monte Carlo algorithms,
+JHEP 11 (2004) 040.
+[26] T. Sjöstrand, S. Mrenna and P. Z. Skands, A Brief Introduction to PYTHIA 8.1,
+Comput. Phys. Commun. 178 (2008) 852–867.
+[27] H.-L. Lai et al., New parton distributions for collider physics, Phys. Rev. D82 (2010) 074024.
+[28] T. Sjostrand, S. Mrenna and P. Z. Skands, PYTHIA 6.4 Physics and Manual, JHEP 05 (2006) 026,
+arXiv: hep-ph/0603175 [hep-ph].
+[29] J. Alwall et al., The automated computation of tree-level and next-to-leading order diﬀerential
+cross sections, and their matching to parton shower simulations, JHEP 07 (2014) 079,
+arXiv: 1405.0301 [hep-ph].
+[30] S. Agostinelli et al., GEANT4: A simulation toolkit, Nucl. Instrum. Meth. A506 (2003) 250–303.
+[31] ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur. Phys. J. C 70 (2010) 823.
+[32] A. Heister et al., Study of the fragmentation of b quarks into B mesons at the Z peak,
+Phys. Lett. B512 (2001) 30–48, arXiv: hep-ex/0106051 [hep-ex].
+[33] G. Abbiendi et al., Inclusive analysis of the b quark fragmentation function in Z decays at LEP,
+Eur. Phys. J. C29 (2003) 463–478, arXiv: hep-ex/0210031 [hep-ex].
+28
+
+===== PAGE 29 =====
+[34] K. Abe et al., Measurement of the b quark fragmentation function in Z0 decays,
+Phys. Rev. D65 (2002) 092006, [Erratum: Phys. Rev.D66,079905(2002)],
+arXiv: hep-ex/0202031 [hep-ex].
+[35] J. Abdallah et al., A study of the b-quark fragmentation function with the DELPHI detector at
+LEP I and an averaged distribution obtained at the Z Pole, Eur. Phys. J. C71 (2011) 1557,
+arXiv: 1102.4748 [hep-ex].
+[36] G. Brandenburg et al., Charged track multiplicity in B meson decay,
+Phys. Rev. D61 (2000) 072002, arXiv: hep-ex/9907057 [hep-ex].
+[37] P. Abreu et al., Measurement of the charged particle multiplicity of weakly decaying B hadrons,
+Phys. Lett. B425 (1998) 399–412.
+[38] A. Höcker et al., TMVA: Toolkit for multivariate data analysis, PoS ACAT(2007) 040,
+arXiv: physics/0703039 [physics].
+29

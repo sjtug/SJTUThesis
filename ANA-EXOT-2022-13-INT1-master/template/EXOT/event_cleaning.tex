@@ -1,0 +1,23 @@
+\subsection{Event cleaning}
+Following the \href{https://twiki.cern.ch/twiki/bin/viewauth/Atlas/DataPreparationCheckListForPhysicsAnalysis}{recommendations of the DataPrep group}, the following event-level requirements are made.
+
+We use the official GRL\@:
+ \begin{verbatim} FILL IN HERE \end{verbatim}
+ 
+The following event-level vetos are made to reject bad / corrupt events:
+ \begin{itemize}
+  \item LAr noise burst and data corruption (\verb|xAOD::EventInfo::LAr|),
+  \item Tile corrupted events (\verb|xAOD::EventInfo::Tile|),
+  \item events affected by the SCT recovery procedure for single event upsets (\verb|xAOD::EventInfo::SCT|),
+  \item incomplete events (\verb|xAOD::EventInfo::Core|).
+ \end{itemize}
+ 
+ Debug stream events [have/have not] been included.
+ 
+ Checks [have/have not] been done to remove duplicate events.
+ 
+Events are required to have a primary vertex with at least two associated tracks.
+The primary vertex is selected as the one with the largest \(\Sigma \pT^2\),
+where the sum is over all tracks with transverse momentum \(\pT > \SI{0.4}{\GeV}\) that are associated with the vertex.
+ 
+ 

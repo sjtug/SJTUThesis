@@ -1,0 +1,164 @@
+% Footnote with ATLAS coordinate system
+\newcommand{\AtlasCoordFootnote}{%
+ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP)
+in the centre of the detector and the \(z\)-axis along the beam pipe.
+The \(x\)-axis points from the IP to the centre of the LHC ring,
+and the \(y\)-axis points upwards.
+Cylindrical coordinates \((r,\phi)\) are used in the transverse plane, 
+\(\phi\) being the azimuthal angle around the \(z\)-axis.
+The pseudorapidity is defined in terms of the polar angle \(\theta\) as \(\eta = -\ln \tan(\theta/2)\).
+Angular distance is measured in units of \(\Delta R \equiv \sqrt{(\Delta\eta)^{2} + (\Delta\phi)^{2}}\).}
+
+%-------------------------------------------------------------------------------
+\subsection{Run 2 ATLAS detector example for a Letter}
+\label{sec:atlas2a}
+%-------------------------------------------------------------------------------
+
+The ATLAS experiment~\cite{PERF-2007-01} at the LHC is a multipurpose particle detector
+with a forward--backward symmetric cylindrical geometry and a near \(4\pi\) coverage in 
+solid angle.\footnote{\AtlasCoordFootnote}
+It consists of an inner tracking detector surrounded by a thin superconducting solenoid
+providing a \SI{2}{\tesla} axial magnetic field, electromagnetic and hadron calorimeters, and a muon spectrometer.
+The inner tracking detector covers the pseudorapidity range \(|\eta| < 2.5\).
+It consists of silicon pixel, silicon microstrip, and transition radiation tracking detectors.
+Lead/liquid-argon (LAr) sampling calorimeters provide electromagnetic (EM) energy measurements
+with high granularity.
+A steel/scintillator-tile hadron calorimeter covers the central pseudorapidity range (\(|\eta| < 1.7\)).
+The endcap and forward regions are instrumented with LAr calorimeters
+for both the EM and hadronic energy measurements up to \(|\eta| = 4.9\).
+The muon spectrometer surrounds the calorimeters and is based on
+three large superconducting air-core toroidal magnets with eight coils each.
+The field integral of the toroids ranges between \num{2.0} and \SI{6.0}{\tesla\metre}
+across most of the detector. 
+The muon spectrometer includes a system of precision tracking chambers and fast detectors for triggering.
+A two-level trigger system is used to select events.
+The first-level trigger is implemented in hardware and uses a subset of the detector information
+to accept events at a rate below \SI{100}{\kHz}.
+This is followed by a software-based trigger that
+reduces the accepted event rate to \SI{1}{\kHz} on average
+depending on the data-taking conditions.
+An extensive software suite~\cite{ATL-SOFT-PUB-2021-001} is used in the reconstruction and analysis of real
+and simulated data, in detector operations, and in the trigger and data acquisition systems of the experiment.
+
+%-------------------------------------------------------------------------------
+\subsection{Run 2 ATLAS detector example for a paper making use of the whole detector}
+\label{sec:atlas2b}
+%-------------------------------------------------------------------------------
+
+The ATLAS detector~\cite{PERF-2007-01} at the LHC covers nearly the entire solid angle around the collision point.\footnote{\AtlasCoordFootnote}
+It consists of an inner tracking detector surrounded by a thin superconducting solenoid, electromagnetic and hadron calorimeters,
+and a muon spectrometer incorporating three large superconducting air-core toroidal magnets.
+
+The inner-detector system (ID) is immersed in a \SI{2}{\tesla} axial magnetic field 
+and provides charged-particle tracking in the range \(|\eta| < 2.5\).
+The high-granularity silicon pixel detector covers the vertex region and typically provides four measurements per track, 
+the first hit normally being in the insertable B-layer (IBL) installed before Run~2~\cite{ATLAS-TDR-19,PIX-2018-001}.
+It is followed by the silicon microstrip tracker (SCT), which usually provides eight measurements per track.
+These silicon detectors are complemented by the transition radiation tracker (TRT),
+which enables radially extended track reconstruction up to \(|\eta| = 2.0\). 
+The TRT also provides electron identification information 
+based on the fraction of hits (typically 30 in total) above a higher energy-deposit threshold corresponding to transition radiation.
+
+The calorimeter system covers the pseudorapidity range \(|\eta| < 4.9\).
+Within the region \(|\eta|< 3.2\), electromagnetic calorimetry is provided by barrel and 
+endcap high-granularity lead/liquid-argon (LAr) calorimeters,
+with an additional thin LAr presampler covering \(|\eta| < 1.8\)
+to correct for energy loss in material upstream of the calorimeters.
+Hadron calorimetry is provided by the steel/scintillator-tile calorimeter,
+segmented into three barrel structures within \(|\eta| < 1.7\), and two copper/LAr hadron endcap calorimeters.
+The solid angle coverage is completed with forward copper/LAr and tungsten/LAr calorimeter modules
+optimised for electromagnetic and hadronic energy measurements respectively.
+
+The muon spectrometer (MS) comprises separate trigger and
+high-precision tracking chambers measuring the deflection of muons in a magnetic field generated by the superconducting air-core toroidal magnets.
+The field integral of the toroids ranges between \num{2.0} and \SI{6.0}{\tesla\metre}
+across most of the detector. 
+A set of precision chambers covers the region \(|\eta| < 2.7\) with three layers of monitored drift tubes,
+complemented by cathode-strip chambers in the forward region, where the background is highest.
+The muon trigger system covers the range \(|\eta| < 2.4\) with resistive-plate chambers in the barrel, and thin-gap chambers in the endcap regions.
+
+Interesting events are selected by the first-level trigger system implemented in custom hardware,
+followed by selections made by algorithms implemented in software in the high-level trigger~\cite{TRIG-2016-01}. 
+The first-level trigger accepts events from the \SI{40}{\MHz} bunch crossings at a rate below \SI{100}{\kHz},
+which the high-level trigger further reduces in order to record events to disk at about \SI{1}{\kHz}.
+
+An extensive software suite~\cite{ATL-SOFT-PUB-2021-001} is used in the reconstruction and analysis of real
+and simulated data, in detector operations, and in the trigger and data acquisition systems of the experiment.
+
+%-------------------------------------------------------------------------------
+\subsection{Run 1 ATLAS detector example for a Letter}
+\label{sec:atlas1a}
+%-------------------------------------------------------------------------------
+
+The ATLAS experiment~\cite{PERF-2007-01} at the LHC is a multipurpose particle detector
+with a forward--backward symmetric cylindrical geometry and a near \(4\pi\) coverage in 
+solid angle.\footnote{\AtlasCoordFootnote}
+It consists of an inner tracking detector surrounded by a thin superconducting solenoid
+providing a \SI{2}{\tesla} axial magnetic field, electromagnetic and hadron calorimeters, and a muon spectrometer.
+The inner tracking detector covers the pseudorapidity range \(|\eta| < 2.5\).
+It consists of silicon pixel, silicon microstrip, and transition radiation tracking detectors.
+Lead/liquid-argon (LAr) sampling calorimeters provide electromagnetic (EM) energy measurements
+with high granularity.
+A steel/scintillator-tile hadron calorimeter covers the central pseudorapidity range (\(|\eta| < 1.7\)).
+The endcap and forward regions are instrumented with LAr calorimeters
+for both the EM and hadronic energy measurements up to \(|\eta| = 4.9\).
+The muon spectrometer surrounds the calorimeters and is based on
+three large superconducting air-core toroidal magnets with eight coils each.
+The field integral of the toroids ranges between \num{2.0} and \SI{6.0}{\tesla\metre}
+across most of the detector. 
+The muon spectrometer includes a system of precision tracking chambers and fast detectors for triggering.
+A three-level trigger system is used to select events.
+The first-level trigger is implemented in hardware and uses a subset of the detector information
+to accept events at a rate of at most \SI{75}{\kilo\hertz}.
+This is followed by two software-based trigger levels that
+together reduce the accepted event rate to \SI{400}{\hertz} on average
+depending on the data-taking conditions during 2012.
+An extensive software suite~\cite{ATL-SOFT-PUB-2021-001} is used in the reconstruction and analysis of real
+and simulated data, in detector operations, and in the trigger and data acquisition systems of the experiment.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Run 1 ATLAS detector example for a paper making use of the whole detector}
+\label{sec:atlas1b}
+%-------------------------------------------------------------------------------
+
+The ATLAS detector~\cite{PERF-2007-01} at the LHC covers nearly the entire solid angle around the collision point.\footnote{\AtlasCoordFootnote}
+It consists of an inner tracking detector surrounded by a thin superconducting solenoid, electromagnetic and hadron calorimeters,
+and a muon spectrometer incorporating three large superconducting air-core toroidal magnets.
+
+The inner-detector system (ID) is immersed in a \SI{2}{\tesla} axial magnetic field 
+and provides charged-particle tracking in the range \(|\eta| < 2.5\).
+The high-granularity silicon pixel detector covers the vertex region and typically provides three measurements per track, 
+the first hit normally being in the innermost layer.
+It is followed by the silicon microstrip tracker (SCT) which usually provides eight measurements per track.
+These silicon detectors are complemented by the transition radiation tracker (TRT),
+which enables radially extended track reconstruction up to \(|\eta| = 2.0\). 
+The TRT also provides electron identification information 
+based on the fraction of hits (typically 30 in total) above a higher energy-deposit threshold corresponding to transition radiation.
+
+The calorimeter system covers the pseudorapidity range \(|\eta| < 4.9\).
+Within the region \(|\eta|< 3.2\), electromagnetic calorimetry is provided by barrel and 
+endcap high-granularity lead/liquid-argon (LAr) calorimeters,
+with an additional thin LAr presampler covering \(|\eta| < 1.8\)
+to correct for energy loss in material upstream of the calorimeters.
+Hadron calorimetry is provided by the steel/scintillator-tile calorimeter,
+segmented into three barrel structures within \(|\eta| < 1.7\), and two copper/LAr hadron endcap calorimeters.
+The solid angle coverage is completed with forward copper/LAr and tungsten/LAr calorimeter modules
+optimised for electromagnetic and hadronic energy measurements respectively.
+
+The muon spectrometer (MS) comprises separate trigger and
+high-precision tracking chambers measuring the deflection of muons in a magnetic field generated by the superconducting air-core toroidal magnets.
+The field integral of the toroids ranges between \num{2.0} and \SI{6.0}{\tesla\metre}
+across most of the detector. 
+A set of precision chambers covers the region \(|\eta| < 2.7\) with three layers of monitored drift tubes,
+complemented by cathode-strip chambers in the forward region, where the background is highest.
+The muon trigger system covers the range \(|\eta| < 2.4\) with resistive-plate chambers in the barrel, and thin-gap chambers in the endcap regions.
+
+A three-level trigger system is used to select interesting events~\cite{PERF-2011-02}.
+The first-level trigger is implemented in hardware and uses a subset of detector information
+to accept events at a design value rate of at most \SI{75}{\kHz}.
+This is followed by two software-based trigger levels which together reduce the event rate to about \SI{400}{\Hz}.
+
+An extensive software suite~\cite{ATL-SOFT-PUB-2021-001} is used in the reconstruction and analysis of real
+and simulated data, in detector operations, and in the trigger and data acquisition systems of the experiment.
+

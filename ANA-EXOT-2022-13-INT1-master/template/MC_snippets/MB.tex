@@ -1,0 +1,400 @@
+\section{Multiboson processes}
+%\label{sec:MB}
+
+In the following paragraphs, the set-ups of the current ATLAS multiboson baseline samples are described. 
+Details of the full process configuration are given in the PUB note~\cite{ATL-PHYS-PUB-2017-005}.
+
+
+\subsection[Inclusive Powheg]{Inclusive \POWHEG}
+%\label{sec:MB-powheg}
+
+The descriptions below correspond to the samples in Table~\ref{tab:MB-powheg}.
+
+\begin{table}[htbp]
+  \caption{Inclusive $VV$ samples with \POWHEG.}%
+  \label{tab:MB-powheg}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    361600--361605 & inclusive $WW(2\ell 2\nu), WZ(3\ell\nu), ZZ(4\ell), ZZ(4\nu), ZZ(2\ell 2\nu)$ (all lepton flavours)\\
+    361606--361611 & inclusive $WW/WZ/ZZ$ semileptonic decays ($\ell\ell qq$, $\ell\nu qq$, $\nu\nu qq$, all lepton flavours)\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The \POWHEGBOX[v2]~\cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd} generator
+was used to simulate the $WW$, $WZ$ and $ZZ$~\cite{Nason:2013ydw} production
+processes at NLO accuracy in QCD. The effect of singly resonant
+amplitudes and interference effects due to $Z/\gamma^*$ and
+same-flavour lepton combinations in the final state were included, where appropriate. 
+Interference effects between $WW$ and $ZZ$ for same-flavour charged leptons and
+neutrinos were ignored.
+Events were interfaced to \PYTHIA[8.186]~\cite{Sjostrand:2007gs}
+for the modelling of the parton shower, hadronisation, and underlying
+event, with parameters set according to the \AZNLO
+tune~\cite{STDM-2012-23}. The \CT[10] PDF set~\cite{Lai:2010vv} was used
+for the hard-scattering processes, whereas the \CTEQ[6L1] PDF
+set~\cite{Pumplin:2002vw} was used for the parton shower. The \EVTGEN[1.2.0]
+program~\cite{Lange:2001uf} was used to decay bottom and charm hadrons.
+
+The factorisation and renormalisation scales were set to the invariant mass of
+the boson pair. An invariant mass of $m_{\ell\ell} > 4\,\GeV$ was required
+at matrix-element level for any pair of same-flavour charged leptons.
+
+
+\subsection[Sherpa]{\SHERPA}
+%\label{sec:MB-sherpa}
+
+\subsubsection{Fully leptonic, semileptonic and loop-induced \texorpdfstring{$VV$}{VV}}
+%\label{sec:MB-sherpa-fully}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa}. They describe the almost
+identical set-ups of fully leptonic (including loop-induced $VV$ production)
+and semileptonic $VV$ decays. For loop-induced processes $gg\to VV$, 
+the description below assumes that the `nominal' samples with 
+Higgs contributions are used. If you are using specialised set-ups that
+exclude the Higgs component, the description should be modified appropriately.
+(Get in touch with the PMG Weak Boson Processes subgroup if you are unsure.)
+
+\begin{table}[htbp]
+  \caption{$VV$ samples with \SHERPA: fully leptonic, semileptonic,
+    loop-induced fully leptonic, loop-induced semileptonic. SFOS stands for
+    \enquote{same flavour opposite-charge sign}.}%
+  \label{tab:MB-sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364250--364255, 363494   & $4\ell, 3\ell\nu, 2\ell 2\nu, 4\nu$ with $m_{\ell\ell}\mathrm{(SFOS)} > 4~\GeV$, $\pt^\ell(1,2)>5~\GeV$\\
+    364288--364290 & fully leptonic low $m_{\ell\ell}$ and $\pt^\ell$ complement\\
+    \midrule
+    345705--345727   & loop-induced leptonic\\
+    \midrule
+    363355-363360, 363489   & semileptonic, on-shell diboson production with factorised decays\\
+    \midrule
+    364302-364305   & loop-induced semileptonic, using factorised on-shell decays)\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Samples of diboson final states ($VV$) were simulated with the
+\SHERPA[2.2.1] or 2.2.2~\cite{Bothmann:2019yzt} generator depending on the process,
+%~\footnote{This is an admixture of 2.2.1 and above versions, so the version should be kept generic to avoid confusions. As an
+%alternative, the sentence can be modified indicating that samples are simulated with the \SHERPA[2.2.1] or 2.2.2 depending on the process.} 
+including off-shell effects and Higgs boson contributions, where appropriate.
+Fully leptonic final states and semileptonic final states, where one boson
+decays leptonically and the other hadronically, were generated using
+matrix elements at NLO accuracy in QCD for up to one additional parton
+and at LO accuracy for up to three additional parton
+emissions. Samples for the loop-induced processes $gg \to VV$ were
+generated using LO-accurate matrix elements for up to one
+additional parton emission for both the cases of fully leptonic and
+semileptonic final states. The matrix element calculations were matched
+and merged with the \SHERPA parton shower based on Catani--Seymour
+dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} using the MEPS@NLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+The virtual QCD corrections were provided by the
+\OPENLOOPS library~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}. The
+\NNPDF[3.0nnlo] set of PDFs was used~\cite{Ball:2014uwa}, along with the
+dedicated set of tuned parton-shower parameters developed by the
+\SHERPA authors.
+
+
+\paragraph{Additional description:}
+
+The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
+multiplicities which were then merged into an inclusive sample using an
+improved CKKW matching procedure~\cite{Catani:2001cc,Hoeche:2009rj}
+which is extended to NLO accuracy using the MEPS@NLO
+prescription~\cite{Hoeche:2012yf}. The virtual QCD corrections for
+matrix elements at NLO accuracy were provided by the
+\OPENLOOPS library~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}. The
+calculation was performed in the $G_\mu$ scheme, ensuring an
+optimal description of pure electroweak interactions at the
+electroweak scale.
+
+\input{sherpa_scale_pdf.tex}
+
+
+\subsubsection[Electroweak VVjj]{Electroweak $VVjj$}
+%\label{sec:MB-sherpa-vvjj}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa-vvjj}.
+
+\begin{table}[htbp]
+  \caption{Electroweak $VVjj$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vvjj}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364283--364284   & $\ell\ell\ell\ell jj$, $\ell\ell\ell\nu jj$\\
+    364285   &  $\ell\ell\nu\nu jj$ opposite-sign\\
+    364287   &  $\ell\ell\nu\nu jj$ same-sign\\
+    366086--366089   &  $\ell\ell\ell\ell jj$, $\ell\ell\ell\nu jj$, $\ell\ell\nu\nu jj$, with the triboson contributions removed\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Electroweak production of a diboson in association with two jets
+($VVjj$) was simulated with the \SHERPA[2.2.2]~\cite{Bothmann:2019yzt}
+generator. The LO-accurate matrix elements were matched to a parton
+shower based on Catani--Seymour dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} using the MEPS@LO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+Samples were generated using the \NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa},
+along with the dedicated set of tuned parton-shower parameters
+developed by the \SHERPA authors.
+
+\paragraph{Additional description:} The calculation was performed in the
+$G_\mu$ scheme, ensuring an optimal description of pure
+electroweak interactions at the electroweak scale.
+
+\input{sherpa_scale_pdf.tex}
+
+
+\subsubsection[Vgamma (NLO, biased)]{$V\gamma$ (NLO, biased)}
+%\label{sec:MB-sherpa-vgamma-nlo-biased}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa-vynlo-ew}.
+
+\begin{table}[htbp]
+  \caption{NLO $V\gamma$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vynlo-ew}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    700011--700017 & biased in $\log_{10}(\max[\pT(V), \pT(\gamma)])$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The production of $V\gamma$ final states was simulated with the
+\SHERPA[2.2.8]~\cite{Bothmann:2019yzt} generator.  Matrix elements at
+NLO QCD accuracy for up to one additional parton and LO accuracy for
+up to three additional parton emissions were matched and merged with
+the \SHERPA parton shower based on Catani--Seymour
+dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} using the MEPS@NLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+The virtual QCD corrections for matrix elements at NLO accuracy were provided by 
+the \OPENLOOPS[2] library~\cite{Buccioni:2019sur,Cascioli:2011va,Buccioni:2017yxi,Denner:2016kdg}.
+Samples were generated using the \NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa}, along with
+the dedicated set of tuned parton-shower parameters developed by the \SHERPA authors.
+
+
+\paragraph{Additional description:}
+
+The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
+multiplicities which were then merged into an inclusive sample 
+using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj} which was extended to NLO
+accuracy using the MEPS@NLO prescription~\cite{Hoeche:2012yf}. 
+The virtual QCD corrections for matrix elements at NLO accuracy were provided by 
+the \OPENLOOPS[2] library~\cite{Buccioni:2019sur,Cascioli:2011va,Buccioni:2017yxi,Denner:2016kdg}.
+Multijet merging at NLO accuracy in the electroweak coupling was based on 
+the \NLOEWvirt approach~\cite{Kallweit:2014xda,Kallweit:2015dum}.
+The calculation was performed in the $G_\mu$ scheme, ensuring an optimal 
+description of pure electroweak interactions at the electroweak scale.
+
+\input{sherpa_scale_pdf.tex}
+
+
+\subsubsection[Vgamma (NLO, sliced)]{$V\gamma$ (NLO, sliced)}
+%\label{sec:MB-sherpa-vgamma-nlo}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa-vynlo}.
+
+\begin{table}[htbp]
+  \caption{NLO $V\gamma$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vynlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364500--364535   & sliced in $p_{\text{T}}^{\gamma}$\\ 
+    345887--345900   & sliced in $m_{\ell\ell}$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The production of $V\gamma$ final states was simulated with the
+\SHERPA[2.2.2]~\cite{Bothmann:2019yzt} generator.  Matrix elements at
+NLO QCD accuracy for up to one additional parton and LO accuracy for
+up to three additional parton emissions were matched and merged with
+the \SHERPA parton shower based on Catani--Seymour
+dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} using the \MEPSatNLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+The virtual QCD corrections for matrix elements at NLO accuracy were
+provided by the
+\OPENLOOPS library~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}. Samples
+were generated using the \NNPDF[3.0nnlo] PDFset~\cite{Ball:2014uwa}, along with
+the dedicated set of tuned parton-shower parameters developed by the
+\SHERPA authors.
+
+
+\paragraph{Additional description:}
+
+The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
+multiplicities which were then merged into an inclusive sample 
+using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj} which was extended to NLO
+accuracy using the \MEPSatNLO prescription~\cite{Hoeche:2012yf}. 
+The virtual QCD corrections for matrix elements at NLO accuracy were
+provided by the \OPENLOOPS library~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}. 
+The calculation was performed in the $G_\mu$ scheme, ensuring an optimal 
+description of pure electroweak interactions at the electroweak scale.
+
+\input{sherpa_scale_pdf.tex}
+
+
+\subsubsection[Vgamma (LO)]{$V\gamma$ (LO)}
+%\label{sec:MB-sherpa-vgamma-lo}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa-vylo}. 
+
+\begin{table}[htbp]
+  \caption{LO $V\gamma$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vylo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    366140--366154   & \SHERPA[2.2.4], $Z(\to ee/\mu\mu/\tau\tau)\gamma$, sliced in $p_{\mathrm{T}}^{\gamma}$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The production of $V\gamma$ final states was simulated with the
+\SHERPA[2.2.4]~\cite{Bothmann:2019yzt} generator. Matrix elements at LO
+accuracy in QCD for up to three additional parton emissions were
+matched and merged with the \SHERPA parton shower based on
+Catani--Seymour dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} 
+using the \MEPSatLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+Samples were generated using the \NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa},
+along with the dedicated set of tuned parton-shower parameters
+developed by the \SHERPA authors.
+
+
+\paragraph{Additional description:}
+
+The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
+multiplicities which were then merged into an inclusive sample using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj}. 
+The calculation was performed in the $G_\mu$ scheme, ensuring an optimal 
+description of pure electroweak interactions at the electroweak scale.
+
+\input{sherpa_scale_pdf.tex}
+
+
+\subsubsection{Tribosons (NLO)}
+%\label{sec:MB-sherpa-vvv-nlo}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa-vvvnlo}.
+
+\begin{table}[htbp]
+  \caption{NLO $VVV$ samples (factorised decays) with \SHERPA.}%
+  \label{tab:MB-sherpa-vvvnlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    363507--363509   & $3\ell1\nu2j$, $4\ell2j$\\
+    364242--364249   & fully leptonic decays\\
+    364336--364339   & $WWW\to 2\ell2\nu jj$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The production of triboson ($VVV$) events was simulated with the 
+\SHERPA[2.2.2]~\cite{Bothmann:2019yzt} generator using factorised gauge-boson decays. 
+Matrix elements, accurate to NLO for the inclusive process and to LO for up to 
+two additional parton emissions, were matched and merged with the \SHERPA parton 
+shower based on Catani--Seymour dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} 
+using the \MEPSatNLO prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}. 
+The virtual QCD corrections for matrix elements at NLO accuracy were 
+provided by the \OPENLOOPS library~\cite{Buccioni:2019sur,Cascioli:2011va,Denner:2016kdg}.
+Samples were generated using the \NNPDF[3.0nnlo] PEF set~\cite{Ball:2014uwa}, along with
+the dedicated set of tuned parton-shower parameters developed by the \SHERPA authors.
+
+
+\paragraph{Additional description:}
+
+The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
+multiplicities which were then merged into an inclusive sample 
+using an improved CKKW matching procedure~\cite{Catani:2001cc,Hoeche:2009rj} which is extended to NLO
+accuracy using the \MEPSatNLO prescription~\cite{Hoeche:2012yf}.  The
+calculation was performed in the $G_\mu$ scheme, ensuring an optimal description of pure electroweak interactions at the
+electroweak scale.
+
+\input{sherpa_scale_pdf.tex}
+
+
+\subsubsection{Tribosons (LO)}
+%\label{sec:MB-sherpa-vvv-lo}
+
+The descriptions below correspond to the samples in
+Table~\ref{tab:MB-sherpa-vvvlo}.
+
+\begin{table}[htbp]
+  \caption{LO $VVV$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vvvlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    407311--407315   & on- and off-shell contributions to 6-lepton production\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+The production of triboson ($VVV$) events was simulated with the
+\SHERPA[2.2.1]~\cite{Bothmann:2019yzt} generator. Matrix elements accurate to LO in QCD 
+for up to one additional parton emission were matched and merged with the \SHERPA parton shower based on Catani--Seymour
+dipole factorisation~\cite{Gleisberg:2008fv,Schumann:2007mg} using the \MEPSatLO
+prescription~\cite{Hoeche:2011fd,Hoeche:2012yf,Catani:2001cc,Hoeche:2009rj}.
+Samples were generated using the \NNPDF[3.0nnlo] PDF set~\cite{Ball:2014uwa},
+along with the dedicated set of tuned parton-shower parameters
+developed by the \SHERPA authors.
+
+\paragraph{Additional description:}
+
+The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
+multiplicities which were then merged into an inclusive sample 
+using an improved CKKW matching
+procedure~\cite{Catani:2001cc,Hoeche:2009rj}.  The calculation was
+performed in the $G_\mu$ scheme, ensuring an optimal description
+of pure electroweak interactions at the electroweak scale.
+
+\input{sherpa_scale_pdf.tex}

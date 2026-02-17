@@ -1,0 +1,149 @@
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasjournal.sty}}
+
+Turn on including these definitions with the option \Option{journal=true} and off with the option \Option{journal=false}.
+
+\input{atlasjournal}
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasmisc.sty}}
+
+Turn on including these definitions with the option \Option{misc=true} and off with the option \Option{misc=false}.
+
+\input{atlasmisc}
+
+\noindent A length \Macro{figwidth} is defined that is \SI{2}{\cm} smaller than \Macro{textwidth}.
+
+\noindent Monte Carlo generators and PDFs have an optional argument
+that allows you to include the version, e.g.\
+\verb|\PYTHIA[8]| to produce \PYTHIA[8] or\\
+\verb|\PYTHIA[(v8.160)]| to produce \PYTHIA[(v8.160)].
+
+\noindent A generic macro \verb|\twomass| is defined, so that for example
+\verb|\twomass{\mu}{\mu}| produces \twomass{\mu}{\mu} and \verb|\twomass{\mu}{e}| produces \twomass{\mu}{e}.
+
+A macro \verb|\dk| is also defined which makes it easier to write down decay chains.
+For example
+\begin{verbatim}
+\[\eqalign{a \to & b+c\\
+   & \dk & e+f \\
+   && \dk g+h}
+\]
+\end{verbatim}
+produces
+\[\eqalign{a \to & b+c\cr
+   & \dk & e+f \cr
+   && \dk g+h}
+\]
+Note that \Macro{eqalign} is also redefined in this package so that \Macro{dk} works.
+
+The following macro names have been changed:\\
+\verb|\ptsq| \(\to\) \verb|\pTsq|.
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasxref.sty}}
+
+Turn on including these definitions with the option \Option{xref=true} and off with the option \Option{xref=false}.
+
+\input{atlasxref}
+
+\noindent The following macros with arguments are also defined:
+\begin{xtabular}{ll}
+\verb|\App{1}|  & \App{1}\\
+\verb|\Eqn{1}|  & \Eqn{1}\\
+\verb|\Fig{1}|  & \Fig{1}\\
+\verb|\Refn{1}|  & \Refn{1}\\
+\verb|\Sect{1}| & \Sect{1}\\
+\verb|\Tab{1}|  & \Tab{1}\\
+\verb|\Apps{1}{4}| & \Apps{1}{4} \\
+\verb|\Eqns{1}{4}| & \Eqns{1}{4} \\
+\verb|\Figs{1}{4}| & \Figs{1}{4} \\
+\verb|\Refns{1}{4}| & \Refns{1}{4} \\
+\verb|\Sects{1}{4}| & \Sects{1}{4} \\
+\verb|\Tabs{1}{4}| & \Tabs{1}{4} \\
+\verb|\Apprange{1}{4}| & \Apprange{1}{4} \\
+\verb|\Eqnrange{1}{4}| & \Eqnrange{1}{4} \\
+\verb|\Figrange{1}{4}| & \Figrange{1}{4} \\
+\verb|\Refrange{1}{4}| & \Refrange{1}{4} \\
+\verb|\Sectrange{1}{4}| & \Sectrange{1}{4} \\
+\verb|\Tabrange{1}{4}| & \Tabrange{1}{4}
+\end{xtabular}
+
+The idea is that you can adapt these definitions according to your own preferences (or those of a journal).
+Note that the macros \Macro{Ref} and \Macro{Refs} were renamed to \Macro{Refn} and \Macro{Refns}
+in \Package{atlaslatex} 08-00-00, as \Macro{Ref} is now defined in the \Package{hyperref} package.
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasbsm.sty}}
+
+Turn on including these definitions with the option \Option{BSM} and off with the option \Option{BSM=false}.
+
+The macro \Macro{susy} simply puts a tilde (\(\tilde{\ }\)) over its argument,
+e.g.\ \verb|\susy{q}| produces \susy{q}.
+
+For \susy{q}, \susy{t}, \susy{b}, \slepton, \sel, \smu and
+\stau, L and R states are defined; for stop, sbottom and stau also the
+light (1) and heavy (2) states.
+There are four neutralinos and two charginos defined,
+the index number unfortunately needs to be written out completely.
+For the charginos the last letter(s) indicate(s) the charge:
+\enquote{p} for \(+\), \enquote{m} for \(-\), and \enquote{pm} for \(\pm\).
+
+\input{atlasbsm}
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasheavyion.sty}}
+
+Turn on including these definitions with the option \Option{hion=true} and off with the option \Option{hion=false}.
+The heavy ion definitions use the package \Package{mhchem} to help with the formatting of chemical elements.
+This package is included by \File{atlasheavyion.sty}.
+
+\input{atlasheavyion}
+
+%The following symbols were removed or modified with respect to the original submission
+%\input{atlasheavyion-mod}
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasjetetmiss.sty}}
+
+Turn on including these definitions with the option \Option{jetetmiss=true} and off with the option \Option{jetetmiss=false}.
+
+\input{atlasjetetmiss}
+
+\noindent The macro \Macro{etaRange} produces what you would expect:
+\verb|\etaRange{-2.5}{+2.5}| produces \etaRange{-2.5}{+2.5} while
+\verb|\AetaRange{1.0}| produces \AetaRange{1.0}.
+The macro \Macro{avg} can be used for average values:
+\verb|\avg{\mu}| produces \avg{\mu}.
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasmath.sty}}
+
+Turn on including these definitions with the option \Option{math=true} and off with the option \Option{math=false}.
+
+\input{atlasmath}
+
+\noindent The macro \Macro{spinor} is also defined.
+\verb|\spinor{u}| produces \spinor{u}.
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasother.sty}}
+
+Turn on including these definitions with the option \Option{other} and off with the option \Option{other=false}.
+
+\input{atlasother}

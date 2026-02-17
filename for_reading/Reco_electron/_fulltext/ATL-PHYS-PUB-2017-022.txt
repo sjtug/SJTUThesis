@@ -1,0 +1,3419 @@
+
+
+===== PAGE 1 =====
+ATL-PHYS-PUB-2017-022
+22 December 2017
+ATLAS PUB Note
+ATL-PHYS-PUB-2017-022
+22nd December 2017
+Electron and photon reconstruction and
+performance in ATLAS using a dynamical,
+topological cell clustering-based approach
+The ATLAS Collaboration
+This note presents the reconstruction of electrons and photons in ATLAS using a dynamic,
+topological cell clustering-based approach. This new technique allows for improved meas-
+urementsofelectronandphotonenergies,particularlyinsituationswhereanelectronradiates
+a bremsstrahlung photon, or a photon converts to an electron-positron pair. This note de-
+tails the changes to the ATLAS electron and photon reconstruction software, and assesses
+its performance under current LHC luminosity conditions using simulated data. Changes to
+the converted photon reconstruction are also detailed, which improve the reconstruction eﬃ-
+ciency of double-track converted photons, as well as reducing the reconstruction of spurious
+one-track converted photons. The performance of the new reconstruction algorithm is also
+presented in a number of important topologies relevant to precision Standard Model physics,
+as well as Higgs boson physics.
+©2017 CERN for the beneﬁt of the ATLAS Collaboration.
+Reproduction of this article or parts of it is allowed as speciﬁed in the CC-BY-4.0 license.
+
+===== PAGE 2 =====
+ X
+•
+•
+e-
+γ
+Supercluster
+Seed
+Satellite
+Figure 1: Diagram of an example supercluster showing a seed electron cluster and a satellite photon cluster.
+1 Motivation for using superclusters
+Using dynamic, variable-size clusters to reconstruct electrons and photons oﬀers numerous advantages
+over a method using ﬁxed-size clusters. In the past, the main reason for using a ﬁxed-size clustering
+approach was the inability to apply the contemporaneous calibration methodology to dynamically-sized
+clusters. However,thedevelopmentofmultivariatecalibrationtechniques[1]hasfreedthereconstruction
+from this constraint. It is now possible to use topological clusters (topo-clusters) [2], as described in
+Section 4, as a foundation to reconstruct electromagnetic (EM) showers from electrons and photons.
+A primary motivation for using dynamic clusters is the ability to recover low energy photons radiated
+due to bremsstrahlung interactions in the Inner Detector, and connect them to their associated electron
+or converted photon, forming what may be termedsuperclusters. This ability is unique to topo-clusters,
+owing to their ability to reconstruct showers down to theO (100MeV) range in energy. An example
+diagram of a supercluster is given in Figure 1. In this construction, an electron radiates a bremsstrahlung
+photonduetointeractionswiththematerialoftheInnerDetector. Thesuperclusteralgorithmattemptsto
+ﬁnd and connect the primary cluster formed from the electron shower (theseed cluster) with the nearby
+secondary cluster formed from the photon shower (thesatellite cluster).
+Another important motivation for using topo-clusters is that they grow in a fashion comparable to the
+naturaldevelopmentofanEMshowerinacalorimeter. Inparticular, ∼ 95%ofanelectromagneticshower
+is contained laterally within two units of the Moliere radius [3], with the shower size in the azimuthal
+directionvaryingsigniﬁcantlywithparticleenergyandmomentum. Theclusteringalgorithmwillexpand
+outward from a point of high energy deposition, capturing the surrounding shower within a dynamically-
+sized cluster. Topo-clusters follow the development of the shower across several calorimeter layers,
+collecting cells only in regions where a signiﬁcant amount of energy deposition is found. Furthermore,
+reconstructingshowersusingtopo-clustersallowsalinearenergyresponseacrossawiderangeofenergies,
+and very good energy resolution for both low and high energy particles. Topo-clusters also collect more
+energyonaveragethanslidingwindowclusters,requiringsmallercorrectionsforenergylossesbeforeand
+inside the calorimeter.
+By collecting and combining clusters originating from the primary electron with those from radiative
+interactionswithinthedetector,onecanrecoversomeoralloftheenergylostduetobremsstrahlung. Asa
+result,asigniﬁcantimprovementinenergyresolutionispossible,duetobringingthereconstructedenergy
+2
+
+===== PAGE 3 =====
+ofthecombinedclustersclosertothetotalenergydepositedbytheEMshower. Similarly,forphotonsthat
+converttoelectron-positronpairs,superclusterscanincludemoreoftheenergyoftheprimaryphoton. In
+particular, photons can produce multiple topo-clusters, which can then be merged into one supercluster.
+The use of ﬁxed-size clusters is suboptimal in this scenario, as the ﬁxed cluster size cannot properly
+accomodatethegrowthoftwoindependentEMshowers,particularlywhenthetwoclusterssharecells.
+2 The ATLAS detector
+The ATLAS detector is a general-purpose particle physics detector with a forward-backward symmetric
+cylindrical geometry and near4π coverage in solid angle. The inner tracking detector (ID) covers a
+pseudorapidityrange|η| < 2.5andconsistsofasiliconpixeldetector,asiliconmicrostripdetector(SCT),
+andatransitionradiationtracker(TRT)intherange |η| < 2.0. TheIDissurroundedbyasuperconducting
+solenoidwhichgeneratesa2Tmagneticﬁeld. TheIDprovidesaccuratereconstructionoftracksfromthe
+primary proton–proton collision region, while also identifying tracks from secondary vertices, allowing
+for the eﬃcient reconstruction of converted photons in the ID up to a radius of about 800 mm.
+The electromagnetic (EM) calorimeter is a LAr sampling calorimeter with an accordion geometry. It is
+divided into a barrel section (EMB), covering the pseudorapidity region|η| < 1.475 and two end-cap
+sections (EMEC), covering1.375 < |η| < 3.2. The barrel and end-cap sections are divided into 16
+and 8 modules in theφ-direction, respectively. The transition region between the EMB and the EMEC,
+1.37 <|η| < 1.52,hasalargeamountofmaterialinfrontoftheﬁrstactivecalorimeterlayerrangingfrom
+5− 10radiationlengths( X0). Boththebarrelandend-capcalorimetersarelongitudinallysegmentedinto
+three shower-depth layers for|η| < 2.5. The ﬁrst layer (L1), in the ranges|η| < 1.4 and 1.5 <|η| < 2.4,
+has a thickness of approximately4.4X0 and is segmented into high-granularity strips in theη-direction,
+typically 0.003×0.1in ∆η×∆φinEMB.Thesecondlayer(L2),whichcollectsmostoftheenergydeposited
+in the calorimeter by photon and electron showers, has a thickness of about17X0 and a granularity of
+0.025× 0.025 in ∆η× ∆φ. A third layer (L3) is used to correct leakage beyond the EM calorimeter for
+high-energy showers, and has a granularity of0.05× 0.025 in ∆η× ∆φ and a depth of about2X0.
+In front of the EM calorimeter, a thin presampler (PS) layer covers the pseudorapidity region|η| < 1.8,
+which is used to correct for energy loss upstream of the calorimeter. The PS consists of an active,
+segmented LAr layer with a thickness of 1.1 cm (0.5 cm) in the barrel (end-cap), and a granularity of
+∆η× ∆φ = 0.025× 0.1. In the region1.4 <|η| < 1.6, electrons and photons may also deposit energy in
+the “E4” scintillators, located in the gap between the barrel and end-cap cryostats. The E4 scintillators
+were introduced as an active component to mitigate energy resolution degradation caused by the large
+amount of material crossed by the particles in this region.
+Thehadroniccalorimeter,surroundingtheEMcalorimeter,consistsofaniron/scintillatortilecalorimeter
+in the range|η| < 1.7, and two copper/LAr calorimeters spanning1.5 <|η| < 3.2. The acceptance is
+further extended to|η| = 4.9 by two copper/LAr and tungsten/LAr forward calorimeters. The forward
+calorimeters also provide electron reconstruction capability, which is not considered in the following
+study. Lastly, the muon spectrometer, located beyond the calorimeters, consists of three large air-core
+superconducting toroid systems with precision tracking chambers, which provide accurate muon tracking
+for|η| < 2.7, as well as fast detectors for triggering within the region|η| < 2.4.
+3
+
+===== PAGE 4 =====
+3 Overview of electron and photon reconstruction
+The reconstruction algorithm ﬁrst selects topo-clusters to consider in building electrons and photons.
+It then performs a bremsstrahlung-aware reﬁt of tracks and matches them to the selected topo-clusters.
+The algorithm also builds conversion vertices out of the reﬁtted tracks and matches them to the selected
+topo-clusters. After the initial track-cluster matching and conversion building, the electron and photon
+superclusteralgorithmsrunseparatelyinparallel,asdescribedinmoredetailinSection6. Afterapplying
+initial position corrections to the resultant superclusters, the reconstruction algorithm matches tracks to
+the electron superclusters and conversion vertices to the photon superclusters. In general, an electron is
+deﬁned as an object consisting of a cluster built in the calorimeter (supercluster) and a matched track (or
+tracks), a converted photon is a calorimeter cluster matched to a conversion vertex (or vertices), and an
+unconverted photon is a cluster matched to neither an electron track nor a conversion vertex.
+Since one object may be reconstructed as both an electron and a photon, an ambiguity resolution is
+performed to remove part of the overlap. However, some overlap is allowed in order to maintain a high
+reconstructioneﬃciencyforelectronsandphotons,towhichphysicsanalysesmayapplytheirowncriteria.
+The ﬁnal electrons and photons are then built and calibrated, facilitating the calculation of additional
+variables used for quality cuts and ambiguity resolution. More details about these steps are given in
+the following sections, while the previous electron and photon reconstruction methods are described in
+Refs.[4]and[5]. Adiagramofthealgorithmﬂowforthenewelectronandphotonreconstructionisgiven
+in Figure 2.
+4 Topo-cluster reconstruction
+The foundation of the new electron and photon reconstruction is the topological cell clustering al-
+gorithm [2]. The changes to the reconstruction algorithm only aﬀect electrons and photons within Inner
+Detectoracceptance,anddonotaddresselectronsintheregion |η| > 2.5,whicharealreadyreconstructed
+usingatopo-cluster-basedapproach[6,7]. Thefollowingsectionbrieﬂydescribestopo-clusterformation
+intheATLAScalorimetersystem,anddescribeshowclustersfromtheexistingtopo-clusteringalgorithm
+are adapted for use in the new electron and photon reconstruction.
+4.1 Deﬁning topo-clusters
+Incontrasttotheslidingwindowalgorithmpreviouslyusedforelectronandphotonreconstruction[8],the
+topological cluster (topo-cluster) is formed in a way that more closely follows spatial signal-signiﬁcance
+patternsgeneratedbyparticleshowers. Inparticular,theobservablewhichgovernstheseedingandgrowth
+of a topo-cluster is the cell signiﬁcance,ςEM
+cell, computed as,
+ςEM
+cell =
+
+EEM
+cell
+σEM
+noise,cell
+
+, (1)
+where|EEM
+cell| is the absolute cell energy at the EM scale andσEM
+noise,cell is the expected cell noise. The
+standard topo-cluster reconstruction algorithm in ATLAS begins by formingproto-clusters using a set
+of noise thresholds in which the initial cell is required to haveςEM
+cell ≥ 4. In this initial stage, cells from
+4
+
+===== PAGE 5 =====
+Select topo-clusters
+Match tracks to topo-
+clusters
+GSF refit tracks loosely 
+matched to clusters
+Build conversion 
+vertices
+Match conversion 
+vertices to topo-
+clusters
+Seed electron superclusters  
+from track-matched topo-
+clusters
+Apply calibrations/
+corrections
+Match tracks again
+Seed photon 
+superclusters  
+from topo-clusters
+Match conversion 
+vertices again
+Apply calibrations/
+corrections
+Add satellite secondary 
+clusters to photon 
+superclusters
+Ambiguity-resolve 
+electron and photon 
+superclusters
+Build and calibrate 
+final electrons and 
+photons
+Calculate particle ID
+Add satellite secondary 
+clusters to electron 
+superclusters
+Figure 2: Algorithm ﬂow diagram for the new electron and photon reconstruction.
+5
+
+===== PAGE 6 =====
+the presampler and L1 are excluded from initiating proto-clusters, as doing so suppresses the formation
+of noise clusters. The proto-clusters then collect neighbouring cells with signiﬁcanceςEM
+cell ≥ 2. Each
+neighbour cellpassing the noisethreshold of2σ becomes aseed cell inthe nextiteration, collectingeach
+of its neighbors in the proto-cluster. If two proto-clusters contain the same cell with absolute energy2σ
+above the noise threshold, these proto-clusters are merged. After all nearby cells with absolute energies
+above 2σ have been collected, a ﬁnal set of neighbouring cells withςEM
+cell ≥ 0 are added to the cluster.
+This set of thresholds is commonly known as “4-2-0” topo-cluster reconstruction.
+After the initial collection of proto-clusters is formed, any proto-clusters with two or more local maxima
+can be split into separate clusters. In this case, a local maximum is signiﬁed byEEM
+cell > 500MeV, in
+addition to the requirements that the maximum cell has at least four neighbours, and that none of the
+neighbours have a larger signal. In principle, cells can be shared between two proto-clusters which have
+split into separate topo-clusters, with the cell assigned a fractional weight for each cluster based on the
+energies of the clusters, and the distances of the cell to the center of gravity of the two clusters(d1, d2).
+The fractional weight assigned to the ﬁrst cluster is given by [2],
+wcell,1 =
+EEM
+clus,1
+EEM
+clus,1 + r EEM
+clus,2
+(2)
+where r = exp(d1− d2), such that the weight for the cell in the second split cluster is given by [2],
+wcell,2 = 1− wcell,1 =
+r EEM
+clus,2
+EEM
+clus,1 + r EEM
+clus,2
+. (3)
+4.2 Building EM topo-clusters
+Inpractice,thetopo-clusteralgorithmisnotlimitedtooneregionofthedetector;cellsfromboththeLAr
+and Tile calorimeters may be included in a single topo-cluster. The choice was made to build electron
+and photon clusters using the set of 4-2-0 topo-clusters reconstructed by default in the ATLAS software,
+meaning that the initial clusters must be modiﬁed to consider cells from the EM calorimeter only. The
+primary reason for using the same initial topo-clusters as other ATLAS object reconstruction algorithms
+(jets, τ leptons, etc.) is that doing so allows for future improvements to topo-cluster-based isolation
+calculations [9, 10], as well as the potential for adoption of a detector-wide particle ﬂow reconstruction
+algorithm [11, 12]. The eﬃciency and purity of selecting clusters originating from true EM showers can
+also be enhanced by placing initial cuts on the cluster energy within the EM calorimeter, and summing
+cells appropriately.
+To begin the electron and photon reconstruction, rather than building a new set of clusters, the algorithm
+duplicates the set of 4-2-0 topoclusters reconstructed in the entire calorimeter system. To isolate clusters
+which are primarily the result of showers in the EM calorimeter, a initial selection cut is made for each
+cluster on the EM fraction,fEM, calculated as,
+fEM = EL1 + EL2 + EL3 + w· (EE4 + EPS)
+Eclus
+, w =
+
+1, 1.37 <|η| < 1.63
+0, otherwise (4)
+6
+
+===== PAGE 7 =====
+EM fraction
+0
+0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 Normalized to unity
+4
+−103
+−102
+−101
+−101
+ATLAS Simulation Preliminary Electrons
+Pile-up
+(a) fEM
+EM frac. cut
+0
+0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 Efficiency
+0.2
+0.4
+0.6
+0.8
+1
+ATLAS
+Simulation Preliminary Electrons
+Pile-up
+ (b) Eﬃciency
+Figure 3: Distributions offEM and reconstruction eﬃciency for simulated true electron clusters (black) and pile-up
+(red) with⟨µ⟩≤ 30.
+where ELx is the cluster energy in layerx of the calorimeter. The term(EE4 + EPS) is only considered for
+clusterswithinthetransitionregionof 1.37 <|η| < 1.63,sinceelectronsandphotonsinthat η regiontend
+to deposit non-negligible amounts of energy in the pre-sampler and E4 scintillators. The latter term is
+excluded in other detector regions to decrease noise. Hadronic contributions to the cluster are suppressed
+by removing the hadronic calorimeter cells from each cluser, leaving only cells belonging to the LAr
+calorimeter, the presampler, and the E4 scintillators. After this step, the cluster position and kinematics
+are recalculated using the remaining cells.
+AnimportantconsiderationisrobustnessagainstthereconstructionandselectionofspuriousEMclusters
+which come from pile-up interactions, as well asπ0→ γγ decays. To this end, a lower threshold of
+ET > 400MeV was set to accept topo-clusters. This threshold was chosen to be similar to that which was
+previously set for topo-cluster-based studies ofJ/ψ→ e+e− decays [13], as well as studies ofπ0→ γγ
+decaysat√s = 900GeV[14]. This thresholdalso roughlycorresponds tothe pT acceptancethreshold for
+Inner Detector tracks.
+Studies were performed to determine an optimal value offEM which limits the acceptance of clusters
+originating from pile-up interactions and hadronic particles, while maximizing the eﬃciency of selecting
+primary electron clusters. To this end, samples of simulated single electrons were produced using a
+Geant-basedMonteCarlogeneratorandpassedthroughafullsimulationoftheATLASdetector[15,16].
+The simulated electrons were reconstructed under two scenarios: without simulated pile-up eﬀects; and
+with a pile-up level of⟨µ⟩∼ 25− 30. In the latter scenario, any clusters within∆η < 0.2 and ∆φ < 0.2
+of the generated electron in each event were removed to obtain a sample consisting purely of pile-up
+clusters. Distributionsof fEMandtheelectronreconstructioneﬃciencyforvariouscutson fEMareshown
+in Figure 3 for true electron clusters which have been reconstructed with⟨µ⟩ = 0, and pile-up clusters.
+Ultimately, fEM > 0.5waschosenasapre-selectionrequirementontheinitialtopo-clusters,asitrejected
+∼ 60%of pile-up clusters without limiting the eﬃciency for selecting true electron topo-clusters.
+7
+
+===== PAGE 8 =====
+5 Track reconstruction, track-cluster matching, and photon conversion
+reconstruction
+Track reconstruction for electrons and photons remains largely unchanged from what is described in
+Ref. [4]. Therefore, the following sections brieﬂy summarize the track reconstruction and track-cluster
+matching methods used for electron and photon reconstruction in ATLAS. This section also contains
+a description of changes to the track reconstruction component of the converted photon reconstruction
+which allow for improved eﬃciency in higher noise and luminosity conditions.
+5.1 Track reconstruction for electrons and photons
+Electron and photon track reconstruction in ATLAS begins with EM clusters that pass loose shower
+shape requirements in hadronic leakage and energy distribution inη. These initial clusters are used to
+create Regions of Interest (ROIs). Within these ROIs, standard track pattern reconstruction [17] is ﬁrst
+performed everywhere. If the pattern recognition fails for a silicon track seed that is within an ROI, a
+modiﬁedpatternreconstructionalgorithmisperformedbasedonaKalmanﬁlterformalism[18],allowing
+forupto 30%energylossateachmaterialintersection. Trackcandidatesarethenﬁttedwiththeglobal χ2
+ﬁtter [19], allowing for additional energy loss in cases that the standard track ﬁt fails. Tracks with silicon
+hitslooselymatchedtoEMclustersarereﬁttedusingaGaussianSumFilter(GSF)ﬁtter[20],anon-linear
+generalization of the Kalman ﬁlter, for improved track parameter estimation.
+5.2 Track matching for electrons
+The loosely-matched, reﬁtted tracks are then matched to EM clusters with tighter requirements inη and
+φ. If multiple tracks are matched to a cluster, they are sorted in the following order, with the ﬁrst being
+usedtodeﬁnetheelectronproperties. Trackswithhitsinthepixeldetectorarepreferred,thentrackswith
+hits in the SCT, but not in the Pixel detector. Within each category, tracks with a better∆R match inη
+- φ – where the extrapolation is done with the track momentum rescaled to the cluster energy ﬁrst and
+unrescaled second – are preferred, unless the diﬀerences are small. In the latter case, the track with more
+pixel hits is preferred, giving an extra weight to a hit in the innermost layer. The momentum rescaling is
+performedtoimprovetrack-clustermatchingininstanceswherethetrackmomentumchangessigniﬁcantly
+due to bremsstrahlung radiation. Tracks are matched to potential seed clusters using variables related to
+the distance between the track and cluster. Further details are given in Ref. [4].
+5.3 Photon conversion reconstruction
+The photon reconstruction is largely unchanged from the method described in Ref. [5]. The loosely-
+matched tracks described in Section 5.1 serve as input to the conversion vertex reconstruction. Both
+tracks with silicon hits (denotedSi tracks) and tracks reconstructed only in the TRT (denotedTRT
+tracks) are used for the conversion reconstruction. Two-track conversion vertices are reconstructed from
+two tracks forming a vertex consistent with that of a massless particle, while single-track vertices are
+essentially tracks without hits in the innermost sensitive layers. To increase the converted photon purity,
+the tracks used to build conversion vertices must generally have a high probability to be electron tracks
+as determined by the TRT [21], especially for single-track vertices and conversion vertices constructed
+8
+
+===== PAGE 9 =====
+ [GeV]TE
+100 200 300 400 500
+ reconstructionγ Efficiency for conv. 
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+ [GeV]TE
+100 200 300 400 500
+ reconstructionγ Efficiency for conv. 
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+ Previous reco 
+ Current reco 
+ All types 
+ 2-track Si 
+ 2-track TRT 
+ 2-track Si-TRT 
+ 1-track Si 
+ 1-track TRT 
+ATLAS Simulation Preliminary
+>µ<
+0 10 20 30 40 50 60
+ reconstructionγ Efficiency for conv. 
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+ Previous reco
+ Current reco 
+ All types 
+ 2-track Si 
+ 2-track TRT 
+ 2-track Si-TRT 
+ 1-track Si 
+ 1-track TRT 
+ATLAS Simulation Preliminary
+>µ<
+0 10 20 30 40 50 60
+ misreconstructionγ Efficiency for unconv. 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+>µ<
+0 10 20 30 40 50 60
+ misreconstructionγ Efficiency for unconv. 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+ Previous reco 
+ Current reco 
+ 2-track TRT 
+ 1-track TRT 
+ATLAS Simulation Preliminary
+Figure 4: The top plot shows the converted photon reconstruction eﬃciency and contributions of the diﬀerent
+conversion types as a function ofEtrue
+T , inclusive in⟨µ⟩ for a uniform⟨µ⟩ distribution between 0 and 60. On the
+bottom, eﬃciency of the reconstruction of converted photons and contributions of the diﬀerent conversion types
+(left), and the probability of an unconverted photon to be mistakenly reconstructed as a converted photon and
+contributions of the diﬀerent conversions types (right), both as a function of⟨µ⟩.
+from standalone-TRT tracks. If there are multiple conversion vertices matched to a cluster, double-
+track conversions with two silicon tracks are preferred over other double-track conversions, followed
+by single-track conversions. Within each category, the vertex with the smallest conversion radius is
+preferred. Conversion vertex matching is performed twice, ﬁrst to the potential seed clusters, and then to
+the complete photon superclusters. An arbitration relying on the properties of the tracks and conversion
+vertices matched to a given EM cluster is performed to determine whether an object is reconstructed as
+an electron, a photon, or both.
+Since the publication of Ref. [5], the converted photon reconstruction has undergone several changes to
+improvebothconvertedreconstructioneﬃciency,andrejectionoffakeconvertedphotons. Thesechanges
+weremadeovertwoiterationsofthereconstructionsoftware, denotedthe previousandcurrentiterations,
+withthelatterbeingthemostrecentiterationofthesoftwaredetailedinthisnote. Forthepreviousversion
+of the reconstruction software, improvements were made in track reconstruction and conversion vertex
+building for TRT tracks. The reconstruction of TRT tracks was restricted to ROIs deﬁned by EM clusters
+as in Section 5.1. The eﬃciency for the reconstruction of double-track TRT conversions was improved
+by allowing the reconstruction of TRT tracks which share up to70% of hits. To reduce the fraction of
+unconverted photons reconstructed as double- or single-track TRT conversions, requirements on the TRT
+9
+
+===== PAGE 10 =====
+tracks were tightened. The tracks were required to have at least25% precision hits, deﬁned as hits with
+a track-to-wire distance within 2.5 times of its uncertainty [22]. In addition, the determination of the
+probability of a track to be an electron using high-threshold hit information from the TRT was improved,
+taking into account the TRT occupancy as a measure of the pile-up level of an event [23].
+For the current version of the reconstruction software, additional changes were made to both improve the
+reconstruction eﬃciency of double-track Si conversions, and reduce the fraction of unconverted photons
+mistakenly reconstructed as double- or single-track TRT conversions. The eﬃciency for double-track
+Si conversions was improved by modifying the tracking ambiguity processor, which determines which
+track seeds are retained to reconstruct tracks. For double-track conversion topologies, the two tracks are
+expected to be close-by, parallel, and to potentially have shared hits, therefore oftentimes only one track
+is reconstructed. The optimization in the ambiguity processor results in the recovery of the second track
+that was previously discarded. Overall, these modiﬁcations result in a2− 4% improvement in eﬃciency
+for double-track Si conversions, with larger improvements of up to9% for photons with conversion radii
+larger than 200 mm. In addition to reconstructing the second track of what would otherwise have been
+single-track Si conversions, the overall conversion reconstruction eﬃciency is improved by about1% by
+reducing the fraction of low-radius converted photons that is only reconstructed as electrons.
+To reduce the fraction of unconverted photons reconstructed as double- or single-track TRT conversions,
+requirements on the TRT tracks were tightened. The tracks are required to have at least30% precision
+hits. Inaddition,therequirementontheprobabilityofatracktocorrespondtoanelectron,asdetermined
+by the TRT, was tightened to 0.75 for tracks used in double-track TRT conversions and 0.85 for tracks
+usedinsingle-trackTRTconversions,comparedtothepreviousrequirementof0.7fortracksusedinboth
+conversiontypes. Thefractionofunconvertedphotonserroneouslyreconstructedasconvertedphotonsis
+below 5%for events with⟨µ⟩ < 60.
+ThetopplotinFigure4showsthereconstructioneﬃciencyforconvertedphotonsasafunctionofthe ETof
+thesimulatedphotonforthepreviousandcurrentreconstructionsoftwareversionsdescribedabove,along
+with the contributions of the diﬀerent conversion types. For a photon to be classiﬁed as a true converted
+photon, the true conversion radius needs be to smaller than 800 mm. Only simulated photons with a
+transverse energy greater than 20 GeV are considered. The simulated photons are distributed uniformly
+in|η|, with most of the photons having a transverse momentum smaller than 200 GeV. The bottom left
+plot of Figure 4 shows the reconstruction eﬃciency for converted photons along with the contributions
+of the diﬀerent conversion types as a function of⟨µ⟩. The improvement in the reconstruction eﬃciency
+for double-track Si conversions and the corresponding reduction of single-track Si conversions is clearly
+visible. The slight reduction in double- and single-track TRT conversions needed to signiﬁcantly reduce
+the rate of true unconverted photons reconstructed as TRT conversion is also visible in the bottom right
+plot of Figure 4.
+6 Deﬁning and building superclusters
+The reconstruction of electron and photon superclusters proceeds in two stages: In the ﬁrst stage, topo-
+clusters are evaluated for use as seed cluster candidates, which form the basis of superclusters; in the
+second stage, clusters near the seed candidates are identiﬁed as satellite cluster candidates, which may
+emerge from bremsstrahlung radiation or topo-cluster splitting. Satellite clusters are added to the seed
+candidates to form the ﬁnal superclusters, if they pass the necessary selection criteria. The following
+10
+
+===== PAGE 11 =====
+sectionsdetailthecriteriafordeterminingwhetheragivenclusterqualiﬁesasaseedorsatellitecandidate,
+and how satellite candidates are associated to seed candidates.
+6.1 Selecting topo-clusters to build superclusters
+The initial list of potential seed topo-clusters is sorted according to descendingpT, such that higherpT
+seed clusters collect only lowerpT satellites.1 For a cluster to become an electron supercluster seed, it is
+required to have a minimum energy of1GeV and must be matched to a track with≥ 4 hits in the silicon
+trackingdetector. Forphotonreconstruction,aclustermusthaveanenergygreaterthan 1.5GeVtoqualify
+as a supercluster seed, due to the absence of a matching track.
+Once a cluster is denoted a supercluster seed, the satellite ﬁnding stage begins, in which all remaining
+unusedclustersareexaminedforassociationtotheseedcluster. Inpractice,thereisnoupper pT threshold
+on satellites, other than the requirement that satellites have lowerpT than the seed cluster. The satellite
+ﬁnding process is summarized diagrammatically in Figure 5. For both electrons and photons, a cluster
+is considered a satellite if it falls within a window of∆η× ∆φ = 0.075× 0.125 around the seed cluster
+barycenter, as these cases tend to represent secondary EM showers originating from the same initial
+electron or photon.
+Forelectrons,anadditionalsatelliteclustersearchisperformedusingawindowof ∆η× ∆φ = 0.125× 0.3
+around the seed cluster barycenter. Within this larger window, a cluster is considered a satellite if it has
+≥ 1 matched tracks, such that its “best-matched” track is also the best-matched track for the seed cluster.
+Thisstepreliesmoreontrackinginformationtodiscriminatedistantradiativephotonsfrompile-upnoise,
+or other unrelated clusters.
+For converted photons, a cluster is added as a satellite if it is either matched to a track that is one track
+of the conversion vertex associated to the seed cluster, or it has the same matched conversion vertex
+as the seed cluster. By default, only the best-matched tracks and conversion vertices are used for the
+matching. Furthermore, only tracks that contain silicon hits, and conversion vertices made up only of
+tracks containing silicon hits, are used for satellite cluster matching.
+Once all satellite clusters have been found for a given seed cluster, the algorithm iterates to the next
+highest pT cluster in the list, and checks whether it has been previously used as a satellite cluster. If the
+cluster has previously been used as a satellite, it is skipped, and the iteration continues until an unused
+cluster has been found. When an unused cluster is found which meets the seed cluster requirements, the
+superclustering algorithm begins again, with this iterative process continuing until all available clusters
+have been examined.
+6.2 Selecting the cells of a supercluster
+Once a candidate seed cluster has been associated to a number of satellite candidates, the ﬁnal step in
+the superclustering algorithm is to combine the list of cells associated to each individual cluster to make
+a ﬁnal list for the supercluster, a process denotedcell summation. When combining topo-clusters to
+form superclusters, only cells from the ﬁrst three LAr calorimeter layers are considered, as well as the
+1 As described in Section 4.2, topo-clusters used for building superclusters use only cells in the LAr calorimeter to deﬁne the
+cluster momenta and postions, except in the transition region, where the pre-sampler and E4 scintillators are also used. For
+the sorting order, and for the seedpT selection, the pre-sampler and E4 energy is ignored.
+11
+
+===== PAGE 12 =====
+Add topo-clusters that have the same conversion  
+vertex matched as the seed cluster.
+Add topo-clusters with a track match that is part of  
+the conversion vertex matched to the seed cluster.
+z
+3 × 0.025
+5 × 0.025
+Add all clusters within 3 × 5 window 
+around seed cluster.
+Converted photons only:
+Electrons only:
+Seed, secondary cluster  
+match the same track.
+5 × 0 .025
+12 × 0 .025
+All e±, γ:
+z
+Figure 5: Diagram of the superclustering algorithm for electrons and photons.
+ATLASSimulation Internal ATLASSimulation Internal
+SC (full topo.) -restricted)ηSC (
+ATLASSimulation Internal ATLASSimulation Internal
+SC (full topo.) -restricted)ηSC (
+ATLASSimulation Internal ATLASSimulation Internal
+SC (full topo.) -restricted)ηSC (
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+ = -1.02true
+η = 18.04 GeV, true = 16.19 GeV, ErawE
+10− 8− 6− 4− 2− 0 2 4 6 8 10
+ cell indexη
+10−
+8−
+6−
+4−
+2−
+0
+2
+4
+6
+8
+10
+ cell indexφ
+)cell(E10z-axis: log
+ = -1.02true
+η = 18.04 GeV, true = 16.19 GeV, ErawE
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+ = -1.02true
+η = 18.04 GeV, true = 15.62 GeV, ErawE
+10− 8− 6− 4− 2− 0 2 4 6 8 10
+ cell indexη
+10−
+8−
+6−
+4−
+2−
+0
+2
+4
+6
+8
+10
+ cell indexφ
+)cell(E10z-axis: log
+ = -1.02true
+η = 18.04 GeV, true = 15.62 GeV, ErawE
+ATLASSimulation Internal ATLASSimulation Internal
+SC (full topo.) -restricted)ηSC (
+>µ<
+0102030405060
+ misreconstructionγEfficiency for unconv. 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+>µ<
+0102030405060
+ misreconstructionγEfficiency for unconv. 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+ Previous reco 
+ Current reco 
+ 2-track TRT 
+ 1-track TRT 
+ATLASSimulation Preliminary
+>µ<
+0102030405060
+ misreconstructionγEfficiency for unconv. 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+>µ<
+0102030405060
+ misreconstructionγEfficiency for unconv. 0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+ Previous reco 
+ Current reco 
+ 2-track TRT 
+ 1-track TRT 
+ATLASSimulation Preliminary
+Figure6:Eﬀectofrestrictingclustersizein |η|onasampleelectronsuperclusterinthesecondEMcalorimeterlayer,
+simulatedusinga Geant-basedMonteCarlogenerator. Theleftplotshowstheclustercellsbeforethe η-restriction,
+and the right plot shows the cells after the restriction. Thez-axis scale is the base-10 logarithm of the cell energy
+in MeV.
+12
+
+===== PAGE 13 =====
+pre-sampler, and the E4 scintillators in the transition region. Due to topo-cluster splitting, it is possible
+for two separate clusters to contain the same cell, with each cluster receiving a fraction of the cell energy.
+If two clusters which share cells are summed together, the energy of the summed cluster should equal the
+summed energies of the individual clusters, as each cell can only contribute a maximum ofEcell to the
+overall construction.
+ThelateralsizeofanEMshoweristypicallyafewMoliereradiusunits,e.g. 90%oftheenergyiscontained
+in one unit, and 95% in two units, with material interactions spreading mainly in theφ-direction. Within
+thecurrentcalibrationprocedure,asdescribedinSection8,bettersystematicuncertaintyestimatesonthe
+linearity of the energy response are expected if thelateral leakage– or the fraction of true shower energy
+not contained in a cluster – is roughly constant with increasing energy. Therefore, as a ﬁnal step prior to
+calibration,thesizeofeachconstituenttopo-clusterisrestrictedtothree(ﬁve)cellsacrossinthe ηdirection
+in the barrel (end-cap) region, with respect to the cluster barycenter2. This restriction is accomplished
+by removing cells from the cluster which fall outside of the threshold inη. Accordingly, restricting the
+clustersizeinthe η-directionlimitstheinclusionofcellswhichdonotcontainasigniﬁcantamountoftrue
+energy. No restrictions are applied in theφ-direction, which allows the cluster to include cells containing
+energy from interactions between the primary electron or photon, and the detector material.
+An illustration of the eﬀect of theη-restriction with an electron supercluster is shown in Figure 6, where
+the distribution of cells is shown in the second EM calorimeter layer. In this distribution, thez-axis
+is the logarithm of the cell energy in MeV. The lateral leakage is correlated to theshower containment
+Ecluster
+true /Eshower
+true , or the ratio of the EM scale energy contained in the cluster, to the total EM scale energy
+deposited by the particle shower in the calorimeter. The eﬀects of the η-restriction on the shower
+containment and number of cluster cells acquired were evaluated using simulated electrons generated
+using a Geant-based Monte Carlo generator with⟨µ⟩ = 0, and passed through a full simulation of the
+ATLAS detector [15, 16]. As shown in Figure 7, the change in the average shower containment for
+η-restricted superclusters is on-par with clusters built using the sliding window algorithm, although the
+value of the containment tends to be higher, particularly for end-cap clusters. Theη-restriction does
+not signiﬁcantly impact the electron and converted photon reconstruction, as the magnetic ﬁeld in the
+Inner Detector ensures that the separation of the electron and bremsstrahlung photons (or the converted
+photon tracks) occurs mainly in theφ direction. Likewise, Figure 8 shows that the average number of
+cellsacquiredpertopo-clusterchangeslessrapidlywithincreasingshowerenergyforelectronsbuiltusing
+|η|-restricted topo-clusters, suggesting a better robustness against the acquisiton of extra cells from e.g.
+pile-up interactions at higher electron energies.
+7 Uncalibrated supercluster performance
+The reconstruction of supercluster electrons and photons was assessed using samples of simulated single
+particles, generated using aGeant-based Monte Carlo generator and passed through a full simulation of
+the ATLAS detector [15, 16]. The samples were generated with⟨µ⟩ = 0, while using noise thresholds
+tuned for⟨µ⟩∼ 40, both to allow a consistent description of the performance improvements before and
+aftercalibration,andalsoserveasinputforthemultivariateenergycalibrationdescribedinSection8. The
+samplesaregeneratedsuchthattheinclusivedistributionof Etrue
+T isuniformbetween0and3TeV,andthe
+distribution of|ηtrue| is uniform between 0 and 2.47. The quantities of interest for assessing performance
+with respect to previous software iterations are the peak and width (resolution) of the energy response,
+2 The full cluster information is also retained to allow for later use by physics analyses.
+13
+
+===== PAGE 14 =====
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 shower
+true/Ecluster
+true E〈
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<0.8η0<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 shower
+true/Ecluster
+true E〈
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<1.37η0.8<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 shower
+true/Ecluster
+true E〈
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<1.81η1.52<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 shower
+true/Ecluster
+true E〈
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<2.01η1.81<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 shower
+true/Ecluster
+true E〈
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<2.45η2.01<|
+ATLAS Simulation Preliminary
+Figure 7: Average shower containment as a function of true shower energy for simulated electrons reconstructed
+via sliding window and supercluster-based approaches with⟨µ⟩ = 0. Included also are superclusters built using
+topo-clusters which are allowed unrestricted growth in theη-direction.
+14
+
+===== PAGE 15 =====
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 # cells 〈
+0
+100
+200
+300
+400
+500
+600
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<0.8η0<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 # cells 〈
+0
+100
+200
+300
+400
+500
+600
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<1.37η0.8<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 # cells 〈
+0
+100
+200
+300
+400
+500
+600
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<1.81η1.52<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 # cells 〈
+0
+100
+200
+300
+400
+500
+600
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<2.01η1.81<|
+ATLAS Simulation Preliminary
+ [GeV]shower
+trueE
+30 100 200 1000
+〉 # cells 〈
+0
+100
+200
+300
+400
+500
+600
+SW
+| constrained topo)ηSC (|
+SC (full topo)
+|<2.45η2.01<|
+ATLAS Simulation Preliminary
+Figure 8: Average number of cluster cells as a function of true shower energy for simulated electrons reconstructed
+via sliding window and supercluster-based approaches with⟨µ⟩ = 0. Included also are superclusters built using
+topo-clusters which are allowed unrestricted growth in theη-direction.
+15
+
+===== PAGE 16 =====
+Eraw/Etrue, whereEtrue is the truth energy of the particle generated via Monte Carlo, prior to any detector
+simulation, and Eraw is the raw (uncalibrated)accordion energy, where Eraw = EL1 + EL2 + EL3. To
+quantify the width of the energy response, theeﬀective interquartile rangeis used, deﬁned as,
+IQE = Q3− Q1
+2Φ−1(0.75) . (5)
+In this equation,Q3− Q1 is theinterquartile range(IQR) of the energy response. Here,Q1 and Q3 are
+the ﬁrst and third quartiles of the distribution, and the functionΦ is the cumulant of the standard Normal
+distribution. The area between two consecutive quartiles encompasses25% of the full distribution, such
+that the area enclosed byQ1 and Q3 contains the middle 50% of the distribution.
+The IQE is used to characterize energy resolution in single particles because it more properly factors
+in asymmetric behaviour in the tails of the energy response, in comparison to a Gaussian ﬁt around the
+peak of the response, for example. These tails can be prevalent for lowpT charged particles, where
+bremsstrahlunglossescanlimittheamountofenergyrecoveredfromagivenEMshower. Conversely,the
+width of a Gaussian ﬁt around the peak of the energy response may underestimate this important eﬀect.
+The peak position of the energy response distribution is used as another metric of performance; a peak
+closer to Eraw/Etrue = 1 indicates a better estimate of the true energy deposited by the shower, meaning
+that the relative correction done by the calibration will be smaller. The peak of the response distribution
+is obtained using a Gaussian ﬁt in a region[−3σ, 2σ] around the mean of the distribution, whereσ is
+taken to be the RMS of the response distribution.
+7.1 Electrons and converted photons
+Comparisons of the uncalibrated response of simulated single electrons built using sliding window and
+supercluster-based approaches are given in Figures 9 and 10. The uncalibrated cluster energy serves as
+an input to the energy calibration applied afterward, as described in Section 9. In particular, Figure 9
+showsacomparisonoftheIQEofthetwomethodsindiﬀerentregionsof |ηtrue| and Etrue
+T ,whileFigure10
+shows the ﬁtted Gaussian peak for the same regions. The reconstructed electrons in these distributions
+are required to correspond to true primary electrons, and are required to pass loose electron quality
+requirements [24]. The cluster-related variables in the electron quality requirements for superclusters are
+thesameasthoseusedforslidingwindowclusters. Therefore,forasuperclusterwiththesamebarycenter
+as a sliding window cluster, reconstructed using the same underlying shower, the quality requirements
+should produce the same result.
+In most regions of phase space, the supercluster algorithm either matches the performance of the sliding
+window in terms of resolution or peak position, or improves upon the previous algorithm. A notable
+improvement in resolution can be found in the end-cap region of the detector, as well as in the central
+regionforlow pT electrons. Athigher pT,thetwoalgorithmstendtoconvergetothesameresultsinterms
+of resolution, although the ﬁtted Gaussian peak is consistently closer toEraw/Etrue = 1, suggesting the
+topocluster-based reconstruction captures more true energy than the sliding window-based approach.
+Comparisonsoftheuncalibratedresponseofconvertedphotonsbuiltusingslidingwindowandsupercluster-
+based approaches are given in Figure 11, showing the IQE of the two methods in diﬀerent regions of
+|ηtrue| and Etrue
+T , and Figure 12, showing the ﬁtted Gaussian peak for the same regions. The reconstructed
+converted photons in these distributions are required to correspond to true primary photons, and pass
+16
+
+===== PAGE 17 =====
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<0.8
+ηElectron 0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<1.37
+ηElectron 0.8<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<1.81
+ηElectron 1.52<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<2.0
+ηElectron 1.81<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<2.2
+ηElectron 2.0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<2.47
+ηElectron 2.2<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+Figure9:Uncalibratedenergyresponseresolution,expressedintermsofIQE,forsimulatedelectronswith ⟨µ⟩ = 0,
+with noise thresholds tuned for⟨µ⟩∼ 40. Sliding window-based response is shown in red, while the supercluster-
+based response is shown in blue.
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<0.8
+ηElectron 0<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<1.37
+ηElectron 0.8<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<1.81
+ηElectron 1.52<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<2.0
+ηElectron 1.81<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<2.2
+ηElectron 2.0<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<2.47
+ηElectron 2.2<SC
+SW
+Figure 10: Uncalibrated peak position of the energy response, calculated using a Gaussian ﬁt to the core of the
+response distribution, for simulated electrons with⟨µ⟩ = 0, with noise thresholds tuned for⟨µ⟩∼ 40. Sliding
+window-based response is shown in red, while the supercluster-based response is shown in blue.
+17
+
+===== PAGE 18 =====
+loose photon quality requirements [25]. The cluster-related variables in the photon quality requirements
+for superclusters are the same as those used for sliding window clusters. Therefore, for a supercluster
+withthesamebarycenterasaslidingwindowcluster,reconstructedusingthesameunderlyingshower,the
+quality requirements should produce the same result. The supercluster algorithm for converted photons
+performs similarly to the electron case, either matches the performance of the sliding window algorithm,
+or improving upon the previous algorithm. A notable improvement in resolution can be found in the
+end-cap region of the detector, as well as in the central region for lowpT converted photons.
+7.2 Unconverted photons
+Comparisons of the uncalibrated response of unconverted photons built using sliding window and
+supercluster-based approaches are given in Figures 13 and 14. In particular, Figure 13 shows a com-
+parison of the IQE of the two methods in diﬀerent regions of|ηtrue| and Etrue
+T , while Figure 14 shows the
+ﬁtted Gaussian peak for the same regions. The reconstructed unconverted photons in these distributions
+are required to correspond to true primary photons, and pass loose photon quality requirements [25].
+Unlike converted photons and electrons, unconverted photons do not leave tracks in the Inner Detector,
+hence they are not subject to energy loss due to bremsstrahlung radiation. Therefore, it is not expected
+that the use of superclustering will consistently improve the resolution of reconstructed unconverted
+photons. As shown in Figures 13 and 14, for barrel photons, there is little to no change in resolution
+observed between unconverted photons reconstructed using sliding window and supercluster approaches,
+although supercluster performance can degrade at very highpT. It is observed that some ET bins in
+1.52 <|η| < 1.81 show resolution improvement, however, but the overall performance is equivalent to
+the previous algorithm.
+8 MVA calibration
+For both electrons and photons, a multivariate (MVA) approach is used for energy calibration, where
+regression boosted decision trees (BDT) are trained to correct the uncalibrated energies of electron
+and photon candidates. A detailed description of the calibration method and performance is given in
+Ref. [26], but a brief explanation follows for contextual purposes. The multivariate training is performed
+separately for electrons, converted photons, and unconverted photons. For each type of particle, single
+particle samples are used for training and testing, where the particles have passed through a full detector
+simulation, but no simulated pile-up noise is added. The multivariate algorithm uses information on the
+correlations between a set of input training variables and atarget Etrue/Eraw to derive a correction factor
+for the target variable, such that its distribution is centerd around one. This correction factor is then
+applied toEraw to retrieve the calibrated energy.
+The training variables used in the MVA calibration for electrons and photons are the uncalibrated energy,
+Eraw; the ratiof 0 of the pre-sampler energy to the calorimeter energyEL0/Eraw; the ratio of the energies
+measured in the ﬁrst two layers of the calorimeter,EL1/EL2; the cluster barycenter pseudorapidity in the
+ATLAScoordinatesystem, ηclus;thecellindex,orthedistanceoftheclusterfrom η = 0inthecalorimeter
+frame, in terms of the number of cells in theη-direction; and cluster barycenter variables related toη and
+φ within the calorimeter frame. For the latter two variables,ηCalo is given as theη position with respect
+to the cell center inη, whileφCalo is theφ position with respect to the absorber axis.
+18
+
+===== PAGE 19 =====
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<0.8
+ηConverted Photon 0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<1.37
+ηConverted Photon 0.8<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<1.81
+ηConverted Photon 1.52<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<2.0
+ηConverted Photon 1.81<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<2.2
+ηConverted Photon 2.0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+ Simulation Preliminary
+ATLAS<2.37
+ηConverted Photon 2.2<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+Figure 11: Uncalibrated energy response resolution, expressed in terms of IQE, for simulated converted photons
+with⟨µ⟩ = 0, with noise thresholds tuned for⟨µ⟩∼ 40. Sliding window-based response is shown in red, while the
+supercluster-based response is shown in blue.
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<0.8
+ηConverted Photon 0<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<1.37
+ηConverted Photon 0.8<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<1.81
+ηConverted Photon 1.52<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<2.0
+ηConverted Photon 1.81<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<2.2
+ηConverted Photon 2.0<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.65
+0.7
+0.75
+0.8
+0.85
+0.9
+0.95
+1
+1.05
+ Simulation Preliminary
+ATLAS<2.37
+ηConverted Photon 2.2<SC
+SW
+Figure 12: Uncalibrated peak position of the energy response, calculated using a Gaussian ﬁt to the core of the
+response distribution, for simulated converted photons with⟨µ⟩ = 0, with noise thresholds tuned for⟨µ⟩∼ 40.
+Sliding window-based response is shown in red, while the supercluster-based response is shown in blue.
+19
+
+===== PAGE 20 =====
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ Simulation Preliminary ATLAS<0.8
+ηUnconverted Photon 0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ Simulation Preliminary ATLAS<1.37
+ηUnconverted Photon 0.8<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ Simulation Preliminary
+ATLAS<1.81
+ηUnconverted Photon 1.52<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ Simulation Preliminary ATLAS<2.0
+ηUnconverted Photon 1.81<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ Simulation Preliminary ATLAS<2.2
+ηUnconverted Photon 2.0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E raw IQE of E 0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+ Simulation Preliminary ATLAS<2.37
+ηUnconverted Photon 2.2<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+Figure 13: Uncalibrated energy response resolution, expressed in terms of IQE, for simulated unconverted photons
+with⟨µ⟩ = 0, with noise thresholds tuned for⟨µ⟩∼ 40. Sliding window-based response is shown in red, while the
+supercluster-based response is shown in blue.
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.8
+0.82
+0.84
+0.86
+0.88
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ Simulation Preliminary
+ATLAS<0.8
+ηUnconverted Photon 0<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.8
+0.82
+0.84
+0.86
+0.88
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ Simulation Preliminary
+ATLAS<1.37
+ηUnconverted Photon 0.8<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.8
+0.82
+0.84
+0.86
+0.88
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ Simulation Preliminary
+ATLAS<1.81
+ηUnconverted Photon 1.52<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.8
+0.82
+0.84
+0.86
+0.88
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ Simulation Preliminary
+ATLAS<2.0
+ηUnconverted Photon 1.81<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.8
+0.82
+0.84
+0.86
+0.88
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ Simulation Preliminary
+ATLAS<2.2
+ηUnconverted Photon 2.0<SC
+SW
+ [GeV]
+trueT
+E6
+7 10 20 30 2 102 10×23 10true
+/E raw Peak Gaussian of E 0.8
+0.82
+0.84
+0.86
+0.88
+0.9
+0.92
+0.94
+0.96
+0.98
+1
+1.02
+ Simulation Preliminary
+ATLAS<2.37
+ηUnconverted Photon 2.2<SC
+SW
+Figure 14: Uncalibrated peak position of the energy response, calculated using a Gaussian ﬁt to the core of the
+response distribution, for simulated unconverted photons with⟨µ⟩ = 0, with noise thresholds tuned for⟨µ⟩∼ 40.
+Sliding window-based response is shown in red, while the supercluster-based response is shown in blue.
+20
+
+===== PAGE 21 =====
+Photons are considered converted if the conversion radiusRconv is smaller than 800 mm. For these
+converted photons, Rconv is used as an additional input to the MVA only if the vectorial sum of the
+conversion track momenta is above 3 GeV. For conversions with both tracks containing at least one hit
+in either the pixel or SCT detector, further quantities are considered:Eraw
+T /pconv
+T , where pconv
+T is the
+vectorial sum of the conversion track momenta; and the fraction of the conversion momentum carried by
+the highest-pT track, pmax
+T /pconv
+T .
+A comparison between the shapes of the common MVA training variables for electrons and photons is
+given in Figure 15, wherein good agreement is observed between the two clustering algorithms for each
+training variable. Distributions of variables used speciﬁcally for the calibration of converted photon
+clusters are shown in Figure 16, which also demonstrate good agreement between the supercluster and
+sliding window-based reconstruction algorithms. Although the shapes of the training variables do not
+change signiﬁcantly between clustering algorithms, the improved knowledge of the uncalibrated energy,
+and the change in correlations to the truth energy and other training variables, is expected to provide new
+information to be extracted by the BDT, translating into an improvement in calibrated energy.
+9 Calibrated supercluster performance
+The following sections demonstrate the results of the MVA calibration, as performed using samples of
+simulated single particles reconstructed both via sliding window and supercluster-based approaches. As
+previously mentioned in Section 7, the single particle samples are produced without simulated pile-up.
+The metric of comparison between the sliding window and supercluster-based reconstruction algorithms
+is the ratio of the calibrated cluster energy to the true particle energy,Ecal/Etrue. The MVA calibration is
+performedusingtrainingandtestingsampleswhichcontainnosimulatedpile-up,sothefollowingresults
+are presented without simulated pile-up. After calibration, the peaks of theEcal/Etrue distributions do not
+deviate from 1 by more than 0.5%.
+9.1 Electrons and converted photons
+Comparisons of the calibrated energy response of simulated single electrons built using sliding window
+and supercluster-based approaches are given in Figure 17, comparing the IQE of the two methods in
+diﬀerent regions of|ηtrue| and Etrue
+T . The reconstructed electrons in these distributions are required to
+correspond to true primary electrons, and pass loose electron quality requirements. After calibration,
+the supercluster algorithm retains a good improvement in resolution compared to the sliding window
+algorithm. In particular, an improvement in resolution of up to20– 30% is found in some bins in the
+end-cap region of the detector, as well as in the central region for lowET electrons.
+Comparisonsofthecalibratedresponseofconvertedphotonsbuiltusingslidingwindowandsupercluster-
+based approaches are given in Figure 18. The reconstructed converted photons in these distributions are
+required to correspond to true primary photons, and pass loose photon quality requirements. Similarly to
+the electron case, good improvements in the resolution can also be seen for converted photons, in a few
+bins at over30%.
+21
+
+===== PAGE 22 =====
+ [GeV]
+rawE0
+50 100 150 200 250 300 350 400 450 500 Normalized to unity / 10.0000 
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+SW SC
+ATLAS
+Simulation Preliminary 
+Clus
+η2.5
+−2 −1.5 −1 −0.5 −0 0.5 1 1.5 2 2.5 Normalized to unity / 0.0500 
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+0.014
+0.016
+SW
+SC
+ATLAS
+Simulation Preliminary 
+2
+ / E1E0
+0.2 0.4 0.6 0.8 1 1.2 1.4 Normalized to unity / 0.0300 
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+SW SC
+ATLAS
+Simulation Preliminary 
+0
+f0
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 Normalized to unity / 0.0100 
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+SW SC
+ATLAS
+Simulation Preliminary 
+Calo
+η0
+0.005 0.01 0.015 0.02 0.025 Normalized to unity / 0.0005 
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+SW
+SC
+ATLAS
+Simulation Preliminary 
+Calo
+φ0
+0.001 0.002 0.003 0.004 0.005 0.006 0.007 0.008 Normalized to unity / 0.0002 
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+SW
+SC
+ATLAS
+Simulation Preliminary 
+Calo. cell index
+0
+10 20 30 40 50 60 70 80 90 100 Normalized to unity / 1.0000 
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+0.014
+0.016
+SW
+SC
+ATLAS
+Simulation Preliminary 
+Figure 15: Distributions of cluster-based MVA calibration training variables for sliding window and supercluster-
+based electrons and photons. Here,ηCalo is given as theη position with respect to the cell center inη, whileφCalo
+is the φ position with respect to the absorber axis. The cell index is the distance of the cluster fromη = 0 in the
+calorimeter frame, in terms of the number of cells in theη-direction.
+ [mm]
+convR0
+100 200 300 400 500 600 700 800 Normalized to unity / 20.0000 
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+SW SC
+ATLAS
+Simulation Preliminary 
+conv
+T
+ / pconvT
+E0
+0.5 1 1.5 2 2.5 3 3.5 4 4.5 5 Normalized to unity / 0.1000 
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+SW
+SC
+ATLAS
+Simulation Preliminary 
+conv
+T
+/pmaxT
+p0.5
+0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1 Normalized to unity / 0.0100 
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+SW
+SC
+ATLAS
+Simulation Preliminary 
+Figure16:Distributionsoftrack-basedMVAcalibrationtrainingvariablesforslidingwindowandsupercluster-based
+converted photons using the current reconstruction software.
+22
+
+===== PAGE 23 =====
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<0.8
+ηElectron 0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<1.37
+ηElectron 0.8<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<1.81
+ηElectron 1.52<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<2.0
+ηElectron 1.81<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<2.2
+ηElectron 2.0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<2.47
+ηElectron 2.2<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+Figure 17: Calibrated energy response resolution, expressed in terms of IQE, for simulated electrons with⟨µ⟩ = 0.
+Sliding window-based response is shown in red, while the supercluster-based response is shown in blue.
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<0.8
+ηConverted Photon 0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<1.37
+ηConverted Photon 0.8<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<1.81
+ηConverted Photon 1.52<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<2.0
+ηConverted Photon 1.81<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<2.2
+ηConverted Photon 2.0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+ Simulation Preliminary
+ATLAS<2.37
+ηConverted Photon 2.2<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+Figure 18: Calibrated energy response resolution, expressed in terms of IQE, for simulated converted photons with
+⟨µ⟩ = 0. Sliding window-based response is shown in red, while the supercluster-based response is shown in blue.
+23
+
+===== PAGE 24 =====
+true
+/E calib IQE of E 0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+ Simulation Preliminary
+ATLAS<0.8
+ηUnconverted Photon 0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+ Simulation Preliminary
+ATLAS<1.37
+ηUnconverted Photon 0.8<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+ Simulation Preliminary
+ATLAS<1.81
+ηUnconverted Photon 1.52<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+ Simulation Preliminary
+ATLAS<2.0
+ηUnconverted Photon 1.81<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+ Simulation Preliminary
+ATLAS<2.2
+ηUnconverted Photon 2.0<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+true
+/E calib IQE of E 0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+ Simulation Preliminary
+ATLAS<2.37
+ηUnconverted Photon 2.2<SC
+SW
+ [GeV]
+true
+T
+E6
+7 8 10 20 30 40 2 102 10×23 10SW
+/IQE SC IQE 0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+1.3
+Figure 19: Calibrated energy response resolution, expressed in terms of IQE, for simulated unconverted photons
+with⟨µ⟩ = 0. Sliding window-based response is shown in red, with the supercluster-based response in blue.
+9.2 Unconverted photons
+Comparisonsofthecalibratedresponseofunconvertedphotonsbuiltusingslidingwindowandsupercluster-
+based approaches are given in Figure 19. In particular, Figure 19 shows a comparison of the IQE of the
+two methods in diﬀerent regions of|ηtrue| and Etrue
+T . The reconstructed unconverted photons in these
+distributions are required to correspond to true primary photons, and pass loose photon quality require-
+ments. As with the uncalibrated energy response, the overall change in performance is small, due to the
+generally narrower shower width, and the absence of bremsstrahlung for unconverted photons. However,
+some improvement in calibrated resolution is observed for highpT bins in the end-cap region.
+10 Supercluster performance in the presence of simulated pile-up
+Animportantconsiderationwhenusingatopo-cluster-basedreconstructionisthesensitivityoftheenergy
+resolution to the presence of additional clusters from pile-up interactions. The noise thresholds for
+topo-cluster reconstruction tend to be set empirically, according to the expected luminosity and detector
+conditions of a particular data taking period. The topo-cluster noise thresholds for the 2016 and 2017
+data taking period, for instance, are tuned for⟨µ⟩∼ 40. To study the eﬀects of diﬀerent pile-up levels
+on the electron and photon energy resolution given these thresholds, Monte Carlo samples of single
+particles were generated under diﬀerent luminosity conditions, with each event having a possible average
+24
+
+===== PAGE 25 =====
+number of interactions per bunch crossing in the range0 <⟨µ⟩ < 60, with the distribution of⟨µ⟩ being
+uniform between 0 and 60. In this scenario, the average pile-up noise isO (650MeV) for ET = 25GeV at
+⟨µ⟩ = 60.
+For consistency with the performance plots show without pile-up, electrons and photons are required to
+pass loose identiﬁcation requirements [24, 25]. To ensure a suﬃciently high purity for the resolution
+distributions, particles are required to haveET > 7GeV. Distributions of energy response in terms
+of MVA-calibrated Ecal/Etrue were produced for the barrel and end-cap detector regions, with events
+split up into various ET bins. For these distributions, the resolution is expressed through the IQE,
+which is computed as described in Section 7. Figure 20 shows the resolution of the energy response
+distribution for MVA-calibrated electron clusters in diﬀerent truth|η| and ET regions, in slices of⟨µ⟩.
+Likewise, Figures 21 and 22 show the same distributions for MVA-calibrated converted and unconverted
+photon clusters, respectively. For both supercluster- and sliding window-based methods, the position
+of the Gaussian ﬁt for electrons and photon clusters does not deviate more than1% from E/Etrue∼ 1.
+Furthermore, for pT above 25GeV, the peak position does not change more than0.5% with increasing
+⟨µ⟩ in any η or ET region. These minor deviations are consistent across both reconstruction methods,
+therefore these plots are not shown.
+With increasing⟨µ⟩, the performance of both clustering algorithms degrades due to clusters containing
+more noise on average, in addition to the true shower energy. However, a secondary eﬀect is visible for
+superclusters, in that the relative improvements in resolution become smaller with respect to the sliding
+window method, particularly in the end-cap region and highET, where tracking performance is more
+limited. Such a result is partly unexpected; because the topo-cluster noise thresholds are tuned to cover
+mainly⟨µ⟩≤ 40, additional cells containing mostly pile-up noise may be accumulated alongside cells
+containing true EM signal for events with⟨µ⟩ > 40. Unconverted photons, in particular, produce narrow
+showerswhichdonotspreadinthe φ-directionfrommaterialinteractions,soallowingtheclustertospread
+beyond 2− 3×theMoliereradiusresultsinareducedsignal-to-noiseratiowithinagivencluster. Sincethe
+noise thresholds for a given data taking period are adjusted according to the expected⟨µ⟩, future studies
+willneedtobeperformedtovalidatethattheimprovementsthatarevisibleatlower ⟨µ⟩maintainforhigh
+pile-up, using more appropriate noise thresholds.
+Infutureiterationsofthereconstructionsoftware,theuseofpile-upsensitivevariablesmaybepossiblein
+training the MVA calibration, allowing for a calibration that can adapt as necessary to higher luminosity
+conditions. Amodiﬁcationofthecalibrationmethodologymayalsobenecessaryforunconvertedphotons
+to counter the eﬀects of higher pile-up in the calibrated energy response. Likewise, a pile-up subtraction
+method akin to that used in ATLAS jet reconstruction [27] may also provide electron and photon clusters
+withadditionalpile-uprobustness. Lastly,tuningthecellsummationforclusterswithnoassociatedtracks
+may allow for a reduced sensitivity to higher pile-up, since such particles are unambiguously deﬁned as
+unconverted photons in the reconstruction algorithm.
+11 Supercluster performance in realistic topologies
+To this point, the performance of the supercluster-based reconstruction algorithm has been evaluated
+using single particles in isolation, and in the presence of simulated pile-up. However, the electron and
+photonreconstructionultimatelyservesasinputtoseveralanalyseswhichtargetprecisionmeasurements,
+searches, as well as tests for new physics. Therefore, the supercluster-based reconstruction algorithm was
+applied to simulations of several relevant physics topologies, including those used for precision physics
+25
+
+===== PAGE 26 =====
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+| < 1.37
+trueη0.00 < | < 25 GeV
+trueT
+0 < EElectrons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+| < 1.37
+trueη0.00 < | < 100 GeV
+trueT
+25 < EElectrons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+| < 1.37
+trueη0.00 < | < 1000 GeV
+trueT
+100 < EElectrons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+| < 2.45
+trueη1.52 < | < 25 GeV
+trueT
+0 < EElectrons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+| < 2.45
+trueη1.52 < | < 100 GeV
+trueT
+25 < EElectrons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+0.014
+| < 2.45
+trueη1.52 < | < 1000 GeV
+trueT
+100 < EElectrons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+Figure 20: Calibrated energy response resolution, expressed in terms of IQE, for simulated single electrons at
+diﬀerent⟨µ⟩levels. Slidingwindow-basedresponseisshowninred,whilethesupercluster-basedresponseisshown
+in blue.
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+| < 1.37
+trueη0.00 < | < 25 GeV
+trueT
+0 < EConverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+| < 1.37
+trueη0.00 < | < 100 GeV
+trueT
+25 < EConverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+| < 1.37
+trueη0.00 < | < 1000 GeV
+trueT
+100 < EConverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+| < 2.37
+trueη1.52 < | < 25 GeV
+trueT
+0 < EConverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+| < 2.37
+trueη1.52 < | < 100 GeV
+trueT
+25 < EConverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+0.014
+| < 2.37
+trueη1.52 < | < 1000 GeV
+trueT
+100 < EConverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+Figure21:Calibratedenergyresponseresolution,expressedintermsofIQE,forsimulatedsingleconvertedphotons
+at diﬀerent⟨µ⟩ levels. Sliding window-based response is shown in red, while the supercluster-based response is
+shown in blue.
+26
+
+===== PAGE 27 =====
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+| < 1.37
+trueη0.00 < | < 25 GeV
+trueT
+0 < EUnconverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+0.014
+0.016
+0.018
+0.02
+| < 1.37
+trueη0.00 < | < 100 GeV
+trueT
+25 < EUnconverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+| < 1.37
+trueη0.00 < | < 1000 GeV
+trueT
+100 < EUnconverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+| < 2.37
+trueη1.52 < | < 25 GeV
+trueT
+0 < EUnconverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+0.012
+0.014
+0.016
+0.018
+| < 2.37
+trueη1.52 < | < 100 GeV
+trueT
+25 < EUnconverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+ < 15
+〉µ〈0 <  < 30 〉µ〈15 <  < 45 〉µ〈30 <  < 60 〉µ〈45 < IQE
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+| < 2.37
+trueη1.52 < | < 1000 GeV
+trueT
+100 < EUnconverted photons
+SW
+SC
+ = 0
+〉µ〈SC, ATLAS
+Simulation Preliminary 
+Figure 22: Calibrated energy response resolution, expressed in terms of IQE, for simulated single unconverted
+photons at diﬀerent⟨µ⟩ levels. Sliding window-based response is shown in red, while the supercluster-based
+response is shown in blue.
+analyses, as well as Higgs boson physics analyses. Comparisons were also made to the same simulated
+samples reconstructed using the sliding window-based reconstruction algorithm, in order to gauge the
+improvement brought by the new topo-cluster-based reconstruction.
+11.1 J/ψ→ e+e− and Z→ e+e−
+The performance of the supercluster algorithm inJ/ψ→ e+e− decays yields critical information on how
+the current reconstruction software performs for low-mass resonances, as well as lowpT electrons in
+general. Samples of Monte Carlo events were generated using thePowheggenerator [28], and showered
+using Pythia 8 [29]. The simulated data were reconstructed using two approaches: the reconstruction
+algorithmandMVAcalibrationbasedonslidingwindowelectrons; andthelatestreconstructionsoftware
+andcalibrationusingsuperclusters. Dielectron J/ψ paircandidateswereformedusingthetwohighest pT
+electrons that pass loose quality requirements [24]. An important point is that the simulatedJ/ψ events
+reconstructed using the sliding window-based method have a distribution of⟨µ⟩ which ends roughly at
+⟨µ⟩ = 30,duetobeingproducedusingthepreviousreconstructionsoftwareforanearlierdatatakingperiod.
+Therefore, allJ/ψ boson candidate events were required to have15 <⟨µ⟩ < 30, in order to compare the
+performance of the two algorithms under luminosity conditions that are roughly equivalent.
+Distributions of the reconstructed dielectron invariant massme+e− for simulatedJ/ψ→ e+e− events are
+shownforsuperclusterandslidingwindow-basedreconstructionalgorithmsintheleftplotofFigure23. It
+isevidentfromthedistributionof me+e− thatthesuperclusteralgorithmimprovesthemassresponseforthe
+J/ψ resonance, providing a narrower resonance with a smaller radiative tail, indicating a compensation
+27
+
+===== PAGE 28 =====
+ [GeV]
+eem2
+2.2 2.4 2.6 2.8 3 3.2 3.4 3.6 3.8 4  / 0.02 GeV
+ee 1/N dN/dm 0
+0.01
+0.02
+0.03
+0.04
+0.05
+SW
+SC
+ATLAS
+Simulation Preliminary  = 13 TeV
+s, -e+ e→ ψJ/ < 30
+〉µ〈15 < : 0.0533 SWµ/SWσ: 0.0490
+SCµ/SCσ
+(a) J/ψ→ e+e−
+ [GeV]
+eem60
+70 80 90 100 110  / 1.00 GeV
+ee 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+SW
+SC
+ATLAS
+Simulation Preliminary  = 13 TeV
+s, -e+ e→Z  < 30
+〉µ〈15 < : 0.0334
+SWµ/SWσ: 0.0316
+SCµ/SCσ (b) Z→ e+e−
+Figure 23: Invariant mass distributions from Monte Carlo simulations ofJ/ψ→ e+e− decays (left) andZ→ e+e−
+decays (right) for15 <⟨µ⟩ < 30, reconstructed using both sliding window and supercluster-based methods. The
+resolution and mean for each scenario are computed using a Gaussian ﬁt to the core of each distribution.
+for bremsstrahlung-related energy losses. An improvement of∼ 8% is observed in the width of the
+resonance, as determined using a Gaussian ﬁt to the core of theme+e− distribution. A small shift towards
+the best-known J/ψ mass is also observed for the superclusterme+e− distribution, with the peak of the
+ﬁtted Gaussian found at3.08GeV for the supercluster-based distribution, and3.05GeV for the sliding
+window-based distribution.
+Anotherimportantperformanceconsiderationishowthereconstructionalgorithmrespondsfor Z→ e+e−
+decays, which has direct implications for precision Standard Model physics measurements in ATLAS,
+as well as for critical Higgs boson decay channels such asH→ Z Z∗→ 4ℓ. To this end, samples of
+MonteCarloeventsweregeneratedatparton-levelusingthe Powheggenerator,showeredusing Pythia8,
+and reconstructed using the same conﬁgurations as for theJ/ψ→ e+e− studies above. Dielectron Z
+pair candidates are formed using the two highestpT electrons that pass loose quality requirements [24].
+Furthermore, the Z boson candidate events were required to have15 <⟨µ⟩ < 30, for the same reasons as
+deﬁned above for theJ/ψ candidates.
+Distributions of the reconstructed dielectron invariant massme+e− for simulated Z → e+e− events are
+shownforsuperclusterandslidingwindow-basedreconstructionalgorithmsintherightplotofFigure23.
+The supercluster algorithm improves the mass response of theZ boson peak, providing a narrower
+resonance with a smaller radiative tail, indicating a compensation for bremsstrahlung-related energy
+losses. As shown in Appendix A, the improvement in the ratio of resolution to mean is∼ 6%, as
+calculated using a Gaussian ﬁt about the core of theme+e− distribution.
+11.2 H→ Z Z∗→ 4ℓ
+In the move to a new electron reconstruction algorithm, a critical consideration for Higgs boson physics
+is the eﬀect on theH → Z Z∗ → 4ℓ channel, due to the excellent energy and momentum resolution
+of its ﬁnal state particles (muons, electrons), and the ability to reconstruct the full ﬁnal-state system.
+The 4ℓ candidate selection in theH→ Z Z∗→ 4ℓ analysis tends to feature a rather inclusive selection
+of electrons, with loose [24] electrons abovepT > 7GeV capable of being included in Higgs boson
+28
+
+===== PAGE 29 =====
+ [GeV]
+4lm100
+105 110 115 120 125 130 135 140 145 150  / 1.00 GeV
+4l 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+SW
+SC
+ATLAS
+Simulation Preliminary -
+e+e-µ+µ → ZZ* →H  = 13 TeV
+s: 0.0210
+SWµ/SWσ: 0.0199
+SCµ/SCσ
+(a) 2µ2e
+ [GeV]
+4lm100
+105 110 115 120 125 130 135 140 145 150  / 1.00 GeV
+4l 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+SW
+SC
+ATLAS
+Simulation Preliminary -
+µ+µ-e+ e→ ZZ* →H  = 13 TeV
+s: 0.0175
+SWµ/SWσ: 0.0170
+SCµ/SCσ (b) 2e2µ
+ [GeV]
+4lm100
+105 110 115 120 125 130 135 140 145 150  / 1.00 GeV
+4l 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+SW
+SC
+ATLAS
+Simulation Preliminary -
+e+e-e+ e→ ZZ* →H  = 13 TeV
+s: 0.0231
+SWµ/SWσ: 0.0220
+SCµ/SCσ
+(c) 4e
+Figure 24: Invariant mass distributions of simulated reconstructed four lepton candidates with⟨µ⟩≤ 40 using both
+supercluster and sliding window algorithms, built usingH→ Z Z∗→ 4ℓ analysis selection. The resolution and
+mean of each distribution are computed using a double Crystal Ball ﬁt.
+candidates. Accordingly, the resolution improvements brought for lowpT and end-cap electrons should
+lead to an improvement in the mass resolution of reconstructed4ℓ candidates.
+Toexaminetheeﬀectsofthesupercluster-basedreconstructionalgorithmontheinvariantmassresolution
+of 4ℓ candidates, samples of simulated vector boson fusion-mediated (VBF) Higgs boson signal were
+producedusingthe Powheggenerator,with mH = 125GeV. Theparton-leveleventswereshoweredusing
+Pythia8,whichalsosimulatedthe H→ Z Z∗→ 4ℓdecays. Theeventswerepassedthroughafulldetector
+simulationin Geant4,alongwithsimulatedpile-upinteractionswhichemulatetheluminosityconditions
+of the 2015 + 2016 data taking period. The simulated events were then reconstructed with ATLAS
+software, using both sliding window and supercluster-based algorithms. The candidate reconstruction
+and selection proceeds identically to previous analyses, most recently described in Ref. [30], with minor
+changes to oﬀset diﬀerences in trigger and isolation calculations, which have not been re-optimized for
+superclusters. Inthesestudies,thetopo-clusternoisethresholdshavebeentunedforluminosityconditions
+around⟨µ⟩≤ 40.
+The resultant distributions of m4ℓ, as reconstructed using sliding window and supercluster-based ap-
+29
+
+===== PAGE 30 =====
+proaches, are given in Figure 24 for each electron-related decay channel – namely,2µ2e, 2e2µ, and4e,
+where the ﬁrst 2ℓ in the channel name denotes the leading lepton pair. Each channel shows a visible
+improvement in both the resolution and peak position, which is directly attributable to the changes in the
+electron reconstruction. In particular, the supercluster-basedm4ℓ distributions are found to be narrower
+than the sliding window equivalent, and peak closer to the true Higgs boson mass ofmH = 125GeV.
+To quantify the change in peak position and resolution, the invariant mass distributions for each channel
+were ﬁt with a double Crystal Ball function, which allows the ﬁt to capture both the peak and the tails of
+the distributions. The4e and 2µ2e channels each show a5% improvement in resolution using these ﬁts,
+with the 2e2µ channel showing a3% resolution improvement. Additionally, in each channel, the peak
+of the mass distribution shifts by 500 MeV to 1 GeV toward the true Higgs boson mass. Here, the shift
+in the peak value ofm4ℓ can also be explained by the improvements in electron energy resolution. In
+particular, since the lepton quadruplet is a composite object made of two or four electrons, an improved
+representation of the four momentum of each electron will translate to an improved representation of the
+fourmomentumoftheHiggsbosoncandidate,meaningthatthereconstructed m4ℓ shiftsclosertothetrue
+mass of the Higgs boson.
+11.3 H→ γγ
+Another important consideration in the move to a new photon reconstruction algorithm is the eﬀect on
+the H→ γγ channel, which also has excellent resolution for its ﬁnal state photons, as well as a fully-
+reconstructibleﬁnalstate. Itisexpectedthattheuseofsuperclusteringforconvertedphotonsshouldyield
+animprovementtothemassresolutionofthediphotonﬁnalstate( mγγ)whenconvertedphotonsmakeup
+one or two elements of the diphoton candidate.
+Toexaminetheeﬀectsofthesupercluster-basedreconstructionalgorithmontheinvariantmassresolution
+of γγ candidates, samples of simulated gluon fusion-mediated Higgs boson signal were produced using
+the Powheg generator, with mH = 125GeV. The parton-level events were showered usingPythia 8,
+which also simulates theH → γγ decays. The events were passed through a full detector simulation
+in Geant 4, along with simulated pile-up interactions which emulate the luminosity conditions of the
+2015 + 2016 data taking period. The simulated events were then reconstructed with ATLAS software,
+usingbothslidingwindowandsupercluster-basedalgorithms. Thecandidatereconstructionandselection
+proceedsidenticallytothoseofthemostrecentATLASdiphotonanalysesat √s = 13TeV[31],withminor
+changes to oﬀset diﬀerences in trigger and isolation calculations, which have not been re-optimized for
+superclusters. Inthesestudies,thetopo-clusternoisethresholdshavebeentunedforluminosityconditions
+around⟨µ⟩≤ 40.
+The resultant distributions ofmγγ, as reconstructed using sliding window and supercluster-based ap-
+proaches, are given in Figure 25 for three scenarios: The inclusivemγγ distribution; the distribution of
+mγγ for events with one Si conversion (single-track Si or double-track Si) in the diphoton pair, and one
+unconverted photon; and the distribution ofmγγ for events with two Si conversions (single-track Si or
+double-trackSi). Fortheinclusivedistribution,whichincludesunconvertedphotonsandconversionswith
+TRT-only tracks, the overall change in shape is small. This behaviour is anticipated by the single particle
+resultsforunconvertedphotons, whichshowthatafullytopo-cluster-basedapproachshowsnoresolution
+improvement relative to a ﬁxed-size window-based method. Likewise, conversions with TRT-only tracks
+do not beneﬁt from the additional satellite searches done for conversions with tracks containing Si hits,
+30
+
+===== PAGE 31 =====
+ [GeV]
+γγm110
+115 120 125 130 135 140  / 1.00 GeV
+γ γ 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+0.22
+SW
+SC
+ATLAS
+Simulation Preliminary  = 13 TeV
+s, γγ →H Inclusive
+: 0.0143
+SWµ/SWσ: 0.0149
+SCµ/SCσ
+(a) Inclusive
+ [GeV]
+γγm110
+115 120 125 130 135 140  / 1.00 GeV
+γ γ 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+0.22
+SW
+SC
+ATLAS
+Simulation Preliminary  = 13 TeV
+s, γγ →H One conv. (1 or 2 track Si)
+: 0.0167
+SWµ/SWσ: 0.0159
+SCµ/SCσ (b)Oneconversion(oneortwo-trackSionly),oneuncon-
+verted
+ [GeV]
+γγm110
+115 120 125 130 135 140  / 1.00 GeV
+γ γ 1/N dN/dm 0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+SW
+SC
+ATLAS
+Simulation Preliminary  = 13 TeV
+s, γγ →H Two conv. (1 or 2 track Si)
+: 0.0206
+SWµ/SWσ: 0.0188
+SCµ/SCσ
+(c) Two conversions (one or two-track Si only)
+Figure 25: Invariant mass distributions of simulated reconstructed diphoton candidates with⟨µ⟩≤ 40 using both
+supercluster and sliding window algorithms, built usingH→ γγ analysis selection. The resolution and mean of
+each distribution are computed using a double Crystal Ball ﬁt.
+so diphoton events containing conversions with one or more TRT-only tracks will show limited (or no)
+improvement in the new algorithm.
+However,intheremainingplots,whichcontaindiphotoneventswithoneormoreconvertedphotonswith
+silicon tracks, there is a visible improvement in the width ofmγγ. To quantify the change in resolution
+for each scenario, the invariant mass distributions were ﬁt with Double Crystal Ball functions, using the
+same approach as theH → Z Z∗ → 4ℓ studies shown in Section 11.2. The change in resolution for
+these cases is5− 9%, with the largest improvement seen for diphoton events with two double track Si
+conversions. These results are directly attributable to the changes to converted photon reconstruction, as
+the improvements in energy resolution for individual converted photons translate to an improvement in
+mass resolution for these susbsets of diphoton events.
+31
+
+===== PAGE 32 =====
+12 Conclusions
+The new ATLAS electron and photon reconstruction algorithm has been presented, which uses topo-
+clusters with 4-2-0 noise thresholds as a base to form dynamically-sized clusters. The algorithm is
+capable of retrieving nearby topo-clusters which have emerged from bremsstrahlung interactions and
+photonconversionsintheInnerDetector,andmergingthemwithseedclusterstoformsuperclusters. The
+performanceofthisalgorithmhasbeenevaluatedforsingleparticleswithandwithoutpile-upinteractions,
+as well as in a number of important physics topologies.
+The algorithm generally shows good improvement in terms of energy resolution with respect to the slid-
+ing window cluster-based reconstruction algorithm. For electrons and converted photons, in particular,
+improvements in energy resolution of30− 40% are possible using superclusters, with the largest im-
+provements found for lowET particles, and for clusters reconstructed in the end-cap calorimeter. These
+resolution improvements translate directly to mass resolution improvements of5− 10% in Z and J/ψ
+decays toe+e− pairs, as well asH→ Z Z∗→ 4ℓ decays featuring electrons, andH→ γγ decays with
+converted photons.
+The performance improvements seen for electrons and converted photons are maintained for scenarios
+with higher pile-up, as a result of the topo-cluster noise thresholds being adjusted to suit the luminosity
+conditions of a given data taking period. Future improvements to ensure robustness to high-luminosity
+conditionsmayincludeare-tuningofthecellsummationapproachforunconvertedphotons,thederivation
+ofapile-up-sensitiveMVAcalibration,andthedevelopmentofanaveragepile-upsubtractionapproach.
+32
+
+===== PAGE 33 =====
+References
+[1] ATLAS Collaboration,
+Electron and photon energy calibration with the ATLAS detector using LHC Run 1 data,
+Eur. Phys. J. C74(2014) 3071, arXiv:1407.5063 [hep-ex].
+[2] ATLAS Collaboration,
+Topological cell clustering in the ATLAS calorimeters and its performance in LHC Run 1,
+Eur. Phys. J.C77 (2017) 490, arXiv:1603.02934 [hep-ex].
+[3] D. Green, The Physics of Particle Detectors,
+Cambridge monographs on particle physics, nuclear physics, and cosmology,
+Cambridge Univ. Press, 2000,url: https://cds.cern.ch/record/381705.
+[4] ATLAS Collaboration, Electron eﬃciency measurements with the ATLAS detector using 2012
+LHC proton-proton collision data, Eur. Phys. J.C77(2017) 195, arXiv:1612.01456 [hep-ex].
+[5] ATLAS Collaboration, Measurement of the photon identiﬁcation eﬃciencies with the ATLAS
+detector using LHC Run-1 data, Eur. Phys. J.C76(2016) 666, arXiv:1606.01813 [hep-ex].
+[6] ATLAS Collaboration, Electron performance measurements with the ATLAS detector using the
+2010 LHC proton–proton collision data, Eur. Phys. J. C72 (2012) 1909,
+arXiv: 1110.3174 [hep-ex].
+[7] ATLAS Collaboration, Electron reconstruction and identiﬁcation eﬃciency measurements with
+the ATLAS detector using the 2011 LHC proton–proton collision data,
+Eur. Phys. J. C74(2014) 2941, arXiv:1404.2240 [hep-ex].
+[8] W. Lampl et al.,Calorimeter Clustering Algorithms: Description and Performance,
+ATL-LARG-PUB-2008-002, 2008,url: https://cds.cern.ch/record/1099735.
+[9] ATLAS Collaboration, Electron isolation eﬃciency, full 2015 data with 25ns bunch spacing,
+ATL-COM-PHYS-2015-1486, 2015,url: https://cds.cern.ch/record/2112167.
+[10] ATLAS Collaboration, Photon isolation eﬃciencies using radiative Z decays in 2017 data,
+ATL-COM-PHYS-2017-1374, 2017,url: https://cds.cern.ch/record/2282730.
+[11] CMS Collaboration,
+Particle-ﬂow reconstruction and global event description with the CMS detector,
+CERN-EP-2017-110, 2017, arXiv:1706.04965 [physics.ins-det].
+[12] ATLAS Collaboration,
+Jet reconstruction and performance using particle ﬂow with the ATLAS Detector,
+Eur. Phys. J.C77 (2017) 466, arXiv:1703.10485 [hep-ex].
+[13] ATLAS Collaboration,
+Electron performance of the ATLAS detector using theJ/ψ→ e+e− decays,
+ATL-COM-PHYS-2010-518.
+[14] ATLAS Collaboration,
+Performance of the ATLAS electromagnetic calorimeter forπ0→ γγ and η→ γγ events,
+ATLAS-CONF-2010-006, 2010,url: https://cds.cern.ch/record/1273999.
+[15] J. Allison, K. Amako, J. Apostolakis, H. Araujo, P. Dubois et al.,
+GEANT4 developments and applications, IEEE Trans. Nucl. Sci.53 (2006) 270.
+33
+
+===== PAGE 34 =====
+[16] S. Agostinelli et al.,GEANT4: A Simulation toolkit,
+Nucl. Instrum. Meth. in Phys. Res.A506(2003) 250.
+[17] T. G. Cornelissen et al.,
+Concepts, design and implementation of the ATLAS New Tracking (NEWT),
+ATL-SOFT-PUB-2007-007, 2007,url: https://cds.cern.ch/record/1020106.
+[18] Frühwirth, R., Application of Kalman ﬁltering to track and vertex ﬁtting,
+Nucl. Instrum. Meth.A262(1987) 444.
+[19] T. G. Cornelissen et al.,The global χ2 track ﬁtter in ATLAS,
+J. Phys. Conf. Ser.119 (2008) 032013.
+[20] ATLAS Collaboration, Improved electron reconstruction in ATLAS using the Gaussian Sum
+Filter-based model for bremsstrahlung, ATLAS-CONF-2012-047, 2012,
+url: https://cds.cern.ch/record/1449796.
+[21] ATLAS Collaboration,
+Particle Identiﬁcation Performance of the ATLAS Transition Radiation Tracker,
+ATLAS-CONF-2011-128, 2011,url: https://cds.cern.ch/record/1383793.
+[22] ATLAS Collaboration,
+Performance of the ATLAS Transition Radiation Tracker in Run 1 of the LHC: tracker properties,
+JINST12(2017) P05002, arXiv:1702.06473 [hep-ex].
+[23] ATLAS Collaboration, TRT performance results from 13 TeV collision data (2015/2016),
+ATL-COM-INDET-2016-049, 2016,
+url: https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PLOTS/TRT-2016-001/.
+[24] ATLAS Collaboration,
+Electronidentiﬁcation measurementsinATLAS using√s =13 TeVdatawith 50ns bunchspacing,
+ATL-PHYS-PUB-2015-041, 2015,url: https://cds.cern.ch/record/2048202.
+[25] ATLAS Collaboration, Photon identiﬁcation in 2015 ATLAS data, ATL-PHYS-PUB-2016-014,
+2016, url: https://cds.cern.ch/record/2203125.
+[26] ATLAS Collaboration, Electron and photon energy calibration with the ATLAS detector using
+data collected in 2015 at√s = 13 TeV, ATL-PHYS-PUB-2016-015, 2016,
+url: https://cds.cern.ch/record/2203514.
+[27] ATLAS Collaboration, Pile-up subtraction and suppression for jets in ATLAS,
+ATLAS-CONF-2013-083, 2013,url: https://cds.cern.ch/record/1570994.
+[28] C. Oleari, The POWHEG-BOX, Nucl. Phys. Proc. Suppl.205-206(2010) 36,
+arXiv: 1007.3893 [hep-ph].
+[29] T. Sjostrand, S. Mrenna and P. Z. Skands,A Brief Introduction to PYTHIA 8.1,
+Comput. Phys. Commun.178 (2008) 852, arXiv:0710.3820 [hep-ph].
+[30] ATLAS Collaboration, Measurement of the Higgs boson coupling properties in the
+H→ Z Z∗→ 4ℓ decay channel at√s = 13 TeV with the ATLAS detector,
+ATLAS-CONF-2017-043, 2017,url: https://cds.cern.ch/record/2273849.
+[31] ATLAS Collaboration, Measurements of Higgs boson properties in the diphoton decay channel
+with 36.1 fb−1 pp collision data at the center-of-mass energy of13 TeV with the ATLAS detector,
+ATLAS-CONF-2017-045, 2017,url: https://cds.cern.ch/record/2273852.
+34
+
+===== PAGE 35 =====
+A Summary table of physics performance results
+The following is a table summarizing the ﬁtted mean (µ) and resolution (σ) of each resonance tested in
+Section 11, along with the change inσ/µ for each case.
+Process ⟨µ⟩ µSW [GeV] σSW [GeV] µSC [GeV] σSC [GeV] Change in σ/µ (%)
+J/ψ→ e+e− [15, 30] 3.06 0.163 3.08 0.151 −7.9%
+Z→ e+e− [15, 30] 90.1 3.01 90.6 2.86 −5.6%
+H→ Z Z∗→ 4ℓ
+4e ≤ 40 123.30 2.85 124.37 2.73 −4.8%
+2µ2e ≤ 40 123.90 2.60 124.46 2.48 −5.2%
+2e2µ ≤ 40 124.03 2.17 124.47 2.12 −2.9%
+H→ γγ
+Inclusive ≤ 40 124.89 1.79 125.12 1.86 3.7%
+One converted (Si tracks only) ≤ 40 124.86 2.09 125.18 1.99 −5.0%
+Two converted (Si tracks only) ≤ 40 124.81 2.57 125.27 2.35 −8.9%
+Table1:Asummaryoftheﬁttedmean( µ)andresolution( σ)ofeachresonancetestedinSection11,alongwiththe
+change inσ/µ for each case.
+35

@@ -1,0 +1,295 @@
+﻿# 1704.07983v2.pdf
+- Pages: 44
+- Metadata title: Performance of the ATLAS track reconstruction algorithms in dense environments in LHC Run 2
+- Metadata author: The ATLAS Collaboration
+
+## Headings (heuristic)
+- 13 TeV for Run 2, events with dense environments, such as in the cores of high-energy jets,
+- 1 Introduction
+- 2 The ATLAS detector
+- 3 ATLAS track reconstruction
+- 3.1 Clusterization
+- 3.2 Iterative combinatorial track 铿乶ding
+- 3.3 Track candidates and ambiguity solving
+- 0 |< 2.0 mm,
+- 0 sin胃|< 3.0 mm,
+- 0 is the transverse impact parameter calculated with respect to the measured beam-line position,
+- 0 is the longitudinal di铿€erence along the beam line between the point where dBL
+- 0 is measured and the
+- 3.4 Neural-network pixel clustering
+- 3.5 Track 铿乼
+- 4 Data and Monte Carlo samples
+- 4 framework [22]. The average number of proton-proton interactions per bunch crossing (pile-up) was
+- 5 Track reconstruction performance in dense environments
+- 5.1 Classi铿乧ation
+- 200 GeV in the dijet MC sample described in Section 4, the fraction of fake tracks is below 0.5%. From
+- 5.2 Data and MC simulation comparison
+- 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 dN/dA
+- 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 鈱?
+- 5.3 Performance for collimated tracks
+- 0 200 400 600 800 1000
+- 5.4 Performance for tracks in jets
+- 1.2 ATLAS Simulation
+- 0 10 20 30 40 50 60 70 80 90
+- 0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 Track Reconstruction Efficiency
+- 400 600 800 1000 1200 1400 1600 Track Reconstruction Efficiency
+- 10 2 10Track Reconstruction Efficiency
+- 6 Measurement of track reconstruction e 铿僣iency in jets from data
+- 6.1 Track selection
+- 0 |< 1.5 mm,
+- 0 sin胃|< 1.5 mm,
+- 6.2 Fit method
+- 0 0.5 1 1.5 2 2.5 3 3.5 4
+- 2 ) and
+- 2 = NReco
+- 2 + 2路 NLost. (1)
+- 2 + 2路 NLost
+- 6.3 Systematic uncertainties
+- 400 GeV to 600 GeV and from 1400 GeV to 1600 GeV, respectively. This correction term was applied
+- 6.4 Results
+- 0.5 1 1.5 2 2.5 3 3.5 4
+- 1.1 (b)
+- 200 GeV< pjet
+- 200 400 600 800 1000 1200 1400 1600
+- 7 Conclusion
+- Acknowledgements
+- References
+- 1 Department of Physics, University of Adelaide, Adelaide, Australia
+- 2 Physics Department, SUNY Albany, Albany NY , United States of America
+- 3 Department of Physics, University of Alberta, Edmonton AB, Canada
+- 4 ( a) Department of Physics, Ankara University, Ankara; (b) Istanbul Aydin University, Istanbul;(c)
+- 5 LAPP, CNRS/IN2P3 and Universit茅 Savoie Mont Blanc, Annecy-le-Vieux, France
+- 6 High Energy Physics Division, Argonne National Laboratory, Argonne IL, United States of America
+- 7 Department of Physics, University of Arizona, Tucson AZ, United States of America
+- 8 Department of Physics, The University of Texas at Arlington, Arlington TX, United States of America
+- 9 Physics Department, National and Kapodistrian University of Athens, Athens, Greece
+- 10 Physics Department, National Technical University of Athens, Zografou, Greece
+- 11 Department of Physics, The University of Texas at Austin, Austin TX, United States of America
+- 12 Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+- 13 Institut de F铆sica d鈥橝ltes Energies (IFAE), The Barcelona Institute of Science and Technology,
+- 14 Institute of Physics, University of Belgrade, Belgrade, Serbia
+- 15 Department for Physics and Technology, University of Bergen, Bergen, Norway
+- 16 Physics Division, Lawrence Berkeley National Laboratory and University of California, Berkeley CA,
+- 17 Department of Physics, Humboldt University, Berlin, Germany
+- 18 Albert Einstein Center for Fundamental Physics and Laboratory for High Energy Physics, University
+- 19 School of Physics and Astronomy, University of Birmingham, Birmingham, United Kingdom
+- 20 ( a) Department of Physics, Bogazici University, Istanbul; (b) Department of Physics Engineering,
+- 21 Centro de Investigaciones, Universidad Antonio Narino, Bogota, Colombia
+- 22 ( a) INFN Sezione di Bologna; (b) Dipartimento di Fisica e Astronomia, Universit脿 di Bologna,
+- 23 Physikalisches Institut, University of Bonn, Bonn, Germany
+- 24 Department of Physics, Boston University, Boston MA, United States of America
+- 25 Department of Physics, Brandeis University, Waltham MA, United States of America
+- 26 ( a) Universidade Federal do Rio De Janeiro COPPE/EE/IF, Rio de Janeiro; (b) Electrical Circuits
+- 27 Physics Department, Brookhaven National Laboratory, Upton NY , United States of America
+- 28 ( a) Transilvania University of Brasov, Brasov;(b) Horia Hulubei National Institute of Physics and
+- 29 Departamento de F铆sica, Universidad de Buenos Aires, Buenos Aires, Argentina
+- 30 Cavendish Laboratory, University of Cambridge, Cambridge, United Kingdom
+- 31 Department of Physics, Carleton University, Ottawa ON, Canada
+- 32 CERN, Geneva, Switzerland
+- 33 Enrico Fermi Institute, University of Chicago, Chicago IL, United States of America
+- 34 ( a) Departamento de F铆sica, Ponti铿乧ia Universidad Cat贸lica de Chile, Santiago;(b) Departamento de
+- 35 ( a) Institute of High Energy Physics, Chinese Academy of Sciences, Beijing; (b) Department of
+- 36 ( a) Department of Modern Physics and State Key Laboratory of Particle Detection and Electronics,
+- 37 Universit茅 Clermont Auvergne, CNRS/IN2P3, LPC, Clermont-Ferrand, France
+- 38 Nevis Laboratory, Columbia University, Irvington NY , United States of America
+- 39 Niels Bohr Institute, University of Copenhagen, Kobenhavn, Denmark
+- 40 ( a) INFN Gruppo Collegato di Cosenza, Laboratori Nazionali di Frascati; (b) Dipartimento di Fisica,
+- 41 ( a) AGH University of Science and Technology, Faculty of Physics and Applied Computer Science,
+- 42 Institute of Nuclear Physics Polish Academy of Sciences, Krakow, Poland
+- 43 Physics Department, Southern Methodist University, Dallas TX, United States of America
+- 44 Physics Department, University of Texas at Dallas, Richardson TX, United States of America
+- 45 DESY , Hamburg and Zeuthen, Germany
+- 46 Lehrstuhl f眉r Experimentelle Physik IV , Technische Universit盲t Dortmund, Dortmund, Germany
+- 47 Institut f眉r Kern- und Teilchenphysik, Technische Universit盲t Dresden, Dresden, Germany
+- 48 Department of Physics, Duke University, Durham NC, United States of America
+- 49 SUPA - School of Physics and Astronomy, University of Edinburgh, Edinburgh, United Kingdom
+- 50 INFN Laboratori Nazionali di Frascati, Frascati, Italy
+- 51 Fakult盲t f眉r Mathematik und Physik, Albert-Ludwigs-Universit盲t, Freiburg, Germany
+- 52 Departement de Physique Nucleaire et Corpusculaire, Universit茅 de Gen猫ve, Geneva, Switzerland
+- 53 ( a) INFN Sezione di Genova; (b) Dipartimento di Fisica, Universit脿 di Genova, Genova, Italy
+- 54 ( a) E. Andronikashvili Institute of Physics, Iv. Javakhishvili Tbilisi State University, Tbilisi;(b) High
+- 55 II Physikalisches Institut, Justus-Liebig-Universit盲t Giessen, Giessen, Germany
+- 56 SUPA - School of Physics and Astronomy, University of Glasgow, Glasgow, United Kingdom
+- 57 II Physikalisches Institut, Georg-August-Universit盲t, G枚ttingen, Germany
+- 58 Laboratoire de Physique Subatomique et de Cosmologie, Universit茅 Grenoble-Alpes, CNRS/IN2P3,
+- 59 Laboratory for Particle Physics and Cosmology, Harvard University, Cambridge MA, United States of
+- 60 ( a) Kirchho铿€-Institut f眉r Physik, Ruprecht-Karls-Universit盲t Heidelberg, Heidelberg; (b)
+- 61 Faculty of Applied Information Science, Hiroshima Institute of Technology, Hiroshima, Japan
+- 62 ( a) Department of Physics, The Chinese University of Hong Kong, Shatin, N.T., Hong Kong;(b)
+- 63 Department of Physics, National Tsing Hua University, Taiwan, Taiwan
+- 64 Department of Physics, Indiana University, Bloomington IN, United States of America
+- 65 Institut f眉r Astro- und Teilchenphysik, Leopold-Franzens-Universit盲t, Innsbruck, Austria
+- 66 University of Iowa, Iowa City IA, United States of America
+- 67 Department of Physics and Astronomy, Iowa State University, Ames IA, United States of America
+- 68 Joint Institute for Nuclear Research, JINR Dubna, Dubna, Russia
+- 69 KEK, High Energy Accelerator Research Organization, Tsukuba, Japan
+- 70 Graduate School of Science, Kobe University, Kobe, Japan
+- 71 Faculty of Science, Kyoto University, Kyoto, Japan
+- 72 Kyoto University of Education, Kyoto, Japan
+- 73 Research Center for Advanced Particle Physics and Department of Physics, Kyushu University,
+- 74 Instituto de F铆sica La Plata, Universidad Nacional de La Plata and CONICET, La Plata, Argentina
+- 75 Physics Department, Lancaster University, Lancaster, United Kingdom
+- 76 ( a) INFN Sezione di Lecce; (b) Dipartimento di Matematica e Fisica, Universit脿 del Salento, Lecce,
+- 77 Oliver Lodge Laboratory, University of Liverpool, Liverpool, United Kingdom
+- 78 Department of Experimental Particle Physics, Jo啪ef Stefan Institute and Department of Physics,
+- 79 School of Physics and Astronomy, Queen Mary University of London, London, United Kingdom
+- 80 Department of Physics, Royal Holloway University of London, Surrey, United Kingdom
+- 81 Department of Physics and Astronomy, University College London, London, United Kingdom
+- 82 Louisiana Tech University, Ruston LA, United States of America
+- 83 Laboratoire de Physique Nucl茅aire et de Hautes Energies, UPMC and Universit茅 Paris-Diderot and
+- 84 Fysiska institutionen, Lunds universitet, Lund, Sweden
+- 85 Departamento de Fisica Teorica C-15, Universidad Autonoma de Madrid, Madrid, Spain
+- 86 Institut f眉r Physik, Universit盲t Mainz, Mainz, Germany
+- 87 School of Physics and Astronomy, University of Manchester, Manchester, United Kingdom
+- 88 CPPM, Aix-Marseille Universit茅 and CNRS/IN2P3, Marseille, France
+- 89 Department of Physics, University of Massachusetts, Amherst MA, United States of America
+- 90 Department of Physics, McGill University, Montreal QC, Canada
+- 91 School of Physics, University of Melbourne, Victoria, Australia
+- 92 Department of Physics, The University of Michigan, Ann Arbor MI, United States of America
+- 93 Department of Physics and Astronomy, Michigan State University, East Lansing MI, United States of
+- 94 ( a) INFN Sezione di Milano; (b) Dipartimento di Fisica, Universit脿 di Milano, Milano, Italy
+- 95 B.I. Stepanov Institute of Physics, National Academy of Sciences of Belarus, Minsk, Republic of
+- 96 Research Institute for Nuclear Problems of Byelorussian State University, Minsk, Republic of Belarus
+- 97 Group of Particle Physics, University of Montreal, Montreal QC, Canada
+- 98 P.N. Lebedev Physical Institute of the Russian Academy of Sciences, Moscow, Russia
+- 99 Institute for Theoretical and Experimental Physics (ITEP), Moscow, Russia
+- 100 National Research Nuclear University MEPhI, Moscow, Russia
+- 101 D.V . Skobeltsyn Institute of Nuclear Physics, M.V . Lomonosov Moscow State University, Moscow,
+- 102 Fakult盲t f眉r Physik, Ludwig-Maximilians-Universit盲t M眉nchen, M眉nchen, Germany
+- 103 Max-Planck-Institut f眉r Physik (Werner-Heisenberg-Institut), M眉nchen, Germany
+- 104 Nagasaki Institute of Applied Science, Nagasaki, Japan
+- 105 Graduate School of Science and Kobayashi-Maskawa Institute, Nagoya University, Nagoya, Japan
+- 106 ( a) INFN Sezione di Napoli; (b) Dipartimento di Fisica, Universit脿 di Napoli, Napoli, Italy
+- 107 Department of Physics and Astronomy, University of New Mexico, Albuquerque NM, United States
+- 108 Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef,
+- 109 Nikhef National Institute for Subatomic Physics and University of Amsterdam, Amsterdam,
+- 110 Department of Physics, Northern Illinois University, DeKalb IL, United States of America
+- 111 Budker Institute of Nuclear Physics, SB RAS, Novosibirsk, Russia
+- 112 Department of Physics, New York University, New York NY , United States of America
+- 113 Ohio State University, Columbus OH, United States of America
+- 114 Faculty of Science, Okayama University, Okayama, Japan
+- 115 Homer L. Dodge Department of Physics and Astronomy, University of Oklahoma, Norman OK,
+- 116 Department of Physics, Oklahoma State University, Stillwater OK, United States of America
+- 117 Palack媒 University, RCPTM, Olomouc, Czech Republic
+- 118 Center for High Energy Physics, University of Oregon, Eugene OR, United States of America
+- 119 LAL, Univ. Paris-Sud, CNRS/IN2P3, Universit茅 Paris-Saclay, Orsay, France
+- 120 Graduate School of Science, Osaka University, Osaka, Japan
+- 121 Department of Physics, University of Oslo, Oslo, Norway
+- 122 Department of Physics, Oxford University, Oxford, United Kingdom
+- 123 ( a) INFN Sezione di Pavia; (b) Dipartimento di Fisica, Universit脿 di Pavia, Pavia, Italy
+- 124 Department of Physics, University of Pennsylvania, Philadelphia PA, United States of America
+- 125 National Research Centre "Kurchatov Institute" B.P.Konstantinov Petersburg Nuclear Physics
+- 126 ( a) INFN Sezione di Pisa; (b) Dipartimento di Fisica E. Fermi, Universit脿 di Pisa, Pisa, Italy
+- 127 Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh PA, United States of
+- 128 ( a) Laborat贸rio de Instrumenta莽茫o e F铆sica Experimental de Part铆culas - LIP, Lisboa; (b) Faculdade de
+- 129 Institute of Physics, Academy of Sciences of the Czech Republic, Praha, Czech Republic
+- 130 Czech Technical University in Prague, Praha, Czech Republic
+- 131 Charles University, Faculty of Mathematics and Physics, Prague, Czech Republic
+- 132 State Research Center Institute for High Energy Physics (Protvino), NRC KI, Russia
+- 133 Particle Physics Department, Rutherford Appleton Laboratory, Didcot, United Kingdom
+- 134 ( a) INFN Sezione di Roma; (b) Dipartimento di Fisica, Sapienza Universit脿 di Roma, Roma, Italy
+- 135 ( a) INFN Sezione di Roma Tor Vergata;(b) Dipartimento di Fisica, Universit脿 di Roma Tor Vergata,
+- 136 ( a) INFN Sezione di Roma Tre; (b) Dipartimento di Matematica e Fisica, Universit脿 Roma Tre, Roma,
+- 137 ( a) Facult茅 des Sciences Ain Chock, R茅seau Universitaire de Physique des Hautes Energies -
+- 138 DSM/IRFU (Institut de Recherches sur les Lois Fondamentales de l鈥橴nivers), CEA Saclay
+- 139 Santa Cruz Institute for Particle Physics, University of California Santa Cruz, Santa Cruz CA, United
+- 140 Department of Physics, University of Washington, Seattle W A, United States of America
+- 141 Department of Physics and Astronomy, University of She铿僥ld, She铿僥ld, United Kingdom
+- 142 Department of Physics, Shinshu University, Nagano, Japan
+- 143 Department Physik, Universit盲t Siegen, Siegen, Germany
+- 144 Department of Physics, Simon Fraser University, Burnaby BC, Canada
+- 145 SLAC National Accelerator Laboratory, Stanford CA, United States of America
+- 146 ( a) Faculty of Mathematics, Physics & Informatics, Comenius University, Bratislava;(b) Department
+- 147 ( a) Department of Physics, University of Cape Town, Cape Town;(b) Department of Physics,
+- 148 ( a) Department of Physics, Stockholm University; (b) The Oskar Klein Centre, Stockholm, Sweden
+- 149 Physics Department, Royal Institute of Technology, Stockholm, Sweden
+- 150 Departments of Physics & Astronomy and Chemistry, Stony Brook University, Stony Brook NY ,
+- 151 Department of Physics and Astronomy, University of Sussex, Brighton, United Kingdom
+- 152 School of Physics, University of Sydney, Sydney, Australia
+- 153 Institute of Physics, Academia Sinica, Taipei, Taiwan
+- 154 Department of Physics, Technion: Israel Institute of Technology, Haifa, Israel
+- 155 Raymond and Beverly Sackler School of Physics and Astronomy, Tel Aviv University, Tel Aviv,
+- 156 Department of Physics, Aristotle University of Thessaloniki, Thessaloniki, Greece
+- 157 International Center for Elementary Particle Physics and Department of Physics, The University of
+- 158 Graduate School of Science and Technology, Tokyo Metropolitan University, Tokyo, Japan
+- 159 Department of Physics, Tokyo Institute of Technology, Tokyo, Japan
+- 160 Tomsk State University, Tomsk, Russia
+- 161 Department of Physics, University of Toronto, Toronto ON, Canada
+- 162 ( a) INFN-TIFPA; (b) University of Trento, Trento, Italy
+- 163 ( a) TRIUMF, Vancouver BC;(b) Department of Physics and Astronomy, York University, Toronto
+- 164 Faculty of Pure and Applied Sciences, and Center for Integrated Research in Fundamental Science
+- 165 Department of Physics and Astronomy, Tufts University, Medford MA, United States of America
+- 166 Department of Physics and Astronomy, University of California Irvine, Irvine CA, United States of
+- 167 ( a) INFN Gruppo Collegato di Udine, Sezione di Trieste, Udine; (b) ICTP, Trieste; (c) Dipartimento di
+- 168 Department of Physics and Astronomy, University of Uppsala, Uppsala, Sweden
+- 169 Department of Physics, University of Illinois, Urbana IL, United States of America
+- 170 Instituto de Fisica Corpuscular (IFIC), Centro Mixto Universidad de Valencia - CSIC, Spain
+- 171 Department of Physics, University of British Columbia, Vancouver BC, Canada
+- 172 Department of Physics and Astronomy, University of Victoria, Victoria BC, Canada
+- 173 Department of Physics, University of Warwick, Coventry, United Kingdom
+- 174 Waseda University, Tokyo, Japan
+- 175 Department of Particle Physics, The Weizmann Institute of Science, Rehovot, Israel
+- 176 Department of Physics, University of Wisconsin, Madison WI, United States of America
+- 177 Fakult盲t f眉r Physik und Astronomie, Julius-Maximilians-Universit盲t, W眉rzburg, Germany
+- 178 Fakult盲t f眉r Mathematik und Naturwissenschaften, Fachgruppe Physik, Bergische Universit盲t
+- 179 Department of Physics, Yale University, New Haven CT, United States of America
+- 180 Yerevan Physics Institute, Yerevan, Armenia
+- 181 CH-1211 Geneva 23, Switzerland
+- 182 Centre de Calcul de l鈥橧nstitut National de Physique Nucl茅aire et de Physique des Particules (IN2P3),
+- 183 Academia Sinica Grid Computing, Institute of Physics, Academia Sinica, Taipei, Taiwan
+
+## Figure captions (best-effort)
+- Figure 2. Based on 4
+- Figure 2: Illustration of (a) single-particle pixel clusters on a pixel sensor and (b) a merged pixel cluster due to very collimated charged particles. Di铿€erent colours represent energy deposits from di铿€erent charged particles traversing
+- Figure 4. The charged-particle density in jets increases linearly with the logarithm of the jet momentum, which re铿俥cts the average number of tracks inside the jet. Moreover,
+- Figure 4: The average number of primary tracks per unit of angular area as a function of the angular distance from the jet axis. Data (markers) and dijet MC (lines) samples are compared in bins of jet pT showing the high density
+- Figure 5: The average number of (a) pixel clusters identi铿乪d as merged and (b) shared pixel clusters on primary tracks (with a production vertex before the IBL) are shown as a function of the angular distance of the track from the
+- Figure 6: The average number of IBL clusters on primary tracks (with a production vertex before the IBL) shown as a function of the angular distance of the track from the jet axis. Data (markers) and dijet MC (lines)) samples
+- Figure 7. This is due to the coarser segmentation of the SCT strips in one dimension and the lack of charge information hindering
+- Figure 7: The average number of shared SCT clusters for primary tracks with a production vertex before the IBL is shown as a function of the angular distance of the track from the jet axis. Data (markers) and dijet MC (lines)
+- Figure 8: A comparison of the average minimum distance between charged decay products at the IBL sensor surfaces as a function of initial particle鈥檚 pT for single-particle samples.
+- Figure 9: A comparison of the average number of merged pixel clusters expected for truth particles from simulation and pixel clusters identi铿乪d as merged used in reconstructed tracks is shown as a function of the蟻 and three-prong
+- Figure 10: For the 蟻 (top), three-prong蟿 (middle), and B0 (bottom) samples, the e铿僣iency with which reconstructed clusters are properly assigned to a track is shown for the two innermost pixel layers (IBL and B-layer) as a function
+- Figure 11: The reconstructable e 铿僣iency, de铿乶ed as the e铿僣iency to reconstruct all of the charged decay products of the parent particle, is shown for the 蟻 and three-prong 蟿 samples with various limits on the number of shared
+- Figure 12: Single-track reconstruction e 铿僣iency is shown as (a) a function of the initial particle鈥檚 pT when it is required that the parent particle decays before the IBL for the decay products of a 蟻, three- and 铿乿e-prong蟿 and a
+- Figure 14. The decrease in e 铿僣iency with production radius is from two e 铿€ects. Firstly, particles created beyond the 铿乺st active layers of the ID create fewer clusters. Secondly, with the
+- Figure 13: The e 铿僣iency to reconstruct charged primary particles in jets with (a) |畏| < 1.2 and (b) |畏| > 1.2 is shown as a function of the angular distance of the particle from the jet axis for various jet pT for simulated dijet
+- Figure 14: The track reconstruction e 铿僣iency is compared for charged primary particles in jets with |畏| < 1.2 (|畏| > 1.2) for the entire jet- pT range as a function of (a) the jet pT and (b) the production radius of the charged
+- Figure 5. By 铿乼ting the cluster d E/dx for reconstructed tracks near the core of the jet, single-particle clusters can be statistically separated from merged clusters. The fraction of lost tracks
+- Figure 15. The single-track template, displayed as
+- Figure 15: Single-track and multiple-track templates for data with a jet pT in the range 200 GeV<pjet T < 400 GeV.
+- Figure 17. As the jet pT increases, so does Flost2, with a similar trend observed in both data and simulation. This increase
+- Figure 16: Data d E/dx measurement distributions (black circles) with 铿乼 results (solid line) are shown for (a) 200 GeV< pjet
+- Figure 17: The measured fraction of lost tracks, Flost2, in the jet core (鈭哛(jet,trk)< 0.05) as a function of jet pT for
+
+## Table captions (best-effort)
+- Table 1: Measured Flost2, relative values of leading systematic uncertainties, and total systematic and statistical uncertainty in the fraction of lost tracks for data in bins of jet pT.
+
+---
+
+# T_Cornelissen_2008_J._Phys.__Conf._Ser._119_032014.pdf
+- Pages: 11
+
+## Headings (heuristic)
+- 1 Corresponding author: Andreas.Salzburger@cern.ch
+- 2 In ATLAS, this is done through auto-generated python equivalents of each tool, algorithm or service
+- 00 .5 11 .5 22 .5
+- 3 A real evaluation of the track reconstruction performance has to be carried out anyway within the commissioning
+- 0 20 40 60 80 100 120 140
+- 5150 (2.66 GHz).
+- Acknowledgments
+- References
+
+## Figure captions (best-effort)
+- Figure 1. A simulated t炉t event reconstructed with the o铿刬ne (left) and third level trigger versions (right) of the ATLAS New Tracking. Latter is restricted to dedicated regions that are,
+- Figure 2. The main sequence of modules and some of the tool classes used in the ATLAS New Tracking for the Inner Detector illustrated as an extended UML sequence diagram. Following a
+- Figure 3. Simpli铿乪d model of the ambiguity solving process, illustrated
+- Figure 4. A sample t炉t event show- ing the two possible TRT hit associa-
+- Figure 5. Single track reconstruction performance 铿乬ures for the new track reconstruction in the Inner Detector; the left plot shows the transverse impact parameter resolution 蟽(d0) for
+- Figure 6. Improvement of the Z mass distribution for Z 鈫?e+e-, when
+
+## Table captions (best-effort)
+- (none detected)
+
+---
+

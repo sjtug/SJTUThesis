@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              tHW                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\tHW]{\tHW}
+\label{subsec:tHW}
+
+This section describes the MC samples used for the modelling of \tHW\ production.
+Section~\ref{subsubsec:tHW_aMCP8} describes the \MGNLOPY[8] samples.
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:tHW_aMCP8}
+
+\paragraph{Samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:tHW_aMCP8}.
+
+\begin{table}
+  \caption{Nominal \tHW\ samples produced with \MGNLOPY[8].}%
+  \label{tab:tHW_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID & Description \\
+    \midrule
+    346486 & \tHW\, \Hgg\ \\
+    346511 & \tHW\, \Hllll \\
+    346678 & \tHW\, $H\rightarrow$ inclusive, UFO model \\
+    346759 & \tHW\, \Hgg{}, UFO model \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+  
+\paragraph{Short description:}
+
+The \tHW{} production is modelled using the \MGNLO[2.6.2]~\cite{Alwall:2014hca} generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). The overlap with the \ttH{} production is removed using the diagram removal scheme~\cite{Frixione:2008yi,Demartin:2016axk}. The events are interfaced with \PYTHIA[8.235]~\cite{Sjostrand:2014zea} using the A14 parameter set~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The decays of bottom and charm hadrons are simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
+
+\paragraph{Long description:}
+
+The \tHW{} samples were simulated using the \MGNLO[2.6.2]~\cite{Alwall:2014hca}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). The events were interfaced with
+\PYTHIA[8.235]~\cite{Sjostrand:2014zea}~ using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the \NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. 
+The top quark was decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve spin correlations,
+whereas the Higgs boson was decayed by \PYTHIA in the parton shower. The samples
+were generated in the five-flavour scheme.
+The functional form of the renormalisation and factorisation scales was set to the 
+default scale $0.5\times \sum_i \sqrt{m^2_i+p^2_{\text{T},i}}$, where the sum runs over 
+all the particles generated from the matrix element calculation.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.

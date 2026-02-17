@@ -1,0 +1,340 @@
+%-------------------------------------------------------------------------------
+% List of packages that can or should be used in ATLAS documents.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlaspackage}[2021/08/20 v11.6.0 ATLAS LaTeX packages]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=APKG,
+  prefix=APKG@
+}
+\DeclareBoolOption[false]{minimal}
+\DeclareBoolOption[true]{default}
+\DeclareBoolOption[false]{full}
+\DeclareBoolOption[true]{biblatex}
+\DeclareBoolOption[true]{siunitx}
+\DeclareBoolOption[false]{eVkern}
+\DeclareBoolOption[false]{percentspace}
+\DeclareBoolOption[true]{csquotes}
+\DeclareBoolOption[false]{subfig}
+\DeclareBoolOption[false]{subfigure}
+\DeclareBoolOption[true]{subcaption}
+\DeclareBoolOption[true]{hyperref}
+\DeclareBoolOption[true]{bookmark}
+\DeclareBoolOption[true]{cleveref}
+\DeclareBoolOption[true]{capsref}
+\DeclareBoolOption[true]{abbrevref}
+% Packages included with full
+\DeclareBoolOption[false]{mhchem}
+\DeclareBoolOption[false]{physics}
+\DeclareBoolOption[false]{rotating}
+\DeclareBoolOption[false]{xfrac}
+\DeclareBoolOption[false]{longtable}
+\DeclareBoolOption[false]{xtab}
+% Miscellaneous packages and options
+\DeclareBoolOption[true]{lineno}
+\DeclareBoolOption[false]{txfonts}
+\DeclareStringOption[2016]{texlive}
+\DeclareStringOption[biber]{backend}
+% \DeclareStringOption[ragged]{block}
+% \DeclareStringOption[3]{maxbibnames}
+\DeclareStringOption[]{block}
+\DeclareStringOption[]{maxbibnames}
+\ProcessKeyvalOptions*
+
+\typeout{atlaspackage: APKG@texlive is [\APKG@texlive]}
+
+\newif\ifAPKG@less
+\newif\ifAPKG@standard
+\newif\ifAPKG@more
+\ifthenelse{\boolean{APKG@minimal}}{%
+  \typeout{atlaspackage: Using minimal settings}
+  \APKG@lesstrue
+  \APKG@standardfalse
+  \APKG@morefalse
+}{%
+  \ifthenelse{\boolean{APKG@full}}{%
+    \typeout{atlaspackage: Using full settings}
+    \APKG@lesstrue
+    \APKG@standardtrue
+    \APKG@moretrue
+  }{%
+    \typeout{atlaspackage: Using default settings}
+    \APKG@lesstrue
+    \APKG@standardtrue
+    \APKG@morefalse
+  }
+}
+
+% Steer packages that are included with the full option
+% Turned on full option and off by default otherwise
+\ifthenelse{\boolean{APKG@more}}{%
+  \APKG@mhchemtrue
+  \APKG@physicstrue
+  \APKG@rotatingtrue
+  \APKG@xfractrue
+  \APKG@xtabtrue
+}{}
+
+%-------------------------------------------------------------------------------
+% Packages normally included by atlasdoc
+% Graphics
+\RequirePackage{graphicx}
+% Colour
+\RequirePackage[svgnames]{xcolor}
+% Document language control
+\RequirePackage{babel}
+% Add line numbers
+\ifthenelse{\boolean{APKG@lineno}}{%
+  \RequirePackage{lineno}
+  % If you have an old lineno or do not have it, you can get it from the latex/other directory
+  % \RequirePackage{obsolete/lineno}
+}{}
+
+%-------------------------------------------------------------------------------
+% Minimal set of packages
+% Input encoding - allows ä, ö, ß etc. to be input directly
+\RequirePackage[utf8]{inputenc}
+
+%\RequirePackage{newtxtext}
+%\RequirePackage{newtxmath}
+
+% Palatino for rm and math | Helvetica for ss | Courier for tt
+%\usepackage{mathpazo} % math & rm
+%\linespread{1.05}        % Palatino needs more leading (space between lines)
+%\usepackage[scaled]{helvet} % ss
+%\usepackage{courier} % tt
+%\normalfont
+%\usepackage[T1]{fontenc}
+
+% Font
+\ifthenelse{\boolean{APKG@txfonts}}{%
+  \typeout{atlaspackage: Using txfonts and savesym}
+  \RequirePackage[varg]{txfonts}
+  % Encoding used for printout
+  \RequirePackage[T1]{fontenc}
+
+  % amsmath and txfonts define the same symbols - use the txfont version
+  % Save txfont symbols to amsmath can be loaded
+  \RequirePackage{savesym}
+  \savesymbol{iint}
+  \savesymbol{iiint}
+  \savesymbol{iiiint}
+  \savesymbol{idotsint}
+}{}
+
+% Extra and very useful maths macros from AMS
+\RequirePackage{amsmath}
+% The AMS \iint etc. is now defined as \AMSiint
+\ifthenelse{\boolean{APKG@txfonts}}{%
+  \restoresymbol{AMS}{iint}
+  \restoresymbol{AMS}{iiint}
+  \restoresymbol{AMS}{iiiint}
+  \restoresymbol{AMS}{idotsint}
+}{}
+
+% microtype to improve spacing
+\RequirePackage[babel=true]{microtype}
+
+% Add command that can force all figures and tables (floats) to appear before a certain point
+\RequirePackage[section]{placeins}
+
+\ifthenelse{\boolean{APKG@standard}}{%
+  \ifthenelse{\boolean{APKG@csquotes}}{\RequirePackage[autostyle=true]{csquotes}}{}
+  % Extra options for footnotes
+  % \RequirePackage[bottom]{footmisc}
+  % Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
+  \RequirePackage{booktabs}
+  % Several plots in a single figure
+  \ifthenelse{\boolean{APKG@subfigure}}{%
+    \RequirePackage[TABBOTCAP]{subfigure}
+    % subfigure option needed if subfig(ure) is also used
+    % \RequirePackage[subfigure]{tocloft}
+  }{%
+    % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
+    % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
+    \ifthenelse{\boolean{APKG@subcaption}}{%
+      \RequirePackage[labelformat=simple]{subcaption}
+      \renewcommand\thesubfigure{(\alph{subfigure})}
+      \renewcommand\thesubtable{(\alph{subtable})}
+      % \RequirePackage{tocloft}
+    }{%
+      \ifthenelse{\boolean{APKG@subfig}}{%
+        \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
+        \renewcommand\thesubfigure{(\alph{subfigure})}
+        \renewcommand\thesubtable{(\alph{subtable})}
+        % subfigure option needed if subfig(ure) is also used
+        % \RequirePackage[subfigure]{tocloft}
+      }{}
+    }
+  }{}
+
+  % Fixes appendices displaying in pdf viewer index/outline under first appendix
+  % instead of under Appendix heading
+  \ifthenelse{\boolean{APKG@bookmark}}{\RequirePackage{bookmark}}{}
+
+  % Remove dots in table of contents
+  % \renewcommand{\cftdot}{}
+
+  % Typset anything with units using this package - also has very useful table formatting
+  % Declare a few options and standard units for siunitx that are otherwise missing
+  \ifthenelse{\boolean{APKG@siunitx}}{%
+    \typeout{atlaspackage: Loading siunitx definitions}
+    \RequirePackage{siunitx}
+    \sisetup{separate-uncertainty}
+    \sisetup{range-units=single, list-units=single}
+    \sisetup{group-digits=integer, group-minimum-digits=5}
+    \sisetup{detect-all}
+    %\sisetup{detect-mode=false, mode=text}
+    \DeclareSIUnit\micron{\micro\metre}
+    \DeclareSIUnit\mrad{\milli\radian}
+    \DeclareSIUnit\degr{\degree}
+    \ifthenelse{\boolean{APKG@percentspace}}{}{%
+      \DeclareSIUnit[number-unit-product={}]\percent{\char`\%}
+      \DeclareSIUnit[number-unit-product={}]\%{\char`\%}
+    }
+    % Barn needed for TeX Live 2021.
+    \DeclareSIUnit\barn{b}
+    \DeclareSIUnit\nb{\nano\barn}
+    \DeclareSIUnit\pb{\pico\barn}
+    \DeclareSIUnit\fb{\femto\barn}
+    \DeclareSIUnit\inb{\per\nano\barn}
+    \DeclareSIUnit\ipb{\per\pico\barn}
+    \DeclareSIUnit\ifb{\per\femto\barn}
+    \DeclareSIUnit\clight{\text{\ensuremath{c}}}
+    \ifthenelse{\boolean{APKG@eVkern}}{%
+      \typeout{atlaspackage: Applying kern to eV}
+      \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
+    }{}
+    \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
+    \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\keVc{\kilo\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\eVc{\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\TeVcc{\tera\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\GeVcc{\giga\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
+  }{}
+}{}
+
+% Pass eVkern option to atlasphysics
+\ifthenelse{\boolean{APKG@eVkern}}{%
+  \typeout{atlaspackage: passing eVkern option to atlasphysics}
+  \PassOptionsToPackage{eVkern}{\ADOC@atlasphysics}
+}{}
+
+
+%------------------------------------------------------------------------------
+% Packages included with the full option (or explicitly)
+
+% Chemical elements and processes
+\ifthenelse{\boolean{APKG@mhchem}}{%
+  \RequirePackage[version=3]{mhchem}
+}{}
+
+% Macros for mathematics in physics
+\ifthenelse{\boolean{APKG@physics}}{%
+  \RequirePackage{physics}
+}{}
+
+% Easy rotation of tables and figures
+\ifthenelse{\boolean{APKG@rotating}}{%
+  \RequirePackage{rotating}
+}{}
+
+% Nicer fractions
+\ifthenelse{\boolean{APKG@xfrac}}{%
+  \RequirePackage{xfrac}
+}{}
+
+% Tables that go over more than one page
+\ifthenelse{\boolean{APKG@longtable}}{%
+  \RequirePackage{longtable}
+}{%
+  \ifthenelse{\boolean{APKG@xtab}}{%
+    \RequirePackage{xtab}
+  }{}%
+}
+% \RequirePackage{supertable}
+
+% hyperref is usually included as late as possible.
+\ifthenelse{\boolean{APKG@hyperref}}{%
+  \PassOptionsToPackage{hyphens}{url}
+  \RequirePackage{hyperref}
+  \hypersetup{bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=0}
+  \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}}
+  \hypersetup{colorlinks,breaklinks}
+  \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+  \hypersetup{unicode,psdextra}
+}{}
+
+% Smart referencing - cleveref should be included late.
+\ifthenelse{\boolean{APKG@standard}}{%
+  \ifthenelse{\boolean{APKG@cleveref}}{%
+    \ifthenelse{\boolean{APKG@capsref}}{%
+      \ifthenelse{\boolean{APKG@abbrevref}}{%
+        \RequirePackage[capitalise]{cleveref}
+      }{%
+        \RequirePackage[noabbrev,capitalise]{cleveref}
+      }
+    }{%
+      \ifthenelse{\boolean{APKG@abbrevref}}{%
+        \RequirePackage{cleveref}
+      }{%
+        \RequirePackage[noabbrev]{cleveref}
+      }
+    }
+  }{}
+}{}
+
+% Use biblatex and biber for the bibliography
+% backend=biber|bibtex to select backend to use (biber is default)
+% Style is numeric and comp option changes [1,2,3] into [1-3]
+% sorting=none    means the order is as they are cited
+% firstinits=true means initials are used for first names
+%
+% The following options are passed to atlasbiblatex.
+% They are kept here only for backwards compatibility.
+% block=ragged    turns off block form, which avoids large spaces
+%                 block=space or block=none are also possible
+% maxbibnames=5   is maximum number of authors before et al. is used.
+% Some more tweaks should be made to the appearance,
+% see/include bibtex/bst/atlas-biblatex.sty
+\ifthenelse{\boolean{APKG@biblatex}}{%
+  % \typeout{atlaspackage: block set to \APKG@block}
+  % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames}
+  % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+  \def\ADOC@atlasbiblatex{atlasbiblatex}
+  \ifthenelse{\equal{\APKG@block}{}}{}{%
+    \typeout{atlaspackage: passing block option to biblatex}
+    \PassOptionsToPackage{block=\APKG@block}{\ADOC@atlasbiblatex}
+  }
+  \ifthenelse{\equal{\APKG@maxbibnames}{}}{}{%
+    \typeout{atlaspackage: passing maxbibnames option to biblatex}
+    \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ADOC@atlasbiblatex}
+  }
+  \ifthenelse{\APKG@texlive < 2016}{%
+    \RequirePackage[backend=\APKG@backend,
+      style=numeric-comp, sorting=none, firstinits=true]{biblatex}
+  }{%
+    \RequirePackage[backend=\APKG@backend,
+      style=numeric-comp, sorting=none, giveninits=true]{biblatex}
+  }
+}{}
+
+\endinput

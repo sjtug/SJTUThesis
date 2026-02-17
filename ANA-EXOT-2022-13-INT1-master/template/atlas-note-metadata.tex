@@ -1,0 +1,62 @@
+%-------------------------------------------------------------------------------
+% This file contains the title, author and abstract.
+% It also contains all relevant document numbers used for an ATLAS note.
+%-------------------------------------------------------------------------------
+
+% Title
+\AtlasTitle{AtlasTitle: Bare bones ATLAS document}
+
+% Draft version:
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+% If given, adds draft version on front page, a 'DRAFT' box on top of each other page, 
+% and line numbers.
+% Comment or remove in final version.
+\AtlasVersion{0.1}
+
+% Abstract - % directly after { is important for correct indentation.
+\AtlasAbstract{%
+  This is a bare bones ATLAS document. Put the abstract for the document here.
+}
+
+% Author - this does not work with revtex (add it after \begin{document})
+\author{The ATLAS Collaboration}
+
+% Authors and list of contributors to the analysis.
+% \AtlasAuthorContributor also adds the name to the author list.
+% Include package latex/atlascontribute to use this.
+% Use authblk package if there are multiple authors, which is included by latex/atlascontribute.
+% \usepackage{authblk}
+% Use the following 3 lines to have all institutes on one line.
+% \makeatletter
+% \renewcommand\AB@affilsepx{, \protect\Affilfont}
+% \makeatother
+% \renewcommand\Authands{, } % avoid ``. and'' for last author
+% \renewcommand\Affilfont{\itshape\small} % affiliation formatting
+% \AtlasAuthorContributor{First AtlasAuthorContributor}{a}{Author's contribution.}
+% \AtlasAuthorContributor{Second AtlasAuthorContributor}{b}{Author's contribution.}
+% \AtlasAuthorContributor{Third AtlasAuthorContributor}{a}{Author's contribution.}
+% \AtlasContributor{Fourth AtlasContributor}{Contribution to the analysis.}
+% \author[a]{First Author}
+% \author[a]{Second Author}
+% \author[b]{Third Author}
+% \affil[a]{One Institution}
+% \affil[b]{Another Institution}
+
+% If a special author list should be indicated via a link use the following code:
+% Include the two lines below if you do not use atlasstyle:
+% \usepackage[marginal,hang]{footmisc}
+% \setlength{\footnotemargin}{0.5em}
+% Use the following lines in all cases:
+% \usepackage{authblk}
+% \author{The ATLAS Collaboration%
+% \thanks{The full author list can be found at:\newline
+%   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2021-XXX/authorlist.pdf}}
+% }
+
+% ATLAS reference code, to help ATLAS members to locate the paper.
+\AtlasRefCode{GROUP-2021-XX}
+
+% ATLAS note number. Can be an COM, INT, PUB or CONF note.
+% \AtlasNote{ATLAS-CONF-2021-XXX}
+% \AtlasNote{ATL-PHYS-PUB-2021-XXX}
+% \AtlasNote{ATL-COM-PHYS-2021-XXX}

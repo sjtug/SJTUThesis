@@ -1,0 +1,193 @@
+%
+Systematic uncertainties arise from the reconstruction of the various physics objects and from theoretical and/or modelling uncertainties affecting the predictions for both the backgrounds and signals. These uncertainties manifest themselves as uncertainties both in the overall yield and shape of the final observable. They are described in this section.
+
+\subsection{Experimental}
+
+A summary of the experimental systematic uncertainties taken into account in this analysis is given in Table~\ref{tab:syst_summary_sources}, along with the shorthand name of the uncertainty used throughout the analysis. 
+
+
+\subsubsection{Luminosity}
+
+The uncertainty on the integrated luminosity of the combined 2015-2018 dataset is 1.7\%~\cite{ATLAS-CONF-2019-021}. It is obtained using the LUCID-2 detector~\cite{Avoni_2018} for the primary luminosity measurements. The  nuisance parameter is labelled as  \texttt{``luminosity''} and it is applied to all simulated samples. 
+
+
+\subsubsection{Pileup reweighting}
+
+To account for the difference between the pile-up distributions in data and MC simulations, an uncertainty related to the scale factors used to adjust the MC pile-up to the data pile-up profile is applied. 
+The nominal scale-factor applied on the data pile-up distribution when performing the reweighting is changed to $1.0/0.99$ or $1.0/1.07$ to derive the up and down systematic variations, with respect to the nominal value of $1.0/1.03$. This systematic is labelled as  \texttt{``Pileup reweighting''}.
+
+
+\subsubsection{Electrons}
+
+For electrons, the reconstruction, identification, isolation and trigger performances as well as the lepton momentum scale and resolution differ between data and MC simulation. To correct for these differences, scale factors for each are applied. These scale factors were estimated using the tag-and-probe method~\cite{Aad:2019tso}. The associated systematic uncertainties are then propagated to the final distributions used in this analysis.  A total of eight systematic uncertainties are considered. The ones  related to the efficiency of the trigger, reconstruction, identification and isolation are labelled as \texttt{``ATLAS\_EL\_SF\_[TRIGGER,RECO,ID,ISO]''}.  The ones associated to the energy scale and resolution are named as  \texttt{``ATLAS\_EM\_SCALE\_[AFII,ALL]''} and \texttt{``ATLAS\_EM\_RES}, respectively.  While the one associated to the efficiency of the  ECIDS tool is labelled as \texttt{``ATLAS\_EL\_SF\_ChargeID\_Stat''}. 
+
+
+
+\subsubsection{Muons}
+
+As for electrons, scale factors are also applied to muons to correct for the differences between data and simulation~\cite{Aad:2020gmm}. The associated systematic uncertainties are then propagated to the final distributions used in the analysis. The ones related to the efficiency correction factors for trigger, track-to-vertex association (TTVA), identification and isolation are labelled as \texttt{``ATLAS\_MU\_SF\_[TRIG,TTVA,ID,ISO]\_[Stat,Syst]''}, where each one of them is split into a statistical and systematic component.  While the uncertainties related to inner detector track smearing, muon spectrometer track smearing, charge-independent scale momentum and two uncertainties for the charge-dependent scale momentum are labelled as \texttt{``ATLAS\_MU\_[ID,MS,SCALE]''} and  \texttt{``ATLAS\_MU\_SAGITTA\_[RHO,RESBIAS]''},   respectively.  
+
+
+
+
+\subsubsection{Small $R$-jets}
+
+Systematic uncertainties on jets come from  JVT, jet energy scale (JES) and jet energy resolution (JER). They are detailed below.
+
+The systematic uncertainty associated with the JVT is obtained by varying the scale factor used to correct the JVT efficiency in simulation up and down within its uncertainties.  The corresponding nuisance parameter is labelled as \texttt{``Jet vertex tagger efficiency''}. 
+
+Uncertainties on JES are grouped as follow: 15 effective nuisance parameters labelled as \texttt{``JES EffectiveNP''} (2 detector-related, 4 modeling related, 3 mixing both aspects, 6 statistical-related), 6 nuisance parameters related to $\eta$ intercalibration labelled as  \texttt{``JES EtaIntercalibration''} (1 modeling-related, 4 non-closure (highE, 2018data, negEta and posEta), 1 statistical-related), 2 nuisance parameters related to the flavour of the jet labelled as \texttt{``JES Flavour [Composition, Response]''},  4 nuisance parameters related to pile-up subtraction labelled as \texttt{``JES Pileup [OffsetMu, OffsetNPV, PtTerm, RhoTopology]''}, 2 nuisance parameters for punch-through effect treatment labelled as  \texttt{``JES PunchThrough [MC16 ,AFII]''}, 1 nuisance parameter  for non-closure for AFII labelled as \texttt{``JES RelativeNonClosure MC16 AFII''}, 1 nuisance parameter  for the single particle response at high  \pT labelled as \texttt{``JES SingleParticle HighPt''}, and 1 for the $b$-jet response labelled \texttt{`` BJETS\_Response''}.
+
+For the JER a total of 9 independent nuisance parameters are used: 7 effective nuisance parameters labelled as  \texttt{``JER EffectiveNP''}, and 2 additional parameters labelled as  \texttt{``JER DataVsMC [MC16, ALL]''} accounting for the  difference between data and simulation.
+
+\subsubsection{b-tagging}
+\label{b-tagging_uncertianties}
+
+In order to calibrate the b-tagging performance, scale factors are applied to the MC events so that the heavy flavour tagging efficiencies are matched with the data. These factors are derived based on the tagging efficiency of b-jets and the mis-tagging rates of c- and light-jets, in bins of the PCB scores, with corresponding uncertainties from each jet flavour. The nuisance parameters correspond to the independent eigenvectors after diagonalizing the covariance matrix from the input systematic uncertainties during the b-tagging calibration. There are a total of 45 nuisance parameters [0-44] describing the real b-jet identification efficiency uncertainties, 20 nuisance parameters [0-19] for c-jets mis-tagging rates uncertainties, and 20 nuisance parameters [0-19] for light-jets mis-tagging rates uncertainties. Additionally, in the context of high-pT extrapolation, further uncertainties are considered as per the new recommended CDI file. These include uncertainties from 5 EV for b-jets, 2 EV for c-jets, and 5 EV for light jets, specifically addressing the high-pT extrapolation uncertainty, above the certain threshold for each flavor~\cite{high_pt_extrapolation,btagging_rec_2023}.
+
+
+
+\subsubsection{Missing transverse energy}
+
+The  \MET uncertainty arises due to a possible miscalibration of its soft-track component, and it is estimated from data-MC comparisons of the \pT balance between the hard and soft \MET components. This uncertainty  is modelled by three independent nuisance parameters. They are labelled as  \texttt{``ATLAS\_MET\_SoftScale''}, and  \texttt{``ATLAS\_MET\_SoftRes[Perp,Para]''}.
+
+
+
+\begin{table}[h]
+  \centering
+  \scriptsize
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule \midrule
+      Systematic uncertainty        & Short description                                                                          \\ \midrule
+      \multicolumn{2}{c}{\textbf{Event}}  \\ \midrule
+      Luminosity  & uncertainty on the total integrated luminosity  \\
+       \midrule
+       PRW\_DATASF         & uncertainty on data SF used for the computation of pileup reweighting      \\
+       \midrule
+       \multicolumn{2}{c}{\textbf{Electrons}}  \\ \midrule
+       EL\_EFF\_Trigger   & trigger efficiency uncertainty    \\
+       EL\_EFF\_Reco    & reconstruction efficiency uncertainty          \\ 
+       EL\_EFF\_ID    & ID efficiency uncertainty               \\ 
+       EL\_EFF\_Iso   & isolation efficiency uncertainty       \\
+       EG\_SCALE\_ALL & energy scale uncertainty  \\ 
+       EG\_RESOLUTION\_ALL & energy resolution uncertainty  \\ \midrule
+       \multicolumn{2}{c}{\textbf{Muons}}  \\ \midrule
+       MUON\_EFF\_Trigger\_STAT        & \multirow{ 2}{*}{trigger efficiency uncertainty}        \\ % todo: guess that includes the ID uncertainty? PR.
+       MUON\_EFF\_Trigger\_SYS        &        \\ 
+       MUON\_EFF\_ID\_STAT        & \multirow{ 2}{*}{reconstruction uncertainty for \pt > 15 GeV}        \\ % todo: guess that includes the ID uncertainty? PR.
+       MUON\_EFF\_ID\_SYS        &        \\ 
+       %MUON\_EFF\_ID\_STAT\_LOWPT        & \multirow{ 2}{*}{reconstruction and ID efficiency uncertainty for \pt < 15 GeV}        \\ 
+       %MUON\_EFF\_ID\_SYS \_LOWPT       &        \\ 
+       MUON\_ISO\_STAT        & \multirow{ 2}{*}{isolation efficiency uncertainty}        \\ 
+       MUON\_ISO\_SYS        &        \\ 
+       MUON\_TTVA\_STAT        & \multirow{ 2}{*}{track-to-vertex association efficiency uncertainty}        \\ 
+       MUON\_TTVA\_SYS        &        \\ 
+       MUONS\_SCALE        & energy scale uncertainty                                                           \\ 
+       MUONS\_SAGITTA\_RHO        & variations in the scale of the momentum (charge dependent)                  \\ 
+       MUONS\_SAGITTA\_RESBIAS        & variations in the scale of the momentum (charge dependent)              \\ 
+       MUONS\_ID        & energy resolution uncertainty from inner detector                              \\ 
+       MUONS\_MS & energy resolution uncertainty from muon system  \\ \midrule
+       \multicolumn{2}{c}{\textbf{Small-R Jets}}  \\ \midrule
+       %JET\_GroupedNP  & energy scale uncertainty split into 3 components              \\ 
+       %JET\_SR1\_JET\_EtaIntercalibration\_NonClosure & non-closure in the jet response at $2.4<|\eta|<2.5$   \\
+       %JET\_SR1\_JER\_SINGLE\_NP  & energy resolution uncertainty  \\
+                         JES\_EffectiveNP &  \\
+                         JES\_EtaIntercalibration & \\
+                         JES\_Flavour &  \\
+                         JES\_Pileup &  jet energy scale uncertainties  \\ 
+                         JES\_PunchThrough & \\
+                         JES\_RelativeNonClosure\_MC16\_AFII & \\
+                         JES\_SingleParticle\_HightPt &   \\
+                         BJETS\_Response &  \\
+                         \midrule
+                         JER\_EffectiveNP &  jet energy resolution uncertainties \\
+                         JER\_DataVsMC &   \\
+                         \midrule
+                         JvtEfficiency & JVT efficiency uncertainty  \\
+                         
+                         %
+                         %
+                         % todo: decide on b-tagging EV prescription. So far we only have the simplest prescription, but we should switch.
+                         %
+                         %
+                         \midrule
+                         FT\_EFF\_EIGEN\_B & $b$-tagging efficiency uncertainties (``SFEigen\_Loose):   \\
+                         FT\_EFF\_EIGEN\_C & \\ % \multirow{2}{*}{3 components for $b$-jets, 4 for $c$-jets and 5 for light jets} \\
+                         FT\_EFF\_EIGEN\_L &   \\ 
+                         FT\_EFF\_EIGEN\_extrapolation &  $b$-tagging efficiency uncertainty on the extrapolation on high \pt-jets  \\ 
+                         FT\_EFF\_EIGEN\_extrapolation\_from\_charm & $b$-tagging efficiency uncertainty on $\tau$-jets   \\ \midrule
+                         \multicolumn{2}{c}{\textbf{\MET-Terms}}  \\ \midrule
+                         %METTrigStat    & \multirow{2}{*}{trigger efficiency uncertainty} -  \\
+                         %METTrigSyst &    \\
+                         MET\_SoftTrk\_ResoPerp           & track-based soft term related to transversal resolution uncertainty                  \\ 
+                         MET\_SoftTrk\_ResoPara           & track-based soft term related to longitudinal resolution uncertainty                  \\ 
+                         MET\_SoftTrk\_Scale                  & track-based soft term related to longitudinal scale uncertainty                          \\ 
+                         %MET\_JetTrk\_Scale                   & track MET scale uncertainty due to tracks in jets                                            \\ 
+                         \bottomrule
+                         \end{tabular}
+    \end{center}
+  \caption{ Qualitative summary of the experimental systematic uncertainties considered in this analysis.}
+  \label{tab:syst_summary_sources}
+\end{table}
+
+
+\subsection{Theory/modelling uncertainties on the signal and backgrounds}
+
+%
+%\textcolor{red}{\textit{For signal yield uncertainties, these uncertainties are evaluated in a standard way and should 
+%include PDF variations and renormalisation/factorisation scale variations.  There is more information
+%provided on the PMG TWiki pages for this.}}
+%
+
+This section describes the theoretical/modelling uncertainties for the signal and the irreducible background. They are detailed below.  
+
+\subsubsection{\ttbar modelling uncertainties}
+
+\paragraph{Higher order QCD corrections.} Uncertainties due to missing higher order QCD corrections are estimated by varying separately the renormalization and the factorization scales by a factor 2 and 1/2 in the nominal \powhegs\ + \pythiaeight sample. This leads to 6 independent nuisance parameters (2 variations for each of the 3 flavour component, TTL, TTC and TTB).
+
+\paragraph{Matrix-element calculation.} The uncertainty related to the choice of the matrix element (ME) generator is estimated by comparing the predictions of \powhegs and \mgamc. It is expressed in 12 independent nuisance parameters: two variations corresponding to shape and acceptance for each of the 6 flavour sub-processes (\ttl, \ttcin, \ttbb, \ttB, \ttb, \ttbbb). Note that this uncertainty turned out to go beyond the algorithmic ME-PS matching ambiguity as was stated in many previous ATLAS publications. The recent study ~\cite{ATL-PHYS-PUB-2020-023} showed that it convolutes ME-PS matching uncertainty with the matrix element corrections for the parton shower in \powhegs + \pythiaeight but not in \mgamc + \pythiaeight. Thus this uncertainty is just a comparison of two different MC setups rather than ME-PS matching uncertainty.
+
+\paragraph{Parton-shower modelling.} The uncertainty related to the parton shower (PS) and hadronization model is  estimated by comparing the predictions of \powhegs matched with \pythiaeight and \herwigseven. This leads to 12 independent nuisance parameters: two variations corresponding to shape and acceptance for each of the 6 flavour sub-processes (\ttl, \ttcin, \ttbb, \ttB, \ttb, \ttbbb).
+
+\paragraph{Radiations modelling.} The uncertainty on the amount of initial state radiations (ISR) predicted by the PS generator is estimated by varying the value of the strong coupling \alphas{} at the scale of the $Z$-boson mass around its tuned value in A14\footnote{The A14 tuned variations of ${\alphas}^{ISR}(M_Z)$ is usually referred as Var3c and numerically corresponds to ${\alphas}^{ISR}(M_Z)=0.127^{+0.013}_{-0.012}$~\cite{ATL-PHYS-PUB-2014-021}} in the ISR model of \pythiaeight. The uncertainty on the amount of finial state radiations (FSR) predicted by the PS generator is estimated by varying the factorization scale by a factor $2$ and $1/2$ in the FSR model of \pythiaeight. The uncertainty coming from the choice of the \hdamp{} value is estimated by comparing the predictions between $\hdamp=1.5\,\mtop$ and $3\,\mtop$. This leads to $9$ independent nuisance parameters ($3$ variations for $3$ flavour sub-processes).
+
+\paragraph{Normalization of \ttbar subsamples} A flat uncertainty of $50\%$ is applied to the normalisation of the \ttbin and \ttcin contributions separately to correct any mis-modelling related to the \ttbar production in association with extra heavy-flavor jets. This leads to $2$ nuisance parameters. A flat uncertainty of $5\%$ is applied to the normalisation of the \ttl. Two nuisance parameters are used for that: one acting in the 1L regions and the second acting in the 2L regions.
+
+\paragraph{4v5FS comparison.} A comparison of the \ttbin\ simulation by the nominal \ttbar\ sample based on the 5F scheme with the best theoretical NLO prediction using 4F scheme implemented in the \powhegboxRes generator (see Sect.~\ref{sec:samples} for the details of the setup) showed large difference between these two predictions in the phase space of the analysis. Therefore, an additional uncertainty is expressed in 8 independent nuisance parameters: two variations corresponding to shape and acceptance for each of the 4 flavour sub-processes (\ttbb, \ttB, \ttb, \ttbbb), where we compare these two schemes.
+
+\paragraph{NN reweighting} Additional three nuisance parameters are used for all \ttbar subprocesses (correlated among the subprocesses) due to NN reweighitng uncertainties as explained in Section \ref{sec:NN_reweighting:uncertainty}.
+
+All the red/blue plots for the main systematic variations for sample \ttbin can be found in Appendix~\ref{app:TTB_modeling}.
+
+
+\subsubsection{Other uncertainties}
+
+\begin{description}
+\item[Signal:]  Renormalisation and factorisation scale variations are used as systematics for the signal.  The uncertainty is labelled as \texttt{``signal varRF''} and it is estimated by varying the renormalisation and the factorisation scales together by a factor 2 and $1/2$ in MadGraph5\_aMC@NLO. An additional PDF uncertainty of 1\% labelled as \texttt{``signal PDF''} is also applied. 
+
+\item[$\tttt$:] The modelling uncertainties on the \tttt signal are estimated by applying the generic theoretical uncertainties from the MC simulation.
+The uncertainty related to the parton shower and hadronization model is labelled as ``\texttt{tttt modelling (shower)}` and is estimated by comparing the predictions between \mgamc matched with \pythiaeight and \mgamc matched with \herwigseven.
+The uncertainty related to the ME generator is labelled as ``\texttt{tttt varRF}`` and is estimated by varying the renormalization and the factorization scale together by a factor $2$ and $1/2$ in \mgamc.
+Finally, an additional cross-section uncertainty labelled a ``\texttt{tttt cross-section}`` is applied. Its upper size is +7.8\% and its lower size is -13.3\% based on Ref.~\cite{vanBeekveld:2022hty}.
+
+
+\item[$\ttW$, $\ttZ$, and $t\bar tH$:] Modelling uncertainties for these processes are evaluated in a similar way. Uncertainties associated to the generator are labelled \texttt{``[ttW,ttZ,ttH] modelling (generator)''}. They are estimated by comparing the predictions from the nominal generator with an alternative one. For $\ttW$, the \sherpa 2.2.10 sample is compared to MadGraph5\_aMC@NLO+Pythia8. For $\ttZ$, the \sherpa 2.2.1 sample  is compared to MadGraph5\_aMC@NLO+Pythia8, while for $t\bar tH$  Powheg is compared to MadGraph5\_aMC@NLO+Pythia8. Uncertainties associated to the renormalisation and factorisation scale variations are labelled as \texttt{``[ttW,ttZ,ttH]\_varRF''} and are computed in the same way as for the signal.
+
+  Additional uncertainty on the production in association with additional jets is applied by considering an uncertainty of 10\%, 20\% and 30\% for events with respectively 9 (7), 10 (8) and at least 11 (9) jets  in the 1L (OS) channel.
+These values of uncertainty are based from the level of \ttjets \Nj mismodelling observed in the 2$b$ region before reweighting.
+An uncertainty of $12\%$ and $10\%$ is respectively applied on the \ttZ and \ttH total cross-section and is labelled as ``\texttt{[ttZ,ttH] Cross-Section}``.
+
+\item[Single top:]  The single top production includes the t-channel, tW-channel and s-channel production mode.
+The modelling uncertainty is estimated by comparing the prediction from different matrix element (\powhegs vs \mgamc) and parton shower (\pythiaeight vs \herwigseven) generator, by comparing different \ttbar and single top interference scheme (diagram removal vs diagram subtraction) and by varying both the renormalization and the factorization scales by a factor $2$ and $1/2$.
+A total uncertainty of $30\%$ is applied on this background.
+The associated nuisance parameter is labelled as ``\texttt{singleTop Cross-Section}``.
+
+\item[Minor processes:] An uncertainty of 60\% is applied on \Vjets based on Ref~\cite{Alwall:2007fs}.
+For all the other minor background processes, an ad-hoc uncertainty of $50\%$ is applied on their total cross-section.
+
+
+\end{description}
+
+
+

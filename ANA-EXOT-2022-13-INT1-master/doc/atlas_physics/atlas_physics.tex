@@ -1,0 +1,121 @@
+%-------------------------------------------------------------------------------
+% This note lists the symbols defined in atlasphysics.sty.
+% This variant uses the particle and process options.
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{../atlasdocpath}
+%-------------------------------------------------------------------------------
+\documentclass[mhchem, UKenglish, texlive=2016]{atlasdoc}
+
+% Standard packages that can and should be used in ATLAS papers
+\usepackage[default]{atlaspackage}
+\usepackage[backref=false]{atlasbiblatex}
+\usepackage{xtab}
+\usepackage{authblk}
+
+% Include all style files
+\usepackage[BSM, hion, jetetmiss,
+  journal, math, misc, other, hepparticle=false, particle,
+  hepprocess=false, process, snippets, unit, xref]{atlasphysics}
+
+\usepackage{atlas_doc-defs}
+\input{atlas_physics_defs}
+
+%-------------------------------------------------------------------------------
+% This is where the document really begins
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\input{atlas_physics_body}
+
+
+\twocolumn
+%-------------------------------------------------------------------------------
+\section{\File{atlasparticle.sty}}
+
+Turn on including these definitions with the option \Option{particle=true} and off with the option \Option{particle=false}.
+
+As an alternative you can use the \Package{hepparticles}~\cite{hepparticles} package,
+which has uniform definitions for many Standard Model and BSM particles.
+
+Use the \Option{hepparticle=true} instead of \Option{particle=true} to use the \Package{hepparticle} definitions.
+
+\input{atlasparticle}
+
+Generic macros \verb|\taup[1]| and \verb|\Ups[1]| are available.
+They are defined such that
+\verb|\taup{3}| produces \taup{3} and
+\verb|\Ups{3}| produces \Ups{3}.
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlashepparticle.sty}}
+
+Turn on including these definitions with the option \Option{hepparticle=true} and off with the option \Option{hepparticle=false}.
+
+These definitions use the \Package{hepparticles}~\cite{hepparticles} package,
+which has uniform definitions for many Standard Model and BSM particles.
+The names used are those in \Package{heppennames}.
+The package loads \Package{hepparticles}, which can then be used to define more particles if you need them.
+One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
+
+This version of the document uses the \Option{particle} and \Option{process} options and so
+does not show the definitions made using the \Option{hepparticle} and \Option{hepprocess} options.
+%\input{atlashepparticle}
+
+Generic macros \verb|\taup[1]| and \verb|\Ups[1]| are available.
+They are defined such that
+\verb|\taup{3}| produces \taup{3} and
+\verb|\Ups{3}| produces \Ups{3}.
+
+
+%-------------------------------------------------------------------------------
+\input{atlas_physics_list1}
+%-------------------------------------------------------------------------------
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasprocess.sty}}
+
+Turn on including these definitions with the option \Option{process} and off with the option \Option{process=false}.
+
+As an alternative you can use the \Package{hepparticles}~\cite{hepparticles} package,
+which has uniform definitions for many Standard Model and BSM particles.
+Use the \Option{hepprocess=true} instead of \Option{process=true} to use the \Package{hepparticle} definitions.
+
+\input{atlasprocess}
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlashepprocess.sty}}
+
+Turn on including these definitions with the option \Option{hepprocess} and off with the option \Option{hepprocess=false}.
+
+The packages \Package{heppennames} and/or \Package{hepnicenames} contain many predefined particles,
+so you do not need to define them yourself.
+These packages load \Package{hepparticles}, which can then be used to define more particles if you need them.
+One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
+
+This version of the document uses the \Option{particle} and \Option{process} options and so
+does not show the definitions made using the \Option{hepparticle} and \Option{hepprocess} options.
+%\input{atlashepprocess}
+
+
+%-------------------------------------------------------------------------------
+\input{atlas_physics_list2}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\input{atlas_physics_changes}
+%-------------------------------------------------------------------------------
+
+
+\printbibliography
+
+\end{document}

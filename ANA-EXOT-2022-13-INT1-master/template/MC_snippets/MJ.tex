@@ -1,0 +1,151 @@
+\section{Jet processes}
+%\label{sec:MJ}
+
+This section describes the MC samples used for the modelling of multijet production. 
+Section~\ref{subsec:jets-pythia} describes the \PYTHIA[8] samples,
+Section~\ref{subsec:jets-herwig} describes the \HERWIG[7] samples,
+Section~\ref{subsec:jets-powheg} describes the \POWPY[8] samples,
+and finally Section~\ref{subsec:jets-sherpa} describes the \SHERPA samples.
+
+\subsection[Pythia 8]{\PYTHIA[8]}
+\label{subsec:jets-pythia}
+
+The descriptions below correspond to the samples in Table~\ref{tab:mj_pythia}.
+
+\begin{table}[!htbp]
+  \caption{Nominal multijet samples produced with \PYTHIA.}%
+  \label{tab:mj_pythia}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364700--364712 & \PYTHIA with shower weights \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Multijet production was generated using \PYTHIA[8.230]~\cite{Sjostrand:2014zea} with leading-order matrix elements
+for dijet production which were matched to the parton shower.
+%  supplemented by matrix element corrections (MEC) for the hardest
+%  emission.
+
+The renormalisation and factorisation scales were set to the geometric
+mean of the squared transverse masses of the two outgoing particles in the matrix element,
+$\pTHatPythia = \sqrt{(p_{\mathrm{T},1}^2 + m_1^2) (p_{\mathrm{T},2}^2 + m_2^2)}$. 
+The \NNPDF[2.3lo] PDF set~\cite{Ball:2012cx} was used in
+the ME generation, the parton shower, and the simulation of the
+multi-parton interactions. The A14~\cite{ATL-PHYS-PUB-2014-021}
+set of tuned parameters was used. Perturbative uncertainties were estimated
+through event weights~\cite{Mrenna:2016sih} that encompass variations
+of the scales at which the strong coupling constant is evaluated in
+the initial- and final-state shower as well as the PDF uncertainty in
+the shower and the non-singular part of the splitting functions.
+
+
+\paragraph{Additional description:}
+
+The modelling of fragmentation and
+hadronisation was based on the Lund string
+model~\cite{Andersson:1983ia,Sjostrand:1984ic}. To populate the
+inclusive jet \pt{} spectrum efficiently, the sample used a biased
+phase-space sampling which was compensated for by a continuously decreasing
+weight for the event. Specifically, events at a scale
+\pTHatPythia scale were oversampled by a factor of
+$(\pTHatPythia/10 \,\GeV)^4$.
+
+
+\subsection[Herwig 7.1]{\HERWIG[7.1]}
+\label{subsec:jets-herwig}
+
+The descriptions below correspond to the samples in Table~\ref{tab:mj_herwig}.
+
+\begin{table}[!htbp]
+  \caption{Multijet samples produced with \HERWIG[7].}%
+  \label{tab:mj_herwig}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364922--364929 & angular ordering in shower \HERWIG[7] \\
+    364902--364909 & dipole shower \HERWIG[7] \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Multijet production at next-to-leading order (NLO) was generated using \HERWIG[7.1.3]~\cite{Bellm:2017jjp}. 
+The renormalisation and factorisation scales were set to the \pt\ of the leading jet. The
+\MMHT[nlo]~\cite{Harland-Lang:2014zoa} PDF set was used for the matrix element calculation. 
+Two sets of samples were generated, where one makes use of the default parton shower with angular ordering,
+and the other uses the dipole shower as an alternative. The description of
+hadronisation was based on the cluster model~\cite{Winter:2003tt} for both of these samples.
+Two different samples with the same matrix elements and hadronisation allow the effects of using different 
+parton shower models to be investigated. These samples include variations from the hard scattering and shower. 
+
+
+\subsection[Powheg+Pythia8]{\POWPY[8]}
+\label{subsec:jets-powheg}
+
+The descriptions below correspond to the samples in Table~\ref{tab:mj_powheg}.
+
+\begin{table}[!htbp]
+  \caption{Multijet samples produced with \POWHEGBOX[v2].}%
+  \label{tab:mj_powheg}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    361281--361289 & \POWPY[8] \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Alternative samples of multijet production at NLO accuracy were produced with \POWHEGBOX[v2]~\cite{Nason:2004rx, Frixione:2007vw} 
+interfaced to \PYTHIA[8]. These were generated with the dijet process as implemented in \POWHEGBOX[v2]~\cite{Alioli:2010xd}.
+The \pt\ of the underlying Born configuration was taken as the renormalisation and factorisation scales
+and the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function (PDF) was used. \PYTHIA with the A14 tune and the
+\NNPDF[2.3lo]~\cite{Ball:2012cx} PDF was used for the shower and multi-parton interactions. 
+These samples included per-event weight variations for different perturbative scales in the matrix element, 
+different parton distribution functions and their uncertainties, and the \PYTHIA perturbative
+shower uncertainties. 
+
+
+\subsection[Sherpa 2.2]{\SHERPA[2.2]}
+\label{subsec:jets-sherpa}
+
+The descriptions below correspond to the samples in Table~\ref{tab:mj_sherpa}.
+
+\begin{table}[!htbp]
+  \caption{Multijet samples produced with \SHERPA.}%
+  \label{tab:mj_sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364677--364685 & \SHERPA AHADIC \\
+    364686--364694 & \SHERPA Lund \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Multijet production samples were also generated using the \SHERPA[2.2.5]~\cite{Bothmann:2019yzt} generator. 
+The matrix element calculation was included for the $2\rightarrow2$ process at leading order, and the default \SHERPA parton
+shower~\cite{Schumann:2007mg} based on Catani--Seymour dipole factorisation was used for the showering with \pt\
+ordering, using the \CT[14nnlo] PDF set~\cite{Dulat:2015mca}.
+The first of these samples made use of the dedicated \SHERPA AHADIC model for hadronisation~\cite{Winter:2003tt}, 
+based on cluster fragmentation ideas. A second sample was generated with the same configuration but using the \SHERPA interface to
+the Lund string fragmentation model of \PYTHIA[6]~\cite{Sjostrand:2006za} and its decay tables.  
+These two sets of samples were used to evaluate uncertainties stemming from the hadronisation modelling. 
+
+% need to comment on the slicing of these samples. JZ1 to JZ4 are JZW filtered to improve statistics for and an equal number of simulated events, while slices JZ9-JZ12 have been combined into a single JZ9 plus slice.

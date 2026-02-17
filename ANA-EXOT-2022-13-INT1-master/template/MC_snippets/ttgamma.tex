@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              ttgamma                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\ttgamma production]{\ttgamma production}
+\label{subsec:ttgamma}
+
+This section describes the MC samples used for the modelling of \ttgamma\ production.
+Section~\ref{subsubsec:ttgamma_aMCP8} describes the \MGNLOPY[8] samples,
+and Section~\ref{subsubsec:ttgamma_aMCH7} describes the \MGNLOHER[7] samples.
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:ttgamma_aMCP8}
+
+\paragraph{Samples}
+%\label{par:ttgamma_aMCP8_samples}
+
+The descriptions below correspond to the samples in Tables~\ref{tab:ttgamma_aMCP8} and \ref{tab:ttgamma_aMCP8_addRad}.
+
+\begin{table}[htbp]
+  \caption{Nominal \ttgamma\ samples produced with \MGNLOPY[8].}%
+  \label{tab:ttgamma_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410389 & \ttgamma, non-all-hadronic \\
+    410394 & \ttgamma, all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \caption{\ttgamma\ samples produced with \MGNLOPY[8] used to estimate initial-state radiation systematic uncertainties.}%
+  \label{tab:ttgamma_aMCP8_addRad}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410404 & \ttgamma\, non-all-hadronic, A14Var3c up \\
+    410405 & \ttgamma\, non-all-hadronic, A14Var3c down \\
+    410410 & \ttgamma\, all-hadronic, A14Var3c up \\
+    410411 & \ttgamma\, all-hadronic, A14Var3c down \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \ttgamma events was modelled using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator at LO with the \NNPDF[2.3lo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The events were interfaced with \PYTHIA[8.212]~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+The uncertainty due to initial-state radiation (ISR) was estimated by
+comparing the nominal \ttgamma sample with two additional samples,
+where the Var3c up/down variations of the A14 tune were employed.
+
+
+\paragraph{Long description:}
+
+The \ttgamma sample was simulated as a 2$\to$7 process at LO including the decay of the top quarks by
+\MGNLO[2.3.3]~\cite{Alwall:2014hca} with the \NNPDF[2.3lo]~\cite{Ball:2014uwa} parton distribution function~(PDF), interfaced with
+\PYTHIA[8.212]~\cite{Sjostrand:2014zea}, using the A14 set of tuned parameters~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. The photon could be radiated from an initial charged parton, an intermediate top quark, 
+or any of the charged final-state particles. The top-quark mass, top-quark decay width, $W$-boson decay width, 
+and fine structure constant were set to 172.5~\GeV, 1.320~\GeV, 2.085~\GeV, and 1/137, respectively.
+The five-flavour scheme was used, where all the quark masses are set to zero, except for the top quark. The renormalisation and the
+factorisation scales were set to $0.5\times \sum_i \sqrt{m^2_i+p^2_{\text{T},i}}$, where the sum runs over all the particles generated 
+from the matrix element calculation.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
+
+The cross-section was calculated at NLO in QCD as reported in Ref.~\cite{Melnikov:2011ta}, resulting in a $K$-factor of 1.24 which was applied 
+to the samples, with a relative uncertainty of 14\% from variations of renormalisation and factorisation scales as well 
+as the choice of PDF set.
+
+The uncertainty due to initial-state radiation (ISR) was estimated by comparing the nominal \ttV\ sample with two additional samples,
+ which had the same settings as the nominal one, but employed the Var3c up or down variation of the A14 tune, which
+corresponds to the variation of \alphas for initial-state radiation (ISR) in the A14 tune.
+
+To evaluate the effect of renormalisation and factorisation scale uncertainties, the two scales were varied simultaneously by factors 2.0 and 0.5.
+To evaluate the PDF uncertainties for the nominal PDF, the 100 replicas for \NNPDF[2.3lo] were taken into account. 
+
+
+\subsubsection[MadGraph5\_aMC@NLO+Herwig7]{\MGNLOHER[7]}
+\label{subsubsec:ttgamma_aMCH7}
+
+\paragraph{Samples}
+%\label{par:ttgamma_aMCH7_samples}
+
+The descriptions below correspond to the samples in Table~\ref{tab:ttgamma_aMCH7}.
+
+\begin{table}[htbp]
+  \caption{\ttgamma\ samples produced with \MGNLOHER[7].}%
+  \label{tab:ttgamma_aMCH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410395 & \ttgamma non-all-hadronic \\
+    410396 & \ttgamma all-hadronic \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+Additional \ttgamma samples were produced with the parton shower of the nominal samples replaced by 
+\HERWIG[7.04]~\cite{Bahr:2008pv,Bellm:2015jjp} to evaluate the impact of using using a different parton shower and hadronisation model.
+The H7UE set of tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa} were used.

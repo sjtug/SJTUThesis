@@ -1,0 +1,45 @@
+2021-08-13 Ian Brock <Ian.Brock@cern.ch>
+	* Switch to one line per institute and standardised date.
+	* Switch to new reference for computing.
+2018-10-08 Ian Brock <Ian.Brock@cern.ch>
+	* Added I-CORE to Israel.
+2018-02-15 Ian Brock <Ian.Brock@cern.ch>
+	* Updated computing acknowledgement.
+	* 29 Jan 2018 update: SRNSFG, Georgia instead of SRNSF, Georgia
+2015-08-02 Ian Brock <Ian.Brock@cern.ch>
+	* Add Tier-2 computing reference to acknowledgements. New file Acknowledgements.bib, but entry also included in ATLAS.bib.
+2015-02-19 Ian Brock <Ian.Brock@cern.ch>
+	* Add support from China.
+2014-12-08 Ian Brock <Ian.Brock@cern.ch>
+	* Imported into atlaslatex.
+2014-10-14 Alessandra Ciocio for Pub. Com. 
+	* Replace BMWF and FWF, Austria with BMWFW and FWF, Austria) (14-Oct-2014) (DOC, TEX).
+2014-02-19 Alessandra Ciocio for Pub. Com. 
+	* Replace ISF, MINERVA, GIF, DIP and Benoziyo Center, Israel with ISF, MINERVA, GIF, I-CORE and Benoziyo Center, Israel (19-Feb-2014) (DOC, TEX).
+	
+Assembled by Pub. Com. (Jul 19, 2006) (DOC)
+Updated by Kerstin Jon-And for the detector paper (Jan 12, 2008) (DOC, PDF)
+Updated by Chara Petridou for the CSC book (Apr 20, 2009) (DOC, TEX)
+Updated by Jim Pilcher for Pub. Com. (added the Leverhulme Trust, UK, at request of Dan Tovey) (May 25, 2009) (DOC, TEX)
+Updated by Jim Pilcher for Pub. Com. (added the Lundbeck Foundation at request of Troels Petersen from 1.1.10 for 5 years) (2 Sep '09) (DOC, TEX)
+Updated by Jim Pilcher for Pub. Com. (to replace DESY by HGF Germany and to add FAs for Chile and Colombia) (March 4, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (to replace old Russian FA with ROSATOM) (March 27, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (to replace Daphnia-CEA with CEA-DSM/IRFU) (April 20, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (to add the Danish Natural Research Foundation and UK Royal Society) (Sept. 9, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (to move to shorter acknowledgements for collision papers) (Sept. 12, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (to correct name of Spanish Ministry) (Sept. 30, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (shorter, agreed with NCP's) (Oct. 8, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (addition of Tier 1 and 2 centres) (Nov. 25, 2010) (DOC, TEX)
+Updated by Giuseppe Iacobucci for Pub. Com. (new sentence for Czech Rep.) (Nov. 29, 2010) (DOC, TEX)
+Updated by Klaus Moenig for Pub. Com. (end of LHC initial phase) (March 9, 2011) (DOC, TEX)
+Updated by Klaus Moenig for Pub. Com. (add ERC) (Jan. 6, 2012) (DOC, TEX)
+Updated by Klaus Moenig for Pub. Com. (add EPLANET, remove ARTEMIS) (Feb. 9, 2012) (DOC, TEX)
+Updated by Tony Doyle for Pub. Com. (replace GNAS, Georgia with GNSF, Georgia) (Aug. 9, 2012) (DOC, TEX)
+Updated by Tony Doyle for Pub. Com. (replace BMWF, Austria with BMWF and FWF, Austria) (Aug. 31, 2012) (DOC, TEX)
+Updated by Tony Doyle for Pub. Com. (replace RCN, Norway with BRF and RCN, Norway) (Sep. 24, 2012) (DOC, TEX)
+Updated by Tony Doyle for Pub. Com. (add NSRF for EU and Greece) (Nov. 05, 2012) (DOC, TEX)
+Updated by Alessandra Ciocio for Pub. Com. (replaced old name with new name ARRS and MIZŠ, Slovenia) (1-Apr-2013) (DOC, TEX)
+Updated by Alessandra Ciocio for Pub. Com. (replace MERYS (MECTS), Romania with MNE/IFA, Romania) (19-Sep-2013) (DOC, TEX)
+Updated by Alessandra Ciocio for Pub. Com. (replace MICINN, Spain with MINECO, Spain) (2-Oct-2013) (DOC, TEX)
+Updated by Alessandra Ciocio for Pub. Com. (replace MNiSW, Poland with MNiSW and NCN, Poland) (4-Nov-2013) (DOC, TEX)
+

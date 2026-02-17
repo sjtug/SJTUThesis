@@ -1,0 +1,58 @@
+%-------------------------------------------------------------------------------
+% Definitions of miscellaneous processes.
+% Include with hepprocess option in atlasphysics.sty.
+% Not included by default.
+% Use particle definitions from the heppparticle/heppennames package.
+% Note that atlasprocess and atlashepprocess are mutually exclusive!
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+% Make sure heppennames is loaded.
+\RequirePackage{heppennames}
+
+\newcommand*{\btol}{\ensuremath{\Pqb \rightarrow \Pl}\xspace}
+\newcommand*{\ctol}{\ensuremath{\Pqc \rightarrow \Pl}\xspace}
+\newcommand*{\btoctol}{\ensuremath{\Pqb \rightarrow \Pqc \rightarrow \Pl}\xspace}
+\newcommand*{\Jee}{\ensuremath{\PJgy \rightarrow \Pep{}\Pem}\xspace}
+\newcommand*{\Jmm}{\ensuremath{\PJgy \rightarrow \Pgmp{}\Pgmm}\xspace}
+\newcommand*{\Jmumu}{\ensuremath{\PJgy \rightarrow \Pgmp{}\Pgmm}\xspace}
+\newcommand*{\Wjj}{\ensuremath{\PW \rightarrow jj}\xspace}
+\newcommand*{\tjjb}{\ensuremath{\Pqt \rightarrow jj\Pqb}\xspace}
+\newcommand*{\Hbb}{\ensuremath{\PH \rightarrow \Pqb{}\Paqb}\xspace}
+\newcommand*{\Hgg}{\ensuremath{\PH \rightarrow \Pgg{}\Pgg}\xspace}
+\newcommand*{\Hll}{\ensuremath{\PH \rightarrow \Pl{}\Pl}\xspace}
+\newcommand*{\Hllll}{\ensuremath{\PH \rightarrow \Pl{}\Pl{}\Pl{}\Pl}\xspace}
+\newcommand*{\Hmmmm}{\ensuremath{\PH \rightarrow \Pgm{}\Pgm{}\Pgm{}\Pgm}\xspace}
+\newcommand*{\Heeee}{\ensuremath{\PH \rightarrow \Pe{}\Pe{}\Pe{}\Pe}\xspace}
+\newcommand*{\Zll}{\ensuremath{\PZ \rightarrow \Pl{}\Pl}\xspace}
+\newcommand*{\Zlplm}{\ensuremath{\PZ \rightarrow \Plp{}\Plm}\xspace}
+\newcommand*{\Zee}{\ensuremath{\PZ \rightarrow \Pe{}\Pe}\xspace}
+\newcommand*{\Zepem}{\ensuremath{\PZ \rightarrow \Pep{}\Pem}\xspace}
+\newcommand*{\Zmm}{\ensuremath{\PZ \rightarrow \Pgm{}\Pgm}\xspace}
+\newcommand*{\Zmpmm}{\ensuremath{\PZ \rightarrow \Pgmp{}\Pgmm}\xspace}
+\newcommand*{\Ztt}{\ensuremath{\PZ \rightarrow \Pgt{}\Pgt}\xspace}
+\newcommand*{\Ztptm}{\ensuremath{\PZ \rightarrow \Pgtp{}\Pgtm}\xspace}
+\newcommand*{\Zbb}{\ensuremath{\PZ \rightarrow \Pqb{}\Paqb}\xspace}
+\newcommand*{\Wln}{\ensuremath{\PW \rightarrow \Pl{}\Pgn}\xspace}
+\newcommand*{\Wen}{\ensuremath{\PW \rightarrow \Pe{}\Pgn}\xspace}
+\newcommand*{\Wmn}{\ensuremath{\PW \rightarrow \Pgm{}\Pgn}\xspace}
+\newcommand*{\Wlnu}{\ensuremath{\PW \rightarrow \Pl{}\Pgn}\xspace}
+\newcommand*{\Wenu}{\ensuremath{\PW \rightarrow \Pe{}\Pgn}\xspace}
+\newcommand*{\Wmunu}{\ensuremath{\PW \rightarrow \Pgm{}\Pgn}\xspace}
+\newcommand*{\Wqqbar}{\ensuremath{\PW \rightarrow \Pq{}\Paq}\xspace}
+\newcommand*{\Amm}{\ensuremath{\PA \rightarrow \Pgm{}\Pgm}\xspace}
+\newcommand*{\Ztautau}{\ensuremath{\PZ \rightarrow \Pgt{}\Pgt}\xspace}
+\newcommand*{\Wtaunu}{\ensuremath{\PW \rightarrow \Pgt{}\Pgn}\xspace}
+\newcommand*{\Atautau}{\ensuremath{\PA \rightarrow \Pgt{}\Pgt}\xspace}
+\newcommand*{\Htautau}{\ensuremath{\PH \rightarrow \Pgt{}\Pgt}\xspace}
+
+\newcommand*{\tWb}{\ensuremath{\Pqt \rightarrow \PW{}\Pqb}\xspace}
+
+% W+jets without the \, before the + looks a bit better
+\newcommand*{\Wjets}{\ensuremath{\PW\text{+\,jets}}\xspace}
+\newcommand*{\Zjets}{\ensuremath{\PZ\text{\,+\,jets}}\xspace}
+
+\newcommand*{\Brjl}{\ensuremath{\mathrm{Br}(\Jpsi \rightarrow \Plp{}\Plm)}}

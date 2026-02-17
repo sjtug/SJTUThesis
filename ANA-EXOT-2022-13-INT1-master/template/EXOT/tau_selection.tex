@@ -1,0 +1,29 @@
+\subsection{Tau selection}
+
+\begin{table}[ht]
+  \caption{Tau selection criteria.}%
+  \label{tab:object:tau}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+  \toprule
+  Feature & Criterion \\
+  \midrule
+  Pseudorapidity range & \(|\eta| < X\) \\
+  Track selection & 1 or 3 tracks \\\
+  Charge & \(|Q| = 1\) \\
+  Tau energy scale & \texttt{MVA TES}\\
+  Transverse momentum & \(\pT > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+  Jet rejection & BDT-based (\texttt{Loose/Medium/Tight}) \\
+  Electron rejection & BDT-based\\
+  Muon rejection & Via overlap removal in \(\Delta R < 0.2\) and \(\pT > \SI{2}{\GeV}\).
+    Muons must not be Calo-tagged\\
+  \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+If the crack is excluded: \((|\eta| < 1.37) || (1.52 < |\eta| < 2.5)\)
+
+The selection criteria are all implemented in the \texttt{TauSelectionTool} as part of the \texttt{TauAnalysisTools}.
+Documentation can be found in the \href{https://gitlab.cern.ch/atlas/athena/blob/21.2/PhysicsAnalysis/TauID/TauAnalysisTools/doc/README-TauSelectionTool.rst}{README-TauSelectionTool.rst}.

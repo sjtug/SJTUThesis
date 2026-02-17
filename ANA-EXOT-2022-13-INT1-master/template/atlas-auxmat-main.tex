@@ -1,0 +1,71 @@
+%-------------------------------------------------------------------------------
+% An absolute minimal ATLAS document for material to be submitted to HepData etc.
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
+%-------------------------------------------------------------------------------
+\documentclass[HEPDATA, atlasdraft=true, texlive=2016, UKenglish]{atlasdoc}
+% Relevant options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default)
+%  txfonts=true|false    Use txfonts rather than the default newtx
+%  paper=a4|letter       Set paper size to A4 (default) or letter
+
+% Extra packages
+\usepackage{atlaspackage}
+
+% Useful macros
+\usepackage{atlasphysics}
+
+% Paths for figures
+\graphicspath{{logos/}{figures/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS HepData material},pdfauthor={The ATLAS Collaboration}}
+% Title, abstract and document 
+\input{atlas-document-metadata}
+
+% Document title
+\let\AtlasPaperTitle\AtlasTitleText
+\AtlasTitle{\AtlasPaperTitle\\ Material for HepData}
+
+% CERN preprint number
+\PreprintIdNumber{CERN-EP-2021-XXX}
+
+% arXiv identifier
+\arXivId{21XX.YYYY}
+
+% HepData record
+\HepDataRecord{1234567}
+
+\AtlasAbstract{%
+  This document contains auxiliary tables related to the paper:\\
+  ``\AtlasPaperTitle''.
+
+  The information is uploaded to HepData in the record:\\
+  \AtlasHepDataRecord,\\
+  where details about the models used in the paper, 
+  the selections and the final fit results can be found.
+}
+
+\begin{document}
+
+\maketitle
+
+% Page style to get standard header with arXiv reference
+% Define \chead here, so that it overwrites \fbox{DRAFT} if necessary
+\chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
+% If you do not want the date, either comment out \AtlasVersion or uncomment
+% \ifoot{} % KOMA-Script
+% \lfoot{} % Standard LaTeX classes
+% The page style should have been set by atlasdoc
+% \pagestyle{scrheadings} % KOMA-Script
+
+\input{atlas-document-hepdata}
+
+\end{document}

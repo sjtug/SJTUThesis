@@ -1,0 +1,3421 @@
+
+
+===== PAGE 1 =====
+Eur. Phys. J. C (2016) 76:292
+DOI 10.1140/epjc/s10052-016-4120-y
+Regular Article - Experimental Physics
+Muon reconstruction performance of the ATLAS detector in
+proton–proton collision data at √ s=13 TeV
+ATLAS Collaboration⋆
+CERN, 1211 Geneva 23, Switzerland
+Received: 18 March 2016 / Accepted: 29 April 2016 / Published online: 23 May 2016
+© CERN for the beneﬁt of the ATLAS collaboration 2016. This article is published with open access at Springerlink.com
+Abstract This article documents the performance of the
+ATLAS muon identiﬁcation and reconstruction using the
+LHC dataset recorded at√ s = 13 TeV in 2015. Using a large
+sample of J/ψ → μμ and Z → μμ decays from 3.2 fb−1
+of pp collision data, measurements of the reconstruction efﬁ-
+ciency, as well as of the momentum scale and resolution, are
+presented and compared to Monte Carlo simulations. The
+reconstruction efﬁciency is measured to be close to 99 %
+over most of the covered phase space ( |η| < 2.5 and
+5 < pT < 100 GeV). The isolation efﬁciency varies between
+93 and 100 % depending on the selection applied and on the
+momentum of the muon. Both efﬁciencies are well repro-
+duced in simulation. In the central region of the detector,
+the momentum resolution is measured to be 1 .7%( 2 .3% )
+for muons from J/ψ → μμ (Z → μμ) decays, and the
+momentum scale is known with an uncertainty of 0 .05 %.
+In the region |η| > 2.2, the pT resolution for muons from
+Z → μμ decays is 2.9 % while the precision of the momen-
+tum scale for low- pT muons from J/ψ → μμ decays is
+about 0.2% .
+1 Introduction
+Muons are key to some of the most important physics results
+published by the ATLAS experiment [1] at the LHC. These
+results include the discovery of the Higgs boson [2] and the
+measurement of its properties [3–5], the precise measurement
+of Standard Model processes [6,7], and searches for physics
+beyond the Standard Model [8–11].
+The performance of the ATLAS muon reconstruction dur-
+ing the LHC run at √ s = 7–8 TeV has been documented
+in recent publications [12,13]. During the 2013–2015 shut-
+down, the LHC was upgraded to increase the centre-of-mass
+energy from 8 to 13 TeV and the ATLAS detector was
+equipped with additional muon chambers and a new inner-
+most Pixel layer, the Insertable B-Layer, providing measure-
+⋆ e-mail: atlas.publications@cern.ch
+ments closer to the interaction point. Moreover, the muon
+reconstruction software was updated and improved.
+After introducing the ATLAS muon reconstruction and
+identiﬁcation algorithms, this article describes the perfor-
+mance of the muon reconstruction in the ﬁrst dataset collected
+at √ s = 13 TeV . Measurements of the muon reconstruction
+and isolation efﬁciencies and of the momentum scale and
+resolution are presented. The comparison between data and
+Monte Carlo (MC) simulation and the determination of the
+corrections to the simulation used in physics analyses are also
+discussed. The results are based on the analysis of a large
+sample of J/ψ → μμ and Z → μμ decays reconstructed
+in 3.2 fb−1 of pp collisions recorded in 2015.
+This article is structured as follows: Sect. 2 describes the
+ATLAS subdetectors that are most relevant to this work;
+Sects. 3 and 5 describe the muon reconstruction and iden-
+tiﬁcation in ATLAS, respectively; Sect. 4 describes the data
+samples used in the analysis; the reconstruction and isola-
+tion efﬁciencies are described in Sects.6 and 7, respectively,
+while the momentum scale and resolution are described in
+Sect. 8. Finally, conclusions are given in Sect. 9.
+2 ATLAS detector
+A detailed description of the ATLAS detector can be found in
+Ref. [1]. Information primarily from the inner detector (ID)
+and the muon spectrometer (MS), supplemented by informa-
+tion from the calorimeters, is used to identify and precisely
+reconstruct muons produced in pp collisions.
+The ID consists of three subdetectors: the silicon pixels
+(Pixel) and the semiconductor tracker (SCT) with a pseudo-
+rapidity1 coverage up to |η| = 2.5, and the transition radi-
+1 ATLAS uses a right-handed coordinate system with its origin at the
+nominal interaction point (IP) in the centre of the detector and thez-axis
+along the beam pipe. The x-axis points from the IP to the centre of the
+LHC ring, and the y-axis points upward. Cylindrical coordinates(r,φ)
+are used in the transverse plane, φ being the azimuthal angle around
+the beam pipe. The pseudorapidity and the transverse momentum are
+deﬁned in terms of the polar angle θ as η =− ln tan(θ/2) and pT =
+123
+
+===== PAGE 2 =====
+292 Page 2 of 30 Eur. Phys. J. C (2016) 76 :292
+ation tracker (TRT) with a pseudorapidity coverage up to
+|η| = 2.0. The ID measures the muon track close to the inter-
+action point, providing accurate measurements of the track
+parameters inside an axial magnetic ﬁeld of 2 T.
+The MS is the outermost ATLAS subdetector. It is
+designed to detect muons in the pseudorapidity region up
+to |η|= 2.7, and to provide momentum measurements with
+a relative resolution better than 3 % over a wide p
+T range
+and up to 10 % atpT ≈ 1 TeV . The MS consists of one barrel
+(|η| < 1.05) and two endcap sections (1.05 < |η| < 2.7). A
+system of three large superconducting air-core toroidal mag-
+nets, each with eight coils, provides a magnetic ﬁeld with a
+bending integral of about 2.5 Tm in the barrel and up to 6 Tm
+in the endcaps. Resistive plate chambers (RPC, three dou-
+blet layers for|η| < 1.05) and thin gap chambers (TGC, one
+triplet layer followed by two doublets for 1 .0 < |η| < 2.4)
+provide triggering capability to the detector as well as
+(η, φ) position measurements with typical spatial resolution
+of 5–10 mm. A precise momentum measurement for muons
+with pseudorapidity up to |η|= 2.7 is provided by three
+layers of monitored drift tube chambers (MDT), with each
+chamber providing six to eight η measurements along the
+muon trajectory. For|η| > 2, the inner layer is instrumented
+with a quadruplet of cathode strip chambers (CSC) instead
+of MDTs. The single-hit resolution in the bending plane for
+the MDT and the CSC is about 80 and 60 µm, respectively.
+The muon chambers are aligned with a precision between 30
+and 60 µm.
+During the shutdown preceding the LHC Run 2, the MS
+was completed to its initial design [ 14] by adding the last
+missing chambers in the transition region between the barrel
+and the endcaps (1 .0 < |η| < 1.4). Four RPC-equipped
+MDT chambers were also installed inside two elevator shafts
+to improve the acceptance in that region compared to Run 1.
+Some of the new MDT chambers are made of tubes with a
+smaller radius compared to the ones used in the rest of the
+detector, allowing the detector to cope with higher rates.
+The material between the interaction point (IP) and
+the MS ranges approximately from 100 to 190 radiation
+lengths, depending onη, and consists mostly of calorimeters.
+The lead/liquid-argon electromagnetic calorimeter covers
+|η
+| < 3.2. It is surrounded by hadronic calorimeters made
+of steel and scintillator tiles for |η| < 1.7, and copper or
+tungsten and liquid argon for |η| > 1.7.
+3 Muon reconstruction
+Muon reconstruction is ﬁrst performed independently in the
+ID and MS. The information from individual subdetectors
+is then combined to form the muon tracks that are used in
+p sin θ, respectively. Theη–φ distance between two particles is deﬁned
+as /Delta1R =
+√
+(/Delta1η)2 + (/Delta1φ)2.
+physics analyses. In the ID, muons are reconstructed like
+any other charged particles as described in Refs. [ 15,16].
+This section focuses on the description of the muon recon-
+struction in the MS (Sect. 3.1) and on the combined muon
+reconstruction (Sect. 3.2).
+3.1 Muon reconstruction in the MS
+Muon reconstruction in the MS starts with a search for hit
+patterns inside each muon chamber to form segments. In each
+MDT chamber and nearby trigger chamber, a Hough trans-
+form [17] is used to search for hits aligned on a trajectory
+in the bending plane of the detector. The MDT segments
+are reconstructed by performing a straight-line ﬁt to the hits
+found in each layer. The RPC or TGC hits measure the coor-
+dinate orthogonal to the bending plane. Segments in the CSC
+detectors are built using a separate combinatorial search in
+the ηand φ detector planes. The search algorithm includes a
+loose requirement on the compatibility of the track with the
+luminous region.
+Muon track candidates are then built by ﬁtting together hits
+from segments in different layers. The algorithm used for this
+task performs a segment-seeded combinatorial search that
+starts by using as seeds the segments generated in the middle
+layers of the detector where more trigger hits are available.
+The search is then extended to use the segments from the
+outer and inner layers as seeds. The segments are selected
+using criteria based on hit multiplicity and ﬁt quality and are
+matched using their relative positions and angles. At least
+two matching segments are required to build a track, except
+in the barrel–endcap transition region where a single high-
+quality segment with η and φ information can be used to
+build a track.
+The same segment can initially be used to build several
+track candidates. Later, an overlap removal algorithm selects
+the best assignment to a single track, or allows for the segment
+to be shared between two tracks. To ensure high efﬁciency for
+close-by muons, all tracks with segments in three different
+layers of the spectrometer are kept when they are identical
+in two out of three layers but share no hits in the outermost
+layer.
+The hits associated with each track candidate are ﬁtted
+using a global χ
+2 ﬁt. A track candidate is accepted if the
+χ2 of the ﬁt satisﬁes the selection criteria. Hits providing
+large contributions to the χ2 are removed and the track ﬁt is
+repeated. A hit recovery procedure is also performed looking
+for additional hits consistent with the candidate trajectory.
+The track candidate is reﬁt if additional hits are found.
+3.2 Combined reconstruction
+The combined ID–MS muon reconstruction is performed
+according to various algorithms based on the information
+123
+
+===== PAGE 3 =====
+Eur. Phys. J. C (2016) 76 :292 Page 3 of 30 292
+provided by the ID, MS, and calorimeters. Four muon types
+are deﬁned depending on which subdetectors are used in
+reconstruction:
+• Combined (CB) muon: track reconstruction is performed
+independently in the ID and MS, and a combined track
+is formed with a global reﬁt that uses the hits from both
+the ID and MS subdetectors. During the global ﬁt pro-
+cedure, MS hits may be added to or removed from the
+track to improve the ﬁt quality. Most muons are recon-
+structed following an outside-in pattern recognition, in
+which the muons are ﬁrst reconstructed in the MS and
+then extrapolated inward and matched to an ID track. An
+inside-out combined reconstruction, in which ID tracks
+are extrapolated outward and matched to MS tracks, is
+used as a complementary approach.
+• Segment-tagged (ST) muons: a track in the ID is classi-
+ﬁed as a muon if, once extrapolated to the MS, it is asso-
+ciated with at least one local track segment in the MDT
+or CSC chambers. ST muons are used when muons cross
+only one layer of MS chambers, either because of their
+low p
+T or because they fall in regions with reduced MS
+acceptance.
+• Calorimeter-tagged (CT) muons: a track in the ID is iden-
+tiﬁed as a muon if it can be matched to an energy deposit
+in the calorimeter compatible with a minimum-ionizing
+particle. This type has the lowest purity of all the muon
+types but it recovers acceptance in the region where the
+ATLAS muon spectrometer is only partially instrumented
+to allow for cabling and services to the calorimeters and
+inner detector. The identiﬁcation criteria for CT muons
+are optimised for that region (|η| < 0.1) and a momen-
+tum range of 15 < p
+T < 100 GeV .
+• Extrapolated (ME) muons: the muon trajectory is recon-
+structed based only on the MS track and a loose require-
+ment on compatibility with originating from the IP. The
+parameters of the muon track are deﬁned at the interac-
+tion point, taking into account the estimated energy loss
+of the muon in the calorimeters. In general, the muon
+is required to traverse at least two layers of MS cham-
+bers to provide a track measurement, but three layers are
+required in the forward region. ME muons are mainly
+used to extend the acceptance for muon reconstruction
+into the region 2.5 < |η| < 2.7, which is not covered by
+the ID.
+Overlaps between different muon types are resolved
+before producing the collection of muons used in physics
+analyses. When two muon types share the same ID track,
+preference is given to CB muons, then to ST, and ﬁnally to
+CT muons. The overlap with ME muons in the muon sys-
+tem is resolved by analyzing the track hit content and select-
+ing the track with better ﬁt quality and larger number of
+hits.
+The muon reconstruction used in this work evolved from
+the algorithms deﬁned as Chain 3 in Ref. [12]. These algo-
+rithms were improved in several ways. The use of a Hough
+transform to identify the hit patterns for seeding the segment-
+ﬁnding algorithm makes the reconstruction faster and more
+robust against misidentiﬁcation of hadrons, thus providing
+better background rejection early in the pattern recognition
+process. The calculation of the energy loss in the calorime-
+ter was also improved. An analytic parameterization of the
+average energy loss is derived from a detailed description of
+the detector geometry. The ﬁnal estimate of the energy loss
+is obtained by combining the analytic parameterization with
+the energy measured in the calorimeter. This method yields
+a precision on the mean energy loss of about 30 MeV for
+50 GeV muons.
+4 Data and Monte Carlo samples
+The efﬁciency measurements presented in this article are
+obtained from the analysis of 3.2 fb
+−1 of pp collision data
+recorded at √ s = 13 TeV at the LHC in 2015 during the
+data-taking period with 25 ns spacing between bunch cross-
+ings. About 1.5M Z → μμ and 3.5M J/ψ → μμ events
+are reconstructed and used for the analysis. For the study
+of the momentum calibration, 2.7 fb
+−1 of data were used,
+rejecting the runs in which the longitudinal position of the
+beam spot was displaced by about 3 cm with respect to the
+centre of the detector.
+Events are accepted only if the ID, the MS, and the
+calorimeters were operational and the solenoid and toroid
+magnet systems were both active. The online event selection
+was performed by a two-level trigger system derived from the
+one described in Ref. [18]. The Z → μμ candidates are trig-
+gered by the presence of at least one muon candidate with a
+transverse momentum, p
+T, of at least 20 GeV . For the recon-
+struction efﬁciency and momentum calibration studies, the
+muon ﬁring the trigger is required to be isolated (see Sect.7).
+The J/ψ → μμ candidates used for the momentum calibra-
+tion are triggered by a dedicated dimuon trigger that requires
+two opposite-charge muons, each with pT > 4 GeV , compa-
+tible with the same vertex, and with a dimuon invariant mass
+in the range 2.5–4.5 GeV . TheJ/ψ → μμ sample used for
+the efﬁciency measurement is selected using a combination
+of single-muon triggers and triggers requiring one muon with
+transverse momentum of at least 4 GeV and an ID track such
+that the invariant mass of the muon+track pair, under a muon
+mass hypothesis, is compatible with the mass of the J/ψ .
+Monte Carlo samples for the process
+pp → (Z/γ
+∗)X → μμ X are generated using the
+POWHEG BOX [19] interfaced to PYTHIA8 [ 20] and the
+CT10 [21] parton distribution functions. The PHOTOS [22]
+package is used to simulate ﬁnal-state photon radiation in Z
+123
+
+===== PAGE 4 =====
+292 Page 4 of 30 Eur. Phys. J. C (2016) 76 :292
+boson decays. Samples of prompt J/ψ → μμ decays are
+generated using PYTHIA8 complemented with PHOTOS
+to simulate the effects of ﬁnal-state radiation. A require-
+ment on the minimum transverse momentum of each muon
+( p
+T > 4 GeV) is applied at the generator level. The sam-
+ples used for the simulation of the backgrounds to Z → μμ
+include: Z → ττ, W → μν, and W → τν, gener-
+ated with POWHEG BOX; WW , ZZ , and WZ generated
+with SHERPA [ 23]; t ¯t samples generated with POWHEG
+BOX + PYTHIA8; and b¯b and c¯c samples generated with
+PYTHIA8.
+All the generated samples are passed through the simula-
+tion of the ATLAS detector based on GEANT4 [24,25] and
+are reconstructed with the same programs used for the data.
+The ID and the MS are simulated with an ideal geometry
+assuming no misalignment.
+The effect of multiple pp interactions per bunch crossing
+(“pile-up”) is modelled by overlaying simulated minimum-
+bias events onto the original hard-scattering event. Monte
+Carlo events are then reweighted so that the distribution of
+the average number of interactions per event agrees with the
+data.
+5 Muon identiﬁcation
+Muon identiﬁcation is performed by applying quality require-
+ments that suppress background, mainly from pion and kaon
+decays, while selecting prompt muons with high efﬁciency
+and/or guaranteeing a robust momentum measurement.
+Muon candidates originating from in-ﬂight decays of
+charged hadrons in the ID are often characterized by the pres-
+ence of a distinctive “kink” topology in the reconstructed
+track. As a consequence, it is expected that the ﬁt quality
+of the resulting combined track will be poor and that the
+momentum measured in the ID and MS may not be compat-
+ible. Several variables offering good discrimination between
+prompt muons and background muon candidates are studied
+in simulatedt ¯t events. Muons fromW decays are categorized
+as signal muons while muon candidates from light-hadron
+decays are categorized as background. For CB tracks, the
+variables used in muon identiﬁcation are:
+• q/p signiﬁcance, deﬁned as the absolute value of the dif-
+ference between the ratio of the charge and momentum
+of the muons measured in the ID and MS divided by the
+sum in quadrature of the corresponding uncertainties;
+• ρ
+′, deﬁned as the absolute value of the difference between
+the transverse momentum measurements in the ID and
+MS divided by the pT of the combined track;
+• normalised χ2 of the combined track ﬁt.
+To guarantee a robust momentum measurement, speciﬁc
+requirements on the number of hits in the ID and MS are
+used. For the ID, the quality cuts require at least one Pixel
+hit, at least ﬁve SCT hits, fewer than three Pixel or SCT holes,
+and that at least 10 % of the TRT hits originally assigned to
+the track are included in the ﬁnal ﬁt; the last requirement is
+only employed for |η| between 0.1 and 1.9, in the region of
+full TRT acceptance. A hole is deﬁned as an active sensor
+traversed by the track but containing no hits. A missing hit is
+considered a hole only when it falls between hits successfully
+assigned to a given track. If some inefﬁciency is expected for
+a given sensor, the requirements on the number of Pixel and
+SCT hits are reduced accordingly.
+Four muon identiﬁcation selections ( Medium, Loose,
+Tight, andHigh-p
+T) are provided to address the speciﬁc needs
+of different physics analyses. Loose, Medium, and Tight are
+inclusive categories in that muons identiﬁed with tighter
+requirements are also included in the looser categories.
+Medium muons The Medium identiﬁcation criteria provide
+the default selection for muons in ATLAS. This selection
+minimises the systematic uncertainties associated with muon
+reconstruction and calibration. Only CB and ME tracks are
+used. The former are required to have≥3 hits in at least two
+MDT layers, except for tracks in the|η| < 0.1 region, where
+tracks with at least one MDT layer but no more than one
+MDT hole layer are allowed. The latter are required to have
+at least three MDT/CSC layers, and are employed only in the
+2.5 < |η| < 2.7 region to extend the acceptance outside
+the ID geometrical coverage. A loose selection on the com-
+patibility between ID and MS momentum measurements
+is applied to suppress the contamination due to hadrons
+misidentiﬁed as muons. Speciﬁcally, the q/p signiﬁcance is
+required to be less than seven. In the pseudorapidity region
+|η| < 2.5, about 0.5 % of the muons classiﬁed as Medium
+originate from the inside-out combined reconstruction strat-
+egy.
+Loose muons The Loose identiﬁcation criteria are designed
+to maximise the reconstruction efﬁciency while providing
+good-quality muon tracks. They are speciﬁcally optimised
+for reconstructing Higgs boson candidates in the four-lepton
+ﬁnal state [ 5]. All muon types are used. All CB and ME
+muons satisfying the Medium requirements are included in
+the Loose selection. CT and ST muons are restricted to the
+|η| < 0.1 region. In the region|η| < 2.5, about 97.5 % of the
+Loose muons are combined muons, approximately 1.5 % are
+CT, and the remaining 1 % are reconstructed as ST muons.
+Tight muons Tight muons are selected to maximise the purity
+of muons at the cost of some efﬁciency. Only CB muons
+with hits in at least two stations of the MS and satisfying the
+Medium selection criteria are considered. The normalised
+χ
+2 of the combined track ﬁt is required to be <8 to remove
+pathological tracks. A two-dimensional cut in theρ′ and q/p
+signiﬁcance variables is performed as a function of the muon
+123
+
+===== PAGE 5 =====
+Eur. Phys. J. C (2016) 76 :292 Page 5 of 30 292
+Table 1 Efﬁciency for prompt muons from W decays and hadrons
+decaying in-ﬂight and misidentiﬁed as prompt muons computed using
+a t ¯t MC sample. The results are shown for the four identiﬁcation
+selection criteria separating low (4 < p
+T < 20 GeV) and high
+(20 < pT < 100 GeV) momentum muons for candidates with
+|η| < 2.5. The statistical uncertainties are negligible
+Selection 4 < pT < 20 GeV 20 < pT < 100 GeV
+ϵMC
+μ [%] ϵMC
+Hadrons [%] ϵMC
+μ [%] ϵMC
+Hadrons [%]
+Loose 96.7 0.53 98.1 0.76
+Medium 95.5 0.38 96.1 0.17
+Tight 89.9 0.19 91.8 0.11
+High-p
+T 78.1 0.26 80.4 0.13
+pT to ensure stronger background rejection for momenta
+below 20 GeV where the misidentiﬁcation probability is
+higher.
+High-p
+T muons The High-pT selection aims to maximise
+the momentum resolution for tracks with transverse momen-
+tum above 100 GeV . The selection is optimised for searches
+for high-mass Z
+′ and W′ resonances [8,9]. CB muons pass-
+ing the Medium selection and having at least three hits in
+three MS stations are selected. Speciﬁc regions of the MS
+where the alignment is suboptimal are vetoed as a precaution.
+Requiring three MS stations, while reducing the reconstruc-
+tion efﬁciency by about 20 %, improves the p
+T resolution of
+muons above 1.5 TeV by approximately 30 %.
+The reconstruction efﬁciencies forsignal and background
+obtained from tt simulation are reported in Table 1.T h e
+results are shown for the four identiﬁcation selection cri-
+teria separating low (4 < pT < 20 GeV) and high
+(20 < pT < 100 GeV) transverse momentum muon can-
+didates. No isolation requirement is applied in the selection
+shown in the table. When isolation requirements are applied,
+the misidentiﬁcation rates are reduced by more than an order
+of magnitude. It should be noted that the higher misidentiﬁ-
+cation rate observed forLoose with respect toMedium muons
+is mainly due to CT muons in the region |η| < 0.1.
+The misidentiﬁcation probability estimated with the MC
+simulation is validated in data by measuring the proba-
+bility that pions are reconstructed as muons. An unbiased
+sample of pions from K
+0
+S → π+π− decays is collected
+with calorimeter-based (photon, electron, jet) triggers. Good
+agreement between data and simulation is observed indepen-
+dent of the pT, η, and impact parameter of the track.
+6 Reconstruction efﬁciency
+As the muon reconstruction in the ID and MS detectors is per-
+formed independently, a precise determination of the muon
+reconstruction efﬁciency in the region |η| < 2.5 is obtained
+with the tag-and-probe method, as described in the Sect.6.1.
+A different methodology, described in Sect. 6.2,i su s e di n
+the region 2.5 < |η| < 2.7 where muons are reconstructed
+using only the MS detector.
+6.1 Efﬁciency measurement in the region |η| < 2.5
+The tag-and-probe method is employed to measure the efﬁ-
+ciency of the muon identiﬁcation selections within the accep-
+tance of the ID ( |η| < 2.5). The method is based on the
+selection of an almost pure muon sample from J/ψ → μμ
+or Z → μμ events, requiring one leg of the decay (tag) to
+be identiﬁed as a Medium muon that ﬁres the trigger and the
+second leg (probe) to be reconstructed by a system indepen-
+dent of the one being studied. A selection based on the event
+topology is used to reduce the background contamination.
+Three kinds of probes are used to measure muon efﬁcien-
+cies. ID tracks and CT muons both allow a measurement
+of the efﬁciency in the MS, while MS tracks are used to
+determine the complementary efﬁciency of the muon recon-
+struction in the ID. Compared to ID tracks, CT muons offer
+a more powerful rejection of backgrounds, especially at low
+transverse momenta, and are therefore the preferred probe
+type for this part of the measurement. ID tracks are used as
+a cross-check and for measurements not directly accessible
+to CT muons. A direct measurement of the CT muon recon-
+struction efﬁciency is possible using MS tracks.
+The efﬁciency measurement for Medium, Tight, and
+High-p
+T muons consists of two stages. First, the efﬁciency
+ϵ (X|CT) (X = Medium/Tight/High-pT) of reconstructing
+these muons assuming a reconstructed ID track is measured
+using a CT muon as probe. Then, this result is corrected by
+the efﬁciencyϵ (ID|MS) of the ID track reconstruction, mea-
+sured using MS probes:
+ϵ (X) = ϵ (X|ID) · ϵ (ID) = ϵ (X|CT) · ϵ (ID|MS)
+(X = Medium/Tight/High-p
+T). (1)
+A similar approach is used when using ID probe tracks for
+cross-checks.
+This approach is valid if two assumptions are satisﬁed:
+• the ID track reconstruction efﬁciency is independent from
+the muon spectrometer track reconstruction ( ϵ (ID) =
+ϵ (ID|MS)).
+• the use of a CT muon as a probe instead of an ID track does
+not affect the probability for Medium, Tight,o r High-pT
+reconstruction (ϵ (X|ID) = ϵ (X|CT)).
+Both assumptions have been tested using generator-level
+information from simulation and small differences are taken
+into account in the systematic uncertainties.
+The muons selected by the Loose identiﬁcation require-
+ments are decomposed into two samples: CT muons within
+123
+
+===== PAGE 6 =====
+292 Page 6 of 30 Eur. Phys. J. C (2016) 76 :292
+|η| < 0.1 and all other muons. The CT muon efﬁciency
+is measured using MS probe tracks, while the efﬁciency of
+other muons is evaluated using CT probe muons in a fashion
+similar to the Medium, Tight, and High-p
+T categories.
+The level of agreement of the measured efﬁciency,
+ϵData (X), with the efﬁciency measured with the same method
+in simulation, ϵMC (X), is expressed as the ratio of these two
+numbers, called the “efﬁciency scale factor” (SF):
+SF = ϵData (X)
+ϵMC (X) .( 2 )
+This quantity describes the deviation of the simulation from
+the real detector behaviour, and is of particular interest to
+physics analyses, where it is used to correct the simulation.
+6.1.1 The tag-and-probe method with Z → μμ events
+Events are selected by requiring muon pairs with an invari-
+ant mass within 10 GeV of the Z boson mass. The tag
+muon is required to satisfy theLoose isolation (see Sect.7.2)
+and Medium muon identiﬁcation selections and to have a
+transverse momentum of at least 24 GeV. Requirements
+on the signiﬁcance of the transverse impact parameter d
+0
+(|d0|/σ(d0)< 3.0) and on the longitudinal impact parame-
+ter |z0| (|z0| < 10 mm) of the tag muon are imposed. Finally,
+the tag muon is required to have triggered the readout of the
+event.
+The probe muon is required to have a transverse momen-
+tum of at least 10 GeV and to satisfy the Loose isolation
+criteria. While this is sufﬁcient to ensure high purity in the
+case of MS probe tracks, further requirements are applied to
+both the ID track and CT muon probes. In the case of ID
+tracks, an isolation requirement is applied which is consid-
+erably stricter than the Loose selection in order to suppress
+backgrounds as much as possible. In addition, the invariant
+mass window is tightened to 5 GeV around the Z boson
+mass, rather than the 10 GeV used in the other cases. For
+CT muon probes, additional requirements on the compatibil-
+ity of the associated calorimeter energy deposit with a muon
+signature are applied to further enhance the purity. The ID
+probe tracks and calorimeter-tagged probe muons must also
+have transverse and longitudinal impact parameters consis-
+tent with being produced in a primary pp interaction, as
+required for tag muons. A probe is considered successfully
+reconstructed if a reconstructed muon is found within a cone
+in the η–φ plane of size /Delta1R = 0.05 around the probe track.
+A small fraction (about 0.1 %) of the selected tag–probe
+pairs originates from sources other thanZ → μμ events. For
+a precise efﬁciency measurement, these backgrounds must
+be estimated and subtracted. Contributions from Z → ττ
+and t ¯t decays are estimated using simulation. Additionally,
+multijet events and W → μν decays in association with
+jet activity (W +jets) can yield tag–probe pairs through sec-
+ondary muons from heavy- or light-hadron decays. As these
+backgrounds are approximately charge-symmetric, they are
+estimated from the data using same-charge (SC) tag–probe
+pairs. This leads to the following estimate of the opposite-
+charge (OC) background, N
+Bkg, for each region of the kine-
+matic phase-space:
+NBkg = N Z,t ¯t MC
+OC + T ·
+(
+NData
+SC − N Z,t ¯t MC
+SC
+)
+(3)
+where N Z,t ¯t MC
+OC is the contribution from Z → ττ and t ¯t
+decays, NData
+SC is the number of SC pairs measured in data
+and N Z,t ¯t MC
+SC is the estimated contribution of the Z → μμ,
+Z → ττ, and t ¯t processes to the SC sample. T is a global
+transfer factor that takes into account the charge asymmetry
+of the multijet andW +jets processes, estimated in data using
+a control sample of events obtained by inverting the probe
+isolation requirement. For MS (ID) tracks, a value ofT = 1.7
+(1.1) is obtained, while for calorimeter-tagged muon probes
+the transfer factor is T = 1.2. The systematic uncertainties
+in the transfer factor vary between 40 % and 100 % and are
+included in the systematic error in the reconstruction efﬁ-
+ciency described in Sect. 6.1.3.
+The efﬁciency measured in the data is corrected for the
+background contributions described above by subtracting the
+predicted probe yields attributed to these sources from the
+number of observed probes,
+ϵ = N
+Data
+R − NBkg
+R
+NData
+P − NBkg
+P
+, (4)
+where NP denotes the total number of probes and NR the
+number of successfully reconstructed probes. The resulting
+efﬁciency can then be compared directly to the result of the
+simulation.
+6.1.2 The tag-and-probe method with J /ψ → μμ events
+The reconstruction efﬁciencies of the Loose, Medium, and
+Tight muon selections at low pT are measured from a sam-
+ple of J/ψ → μμ events selected using a combination of
+single-muon triggers and the dedicated “muon + track” trig-
+ger described in Sect. 4.
+Tag–probe pairs are selected within the invariant mass
+window of 2.7–3.5 GeV and requiring a transverse momen-
+tum of at least 5 GeV for each muon. The tag muon is required
+to satisfy the Medium muon identiﬁcation selection and to
+have triggered the readout of the event. In order to avoid low-
+momentum curved tracks sharing the same trigger region,
+tag and probe muons are required to be /Delta1R > 0.2 apart
+when extrapolated to the MS trigger surfaces. Finally, they
+123
+
+===== PAGE 7 =====
+Eur. Phys. J. C (2016) 76 :292 Page 7 of 30 292
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Relative Uncertainty [%]
+3−10
+2−10
+1−10
+1
+10
+210
+310
+Truth Closure
+Background
+Statistics
+Statistics (MC)
+Total
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsMedium
+μμ→Z
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Relative Uncertainty [%]
+3−10
+2−10
+1−10
+1
+10
+210
+310
+Truth closure Statistics (MC)
+Background Statistics
+Signal Total
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsMedium
+μμ→ψJ/
+Fig. 1 Total uncertainty in the efﬁciency scale factor for Medium muons as a function of η as obtained from Z → μμ data (left) for muons with
+pT > 10 GeV , and from J/ψ → μμ data (right) for muons with 5 < pT < 20 GeV . The combined uncertainty is the sum in quadrature of the
+individual contributions
+are selected with /Delta1z0 ≡| ztag
+0 − zprobe
+0 | < 5 mm, to sup-
+press background. A probe is considered successfully recon-
+structed if a selected muon is found within a /Delta1R = 0.05
+cone around the probe track.
+The background contamination and the muon reconstruc-
+tion efﬁciency are measured with a simultaneous maximum-
+likelihood ﬁt of two statistically independent distributions
+of the invariant mass: events in which the probe is or is not
+successfully matched to the selected muon. The ﬁts are per-
+formed in six p
+T and nine η bins of the probe tracks. The
+signal is modelled with a Crystal Ball function [ 26] with a
+single set of parameters for the two independent samples.
+Separate ﬁrst-order polynomial ﬁts are used to describe the
+background shape for matched and unmatched probes.
+6.1.3 Systematic uncertainties
+The main contributions to the systematic uncertainty in
+the measurement of the efﬁciency SFs with Z → μμ and
+J/ψ → μμ events are shown in Figs.1 and 2, as a function
+of ηand pT, respectively.
+The uncertainty in the background estimate is evaluated
+in the Z → μμ analysis by taking the maximum variation of
+the transfer factorT when estimated with a simulation-based
+approach as described in Ref. [ 12] and when assuming the
+background to be charge-symmetric. This results in an uncer-
+tainty of the efﬁciency measurement below 0.1 % over a large
+momentum range, but reaching∼1 % for low muon momenta
+where the contribution of the background is most signiﬁcant.
+In the J/ψ → μμ analysis, the background uncertainty is
+estimated by changing the function used in the ﬁt to model
+the background, replacing the ﬁrst-order polynomial with an
+exponential function. An uncertainty due to the signal mod-
+elling in the ﬁt, labelled as “Signal” in Figs. 1 and 2,i sa l s o
+estimated using a convolution of exponential and Gaussian
+ [GeV]Tp
+6 7 8 910 20 30 40 50 60 210
+Relative Uncertainty [%]
+2−10
+1−10
+1
+10
+210
+310
+Truth closure
+Background
+Signal
+Statistics (MC)
+Statistics
+Total
+Truth closure
+Background
+Statistics (MC)
+Statistics
+Total
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsMedium
+μμ→ψJ/ μμ→Z
+Fig. 2 Total uncertainty in the efﬁciency scale factor for Medium
+muons as a function of pT as obtained from Z → μμ (solid lines )
+and J/ψ → μμ (dashed lines ) decays. The combined uncertainty is
+the sum in quadrature of the individual contributions
+functions as an alternative model. Each uncertainty is about
+0.1% .
+The cone size used for matching selected muons to probe
+tracks is optimised in terms of efﬁciency and purity of the
+matching. The systematic uncertainty deriving from this
+choice is evaluated by varying the cone size by±50 %. This
+yields an uncertainty below 0.1 % in both analyses.
+Possible biases in the tag-and-probe method, such as
+biases due to different kinematic distributions between recon-
+structed probes and generated muons or correlations between
+ID and MS efﬁciencies, are estimated in simulation by
+comparing the efﬁciency measured with the tag-and-probe
+method with the “true” efﬁciency given by the fraction of
+generator-level muons that are successfully reconstructed.
+This uncertainty is labelled as “Truth Closure” in Figs. 1
+and 2.I nt h eZ → μμ analysis, agreement better than 0.1%
+is observed in the high momentum range. This uncertainty
+123
+
+===== PAGE 8 =====
+292 Page 8 of 30 Eur. Phys. J. C (2016) 76 :292
+Efficiency0.96
+0.98
+1
+0.6
+0.65 ATLAS
+-1 = 13 TeV, 3.2 fbs Data
+MC
+μμ→Z
+η
+2.5− 2− 1.5− 1− 0.5− 00 . 511 . 522 . 5
+Data / MC0.98
+1
+1.02 Stat only  Stat⊕Sys
+ muonsMedium
+| < 0.1)η muons (|Loose
+Efficiency
+0.85
+0.9
+0.95
+1
+0.45
+0.5
+0.55
+0.6
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsTight
+Data
+MC
+μμ→Z
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC
+0.95
+1
+1.05 Stat only  Stat⊕Sys
+Efficiency
+0.5
+1
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsTHigh-p
+μμ→Z
+Data
+MC
+η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data / MC
+0.9
+1
+1.1 Stat only  Stat⊕Sys
+Fig. 3 Muon reconstruction efﬁciency as a function of η measured in
+Z → μμ events for muons with pT > 10 GeV shown for Medium
+(top), Tight (bottom left), and High-pT (bottom right) muon selections.
+In addition, the top plot also shows the efﬁciency of the Loose selec-
+tion (squares) in the region |η| < 0.1w h e r et h eLoose and Medium
+selections differ signiﬁcantly. The error bars on the efﬁciencies indi-
+cate the statistical uncertainty. Panels at the bottom show the ratio of
+the measured to predicted efﬁciencies, with statistical and systematic
+uncertainties
+grows at low pT, and differences up to 0.7 % are found in the
+J/ψ → μμ analysis. A larger effect of up to 1–2 % is mea-
+sured in both analyses in the region |η| < 0.1. In the extrac-
+tion of the efﬁciency scale factors, the difference between
+the measured and the “true” efﬁciency cancels to ﬁrst order.
+To take into account possible imperfections of the simula-
+tion, half of the observed difference is used as an additional
+systematic uncertainty in the SF.
+No signiﬁcant dependence of the measured SFs with
+p
+T is observed in the momentum range considered in the
+Z → μμ analysis. An upper limit on the SF variation for
+large muon momenta is extracted from simulation, leading
+to an additional uncertainty of 2–3 % per TeV for muons with
+p
+T > 200 GeV . The efﬁciency scale factor is observed to be
+independent of the amount of pile-up.
+6.1.4 Results
+Figure 3 shows the muon reconstruction efﬁciency as a func-
+tion of ηas measured from Z → μμ events for the different
+muon selections. The efﬁciency as measured in data and the
+corresponding scale factors for theMedium selection are also
+shown in Fig. 4 as a function of η and φ. The efﬁciency at
+low pT is reported in Fig. 5 as measured from J/ψ → μμ
+events as a function of pT in different ηregions.
+The efﬁciencies of the Loose and Medium selections are
+very similar throughout the detector with the exception of
+the region |η| < 0.1, where the Loose selection ﬁlls the MS
+acceptance gap using the calorimeter and segment-tagged
+muons contributions. The efﬁciency of these selections is
+observed to be in excess of 98 %, and between 90 and 98 % for
+the Tight selection, with all efﬁciencies in very good agree-
+ment with those predicted by the simulation. An inefﬁciency
+due to a poorly aligned MDT chamber is clearly localised
+at (η, φ)∼ (−1.3, 1.6), and is the most signiﬁcant feature
+of the comparison between collision data and simulation for
+these three categories. In addition, a 2 %-level local inefﬁ-
+ciency is visible in the region (η, φ)∼ (1.9, 2.5), traced to
+temporary failures in the SCT readout system. Further local
+inefﬁciencies in the barrel region around φ ∼− 1.1 are also
+123
+
+===== PAGE 9 =====
+Eur. Phys. J. C (2016) 76 :292 Page 9 of 30 292
+Fig. 4 Reconstruction
+efﬁciency measured in data
+(top), and the data/MC
+efﬁciency scale factor (bottom)
+for Medium muons as a function
+of ηand φ for muons with
+pT > 10 GeV in Z → μμ
+events. The thin white bins
+visible in the region |φ|∼ π are
+due to the different bin
+boundaries in φ in the endcap
+and barrel regions
+η
+2.5− 2− 1.5− 1− 0.5− 00 . 511 . 522 . 5
+φ
+3−
+2−
+1−
+0
+1
+2
+3
+Data Efficiency [%]
+0
+20
+40
+60
+80
+100
+97.7
+98.8
+97.9
+98.7
+98.6
+98.5
+98.4
+98.9
+98.3
+98.9
+98.7
+99.0
+98.1
+98.5
+99.0
+98.4
+98.9
+99.4
+98.8
+99.3
+99.4
+99.5
+98.5
+99.3
+99.4
+99.6
+99.0
+99.5
+99.4
+99.5
+99.5
+99.4
+99.0
+98.9
+99.0
+99.3
+98.9
+99.2
+98.5
+99.2
+99.4
+99.1
+99.0
+99.2
+99.3
+99.2
+99.4
+99.3
+99.5
+99.5
+99.7
+99.4
+100.0
+99.4
+99.2
+99.7
+99.7
+99.2
+99.9
+99.6
+99.7
+99.4
+99.8
+99.6
+99.4
+99.5
+99.6
+99.1
+97.5
+99.2
+99.4
+99.5
+98.9
+99.5
+99.3
+99.3
+99.5
+99.1
+99.4
+99.4
+98.9
+99.2
+98.3
+95.8
+82.1
+98.8
+99.4
+99.4
+99.2
+98.9
+98.4
+98.9
+99.3
+98.9
+98.2
+99.2
+99.4
+98.5
+98.6
+98.3
+99.4
+98.9
+99.5
+98.6
+99.7
+98.6
+99.0
+98.6
+99.4
+98.6
+99.6
+98.8
+99.3
+99.2
+98.5
+99.2
+99.4
+99.4
+99.6
+99.3
+99.5
+99.2
+99.0
+97.5
+98.7
+94.0
+99.4
+99.2
+99.3
+99.0
+98.6
+98.2
+99.6
+99.2
+99.6
+99.2
+99.4
+99.0
+98.8
+99.1
+99.5
+98.8
+99.5
+99.2
+99.5
+99.0
+98.6
+99.0
+99.5
+99.3
+98.1
+99.4
+99.4
+99.3
+98.9
+97.7
+99.3
+97.8
+99.5
+99.4
+55.2
+91.2
+60.8
+90.3
+44.9
+86.1
+2.7
+81.9
+7.9
+84.4
+17.0
+86.4
+61.8
+86.8
+16.2
+87.9
+99.6
+99.3
+98.6
+99.2
+99.5
+99.1
+97.4
+99.1
+98.3
+99.3
+98.4
+97.7
+99.3
+97.6
+99.5
+99.3
+99.7
+98.9
+99.4
+99.3
+99.7
+99.2
+99.7
+99.1
+99.5
+99.2
+98.4
+98.9
+99.5
+98.6
+99.4
+99.5
+99.5
+99.0
+99.1
+99.3
+99.6
+99.1
+99.5
+99.4
+99.4
+99.4
+98.5
+98.2
+99.5
+87.4
+99.5
+99.2
+99.7
+98.2
+99.4
+98.4
+99.5
+98.5
+99.5
+98.7
+99.5
+99.0
+99.0
+98.5
+99.4
+98.5
+99.4
+98.5
+99.1
+99.3
+99.5
+99.5
+99.4
+99.1
+99.8
+99.4
+99.6
+99.3
+98.5
+98.7
+99.8
+98.8
+98.6
+99.1
+99.5
+99.6
+99.6
+98.9
+98.6
+99.2
+99.4
+99.4
+99.3
+99.6
+99.5
+99.0
+99.7
+99.0
+99.2
+99.3
+99.6
+99.6
+99.5
+99.5
+99.7
+99.6
+99.7
+100.0
+99.4
+99.5
+99.6
+99.4
+99.5
+99.7
+99.7
+99.5
+99.3
+99.3
+99.4
+99.3
+98.9
+99.1
+97.7
+98.1
+98.9
+99.1
+99.2
+99.2
+99.3
+99.2
+99.0
+99.5
+99.5
+99.7
+99.5
+99.6
+99.7
+99.6
+99.2
+99.2
+98.5
+99.4
+99.5
+99.6
+99.5
+99.5
+99.5
+99.6
+98.2
+98.7
+98.5
+98.8
+98.1
+98.7
+98.6
+98.8
+98.6
+98.8
+99.1
+98.9
+98.8
+99.0
+98.3
+99.1
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsMedium
+η
+2.5− 2− 1.5− 1− 0.5− 00 . 511 . 522 . 5
+φ
+3−
+2−
+1−
+0
+1
+2
+3
+Data/MC [%]
+60
+70
+80
+90
+100
+110
+98.0
+99.0
+98.3
+99.0
+98.9
+98.9
+98.8
+99.4
+98.7
+99.2
+99.1
+99.3
+98.4
+98.8
+99.4
+98.7
+99.1
+99.6
+99.1
+99.5
+99.7
+99.7
+98.6
+99.5
+99.5
+99.8
+99.4
+99.7
+99.6
+99.7
+99.7
+99.6
+99.4
+99.3
+99.5
+99.8
+99.3
+99.7
+98.9
+99.6
+99.8
+99.5
+99.5
+99.6
+99.6
+99.6
+99.9
+99.7
+99.7
+99.8
+99.9
+99.7
+100.3
+99.7
+99.5
+100.0
+99.9
+99.5
+100.2
+99.9
+99.8
+99.6
+100.0
+99.8
+99.9
+100.0
+99.9
+99.7
+98.2
+99.8
+99.7
+99.9
+99.3
+99.9
+99.7
+100.0
+99.8
+99.7
+99.8
+99.9
+99.6
+99.8
+99.0
+96.5
+82.6
+99.6
+100.1
+100.0
+99.8
+99.6
+99.2
+99.6
+99.9
+99.6
+99.1
+99.8
+99.8
+99.4
+99.0
+99.4
+99.8
+99.8
+99.8
+99.6
+100.0
+99.5
+99.3
+99.1
+99.8
+99.0
+100.0
+99.8
+99.6
+99.7
+98.9
+99.6
+99.7
+99.8
+100.0
+99.7
+99.8
+99.6
+99.3
+98.3
+99.1
+94.9
+99.8
+99.6
+99.5
+99.4
+98.9
+98.6
+99.9
+99.6
+99.9
+99.7
+99.7
+99.5
+99.2
+99.7
+99.8
+99.3
+99.8
+99.6
+100.0
+99.3
+99.1
+99.3
+99.8
+99.7
+100.2
+99.8
+99.7
+99.6
+99.3
+99.7
+99.6
+99.7
+99.9
+99.7
+99.6
+99.3
+98.7
+99.7
+101.1
+99.3
+90.6
+99.5
+100.1
+98.8
+105.3
+99.1
+100.6
+100.0
+103.4
+99.3
+99.8
+99.7
+99.0
+99.6
+99.8
+99.6
+99.3
+99.6
+100.1
+99.6
+98.7
+99.6
+99.6
+99.4
+99.8
+99.7
+100.0
+99.3
+99.8
+99.8
+100.0
+99.6
+99.9
+99.6
+99.8
+99.6
+98.8
+99.5
+99.8
+99.1
+99.8
+99.9
+99.8
+99.4
+99.5
+99.7
+99.8
+99.5
+99.7
+99.8
+99.8
+99.8
+98.8
+99.0
+99.8
+88.1
+100.0
+99.6
+100.0
+99.2
+99.7
+99.4
+99.7
+99.5
+99.8
+99.9
+99.9
+99.9
+99.4
+98.9
+99.8
+98.9
+99.8
+99.6
+99.9
+100.2
+100.0
+100.5
+99.9
+100.1
+100.6
+100.3
+100.2
+100.1
+99.4
+99.5
+100.3
+99.7
+99.5
+100.0
+99.9
+100.1
+100.0
+99.5
+99.4
+99.8
+99.9
+99.9
+99.7
+100.0
+99.9
+99.6
+100.1
+99.7
+99.7
+99.8
+99.8
+99.9
+99.8
+99.8
+100.0
+99.9
+100.0
+100.2
+99.7
+99.7
+99.9
+99.7
+99.8
+99.9
+99.9
+99.8
+99.7
+99.7
+99.8
+99.8
+99.3
+99.5
+98.1
+98.5
+99.3
+99.5
+99.6
+99.6
+99.7
+99.7
+99.5
+99.8
+99.6
+99.8
+99.8
+99.8
+99.9
+99.8
+99.4
+99.4
+98.6
+99.6
+99.8
+99.8
+99.8
+99.7
+99.6
+99.8
+98.6
+99.0
+99.0
+99.3
+98.5
+99.0
+98.9
+99.1
+98.9
+99.1
+99.6
+99.2
+99.1
+99.3
+98.6
+99.4
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsMedium
+Efficiency
+0.7
+0.8
+0.9
+1
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsLoose
+Data
+MC
+μμ→ψJ/
+Data / MC
+0.95
+1
+1.05
+<-2.0η
+-2.5<
+<-1.5η
+-2.0<
+<-1.05
+η
+-1.5<
+<-0
+.1
+η
+-1.05<
+<0.1η
+-0.1<
+<1.05
+η
+0.1<
+<1.5η
+1.05<
+<2.0η
+1.5< <2.5η
+2.0<
+ (5-15) GeV
+T
+p Stat only  Stat⊕Sys
+Efficiency
+0.6
+0.8
+1
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+ muonsTight
+Data
+MC
+μμ→ψJ/
+Data / MC0.9
+1
+1.1
+<-2.0η
+-2.5<
+<-1.5η
+-2.0<
+<-1.05η
+-1.5<
+<-0.1η
+-1.05<
+<0.1η
+-0.1< <1.05η
+0.1<
+<1.
+5
+η
+1.05<
+<2.0η
+1.5<
+<2.5η
+2.0<
+ (5-15) GeV
+T
+p Stat only  Stat⊕Sys
+Fig. 5 Muon reconstruction efﬁciency in differentηregions measured
+in J/ψ → μμ events forLoose (left)a n dTight (right) muon selections.
+Within each η region, the efﬁciency is measured in six pT bins (5–6,
+6–7, 7–8, 8–10, 10–12, and 12–15 GeV). The resulting values are plot-
+ted as distinct measurements in eachηbin with p
+T increasing from 5 to
+15 GeV going fromleft to right.T h eerror bars on the efﬁciencies indi-
+cate the statistical uncertainty. The panel at the bottom shows the ratio
+of the measured to predicted efﬁciencies, with statistical and systematic
+uncertainties
+linked to temporary faults during data taking. The efﬁciency
+of the High-pT selection is signiﬁcantly lower, as a conse-
+quence of the strict requirements on momentum resolution.
+Local disagreements between prediction and observation are
+more severe than in the case of the other muon selections.
+Apart from the poorly aligned MDT chamber, they are most
+prominent in the CSC region.
+Figure 6 shows the reconstruction efﬁciencies for the
+Medium muon selection as a function of transverse momen-
+tum, including results from Z → μμ and J/ψ → μμ,f o r
+123
+
+===== PAGE 10 =====
+292 Page 10 of 30 Eur. Phys. J. C (2016) 76 :292
+Efficiency
+0.96
+0.98
+1
+ATLAS
+-1 = 13 TeV, 3.2 fbs
+|>0.1η muons, |Medium
+ Dataμμ→ψJ/
+ MCμμ→ψJ/
+ Dataμμ→Z
+ MCμμ→Z
+ [GeV]T p
+6 7 8 910 20 30 40 50 60 210
+Data / MC0.98
+1
+1.02 Stat only  Stat⊕Sys
+Fig. 6 Reconstruction efﬁciency for the Medium muon selection as
+a function of the pT of the muon, in the region 0 .1 < |η| < 2.5a s
+obtained with Z → μμ and J/ψ → μμ events. The error bars on the
+efﬁciencies indicate the statistical uncertainty. The panel at the bottom
+shows the ratio of the measured to predicted efﬁciencies, with statistical
+and systematic uncertainties
+muons with 0 .1 < |η| < 2.5. The efﬁciency is stable and
+slightly above 99 % for pT > 6 GeV . Values measured from
+J/ψ → μμ and Z → μμ events are in agreement in the
+overlap region between 10 and 20 GeV . The efﬁciency scale
+factors are also found to be compatible.
+6.2 Muon reconstruction efﬁciency for |η| > 2.5
+As described in the previous sections, the reconstruction of
+combined muons is limited by the ID acceptance to the pseu-
+dorapidity region |η| < 2.5. For |η| > 2.5, the efﬁciency is
+recovered by using the ME muons included in theLoose and
+Medium muon selections. A measurement of the efﬁciency
+SF for muons in the region 2.5 < |η| < 2.7 (high-η region)
+is performed using the method described in Ref. [ 12]. The
+number of muons observed inZ → μμ decays in the high-η
+region is normalised to the number of muons observed in the
+region 2.2 < |η| < 2.5. This ratio is calculated for both data
+and simulation, applying all known performance corrections
+to the region |η| < 2.5. The SFs in the high- η region are
+deﬁned as the ratio of the aforementioned ratios and are pro-
+vided in 4 η and 16 φ bins. The values of the SFs measured
+using the 2015 dataset are close to 0.9 and are determined
+with a 3–5 % uncertainty.
+7 Isolation
+Muons originating from the decay of heavy particles, such
+as W , Z, or Higgs bosons, are often produced isolated from
+other particles. Unlike muons from semileptonic decays,
+which are embedded in jets, these muons are well separated
+from other particles in the event. The measurement of the
+detector activity around a muon candidate, referred to as
+muon isolation, is therefore a powerful tool for background
+rejection in many physics analyses.
+7.1 Muon isolation variables
+Two variables are deﬁned to assess muon isolation: a track-
+based isolation variable and a calorimeter-based isolation
+variable.
+The track-based isolation variable,p
+varcone30
+T , is deﬁned as
+the scalar sum of the transverse momenta of the tracks with
+pT > 1 GeV in a cone of size/Delta1R = min
+(
+10 GeV/ pμ
+T , 0.3
+)
+around the muon of transverse momentumpμ
+T , excluding the
+muon track itself. The cone size is chosen to bepT-dependent
+to improve the performance for muons produced in the decay
+of particles with a large transverse momentum.
+The calorimeter-based isolation variable, E
+topocone20
+T ,i s
+deﬁned as the sum of the transverse energy of topological
+clusters [27] in a cone of size/Delta1R = 0.2 around the muon, after
+subtracting the contribution from the energy deposit of the
+muon itself and correcting for pile-up effects. Contributions
+from pile-up and the underlying event are estimated using
+the ambient energy-density technique [28] and are corrected
+on an event-by-event basis.
+The isolation selection criteria are determined using the
+relative isolation variables , which are deﬁned as the ratio
+of the track- or calorimeter-based isolation variables to the
+transverse momentum of the muon. The distribution of the
+relative isolation variables in muons from Z → μμ events
+is shown in the top panels of Fig. 7. Muons included in
+the plot satisfy the Medium identiﬁcation criteria and are
+well separated from the other muon from the Z boson
+(/Delta1R
+μμ > 0.3). The bottom panel shows the ratio of data
+to simulation.
+7.2 Muon isolation performance
+Seven isolation selection criteria ( isolation working points )
+are deﬁned, each optimised for different physics analyses.
+Table 2 lists the seven isolation working points with the dis-
+criminating variables and the criteria used in their deﬁnition.
+The efﬁciencies for the seven isolation working points are
+measured in data and simulation inZ → μμ decays using the
+tag-and-probe method described in Sect. 6. To avoid probe
+muons in the vicinity of a jet, the angular separation /Delta1R
+between the probe muon and the closest jet, reconstructed
+using an anti- kt algorithm [ 29] with radius parameter 0.4
+and with a transverse momentum greater than 20 GeV , is
+required to be greater than 0.4. In addition, the two muons
+originating from the Z boson decay are required to be sep-
+arated by /Delta1R
+μμ > 0.3. Figure 8 shows the isolation efﬁ-
+ciency measured for Medium muons in data and simulation
+123
+
+===== PAGE 11 =====
+Eur. Phys. J. C (2016) 76 :292 Page 11 of 30 292
+Fig. 7 Distributions of the track-based (left) and the calorimeter-based
+(right) relative isolation variables measured inZ → μμ events. Muons
+are selected by the Medium identiﬁcation algorithm. The dots show the
+distribution for data while the histograms show the distribution from
+simulation. The bottom panels show the ratio of data to simulation with
+the corresponding statistical uncertainty. The pile-up reweighted simu-
+lated distribution is normalised to the number of events selected in data
+Table 2 Deﬁnition of the seven
+isolation working points. The
+discriminating variables are
+listed in the second column and
+the criteria used in the deﬁnition
+are reported in the third column
+Isolation WP Discriminating variable(s) Deﬁnition
+LooseTrackOnly p varcone30
+T / pμ
+T 99 % efﬁciency constant in ηand pT
+Loose p varcone30
+T / pμ
+T , Etopocone20
+T / pμ
+T 99 % efﬁciency constant in ηand pT
+Tight p varcone30
+T / pμ
+T , Etopocone20
+T / pμ
+T 96 % efﬁciency constant in ηand pT
+Gradient p varcone30
+T / pμ
+T , Etopocone20
+T / pμ
+T ≥90(99) % efﬁciency at 25 (60) GeV
+GradientLoose p varcone30
+T / pμ
+T , Etopocone20
+T / pμ
+T ≥95(99) % efﬁciency at 25 (60) GeV
+FixedCutTightTrackOnly p varcone30
+T / pμ
+T pvarcone30
+T / pμ
+T < 0.06
+FixedCutLoose p varcone30
+T / pμ
+T , Etopocone20
+T / pμ
+T pvarcone30
+T / pμ
+T < 0.15, Etopocone20
+T / pμ
+T < 0.30
+as a function of the muonpT for the LooseTrackOnly, Loose,
+GradientLoose, and FixedCutLoose working points, with the
+respective data/MC ratios included in the bottom panel. The
+systematic uncertainties in the SFs are estimated by varying
+the background contributions within their uncertainties and
+by varying some of the selection criteria, such as the invari-
+ant mass selection window, the isolation of the tag muon,
+the minimum quality of the probe muon, the opening angle
+between the two muons, and the/Delta1R between the probe muon
+and the closest jet. In Fig. 8, the largest systematic uncer-
+tainty contribution over the entirep
+T region arises from hav-
+ing neglected theηdependence of the SFs, which are usually
+provided as a function ofηand pT.I nt h el o w -pT region, other
+important contributions are due to the background estimation
+and the mass window variation, while the high- pT region is
+dominated by statistical uncertainties in data and simulation.
+The total uncertainty is at the per mille level over a wide
+range of p
+T and reaches the percent level in the high- pT
+region. The suppression factor for muons from light mesons
+or b/c semileptonic decays is estimated from simulation and
+depends on the isolation working point, ranging from a min-
+imum of 15 for LooseTrackOnly to a maximum of 40 for
+Gradient.
+8 Momentum scale and resolution
+The muon momentum scale and resolution are studied using
+J/ψ → μμ and Z → μμ decays. Although the simulation
+contains an accurate description of the ATLAS detector, the
+level of detail is not enough to describe the muon momentum
+scale to the per mille level and the muon momentum reso-
+lution to the percent level. To obtain such a level of agree-
+ment between data and simulation, a set of corrections is
+applied to the simulated muon momentum. The methodology
+used to extract these corrections is described in Sect. 8.1.I n
+Sect. 8.2, measurements of the muon momentum scale and
+resolution in data and simulation are presented for various
+detector regions and for a wide range of p
+T. To improve the
+precision of the procedure, the pT and η distributions of the
+Z and J/ψ resonances in simulation are reweighted to the
+distributions observed in data.
+8.1 Muon momentum calibration procedure
+In the following, the “muon momentum calibration” is
+deﬁned as the procedure used to identify the corrections to
+the simulated muon transverse momenta reconstructed in the
+ID and MS subdetectors to precisely describe the measure-
+123
+
+===== PAGE 12 =====
+292 Page 12 of 30 Eur. Phys. J. C (2016) 76 :292
+Fig. 8 Isolation efﬁciency for the LooseTrackOnly (top left ), Loose
+(top right ), GradientLoose (bottom left ), and FixedCutLoose (bottom
+right) muon isolation working points. The efﬁciency is shown as a func-
+tion of the muon transverse momentumpT and is measured inZ → μμ
+events. Thefull (empty) markers indicate the efﬁciency measured in data
+(MC) samples. The errors shown on the efﬁciency are statistical only.
+The bottom panel shows the ratio of the efﬁciency measured in data and
+simulation, as well as the statistical uncertainties and combination of
+statistical and systematic uncertainties
+ment of the same quantities in data. Only CB muons are used
+to extract the calibration parameters. The transverse momen-
+tum of the ID and MS components of a CB track, referred to
+as p
+ID
+T and pMS
+T , respectively, are used. The ID (MS) tracks
+are reconstructed using the hits from the ID (MS) detector
+and are extrapolated to the interaction point. In the case of MS
+tracks, the ﬁt corrects for the energy loss in the calorimeters
+as described earlier.
+The corrected transverse momentum, p
+Cor,Det
+T (Det
+= ID, MS), is described by the following equation:
+pCor,Det
+T =
+pMC,Det
+T +
+1∑
+n=0
+sDet
+n (η, φ)
+(
+pMC,Det
+T
+) n
+1 +
+2∑
+m=0
+/Delta1rDetm (η, φ)
+(
+pMC,Det
+T
+) m−1
+gm
+, (5)
+where pMC,Det
+T is the uncorrected transverse momentum in
+simulation, gm are normally distributed random variables
+with zero mean and unit width, and the terms /Delta1rDet
+m (η, φ)
+and sDet
+n (η, φ)describe the momentum resolution smearing
+and the scale corrections applied in a speciﬁc (η, φ) detector
+region, respectively.
+The corrections described in Eq. ( 5) are deﬁned in η–φ
+detector regions that are homogeneous in terms of detector
+technology and performance. Both the ID and the MS are
+divided into 18 pseudorapidity regions. In addition, the MS is
+divided into twoφ bins separating the two types ofφ sectors:
+those that include the magnet coils (small sectors) and those
+between two coils ( large sectors). The small and large MS
+sectors employ independent alignment techniques and cover
+detector areas with different material distribution. Therefore,
+relevant scale and resolution differences exist.
+The numerator of Eq. (5) describes the momentum scales.
+The s
+Det
+1 term corrects for inaccuracy in the description of
+the magnetic ﬁeld integral and the dimension of the detec-
+tor in the direction perpendicular to the magnetic ﬁeld. The
+s
+MS
+0 (η, φ)term models the effect on the MS momentum from
+the inaccuracy in the simulation of the energy loss in the
+calorimeter and other materials between the interaction point
+and the MS. As the energy loss between the interaction point
+and the ID is negligible, s
+ID
+0 (η)is set to zero.
+The denominator of Eq. ( 5) describes the momentum
+smearing that broadens the relative pT resolution in simu-
+lation, σ( pT)/ pT, to properly describe the data. The correc-
+tions to the resolution assume that the relative pT resolution
+can be parameterized as follows:
+σ( pT)
+pT
+= r0/ pT ⊕ r1 ⊕ r2 · pT,( 6 )
+with ⊕ denoting a sum in quadrature. In Eq. (6), the ﬁrst term
+accounts mainly for ﬂuctuations of the energy loss in the tra-
+123
+
+===== PAGE 13 =====
+Eur. Phys. J. C (2016) 76 :292 Page 13 of 30 292
+versed material, the second term accounts mainly for multi-
+ple scattering, local magnetic ﬁeld inhomogeneities and local
+radial displacements of the hits, and the third term mainly
+describes intrinsic resolution effects caused by the spatial
+resolution of the hit measurements and by residual misalign-
+ment of the muon spectrometer. The energy loss term is neg-
+ligible in both the ID and MS measurements, and therefore
+/Delta1r
+ID
+0 and /Delta1rMS
+0 are set to zero.
+The corrected momentum of the combined muons,
+pCor,CB
+T , is obtained by combining the ID and MS corrected
+momenta using a weighted average:
+pCor,CB
+T = f · pCor,ID
+T + (1 − f ) · pCor,MS
+T ,( 7 )
+with the weight f derived from the following linear equation
+pMC,CB
+T = f · pMC,ID
+T + (1 − f ) · pMC,MS
+T (8)
+which assumes that the relative contribution of the two sub-
+detectors to the combined track remains unchanged before
+and after momentum corrections.
+8.1.1 Determination of the p
+T calibration constants
+The MS and ID correction parameters contained in Eq. (5)a r e
+extracted from data using a binned maximum-likelihood ﬁt
+with templates derived from simulation which compares the
+invariant mass distributions for J/ψ → μμ and Z → μμ
+candidates in data and simulation. The exceptions are/Delta1r
+ID
+0 ,
+/Delta1rMS
+0 , and sID
+0 , which are set to zero, and /Delta1rMS
+2 , which is
+determined from alignment studies using special runs with
+the toroidal magnetic ﬁeld off.
+The J/ψ → μμ and Z → μμ candidates are selected
+by requiring two oppositely charged CB muons satisfying
+the Medium identiﬁcation criteria. Both muons must have
+impact parameters compatible with tracks produced by the
+primary interaction and pseudorapidity within the acceptance
+of both the ID and MS detectors (|η| < 2.5). Both muons
+from J/ψ → μμ (Z → μμ) candidate decays are required
+to have momenta in the range 5–20 (22–300) GeV and to
+form an invariant mass in the range 2.65–3.6 (76–106) GeV .
+Muons from Z boson decays need to be isolated, while no
+isolation criterion is imposed on muons from J/ψ decays.
+The extraction of the correction parameters is performed
+in η–φ regions of ﬁt (ROFs) deﬁned separately for the ID
+and the MS. Events are assigned to a speciﬁc ROF if at least
+one muon falls in the corresponding η–φ region.
+The ID corrections are extracted using the distributions
+of the ID dimuon invariant mass, m
+ID
+μμ. To enhance the sen-
+sitivity to pT-dependent correction effects, the mID
+μμ is clas-
+siﬁed according to the pT of the muons. For J/ψ → μμ
+(Z → μμ) decays, the ﬁt is performed in two exclusive cat-
+egories deﬁned requiring the candidates to have pID
+T of the
+sub-leading (leading) muon greater than 5 or 9 (22 or 47)
+GeV , respectively.
+Similarly, the MS corrections are extracted using the dis-
+tributions of the MS-reconstructed dimuon invariant mass,
+mMS
+μμ . Since there are more parameters and more ROFs in the
+MS version of Eq. (5), an additional variable is added to the
+MS ﬁt. This is deﬁned by the following equation
+ρ = pMS
+T − pCor,ID
+T
+pCor,ID
+T
+, (9)
+which represents thepT imbalance between the measurement
+in the ID and in the MS. In Eq. (9), the momentum of the ID,
+pCor,ID
+T , contains the appropriatepT corrections. The variable
+ρ is used only in Z → μμ candidate events and is binned
+according to pMS
+T of the muon with lower bin boundaries of
+pMS
+T = 22, 35, 47, 60, 90 GeV .
+Templates for the mID
+μμ, mMS
+μμ , and ρ are built using
+J/ψ → μμ and Z → μμ simulated signal samples. In the
+Z → μμ sample, the small background component (approx-
+imately 0.1 %) is extracted from simulation and added to the
+templates. A much larger (about 15 %) non-resonant back-
+ground from decays of light and heavy hadrons and from con-
+tinuum Drell–Yan production is present in the J/ψ → μμ
+sample. As this background is not easy to simulate, a data-
+driven approach is used. The dimuon invariant mass distri-
+bution in data is ﬁtted in each ROF using a Crystal Ball func-
+tion added to an exponential background distribution in the
+ID and MS ﬁts. The background model and its normalisation
+are then used in the template ﬁt.
+The results are shown in Tables 3 and 4, averaged over
+three ηregions. The quoted errors include systematic uncer-
+tainties evaluated by varying several parameters of the tem-
+plate ﬁt. The main contributions to the ﬁnal systematic uncer-
+tainty are:
+• Mass window width for the Z → μμ candidate selec-
+tion. Non-Gaussian smearing effects are accounted for
+by varying the m
+μμ selection by ±5G e V .
+Table 3 Summary of ID muon momentum resolution and scale correc-
+tions used in Eq. ( 5), averaged over three main detector regions. The
+corrections are derived in 18 pseudorapidity regions, as described in
+Sect. 8, and averaged, assigning a weight to each region proportional
+to its ηwidth. The uncertainties represent the sum in quadrature of the
+statistical and systematic uncertainties
+Region /Delta1rID
+1 (×10−3)/Delta1rID
+2 [TeV−1] sID
+1 (×10−3)
+|η| < 1.05 4 .1+0.6
+−0.9 0.17+0.04
+−0.03 −0.6+0.1
+−0.2
+1.05 ≤| η| < 2.05 .5+2.5
+−0.8 0.34+0.07
+−0.09 −0.5+0.2
+−0.5
+|η|≥ 2.09 +9
+−2 0.05± 0.01 1 .0+3.5
+−1.6
+123
+
+===== PAGE 14 =====
+292 Page 14 of 30 Eur. Phys. J. C (2016) 76 :292
+Table 4 Summary of MS momentum resolution and scale corrections
+for small and large MS sectors, averaged over three main detector
+regions. The corrections for large and small MS sectors are derived in
+18 pseudorapidity regions, as described in Sect.8, and averaged assign-
+ing a weight to each region proportional to itsηwidth. The energy loss
+term /Delta1r
+MS
+0 is negligible and therefore ﬁxed to zero in the ﬁt for all η.
+The uncertainties represent the sum in quadrature of the statistical and
+systematic uncertainties
+Region /Delta1rMS
+1
+(×10−3)
+/Delta1rMS
+2 [TeV−1] sMS
+0
+[MeV]
+sMS
+1
+(×10−3)
+|η| < 1.05
+(small)
+17± 10 .080 ± 0.006 −23 ± 5 −0.9 ± 0.3
+|η| < 1.05
+(large)
+15± 10 .162 ± 0.007 −26+8
+−5 1.8+0.4
+−0.3
+1.05 ≤| η| <
+2.0 (small)
+25+3
+−1 0.20 ± 0.03 −13 ± 6 −1.4 ± 0.4
+1.05 ≤| η| <
+2.0( l a r g e )
+23+3
+−1 0.160 ± 0.015 −15 ± 10 −1.1+0.5
+−0.6
+|η|≥ 2.0
+(small)
+17+3
+−1 0.08 ± 0.01 −6+6
+−7 0.7+0.4
+−0.3
+|η|≥ 2.0
+(large)
+15+4
+−3 0.112 ± 0.010 −3+13
+−10 0.3+0.6
+−0.7
+• Background parameterization for the J/ψ ﬁt as well as
+increased muon pT cut (from 5 to 7 GeV) to reduce the
+weight of the contribution of low-pT muons.
+• Scale parameter for the ID corrections obtained by ﬁt-
+ting separately the J/ψ → μμ and Z → μμ samples,
+to include possible non-linear scale effects.
+• As /Delta1rMS
+2 is sensitive to the alignment of the MS cham-
+bers, its systematic uncertainty is determined from align-
+ment studies performed on special runs where the toroidal
+magnetic ﬁeld was turned off.
+8.2 Dimuon mass scale and resolution after applying
+momentum corrections
+The samples of J/ψ → μμ and Z → μμ decays are used
+to study the muon momentum scales and resolution in data
+and simulation and to validate the momentum corrections
+obtained with the template ﬁt method described in the previ-
+ous section.
+The invariant mass distributions for the J/ψ → μμ and
+Z → μμ candidates are shown in Fig. 9 and compared with
+uncorrected and corrected simulation. In the uncorrected sim-
+ulation, it is noticeable that the signal distributions are nar-
+rower and slightly shifted with respect to data. After correc-
+tion, the lineshapes of the two resonances in simulation agree
+with the data within the systematic uncertainties, demonstrat-
+ing the overall effectiveness of the p
+T calibration.
+A better demonstration of the effectiveness of the momen-
+tum calibration is obtained by comparing, in data and simu-
+Entries / 0.60 GeV
+0
+5
+10
+15
+20
+25
+30
+35
+3
+10×
+μμ→Z
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+Data
+MC
+MC (uncor.)
+Syst. uncert.
+ [GeV]μμm
+75 80 85 90 95 100 105
+Data/MC
+0.8
+0.9
+1
+1.1
+1.2
+Entries / 0.01 GeV
+0
+20
+40
+60
+80
+100
+120
+140
+3
+10×
+μμ→ψJ/
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+Data
+MC
+MC (uncor.)
+Background
+Syst. uncert.
+ [GeV]μμm
+2.9 2.95 3 3.05 3.1 3.15 3.2 3.25
+Data/MC
+0.8
+0.9
+1
+1.1
+1.2
+Fig. 9 Dimuon invariant mass distribution of Z → μμ (left)a n d
+J/ψ → μμ (right) candidate events reconstructed with CB muons.
+The upper panels show the invariant mass distribution for data and for
+the signal simulation plus the background estimate. The points show
+the data. The continuous line corresponds to the simulation with the
+MC momentum corrections applied while the dashed lines show the
+simulation when no correction is applied. Background estimates are
+added to the signal simulation. The band represents the effect of the
+systematic uncertainties on the MC momentum corrections. The lower
+panels show the data to MC ratios. In theZ sample, the MC background
+samples are added to the signal sample according to their expected cross
+sections. In the J/ψ sample, the background is estimated from a ﬁt to
+the data as described in the text. The sum of background and signal MC
+distributions is normalised to the data
+123
+
+===== PAGE 15 =====
+Eur. Phys. J. C (2016) 76 :292 Page 15 of 30 292
+ [GeV]μμm
+90
+90.5
+91
+91.5
+92
+92.5
+μμ→Z
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+Data
+MC
+Syst. uncert.
+)leadμ(η
+2.5− 2− 1.5− 1− 0.5− 00 . 511 . 522 . 5
+Data/MC0.998
+1
+1.002
+ [GeV]μμm
+3.05
+3.1
+3.15
+3.2
+3.25
+μμ→ψJ/
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+Data
+MC
+Syst. uncert.
+)leadμ(η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data/MC0.995
+1
+1.005
+Fig. 10 Fitted mean mass of the dimuon system for CB muons for
+Z → μμ (left)a n d J/ψ → μμ (right) events for data and corrected
+simulation as a function of the pseudorapidity of the highest-pT muon.
+The upper panels show the ﬁtted mean mass value for data and cor-
+rected simulation. The small variations of the invariant mass estimator
+as a function of pseudorapidity are due to imperfect energy loss correc-
+tions and magnetic ﬁeld description in the muon reconstruction. Both
+effects are well reproduced in the simulation. Thelower panels show the
+data/MC ratio. The error bars represent the statistical uncertainty; the
+shaded bands represent the systematic uncertainty in the correction and
+the systematic uncertainty in the extraction method added in quadrature
+lation, the measurement of the position mμμ and resolution
+σμμ of the dimuon mass peaks, extracted in bins of η and
+pT from ﬁts to the J/ψ → μμ and Z → μμ invariant mass
+distributions.
+When the two muons have similar momentum resolution
+and angular effects are neglected, the relative mass resolu-
+tion, σ
+μμ/mμμ, is directly proportional to the relative muon
+momentum resolution, σpμ / pμ:
+σμμ
+mμμ
+= 1√
+2
+σpμ
+pμ
+. (10)
+Similarly, the total muon momentum scale, deﬁned as
+s =⟨ ( pmeas − ptrue)/ ptrue⟩, is directly related to the dimuon
+mass scale, deﬁned as sμμ =⟨ (mmeas
+μμ − mtrue
+μμ )/mtrue
+μμ ⟩:
+sμμ = √ sμ1 sμ2 , (11)
+where sμ1 and sμ2 are the momentum scales of the two muons.
+The dimuon mass resolution is obtained by ﬁtting the
+width of the invariant mass peaks. InJ/ψ → μμ decays, the
+intrinsic width of the resonance is negligible with respect to
+the experimental resolution. The bulk of the peak is modelled
+by a Crystal Ball function; a Gaussian distribution centred on
+the Crystal Ball function is added to the signal description to
+model the tails of the distribution. The non-resonant back-
+ground is described by an exponential function. In Z → μμ
+decays, the ﬁts use a convolution of the true lineshape (mod-
+elled by a Breit–Wigner function) with an experimental res-
+olution function (a combination of a Crystal Ball and a Gaus-
+sian function). Similarly to the J/ψ , the non-resonant back-
+ground is described by an exponential function. The peak
+position and width of the Crystal Ball function are used as
+estimators for the m
+μμ and σ(mμμ) variables in the various
+ηand pT bins.
+Figure 10 shows the position of the peak of the invariant
+mass distribution, mμμ, obtained from the ﬁts to theZ boson
+and J/ψ samples as a function of the pseudorapidity of the
+highest- pT muon for CB pairs. The distributions are shown
+for data as well as corrected simulation, with the ratio of the
+two in the lower panel. The simulation is in very good agree-
+ment with the data. Minor deviations are contained within the
+scale systematic uncertainties of 0.05 % in the barrel region,
+increasing with |η| to 0.1% (0.3% ) in the region |η|∼ 2.5
+for Z → μμ (J/ψ → μμ) decays. The systematic uncer-
+tainties shown in the plots include the effects of the uncer-
+tainties in the calibration constants described in Sect.8.1 and
+the changes in the ﬁt parameterization. The observed level
+of agreement demonstrates that the p
+T calibration for com-
+bined muon tracks described above provides a very accurate
+description of the momentum scale in all η regions, over
+aw i d epT range. Similar levels of data/MC agreement are
+observed for the ID and MS components of the combined
+tracks.
+Figure 11 displays the dimuon mass resolution σ(mμμ)
+as a function of the leading-muon η for the two resonances.
+The dimuon mass resolution is about 1.2 and 1.6 % at small
+η values for J/ψ and Z bosons, respectively, and increases
+to 1.6 and 1.9 % in the endcaps. This corresponds to a rel-
+ative muon p
+T resolution of 1.7 and 2.3 % in the centre of
+the detector and 2.3 and 2.9 % in the endcaps for J/ψ and
+Z boson decays, respectively. After applying the momen-
+tum corrections described above, the simulation reproduces
+the resolution measured in data, well within the systematic
+123
+
+===== PAGE 16 =====
+292 Page 16 of 30 Eur. Phys. J. C (2016) 76 :292
+ [GeV]μμσ
+1.5
+2
+2.5
+3
+3.5
+4
+μμ→Z
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+Data
+MC
+Syst. uncert.
+)leadμ(η
+2.5− 2− 1.5− 1− 0.5− 00 . 511 . 522 . 5
+Data/MC0.8
+1
+1.2
+ [GeV]μμσ
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+μμ→ψJ/
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+Data
+MC
+Syst. uncert.
+)leadμ(η
+2.5− 2− 1.5− 1− 0.5− 0 0.5 1 1.5 2 2.5
+Data/MC0.9
+1
+1.1
+Fig. 11 Dimuon invariant mass resolution for CB muons forZ → μμ
+(left)a n d J/ψ → μμ (right) events for data and corrected simulation
+as a function of the pseudorapidity of the highest-pT muon. The upper
+panels show the ﬁtted resolution value for data and corrected simulation.
+The lower panels show the data/MC ratio. The error bars represent the
+statistical uncertainty; theshaded bands represent the systematic uncer-
+tainty in the correction and the systematic uncertainty in the extraction
+method added in quadrature
+uncertainties. The systematic uncertainties are estimated fol-
+lowing the same procedure described for the determination
+of the energy scale. Good agreement between the dimuon
+mass resolution measured in data and simulation is also
+observed for the ID and MS components of the combined
+tracks.
+The relative dimuon mass resolution σ
+μμ/mμμ depends
+approximately on the average momentum of the muons, as
+shown in Eq. ( 10). This allows a direct comparison of the
+momentum resolution function determined with J/ψ and
+Z boson decays. This is shown in Fig. 12, where the rela-
+tive dimuon mass resolution fromJ/ψ → μμ and Z → μμ
+events is compared to simulation. The J/ψ → μμ and
+Z → μμ resolutions are in good agreement. For the J/ψ ,
+the average momentum is deﬁned as⟨ pT⟩= 1
+2( pT,1 + pT,2)
+while for the Z boson it is deﬁned as
+p∗
+T = m Z
+√
+sin θ1 sin θ2
+2(1 − cos α12), (12)
+where m Z is the Z boson mass [30], θ1 and θ2 are the polar
+angles of the two muons, and α12 is the opening angle of
+the muon pair. This deﬁnition, based on angular variables
+only, removes the correlation between the measurement of
+the dimuon mass and the average p
+T.
+9 Conclusions
+The performance of the ATLAS muon reconstruction has
+been measured using 3.2 fb−1 of data from pp collisions at√ s = 13 TeV recorded during the 25 ns run at the LHC
+in 2015. A large calibration sample consisting of Z → μμ
+μμm / μμσ
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+ATLAS
+-1 = 13 TeV, 2.7 fbs
+ Dataμμ→ψJ/
+ MCμμ→ψJ/
+ Dataμμ→Z
+ MCμμ→Z
+Syst. uncert.
+ [GeV]*Tp>,Tp<10 210
+Data/MC
+0.6
+0.8
+1
+1.2
+1.4
+Fig. 12 Dimuon invariant mass resolution divided by the dimuon
+invariant mass for CB muons measured fromJ/ψ → μμ and Z → μμ
+events as a function of the average transverse momentum variables⟨ pT⟩
+and p∗
+T deﬁned in the text. Both muons are required to be in the same
+|η| range. The error bars represent the statistical uncertainty while the
+bands show the systematic uncertainties
+decays and J/ψ → μμ decays allows for a precise mea-
+surement of the reconstruction and isolation efﬁciency as
+well as of the momentum resolution and scale over a wide
+p
+T range.
+The muon reconstruction efﬁciency is close to 99 %
+over most of the pseudorapidity range of |η| < 2.5f o r
+pT > 5 GeV . TheZ → μμ sample enables a measurement
+of the efﬁciency with a precision at the 0.2 % level forpT >
+20 GeV . TheJ/ψ → μμ sample provides a measurement of
+the reconstruction efﬁciency between 5 and 20 GeV with a
+precision better than 1 %.
+The Z → μμ sample is also used to measure the iso-
+lation efﬁciency for seven isolation working points in the
+123
+
+===== PAGE 17 =====
+Eur. Phys. J. C (2016) 76 :292 Page 17 of 30 292
+momentum range 10–120 GeV . The isolation efﬁciency
+varies between 93 and 100 % depending on the selection
+and on the momentum of the particle, and is well reproduced
+in the simulation.
+The muon momentum scale and resolution have been stud-
+ied in detail using J/ψ → μμ and Z → μμ decays. These
+studies are used to correct the simulation to improve the
+agreement with data and to minimise the systematic uncer-
+tainties in physics analyses. For Z → μμ decays, the uncer-
+tainty in the momentum scale varies from a minimum of
+0.05 % for|η| < 1t oam a x i m u mo f0.3%f o r|η|∼ 2.5. The
+dimuon mass resolution is about 1.2%( 1.6 %) at small values
+of pseudorapidity for J/ψ (Z) decays, and increases to 1.6
+and 1.9 % in the endcaps forJ/ψ and Z decays, respectively.
+This corresponds to a relative muon p
+T resolution of 1.7 and
+2.3 % at small values of pseudorapidity and 2.3 and 2.9 % in
+the endcaps for J/ψ and Z decays, respectively. After apply-
+ing momentum corrections, the pT resolution in data and
+simulation agree to better than 5 % for most of the ηrange.
+Acknowledgments We thank CERN for the very successful operation
+of the LHC, as well as the support staff from our institutions with-
+out whom ATLAS could not be operated efﬁciently. We acknowledge
+the support of ANPCyT, Argentina; YerPhI, Armenia; ARC, Australia;
+BMWFW and FWF, Austria; ANAS, Azerbaijan; SSTC, Belarus; CNPq
+and FAPESP, Brazil; NSERC, NRC and CFI, Canada; CERN; CONI-
+CYT, Chile; CAS, MOST and NSFC, China; COLCIENCIAS, Colom-
+bia; MSMT CR, MPO CR and VSC CR, Czech Republic; DNRF and
+DNSRC, Denmark; IN2P3-CNRS, CEA-DSM/IRFU, France; GNSF,
+Georgia; BMBF, HGF, and MPG, Germany; GSRT, Greece; RGC, Hong
+Kong SAR, China; ISF, I-CORE and Benoziyo Center, Israel; INFN,
+Italy; MEXT and JSPS, Japan; CNRST, Morocco; FOM and NWO,
+Netherlands; RCN, Norway; MNiSW and NCN, Poland; FCT, Portu-
+gal; MNE/IFA, Romania; MES of Russia and NRC KI, Russian Fed-
+eration; JINR; MESTD, Serbia; MSSR, Slovakia; ARRS and MIZŠ,
+Slovenia; DST/NRF, South Africa; MINECO, Spain; SRC and Wal-
+lenberg Foundation, Sweden; SERI, SNSF and Cantons of Bern and
+Geneva, Switzerland; MOST, Taiwan; TAEK, Turkey; STFC, United
+Kingdom; DOE and NSF, United States of America. In addition, indi-
+vidual groups and members have received support from BCKDF, the
+Canada Council, CANARIE, CRC, Compute Canada, FQRNT, and the
+Ontario Innovation Trust, Canada; EPLANET, ERC, FP7, Horizon 2020
+and Marie Skłodowska-Curie Actions, European Union; Investisse-
+ments d’Avenir Labex and Idex, ANR, Région Auvergne and Fondation
+Partager le Savoir, France; DFG and AvH Foundation, Germany; Her-
+akleitos, Thales and Aristeia programmes co-ﬁnanced by EU-ESF and
+the Greek NSRF; BSF, GIF and Minerva, Israel; BRF, Norway; Gen-
+eralitat de Catalunya, Generalitat Valenciana, Spain; the Royal Society
+and Leverhulme Trust, United Kingdom. The crucial computing support
+from all WLCG partners is acknowledged gratefully, in particular from
+CERN and the ATLAS Tier-1 facilities at TRIUMF (Canada), NDGF
+(Denmark, Norway, Sweden), CC-IN2P3 (France), KIT/GridKA (Ger-
+many), INFN-CNAF (Italy), NL-T1 (Netherlands), PIC (Spain), ASGC
+(Taiwan), RAL (UK) and BNL (USA) and in the Tier-2 facilities world-
+wide.
+Open Access This article is distributed under the terms of the Creative
+Commons Attribution 4.0 International License ( http://creativecomm
+ons.org/licenses/by/4.0/), which permits unrestricted use, distribution,
+and reproduction in any medium, provided you give appropriate credit
+to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made.
+Funded by SCOAP
+3.
+References
+1. ATLAS Collaboration, The ATLAS experiment at the CERN large
+hadron collider. JINST3, S08003 (2008). doi:10.1088/1748-0221/
+3/08/S08003
+2. ATLAS Collaboration, Observation of a new particle in the search
+for the Standard Model Higgs boson with the ATLAS detector at
+the LHC. Phys. Lett. B 716, 1–29 (2012). doi:10.1016/j.physletb.
+2012.08.020. arXiv:1207.7214 [hep-ex]
+3. ATLAS Collaboration, Measurement of the Higgs boson mass
+from the H → γγ and H → ZZ
+∗ → 4l channel with
+the ATLAS detector using 25 fb −1 of pp collision data. Phys.
+Rev. D 90, 052004 (2014). doi: 10.1103/PhysRevD.90.052004.
+arXiv:1406.3827 [hep-ex]
+4. ATLAS Collaboration, Study of the spin and parity of the
+Higgs boson in diboson decays with the ATLAS detector. Eur.
+Phys. J. C 75, 476 (2015). doi:10.1140/epjc/s10052-015-3685-1 .
+arXiv:1506.05669 [hep-ex]
+5. ATLAS Collaboration, Measurements of Higgs boson produc-
+tion and couplings in the four-lepton channel in pp collisions at
+center-of-mass energies of 7 and 8 TeV with the ATLAS detec-
+tor. Phys. Rev. D 91, 012006 (2015). doi: 10.1103/PhysRevD.91.
+012006. arXiv:1408.5191 [hep-ex]
+6. ATLAS Collaboration, Measurement of the transverse momentum
+and φ
+∗
+η distributions of Drell–Yan lepton pairs in proton–proton
+collisions at √ s = 8 TeV with the ATLAS detector. Submitted to
+PLB (2015). arXiv:1512.02192 [hep-ex]
+7. ATLAS Collaboration, Measurement of the ZZ production cross
+section in pp collisions at√ s = 13 TeV with the ATLAS detector.
+Phys. Rev. Lett. 116(10), 101801 (2016). arXiv:1512.05314 [hep-
+ex]
+8. ATLAS Collaboration, Search for high-mass dilepton resonances
+in pp collisions at √ s = 8 TeV with the ATLAS detector. Phys.
+Rev. D 90, 052005 (2014). doi: 10.1103/PhysRevD.90.052005.
+arXiv:1405.4123 [hep-ex]
+9. ATLAS Collaboration, Search for new particles in events with one
+lepton and missing transverse momentum inpp collisions at√ s =
+8 TeV with the ATLAS detector. JHEP 09, 037 (2014). doi: 10.
+1007/JHEP09(2014)037. arXiv:1407.7494 [hep-ex]
+10. ATLAS Collaboration, Combination of searches forWW , WZ ,a n d
+ZZ resonances in pp collisions at √ s = 8 TeV with the ATLAS
+detector. Phys. Lett. B 755, 285–305 (2016). arXiv:1512.05099
+[hep-ex]
+11. ATLAS Collaboration, Search for new light gauge bosons in
+Higgs boson decays to four-lepton ﬁnal states in pp collisions
+at √ s = 8 TeV with the ATLAS detector at the LHC. Phys.
+Rev. D 92, 092001 (2015). doi: 10.1103/PhysRevD.92.092001.
+arXiv:1505.07645 [hep-ex]
+12. ATLAS Collaboration, Measurement of the muon reconstruction
+performance of the ATLAS detector using 2011 and 2012 LHC
+proton–proton collision data. Eur. Phys. J. C 74, 3130 (2014).
+doi:10.1140/epjc/s10052-014-3130-x . arXiv:1407.3935 [hep-ex]
+13. ATLAS Collaboration, Muon reconstruction efﬁciency and
+momentum resolution of the ATLAS experiment in proton–proton
+collisions at √
+s = 7 TeV in 2010. Eur. Phys. J. C74, 3034 (2014).
+doi:10.1140/epjc/s10052-014-3034-9 . arXiv:1404.4562 [hep-ex]
+14. ATLAS Collaboration, ATLAS muon spectrometer: technical
+design report. CERN-LHCC-97-22, ATLAS-TDR-10 (1997)
+123
+
+===== PAGE 18 =====
+292 Page 18 of 30 Eur. Phys. J. C (2016) 76 :292
+15. T. Cornelissen et al., Concepts, design and implementation of
+the ATLAS new tracking (NEWT). ATL-SOFT-PUB-2007-007
+(2007). http://cds.cern.ch/record/1020106
+16. ATLAS Collaboration, Performance of the ATLAS silicon pat-
+tern recognition algorithm in data and simulation at √
+s = 7
+TeV . ATLAS-CONF-2010-072 (2010).http://cds.cern.ch/record/
+1281363
+17. J. Illingworth, J. Kittler, A survey of the Hough trans-
+form. Comput. Vis. Graph. Image Process. 44, 87–116 (1988).
+ISSN: 0734-189X. http://www.sciencedirect.com/science/article/
+pii/S0734189X88800331
+18. ATLAS Collaboration, Performance of the ATLAS trigger sys-
+tem in 2010. Eur. Phys. J. C 72, 1849 (2012). doi: 10.1140/epjc/
+s10052-011-1849-1 . arXiv:1110.1530 [hep-ex]
+19. S. Alioli et al., A general framework for implementing NLO cal-
+culations in shower Monte Carlo programs: the POWHEG BOX.
+JHEP 06, 043 (2010). arXiv:1002.2581 [hep-ph]
+20. T. Sjöstrand, S. Mrenna, P. Skands, A brief introduction to PYTHIA
+8.1. Comput. Phys. Commun. 178, 852 (2008). doi:10.1016/j.cpc.
+2008.01.036. arXiv:0710.3820 [hep-ph]
+21. H.-L. Lai et al., New parton distributions for collider physics. Phys.
+Rev. D 82, 074024 (2010). doi: 10.1103/PhysRevD.82.074024.
+arXiv:1007.2241 [hep-ph]
+22. P. Golonka, Z. Was, PHOTOS Monte Carlo: a precision tool for
+QED corrections in Z and W decays. Eur. Phys. J. C45, 97 (2006).
+doi:10.1140/epjc/s2005-02396-4 . arXiv:0506026 [hep-ph]
+23. T. Gleisberg et al., Event generation with SHERPA 1.1.
+JHEP 02, 007 (2009). doi: 10.1088/1126-6708/2009/02/007 .
+arXiv:0811.4622 [hep-ph]
+24. ATLAS Collaboration, The ATLAS simulation infrastructure. Eur.
+P h y s .J .C70, 823 (2010). arXiv:1005.4568 [physics.ins-det]
+25. S. Agostinelli et al., Geant4, a simulation toolkit. Nucl. Instrum.
+Methods A506, 250 (2003). doi:10.1016/S0168-9002(03)01368-8
+26. M. Oreglia, Ph.D. thesis. SLAC-R-0236 (1980) Appendix D
+27. ATLAS Collaboration, Jet energy measurement with the ATLAS
+detector in proton–proton collisions at √
+s = 7T e V .E u r .
+P h y s .J .C73, 2304 (2013). doi:10.1140/epjc/s10052-013-2304-2 .
+arXiv:1112.6426 [hep-ex]
+28. M. Cacciari, G.P. Salam, Pileup subtraction using jet areas. Phys.
+Lett. B 659, 119 (2008). doi:10.1016/j.physletb.2007.09.077
+29. M. Cacciari, G.P. Salam, G. Soyez, The anti-kt jet clustering algo-
+rithm. JHEP 04, 063 (2008). doi:10.1088/1126-6708/2008/04/063
+30. K.A. Olive et al., Review of particle physics. Chin. Phys. C 38,
+090001 (2014). doi:10.1088/1674-1137/38/9/090001
+ATLAS Collaboration
+G. Aad87, B. Abbott 114, J. Abdallah 65, O. Abdinov 12, B. Abeloos 118, R. Aben 108, M. Abolins 92, O. S. AbouZeid 138,
+N. L. Abraham150, H. Abramowicz 154, H. Abreu 153, R. Abreu 117, Y . Abulaiti 147a,147b, B. S. Acharya 164a,164b,a,
+L. Adamczyk40a, D. L. Adams 27, J. Adelman 109, S. Adomeit 101, T. Adye 132, A. A. Affolder 76, T. Agatonovic-Jovin 14,
+J. Agricola56, J. A. Aguilar-Saavedra 127a,127f, S. P. Ahlen 24, F. Ahmadov 67,b, G. Aielli 134a,134b, H. Akerstedt 147a,147b,
+T. P. A. Åkesson83,A . V . A k i m o v97, G. L. Alberghi 22a,22b, J. Albert 169, S. Albrand 57, M. J. Alconada Verzini 73,
+M. Aleksa32, I. N. Aleksandrov 67,C . A l e x a28b, G. Alexander 154, T. Alexopoulos 10, M. Alhroob 114, M. Aliev 75a,75b,
+G. Alimonti93a, J. Alison 33, S. P. Alkire 37, B .M .M .A l l b r o o k e150, B. W. Allen 117, P. P. Allport 19, A. Aloisio 105a,105b,
+A. Alonso38, F. Alonso 73, C. Alpigiani 139, M. Alstaty 87, B. Alvarez Gonzalez 32, D. Álvarez Piqueras 167,
+M. G. Alviggi105a,105b, B. T. Amadio 16, K. Amako 68, Y . Amaral Coutinho 26a, C. Amelung 25, D. Amidei 91,
+S. P. Amor Dos Santos127a,127c, A. Amorim 127a,127b, S. Amoroso 32, G. Amundsen 25, C. Anastopoulos 140, L. S. Ancu 51,
+N. Andari109, T. Andeen 11, C. F. Anders 60b, G. Anders 32, J. K. Anders 76, K. J. Anderson 33, A. Andreazza 93a,93b,
+V . Andrei60a, S. Angelidakis 9, I. Angelozzi 108, P. Anger 46, A. Angerami 37, F. Anghinolﬁ 32, A. V . Anisenkov 110,c,
+N. Anjos13, A. Annovi 125a,125b, M. Antonelli 49, A. Antonov 99, J. Antos 145b, F. Anulli133a, M. Aoki 68, L. Aperio Bella 19,
+G. Arabidze92,Y . A r a i68, J. P. Araque127a, A .T .H .A r c e47, F. A. Arduh73, J-F. Arguin96, S. Argyropoulos 65,M . A r i k20a,
+A. J. Armbruster32, L. J. Armitage78, O. Arnaez32, H. Arnold50, M. Arratia30, O. Arslan23, A. Artamonov98, G. Artoni121,
+S. Artz85,S . A s a i156, N. Asbah 44, A. Ashkenazi 154,B . Å s m a n147a,147b, L. Asquith 150, K. Assamagan 27, R. Astalos 145a,
+M. Atkinson166, N. B. Atlay 142, K. Augsten 129, G. Avolio32,B . A x e n16, M. K. Ayoub118, G. Azuelos 96,d, M .A .B a a k32,
+A. E. Baas60a, M .J .B a c a19, H. Bachacou 137, K. Bachas 75a,75b, M. Backes 32, M. Backhaus 32, P. Bagiacchi 133a,133b,
+P. Bagnaia133a,133b,Y . B a i 35a, J. T. Baines 132, O. K. Baker 176, E .M .B a l d i n110,c, P. Balek 130, T. Balestri 149,
+F. Balli137, W. K. Balunas 123, E. Banas 41, Sw. Banerjee 173,e, A. A. E. Bannoura 175, L. Barak 32, E. L. Barberio 90,
+D. Barberis52a,52b, M. Barbero 87, T. Barillari 102, T. Barklow 144,N . B a r l o w30, S. L. Barnes 86, B. M. Barnett 132,
+R. M. Barnett16, Z. Barnovska 5, A. Baroncelli 135a, G. Barone 25,A . J . B a r r121, L. Barranco Navarro 167,F . B a r r e i r o84,
+J. Barreiro Guimarães da Costa35a, R. Bartoldus 144, A .E .B a r t o n74,P . B a r t o s145a, A. Basalaev 124, A. Bassalat 118,
+R. L. Bates55, S. J. Batista 159, J. R. Batley 30, M. Battaglia 138, M. Bauce 133a,133b, F. Bauer 137,H . S . B a w a144,f,
+J. B. Beacham112, M. D. Beattie74, T. Beau82, P. H. Beauchemin162, P. Bechtle23, H. P. Beck18,g, K. Becker121, M. Becker85,
+M. Beckingham170, C. Becot 111, A. J. Beddall 20e, A. Beddall 20b, V . A. Bednyakov67, M. Bedognetti 108,C . P . B e e149,
+L. J. Beemster108, T. A. Beermann 32, M. Begel 27, J .K .B e h r44, C. Belanger-Champagne 89, A .S .B e l l80, G. Bella 154,
+L. Bellagamba22a, A. Bellerive 31, M. Bellomo 88, K. Belotskiy 99, O. Beltramello 32, N. L. Belyaev 99, O. Benary 154,
+D. Benchekroun136a, M. Bender 101, K. Bendtz 147a,147b, N. Benekos 10, Y . Benhammou 154, E. Benhar Noccioli 176,
+J. Benitez65, J. A. Benitez Garcia 160b, D. P. Benjamin 47, J. R. Bensinger 25, S. Bentvelsen 108, L. Beresford 121,
+123
+
+===== PAGE 19 =====
+Eur. Phys. J. C (2016) 76 :292 Page 19 of 30 292
+M. Beretta49, D. Berge 108, E. Bergeaas Kuutmann 165, N. Berger 5, J. Beringer 16, S. Berlendis 57, N. R. Bernard 88,
+C. Bernius111, F. U. Bernlochner 23,T . B e r r y79,P . B e r t a130, C. Bertella 85, G. Bertoli 147a,147b, F. Bertolucci 125a,125b,
+I. A. Bertram74, C. Bertsche114, D. Bertsche114,G .J .B e s j e s38, O. Bessidskaia Bylund147a,147b, M. Bessner44, N. Besson137,
+C. Betancourt50, S. Bethke 102, A .J .B e v a n78,W . B h i m j i16, R. M. Bianchi 126, L. Bianchini 25, M. Bianco 32, O. Biebel 101,
+D. Biedermann17, R. Bielski 86,N . V . B i e s u z125a,125b, M. Biglietti 135a, J. Bilbao De Mendizabal 51, H. Bilokon 49,
+M. Bindi56, S. Binet118, A. Bingul20b,C .B i n i133a,133b, S. Biondi22a,22b, D. M. Bjergaard47,C .W .B l a c k151, J. E. Black144,
+K. M. Black24, D. Blackburn 139, R. E. Blair 6, J.-B. Blanchard 137, J. E. Blanco 79, T. Blazek145a, I. Bloch 44, C. Blocker 25,
+W. Blum85,*, U. Blumenschein 56, S. Blunier 34a, G. J. Bobbink 108, V . S. Bobrovnikov110,c, S. S. Bocchetta 83, A. Bocci 47,
+C. Bock101, M. Boehler 50, D. Boerner 175, J. A. Bogaerts 32, D. Bogavac 14, A. G. Bogdanchikov 110, C. Bohm 147a,
+V. B o i s ve r t79,T . B o l d40a, V . Boldea 28b, A. S. Boldyrev 164a,164c, M. Bomben 82, M. Bona 78, M. Boonekamp 137,
+A. Borisov131, G. Borissov 74, J. Bortfeldt 101, D. Bortoletto 121, V . Bortolotto 62a,62b,62c,K . B o s108, D. Boscherini 22a,
+M. Bosman13, J. D. Bossio Sola 29, J. Boudreau 126, J. Bouffard 2, E. V . Bouhova-Thacker 74, D. Boumediene 36,
+C. Bourdarios118, S. K. Boutle 55, A. Boveia 32,J . B o y d32, I. R. Boyko 67, J. Bracinik 19, A. Brandt 8, G. Brandt 56,
+O. Brandt60a, U. Bratzler 157,B . B r a u88,J . E . B r a u117, H. M. Braun 175,*, W. D. Breaden Madden 55, K. Brendlinger 123,
+A. J. Brennan90, L. Brenner 108, R. Brenner 165, S. Bressler 172, T .M .B r i s t o w48, D. Britton 55, D. Britzger 44,
+F. M. Brochu30, I. Brock 23, R. Brock 92, G. Brooijmans 37, T. Brooks 79, W. K. Brooks 34b,J . B r o s a m e r16, E. Brost 117,
+J. H. Broughton19, P. A. Bruckman de Renstrom41, D. Bruncko145b, R. Bruneliere50, A. Bruni22a, G. Bruni22a , BH Brunt30,
+M. Bruschi22a, N. Bruscino 23, P. Bryant33, L. Bryngemark 83, T. Buanes 15, Q. Buat 143, P. Buchholz142, A. G. Buckley 55,
+I. A. Budagov67, F. Buehrer50, M. K. Bugge120, O. Bulekov99, D. Bullock8, H. Burckhart32, S. Burdin76,C .D .B u r g a r d50,
+B. Burghgrave109, K. Burka 41,S . B u r k e132, I. Burmeister 45, E. Busato 36, D. Büscher 50, V . Büscher 85, P. Bussey 55,
+J. M. Butler24, C. M. Buttar 55, J. M. Butterworth 80, P. Butti 108, W. Buttinger 27, A. Buzatu 55, A. R. Buzykaev 110,c,
+S. Cabrera Urbán167, D. Caforio 129,V . M . C a i r o39a,39b, O. Cakir 4a, N. Calace 51, P. Calaﬁura 16, A. Calandri 87,
+G. Calderini82, P. Calfayan101, L. P. Caloba26a,D .C a l v e t36,S .C a l v e t36,T .P .C a l v e t87, R. Camacho Toro33, S. Camarda32,
+P. Camarri134a,134b, D. Cameron 120, R. Caminal Armadans 166, C. Camincher 57, S. Campana 32, M. Campanelli 80,
+A. Camplani93a,93b, A. Campoverde 149, V . Canale105a,105b, A. Canepa 160a, M. Cano Bret 35e, J. Cantero 84, R. Cantrill 127a,
+T. Cao42, M. D. M. Capeans Garrido 32, I. Caprini 28b, M. Caprini 28b, M. Capua 39a,39b, R. Caputo 85, R. M. Carbone 37,
+R. Cardarelli134a, F. Cardillo 50,I . C a r l i130,T . C a r l i32, G. Carlino 105a, L. Carminati 93a,93b, S. Caron 107, E. Carquin 34b,
+G. D. Carrillo-Montoya32, J .R .C a r t e r30,J . C a r v a l h o127a,127c, D. Casadei 19, M. P. Casado 13,h, M. Casolino 13,
+D. W. Casper163, E. Castaneda-Miranda 146a, A. Castelli 108, V . Castillo Gimenez167,N . F . C a s t r o127a,i, A. Catinaccio 32,
+J. R. Catmore120, A. Cattai 32, J. Caudron 85, V . Cavaliere 166, E. Cavallaro 13, D. Cavalli 93a, M. Cavalli-Sforza 13,
+V . Cavasinni125a,125b, F. Ceradini135a,135b, L. Cerda Alberich167,B .C .C e r i o47, A. S. Cerqueira26b,A .C e r r i150, L. Cerrito78,
+F. Cerutti16,M . C e r v32, A. Cervelli 18, S. A. Cetin 20d, A. Chafaq 136a, D. Chakraborty 109, S. K. Chan 59, Y . L. Chan62a,
+P. Chang166, J. D. Chapman 30, D. G. Charlton 19, A. Chatterjee 51, C. C. Chau 159, C. A. Chavez Barajas 150,S . C h e112,
+S. Cheatham74, A. Chegwidden92, S. Chekanov6, S. V . Chekulaev160a,G .A .C h e l k o v67,j,M .A .C h e l s t o w s k a91, C. Chen66,
+H. Chen27, K. Chen 149, S. Chen 35c, S. Chen 156, X. Chen 35f, Y . Chen69, H. C. Cheng 91, H. J. Cheng 35a, Y . Cheng33,
+A. Cheplakov67, E. Cheremushkina 131, R. Cherkaoui El Moursli 136e, V . Chernyatin 27,*, E. Cheu 7, L. Chevalier 137,
+V . Chiarella49, G. Chiarelli 125a,125b, G. Chiodini 75a, A. S. Chisholm 19, A. Chitan 28b, M. V . Chizhov 67, K. Choi 63,
+A. R. Chomont36, S. Chouridou 9, B .K .B .C h o w101, V . Christodoulou 80, D. Chromek-Burckhart 32, J. Chudoba 128,
+A. J. Chuinard89, J. J. Chwastowski 41,L . C h y t k a116, G. Ciapetti 133a,133b, A .K .C i f t c i4a, D. Cinca 55, V . Cindro 77,
+I. A. Cioara23, A. Ciocio16, F. Cirotto105a,105b,Z .H .C i t r o n172, M. Citterio93a, M. Ciubancan28b,A .C l a r k51,B .L .C l a r k59,
+M. R. Clark37,P . J . C l a r k48,R . N . C l a r k e16, C. Clement 147a,147b, Y . Coadou 87, M. Cobal 164a,164c, A. Coccaro 51,
+J. Cochran66,L . C o f f e y25, L. Colasurdo 107,B . C o l e37,S . C o l e109, A. P. Colijn 108, J. Collot 57, T. Colombo 32,
+G. Compostella102, P. Conde Muiño 127a,127b, E. Coniavitis 50, S. H. Connell 146b, I. A. Connelly 79, V . Consorti 50,
+S. Constantinescu28b, C. Conta122a,122b, G. Conti32, F. Conventi105a,k, M. Cooke16, B. D. Cooper80, A. M. Cooper-Sarkar121,
+K. J. R. Cormier159, T. Cornelissen 175, M. Corradi 133a,133b, F. Corriveau 89,l, A. Corso-Radu 163, A. Cortes-Gonzalez 13,
+G. Cortiana102,G . C o s t a93a, M .J .C o s t a167, D. Costanzo 140, G. Cottin 30,G . C o w a n79,B . E . C o x86, K. Cranmer 111,
+S. J. Crawley55,G . C r e e 31, S. Crépé-Renaudin 57, F. Crescioli 82, W .A .C r i b b s147a,147b, M. Crispin Ortuzar 121,
+M. Cristinziani23,V . C r o f t107, G. Crosetti 39a,39b, T. Cuhadar Donszelmann140, J. Cummings 176, M. Curatolo 49,J . C ú t h85,
+C. Cuthbert151,H . C z i r r142, P. Czodrowski3,S . D ’ A u r i a55, M. D’Onofrio 76, M. J. Da Cunha Sargedas De Sousa 127a,127b,
+C. Da Via86, W. Dabrowski40a, T. Dado145a,T .D a i91,O .D a l e15, F. Dallaire96, C. Dallapiccola88,M .D a m38, J. R. Dandoy33,
+N. P. Dang50, A. C. Daniells19, N. S. Dann86, M. Danninger168, M. Dano Hoffmann137,V .D a o50, G. Darbo52a,S .D a r m o r a8,
+J. Dassoulas3, A. Dattagupta 63, W. Davey 23,C . D a v i d169, T. Davidek 130,M . D a v i e s154,P . D a v i s o n80,E . D a w e90,
+I. Dawson140, R. K. Daya-Ishmukhametova 88,K . D e 8, R. de Asmundis 105a, A. De Benedetti 114,S . D e C a s t r o22a,22b,
+123
+
+===== PAGE 20 =====
+292 Page 20 of 30 Eur. Phys. J. C (2016) 76 :292
+S. De Cecco82, N. De Groot 107, P. de Jong 108,H . D e l a T o r r e84, F. De Lorenzi 66, D. De Pedis 133a, A. De Salvo 133a,
+U. De Sanctis150, A. De Santo 150, J .B .D eV i v i eD eR e g i e118, W. J. Dearnaley 74, R. Debbe 27, C. Debenedetti 138,
+D. V . Dedovich67, I. Deigaard 108, M. Del Gaudio 39a,39b, J. Del Peso 84, T. Del Prete 125a,125b, D. Delgove 118, F. Deliot137,
+C. M. Delitzsch51, M. Deliyergiyev 77, A. Dell’Acqua 32, L. Dell’Asta 24, M. Dell’Orso 125a,125b, M. Della Pietra 105a,k,
+D. della V olpe51,M . D e l m a s t r o5,P . A . D e l s a r t57, C. Deluca 108, D. A. DeMarco 159, S. Demers 176, M. Demichev 67,
+A. Demilly82, S. P. Denisov131, D. Denysiuk137, D. Derendarz41, J. E. Derkaoui136d, F. Derue82,P .D e r v a n76, K. Desch23,
+C. Deterre44, K. Dette 45,P . O . D e v i v e i r o s32, A. Dewhurst 132, S. Dhaliwal 25, A. Di Ciaccio 134a,134b, L. Di Ciaccio 5,
+W. K. Di Clemente123, C. Di Donato 133a,133b, A .D iG i r o l a m o32, B. Di Girolamo 32, B. Di Micco 135a,135b, R. Di Nardo 49,
+A. Di Simone50, R .D iS i p i o159, D .D iV a l e n t i n o31, C. Diaconu 87, M. Diamond 159,F . A . D i a s48,M . A . D i a z34a,
+E. B. Diehl91, J. Dietrich17, S. Diglio87, A. Dimitrievska14, J. Dingfelder23, P. Dita28b, S. Dita28b, F. Dittus32,F .D j a m a87,
+T. Djobava53b, J. I. Djuvsland 60a, M .A .B .d oV a l e26c, D. Dobos 32, M. Dobre 28b, C. Doglioni 83, T. Dohmae 156,
+J. Dolejsi130, Z. Dolezal 130, B. A. Dolgoshein 99,*, M. Donadelli 26d, S. Donati 125a,125b, P. Dondero 122a,122b, J. Donini 36,
+J. Dopke132,A . D o r i a105a,M . T . D o v a73,A . T . D o y l e55, E. Drechsler 56,M . D r i s10,Y . D u35d, J. Duarte-Campderros 154,
+E. Duchovni172, G. Duckeck 101, O. A. Ducu 96,m, D. Duda 108, A. Dudarev 32, L. Duﬂot 118, L. Duguid 79, M. Dührssen 32,
+M. Dumancic172, M. Dunford 60a, H. Duran Yildiz 4a, M. Düren 54, A. Durglishvili 53b, D. Duschinger 46, B. Dutta 44,
+M. Dyndal40a, C. Eckardt 44, K .M .E c k e r102, R. C. Edgar 91, N. C. Edwards 48,T . E i f e r t32, G. Eigen 15, K. Einsweiler 16,
+T. Ekelof165, M. El Kacimi 136c, V . Ellajosyula87, M. Ellert 165, S. Elles 5, F. Ellinghaus 175, A. A. Elliot 169, N. Ellis 32,
+J. Elmsheuser27, M. Elsing 32, D. Emeliyanov 132, Y . Enari156, O. C. Endner 85, M. Endo 119, J. S. Ennis 170, J. Erdmann 45,
+A. Ereditato18,G . E r n i s175,J . E r n s t2,M . E r n s t27, S. Errede 166,E . E r t e l85, M. Escalier 118,H . E s c h45, C. Escobar 126,
+B. Esposito49, A. I. Etienvre 137, E. Etzion 154, H. Evans 63, A. Ezhilov 124, F. Fabbri 22a,22b, L. Fabbri 22a,22b, G. Facini 33,
+R. M. Fakhrutdinov131, S. Falciano133a,R .J .F a l l a80, J. Faltova130, Y . Fang35a, M. Fanti93a,93b, A. Farbin8, A. Farilla135a,
+C. Farina126, T. Farooque13,S .F a r r e l l16, S. M. Farrington170, P. Farthouat32, F. Fassi136e, P. Fassnacht32, D. Fassouliotis9,
+M. Faucci Giannelli79, A. Favareto 52a,52b, W. J. Fawcett 121, L. Fayard 118, O. L. Fedin 124,n, W. Fedorko 168, S. Feigl 120,
+L. Feligioni87, C. Feng 35d, E. J. Feng 32, H. Feng 91, A. B. Fenyuk 131, L. Feremenga 8, P. Fernandez Martinez 167,
+S. Fernandez Perez13, J. Ferrando 55, A. Ferrari 165, P. Ferrari 108, R. Ferrari 122a, D. E. Ferreira de Lima 60b, A. Ferrer 167,
+D. Ferrere51, C. Ferretti 91, A. Ferretto Parodi 52a,52b, F. Fiedler 85, A. Filipˇ ciˇc77, M. Filipuzzi 44, F. Filthaut 107,
+M. Fincke-Keeler169, K .D .F i n e l l i151, M .C .N .F i o l h a i s127a,127c,L . F i o r i n i167,A . F i r a n42, A. Fischer 2, C. Fischer 13,
+J. Fischer175, W .C .F i s h e r92, N. Flaschel 44, I. Fleck 142, P. Fleischmann 91, G. T. Fletcher 140, R. R. M. Fletcher 123,
+T. Flick175, A. Floderus 83, L. R. Flores Castillo 62a,M . J . F l o w e r d e w102, G. T. Forcolin 86, A. Formica 137,A . F o r t i86,
+A. G. Foster19, D. Fournier 118,H . F o x 74, S. Fracchia 13, P. Francavilla 82, M. Franchini 22a,22b, D. Francis 32,
+L. Franconi120, M. Franklin 59,M . F r a t e163, M. Fraternali 122a,122b, D. Freeborn 80, S. M. Fressard-Batraneanu 32,
+F. Friedrich46, D. Froidevaux 32, J .A .F r o s t121, C. Fukunaga 157, E. Fullana Torregrosa 85, T. Fusayasu 103, J. Fuster 167,
+C. Gabaldon57, O. Gabizon 175, A. Gabrielli 22a,22b, A. Gabrielli 16, G. P. Gach 40a, S. Gadatsch 32, S. Gadomski 51,
+G. Gagliardi52a,52b, L. G. Gagnon 96, P. Gagnon 63, C. Galea 107, B. Galhardo 127a,127c, E. J. Gallas 121,B . J . G a l l o p132,
+P. Gallus129, G. Galster 38, K .K .G a n112,J . G a o35b,87,Y . G a o48,Y . S . G a o144,f, F. M. Garay Walls 48, C. García 167,
+J. E. García Navarro167, M. Garcia-Sciveres 16, R. W. Gardner 33, N. Garelli 144, V . Garonne 120, A. Gascon Bravo 44,
+C. Gatti49, A. Gaudiello 52a,52b, G. Gaudio 122a, B. Gaur 142, L. Gauthier 96, I .L .G a v r i l e n k o97,C . G a y168, G. Gaycken 23,
+E. N. Gazis10, Z. Gecse 168, C .N .P .G e e132, Ch. Geich-Gimbel 23, M .P .G e i s l e r60a, C. Gemme 52a, M. H. Genest 57,
+C. Geng35b,o, S. Gentile 133a,133b, S. George 79, D. Gerbaudo 13, A. Gershon 154, S. Ghasemi 142, H. Ghazlane 136b,
+M. Ghneimat23, B. Giacobbe 22a, S. Giagu 133a,133b, P. Giannetti 125a,125b, B. Gibbard 27,S . M . G i b s o n79, M. Gignac 168,
+M. Gilchriese16, T. P. S. Gillam30, D. Gillberg 31, G. Gilles 175, D .M .G i n g r i c h3,d, N. Giokaris 9, M. P. Giordani 164a,164c,
+F. M. Giorgi22a,F . M . G i o r g i17, P .F .G i r a u d137, P. Giromini 59, D. Giugni 93a, F. Giuli 121, C. Giuliani 102, M. Giulini 60b,
+B. K. Gjelsten120, S. Gkaitatzis 155, I. Gkialas 155, E. L. Gkougkousis 118, L. K. Gladilin 100,C . G l a s m a n84, J. Glatzer 32,
+P. C. F. Glaysher48, A. Glazov 44, M. Goblirsch-Kolb 102, J. Godlewski 41, S. Goldfarb 91, T. Golling 51, D. Golubkov 131,
+A. Gomes127a,127b,127d, R. Gonçalo 127a, J. Goncalves Pinto Firmino Da Costa 137, L. Gonella 19, A. Gongadze 67,
+S. González de la Hoz167, G. Gonzalez Parra13, S. Gonzalez-Sevilla51, L. Goossens32, P. A. Gorbounov98, H. A. Gordon27,
+I. Gorelov106,B .G o r i n i32,E .G o r i n i75a,75b, A. Gorišek77, E. Gornicki41, A. T. Goshaw47, C. Gössling45, M. I. Gostkin 67,
+C. R. Goudet118, D. Goujdami136c,A .G .G o u s s i o u139, N. Govender146b,p, E. Gozani153, L. Graber56, I. Grabowska-Bold40a,
+P. O. J. Gradin57, P. Grafström 22a,22b, J. Gramling 51,E . G r a m s t a d120, S. Grancagnolo 17, V . Gratchev124, H .M .G r a y32,
+E. Graziani135a, Z. D. Greenwood 81,q, C. Grefe 23, K. Gregersen 80, I. M. Gregor 44, P. Grenier 144,K . G r e v t s o v5,
+J. Grifﬁths8, A. A. Grillo 138,K . G r i m m74, S. Grinstein 13,r, Ph. Gris 36,J . - F . G r i v a z118,S . G r o h85, J. P. Grohs 46,
+E. Gross172, J. Grosse-Knetter 56, G. C. Grossi 81, Z .J .G r o u t150, L. Guan 91, W. Guan 173, J. Guenther 129, F. Guescini 51,
+D. Guest163, O. Gueta 154, E. Guido 52a,52b, T. Guillemin 5, S. Guindon 2,U . G u l55, C. Gumpert 32,J . G u o35e,Y . G u o35b,o,
+123
+
+===== PAGE 21 =====
+Eur. Phys. J. C (2016) 76 :292 Page 21 of 30 292
+S. Gupta121, G. Gustavino133a,133b, P. Gutierrez114, N. G. Gutierrez Ortiz 80, C. Gutschow46, C. Guyot 137, C. Gwenlan 121,
+C. B. Gwilliam76, A. Haas 111, C. Haber 16, H. K. Hadavand 8, N. Haddad 136e, A. Hadef 87, P. Haefner 23, S. Hageböck 23,
+Z. Hajduk41, H. Hakobyan 177,*, M. Haleem 44,J . H a l e y115, G. Halladjian 92, G. D. Hallewell 87, K. Hamacher 175,
+P. Hamal116, K. Hamano169, A. Hamilton146a, G. N. Hamity140, P. G. Hamnett44,L .H a n35b, K. Hanagaki68,s, K. Hanawa156,
+M. Hance138, B. Haney 123, P. Hanke 60a, R. Hanna 137, J. B. Hansen 38, J. D. Hansen 38, M. C. Hansen 23, P. H. Hansen 38,
+K. Hara161,A . S . H a r d173, T. Harenberg 175,F . H a r i r i118, S. Harkusha 94, R. D. Harrington 48, P. F. Harrison 170,
+F. Hartjes108, M. Hasegawa 69, Y. Hasegawa 141,A . H a s i b114, S. Hassani 137, S. Haug 18, R. Hauser 92, L. Hauswald 46,
+M. Havranek128, C .M .H a w k e s19, R. J. Hawkings 32, A. D. Hawkins 83, D. Hayden 92, C. P. Hays 121, J .M .H a y s78,
+H. S. Hayward76, S. J. Haywood 132, S .J .H e a d19, T. Heck 85, V . Hedberg 83, L. Heelan 8,S . H e i m123,T . H e i m16,
+B. Heinemann16, J. J. Heinrich 101, L. Heinrich 111, C. Heinz 54, J. Hejbal 128, L. Helary 24, S. Hellman 147a,147b,
+C. Helsens32, J. Henderson 121, R. C. W. Henderson 74, Y . Heng 173, S. Henkelmann 168, A. M. Henriques Correia 32,
+S. Henrot-Versille118, G. H. Herbert17, H. Herde25, Y . Hernández Jiménez167,G .H e r t e n50, R. Hertenberger101,L .H e r v a s32,
+G. G. Hesketh80, N. P. Hessey 108, J. W. Hetherly 42, R. Hickling 78, E. Higón-Rodriguez 167, E. Hill 169, J. C. Hill 30,
+K. H. Hiller44, S. J. Hillier 19, I. Hinchliffe16, E. Hines123,R .R .H i n m a n16,M .H i r o s e158, D. Hirschbuehl175, J. Hobbs149,
+N. Hod160a, M. C. Hodgkinson 140, P. Hodgson 140, A. Hoecker 32, M. R. Hoeferkamp 106, F. Hoenig 101, M. Hohlfeld 85,
+D. Hohn23, T .R .H o l m e s16, M. Homann 45, T. M. Hong 126, B. H. Hooberman 166, W. H. Hopkins 117,Y . H o r i i104,
+A. J. Horton143, J-Y . Hostachy57,S .H o u152, A. Hoummada136a,J .H o w a r t h44, M. Hrabovsky116,I .H r i s t o v a17, J. Hrivnac118,
+T. Hryn’ova5, A. Hrynevich 95,C . H s u146c,P . J . H s u152,t,S . - C . H s u139,D . H u37,Q . H u35b, Y . Huang44, Z. Hubacek 129,
+F. Hubaut87, F. Huegging23,T .B .H u f f m a n121, E. W. Hughes37, G. Hughes74, M. Huhtinen32, T. A. Hülsing85,P .H u o149,
+N. Huseynov67,b,J . H u s t o n92,J . H u t h59, G. Iacobucci 51, G. Iakovidis 27, I. Ibragimov 142, L. Iconomidou-Fayard 118,
+E. Ideal176, Z. Idrissi136e, P. Iengo32, O. Igonkina108,u,T .I i z a w a171,Y .I k e g a m i68, M. Ikeno68, Y . Ilchenko11,v, D. Iliadis155,
+N. Ilic144, T. Ince 102, G. Introzzi 122a,122b, P. Ioannou 9,*, M. Iodice 135a, K. Iordanidou 37, V . Ippolito 59, M. Ishino 70,
+M. Ishitsuka158, R. Ishmukhametov 112, C. Issever 121, S. Istin 20a,F . I t o161, J. M. Iturbe Ponce 86, R. Iuppa 134a,134b,
+W. Iwanski41, H. Iwasaki 68, J .M .I z e n43, V . Izzo105a, S. Jabbar 3, B. Jackson 123, M. Jackson 76, P. Jackson 1,V . J a i n2,
+K. B. Jakobi85, K. Jakobs 50, S. Jakobsen 32, T. Jakoubek 128, D .O .J a m i n115, D. K. Jana 81, E. Jansen 80, R. Jansky 64,
+J. Janssen23, M. Janus 56,G . J a r l s k o g83, N. Javadov 67,b,T . J a v ˚urek50, F. Jeanneau 137, L. Jeanty 16, J. Jejelava 53a,w,
+G.-Y . Jeng151, D. Jennens90, P. Jenni50,x, J. Jentzsch45,C .J e s k e170, S. Jézéquel5,H .J i173,J .J i a149, H. Jiang66, Y . Jiang35b,
+S. Jiggins80, J. Jimenez Pena167,S .J i n35a, A. Jinaru28b, O. Jinnouchi158, P. Johansson140, K. A. Johns 7, W. J. Johnson139,
+K. Jon-And147a,147b, G. Jones 170, R. W. L. Jones 74, S. Jones 7, T. J. Jones 76, J. Jongmanns 60a, P. M. Jorge 127a,127b,
+J. Jovicevic160a,X .J u173, A. Juste Rozas13,r, M. K. Köhler172, A. Kaczmarska41, M. Kado118, H. Kagan112, M. Kagan144,
+S. J. Kahn87, E. Kajomovitz 47, C. W. Kalderon 121, A. Kaluza 85,S . K a m a42, A. Kamenshchikov 131, N. Kanaya 156,
+S. Kaneti30, L. Kanjir 77, V . A. Kantserov 99, J. Kanzaki 68, B. Kaplan 111, L. S. Kaplan 173, A. Kapliy 33,D . K a r146c,
+K. Karakostas10, A. Karamaoun 3, N. Karastathis 10, M. J. Kareem 56, E. Karentzos 10, M. Karnevskiy 85, S. N. Karpov 67,
+Z. M. Karpova67, K. Karthik 111, V . Kartvelishvili74, A. N. Karyukhin 131, K. Kasahara 161, L. Kashif 173, R .D .K a s s112,
+A. Kastanas15, Y . Kataoka156,C . K a t o156,A . K a t r e51, J. Katzy 44, K. Kawagoe 72, T. Kawamoto 156, G. Kawamura 56,
+S. Kazama156, V . F. Kazanin 110,c, R. Keeler 169, R. Kehoe 42, J. S. Keller 44, J. J. Kempster 79 , K Kentaro 104,
+H. Keoshkerian159, O. Kepka 128, B. P. Kerševan 77, S. Kersten 175, R. A. Keyes 89, F. Khalil-zada 12, A. Khanov 115,
+A. G. Kharlamov110,c, T. J. Khoo30, V . Khovanskiy98, E. Khramov67, J. Khubua53b,y,S .K i d o69,H .Y .K i m8,S .H .K i m161,
+Y . K. Kim33,N . K i m u r a155, O .M .K i n d17,B . T . K i n g76,M . K i n g167, S .B .K i n g168,J . K i r k132, A. E. Kiryunin 102,
+T. Kishimoto69, D. Kisielewska 40a,F . K i s s50, K. Kiuchi 161,O . K i v e r n y k137, E. Kladiva 145b, M .H .K l e i n37, M. Klein 76,
+U. Klein76, K. Kleinknecht85, P. Klimek147a,147b, A. Klimentov27, R. Klingenberg45, J. A. Klinger140, T. Klioutchnikova32,
+E.-E. Kluge60a, P. Kluit108, S. Kluth 102, J. Knapik 41, E. Kneringer 64, E. B. F. G. Knoops 87, A. Knue 55, A. Kobayashi 156,
+D. Kobayashi158, T. Kobayashi156, M. Kobel46, M. Kocian144, P. Kodys130, N. M. Koehler102,T .K o f f a s31,E .K o f f e m a n108,
+T. Koi144, H. Kolanoski 17,M . K o l b60b, I. Koletsou 5, A. A. Komar 97,*, Y . Komori156, T. Kondo 68, N. Kondrashova 44,
+K. Köneke50, A .C .K ö n i g107, T. Kono 68,z, R. Konoplich 111,aa, N. Konstantinidis 80, R. Kopeliansky 63, S. Koperny 40a,
+L. Köpke85, A. K. Kopp 50,K . K o r c y l41, K. Kordas 155,A . K o r n80, A .A .K o r o l110,c, I. Korolkov 13, E. V . Korolkova140,
+O. Kortner102, S. Kortner 102, T. Kosek 130, V . V . Kostyukhin 23,A . K o t w a l47, A. Kourkoumeli-Charalampidi 155,
+C. Kourkoumelis9, V . Kouskoura 27, A .B .K o w a l e w s k a41, R. Kowalewski 169, T .Z .K o w a l s k i40a, W. Kozanecki 137,
+A. S. Kozhin131, V .A .K r a m a r e n k o100, G. Kramberger 77, D. Krasnopevtsev 99, M .W .K r a s n y82, A. Krasznahorkay 32,
+J. K. Kraus23, A. Kravchenko 27,M . K r e t z60c, J. Kretzschmar 76, K. Kreutzfeldt 54, P. Krieger 159, K. Krizka 33,
+K. Kroeninger45, H. Kroha 102,J . K r o l l123, J. Kroseberg 23, J. Krstic 14, U. Kruchonak 67, H. Krüger 23, N. Krumnack 66,
+A. Kruse173,M .C .K r u s e47, M. Kruskal24, T. Kubota90, H. Kucuk80, S. Kuday4b, J. T. Kuechler175, S. Kuehn50, A. Kugel60c,
+F. Kuger174, A. Kuhl 138, T. Kuhl 44, V . Kukhtin 67, R. Kukla 137, Y . Kulchitsky 94, S. Kuleshov 34b, M. Kuna 133a,133b,
+123
+
+===== PAGE 22 =====
+292 Page 22 of 30 Eur. Phys. J. C (2016) 76 :292
+T. Kunigo70, A. Kupco 128, H. Kurashige 69, Y . A. Kurochkin94,V . K u s128, E. S. Kuwertz 169, M. Kuze 158, J. Kvita 116,
+T. Kwan169, D. Kyriazopoulos 140,A . L a R o s a102, J .L .L aR o s aN a v a r r o26d, L. La Rotonda 39a,39b, C. Lacasta 167,
+F. Lacava133a,133b, J. Lacey 31, H. Lacker 17, D. Lacour 82, V . R. Lacuesta167, E. Ladygin 67, R. Lafaye 5, B. Laforge 82,
+T. Lagouri176,S . L a i56, S. Lammers 63, W. Lampl 7, E. Lançon 137, U. Landgraf 50, M. P. J. Landon 78, V . S. Lang 60a,
+J. C. Lange13, A. J. Lankford 163, F. Lanni 27, K. Lantzsch 23, A. Lanza 122a, S. Laplace 82, C. Lapoire 32, J. F. Laporte 137,
+T. Lari93a, F. Lasagni Manghi 22a,22b, M. Lassnig 32, P. Laurelli 49, W. Lavrijsen 16,A . T . L a w 138, P. Laycock 76,
+T. Lazovich59, M. Lazzaroni 93a,93b,B . L e 90,O . L e D o r t z82,E . L e G u i r r i e c87, E. Le Menedeu 13, E. P. Le Quilleuc 137,
+M. LeBlanc169, T. LeCompte 6, F. Ledroit-Guillon 57,C . A . L e e27,S . C . L e e152,L . L e e1, G. Lefebvre 82, M. Lefebvre 169,
+F. Legger101, C. Leggett 16, A. Lehan 76, G. Lehmann Miotto 32,X . L e i7, W. A. Leight31,A . L e i s o s155,ab, A .G .L e i s t e r176,
+M. A. L. Leite26d, R. Leitner 130, D. Lellouch 172, B. Lemmer 56, K .J .C .L e n e y80, T. Lenz 23, B. Lenzi 32, R. Leone 7,
+S. Leone125a,125b, C. Leonidopoulos 48, S. Leontsinis 10, G. Lerner 150,C . L e r o y96, A. A. J. Lesage 137,C . G . L e s t e r30,
+M. Levchenko124, J. Levêque5,D .L e v i n91,L .J .L e v i n s o n172,M .L e v y19,A .M .L e y k o23,M .L e y t o n43,B .L i35b,o,H .L i149,
+H. L. Li33,L . L i47,L . L i35e,Q . L i35a,S . L i47,X . L i86,Y . L i142, Z. Liang 138, B. Liberti 134a, A. Liblong 159, P. Lichard32,
+K. Lie166, J. Liebal 23, W. Liebig 15, A. Limosani 151,S . C . L i n152,ac,T . H . L i n85, B. E. Lindquist 149, E. Lipeles 123,
+A. Lipniacka15, M. Lisovyi60b,T .M .L i s s166, D. Lissauer27, A. Lister168, A. M. Litke138,B .L i u152,ad,D .L i u152,H .L i u91,
+H. Liu27,J . L i u87, J .B .L i u35b,K . L i u87,L . L i u166,M . L i u47,M . L i u35b, Y .L .L i u35b,Y . L i u35b,M . L i v a n122a,122b,
+A. Lleres57, J. Llorente Merino 84,S . L . L l o y d78,F . L o S t e r z o152, E. Lobodzinska 44, P. Loch 7, W. S. Lockman 138,
+F. K. Loebinger86, A. E. Loevschall-Jensen38,K .M .L o e w25, A. Loginov176, T. Lohse17, K. Lohwasser44, M. Lokajicek128,
+B. A. Long24, J .D .L o n g166, R. E. Long 74, L. Longo 75a,75b, K. A. Looper 112, L. Lopes 127a, D. Lopez Mateos 59,
+B. Lopez Paredes140, I. Lopez Paz 13, A. Lopez Solis 82, J. Lorenz 101, N. Lorenzo Martinez 63, M. Losada 21, P. J. Lösel101,
+X. Lou35a, A. Lounis 118, J. Love 6, P. A. Love 74,H . L u 62a,N . L u 91, H .J .L u b a t t i139, C. Luci 133a,133b, A. Lucotte 57,
+C. Luedtke50, F. Luehring 63, W. Lukas 64, L. Luminari 133a, O. Lundberg 147a,147b, B. Lund-Jensen 148, D. Lynn 27,
+R. Lysak128,E . L y t k e n83, V . Lyubushkin 67,H . M a 27,L . L . M a 35d,Y . M a 35d, G. Maccarrone 49, A. Macchiolo 102,
+C. M. Macdonald140,B . M a ˇcek77, J. Machado Miguens 123,127b, D. Madaffari 87, R. Madar 36, H. J. Maddocks 165,
+W. F. Mader46, A. Madsen 44, J. Maeda 69, S. Maeland 15, T. Maeno 27, A. Maevskiy 100, E. Magradze 56, J. Mahlstedt 108,
+C. Maiani118, C. Maidantchik 26a, A .A .M a i e r102, T. Maier 101,A . M a i o127a,127b,127d,S . M a j e w s k i117, Y . Makida 68,
+N. Makovec118, B. Malaescu 82, Pa. Malecki 41, V . P. Maleev124, F. Malek 57, U. Mallik 65, D. Malon 6, C. Malone 144,
+S. Maltezos10, S. Malyukov 32, J. Mamuzic 167, G. Mancini 49, B. Mandelli 32, L. Mandelli 93a, I. Mandi´ c77,
+J. Maneira127a,127b, L. Manhaes de Andrade Filho26b, J. Manjarres Ramos160b, A. Mann101, B. Mansoulie137, R. Mantifel89,
+M. Mantoani56, S. Manzoni 93a,93b, L. Mapelli 32, G. Marceca 29, L. March 51, G. Marchiori 82, M. Marcisovsky 128,
+M. Marjanovic14,D . E . M a r l e y91, F. Marroquim 26a, S. P. Marsden 86, Z. Marshall 16, S. Marti-Garcia 167, B. Martin 92,
+T. A. Martin170, V . J. Martin 48, B. Martin dit Latour 15, M. Martinez 13,r, S. Martin-Haugh 132, V . S. Martoiu 28b,
+A. C. Martyniuk80,M . M a r x 139, A. Marzin 32, L. Masetti 85, T. Mashimo 156, R. Mashinistov 97,J . M a s i k 86,
+A. L. Maslennikov110,c, I. Massa 22a,22b, L. Massa 22a,22b, P. Mastrandrea 5, A. Mastroberardino 39a,39b, T. Masubuchi 156,
+P. Mättig175, J. Mattmann 85, J. Maurer 28b, S. J. Maxﬁeld 76, D. A. Maximov 110,c, R. Mazini 152, S. M. Mazza 93a,93b,
+N. C. Mc Fadden106, G. Mc Goldrick 159, S .P .M cK e e 91, A. McCarn 91, R. L. McCarthy 149, T. G. McCarthy 31,
+L. I. McClymont80, E. F. McDonald 90, K. W. McFarlane 58,*, J. A. Mcfayden 80, G. Mchedlidze 56, S. J. McMahon 132,
+R. A. McPherson169,l, M. Medinnis 44, S. Meehan 139, S. Mehlhase 101, A. Mehta 76, K. Meier 60a, C. Meineck 101,
+B. Meirose43, B .R .M e l l a d oG a r c i a146c,M . M e l o145a, F. Meloni 18, A. Mengarelli 22a,22b, S. Menke 102, E. Meoni 162,
+S. Mergelmeyer17,P . M e r m o d51, L. Merola 105a,105b, C. Meroni 93a, F. S. Merritt 33, A. Messina 133a,133b, J. Metcalfe 6,
+A. S. Mete163, C. Meyer 85, C. Meyer 123, J-P. Meyer 137, J. Meyer 108, H. Meyer Zu Theenhausen 60a, R. P. Middleton 132,
+S. Miglioranzi52a,52b, L. Mijovi´ c23, G. Mikenberg 172, M. Mikestikova 128, M. Mikuž 77, M. Milesi 90, A. Milic 32,
+D. W. Miller33, C. Mills 48, A. Milov 172, D. A. Milstead 147a,147b, A. A. Minaenko 131, Y . Minami156, I. A. Minashvili 67,
+A. I. Mincer111, B. Mindur 40a, M. Mineev 67,Y . M i n g173,L . M . M i r13, K. P. Mistry 123, T. Mitani 171, J. Mitrevski 101,
+V . A. Mitsou167, A. Miucci 51, P .S .M i y a g a w a140, J .U .M j ö r n m a r k83,T . M o a147a,147b, K. Mochizuki 87, S. Mohapatra 37,
+W. Mohr50, S. Molander 147a,147b, R. Moles-Valls 23, R. Monden 70, M. C. Mondragon 92, K. Mönig 44, J. Monk 38,
+E. Monnier87, A. Montalbano149, J. Montejo Berlingen32, F. Monticelli73, S. Monzani93a,93b,R .W .M o o r e3, N. Morange118,
+D. Moreno21, M. Moreno Llácer56, P. Morettini52a,D .M o r i143,T .M o r i156,M .M o r i i59, M. Morinaga156, V . Morisbak120,
+S. Moritz85, A .K .M o r l e y151, G. Mornacchi 32,J . D . M o r r i s78, S. S. Mortensen 38,L . M o r v a j149, M. Mosidze 53b,
+J. Moss144, K. Motohashi 158, R. Mount 144, E. Mountricha 27, S. V . Mouraviev 97,*, E .J .W .M o y s e88, S. Muanza 87,
+R. D. Mudd19, F. Mueller 102, J. Mueller 126, R .S .P .M u e l l e r101, T. Mueller 30, D. Muenstermann 74, P. Mullen 55,
+G. A. Mullier18, F. J. Munoz Sanchez 86, J. A. Murillo Quijada 19, W .J .M u r r a y170,132, H. Musheghyan 56, M. Muškinja 77,
+A. G. Myagkov131,ae, M. Myska 129, B. P. Nachman 144, O. Nackenhorst 51, J. Nadal 56, K. Nagai 121, R. Nagai 68,z,
+123
+
+===== PAGE 23 =====
+Eur. Phys. J. C (2016) 76 :292 Page 23 of 30 292
+K. Nagano68, Y . Nagasaka61, K. Nagata 161, M. Nagel 102, E. Nagy 87, A .M .N a i r z32, Y . Nakahama32, K. Nakamura 68,
+T. Nakamura156, I. Nakano 113, H. Namasivayam 43, R. F. Naranjo Garcia 44, R. Narayan 11, D. I. Narrias Villar 60a,
+I. Naryshkin124, T. Naumann 44,G . N a v a r r o21, R. Nayyar 7, H .A .N e a l 91, P. Yu. Nechaeva 97, T. J. Neep 86,
+P. D. Nef144,A . N e g r i122a,122b,M . N e g r i n i22a, S. Nektarijevic 107, C. Nellist 118,A . N e l s o n163, S. Nemecek 128,
+P. Nemethy111, A. A. Nepomuceno 26a, M. Nessi 32,af, M. S. Neubauer 166, M. Neumann 175,R . M . N e v e s111,P . N e v s k i27,
+P. R. Newman19, D. H. Nguyen6, T. Nguyen Manh96, R. B. Nickerson121, R. Nicolaidou137, J. Nielsen138, A. Nikiforov17,
+V . Nikolaenko131,ae, I. Nikolic-Audit 82, K. Nikolopoulos 19, J .K .N i l s e n120, P. Nilsson 27, Y . Ninomiya156,A . N i s a t i133a,
+R. Nisius102, T. Nobe 156, L. Nodulman 6, M. Nomachi 119, I. Nomidis 31, T. Nooney 78, S. Norberg 114, M. Nordberg 32,
+N. Norjoharuddeen121, O. Novgorodova 46,S . N o w a k102, M. Nozaki 68, L. Nozka 116, K. Ntekas 10,E . N u r s e80,
+F. Nuti90, F. O’grady 7, D .C .O ’ N e i l143, A. A. O’Rourke 44, V . O’Shea 55, F. G. Oakham 31,d, H. Oberlack 102,
+T. Obermann23, J. Ocariz 82, A. Ochi 69, I. Ochoa 37, J. P. Ochoa-Ricoux 34a,S . O d a72, S. Odaka 68, H. Ogren 63,A . O h86,
+S. H. Oh47,C . C . O h m16, H. Ohman 165,H . O i d e32,H . O k a w a161, Y . Okumura 33, T. Okuyama 68,A . O l a r i u28b,
+L. F. Oleiro Seabra127a,S .A .O l i v a r e sP i n o48, D. Oliveira Damazio27, A. Olszewski41, J. Olszowska41, A. Onofre127a,127e,
+K. Onogi104, P .U .E .O n y i s i11,v, M. J. Oreglia 33,Y . O r e n154, D. Orestano 135a,135b, N. Orlando 62b,R . S . O r r159,
+B. Osculati52a,52b, R. Ospanov 86, G. Otero y Garzon 29, H. Otono 72, M. Ouchrif 136d, F. Ould-Saada 120, A. Ouraou 137,
+K. P. Oussoren108, Q. Ouyang35a, M. Owen55, R. E. Owen19, V . E. Ozcan20a, N. Ozturk8, K. Pachal143, A. Pacheco Pages13,
+C. Padilla Aranda13,M .P a g á ˇcová50, S. Pagan Griso16, F. Paige27,P .P a i s88, K. Pajchel120, G. Palacino160b, S. Palestini32,
+M. Palka40b, D. Pallin 36,A . P a l m a127a,127b, E. St. Panagiotopoulou 10, C. E. Pandini 82, J. G. Panduro Vazquez 79,
+P. Pani147a,147b, S. Panitkin 27, D. Pantea 28b, L. Paolozzi 51, Th. D. Papadopoulou 10, K. Papageorgiou 155, A. Paramonov 6,
+D. Paredes Hernandez176,A .J .P a r k e r74,M .A .P a r k e r30,K .A .P a r k e r140, F. Parodi52a,52b,J .A .P a r s o n s37, U. Parzefall50,
+V . R. Pascuzzi159, E. Pasqualucci 133a, S. Passaggio 52a,F . P a s t o r e135a,135b,*,F r . P a s t o r e79, G. Pásztor 31,ag, S. Pataraia 175,
+J. R. Pater86, T. Pauly 32, J. Pearce 169, B. Pearson 114, L. E. Pedersen 38, M. Pedersen 120, S. Pedraza Lopez 167,
+R. Pedro127a,127b, S. V . Peleganchuk110,c, D. Pelikan165, O. Penc128, C. Peng35a, H. Peng35b, J. Penwell63, B. S. Peralva26b,
+M. M. Perego137, D. V . Perepelitsa 27, E. Perez Codina 160a, L. Perini 93a,93b, H. Pernegger 32, S. Perrella 105a,105b,
+R. Peschke44, V . D. Peshekhonov67, K. Peters44, R. F. Y . Peters86, B. A. Petersen32, T. C. Petersen38, E. Petit57, A. Petridis1,
+C. Petridou155, P. Petroff118, E. Petrolo133a, M. Petrov121, F. Petrucci135a,135b, N. E. Pettersson88, A. Peyaud137, R. Pezoa34b,
+P. W. Phillips132, G. Piacquadio 144, E. Pianori 170, A. Picazio 88, E. Piccaro 78, M. Piccinini 22a,22b,M . A . P i c k e r i n g121,
+R. Piegaia29, J. E. Pilcher 33, A. D. Pilkington 86, A .W .J .P i n86, M. Pinamonti 164a,164c,ah, J .L .P i n f o l d3, A. Pingel 38,
+S. Pires82,H .P i r u m o v44, M. Pitt172, L. Plazak145a, M.-A. Pleier27,V .P l e s k o t85, E. Plotnikova67, P. Plucinski92, D. Pluth66,
+R. Poettgen147a,147b, L. Poggioli 118, D. Pohl 23, G. Polesello 122a, A. Poley 44, A. Policicchio 39a,39b, R. Polifka 159,
+A. Polini22a, C. S. Pollard 55, V . Polychronakos27, K. Pommès 32, L. Pontecorvo 133a, B. G. Pope 92, G. A. Popeneciu 28c,
+D. S. Popovic14, A. Poppleton 32, S. Pospisil 129, K. Potamianos 16, I .N .P o t r a p67, C .J .P o t t e r30, C. T. Potter 117,
+G. Poulard32, J. Poveda 32, V . Pozdnyakov 67, M. E. Pozo Astigarraga 32, P. Pralavorio 87, A. Pranko 16,S . P r e l l66,
+D. Price86,L . E . P r i c e6, M. Primavera 75a, S. Prince 89, M. Proissl 48, K. Prokoﬁev 62c, F. Prokoshin34b, S. Protopopescu 27,
+J. Proudfoot6, M. Przybycien40a, D. Puddu135a,135b, D. Puldon149, M. Purohit27,ai, P. Puzo118,J .Q i a n91,G .Q i n55,Y .Q i n86,
+A. Quadt56, W. B. Quayle 164a,164b, M. Queitsch-Maitland 86, D. Quilty 55, S. Raddum 120, V . Radeka27, V . Radescu60b,
+S. K. Radhakrishnan149, P. Radloff 117, P. Rados 90, F. Ragusa 93a,93b, G. Rahal 178, J .A .R a i n e86, S. Rajagopalan 27,
+M. Rammensee32, C. Rangel-Smith 165, M .G .R a t t i93a,93b, F. Rauscher 101,S . R a v e85, T. Ravenscroft 55, M. Raymond 32,
+A. L. Read120, N. P. Readioff 76, D. M. Rebuzzi 122a,122b, A. Redelbach 174, G. Redlinger 27, R. Reece 138,K . R e e v e s43,
+L. Rehnisch17, J. Reichert123,H .R e i s i n29, C. Rembser32,H .R e n35a, M. Rescigno133a, S. Resconi93a, O. L. Rezanova110,c,
+P. Reznicek130, R. Rezvani 96, R. Richter 102, S. Richter 80, E. Richter-Was 40b,O . R i c k e n23, M. Ridel 82, P. Rieck 17,
+C. J. Riegel175, J. Rieger 56,O . R i f k i114, M. Rijssenbeek 149, A. Rimoldi 122a,122b, L. Rinaldi 22a, B. Risti´c51,E . R i t s c h32,
+I. Riu13, F. Rizatdinova 115, E. Rizvi 78, C. Rizzi 13, S. H. Robertson 89,l, A. Robichaud-Veronneau 89, D. Robinson 30,
+J. E. M. Robinson44, A. Robson 55, C. Roda 125a,125b, Y . Rodina 87, A. Rodriguez Perez 13, D. Rodriguez Rodriguez 167,
+S. Roe32, C. S. Rogan 59, O. Røhne 120, A. Romaniouk 99, M. Romano 22a,22b, S. M. Romano Saez 36, E. Romero Adam 167,
+N. Rompotis139, M. Ronzani 50, L. Roos 82,E . R o s 167, S. Rosati 133a, K. Rosbach 50,P . R o s e138, O. Rosenthal 142,
+V . Rossetti147a,147b, E. Rossi 105a,105b, L. P. Rossi 52a,J . H . N . R o s t e n30,R . R o s t e n139, M. Rotaru 28b,I . R o t h172,
+J. Rothberg139, D. Rousseau 118, C. R. Royon 137, A. Rozanov 87, Y . Rozen153, X. Ruan 146c, F. Rubbo 144, V .I .R u d100,
+M. S. Rudolph159, F. Rühr 50, A. Ruiz-Martinez 31,Z . R u r i k o v a50, N. A. Rusakovich 67, A. Ruschke 101, H .L .R u s s e l l139,
+J. P. Rutherfoord7, N. Ruthmann32, Y . F. Ryabov124, M. Rybar166, G. Rybkin118,S .R y u6, A. Ryzhov131, G. F. Rzehorz56,
+A. F. Saavedra151, G. Sabato 108, S. Sacerdoti 29, H. F-W. Sadrozinski 138, R. Sadykov 67, F. Safai Tehrani 133a,
+P. Saha109, M. Sahinsoy 60a, M. Saimpert 137, T. Saito 156, H. Sakamoto 156, Y . Sakurai 171, G. Salamanna 135a,135b,
+A. Salamon134a,134b, J. E. Salazar Loyola 34b, D. Salek 108, P. H. Sales De Bruin 139, D. Salihagic 102, A. Salnikov 144,
+123
+
+===== PAGE 24 =====
+292 Page 24 of 30 Eur. Phys. J. C (2016) 76 :292
+J. Salt167, D. Salvatore 39a,39b, F. Salvatore 150, A. Salvucci 62a, A. Salzburger 32, D. Sammel 50, D. Sampsonidis 155,
+A. Sanchez105a,105b, J. Sánchez 167, V . Sanchez Martinez 167, H. Sandaker 120, R. L. Sandbach 78, H. G. Sander 85,
+M. Sandhoff175, C. Sandoval 21, R. Sandstroem 102, D. P. C. Sankey 132, M. Sannino 52a,52b, A. Sansoni 49, C. Santoni 36,
+R. Santonico134a,134b, H. Santos127a, I. Santoyo Castillo150, K. Sapp126, A. Sapronov67, J. G. Saraiva127a,127d, B. Sarrazin23,
+O. Sasaki68, Y . Sasaki156, K. Sato161, G. Sauvage5,*, E. Sauvan5, G. Savage79,P .S a v a r d159,d, C. Sawyer132, L. Sawyer81,q,
+J. Saxon33, C. Sbarra 22a, A. Sbrizzi 22a,22b, T. Scanlon 80, D. A. Scannicchio 163, M. Scarcella 151, V . Scarfone 39a,39b,
+J. Schaarschmidt172, P. Schacht102, D. Schaefer32, R. Schaefer44, J. Schaeffer85, S. Schaepe23, S. Schaetzel60b, U. Schäfer85,
+A. C. Schaffer118, D. Schaile101, R. D. Schamberger149, V . Scharf60a, V . A. Schegelsky124, D. Scheirich130, M. Schernau163,
+C. Schiavi52a,52b, C. Schillo 50, M. Schioppa 39a,39b, S. Schlenker 32, K. Schmieden 32, C. Schmitt 85, S. Schmitt 44,
+S. Schmitz85, B. Schneider 160a, U. Schnoor 50, L. Schoeffel 137, A. Schoening 60b, B. D. Schoenrock 92, E. Schopf 23,
+A. L. S. Schorlemmer45, M. Schott 85, J. Schovancova 8, S. Schramm 51, M. Schreyer 174, N. Schuh 85, M. J. Schultens 23,
+H.-C. Schultz-Coulon60a, H. Schulz 17, M. Schumacher 50, B. A. Schumm 138, Ph. Schune 137, C. Schwanenberger 86,
+A. Schwartzman144, T. A. Schwarz 91, Ph. Schwegler 102, H. Schweiger 86, Ph. Schwemling 137, R. Schwienhorst 92,
+J. Schwindling137, T. Schwindt 23, G. Sciolla 25, F. Scuri 125a,125b, F. Scutti 90, J. Searcy 91, P. Seema 23, S. C. Seidel 106,
+A. Seiden138, F. Seifert 129, J. M. Seixas 26a, G. Sekhniaidze 105a, K. Sekhon 91, S. J. Sekula 42, D. M. Seliverstov 124,*,
+N. Semprini-Cesari22a,22b, C. Serfon 120, L. Serin 118, L. Serkin 164a,164b, M. Sessa 135a,135b, R. Seuster 169,H . S e v e r i n i114,
+T. Sﬁligoj77, F. Sforza 32, A. Sfyrla 51, E. Shabalina 56, N. W. Shaikh 147a,147b, L. Y . Shan35a, R. Shang 166, J. T. Shank 24,
+M. Shapiro16, P. B. Shatalov98, K. Shaw164a,164b, S. M. Shaw86, A. Shcherbakova147a,147b, C. Y . Shehu150, P. Sherwood80,
+L. Shi152,aj, S. Shimizu 69, C .O .S h i m m i n163, M. Shimojima 103, M. Shiyakova 67,ak, A. Shmeleva 97, D. Shoaleh Saadi 96,
+M. J. Shochet33, S. Shojaii 93a,93b, S. Shrestha 112, E. Shulga 99, M. A. Shupe 7, P. Sicho 128, P. E. Sidebo 148,
+O. Sidiropoulou174, D. Sidorov 115, A. Sidoti 22a,22b, F. Siegert 46, Dj. Sijacki 14, J. Silva 127a,127d, S. B. Silverstein 147a,
+V. S i m a k129,O . S i m a r d5,L j . S i m i c14, S. Simion 118, E. Simioni 85, B. Simmons 80,D . S i m o n36,M . S i m o n85,
+P. Sinervo159, N .B .S i n e v117, M. Sioli 22a,22b, G. Siragusa 174, S. Yu. Sivoklokov 100, J. Sjölin 147a,147b,T . B . S j u r s e n15,
+M. B. Skinner74, H. P. Skottowe59, P. Skubic114, M. Slater 19, T. Slavicek129, M. Slawinska 108, K. Sliwa 162,R . S l o v a k130,
+V . Smakhtin172,B . H . S m a r t5,L . S m e s t a d15, S. Yu. Smirnov 99,Y . S m i r n o v99,L . N . S m i r n o v a100,al,O . S m i r n o v a83,
+M. N. K. Smith37, R. W. Smith37, M. Smizanska74,K .S m o l e k129, A. A. Snesarev97, S. Snyder27, R. Sobie169,l, F. Socher46,
+A. Soffer154, D .A .S o h152,aj, G. Sokhrannyi 77, C. A. Solans Sanchez 32, M. Solar 129, E. Yu. Soldatov99, U. Soldevila 167,
+A. A. Solodkov131, A. Soloshenko 67, O. V . Solovyanov131, V . Solovyev124, P. Sommer 50, H. Son 162, H. Y . Song35b,am,
+A. Sood16, A. Sopczak 129, V . Sopko 129, V . Sorin 13, D. Sosa 60b, C. L. Sotiropoulou 125a,125b, R. Soualah 164a,164c,
+A. M. Soukharev110,c, D. South 44, B. C. Sowden 79, S. Spagnolo 75a,75b, M. Spalla 125a,125b, M. Spangenberg 170,
+F. Spanò79, D. Sperlich 17, F. Spettel 102, R. Spighi 22a, G. Spigo 32, L. A. Spiller 90, M. Spousta 130, R. D. St. Denis 55,*,
+A. Stabile93a,R . S t a m e n60a,S . S t a m m17, E. Stanecka 41, R. W. Stanek 6, C. Stanescu 135a, M. Stanescu-Bellu 44,
+M. M. Stanitzki44, S. Stapnes120, E. A. Starchenko131,G .H .S t a r k33,J .S t a r k57, P. Staroba128, P. Starovoitov60a,S .S t ä r z32,
+R. Staszewski41, P. Steinberg 27, B. Stelzer 143, H .J .S t e l z e r32, O. Stelzer-Chilton 160a, H. Stenzel 54,G . A . S t e w a r t55,
+J. A. Stillings23, M. C. Stockton89, M. Stoebe89, G. Stoicea28b, P. Stolte56, S. Stonjek102, A. R. Stradling8, A. Straessner46,
+M. E. Stramaglia18, J. Strandberg148, S. Strandberg147a,147b, A. Strandlie120, M. Strauss114, P. Strizenec145b, R. Ströhmer174,
+D. M. Strom117, R. Stroynowski 42, A. Strubig 107, S. A. Stucci 18, B. Stugu 15, N. A. Styles 44,D . S u 144,J . S u 126,
+R. Subramaniam81, S. Suchek60a, Y . Sugaya119, M. Suk129, V . V . Sulin97, S. Sultansoy4c, T. Sumida70, S. Sun59, X. Sun35a,
+J. E. Sundermann50, K. Suruliz 150, G. Susinno 39a,39b, M. R. Sutton 150, S. Suzuki 68,M . S v a t o s128, M. Swiatlowski 33,
+I. Sykora145a, T. Sykora 130,D . T a50, C. Taccini 135a,135b, K. Tackmann 44, J. Taenzer 159,A . T a f f a r d163, R. Taﬁrout 160a,
+N. Taiblum154, H. Takai27, R. Takashima71, T. Takeshita141, Y . Takubo68, M. Talby87, A. A. Talyshev110,c,J .Y .C .T a m174,
+K. G. Tan90, J. Tanaka 156, R. Tanaka 118, S. Tanaka 68, B. B. Tannenwald 112, S. Tapia Araya 34b, S. Tapprogge 85,
+S. Tarem153, G. F. Tartarelli 93a,P . T a s130,M . T a s e v s k y128, T. Tashiro 70, E. Tassi 39a,39b, A. Tavares Delgado 127a,127b,
+Y . Tayalati136d, A. C. Taylor 106, G. N. Taylor 90, P. T. E. Taylor90, W. Taylor160b, F. A. Teischinger32, P. Teixeira-Dias79,
+K. K. Temming50, D. Temple 143,H . T e n K a t e32, P. K. Teng 152, J. J. Teoh 119, F. Tepel 175, S. Terada 68, K. Terashi 156,
+J. Terron84, S. Terzo 102,M . T e s t a49, R. J. Teuscher 159,l, T. Theveneaux-Pelzer 87, J. P. Thomas 19, J. Thomas-Wilsker 79,
+E. N. Thompson37, P. D. Thompson 19, A. S. Thompson 55, L .A .T h o m s e n176, E. Thomson 123, M. Thomson 30,
+M. J. Tibbetts16, R. E. Ticse Torres 87, V . O. Tikhomirov 97,an, Yu. A. Tikhonov 110,c, S. Timoshenko 99, P. Tipton 176,
+S. Tisserant87, K. Todome158, T. Todorov5,*, S. Todorova-Nova130,J . T o j o72, S. Tokár145a, K. Tokushuku68,E . T o l l e y59,
+L. Tomlinson86, M. Tomoto104, L. Tompkins144,ao,K .T o m s106, B. Tong59, E. Torrence117,H .T o r r e s143, E. Torró Pastor139,
+J. Toth87,ap, F. Touchard 87, D. R. Tovey 140, T. Trefzger 174, A. Tricoli 27, I. M. Trigger 160a, S. Trincaz-Duvoid 82,
+M. F. Tripiana13, W. Trischuk159, B. Trocmé57,A .T r o f y m o v44, C. Troncon93a, M. Trottier-McDonald16, M. Trovatelli169,
+L. Truong164a,164b, M. Trzebinski 41, A. Trzupek 41, J .C - L .T s e n g121, P. V . Tsiareshka94, G. Tsipolitis 10, N. Tsirintanis 9,
+123
+
+===== PAGE 25 =====
+Eur. Phys. J. C (2016) 76 :292 Page 25 of 30 292
+S. Tsiskaridze13, V . Tsiskaridze 50, E. G. Tskhadadze 53a,K . M . T s u i62a, I .I .T s u k e r m a n98, V . Tsulaia 16, S. Tsuno 68,
+D. Tsybychev149, A. Tudorache 28b, V . Tudorache 28b, A. N. Tuna 59, S. A. Tupputi 22a,22b, S. Turchikhin 100,al,
+D. Turecek129, D. Turgeman 172,R . T u r r a93a,93b, A .J .T u r v e y42, P .M .T u t s37, M. Tyndel 132, G. Ucchielli 22a,22b,
+I. Ueda156, R. Ueno 31, M. Ughetto 147a,147b,F . U k e g a w a161, G. Unal 32, A. Undrus 27, G. Unel 163, F .C .U n g a r o90,
+Y . Unno68, C. Unverdorben 101, J. Urban 145b, P. Urquijo 90, P. Urrejola 85,G . U s a i8, A. Usanova 64, L. Vacavant 87,
+V . Vacek129, B. Vachon89, C. Valderanis101, E. Valdes Santurio147a,147b, N. Valencic108, S. Valentinetti22a,22b, A. Valero167,
+L. Valery13, S. Valkar 130, S. Vallecorsa 51, J. A. Valls Ferrer 167, W. Van Den Wollenberg 108, P. C. Van Der Deijl 108,
+R. van der Geer108, H. van der Graaf 108, N. van Eldik 153, P. van Gemmeren 6, J. Van Nieuwkoop 143, I. van Vulpen 108,
+M. C. van Woerden32, M. Vanadia133a,133b, W. Vandelli32, R. Vanguri123, A. Vaniachine6, P. Vankov108, G. Vardanyan177,
+R. Vari133a, E. W. Varnes7, T. Varol42, D. Varouchas82, A. Vartapetian8,K . E . V a r v e l l151, J. G. Vasquez176, F. Vazeille36,
+T. Vazquez Schroeder89, J. Veatch56, L. M. Veloce159, F. Veloso127a,127c, S. Veneziano133a, A. Ventura75a,75b, M. Venturi169,
+N. Venturi159, A. Venturini 25, V . Vercesi122a, M. Verducci 133a,133b,W . V e r k e r k e108, J. C. Vermeulen 108,A . V e s t46,aq,
+M. C. Vetterli143,d, O. Viazlo 83, I. Vichou 166,T . V i c k e y140, O .E .V i c k e yB o e r i u140, G. H. A. Viehhauser 121,S . V i e l16,
+L. Vigani121, R. Vigne 64, M. Villa 22a,22b, M. Villaplana Perez 93a,93b, E. Vilucchi 49, M. G. Vincter 31, V . B. Vinogradov67,
+C. Vittori22a,22b, I. Vivarelli 150, S. Vlachos 10,M . V l a s a k129, M. V ogel175, P. V okac129, G. V olpi125a,125b, M. V olpi90,
+H. von der Schmitt102, E. von Toerne23, V . V orobel130, K. V orobev99,M .V o s167,R .V o s s32, J. H. V ossebeld76, N. Vranjes14,
+M. Vranjes Milosavljevic14,V . V r b a128, M. Vreeswijk 108, R. Vuillermet 32, I. Vukotic 33, Z. Vykydal 129, P. Wagner 23,
+W. Wagner175, H. Wahlberg 73, S. Wahrmund 46, J. Wakabayashi 104, J. Walder 74,R . W a l k e r101, W. Walkowiak 142,
+V . Wallangen147a,147b, C. Wang 152, C. Wang 35d,87, F. Wang 173, H. Wang 16, H. Wang 42, J. Wang 44, J. Wang 151,
+K. Wang89, R. Wang 6, S. M. Wang 152, T. Wang 23, T. Wang 37, X. Wang 176, C. Wanotayaroj 117, A. Warburton 89,
+C. P. Ward30, D. R. Wardrope 80, A. Washbrook 48, P. M. Watkins 19,A . T . W a t s o n19,M . F . W a t s o n19, G. Watts 139,
+S. Watts86, B. M. Waugh80, S. Webb85, M. S. Weber18, S. W. Weber174, J .S .W e b s t e r6, A. R. Weidberg121, B. Weinert63,
+J. Weingarten56,C .W e i s e r50, H. Weits108, P. S. Wells32, T. Wenaus27, T. Wengler32, S. Wenig32,N .W e r m e s23, M. Werner50,
+P. Werner32, M. Wessels 60a, J. Wetter 162, K. Whalen 117, N. L. Whallon 139, A. M. Wharton 74, A. White 8, M. J. White 1,
+R. White34b, S. White 125a,125b, D. Whiteson 163, F. J. Wickens 132, W. Wiedenmann 173, M. Wielers 132, P. Wienemann 23,
+C. Wiglesworth38, L. A. M. Wiik-Fuchs23, A. Wildauer102, F. Wilk86, H. G. Wilkens32, H. H. Williams123, S. Williams108,
+C. Willis92, S. Willocq 88, J .A .W i l s o n19, I. Wingerter-Seez 5, F. Winklmeier 117,O . J . W i n s t o n150, B. T. Winter 23,
+M. Wittgen144, J. Wittkowski101, S .J .W o l l s t a d t85, M .W .W o l t e r41, H. Wolters127a,127c,B . K . W o s i e k41, J. Wotschack32,
+M. J. Woudstra86, K. W. Wozniak41,M . W u57,M . W u33,S . L . W u173,X . W u51,Y . W u91, T. R. Wyatt86, B. M. Wynne48,
+S. Xella38,D . X u 35a,L . X u 27, B. Yabsley 151, S. Yacoob 146a, R. Yakabe 69, D. Yamaguchi 158, Y . Yamaguchi 119,
+A. Yamamoto68, S. Yamamoto 156, T. Yamanaka156, K. Yamauchi 104, Y . Yamazaki69,Z . Y a n24, H. Yang 35e, H. Yang 173,
+Y . Yang152, Z. Yang 15,W - M . Y a o16,Y . C . Y a p82,Y . Y a s u68, E. Yatsenko 5, K. H. Yau Wong 23,J . Y e 42,S . Y e 27,
+I. Yeletskikh67,A . L . Y e n59, E. Yildirim 44, K. Yorita 171, R. Yoshida 6, K. Yoshihara 123, C. Young 144, C. J. S. Young 32,
+S. Youssef24,D .R .Y u16,J .Y u8,J .M .Y u91,J .Y u66, L. Yuan69,S .P .Y .Y u e n23, I. Yusuff30,ar, B. Zabinski41, R. Zaidan35d,
+A. M. Zaitsev131,ae, N. Zakharchuk 44, J. Zalieckas 15, A. Zaman 149, S. Zambito 59, L. Zanello 133a,133b, D. Zanzi 90,
+C. Zeitnitz175, M. Zeman129,A .Z e m l a40a,J .C .Z e n g166, Q. Zeng144, K. Zengel25, O. Zenin131, T. Ženiš145a,D .Z e r w a s118,
+D. Zhang91, F. Zhang173, G. Zhang 35b,am, H. Zhang 35c, J. Zhang 6, L. Zhang 50, R. Zhang 23, R. Zhang 35b,as, X. Zhang 35d,
+Z. Zhang118, X. Zhao 42, Y . Zhao35d, Z. Zhao 35b, A. Zhemchugov 67, J. Zhong 121, B. Zhou 91, C. Zhou 47, L. Zhou 37,
+L. Zhou42, M. Zhou149, N. Zhou35f,C .G .Z h u35d,H .Z h u35a,J .Z h u91,Y .Z h u35b, X. Zhuang35a, K. Zhukov97, A. Zibell174,
+D. Zieminska63, N .I .Z i m i n e67, C. Zimmermann 85, S. Zimmermann 50, Z. Zinonos 56,M . Z i n s e r85, M. Ziolkowski 142,
+L. Živkovi´c14, G. Zobernig173, A. Zoccoli22a,22b, M. zur Nedden17, G. Zurzolo105a,105b, L. Zwalinski32
+1 Department of Physics, University of Adelaide, Adelaide, Australia
+2 Physics Department, SUNY Albany, Albany, NY, USA
+3 Department of Physics, University of Alberta, Edmonton, AB, Canada
+4 (a)Department of Physics, Ankara University, Ankara, Turkey;(b)Istanbul Aydin University, Istanbul, Turkey;(c)Division
+of Physics, TOBB University of Economics and Technology, Ankara, Turkey
+5 LAPP, CNRS/IN2P3 and Université Savoie Mont Blanc, Annecy-le-Vieux, France
+6 High Energy Physics Division, Argonne National Laboratory, Argonne, IL, USA
+7 Department of Physics, University of Arizona, Tucson, AZ, USA
+8 Department of Physics, The University of Texas at Arlington, Arlington, TX, USA
+9 Physics Department, University of Athens, Athens, Greece
+10 Physics Department, National Technical University of Athens, Zografou, Greece
+123
+
+===== PAGE 26 =====
+292 Page 26 of 30 Eur. Phys. J. C (2016) 76 :292
+11 Department of Physics, The University of Texas at Austin, Austin, TX, USA
+12 Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+13 Institut de Física d’Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Barcelona, Spain
+14 Institute of Physics, University of Belgrade, Belgrade, Serbia
+15 Department for Physics and Technology, University of Bergen, Bergen, Norway
+16 Physics Division, Lawrence Berkeley National Laboratory and University of California, Berkeley, CA, USA
+17 Department of Physics, Humboldt University, Berlin, Germany
+18 Albert Einstein Center for Fundamental Physics and Laboratory for High Energy Physics, University of Bern, Bern,
+Switzerland
+19 School of Physics and Astronomy, University of Birmingham, Birmingham, UK
+20 (a)Department of Physics, Bogazici University, Istanbul, Turkey;(b)Department of Physics Engineering, Gaziantep
+University, Gaziantep, Turkey;(c)Faculty of Engineering and Natural Sciences, Istanbul Bilgi University, Istanbul,
+Turkey;(d)Faculty of Engineering and Natural Sciences, Bahcesehir University, Istanbul, Turkey
+21 Centro de Investigaciones, Universidad Antonio Narino, Bogota, Colombia
+22 (a)INFN Sezione di Bologna, Bologna, Italy; (b)Dipartimento di Fisica e Astronomia, Università di Bologna, Bologna,
+Italy
+23 Physikalisches Institut, University of Bonn, Bonn, Germany
+24 Department of Physics, Boston University, Boston, MA, USA
+25 Department of Physics, Brandeis University, Waltham, MA, USA
+26 (a)Universidade Federal do Rio De Janeiro COPPE/EE/IF, Rio de Janeiro, Brazil;(b)Electrical Circuits Department,
+Federal University of Juiz de Fora (UFJF), Juiz de Fora, Brazil;(c)Federal University of Sao Joao del Rei (UFSJ), Sao
+Joao del Rei, Brazil; (d)Instituto de Fisica, Universidade de Sao Paulo, São Paulo, Brazil
+27 Physics Department, Brookhaven National Laboratory, Upton, NY, USA
+28 (a)Transilvania University of Brasov, Brasov, Romania;(b)National Institute of Physics and Nuclear Engineering,
+Bucharest, Romania; (c)Physics Department, National Institute for Research and Development of Isotopic and Molecular
+Technologies, Cluj Napoca, Romania;(d)University Politehnica Bucharest, Bucharest, Romania;(e)West University in
+Timisoara, Timisoara, Romania
+29 Departamento de Física, Universidad de Buenos Aires, Buenos Aires, Argentina
+30 Cavendish Laboratory, University of Cambridge, Cambridge, UK
+31 Department of Physics, Carleton University, Ottawa, ON, Canada
+32 CERN, Geneva, Switzerland
+33 Enrico Fermi Institute, University of Chicago, Chicago, IL, USA
+34 (a)Departamento de Física, Pontiﬁcia Universidad Católica de Chile, Santiago, Chile;(b)Departamento de Física,
+Universidad Técnica Federico Santa María, Valparaiso, Chile
+35 (a)Institute of High Energy Physics, Chinese Academy of Sciences, Beijing, China; (b)Department of Modern Physics,
+University of Science and Technology of China, Hefei, Anhui, China;(c)Department of Physics, Nanjing University,
+Nanjing, Jiangsu, China; (d)School of Physics, Shandong University, Jinan, Shandong, China;(e)Shanghai Key
+Laboratory for Particle Physics and Cosmology, Department of Physics and Astronomy, Shanghai Jiao Tong University
+(also afﬁliated with PKU-CHEP), Shanghai, China; (f)Physics Department, Tsinghua University, Beijing 100084, China
+36 Laboratoire de Physique Corpusculaire, Clermont Université and Université Blaise Pascal and CNRS/IN2P3,
+Clermont-Ferrand, France
+37 Nevis Laboratory, Columbia University, Irvington, NY, USA
+38 Niels Bohr Institute, University of Copenhagen, Kobenhavn, Denmark
+39 (a)INFN Gruppo Collegato di Cosenza, Laboratori Nazionali di Frascati, Frascati, Italy; (b)Dipartimento di Fisica,
+Università della Calabria, Rende, Italy
+40 (a)Faculty of Physics and Applied Computer Science, AGH University of Science and Technology, Kraków, Poland;
+(b)Marian Smoluchowski Institute of Physics, Jagiellonian University, Kraków, Poland
+41 Institute of Nuclear Physics, Polish Academy of Sciences, Krakow, Poland
+42 Physics Department, Southern Methodist University, Dallas, TX, USA
+43 Physics Department, University of Texas at Dallas, Richardson, TX, USA
+44 DESY, Hamburg and Zeuthen, Germany
+45 Institut für Experimentelle Physik IV, Technische Universität Dortmund, Dortmund, Germany
+46 Institut für Kern- und Teilchenphysik, Technische Universität Dresden, Dresden, Germany
+123
+
+===== PAGE 27 =====
+Eur. Phys. J. C (2016) 76 :292 Page 27 of 30 292
+47 Department of Physics, Duke University, Durham, NC, USA
+48 SUPA-School of Physics and Astronomy, University of Edinburgh, Edinburgh, UK
+49 INFN Laboratori Nazionali di Frascati, Frascati, Italy
+50 Fakultät für Mathematik und Physik, Albert-Ludwigs-Universität, Freiburg, Germany
+51 Section de Physique, Université de Genève, Geneva, Switzerland
+52 (a)INFN Sezione di Genova, Genoa, Italy;(b)Dipartimento di Fisica, Università di Genova, Genoa, Italy
+53 (a)E. Andronikashvili Institute of Physics, Iv. Javakhishvili Tbilisi State University, Tbilisi, Georgia;(b)High Energy
+Physics Institute, Tbilisi State University, Tbilisi, Georgia
+54 II Physikalisches Institut, Justus-Liebig-Universität Giessen, Giessen, Germany
+55 SUPA-School of Physics and Astronomy, University of Glasgow, Glasgow, UK
+56 II Physikalisches Institut, Georg-August-Universität, Göttingen, Germany
+57 Laboratoire de Physique Subatomique et de Cosmologie, Université Grenoble-Alpes, CNRS/IN2P3, Grenoble, France
+58 Department of Physics, Hampton University, Hampton, V A, USA
+59 Laboratory for Particle Physics and Cosmology, Harvard University, Cambridge, MA, USA
+60 (a)Kirchhoff-Institut für Physik, Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany;(b)Physikalisches Institut,
+Ruprecht-Karls-Universität Heidelberg, Heidelberg, Germany;(c)ZITI Institut für technische Informatik,
+Ruprecht-Karls-Universität Heidelberg, Mannheim, Germany
+61 Faculty of Applied Information Science, Hiroshima Institute of Technology, Hiroshima, Japan
+62 (a)Department of Physics, The Chinese University of Hong Kong, Shatin, NT, Hong Kong;(b)Department of Physics,
+The University of Hong Kong, Pokfulam, Hong Kong;(c)Department of Physics, The Hong Kong University of Science
+and Technology, Clear Water Bay, Kowloon, Hong Kong, China
+63 Department of Physics, Indiana University, Bloomington, IN, USA
+64 Institut für Astro- und Teilchenphysik, Leopold-Franzens-Universität, Innsbruck, Austria
+65 University of Iowa, Iowa City, IA, USA
+66 Department of Physics and Astronomy, Iowa State University, Ames, IA, USA
+67 Joint Institute for Nuclear Research, JINR Dubna, Dubna, Russia
+68 KEK, High Energy Accelerator Research Organization, Tsukuba, Japan
+69 Graduate School of Science, Kobe University, Kobe, Japan
+70 Faculty of Science, Kyoto University, Kyoto, Japan
+71 Kyoto University of Education, Kyoto, Japan
+72 Department of Physics, Kyushu University, Fukuoka, Japan
+73 Instituto de Física La Plata, Universidad Nacional de La Plata and CONICET, La Plata, Argentina
+74 Physics Department, Lancaster University, Lancaster, UK
+75 (a)INFN Sezione di Lecce, Lecce, Italy; (b)Dipartimento di Matematica e Fisica, Università del Salento, Lecce, Italy
+76 Oliver Lodge Laboratory, University of Liverpool, Liverpool, UK
+77 Department of Physics, Jožef Stefan Institute and University of Ljubljana, Ljubljana, Slovenia
+78 School of Physics and Astronomy, Queen Mary University of London, London, UK
+79 Department of Physics, Royal Holloway University of London, Surrey, UK
+80 Department of Physics and Astronomy, University College London, London, UK
+81 Louisiana Tech University, Ruston, LA, USA
+82 Laboratoire de Physique Nucléaire et de Hautes Energies, UPMC and Université Paris-Diderot and CNRS/IN2P3, Paris,
+France
+83 Fysiska institutionen, Lunds universitet, Lund, Sweden
+84 Departamento de Fisica Teorica C-15, Universidad Autonoma de Madrid, Madrid, Spain
+85 Institut für Physik, Universität Mainz, Mainz, Germany
+86 School of Physics and Astronomy, University of Manchester, Manchester, UK
+87 CPPM, Aix-Marseille Université and CNRS/IN2P3, Marseille, France
+88 Department of Physics, University of Massachusetts, Amherst, MA, USA
+89 Department of Physics, McGill University, Montreal, QC, Canada
+90 School of Physics, University of Melbourne, Melbourne, VIC, Australia
+91 Department of Physics, The University of Michigan, Ann Arbor, MI, USA
+92 Department of Physics and Astronomy, Michigan State University, East Lansing, MI, USA
+93 (a)INFN Sezione di Milano, Milan, Italy; (b)Dipartimento di Fisica, Università di Milano, Milan, Italy
+123
+
+===== PAGE 28 =====
+292 Page 28 of 30 Eur. Phys. J. C (2016) 76 :292
+94 B.I. Stepanov Institute of Physics, National Academy of Sciences of Belarus, Minsk, Republic of Belarus
+95 National Scientiﬁc and Educational Centre for Particle and High Energy Physics, Minsk, Republic of Belarus
+96 Group of Particle Physics, University of Montreal, Montreal, QC, Canada
+97 P.N. Lebedev Physical Institute of the Russian, Academy of Sciences, Moscow, Russia
+98 Institute for Theoretical and Experimental Physics (ITEP), Moscow, Russia
+99 National Research Nuclear University MEPhI, Moscow, Russia
+100 D.V . Skobeltsyn Institute of Nuclear Physics, M.V . Lomonosov Moscow State University, Moscow, Russia
+101 Fakultät für Physik, Ludwig-Maximilians-Universität München, Munich, Germany
+102 Max-Planck-Institut für Physik (Werner-Heisenberg-Institut), Munich, Germany
+103 Nagasaki Institute of Applied Science, Nagasaki, Japan
+104 Graduate School of Science and Kobayashi-Maskawa Institute, Nagoya University, Nagoya, Japan
+105 (a)INFN Sezione di Napoli, Naples, Italy; (b)Dipartimento di Fisica, Università di Napoli, Naples, Italy
+106 Department of Physics and Astronomy, University of New Mexico, Albuquerque, NM, USA
+107 Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef, Nijmegen, The
+Netherlands
+108 Nikhef National Institute for Subatomic Physics and University of Amsterdam, Amsterdam, The Netherlands
+109 Department of Physics, Northern Illinois University, DeKalb, IL, USA
+110 Budker Institute of Nuclear Physics, SB RAS, Novosibirsk, Russia
+111 Department of Physics, New York University, New York, NY, USA
+112 Ohio State University, Columbus, OH, USA
+113 Faculty of Science, Okayama University, Okayama, Japan
+114 Homer L. Dodge Department of Physics and Astronomy, University of Oklahoma, Norman, OK, USA
+115 Department of Physics, Oklahoma State University, Stillwater, OK, USA
+116 Palacký University, RCPTM, Olomouc, Czech Republic
+117 Center for High Energy Physics, University of Oregon, Eugene, OR, USA
+118 LAL, Univ. Paris-Sud, CNRS/IN2P3, Université Paris Saclay, Orsay, France
+119 Graduate School of Science, Osaka University, Osaka, Japan
+120 Department of Physics, University of Oslo, Oslo, Norway
+121 Department of Physics, Oxford University, Oxford, UK
+122 (a)INFN Sezione di Pavia, Pavia, Italy;(b)Dipartimento di Fisica, Università di Pavia, Pavia, Italy
+123 Department of Physics, University of Pennsylvania, Philadelphia, PA, USA
+124 National Research Centre “Kurchatov Institute” B.P.Konstantinov Petersburg Nuclear Physics Institute, St. Petersburg,
+Russia
+125 (a)INFN Sezione di Pisa, Pisa, Italy; (b)Dipartimento di Fisica E. Fermi, Università di Pisa, Pisa, Italy
+126 Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh, PA, USA
+127 (a)Laboratório de Instrumentação e Física Experimental de Partículas-LIP, Lisbon, Portugal; (b)Faculdade de Ciências,
+Universidade de Lisboa, Lisbon, Portugal;(c)Department of Physics, University of Coimbra, Coimbra, Portugal;(d)Centro
+de Física Nuclear da Universidade de Lisboa, Lisbon, Portugal;(e)Departamento de Fisica, Universidade do Minho,
+Braga, Portugal; (f)Departamento de Fisica Teorica y del Cosmos and CAFPE, Universidad de Granada, Granada, Spain;
+(g)Dep Fisica and CEFITEC of Faculdade de Ciencias e Tecnologia, Universidade Nova de Lisboa, Caparica, Portugal
+128 Institute of Physics, Academy of Sciences of the Czech Republic, Prague, Czech Republic
+129 Czech Technical University in Prague, Prague, Czech Republic
+130 Faculty of Mathematics and Physics, Charles University in Prague, Prague, Czech Republic
+131 State Research Center Institute for High Energy Physics, Protvino, NRC KI, Russia
+132 Particle Physics Department, Rutherford Appleton Laboratory, Didcot, UK
+133 (a)INFN Sezione di Roma, Rome, Italy; (b)Dipartimento di Fisica, Sapienza Università di Roma, Rome, Italy
+134 (a)INFN Sezione di Roma Tor Vergata, Rome, Italy;(b)Dipartimento di Fisica, Università di Roma Tor Vergata, Rome,
+Italy
+135 (a)INFN Sezione di Roma Tre, Rome, Italy;(b)Dipartimento di Matematica e Fisica, Università Roma Tre, Rome, Italy
+136 (a)Faculté des Sciences Ain Chock, Réseau Universitaire de Physique des Hautes Energies-Université Hassan II,
+Casablanca, Morocco; (b)Centre National de l’Energie des Sciences Techniques Nucleaires, Rabat, Morocco;(c)Faculté
+des Sciences Semlalia, Université Cadi Ayyad, LPHEA-Marrakech, Marrakech, Morocco;(d)Faculté des Sciences,
+123
+
+===== PAGE 29 =====
+Eur. Phys. J. C (2016) 76 :292 Page 29 of 30 292
+Université Mohamed Premier and LPTPM, Oujda, Morocco;(e)Faculté des Sciences, Université Mohammed V, Rabat,
+Morocco
+137 DSM/IRFU (Institut de Recherches sur les Lois Fondamentales de l’Univers), CEA Saclay (Commissariat à l’Energie
+Atomique et aux Energies Alternatives), Gif-sur-Yvette, France
+138 Santa Cruz Institute for Particle Physics, University of California Santa Cruz, Santa Cruz, CA, USA
+139 Department of Physics, University of Washington, Seattle, W A, USA
+140 Department of Physics and Astronomy, University of Shefﬁeld, Shefﬁeld, UK
+141 Department of Physics, Shinshu University, Nagano, Japan
+142 Fachbereich Physik, Universität Siegen, Siegen, Germany
+143 Department of Physics, Simon Fraser University, Burnaby, BC, Canada
+144 SLAC National Accelerator Laboratory, Stanford, CA, USA
+145 (a)Faculty of Mathematics, Physics and Informatics, Comenius University, Bratislava, Slovak Republic;(b)Department
+of Subnuclear Physics, Institute of Experimental Physics of the Slovak Academy of Sciences, Kosice, Slovak Republic
+146 (a)Department of Physics, University of Cape Town, Cape Town, South Africa;(b)Department of Physics, University of
+Johannesburg, Johannesburg, South Africa;(c)School of Physics, University of the Witwatersrand, Johannesburg, South
+Africa
+147 (a)Department of Physics, Stockholm University, Stockholm, Sweden;(b)The Oskar Klein Centre, Stockholm, Sweden
+148 Physics Department, Royal Institute of Technology, Stockholm, Sweden
+149 Departments of Physics and Astronomy and Chemistry, Stony Brook University, Stony Brook, NY, USA
+150 Department of Physics and Astronomy, University of Sussex, Brighton, UK
+151 School of Physics, University of Sydney, Sydney, Australia
+152 Institute of Physics, Academia Sinica, Taipei, Taiwan
+153 Department of Physics, Technion: Israel Institute of Technology, Haifa, Israel
+154 Raymond and Beverly Sackler School of Physics and Astronomy, Tel Aviv University, Tel Aviv, Israel
+155 Department of Physics, Aristotle University of Thessaloniki, Thessaloníki, Greece
+156 International Center for Elementary Particle Physics and Department of Physics, The University of Tokyo, Tokyo, Japan
+157 Graduate School of Science and Technology, Tokyo Metropolitan University, Tokyo, Japan
+158 Department of Physics, Tokyo Institute of Technology, Tokyo, Japan
+159 Department of Physics, University of Toronto, Toronto, ON, Canada
+160 (a)TRIUMF, Vancouver, BC, Canada;(b)Department of Physics and Astronomy, York University, Toronto, ON, Canada
+161 Faculty of Pure and Applied Sciences, and Center for Integrated Research in Fundamental Science and Engineering,
+University of Tsukuba, Tsukuba, Japan
+162 Department of Physics and Astronomy, Tufts University, Medford, MA, USA
+163 Department of Physics and Astronomy, University of California Irvine, Irvine, CA, USA
+164 (a)INFN Gruppo Collegato di Udine, Sezione di Trieste, Udine, Italy;(b)ICTP, Trieste, Italy;(c)Dipartimento di Chimica,
+Fisica e Ambiente, Università di Udine, Udine, Italy
+165 Department of Physics and Astronomy, University of Uppsala, Uppsala, Sweden
+166 Department of Physics, University of Illinois, Urbana, IL, USA
+167 Instituto de Fisica Corpuscular (IFIC) and Departamento de Fisica Atomica, Molecular y Nuclear and Departamento de
+Ingeniería Electrónica and Instituto de Microelectrónica de Barcelona (IMB-CNM), University of Valencia and CSIC,
+Valencia, Spain
+168 Department of Physics, University of British Columbia, Vancouver, BC, Canada
+169 Department of Physics and Astronomy, University of Victoria, Victoria, BC, Canada
+170 Department of Physics, University of Warwick, Coventry, UK
+171 Waseda University, Tokyo, Japan
+172 Department of Particle Physics, The Weizmann Institute of Science, Rehovot, Israel
+173 Department of Physics, University of Wisconsin, Madison, WI, USA
+174 Fakultät für Physik und Astronomie, Julius-Maximilians-Universität, Würzburg, Germany
+175 Fakultät für Mathematik und Naturwissenschaften, Fachgruppe Physik, Bergische Universität Wuppertal, Wuppertal,
+Germany
+176 Department of Physics, Yale University, New Haven, CT, USA
+177 Yerevan Physics Institute, Yerevan, Armenia
+178 Centre de Calcul de l’Institut National de Physique Nucléaire et de Physique des Particules (IN2P3), Villeurbanne, France
+123
+
+===== PAGE 30 =====
+292 Page 30 of 30 Eur. Phys. J. C (2016) 76 :292
+a Also at Department of Physics, King’s College London, London, UK
+b Also at Institute of Physics, Azerbaijan Academy of Sciences, Baku, Azerbaijan
+c Also at Novosibirsk State University, Novosibirsk, Russia
+d Also at TRIUMF, Vancouver, BC, Canada
+e Also at Department of Physics and Astronomy, University of Louisville, Louisville, KY , USA
+f Also at Department of Physics, California State University, Fresno, CA, USA
+g Also at Department of Physics, University of Fribourg, Fribourg, Switzerland
+h Also at Departament de Fisica de la Universitat Autonoma de Barcelona, Barcelona, Spain
+i Also at Departamento de Fisica e Astronomia, Faculdade de Ciencias, Universidade do Porto, Porto, Portugal
+j Also at Tomsk State University, Tomsk, Russia
+k Also at Universita di Napoli Parthenope, Napoli, Italy
+l Also at Institute of Particle Physics (IPP), Canada
+m Also at National Institute of Physics and Nuclear Engineering, Bucharest, Romania
+n Also at Department of Physics, St. Petersburg State Polytechnical University, St. Petersburg, Russia
+o Also at Department of Physics, The University of Michigan, Ann Arbor, MI, USA
+p Also at Centre for High Performance Computing, CSIR Campus, Rosebank, Cape Town, South Africa
+q Also at Louisiana Tech University, Ruston, LA, USA
+r Also at Institucio Catalana de Recerca i Estudis Avancats, ICREA, Barcelona, Spain
+s Also at Graduate School of Science, Osaka University, Osaka, Japan
+t Also at Department of Physics, National Tsing Hua University, Taiwan
+u Also at Institute for Mathematics, Astrophysics and Particle Physics, Radboud University Nijmegen/Nikhef, Nijmegen,
+Netherlands
+v Also at Department of Physics, The University of Texas at Austin, Austin, TX, USA
+w Also at Institute of Theoretical Physics, Ilia State University, Tbilisi, Georgia
+x Also at CERN, Geneva, Switzerland
+y Also at Georgian Technical University (GTU), Tbilisi, Georgia
+z Also at Ochadai Academic Production, Ochanomizu University, Tokyo, Japan
+aa Also at Manhattan College, New York, NY , USA
+ab Also at Hellenic Open University, Patras, Greece
+ac Also at Academia Sinica Grid Computing, Institute of Physics, Academia Sinica, Taipei, Taiwan
+ad Also at School of Physics, Shandong University, Shandong, China
+ae Also at Moscow Institute of Physics and Technology State University, Dolgoprudny, Russia
+af Also at Section de Physique, Université de Genève, Geneva, Switzerland
+ag Also at Eotvos Lorand University, Budapest, Hungary
+ah Also at International School for Advanced Studies (SISSA), Trieste, Italy
+ai Also at Department of Physics and Astronomy, University of South Carolina, Columbia, SC, USA
+aj Also at School of Physics and Engineering, Sun Yat-sen University, Guangzhou, China
+ak Also at Institute for Nuclear Research and Nuclear Energy (INRNE) of the Bulgarian Academy of Sciences, Soﬁa,
+Bulgaria
+al Also at Faculty of Physics, M.V . Lomonosov Moscow State University, Moscow, Russia
+am Also at Institute of Physics, Academia Sinica, Taipei, Taiwan
+an Also at National Research Nuclear University MEPhI, Moscow, Russia
+ao Also at Department of Physics, Stanford University, Stanford, CA, USA
+ap Also at Institute for Particle and Nuclear Physics, Wigner Research Centre for Physics, Budapest, Hungary
+aq Also at Flensburg University of Applied Sciences, Flensburg, Germany
+ar Also at University of Malaya, Department of Physics, Kuala Lumpur, Malaysia
+as Also at CPPM, Aix-Marseille Université and CNRS/IN2P3, Marseille, France
+∗ Deceased
+123

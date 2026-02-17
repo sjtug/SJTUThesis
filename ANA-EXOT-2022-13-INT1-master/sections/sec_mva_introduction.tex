@@ -1,0 +1,44 @@
+%
+This search uses two discriminants to identify a possible signal over the large expected background rate from SM processes. 
+
+A first discriminant based on Boosted Decision Trees (BDT)~\ref{sec:mva_bdt} is defined following similar studies performed in the context of the ATLAS measurement of SM production of four-top-quarks~\cite{ATLAS-CONF-2021-013}. The BDT is further optimised for this search as described in the following. A second dedicated discriminant is defined based on a Graph Neural Network~\ref{sec:mva_gnn}. 
+
+The use of the BDT and GNN is combined with a novel structure which incorporates physics parameters of interest, in our case represented by the mass of the heavy Higgs boson \mH, as features for the training~\cite{Baldi_2016}, leading to a so-called parametrised classifier.
+Parametrised classifiers provide smooth interpolation across physics parameters and improve the performance of isolated classifiers.
+It is trained with signal samples at all mass benchmarks together against \ttbar background.
+The training regions are chosen to be $\geq9j\geq3b$ for 1L and $\geq7j\geq3b$ for 2LOS channel.
+The yields of signal samples and \ttbar background to train the BDT and GNN are shown in table~\ref{tab:MVAYields}.
+The technical implementation is based on introducing a pseudo-mass feature in the background sample used for the training; this is a discrete variable assuming values between 400 to 1000~\gev\ in step of 100~\gev\ as available for the \ttH\ signal benchmarks. 
+This pseudo-mass feature is also introduced for signal events as their truth \mH value. The pseudo-mass is treated as an additional input variable in the training. 
+
+Over-training may occur when the performance of both BDT and GNN in the particular set of training samples is deviated from the performance in another set of samples.
+It is checked by 2-fold cross-training in this analysis.
+The samples are splitted into even and odd, based on the event index.
+The output score of the model is evaluated by using the model trained on even events to evaluate odd events and vice-versa.
+The area under ROC curve (AUC) is used as a performance metric and the difference between training and testing AUC is used as a metric of overtraining. 
+
+Detailed comparative studies of the two discriminants were performed. The GNN and BDT discriminant modelling in signal depleted phase-spaces (see Sec.~\ref{sec:blinding}) was found to be satisfactory in both cases. The expected analysis sensitivity was observed to be significantly better with the GNN discriminant, leading to 20\%-10\% improvements in the expected exclusion limits depending on the assumed Higgs boson mass and lepton channel in consideration.  
+
+The BDT and GNN discriminants are used both to perform a full analysis. The results for the GNN discriminant are taken as nominal, the results of the BDT analysis are used as cross check.
+
+%%%Table: Yields of Signal and background of MVA Training%%% 
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|c|c|c|c}
+\hline \hline
+\multicolumn{9}{c}{1L Channel} \\
+\hline
+& $t\bar{t}+$ jets & M400 & M500 & M600 & M700 & M800 & M900 & M1000 \\
+Unweighted Yields & 622925 & 26645 & 32370 & 36776 & 40119 & 42436 & 44555 & 46029 \\
+Weighted Yields & 4760.97 & 59.90 & 72.34 & 81.59 & 88.60 & 93.29 & 97.8176 & 100.55 \\
+\hline
+\multicolumn{9}{c}{2LOS Channel} \\
+\hline
+& $t\bar{t}+$ jets & M400 & M500 & M600 & M700 & M800 & M900 & M1000 \\
+Unweighted Yields & 135055 & 8999 & 10561 & 11807 & 12507 & 13225 & 13702 & 14238 \\
+Weighted Yields & 1033.87 & 21.09 & 24.58 & 27.18 & 28.78 & 30.17 & 31.12 & 32.27 \\
+\hline \hline
+\end{tabular}
+\caption{\label{tab:MVAYields}The unweighted and weighted yields of signal and \ttbar background used to train BDT and MVA.}
+\end{table}
+

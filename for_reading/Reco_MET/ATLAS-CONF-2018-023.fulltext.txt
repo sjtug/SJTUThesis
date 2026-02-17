@@ -1,0 +1,2239 @@
+
+
+===== PAGE 1 =====
+ATLAS-CONF-2018-023
+21 June 2018
+ATLAS CONF Note
+ATLAS-CONF-2018-023
+21st June 2018
+Emiss
+T performance in the ATLAS detector using
+2015-2016 LHCp pcollisions
+The ATLAS Collaboration
+Thereconstructionandcalibrationalgorithmsusedtomeasuremissingtransversemomentum
+(Emiss
+T ) with the ATLAS detector utilise energy deposits within the calorimeter and tracks
+reconstructedintheinnerdetectorandthemuonspectrometer. Theperformanceofthe Emiss
+T
+reconstruction algorithms is evaluated using data collected in proton–proton collisions in
+2015 and 2016 at a centre-of-mass energy of13 TeV. Results are shown for a data sample
+corresponding to an integrated luminosity of36fb−1. The performance ofEmiss
+T built with
+jets reconstructed using a particle ﬂow algorithm is presented and compared to that built
+with calorimeter jets. Various strategies are used to suppress eﬀects arising from additional
+proton–proton interactions, called pileup. The tracking and vertexing information is used to
+distinguishcontributionsfrompileupenteringthe Emiss
+T calculation. Themodellingof Emiss
+T in
+simulated events containing aZ boson decaying to two charged leptons (electrons or muons)
+is compared to data, and estimates of the systematic uncertainties in theEmiss
+T measurements
+are presented.
+©2018 CERN for the beneﬁt of the ATLAS Collaboration.
+Reproduction of this article or parts of it is allowed as speciﬁed in the CC-BY-4.0 license.
+
+===== PAGE 2 =====
+Contents
+1 Introduction 3
+2 ATLAS detector 4
+3 Data and Monte Carlo samples 4
+3.1 Data 4
+3.2 Monte Carlo Samples 5
+4 Event selection 6
+4.1 Z→ℓℓ event selection 6
+4.2 H→ WW event selection 6
+5 Deﬁnitions and reconstruction ofEmiss
+T 7
+5.1 Deﬁnition of Emiss
+T resolution 7
+6 The Emiss
+T hard term 8
+6.1 Muons 8
+6.2 Electrons 8
+6.3 EMTopo jets 9
+6.4 PFlow jets 9
+6.5 Deﬁnition of the Emiss
+T operating point 10
+6.6 Overlap removal 10
+6.6.1 Jet and e/γ signal ambiguity resolution 10
+6.6.2 Jet and µsignal ambiguity resolution 11
+7 The Emiss
+T soft term 13
+7.1 The track-based soft term for EMTopoEmiss
+T 13
+7.2 The track-based soft term for PFlowEmiss
+T 14
+8 Electronics saturation in electromagnetic end-cap calorimeter 15
+9 Working points for Emiss
+T 15
+10 Systematic uncertainties 17
+10.1 TST systematics for EMTopoEmiss
+T 18
+10.2 TST systematics for PFlowEmiss
+T 20
+11 Modelling and performance ofEmiss
+T 22
+11.1 Modelling ofEmiss
+T 22
+11.2 Comparisons of EMTopo and PFlowEmiss
+T distributions 22
+11.3 Resolution ofEmiss
+T 23
+11.4 Measuring Emiss
+T recoil versuspZ
+T 27
+12 Conclusion 29
+2
+
+===== PAGE 3 =====
+1 Introduction
+The Large Hadron Collider (LHC) produces proton–proton (pp) collisions at a center-of-mass energy of
+upto13TeV,theby-productsofwhicharemeasuredbytheATLASdetector[1]. Momentumconservation
+in the plane transverse to the beam axis1 implies that the transverse momenta of all particles in the ﬁnal
+stateshouldsumtoeﬀectivelyzero. Anymomentumimbalancemayindicatethatparticlesinvisibletothe
+detector systems were produced in the collision, such as neutrinos or possibly new particles introduced
+by physics beyond the Standard Model. This momentum imbalance is known as missing transverse
+momentum (Emiss
+T ).
+The Emiss
+T is reconstructed from the signals of all detected particles in the ﬁnal state, and as such strongly
+depends on the energy scale and resolution of the reconstructed and calibrated “hard objects”: electrons,
+photons, muons, hadronically decayingτ-leptons, and jets. Reconstructed momentum ﬂow not attributed
+toanyhardobjectsarereconstructedasthe Emiss
+T “softterm”. Perfectlyreconstructed Emiss
+T shouldbeequal
+tothetransversecomponentofthesumofthemomentaofinvisibleparticlesintheevent. However,as Emiss
+T
+isacomplicatedevent-levelqualityconstructedusingmanydiﬀerentsignalsinalldetectorsubsystems, it
+is susceptible to many imperfections. Object momentum mismeasurement, miscalibration, and particles
+going through un-instrumented regions of the detector all impactEmiss
+T reconstruction. Momentum
+contributions from pileup interactions can enter into theEmiss
+T calculation, contaminating the trueEmiss
+T
+of the hard scatter interaction of interest. The fakeEmiss
+T arising from these eﬀects creates distorted
+distributions compared to trueEmiss
+T signatures. The performance of Emiss
+T reconstruction algorithms
+is studied with derived quantities such as the mean, the width and the integral of the tail of theEmiss
+T
+distribution.
+The Emiss
+T reconstructedwithdiﬀerentalgorithmsisstudiedinbothdataandMonteCarlo(MC)simulation
+for diﬀerent event topologies. FakeEmiss
+T is studied using a leptonically decayingZ boson sample which
+is expected to have no true2 Emiss
+T . In MC simulation, theEmiss
+T from each algorithm is compared to the
+true Emiss
+T , deﬁned as the magnitude of the vector sum of thepT of stable3 invisible particles from the
+hard-scatter collision.
+The Emiss
+T reconstruction algorithms developed by ATLAS for 7 and 8 TeV data from 2010 through 2013
+are summarized in Reference [2, 3]. These algorithms were further developed for the 13 TeV data in
+2015 and are documented in Reference [4]. This note presents studies evaluating the performance of
+the Emiss
+T reconstruction algorithms in 2015+ 2016 data, and additionally documents the performance of
+Emiss
+T built with Particle Flow jets [5], new techniques for reducing theEmiss
+T resolution dependence on
+pileup, improved strategies for resolving jet and electron or photon energy deposits, and a new strategy
+for rejecting fake jets arising from calorimeter noise.
+This document is organised as follows: Section 2 describes the systems forming the ATLAS detector.
+Sections 3 and 4 describe the samples and event selections used in the various studies. Sections 5, 6, and
+7 give an overview of theEmiss
+T deﬁnitions and reconstruction strategies.
+1 ATLAS uses a right-handed coordinate system with origin at the nominal interaction point (IP) in the center of the detector
+and the z-axis along the beam pipe. Thex-axis points from the IP to the center of the LHC ring, and they-axis points
+upwards. Cylindrical coordinates(r,φ) are used in the transverse plane,φ being the azimuthal angle around the beam pipe.
+The pseudorapidity is deﬁned in terms of the polar angleθ asη =− ln tan(θ/2).
+2 Some true Emiss
+T does arise from neutrinos produced in heavy ﬂavour decays; however, this eﬀect is very small compared to
+the trueEmiss
+T in Z Z→ℓℓνν events.
+3 ATLAS deﬁnes stable particles as those with an expected laboratory lifetimeτ corresponding tocτ >10 mm.
+3
+
+===== PAGE 4 =====
+TheeventcleaningstrategyisdocumentedinSection8,andthejetselectionsusedinthe Emiss
+T reconstruc-
+tion are discussed in Section 9. Section 10 discusses methods used to determine systematic uncertainties
+associated with theEmiss
+T measurement. Section 11 presents the resultingEmiss
+T performance.
+The summary and outlook are in Section 12.
+2 ATLAS detector
+TheATLASexperiment[1]isamultipurposeparticlephysicsdetectorwithaforward-backwardsymmetric
+cylindrical geometry. It covers almost the whole solid angle around the collision point with layers of
+trackingdetectors(upto |η|= 2.5),calorimeters(upto |η|= 4.9),andmuonchambers(upto |η|= 2.7).
+The inner detector (ID) is used to reconstruct tracks from the passage of charged particles. The ID has
+complete azimuthal coverage and spans the region|η|< 2.5. It consists of layers of high-granularity
+silicon pixel detectors and silicon microstrip detectors (SCT). A transition radiation tracking detector
+(TRT) provides coverage for|η|< 2.0for additional tracking and particle identiﬁcation. During the LHC
+shutdown between Run-1 and Run-2 the Insertable B-Layer (IBL) [6] was added between the previous
+innermost pixel layer and the beam pipe. A solenoid magnet provides a uniform magnetic ﬁeld of 2 T
+inside the tracking detectors, generating track curvature which can be used to determine charged particle
+momenta.
+High granularity liquid-argon (LAr) electromagnetic sampling calorimeters cover the pseudorapidity
+range|η|< 3.2. The regions|η|< 1.37 and 1.5 <|η|< 1.8 feature thin LAr pre-samplers in front the
+electromagneticcalorimeter. Thehadroniccalorimetryintherange |η|< 1.7isprovidedbyascintillator-
+tile calorimeter (Tile), which is separated into a central barrel and two smaller extended barrel cylinders,
+oneoneithersideofthecentralbarrel. Intheend-caps( |η|> 1.5),theLArtechnologyisalsousedforthe
+hadronic calorimeters (HEC), matching the outer|η|limits of the electromagnetic end-cap calorimeters.
+The LAr forward calorimeters (FCal) extend the coverage to|η|= 4.9with electromagnetic and hadronic
+energy measurements.
+The muon spectrometer (MS) surrounds the calorimeters. It consists of three large superconducting
+air-core toroid magnets, precision tracking chambers providing accurate muon tracking out to|η|= 2.7,
+and fast detectors for triggering in the region|η|< 2.4.
+Atwo-leveltriggersystemisusedtoselectevents. Alow-levelhardwaretriggerreducesthedatarate,and
+a high-level software trigger selects interesting ﬁnal state events.
+3 Data and Monte Carlo samples
+3.1 Data
+The dataset consists of proton-proton collisions at a centre-of-mass energy of 13 TeV, recorded by the
+ATLASexperimentattheLHCin2015and2016. Requirementstoensurethequalityofbeamconditions,
+detector performance and data are imposed [7–9], as well as additional event cleaning criteria described
+inSection8. Afterapplicationofthesecriteria,thedatasetcorrespondstoatotalintegratedluminosityof
+36fb−1.
+4
+
+===== PAGE 5 =====
+3.2 Monte Carlo Samples
+All samples of simulated events are passed through the ATLAS detector simulation [10] based on
+Geant4 [10] and are reconstructed with the standard ATLAS reconstruction software. The eﬀects of
+pileup from multiple interactions in the same and nearby bunch crossings are modelled by overlaying
+minimum-biasevents, simulatedusingthesoftQCDprocessesof Pythia8.186[11]withtheA2[12]set
+of tuned parameters (tune) and MSTW2008LO [13] parton distribution functions (PDF). For all samples
+of simulated events, except for those generated usingSherpa [14], the EvtGen v1.2.0 program [15] is
+used to describe the decays of bottom and charm hadrons. A summary of all the generators used for the
+simulation of the signal and background processes is shown in Table 1.
+Simulationof Z bosonsdecayingtoapairofoppositesignleptons( e,µ,τ)isproducedby Sherpa2.2.1[14,
+16,17],andthesimulationisnormalisedtothenext-to-nexttoleadingordercross-section[18]. Theparton
+showeringandhadronizationareperformedwith Sherpa2.2.1[19,20]. The Sherpa Z bosonsimulationis
+consideredasthedefaultsimulationthroughoutmostofthisnote,exceptwherementionedotherwise. The
+Powheg-Boxv2+Pythia8 [21] andMadGraph5_aMC@NLO 2.2.0+Pythia8 [22]Z boson simulation
+are used to compute the systematic uncertainties on theEmiss
+T soft term as discussed in Section 10. In
+additiontothefull Geant4simulationoftheATLASdetector,dedicatedsystematicuncertaintiesarealso
+derived for samples coming from fast calorimeter simulation (AFII) [23].
+Table 1: Generators, cross-section normalizations, PDF sets, and MC tunes used in this analysis.
+Sample Z→ℓℓ Z→ℓℓ Z→ℓℓ W→ℓν
+Generator Sherpa2.2.1 [14, 16, 17]Powheg-Boxv2+Pythia8 [21]
++Photos++3.52 [24]
+MadGraph5_aMC@NLO
+2.2.0 [22] Sherpa2.2.1
+Use Signal Systematics Systematics Background
+Cross-section orderNNLO [18] NNLO NNLO NNLO
+ME PDF set NNPDF3.0NNLO [13]CT10 [25] NNPDF2.3LO [26] NNPDF3.0NNLO
+PS and HadronizationSherpa2.2.1 [19, 20] Pythia8.186 [11] Pythia8.186 Sherpa2.2.1
+UE Model TuneDefault AZNLO [27] A14 [28] Default
+Sample t¯t s-channel top t-channel top W t-channel top
+Generator Powheg-Boxv2 Powheg-Boxv1 [29] Powheg-Boxv1 Powheg-Boxv1 [30]
+Use Signal and backgroundSignal and backgroundSignal and backgroundSignal and background
+Cross-section orderNNLO+NNLL [31, 32]NLO [33] NLO [34] NLO [35]
+ME PDF set CT10 CT10f4 CT10f4 CT10f4
+PS and HadronizationPythia6.428 [36] Pythia6.428 Pythia6.428 Pythia6.428
+UE Model TuneP2012 [37] P2012 P2012 P2012
+Sample W+W−→ℓ+νℓ−¯ν Z Z→ℓℓνν W Z→ℓνℓℓ VBFH→W W∗
+Generator Powheg-Boxv2+Pythia8 Powheg-Boxv2+Pythia8 Powheg-Boxv2+Pythia8 Powheg+Pythia8
+Use Background Background Background Signal
+Cross-section orderNNLO NNLO NNLO NNLO
+ME PDF set CT10NLO CT10NLO CT10NLO NNPDF30NNLO
+PS and HadronizationPythia8.186 Pythia8.186 Pythia8.186 CTEQ6L1 [38]
+UE Model TuneAZNLO AZNLO AZNLO AZNLO
+5
+
+===== PAGE 6 =====
+4 Event selection
+Theperformanceof Emiss
+T isstudiedindiﬀerenteventtopologies. Inparticular, Emiss
+T signaturesaregener-
+ally distinguished betweentrue Emiss
+T signatures, in which the momentum imbalance is caused by prompt
+non-interacting particles escaping the detector, andfake Emiss
+T signatures, caused by mismeasurement
+eﬀects or similar.
+4.1 Z→ℓℓ event selection
+The Z→ℓℓ event topology is particularly convenient to study the fakeEmiss
+T eﬀects. The leptonic decay
+ofthe Z bosonisnotonlyextremelyeasytotriggerbutalsoabundantlyproducedin pp collisionandwell
+modeled in the current ATLAS simulation. TheZ→ℓℓ event selection criteria are:
+• The lowest unprescaled (pT > 24 GeV in 2015 andpT > 26 GeV in 2016) single lepton (muon or
+electron) trigger is ﬁred and at least one of the leptons matches to the trigger.
+• The event contains exactly two opposite sign same ﬂavor leptons consistent with the hard scatter
+interaction,passing“Medium”particleidentiﬁcation(PID)[39,40],“Loose”isolation,andassoci-
+atedtothehard-scatterprimaryvertex(PV).Theleadingleptoninthepairisrequiredtohave pT>
+30 GeV and the sub-leading onepT > 20 GeV.
+• No additional electrons or muons wthpT > 7 GeV and passing “Loose” PID are identiﬁed.
+• The invariant mass of the di-lepton pair is consistent with theZ boson measured mass estimation
+withinawindowof 15 GeV:|mℓℓ− mZ|< 15 GeV. Sections6.6.1and10useawindowof 25 GeV
+to increase the sample size.
+• Eventswith1ormorejetsafteroverlapremovalwithhardobjectsandfailingthe“BadLoose”criteria,
+which relates to jet cleaning as deﬁned in Reference [9], are removed in data and simulation.
+• Event cleaning from Section 8 is applied to data only.
+4.2 H→ W W event selection
+The vector boson fusion (VBF)H→ WW event topology is useful to study the performance ofEmiss
+T
+in topologies with forward jets. Studies are performed in MC simulation only; thus the absence of
+background allows for very loose selection criteria. The following selection is applied:
+• The lowest unprescaled (pT > 24 GeV in 2015 andpT > 26 GeV in 2016) single lepton (muon or
+electron) trigger is ﬁred.
+• The event contains exactly two opposite-sign same-ﬂavor leptons, which are identiﬁed with “Me-
+dium” PID and “Loose” isolation selection criteria withpT > 25 GeV.
+• No additional electrons or muons wthpT > 7 GeV and passing “Loose” PID are identiﬁed.
+6
+
+===== PAGE 7 =====
+5 Deﬁnitions and reconstruction ofEmiss
+T
+Diﬀerentalgorithmshavebeendevelopedtoreconstructthe Emiss
+T inATLAS.Theydiﬀerintheinformation
+used to reconstruct the pT of the particles, using either energy deposits in the calorimeters, tracks
+reconstructed in the ID or diﬀerent combinations of both.
+The Emiss
+T reconstruction estimates the amount of missing transverse momentum in the detector using
+calibrated detector signals corresponding to muons (µ), electrons (e), photons (γ), hadronically decaying
+τ-leptons, and jets. The missing transverse momentum vector®E miss
+T is calculated using the components
+along thex and y axes:
+E miss
+x(y) = E miss,µ
+x(y) + E miss,e
+x(y) + E miss,γ
+x(y) + E miss,τ
+x(y) + E miss,jets
+x(y) + E miss,soft
+x(y) , (1)
+where each term is calculated as the negative vectorial sum of transverse momenta of energy deposits
+or trajectories of charged particles. Energy deposits in the calorimeters and tracks are matched to
+reconstructed objects in an order chosen to minimise double-counting of detector signals. The most
+commonly used order for theEmiss
+T reconstruction sequence for the hard-object contribution starts with
+muons, electrons, followed by photons, then hadronically decayingτ-leptons, and ﬁnally jets. Muons are
+principally reconstructed from ID and MS tracks alone, with corrections based on their energy loss in the
+calorimeter, leading to little or no signal overlap with the other reconstructed particles in the calorimeter.
+DetailsonthetreatmentofthesesmalloverlappingsignalsarepresentedinSection6.6.2. Thesignalsnot
+associated with reconstructed objects form thesoft term, whereas those associated with the reconstructed
+objects are collectively referred to as thehard term.
+The vector®E miss
+T provides the amount of the missing transverse momentum via its magnitudeEmiss
+T and
+its direction in the transverse plane in terms of the azimuthal angleφmiss.
+The total transverse energy in the detectorÍ ET quantiﬁes the total event activity. It is an important
+observable for understanding the resolution of theEmiss
+T , especially with increasing pileup contributions,
+and is deﬁned as the scalar sum of the transverse momenta of reconstructed objects and soft-term signals
+that contribute to theEmiss
+T reconstruction:
+Õ
+ET =
+Õ
+pµ
+T +
+Õ
+pe
+T +
+Õ
+pγ
+T +
+Õ
+pτ
+T +
+Õ
+pjets
+T +
+Õ
+psoft
+T , (2)
+5.1 Deﬁnition ofEmiss
+T resolution
+The Emiss
+x and Emiss
+y areexpectedtobeapproximatelyGaussiandistributedfor Z→ℓℓ eventsasdiscussed
+in Reference [2], with deviations arising from noise and events with largeÍ ET. However, because these
+distributionshavenon-Gaussiantails,theroot-mean-square(RMS)isusedtoestimatetheresolution. The
+RMS includes important information about theEmiss
+T tails which would be lost if the result of a Gaussian
+ﬁt overonly thecore ofthe distribution isused. The resolutionof theEmiss
+T distribution isextracted using
+the RMS from the combined distribution ofEmiss
+x and Emiss
+y . For processes with realEmiss
+T , the trueEmiss
+x
+and Emiss
+y are subtracted from their reconstructed quantities in simulation.
+7
+
+===== PAGE 8 =====
+6 The Emiss
+T hard term
+Each reconstructed hard object has its own dedicated calibration, translating the detector signals into a
+fully corrected four-momentum. A subset of these reconstructed particles are then selected for physics
+analysisusingqualityorisolationcriteriainordertorejectfakeorotherwiseproblematicsignatures. The
+hard term of theEmiss
+T is computed from the selected muons, electrons, photons, hadronically decaying
+τ-leptons4, and jets in each event.
+The speciﬁc particle and jet selections in a given analysis must be reﬂected in theEmiss
+T for a consistent
+interpretation of a given event. For example, the electron selection applied in a given analysis must be
+applied consistently also to theEmiss
+T reconstruction. The selection of reconstructed non-jet objects are
+interpreted (and therefore calibrated) as electrons rather than as hadronic jets in theEmiss
+T reconstruction.
+The selection criteria used in this note and deﬁned below are typical but not universal. The performance
+measurements for theEmiss
+T as deﬁned and presented in this note are therefore representative of most
+ATLAS searches and measurements.
+The prescriptions for using reconstructed photons and hadronically decayingτ-leptons are discussed.
+However, no reconstructed photons nor hadronically decayingτ-leptons are used in the deﬁnition of
+the Emiss
+T in this note, which means that their corresponding detector signals are treated as if arising
+from hadronic jets. The topologies considered do not have a large production of either object, so their
+contributions were found to be negligible in the core as well as the tails of the distributions in this
+note. However, in analyses speciﬁcally requiring these objects they will typically use them in theirEmiss
+T
+deﬁnition. Some Emiss
+T distributionsbuiltusing theseobjectscanbe foundinReferences[41]and [42].
+6.1 Muons
+Muon candidates are identiﬁed by matching an ID track with an MS track or segment [40]. Muons are
+required to satisfy pT > 10 GeV to be included in theEmiss
+T reconstruction. Since muon track pT is
+correctedforenergylossesinthedetectorasdescribedinSection6.6.2,anymuonenergydepositedinthe
+calorimeter is taken into account using either parameterised estimates or direct measurements to prevent
+double-counting [4, 40].
+6.2 Electrons
+Electrons are reconstructed from clusters in the electromagnetic (EM) calorimeter which are associated
+withanIDtrack[39]. Electronidentiﬁcationisrestrictedtotherangeof |η|< 2.47,excludingthetransition
+regionbetweenthebarrelandend-capEMcalorimeters, 1.37<|η|< 1.52. TheyarecalibratedattheEM
+scale5 [43] as well as additional simulation-based and in-situ corrections [44]. Electrons satisfying the
+“Medium” likelihood [39] and “Loose” isolation selection criteria withpT > 10 GeV are included in the
+Emiss
+T reconstruction for the studies presented in this note.
+4 This term consists of reconstructed 3-prong and 1-prong hadronically decayingτ-leptons.
+5 The EM scale is the nominal signal scale for the ATLAS calorimeters. It accounts correctly for the energy deposited by EM
+showers in the calorimeter, but it does not consider energy losses in the un-instrumented material or invisible energy deposits
+in hadronic showers.
+8
+
+===== PAGE 9 =====
+6.3 EMTopo jets
+Jets are reconstructed from three-dimensional topological clusters (topoclusters) [45] of energy deposits
+inthecalorimeterusingtheanti- kt algorithm[46]withadistanceparameter R =0.4. Thetopoclustersare
+calibratedattheEMenergyscale. ThejetsarefullycalibratedusingtheEM+JESscheme[47]includinga
+correctionforpileup[48]. TheseEMTopojetsarerequiredtohave pT > 20GeVafterthefullcalibration.
+The matching of tracks with jets is performed via ghost association, where tracks are clustered as ghost
+particlesintothejet,asdescribedinReference[3]andbasedontheapproachoutlinedinReference[49].
+Jets are further ﬁltered using a tagging algorithm to select hard-scatter jets [48]. The jet vertex tagging
+(JVT) algorithm provides a likelihood discriminant6 using observables derived from the tracks matched
+to each jet. In the calculation of the JVT discriminant the total amount ofpT carried by tracks from the
+hard-scattervertexandmatchedtothegivenjetisrelatedtothetotalamountof pT carriedbyallmatched
+tracks, among other inputs, to tag jets from the hard-scatter interaction. After proper jet calibration
+and reconstruction, this quantity is used to reject pileup for jets by requiring JVT> 0.59 for jets with
+pT < 60 GeV and|η|< 2.4.
+The forward-jet-vertex tagger (fJVT) [50] is an approach to remove jets with|η|> 2.5 and 20 < pT <
+50 GeV coming from pileup interactions. The fJVT uses the angular kinematics of other jets in the event
+to associate forward jets, which do not have tracking information, to pileup vertices by minimizing the
+other vertex’s reconstructedEmiss
+T . In this note, the fJVT selection criteria is not used unless speciﬁed, as
+in Section 9.
+6.4 PFlow jets
+Particle Flow (or PFlow) reconstruction of objects is particularly useful for theEmiss
+T measurement as it
+reﬂects the use of the highest quality signals from the calorimeter and the ID. This approach combines
+the measurements from the inner detector and calorimeter to reconstruct the energy ﬂow of the event to
+improve jet measurements as opposed to simply using track based corrections in the jet calibration.
+The PFlow algorithm suppresses calorimeter energy deposits arising from charged pileup particles and
+takes the momentumestimation from tracks whenever thetracker resolution is better thanthe calorimeter
+resolution. PFlow jets are constructed with the anti-kt algorithm with aR = 0.4 radius using charged
+constituents associated with the primary vertex and neutral PFlow constituents as inputs. This strategy
+oﬀers signiﬁcant improvements of the jet energy resolution, reduced pileup jet rates, and a more accurate
+jetdirection inthe(η,φ)plane. ThePFlowalgorithm isdescribed indetailin Reference[5]. Afterproper
+jet calibration and reconstruction, the PFlow jets are associated to the hard-scatter interaction with the
+JVT required to be larger than 0.2 for jets withpT < 60 GeV and|η|< 2.4. This selection criteria has
+the same pileup jet rejection as the tighter JVT selection for EMTopo jets with a higher hard-scatter jet
+eﬃciency.
+The Emiss
+T may be built with either EMTopo jets or PFlow jets. As tracks associated to electrons or
+muons are not considered in the PFlow shower subtraction, no diﬀerences are expected for theE miss,µ
+x(y)
+and E miss,e
+x(y) components with respect to the EMTopoEmiss
+T . On the other hand, the jet and the soft term
+can signiﬁcantly beneﬁt from the utilisation of PFlow constituents as deﬁned in Section 7.2. These terms
+represent the major changes of PFlowEmiss
+T with respect to the EMTopoEmiss
+T .
+6 The JVT score ranges from 0 (pileup-like) to 1 (hard-scatter-like).
+9
+
+===== PAGE 10 =====
+6.5 Deﬁnition of theEmiss
+T operating point
+The Loose Emiss
+T working point, which is used throughout this note unless otherwise indicated, uses the
+same jet selection as in Reference [4], and includes all jets withpT > 20 GeV that also pass the JVT
+criteria when the jet has|η|< 2.4 and pT < 60 GeV. This applies toEmiss
+T built with both EMTopo and
+PFlow jets.
+6.6 Overlap removal
+In the calculation ofEmiss
+T and Í ET the contributing objects need to be reconstructed from mutually
+exclusive detector signals to avoid multiple inclusions of the same signal in constructed observables.
+Energydepositsinthedetectorsystemsneedtobecorrectlyassignedtotheparticlesorjetsthatgenerated
+them. When hard objects are produced close-by in the detector, shared or overlapping energy deposits
+must be resolved, and their treatment is speciﬁed in Sections 6.6.1 and 6.6.2.
+Topoclusters from jets are matched to other objects using a∆R matching. For hadronically-decaying
+τ-leptons, topoclusters within a ∆R < 0.2 of the jet used to seed the hadronicτ reconstruction are
+matched. For electrons and photons, the matching is more complex and uses an iterative procedure. For
+topoclusters with∆R < 0.1 of the electron or photon candidate the subset of topoclusters that match best
+to the candidate’s energy is chosen. The best-matching procedure proceeds as follows starting from the
+highest pT topocluster and iterating to the lowestpT one:
+• Topoclusters are associated to a candidate if they have energy less than 1.5 times the candidate’s
+energy and if adding the topocluster energy to a running sum reduces the diﬀerence between the
+sum of topocluster energy and the candidate’s energy.
+• If no topoclusters have energy less than 1.5 times the candidate’s energy, then only the topocluster
+with energy closest to the candidate’s energy is associated to the candidate.
+6.6.1 Jet ande/γ signal ambiguity resolution
+All electrons passing the selection described in Section 6.2 enter theEmiss
+T reconstruction as the highest
+priority signature in the calorimeter. The lower-priority reconstructed particles (γ, τ-leptons, and jets
+addedinorderofpriority)arefullyrejectediftheysharetheircalorimetersignal(e.g. topoclustersare ∆R
+matched to the hard objects as described above) with a higher-priority object that has already entered the
+Emiss
+T reconstruction. Generally, jets are rejected if they overlap with accepted higher-priority particles.
+As such, the jet contribution toEmiss
+T is dependent on the signal ambiguity resolution. Fake missing
+transverse momentum can arise in cases where electrons, photons or hadronically-decayingτ-leptons are
+closetojets. Inpreviouslyused Emiss
+T deﬁnitions[4],thequantitythatdecidedtheamountofajet’senergy
+signaturethatwastreatedasarealjetandassignedtothe Emiss
+T jettermwastheratio foverlapoftheelectron
+(photon or hadronically decayingτ-leptons) energyEEM
+e(γ,τ) to the jet energyEEM
+jet :
+foverlap =
+EEM
+e(γ,τ)
+EEM
+jet
+(3)
+with both energies calibrated at the EM scale. The variable foverlap represents the electron (photon,
+hadronically decayingτ-lepton) energy fraction in a given jet, and it is used to determine the amount of
+10
+
+===== PAGE 11 =====
+the jet energy signatures that should be used in theEmiss
+T reconstruction. The case offoverlap≤ 0.5 may
+arisefromahigher pT jetnearanelectron,andthejetisincludedin Emiss
+T reconstructionwithits pT scaled
+by foverlap. For foverlap> 0.5 the jet was assigned to the soft term, and only the tracks associated with the
+jet were included in theEmiss
+T calculation.
+This procedure is problematic if both the jet and electron, photon or hadronically decayingτ-lepton are
+real and overlapping, as the soft term in this note is track-based only and does not account for neutral
+particles. Neutral energy is lost and manifests as spuriousEmiss
+T . Here the overlap between electrons and
+jetsisdiscussedprimarily,buttheprocedureisappliedsimilarlyto γandhadronicallydecaying τ-leptons.
+For electrons and jets with∆R(e, jet) < 0.4, the Emiss
+T tails above 200 GeV are dominated by jets with
+foverlap> 0.5because around half of the jetpT was not being included in theEmiss
+T reconstruction.
+The Emiss
+T calculation may be improved by reducing the number of real jets that are wrongly assigned
+to the soft term. This was studied in simulation. An additional discriminating variable∆pEM,e(γ,τ),jet
+T ,
+deﬁned in Equation 4, is used, represents the uniquepT of the jet and is calculated as thepT diﬀerence at
+the EM scale of the jet and electron:
+∆pEM,e(γ,τ),jet
+T = pEM,jet
+T − pEM,e(γ,τ)
+T . (4)
+A scan is performed for selection criteria onfoverlapand ∆pEM,e(γ,τ),jet
+T . The optimisation is performed on
+data and simulation applying theZ event selection from Section 4.1.
+Using foverlap< 1.0, and∆pEM,e(γ,τ),jet
+T > 20 GeV as condition for the jet to be treated as a real jet and put
+into the jet term, the tails are signiﬁcantly reduced, as shown in Figure 1. The reduction of theEmiss
+T tails
+above 200 GeV is found to be about 30%in Z→ ee simulated events.
+6.6.2 Jet andµ signal ambiguity resolution
+Muons experience energy loss in the calorimeters, but only non-isolated muons overlap with other hard
+objects, typically jets or hadronically decayingτ-leptons. Tagging jets using JVT eﬃciently retains those
+fromthehard-scatterprimaryvertexfor Emiss
+T reconstructionandrejectsjetsgeneratedbypileup. However,
+amuonoverlappingwithapileupjetcanleadtoamis-tag,becausetheIDtrackfromthemuonrepresents
+a signiﬁcant amount ofpT from the hard-scatter vertex and thus increases the JVT value. In this case the
+pileup jetpT contributes toEmiss
+T , degrading both theEmiss
+T response and resolution due to the stochastic
+nature of its contribution.
+Muonscanalsooccasionallyexperienceasigniﬁcantenergylossinthecalorimeterwhichisreconstructed
+asahard-scatterjetfromtheprimaryvertex. ThisjetisfoundincloseproximitytotheIDtrackassociated
+withthemuon. Inclusionofsuchajetinto Emiss
+T reconstructionleadstodouble-countingofthetransverse
+momentumassociatedwiththemuonenergyloss,asthefullyreconstructedmuon pT isalreadycorrected
+for this eﬀect.
+To reject contributions from pileup jets and jets reconstructed from muon energy loss, the following
+selection criteria are applied:
+• the ID track of the muon is “ghost”-associated to the jet using the anti-kt algorithm [46] ;
+• pµ−ID
+T /pjet−ID
+T > 0.8 – the transverse momentum of the ID track associated with the muon (pµ−ID
+T )
+represents a signiﬁcant fraction of the transverse momentumpjet−ID
+T , the sum of the transverse
+momenta of all ID tracks emerging from the hard-scatter PV associated with the jet;
+11
+
+===== PAGE 12 =====
+Figure 1: Comparison ofEmiss
+T performance between old (red) and new (blue) jet and electron/photon/hadronically
+decayingτ-lepton overlap removal (OR) procedure in Z→ ee simulation. The Emiss
+T tails are diminished with the
+new technique, indicating that fakeEmiss
+T has been reduced.
+• pjet
+T/pµ−ID
+T < 2–theoveralltransversemomentum pjet
+T ofthejetisnottoolargecomparedto pµ−ID
+T ;
+• N PV
+track < 5 – the total number of tracksN PV
+trackassociated with the jet and emerging from the hard-
+scatter PV is small.
+All jets with overlapping muons meeting all of these criteria are considered to be either from pileup or a
+catastrophic muon energy loss and are rejected forEmiss
+T reconstruction. The corresponding muons enter
+into theEmiss
+T calculation.
+Another consideration for muon contributions toEmiss
+T is Final-State Radiation (FSR). Muons can radiate
+hard photons at small angles, which are typically not reconstructed as photons because of the nearby
+muon ID track violating photon isolation requirements. They are also not reconstructed as electrons,
+due to the mismatch between the ID track momentum and the energy measured by the calorimeter. The
+calorimetersignalgeneratedbytheFSRphotonisreconstructedasajetwithanassociatedmuonIDtrack.
+As the transverse momentum carried by the FSR photon is not recovered in muon reconstruction, jets
+representing this photon need to be included in theEmiss
+T reconstruction. Such jets are characterised by
+the following selections, which are highly indicative of a photon in the ATLAS calorimeters:
+• the ID track of the muon is “ghost”-associated to the jet using the anti-kt algorithm [46] ;
+12
+
+===== PAGE 13 =====
+• N PV
+track < 3 – the jet has low charged-particle content, indicated by a very small number of tracks
+from the hard-scatter PV;
+• fEM > 0.9 – the jet energyEjet is largely deposited in the electromagnetic (EM) calorimeter, as
+expected for photons and measured by the corresponding energy fractionfEM = E EM
+jet/Ejet;
+• pjet PS
+T > 2.5 GeV – the large transverse momentum contribution of the jet in the presampler (PS)
+calorimeter (pjet PS
+T ) layer indicates an early starting point for the shower;
+• wjet < 0.1–thejetisnarrow,withawidth wjet comparabletoadenseelectromagneticshower; wjet
+is deﬁned as:
+wjet =
+Í
+i ∆Ri pT,iÍ
+i pT,i
+, (5)
+where ∆Ri =
+√
+(∆ηi)2 +(∆φi)2 is the angular distance of topoclusteri from the jet axis, andpT,i is
+the transverse momentum of this cluster;
+• pjet−ID
+T /pµ−ID
+T > 0.8 – the transverse momentum pjet−ID
+T carried by all tracks emerging from the
+hard-scatter PV and associated with the jet is close topµ−ID
+T .
+Jets are accepted forEmiss
+T reconstruction when found to be consistent with an FSR photon as deﬁned by
+meeting all of the above selection criteria. Their energy scale is set to the EM scale to correctly reﬂect
+the interpretation as a photon.
+7 The Emiss
+T soft term
+The soft term is a necessary but challenging ingredient of theEmiss
+T reconstruction. It is comprised of all
+detectorsignalsnotmatchedtothereconstructedobjectsdeﬁnedpreviouslyandmaycontaincontributions
+from the hard scatter as well as the underlying event and pileup interactions.
+7.1 The track-based soft term for EMTopoEmiss
+T
+Several algorithms used in the past have been designed to reconstruct the soft term [2, 3], but allEmiss
+T
+deﬁnitions described in this note use a track-based soft term (TST). The TST includes contributions from
+tracks not associated to hard objects.
+Tracks are associated to the hard scatter vertex by considering the longitudinal and the transverse impact
+parameters d0 and z0 deﬁned with respect to the hard scatter vertex position.d0 is deﬁned as the shortest
+distance in the transverse plane from a track to the beam line, andz0 is thez-coordinate of the track point
+closest to the beam line. The selections are summarised in Table 2.
+pT > 0.4 GeV
+|η|< 2.5 (ATLAS detector coverage for the ID tracking volume) d0
+σ(d0)
+< 2
+|z0 sin(θ)|< 3.0 mm
+Table 2: Track selections for the TST.
+13
+
+===== PAGE 14 =====
+These criteria provide excellent track-to-vertex matching for the soft term. By not including the neutral
+contributions, the track-based reconstruction entirely removes the out-of-time pileup contributions that
+aﬀect neutral soft term algorithms [2, 3].
+To avoid double counting particles, the tracks matched to the high-pT reconstructed objects deﬁned in
+Section 6 need to be removed from the soft term. All of the following classes of tracks are excluded from
+the soft term7:
+• tracks within∆η <0.2 and ∆φ <0.05around electrons and photons8;
+• tracks within a cone of size∆R =0.2 around hadronically decayingτ-leptons;
+• ID tracks associated with identiﬁed muons;
+• tracks matched to jets using the ghost association technique described in Section 6;
+• isolated tracks withpT > 120 GeV (> 200 GeV for|η|< 1.5) having estimated relative resolution
+on theirpT larger than 40% or having no associated calorimeter energy deposit withpT larger than
+65% of the trackpT9. This is a cleaning cut to remove mismeasured tracks.
+7.2 The track-based soft term for PFlowEmiss
+T
+The Emiss
+T built using PFlow jets instead of EMTopo jets uses a slightly diﬀerent deﬁnition of the TST.
+Analogous to the standard track-based soft term reconstruction, the PFlow-based soft term (PFlow TST)
+uses tracks associated to charged PFlow constituents which are not associated to any well-identiﬁed
+reconstructed object and surviving the track-to-vertex association. Tracks entering in PFlow TST have
+similar requirements to the ones used in the EMTopo-based approach including the same track-to-hard-
+object association as described in Section 7. Any diﬀerences are due to the diﬀerent tracks quality
+requirements considered by the PFlow algorithm and also to the diﬀerent track-to-vertex association.
+However,acomparisonbetweentheEMTopo-basedandthePFlow-basedTSTshowedminimaldiﬀerences
+between these two terms. The diﬀerent track quality requirements are summarised as follows:
+• pT > 0.5 GeV,
+• |η|< 2.5,
+• |z0 sin(θ)|< 2.0 mm.
+Norequirementonthetransversetrackparameter d0isappliedforPFlowTSTorinthePFlowalgorithmto
+avoidbiasesondisplacedjets. Theincreasedtrack pTthresholdfrom0.4GeVinSection7.1to0.5GeVfor
+the PFlow TST does not have a signiﬁcant impact on the performance of the soft term reconstruction.
+7 The photon and hadronically decayingτ-leptons are shown for illustration but are not used in this note.
+8 The precise selections are more stringent than radial distance selections, and the details are given in Reference [51].
+9 The pT thresholds are chosen to ensure that muons failing quality requirements or not in the coverage of the MS, for example
+in the gaps between detectors, are still included in the soft term.
+14
+
+===== PAGE 15 =====
+8 Electronics saturation in electromagnetic end-cap calorimeter
+In high pileup data collected in 2016, the bunch train structure, which included 8 ﬁlled followed by
+four empty bunches, introduced saturation in the electronics of the inner wheel of the electromagnetic
+calorimeterend-cap(EMEC-IW),whichliesintheregion 2.5<|η|< 3.2. Thisphenomenonoccurredat
+theendofthebunchtrainwiththeelectronicsremaininginasaturatedstateforthestartofthenextbunch
+train. The electronics then recovered over the ﬁrst few bunch crossings.
+Thisresultsintwoeﬀects. First,thecalorimeterenergyisobservedtobelowerfortheﬁrsttwocrossings.
+Second, as the EMEC-IW readout electronics recover, large electronic noise is observed in next few
+crossings. The ﬁrst eﬀect is small for jets and corrected for in electron energy calibration. However,
+the second eﬀect results in many fake jets being reconstructed in the correspondingη region in a small
+fraction of data from the beginning of bunch trains, and spurious jets result in fakeEmiss
+T . This eﬀect is
+not present in the simulation. Figures 2(a) and 2(b) show theη of the sub-leading jet in events more than
+fourjetsindataandsimulationandthejetmultiplicityindataandsimulation. Greaternumbersofjetsare
+observed in data for this region of the detector.
+A cleaning criterion is deﬁned to remove these events in both EMTopo and PFlow jets and to reduce
+the corresponding spuriousEmiss
+T tail. Problematic clusters are identiﬁed by requiringpEM
+T > 0.5 GeV
+and⟨QLAr⟩ > 0.2, where⟨QLAr⟩ is the energy-squared weighted average of the cells liquid argon quality
+[9]. Events which contain more than 20 of these clusters within2.5 <|η|< 3.2 are vetoed to remove
+events suﬀering from EMEC-IW saturation. The cleaning criterion is applied to data only and not to
+simulation.
+The eﬃciency of this cleaning criterion is measured to be 98.34% inZ→ µµ, a topology which exhibits
+no signiﬁcant bias to calorimeter problems. This cleaning criterion eﬀectively reduces the luminosity by
+(1.7± 1.1)%wheretheuncertaintyarisesfromthedependenceoftheeﬃciencyonthephysicsprocess.
+The eﬀectiveness of the EMEC-IW cleaning can be seen in Figure 2(c) where theη spectrum of the
+sub-leading jet in events with more than four jets is shown with the cleaning applied. The ratio of data
+to simulation diﬀerences in the relevantη region are reduced. The increasing trend in the ratio of data to
+simulation for jet multiplicities larger than seven, as shown in Figure 2(b), is removed after applying the
+cleaning as seen in Figure 2(d). TheEmiss
+T is aﬀected by these spurious jets, and Figure 2(e) shows the
+Emiss
+T distribution with the “Loose”Emiss
+T deﬁnition, as deﬁned in Section 6.5, for events with more than
+four jets with and without this additional cleaning. The events withEmiss
+T of about 100 GeV are reduced
+by about 40% while events with higherEmiss
+T of more than 200 GeV, which mostly come from realEmiss
+T
+processes, are largely unaﬀected.
+9 Working points forEmiss
+T
+Theselectionofjetsusedtocalculatethe Emiss
+T hasalargeimpacton Emiss
+T performance. Tooﬀerdiﬀerent
+working points for physics analyses with diﬀerent requirements, a few alternativeEmiss
+T deﬁnitions are
+studied.
+AsdeﬁnedinSection6.5,the Loose Emiss
+T workingpointincludesalljetswith pT > 20GeVthatalsopass
+the JVT criteria when the jet has|η|< 2.4 and pT < 60GeV.
+15
+
+===== PAGE 16 =====
+4
+−3 −2 −1 −0 1 2 3 4 Events / GeV
+1
+10
+2
+103
+104
+105
+106
+107
+108
+109
+10Data Z+jets
+Top
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z  > 4
+jetsNη
+Subleading Jet 4
+−3 −2 −1 −0 1 2 3 4 Pred
+Data
+0.5
+1
+1.5
+(a) The η of the sub-leading jet in events
+with greater than four jets in aZ→ µµ se-
+lectionwithoutanycutstoremovesaturation
+problems in the EMEC-IW.
+0
+2 4 6 8 10 12 14 Events / GeV
+1
+10
+2
+103
+104
+105
+106
+107
+108
+109
+1010
+10Data Z+jets
+Top
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Jet Multiplicity
+0
+2 4 6 8 10 12 14 Pred
+Data
+0.5
+1
+1.5
+(b) The jet multiplicity in aZ→ µµ event
+selectionwithoutanycutstoremovesatura-
+tion problems in the EMEC-IW.
+4
+−3 −2 −1 −0 1 2 3 4 Events / GeV
+1
+10
+2
+103
+104
+105
+106
+107
+108
+109
+10Data Z+jets
+Top
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z  > 4, EMEC Veto
+jetsNη
+Subleading Jet 4
+−3 −2 −1 −0 1 2 3 4 Pred
+Data
+0.5
+1
+1.5
+(c) The η of the sub-leading jet in events
+with greater than four jets in aZ → µµ
+selection with the cuts to remove saturation
+problems in the EMEC-IW applied.
+0
+2 4 6 8 10 12 14 Events / GeV
+1
+10
+2
+103
+104
+105
+106
+107
+108
+109
+1010
+10Data Z+jets
+Top
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z EMEC Veto
+Jet Multiplicity
+0
+2 4 6 8 10 12 14 Pred
+Data
+0.5
+1
+1.5
+(d) The jet multiplicity in a Z → µµ
+event selection with cuts to remove satur-
+ation problems in the EMEC-IW applied.
+ [GeV]
+missT
+E0
+100 200 300 400 500 600 700 800 900 1000 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+10Without EMEC cleaning
+With EMEC cleaning
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z  [GeV]
+missT
+E0
+100 200 300 400 500 600 700 800 900 1000 No Veto
+Veto
+0.6
+0.8
+1
+(e) Acomparisonofthe Emiss
+T indataforeventswithgreater
+than four jets in aZ → µµ selection with and without
+the cuts to remove saturation problems in the EMEC-IW
+applied.
+Figure 2: The impact of the cuts designed to remove aﬀected by the saturation problems in the EMEC-IW.
+16
+
+===== PAGE 17 =====
+PV
+Number of primary vertices N
+0 5 10 15 20 25 30 35 40
+ Resolution [GeV]miss
+y, Emiss
+xE
+10
+15
+20
+25
+30
+35
+TST
+ > 30 GeV
+forward jet
+TTST and p
+TST and fJVT
+ATLAS Simulation Preliminary
+µµ→Powheg+Pythia8 Z
+ = 13 TeVs
+(a)
+PV
+Number of primary vertices N
+0 5 10 15 20 25 30 35 40
+ Resolution [GeV]miss
+y, Emiss
+xE
+16
+18
+20
+22
+24
+26
+28
+30
+32
+34
+TST
+ > 30 GeV
+forward jet
+TTST and p
+TST and fJVT
+ATLAS Simulation Preliminary
+νlνl→WW→Powheg+Pythia8 VBF H
+ = 13 TeVs (b)
+Figure 3: Distributions of theEmiss
+T resolution versusNPV for Emiss
+T built with three diﬀerent forward jet selections
+in a Z→ µµ (left) and VBFH→ WW (right) simulation. TST Emiss
+T denotes the Emiss
+T built with the standard
+selection for jets as previously deﬁned. TheEmiss
+T resolution is deﬁned in Section 5.1.
+A secondTight working point was developed to reduce the pileup dependence ofEmiss
+T . Tight Emiss
+T is
+calculated without including forward jets with|η|> 2.4 and 20 < pT < 30 GeV. This tighter threshold
+removes regions of phase space that have more pileup jets than hard scatter jets. However, because hard-
+scatter jets may also be removed, the scale of the reconstructedEmiss
+T would be degraded. Additionally,
+the resolution is worse at low pileup when a larger fraction of the removed jets are hard-scatter jets.
+Nevertheless this method can oﬀer improvedEmiss
+T resolution in high pileup conditions.
+InSection6.3thefJVTalgorithmisdescribed,anditsuppressesforwardpileupjetcontamination. Athird
+Forward-JVT (fJVT) [52]Emiss
+T working point is also available to suppress tails in theEmiss
+T . The fJVT
+Emiss
+T keepsthejet pT requirementofgreaterthan20GeVbutiscalculatedwithoutincludingforwardjets
+with|η|> 2.5, 20 < pT < 50 GeV and failing the “Loose” fJVT criteria, as deﬁned in Reference [52].
+The JVT requirement is applied to jets with|η|< 2.4 and pT < 60GeV.
+These modiﬁcations to the EMTopoEmiss
+T are studied in two topologies, shown in Figure 3. TheEmiss
+T
+resolution, deﬁned in Section 5.1, is studied in events with zero trueEmiss
+T in Z → µµ simulation in
+Figure 3(a) and in events with forward hard scatter jets with a vector boson fusion (VBF)H→ WW
+simulation in Figure 3(b), following the event selections described in Sections 4.1 and 4.2, respectively.
+Inbotheventtopologies,raisingtheforwardjet pT cutto30GeVreducestheslopeofthe Emiss
+T resolution
+versus NPV. The loose operating point of the fJVT also improves theEmiss
+T resolution. In the VBF
+H→ WW simulation at lowNPV, increasing the forward jetpT cut to 30 GeV removes hard-scatter jets
+from the VBF physics process and degrades theEmiss
+T resolution.
+10 Systematic uncertainties
+As Emiss
+T isatopologicaleventquantity,the Emiss
+T uncertaintyiscomputedusingthesystematicsassociated
+to each object entering theEmiss
+T reconstruction. For the hard component, systematic uncertainties on
+each reconstructed object are propagated to theEmiss
+T as part ofEmiss
+T reconstruction. However, the soft
+17
+
+===== PAGE 18 =====
+term estimation is fully speciﬁed by theEmiss
+T reconstruction and a speciﬁc systematic uncertainty must
+be evaluated. This section discusses this uncertainty in the context of the track based soft term and the
+additional trackEmiss
+T systematics.
+10.1 TST systematics for EMTopoEmiss
+T
+The uncertainty on the soft term is characterised by how well it is modeled in simulation. In an event
+topology with zero trueEmiss
+T , the soft term momentumpsoft
+T is expected to be perfectly balanced against
+phard
+T . Detector resolution eﬀects spoil the equality betweenphard
+T and psoft
+T . Diﬀerent projections ofpsoft
+T
+along phard
+T indataandMCcanbeusedtostudythemodellingofthesoftterm. Threeprojectedquantities
+illustrated in Figure 4 are studied:
+• The parallel scale (∆L), representing the mean value of the parallel projection ofpsoft
+T along phard
+T .
+The component from the projection is labelledpsoft
+∥ .
+• The parallel resolution (σ∥), deﬁned as the root-mean-square (RMS) ofpsoft
+∥ .
+• The transverse resolution (σ⊥), deﬁned as the root-mean-square (RMS) of the perpendicular
+component ofpsoft
+T with respect tophard
+T . The component from the projection is labelledpsoft
+⊥ .
+~Emiss
+T = ~∆psoft
+T
+~ psoft
+T
+~ phard
+T
+psoft
+k
+psoft
+?
+~ psoft,true
+T
+~∆p soft
+T
+Figure 4: Sketchofthetrack-basedsofttermprojectionswithrespectto phard
+T forthecalculationoftheTSTsystematic
+uncertainties.
+The transverse scaleis not of physical interestas it is consistent withzero in data and simulationas found
+in Reference [3].
+The systematic uncertainty is computed from the maximal disagreement between the 2015+2016 data
+with respect to diﬀerent Monte Carlo generator plus parton shower models for a certain set ofphard
+T bins.
+To accountfor any diﬀerences betweenevent topologies withlarge numbers ofjets and those withoutany
+jets, the total systematic is additionally split into jet-inclusive and jet-veto selections and merged later as
+the maximal variation of these two cases. In addition the fast detector simulation, called ATLFAST2 [53,
+54], does not require any additional systematic uncertainties and is labelled AFII. Figure 5 shows the
+three projected quantities for the jet-inclusive and jet-veto cases. The resulting systematic envelope (see
+Table 3) is shown centered on data, and by construction, all the considered Monte Carlo generators plus
+partonshowermodelsarecoveredbythissystematicenvelope. Theresolutionsinsimulationaretypically
+smaller than that observed in data as seen in Figure 5.
+ToapplythesystematicuncertaintiesfromTable3,theprojectionofthesofttermissmearedbyaGaussian
+of the width corresponding to itsphard
+T value for the resolution uncertainties. The scale variation adds the
+value corresponding to itsphard
+T to thepsoft
+∥ and it is subtracted for the opposite variation.
+18
+
+===== PAGE 19 =====
+0 10 20 30 40 50 60 70 80 90 100
+ [GeV]〉 
+miss,SoftTerm
+ E〈
+0
+2
+4
+6
+8
+10
+brNDC
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Powheg+Pythia8 AFII
+Sherpa
+TST Syst. Error
+ PreliminaryATLAS
+­1 = 13 TeV  36 fbs
+ ee→Z 
+EMTopo jets
+Jet inclusive
+ [GeV]hard
+T
+p
+0 10 20 30 40 50 60 70 80 90 100
+Data
+Pred
+0.6
+0.81
+1.2
+1.4
+(a) Parallel scale, jet inclusive selection
+0 10 20 30 40 50 60 70 80 90 100
+ [GeV]〉 
+miss,SoftTerm
+ E〈
+0
+5
+10
+15
+20
+brNDC
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Powheg+Pythia8 AFII
+Sherpa
+TST Syst. Error
+ PreliminaryATLAS
+­1 = 13 TeV  36 fbs
+ ee→Z 
+EMTopo jets
+ > 20 GeVT0 jets, p
+ [GeV]hard
+T
+p
+0 10 20 30 40 50 60 70 80 90 100
+Data
+Pred0.8
+1
+1.2 (b) Parallel scale, jet veto selection
+0 10 20 30 40 50 60 70 80 90 100
+]2) [GeV
+miss,SoftTerm
+(E2σ
+20
+40
+60
+80
+100
+120
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Powheg+Pythia8 AFII
+Sherpa
+TST Syst. Error
+ PreliminaryATLAS
+­1 = 13 TeV  36 fbs
+ ee→Z 
+EMTopo jets
+Jet inclusive
+ [GeV]hard
+T
+p
+0 10 20 30 40 50 60 70 80 90 100
+Data
+Pred0.8
+1
+1.2
+(c) Parallel resolution squared, jet inclusive selection
+0 10 20 30 40 50 60 70 80 90 100
+]2) [GeV
+miss,SoftTerm
+(E2σ
+20
+40
+60
+80
+100
+120
+140
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Powheg+Pythia8 AFII
+Sherpa
+TST Syst. Error
+ PreliminaryATLAS
+­1 = 13 TeV  36 fbs
+ ee→Z 
+EMTopo jets
+ > 20 GeVT0 jets, p
+ [GeV]hard
+T
+p
+0 10 20 30 40 50 60 70 80 90 100
+Data
+Pred0.9
+1
+1.1 (d) Parallel resolution squared, jet veto selection
+0 10 20 30 40 50 60 70 80 90 100
+]2) [GeV
+miss,SoftTerm
+(E2σ
+30
+40
+50
+60
+70
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Powheg+Pythia8 AFII
+Sherpa
+TST Syst. Error
+ PreliminaryATLAS
+­1 = 13 TeV  36 fbs
+ ee→Z 
+EMTopo jets
+Jet inclusive
+ [GeV]hard
+T
+p
+0 10 20 30 40 50 60 70 80 90 100
+Data
+Pred0.8
+1
+1.2
+(e) Transverse resolution squared, jet inclusive selection
+0 10 20 30 40 50 60 70 80 90 100
+]2) [GeV
+miss,SoftTerm
+(E2σ
+20
+30
+40
+50
+60
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Powheg+Pythia8 AFII
+Sherpa
+TST Syst. Error
+ PreliminaryATLAS
+­1 = 13 TeV  36 fbs
+ ee→Z 
+EMTopo jets
+ > 20 GeVT0 jets, p
+ [GeV]hard
+T
+p
+0 10 20 30 40 50 60 70 80 90 100
+Data
+Pred0.8
+1
+1.2(f) Transverse resolution squared, jet veto selection
+Figure 5: Parallel scale, parallel and transverse resolution plots for the track based soft term (TST). The pink band
+representstheresultingsystematicuncertaintyappliedtothe Z→ ee MonteCarlosimulation. Itisshowncentered
+on data.
+19
+
+===== PAGE 20 =====
+phard
+T bin [GeV] σ∥[GeV] σ⊥[GeV] ∆L[GeV]
+0-10 1.87 2.00 0.25
+10-15 1.77 1.97 0.50
+15-20 1.73 1.98 0.63
+20-25 1.91 2.09 0.71
+25-30 2.20 2.24 0.75
+30-35 2.21 2.29 0.85
+35-40 2.36 2.36 0.96
+40-50 2.69 2.38 1.07
+50-200 3.71 3.04 1.96
+Table 3: TST systematic envelope computed as the maximal diﬀerences between data and Monte Carlo samples for
+the parallel scale∆L, parallel and transverse resolutionsσ∥,σ⊥.
+10.2 TST systematics for PFlowEmiss
+T
+In analogy to the EMTopoEmiss
+T , the TST systematics of Particle FlowEmiss
+T are computed following
+the same procedure described in Section 10.1. The validation plots obtained from the application of the
+ParticleFlowsystematicenvelope(Table4)totheMonteCarlosimulationsamplesareshownonFigure6
+forthevarioussofttermprojections. BecauseEMTopo-basedandtheParticleFlow-basedTSThavevery
+similar deﬁnitions, the good agreement observed between the two systematic envelopes is expected.
+phard
+T bin [GeV] σ∥[GeV] σ⊥[GeV] ∆L[GeV]
+0-10 1.80 1.92 0.21
+10-15 1.82 1.89 0.44
+15-20 1.80 1.85 0.51
+20-25 2.01 1.96 0.62
+25-30 2.30 2.11 0.83
+30-35 2.59 2.29 0.97
+35-40 2.80 2.27 1.12
+40-50 3.23 2.46 1.35
+50-200 4.68 2.81 2.07
+Table 4: PFlow TST systematic envelope computed as the maximal diﬀerences between data and Monte Carlo
+samples for the parallel scale∆L, parallel and perpendicular resolutionsσ∥,σ⊥.
+20
+
+===== PAGE 21 =====
+0
+10 20 30 40 50 60 70 80 90 100  [GeV]
+〉  miss,SoftTerm
+ E 〈 2
+4
+6
+8
+10
+12
+brNDCData
+Powheg+Pythia8
+Madgraph+Pythia8
+Sherpa
+TST Syst. Error
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Particle Flow jets
+Jet inclusive
+ [GeV]
+hardT
+p0
+10 20 30 40 50 60 70 80 90 100 Data
+Pred
+0.6
+0.8
+1 1.2
+1.4
+(a) Parallel scale, jet inclusive selection
+0
+10 20 30 40 50 60 70 80 90 100  [GeV]
+〉  miss,SoftTerm
+ E 〈 5
+10
+15
+20
+25
+brNDCData
+Powheg+Pythia8
+Madgraph+Pythia8
+Sherpa
+TST Syst. Error
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Particle Flow jets
+ > 20 GeV
+T0 jets, p [GeV]
+hardT
+p0
+10 20 30 40 50 60 70 80 90 100 Data
+Pred
+0.8 1
+1.2
+ (b) Parallel scale, jet veto selection
+0
+10 20 30 40 50 60 70 80 90 100 ]
+2 ) [GeV miss,SoftTerm
+(E 2 σ 20
+40
+60
+80
+100
+120
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Sherpa
+TST Syst. Error
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Particle Flow jets
+Jet inclusive
+ [GeV]
+hardT
+p0
+10 20 30 40 50 60 70 80 90 100 Data
+Pred
+0.8 1
+1.2
+(c) Parallel resolution squared, jet inclusive selection
+0
+10 20 30 40 50 60 70 80 90 100 ]
+2 ) [GeV miss,SoftTerm
+(E 2 σ 20
+40
+60
+80
+100
+120
+140
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Sherpa
+TST Syst. Error
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Particle Flow jets
+ > 20 GeV
+T0 jets, p [GeV]
+hardT
+p0
+10 20 30 40 50 60 70 80 90 100 Data
+Pred
+0.9 1
+1.1
+ (d) Parallel resolution squared, jet veto selection
+0
+10 20 30 40 50 60 70 80 90 100 ]
+2 ) [GeV miss,SoftTerm
+(E 2 σ 20
+30
+40
+50
+60
+70
+80
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Sherpa
+TST Syst. Error
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Particle Flow jets
+Jet inclusive
+ [GeV]
+hardT
+p0
+10 20 30 40 50 60 70 80 90 100 Data
+Pred
+0.8 1
+1.2
+(e) Transverse resolution squared, jet inclusive selection
+0
+10 20 30 40 50 60 70 80 90 100 ]
+2 ) [GeV miss,SoftTerm
+(E 2 σ 20
+30
+40
+50
+60
+70
+Data
+Powheg+Pythia8
+Madgraph+Pythia8
+Sherpa
+TST Syst. Error
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsµ
+µ →Z Particle Flow jets
+ > 20 GeV
+T0 jets, p [GeV]
+hardT
+p0
+10 20 30 40 50 60 70 80 90 100 Data
+Pred
+0.8 1
+1.2
+(f) Transverse resolution squared, jet veto selection
+Figure 6: Parallel scale, parallel and transverse resolution plots for the Particle Flow track based soft term (PFlow
+TST).Thepinkbandrepresentstheresultingsystematicuncertaintyappliedtothe Z→ µµ MonteCarlosimulation.
+It is shown centered on data.
+21
+
+===== PAGE 22 =====
+11 Modelling and performance ofEmiss
+T
+In this section, the modelling of theEmiss
+T distributions is shown in aZ→ ℓℓ selection by comparing
+simulation to data, and comparisons between the EMTopo and PFlowEmiss
+T deﬁnitions are made. In
+addition, theEmiss
+T resolution versus the number of pileup interactions per proton bunch crossing as well
+as an estimation of theEmiss
+T scale are shown.
+11.1 Modelling ofEmiss
+T
+In this section, basicEmiss
+T distributions are shown in aZ→ ℓℓ selection in both data and simulation.
+All distributions in this section include the dominant systematic uncertainties on the high-pT objects, the
+soft Emiss
+T term (described in Section 10) and pileup modelling [55]. These are the largest systematic
+uncertainties in the Emiss
+T for Z samples. The combined jet energy scale (JES) andη-intercalibration
+systematic uncertainties [47] are the largest contribution to the systematic uncertainty band, and their
+contribution to the total is shown separately.
+The distributions of the EMTopoEmiss
+T are shown in data and simulation forZ→ ee and Z→ µµ event
+selectionsinFigure7. ThePFlow Emiss
+T distributionsaresimilarlyshowninFigure8. Afternormalisation
+ofthesimulateddistributionswiththegeneratorcross-sections,theagreementbetweendataandsimulation
+isgenerallywithintheassignedsystematicuncertaintiesforboth Z→ eeand Z→ µµeventtopologies.
+In both Figures 7 and 8, the JES uncertainty is large, and the agreement between data and simulation is
+degradednear Emiss
+T ofaround100GeV. TheJVTthresholdrequirementisappliedonlyforjetswithboth
+pT below 60 GeV and|η|< 2.4. This allows pileup jets withpT < 60 GeV to be added into theEmiss
+T if
+the JES systematic variations push theirpT above the 60 GeVpT threshold requirement.
+The distribution of the track-based soft term is shown for theZ→ ee and Z→ µµ event selections in
+EMTopo Emiss
+T in Figure 9. The dominant systematic uncertainty bands come from generator diﬀerences
+inthemodellingoftheunderlyingeventasdiscussedinSection10,andthissystematicuncertaintyonthe
+Emiss
+T soft term is shown separately to indicate its shape and contribution size. TheZ→ ee and Z→ µµ
+event topologies have similar levels of agreement between data and simulation.
+11.2 Comparisons of EMTopo and PFlowEmiss
+T distributions
+TheEMTopoandPFlow Emiss
+T distributionsarecomparedin Z→ µµ simulationinFigure10fordiﬀerent
+jet selections. For the inclusive jet selection, the PFlowEmiss
+T has a slightly narrower distribution. The
+diﬀerencesaremuchlargerintheselectionwithnojetswith |η|> 2.4becausethereconstructiondiﬀers
+more dramatically for jets with|η|< 2.4. The PFlowEmiss
+T has around half of the number of events at
+Emiss
+T = 100 GeV. These performance improvements are attributed to the superior pileup mitigation of
+central PFlow jets, especially for jetspT larger than 60 GeV where no vertex association is applied for
+EMTopo jets. Lastly, the 0-jet selection leads to a very similar distribution between EMTopo and PFlow
+Emiss
+T . ThePFlow Emiss
+T distributionhasmore0-jetselectioneventsbecausepileuprejectionisbetterwith
+PFlowjets. JeteﬃciencyimprovesforPFlowjetsbelowaround40GeV.Atlowerjet pT,theEMTopojets
+have worse pileup rejection. Small diﬀerences (of at most 10%) between the diﬀerentEmiss
+T deﬁnitions
+are observed because of diﬀerences in event selection. The tail of theEmiss
+T distribution is mostly due
+22
+
+===== PAGE 23 =====
+0
+100 200 300 400 500 600 700 800 900 1000 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+105
+106
+10Data Top
+Z+jets
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose E ee
+→Z  [GeV]
+missT
+E0
+100 200 300 400 500 600 700 800 900 1000 Pred
+Data
+0.5
+1
+1.5
+JES Syst
+(a)
+0
+100 200 300 400 500 600 700 800 900 1000 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+105
+106
+10Data Top
+Z+jets
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose Eµ
+µ →Z  [GeV]
+missT
+E0
+100 200 300 400 500 600 700 800 900 1000 Pred
+Data
+0.5
+1
+1.5
+JES Syst
+ (b)
+Figure 7: Distributions of the EMTopoEmiss
+T using the Loose Emiss
+T operating point are shown in data and MC
+simulation for events satisfying the (a)Z → ee and (b) Z → µµ selections. The lower panel of the ﬁgures
+shows the ratio of data to MC simulation, and the bands correspond to the combined systematic and MC statistical
+uncertainties. The largest contribution to the systematic uncertainty band comes from the combination of the jet
+energyscale(JES)and η-intercalibrationsystematicuncertainties, anditisshowninadottedline. Thefarrightbin
+includes the integral of all events withEmiss
+T above 600 GeV.
+to muon mismeasurement or jets misidentiﬁed as electrons. This eﬀect is eﬀectively independent of jet
+reconstruction algorithm.
+11.3 Resolution ofEmiss
+T
+The resolution, as deﬁned in Section 5.1, for theEmiss
+T is presented for theZ→ µµ event topology in
+Figure11asfunctionofthenumberofreconstructedprimaryverticesintheevent. Theverticalerrorbands
+indicate the hard object uncertainties and the soft term systematic uncertainties discussed in Section 10
+addedinquadrature. Fordata, theerrorbarsindicatethestatisticaluncertaintyontheRMS.Thedataand
+simulationagreeacrossthefullrangeof NPV andaverageinteractionsperprotonbunchcrossing ⟨µ⟩. The
+Emiss
+T resolution increases roughly linearly at approximately 0.24 (0.13) GeV/⟨µ⟩ for the Loose (Tight)
+Emiss
+T operatingpoint. Theincreasingamountofpileupactivitydegradesthe Emiss
+T resolutionfromaround
+12 GeV atNPV = 1 to around 22 GeV atNPV = 30 for the LooseEmiss
+T operating point in Figure 11(b).
+TheTight Emiss
+T operatingpointinFigure11(d)hasasmallerdegradationfromaround12GeVat NPV =1
+to around 18 GeV atNPV = 30. Deviations from linearity for the resolution a function ofNPV are due to
+an increase in vertex merging as pileup increases [56]. The PFlowEmiss
+T improves theEmiss
+T resolution
+consistently across the full range ofNPV.
+23
+
+===== PAGE 24 =====
+0
+100 200 300 400 500 600 700 800 900 1000 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+105
+106
+10Data Top
+Z+jets
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose E ee
+→Z  [GeV]
+miss
+T
+PFlow E0
+100 200 300 400 500 600 700 800 900 1000 Pred
+Data
+0.5
+1
+1.5
+JES Syst
+(a)
+0
+100 200 300 400 500 600 700 800 900 1000 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+105
+106
+10Data Top
+Z+jets
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose Eµ
+µ →Z  [GeV]
+miss
+T
+PFlow E0
+100 200 300 400 500 600 700 800 900 1000 Pred
+Data
+0.5
+1
+1.5
+JES Syst
+ (b)
+Figure 8: DistributionsofthePFlow Emiss
+T usingtheLoose Emiss
+T operatingpointareshownindataandMCsimulation
+foreventssatisfyingthe(a) Z→ eeand(b) Z→ µµselections. Thelowerpaneloftheﬁguresshowstheratioofdata
+toMCsimulation,andthebandscorrespondtothecombinedsystematicandMCstatisticaluncertainties. Thelargest
+contribution to the systematic uncertainty band comes from the jet energy scale (JES) systematic uncertainties, and
+it is shown in a dotted line. The far right bin includes the integral of all events withEmiss
+T above 600 GeV.
+0
+20 40 60 80 100 120 140 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+105
+106
+107
+108
+10Data
+Z+jets
+Top
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose E ee
+→Z (Soft) [GeV]
+missT
+E0
+20 40 60 80 100 120 140 Pred
+Data
+0.5
+1
+1.5
+Soft Term Syst
+(a)
+0
+20 40 60 80 100 120 140 Events / GeV
+2
+−101
+−101
+10
+2
+103
+104
+105
+106
+107
+108
+10Data
+Z+jets
+Top
+Diboson
+Stat+Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose Eµ
+µ →Z (Soft) [GeV]
+missT
+E0
+20 40 60 80 100 120 140 Pred
+Data
+0.5
+1
+1.5
+Soft Term Syst
+ (b)
+Figure 9: Distributions of the EMTopoEmiss
+T using the LooseEmiss
+T operating point soft term are shown in data and
+MC simulation for events satisfying the (a)Z→ ee and (b) Z→ µµ selections. The lower panel of the ﬁgures
+shows the ratio of data to MC simulation, and the bands correspond to the combined systematic and MC statistical
+uncertainties. Thelargestcontributiontothesystematicuncertaintybandcomesfromthesofttermsystematics,and
+it is shown in a dotted line. The far right bin includes the integral of all events with softEmiss
+T above 150 GeV.
+24
+
+===== PAGE 25 =====
+(a)
+ (b)
+(c)
+Figure 10: Distributions of the EMTopo and PFlowEmiss
+T using the Loose Emiss
+T operating point are shown in
+Z→ µµ simulation with theZ→ µµ event selection. The (a) inclusive, (b) no forward jet, and (c) 0-jet event
+selections are shown. The lower panel of the ﬁgures shows the ratio of PFlow to EMTopoEmiss
+T distributions. The
+far right bin includes the integral of all events withEmiss
+T above 120 GeV.
+25
+
+===== PAGE 26 =====
+0
+5 10 15 20 25 30 35 40 〉
+µ〈Average number of interactions 12
+14
+16
+18
+20
+22
+24
+26
+28
+30
+ RMS Resolution [GeV]
+y miss
+,E x miss
+E  Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose E ee
+→Z EMTopo MC
+EMTopo MC Syst Err
+EMTopo Data
+PFlow Data
+(a) Loose Emiss
+T resolution as a function of⟨µ⟩.
+0
+5 10 15 20 25 30 35 40 PV
+Number of primary vertices N10
+15
+20
+25
+30
+ RMS Resolution [GeV]
+y miss
+,E x miss
+E  Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Loose E ee
+→Z EMTopo MC
+EMTopo MC Syst Err
+EMTopo Data
+PFlow Data
+ (b) Loose Emiss
+T resolution as a function ofNPV.
+0
+5 10 15 20 25 30 35 40 〉
+µ〈Average number of interactions 12
+14
+16
+18
+20
+22
+24
+26
+28
+30
+ RMS Resolution [GeV]
+y miss
+,E x miss
+E  Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Tight E ee
+→Z EMTopo MC
+EMTopo MC Syst Err
+EMTopo Data
+PFlow Data
+(c) Tight Emiss
+T resolution as a function of⟨µ⟩.
+0
+5 10 15 20 25 30 35 40 PV
+Number of primary vertices N10
+15
+20
+25
+30
+ RMS Resolution [GeV]
+y miss
+,E x miss
+E  Preliminary
+ATLAS-1
+ = 13 TeV  36 fbsmiss
+T
+Tight E ee
+→Z EMTopo MC
+EMTopo MC Syst Err
+EMTopo Data
+PFlow Data
+ (d) Tight Emiss
+T resolution as a function ofNPV.
+Figure 11: The RMS obtained from the combined distributions of EMTopoEmiss
+x and Emiss
+y using the LooseEmiss
+T
+operating point for data with EMTopo jets (circular marker) and PFlow jets (triangular marker) and MC simulation
+with EMTopo jets (square marker) in aZ→ ee event selection are shown versus (a)⟨µ⟩ and (b) NPV. The same
+distributionsfortheTight Emiss
+T workingpointareshownin(c)and(d),respectively. Thesmallnon- Z backgrounds
+are included in the simulation. The pink band indicates the size of the detector level systematic uncertainties. The
+performance of PFlowEmiss
+T in data is also shown in blue.
+26
+
+===== PAGE 27 =====
+11.4 Measuring Emiss
+T recoil versuspZ
+T
+Ineventswith Z→ ee decays,the ®pT ofthe Z bosondeﬁnesanaxisinthetransverseplaneoftheATLAS
+detector, and for events with 0-jets, the®E miss
+T should balance the®pT of theZ boson (®pZ
+T ) along this axis.
+The component of the®E miss
+T along the®pZ
+T axis is sensitive to biases in detector responses [57]. The unit
+vector of®pZ
+T is labelled as ˆAZ and is deﬁned as:
+ˆAZ = ®pT
+ℓ+
++ ®pT
+ℓ−
+|®pT
+ℓ+
++ ®pT
+ℓ−
+|
+, (6)
+where ®pT
+ℓ+
+and ®pT
+ℓ−
+are the transverse momentum vectors of the leptons from theZ boson decay.
+The average of the®E miss
+T projected in ˆAZ direction is labelled as⟨®E miss
+T · ˆAZ⟩. In principle this quantity
+should be zero for allpZ
+T. However, the calibration ofpZ
+T and lack of calibration of the soft terms means
+that any diﬀerences are mostly due to miscalibrations of theEmiss
+T . The⟨®E miss
+T · ˆAZ⟩ is shown versus
+pZ
+T in Figure 12 for EMTopoEmiss
+T in data and MC simulation. The hashed band indicates the size of the
+systematic uncertainties. ForpZ
+T > 20 GeV, the⟨®E miss
+T · ˆAZ⟩ returns toward zero as the jet terms start to
+dominate over the soft term, which is most relevant at lowerpZ
+T. The scale of the track-based soft term is
+not perfect due to the missing neutral particles. The data and MC simulation agree within the assigned
+systematic uncertainties. While the⟨®E miss
+T · ˆAZ⟩ plateaus between−4 and−6 GeV, the systematic band
+covers the diﬀerences with zero above 200 GeV inpZ
+T.
+The TightEmiss
+T working point, which raises for the jetpT threshold from 20 GeV to 30 GeV for|η|> 2.4
+has around 1 GeV lower⟨®E miss
+T · ˆAZ⟩ for pZ
+T larger than 100 GeV. The fJVTEmiss
+T working point lies
+between the Loose and TightEmiss
+T working points.
+27
+
+===== PAGE 28 =====
+0
+100 200 300 400 500 600  [GeV]
+ZT
+p10
+−5
+−0
+5
+10
+ [GeV]
+〉  Z  A ⋅ miss
+T
+ E 〈 Data
+Simulation
+Systematic Error
+JES Syst
+ Preliminary
+ATLAS-1
+ = 13 TeV  36 fbs ee
+→Z 0
+100 200 300 400 500 600  [GeV]
+ZT
+p0.5
+1
+1.5
+Pred Data
+ 
+(a)
+Figure 12: The averageEmiss
+T projected onto ˆAZ for EMTopoEmiss
+T is shown versuspZ
+T in data (circular marker)
+and MC simulation (square marker). The LooseEmiss
+T working point is used, and the small non-Z backgrounds are
+includedinthesimulation. Thepinkbandindicatesthesizeofthedetectorlevelsystematicuncertainties,whichalso
+cover variations associated with eta dependence and pileup. The largest individual systematic uncertainty comes
+from the jet energy scale (JES). The size of the band reﬂects the sensitivity of theEmiss
+T projection to variations in
+object calibration, as a small uncertainty can result in a large oﬀset for largepZ
+T. At low pZ
+T the⟨®E miss
+T · ˆAZ⟩ is
+much less than zero because theEmiss
+T is mostly represented by the TST, which does not capture the neutral energy.
+As pZ
+T increases more of the hadronic recoil is reconstructed as calibrated hard objects and⟨®E miss
+T · ˆAZ⟩ recovers
+toward zero.
+28
+
+===== PAGE 29 =====
+12 Conclusion
+The object-based Emiss
+T reconstruction in ATLAS is used in a large number of physics analyses to reject
+backgrounds without real Emiss
+T , estimate missing neutrino transverse momentum, and search for new
+invisibleparticles. Thisnotepresentstheperformanceofthe Emiss
+T reconstructionevaluatedwithproton–
+proton LHC collision data acquired in 2015 and 2016 with the ATLAS detector at√s = 13 TeV and
+corresponding to36fb−1.
+The Emiss
+T performance is studied using two diﬀerent jet deﬁnitions as inputs to theEmiss
+T reconstruction:
+EMTopoandPFlowjets. Thisnotepresentstheﬁrststudyof Emiss
+T builtwithPFlowjets. Adegradationof
+the Emiss
+T resolution is observed for increasing⟨µ⟩ and NPV due to pileup and detector resolution eﬀects,
+regardless of input jet collection. However, PFlowEmiss
+T shows less degradation for increasing pileup
+compared to EMTopoEmiss
+T . Additional performance measurements considered in these studies include
+the estimate of tails in theEmiss
+T distribution. PFlow Emiss
+T distributions show smaller tails, reﬂecting a
+lower sensitivity to residual pileup entering the jet contribution toEmiss
+T .
+Diﬀerent Emiss
+T object selection and jet reconstruction techniques were studied and their impact onEmiss
+T
+performance evaluated. Reducing the number of low-pT forward jets included in theEmiss
+T reconstruction
+markedlyimprovesthe Emiss
+T resolutiondependenceonpileup. Anewtechniqueforresolvingelectron-jet
+overlapreducestheamountoffake Emiss
+T inthetails,andanewjetcleaningdeﬁnitionremoveseventswith
+fake jets from theEmiss
+T input.
+The systematic uncertainty contribution from the soft event to the reconstructedEmiss
+T is determined with
+Z→ µµ and Z→ ee ﬁnal states with and without jets. The MC simulation tends to underestimate the
+perpendicularresolutionandoverestimatethescaleandparallelresolution,ineachcasediﬀeringfromdata
+by at most 20%. The performance evaluation ofEmiss
+T response and resolution for the inclusiveZ→ µµ
+sample shows that data and MC simulations agree within the assigned systematic uncertainties.
+The many improvements and new deﬁnitions documented in this note oﬀer ATLAS analyses newEmiss
+T
+deﬁnitions and a wide array of conﬁgurations and working points for various analysis needs. Reﬁned
+signal ambiguity resolution, better performance at higher pileup, and reduced fakeEmiss
+T all have the
+potential to improve searches for new physics and Standard Model measurements across the ATLAS
+physics program.
+29
+
+===== PAGE 30 =====
+References
+[1] ATLAS Collaboration, The ATLAS Experiment at the CERN Large Hadron Collider,
+JINST3 (2008) S08003.
+[2] ATLAS Collaboration, Performance of missing transverse momentum reconstruction in
+proton–proton collisions at√s = 7 TeV with ATLAS, Eur. Phys. J. C72(2012) 1844,
+arXiv: 1108.5602 [hep-ex].
+[3] ATLAS Collaboration, Performance of algorithms that reconstruct missing transverse momentum
+in√s = 8 TeV proton–proton collisions in the ATLAS detector, Eur. Phys. J. C77(2017) 241,
+arXiv: 1609.09324 [hep-ex].
+[4] ATLAS Collaboration, Performance of missing transverse momentum reconstruction with the
+ATLAS detector using proton-proton collisions at√s = 13 TeV, (2018),
+arXiv: 1802.08168 [hep-ex].
+[5] ATLAS Collaboration,
+Jet reconstruction and performance using particle ﬂow with the ATLAS Detector,
+Eur. Phys. J. C77(2017) 466, arXiv:1703.10485 [hep-ex].
+[6] ATLAS Collaboration, ATLAS Insertable B-Layer Technical Design Report,
+tech. rep. CERN-LHCC-2010-013. ATLAS-TDR-19, 2010,
+url: https://cds.cern.ch/record/1291633.
+[7] ATLAS Collaboration,
+Monitoring and data quality assessment of the ATLAS liquid argon calorimeter,
+JINST9(2014) P07024, arXiv:1405.3768 [hep-ex].
+[8] ATLAS Collaboration, Operation and performance of the ATLAS semiconductor tracker,
+JINST9(2014) P08009, arXiv:1404.7473 [hep-ex].
+[9] ATLAS Collaboration,
+Selection of jets produced in 13TeV proton-proton collisions with the ATLAS detector,
+tech. rep. ATLAS-CONF-2015-029, CERN, 2015,
+url: https://cds.cern.ch/record/2037702.
+[10] ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur. Phys. J. C70(2010) 823,
+arXiv: 1005.4568 [physics.ins-det].
+[11] T. Sjöstrand, S. Mrenna and P. Z. Skands,A Brief Introduction to PYTHIA 8.1,
+Comput. Phys. Commun.178 (2008) 852, arXiv:0710.3820 [hep-ph].
+[12] ATLAS Collaboration, Summary of ATLAS Pythia 8 tunes, ATL-PHYS-PUB-2012-003, 2012,
+url: https://cds.cern.ch/record/1474107.
+[13] R. D. Ball et al.,Parton distributions for the LHC Run II, JHEP04(2015) 040.
+[14] T. Gleisberg et al.,Event generation with SHERPA 1.1, JHEP02 (2009) 007,
+arXiv: 0811.4622 [hep-ph].
+[15] D. J. Lange,The EvtGen particle decay simulation package,
+Nucl. Instrum. Meth. A462 (2001) 152.
+[16] F. Cascioli, P. Maierhofer and S. Pozzorini,Scattering Amplitudes with Open Loops,
+Phys. Rev. Lett.108 (2012) 111601, arXiv:1111.5206 [hep-ph].
+30
+
+===== PAGE 31 =====
+[17] T. Gleisberg and S. Höche,Comix, a new matrix element generator, JHEP0812(2008) 039,
+arXiv: 0808.3674 [hep-ph].
+[18] S. Catani, L. Cieri, G. Ferrera, D. de Florian and M. Grazzini,
+Vector boson production at hadron colliders: a fully exclusive QCD calculation at NNLO,
+Phys. Rev. Lett.103 (2009), arXiv:0903.2120 [hep-ph].
+[19] S. Schumann and F. Krauss,
+A Parton shower algorithm based on Catani-Seymour dipole factorisation,
+JHEP0803(2008) 038, arXiv:0709.1027 [hep-ph].
+[20] S. Höche, F. Krauss, M. Schönherr and F. Siegert,
+QCD matrix elements + parton showers: The NLO case, JHEP04 (2013) 027,
+arXiv: 1207.5030 [hep-ph].
+[21] S. Frixione, G. Ridolﬁ and P. Nason,
+A Positive-weight next-to-leading-order Monte Carlo for heavy ﬂavour hadroproduction,
+JHEP09(2007) 126, arXiv:0707.3088 [hep-ph].
+[22] J. Alwall et al.,The automated computation of tree-level and next-to-leading order diﬀerential
+cross sections, and their matching to parton shower simulations, JHEP07(2014) 079,
+arXiv: 1405.0301 [hep-ph].
+[23] W. Lukas, Fast Simulation for ATLAS: Atlfast-II and ISF, tech. rep. ATL-SOFT-PROC-2012-065,
+CERN, 2012,url: https://cds.cern.ch/record/1458503.
+[24] N. Davidson, T. Przedzinski and Z. Was,
+PHOTOS Interface in C++: Technical and Physics Documentation, (2010),
+arXiv: 1011.0937 [hep-ph].
+[25] H.-L. Lai, M. Guzzi, J. Huston, Z. Li, P. M. Nadolsky et al.,
+New parton distributions for collider physics, Phys. Rev. D82(2010) 074024,
+arXiv: 1007.2241 [hep-ph].
+[26] R. D. Ball et al.,Parton distributions with LHC data, Nucl. Phys. B867 (2013) 244,
+arXiv: 1207.1303 [hep-ph].
+[27] ATLAS Collaboration, Measurement of theZ/γ∗ boson transverse momentum distribution inpp
+collisions at√s = 7 TeV with the ATLAS detector, JHEP09(2014) 145,
+arXiv: 1406.3660 [hep-ex].
+[28] ATLAS Collaboration, ATLAS Pythia 8 tunes to7 TeV data, ATL-PHYS-PUB-2014-021, 2014,
+url: https://cds.cern.ch/record/1966419.
+[29] S. Alioli, P. Nason, C. Oleari and E. Re,
+NLO single-top production matched with shower in POWHEG: s- and t-channel contributions,
+JHEP09(2009) 111, [Erratum: JHEP02,011(2010)], arXiv:0907.4076 [hep-ph].
+[30] E. Re,
+Single-top Wt-channel production matched with parton showers using the POWHEG method,
+Eur. Phys. J.C71 (2011) 1547, arXiv:1009.2450 [hep-ph].
+[31] M. Czakon, P. Fiedler and A. Mitov,
+Total Top-Quark Pair-Production Cross Section at Hadron Colliders ThroughO(α4
+s),
+Phys. Rev. Lett.110 (2013) 252004, arXiv:1303.6524 [hep-ph].
+31
+
+===== PAGE 32 =====
+[32] M. Czakon and A. Mitov,
+Top++: A Program for the Calculation of the Top-Pair Cross-Section at Hadron Colliders,
+(2011), arXiv:1112.5675 [hep-ph].
+[33] N. Kidonakis, NNLL resummation for s-channel single top quark production,
+Phys. Rev. D81 (2010) 054028, arXiv:1001.5034 [hep-ph].
+[34] N. Kidonakis, Next-to-next-to-leading-order collinear and soft gluon corrections for t-channel
+single top quark production, Phys. Rev. D83(2011) 091503, arXiv:1103.2792 [hep-ph].
+[35] N. Kidonakis,
+Two-loop soft anomalous dimensions for single top quark associated production with a W- or H-,
+Phys. Rev. D82 (2010) 054018, arXiv:1005.4451 [hep-ph].
+[36] T. Sjöstrand, S. Mrenna and P. Z. Skands,PYTHIA 6.4 Physics and Manual, JHEP05(2006) 026,
+arXiv: hep-ph/0603175.
+[37] P. K. Skands,Tuning Monte Carlo generators: The Perugia tunes, Phys. Rev. D82(2010) 074018,
+arXiv: 1005.3457 [hep-ex].
+[38] J. Pumplin et al.,
+New generation of parton distributions with uncertainties from global QCD analysis,
+JHEP07(2002) 012, arXiv:hep-ph/0201195 [hep-ph].
+[39] ATLAS Collaboration,
+Electron and photon energy calibration with the ATLAS detector using LHC Run 1 data,
+Eur. Phys. J. C74(2014) 3071, arXiv:1407.5063 [hep-ex].
+[40] ATLAS Collaboration, Measurement of the muon reconstruction performance of the ATLAS
+detector using 2011 and 2012 LHC proton–proton collision data, Eur. Phys. J. C74(2014) 3130,
+arXiv: 1407.3935 [hep-ex].
+[41] ATLAS Collaboration, Search for photonic signatures of gauge-mediated supersymmetry in 13
+TeV pp collisions with the ATLAS detector, (2018), arXiv:1802.03158 [hep-ex].
+[42] ATLAS Collaboration, Search for top squarks decaying to tau sleptons inpp collisions at√s = 13
+TeV with the ATLAS detector, (2018), arXiv:1803.10178 [hep-ex].
+[43] ATLAS Collaboration, Electron eﬃciency measurements with the ATLAS detector using the 2015
+LHC proton–proton collision data, ATLAS-CONF-2016-024, 2016,
+url: https://cds.cern.ch/record/2157687.
+[44] Electron and photon energy calibration with the ATLAS detector using data collected in 2015 at√s = 13 Te V, tech. rep. ATL-PHYS-PUB-2016-015, CERN, 2016,
+url: https://cds.cern.ch/record/2203514.
+[45] W. Lampl et al.,Calorimeter Clustering Algorithms: Description and Performance,
+ATL-LARG-PUB-2008-002, 2008,url: https://cds.cern.ch/record/1099735.
+[46] M. Cacciari, G. P. Salam and G. Soyez,The Anti-k(t) jet clustering algorithm,
+JHEP04(2008) 063, arXiv:0802.1189 [hep-ph].
+[47] ATLAS Collaboration, Jet energy scale measurements and their systematic uncertainties in
+proton–proton collisions at√s = 13 TeV with the ATLAS detector,
+Phys. Rev. D96 (2017) 072002, arXiv:1703.09665 [hep-ex].
+32
+
+===== PAGE 33 =====
+[48] ATLAS Collaboration, Performance of pile-up mitigation techniques for jets inpp collisions at√s = 8 TeV using the ATLAS detector, Eur. Phys. J. C76 (2016) 581,
+arXiv: 1510.03823 [hep-ex].
+[49] M. Cacciari, G. P. Salam and G. Soyez,The Catchment Area of Jets, JHEP04 (2008) 005,
+arXiv: 0802.1188 [hep-ph].
+[50] ATLAS Collaboration,
+Identiﬁcation and rejection of pile-up jets at high pseudorapidity with the ATLAS detector,
+Eur. Phys. J.77 (2017) 580.
+[51] ATLAS Collaboration, Electron eﬃciency measurements with the ATLAS detector using 2012
+LHC proton–proton collision data, Eur. Phys. J.77 (2017) 195, arXiv:1434-6052 [hep-ph].
+[52] ATLAS Collaboration, Forward Jet Vertex Tagging: A new technique for the identiﬁcation and
+rejection of forward pileup jets, ATL-PHYS-PUB-2015-034, 2015,
+url: https://cds.cern.ch/record/2042098.
+[53] ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur. Phys. J.C70 (2010) 823,
+arXiv: 1005.4568 [physics.ins-det].
+[54] ATLAS Collaboration,
+The simulation principle and performance of the ATLAS fast calorimeter simulation FastCaloSim,
+tech. rep. ATL-PHYS-PUB-2010-013, CERN, 2010,
+url: https://cds.cern.ch/record/1300517.
+[55] ATLAS Collaboration, Performance of the ATLAS Inner Detector Track and Vertex
+Reconstruction in High Pile-Up LHC Environment, ATLAS-CONF-2012-042, 2012,
+url: https://cds.cern.ch/record/1435196.
+[56] ATLAS Collaboration, Vertex Reconstruction Performance of the ATLAS Detector at√s = 13 TeV,
+ATL-PHYS-PUB-2015-026, 2015,url: https://cds.cern.ch/record/2037717.
+[57] ATLAS Collaboration, Expected Performance of the ATLAS Experiment - Detector, Trigger and
+Physics (Jet andEmiss
+T chapter), (2008), arXiv:0901.0512 [hep-ex].
+33

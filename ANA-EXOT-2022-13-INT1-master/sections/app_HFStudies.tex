@@ -1,0 +1,172 @@
+%
+This appendix section describes some details about the HF correction factors used in the analysis.
+The finalized settings of the fit are listed:
+\begin{itemize}
+\item \textbf{Fitting Variable:} 
+
+Sum of pcb value of the third and the forth jet ranked in DL1r scores (pcb34).
+
+\item \textbf{Fitting Region:} 
+
+$(7j,2b),~(7j,3b),~(7j,\geq 4b)$ for 1L channel,
+
+$(5j,2b),~(5j,3b),~(5j,\geq 4b)$ for 2LOS channel.
+
+\item \textbf{Systematics:}
+
+Uncertainties related to the b-tagging efficiency,
+
+Cross-section uncertainties of other backgrounds.
+
+\end{itemize}
+
+\subsection{Combined Fit with Nuisance Parameters Correlated among Channels}
+
+The first study of the HF fit considers that all the nuisance parameters are correlated among two channels.
+A combined fit is performed such that three parameters of interest ($\mu_{TTL},~\mu_{TTC}$ and $\mu_{TTB}$), corresponding to the correction factors of TTL, TTC and TTB respectively, are retrieved.
+
+Figure~\ref{Fig:NPPull_NPPOICorr} shows the pull plot of the nuisance parameters (NP).
+It is found that the in the separated fit of 1L channel (black color) and 2LOS channel (red color), the pulls of all NP are stable, namely, the pulled value is close to zero and without big constraints in the uncertainties.
+However in the combined fit (blue color), several parameters are over-pulled (larger than $1\sigma$).
+These pulls are also not consistent with the results of 1L and 2LOS separated fit.
+One of the reasons of creating these unstable pulls is come from the performance differences among the two channels.
+The major differences can be found in NP bTag c-jets EV0 (C0) and bTag light-jets EV0 (L0).
+Therefore these two NP are decided to be decorrelated among the channels.
+
+%%%%% Figure HF Fitting No NP POI DeCorrelation %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/NoNPMuCorr/NuisPar_comp.pdf}
+    \caption{The pull plot of nuisance parameters which are correlated among channels. Black, red and blue color refer to 1L, 2LOS and combined channel fit respectively.}
+    \label{Fig:NPPull_NPPOICorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure HF Fitting No NP POI DeCorrelation %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/NoNPMuCorr/NormFactors_comp.pdf}
+    \caption{The correction factors of TTL, TTC and TTB retrieved from the fit with all nuisance parameters correlated among channels.}
+    \label{Fig:HFCorr_NPPOICorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Combined Fit with C0 and L0 Decorrelated among Channels}
+After decorrelating C0 and L0 among two channels, the pulls of the NP can be found in figure~\ref{Fig:NPPull_POICorr}.
+The pulls are more stable than the previous one in figure~\ref{Fig:NPPull_NPPOICorr}, but several NP are still over-pulled and over-constrained.
+Moreover, the pulls of C0 in the combined fit and 1L fit are in the opposite direction.
+In figure~\ref{Fig:HFCorr_POICorr}, the TTC correction factor ($\mu_{TTC}$) from the separated fit in 1L and 2LOS channels are very similar with each other, but not the case in the combined fit. 
+This strange pull may still come from the differences between 1L and 2LOS channels.
+One of the differences may come from the acceptance between the 1L and 2LOS channels, so that the correction factors of TTL and TTB ($\mu_{TTL}$ and $\mu_{TTB}$) in two channels have slightly deviations.
+The deviation in TTL cannot be cancelled out during the combined fit because the correction factor from the combined fit does not lie between the factors from 1L and 2LOS fit, but not the case in TTB.
+Therefore, the correction factor of TTL is also decorrelated among the channels during the combined fit.
+
+%%%%% Figure HF Fitting No NP POI DeCorrelation %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/NoMuCorr/NuisPar_comp.pdf}
+    \caption{The pull plot of nuisance parameters where C0 and L0 are decorrelated among the channels. Black, red and blue color refer to 1L, 2LOS and combined channel fit respectively.}
+    \label{Fig:NPPull_POICorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure HF Fitting No NP POI DeCorrelation %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/NoMuCorr/NormFactors_comp.pdf}
+    \caption{The correction factors of TTL, TTC and TTB retrieved from the fit with C0 and L0 are decorrelated among the channels.}
+    \label{Fig:HFCorr_POICorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Combined Fit with Different Correction Factors Decorrelation among Channels}
+
+In this section, the results of correction factors with different decorrelation schemes after the NP decorrelation are presented.
+Three decorrelation schemes are tested: $\mu_{TTL}$ decorrelation only, $\mu_{TTC}$ decorrelation only and $\mu_{TTB}$ decorrelation only among two channels.
+
+Figures~\ref{Fig:NPPull_TTLDecorr} and~\ref{Fig:HFCorr_TTLDecorr} show the NP pulls and the HF correction factors from the fit after $\mu_{TTL}$ decorrelation.
+The NP pulls are more stable.  
+The correction factors derived from the combined fit are closed to and in between the results derived from 1L and 2LOS separated fits. 
+
+Figures~\ref{Fig:NPPull_TTCDecorr} and~\ref{Fig:HFCorr_TTCDecorr} show the NP pulls and the HF correction factors from the fit after $\mu_{TTC}$ decorrelation.
+The NP pulls are stable, however, C0 pulls in the combined fit are opposite to the separated fits.
+It is also found that $\mu_{TTC} (1L)$ derived in the combined fit is deviated from the result derived in the 1L separate fit, that is not expected.
+
+Figures~\ref{Fig:NPPull_TTBDecorr} and~\ref{Fig:HFCorr_TTBDecorr} show the NP pulls and the HF correction factors from the fit after $\mu_{TTB}$ decorrelation.
+The NP pulls and the HF correction factors are nearly the same as the case of without decorrelating the correction factors.
+
+%%%%% Figure TTL Decorr NP %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/TTLDecorr/NuisPar_comp.pdf}
+    \caption{The pull plot of nuisance parameters where C0, L0 and $\mu_{TTL}$ are decorrelated among the channels. Black, red and blue color refer to 1L, 2LOS and combined channel fit respectively.}
+    \label{Fig:NPPull_TTLDecorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure TTL Decorr Corr Factor %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/TTLDecorr/NormFactors_comp.pdf}
+    \caption{The correction factors of TTL, TTC and TTB retrieved from the fit with C0, L0 and $\mu_{TTL}$ are decorrelated among the channels.}
+    \label{Fig:HFCorr_TTLDecorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure TTC Decorr NP %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/TTCDecorr/NuisPar_comp.pdf}
+    \caption{The pull plot of nuisance parameters where C0, L0 and $\mu_{TTC}$ are decorrelated among the channels. Black, red and blue color refer to 1L, 2LOS and combined channel fit respectively.}
+    \label{Fig:NPPull_TTCDecorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure TTC Decorr Corr Factor %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/TTCDecorr/NormFactors_comp.pdf}
+    \caption{The correction factors of TTL, TTC and TTB retrieved from the fit with C0, L0 and $\mu_{TTC}$ are decorrelated among the channels.}
+    \label{Fig:HFCorr_TTCDecorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure TTB Decorr NP %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/TTBDecorr/NuisPar_comp.pdf}
+    \caption{The pull plot of nuisance parameters where C0, L0 and $\mu_{TTB}$ are decorrelated among the channels. Black, red and blue color refer to 1L, 2LOS and combined channel fit respectively.}
+    \label{Fig:NPPull_TTBDecorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Figure TTB Decorr Corr Factor %%%%
+\begin{figure}[htbp!]
+    \includegraphics[width=0.85\textwidth]{figures/HF_studies/TTBDecorr/NormFactors_comp.pdf}
+    \caption{The correction factors of TTL, TTC and TTB retrieved from the fit with C0, L0 and $\mu_{TTB}$ are decorrelated among the channels.}
+    \label{Fig:HFCorr_TTBDecorr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\subsection{Scale Factors on ISR, FSR and Scale Variations}
+\label{app:HFweights_weightSystematics}
+
+The nominal HF scales are applied to the systematics of ISR, FSR and scale variations ($\mu_{R}$ and $\mu_{F}$).
+It is found that the yield ratios (post-fit of nominal samples to the pre-fit of systematics samples) in the HF scales deriving regions (1L $=7j,\geq 2b$ and 2LOS $=5j,\geq 2b$), as shown in table~\ref{tab:HF_ScaleYieldRatio}, are similar to the nominal factors.
+
+%%%%% Table %%%%%
+\begin{table}[th!]
+    \centering
+    \resizebox*{0.5\textwidth}{!}{
+    \begin{tabular}{c|cccc}
+        \hline \hline
+          & TTL (1L) & TTL (OS) & TTC & TTB \\
+        \hline
+        Nominal & $0.84$ & $0.87$ & $1.61$ & $1.18$ \\
+        \hline
+        FSR(up) & $0.78$ & $0.82$ & $1.64$ & $1.18$ \\
+        FSR(down) & $0.90$ & $0.93$ & $1.59$ & $1.20$ \\
+        ISR(up) & $0.80$ & $0.84$ & $1.55$ & $1.15$ \\
+        ISR(down) & $0.86$ & $0.90$ & $1.66$ & $1.21$ \\
+        $\mu_{F}$(up) & $0.83$ & $0.87$ & $1.59$ & $1.17$ \\
+        $\mu_{F}$(down) & $0.83$ & $0.87$ & $1.61$ & $1.19$ \\
+        $\mu_{R}$(up) & $0.82$ & $0.86$ & $1.58$ & $1.17$ \\
+        $\mu_{R}$(down) & $0.83$ & $0.88$ & $1.61$ & $1.19$\\
+        \hline \hline
+    \end{tabular}
+    }
+    \caption{\label{tab:HF_ScaleYieldRatio}The yiled ratio (post-fit of nominal samples to the pre-fit of systematic samples) in the regions of 1L $=7j,\geq 2b$ and 2LOS $=5j,\geq 2b$. The first line refers to the nominal HF-scale factors.}
+\end{table}
+

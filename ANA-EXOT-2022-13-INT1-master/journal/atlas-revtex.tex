@@ -1,0 +1,91 @@
+%-------------------------------------------------------------------------------
+% Standard ATLAS paper template with revtex class
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found - adjust if necessary
+\makeatletter
+\def\input@path{{../latex/}}
+\makeatother
+%-------------------------------------------------------------------------------
+% Add option linenumbers to create line numbers
+% Adjust revtex version between 4-1 and 4-2 depending on TeX Live version
+\documentclass[aps, prd, reprint, USenglish, texlive=2016]{revtex4-1}
+
+% ATLAS packages
+% Use class option linenumbers rather than the lineno package
+\usepackage[lineno=false,biblatex=false]{atlaspackage}
+
+% \usepackage{showframe}
+
+% Useful macros
+\usepackage{atlasphysics}
+
+% Paths for figures
+\graphicspath{{../logos/}{figures/}}
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS draft},pdfauthor={The ATLAS Collaboration}}
+
+% Either include atlascover or atlasmetadefs
+\usepackage[coverpage=true]{atlascover}
+% \usepackage{atlasmetadefs}
+
+\newcommand*{\DocumentStyle}{\texttt{revtex} class}
+
+% Title, abstract and document
+\input{atlas-document-metadata}
+\AtlasJournal{\PRD}
+
+\begin{document}
+
+% Take the title from \AtlasTitle
+\title{\AtlasTitleText}
+
+\author{The ATLAS Collaboration}
+
+% Take the abstract from \AtlasAbstract
+\begin{abstract}
+  \AtlasAbstractText
+
+  Cover page using \texttt{atlascover}.
+\end{abstract}
+
+\maketitle
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-------------------------------------------------------------------------------
+
+Place your introduction here.
+
+The ATLAS Collaboration discovered a new particle in 2012~\cite{HIGG-2012-27}.
+
+%-------------------------------------------------------------------------------
+% ATLAS detector description
+%-------------------------------------------------------------------------------
+% \input{../template/atlas-detector}
+
+
+%-------------------------------------------------------------------------------
+\section{Results}
+\label{sec:result}
+%-------------------------------------------------------------------------------
+
+Place your results here.
+
+
+%-------------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%-------------------------------------------------------------------------------
+
+Place your conclusion here.
+
+%-------------------------------------------------------------------------------
+% You do not need to specify \bibliographystyle with revtex.
+% If you want to set one it must go in the preamble.
+% \bibliographystyle{elsarticle-num}
+\bibliography{atlas-paper}
+%-------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,34 @@
+An overlap removal procedure has been applied in order to avoid the same calorimeter energy deposit or the same track being reconstructed as two different objects in the same event.  The standard overlap removal tools \texttt{AssociationUtils} have been used for this purpose. All electrons, muons and jets passing  the loose definition of Tables~\ref{tab:object:loose_electron} and~\ref{tab:object:loose_muon}  are used as input to the tool.  Different procedures are provided by the tool for the overlap removal, the one used in this analysis corresponds to \texttt{BoostedSlidingDRMu}.  The sequence applied together with the criteria to remove objects are detailed in Table~\ref{table:overlap_removal},  where the distance metric used to define overlapping objects, \(\Delta R\), is calculated using the rapidity by default.
+
+ Due to a bug at Tier0 sub-leading (in the full muon container) muons are not masked from the PFlow algorithm as leptons. This means that they are treated as pions and can subtract energy from the calorimeter and then form particle flow jets themselves.  The primary effect are these fake jets which are actually the muons themselves which overlap with the reconstructed muon. These fake jets are removed as well using the  \texttt{AssociationUtils} package. More details about this issue can be found in~\cite{twiki:HowToCleanJets2017}. This extra step in the overlap removal is applied before the sequence shown in Table~\ref{table:overlap_removal}. 
+
+
+\begin{table}[ht]
+\caption{Overlap removal procedure}
+\label{table:overlap_removal}
+ \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{lll}
+    \toprule
+    Reject & Against & Criteria \\
+    \midrule
+    Electron & Electron & shared track, \(p_{\text{T},1} < p_{\text{T},2}\) \\
+   % Tau      & Electron & \(\Delta R <\) 0.2 \\
+   % Tau      & Muon     & \(\Delta R <\) 0.2 \\
+    Muon     & Electron & is Calo-Muon and shared ID track \\
+    Electron & Muon     & shared ID track \\
+   % Photon   & Electron & \(\Delta R < 0.4\) \\
+   % Photon   & Muon     & \(\Delta R < 0.4\) \\
+    Jet      & Electron & \(\Delta R < 0.2\)\\
+    Electron & Jet      & \(\Delta R < 0.4\)  \\
+    Jet      & Muon     & \(\texttt{NumTrack} < 3\) and (ghost-associated or \(\Delta R < 0.2\))  \\
+    Muon     & Jet      &  \(\Delta R < \min(0.4, 0.04 + \SI{10}{\GeV}/\pT(\mu))\) \\
+    %Jet      & Tau      & \(\Delta R < 0.2\) \\
+    %Photon   & Jet      & \(\Delta R < 0.4\) \\
+    %Fat-jet  & Electron & \(\Delta R < 1.0\) \\
+    %Jet      & Fat-jet  & \(\Delta R < 1.0\) \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+

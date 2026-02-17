@@ -1,0 +1,301 @@
+%-------------------------------------------------------------------------------
+% Miscellaneous useful definitions for ATLAS documents.
+% Include with misc option in atlasphysics.sty.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+% +--------------------------------------------------------------------+
+% |  Useful things for proton-proton physics                           |
+% +--------------------------------------------------------------------+
+\newcommand*{\pT}{\ensuremath{p_{\text{T}}}\xspace}
+\newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
+\newcommand*{\ET}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\eT}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\et}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\HT}{\ensuremath{H_{\text{T}}}\xspace}
+\newcommand*{\pTsq}{\ensuremath{p_{\text{T}}^{2}}\xspace}
+%\newcommand*{\ptsq}{\ensuremath{p_{\text{T}}^{2}}\xspace}
+\newcommand*{\MET}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
+\newcommand*{\met}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
+\newcommand*{\sumET}{\ensuremath{\sum \ET}\xspace}
+\newcommand*{\EjetRec}{\ensuremath{E_{\text{rec}}}\xspace}
+\newcommand*{\PjetRec}{\ensuremath{p_{\text{rec}}}\xspace}
+\newcommand*{\EjetTru}{\ensuremath{E_{\text{true}}}\xspace}
+\newcommand*{\PjetTru}{\ensuremath{p_{\text{true}}}\xspace}
+\newcommand*{\EjetDM}{\ensuremath{E_{\text{DM}}}\xspace}
+\newcommand*{\Rcone}{\ensuremath{R_{\text{cone}}}\xspace}
+\newcommand*{\abseta}{\ensuremath{|\eta|}\xspace}
+\newcommand*{\Ecm}{\ensuremath{E_{\text{cm}}}\xspace}
+\newcommand*{\rts}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand*{\sqs}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand*{\Nevt}{\ensuremath{N_{\mathrm{evt}}}\xspace}
+\newcommand*{\zvtx}{\ensuremath{z_{\mathrm{vtx}}}\xspace}
+\newcommand*{\dzero}{\ensuremath{d_{0}}\xspace}
+\newcommand*{\zzsth}{\ensuremath{z_{0} \sin(\theta)}\xspace}
+
+% LHC standard terms
+\newcommand*{\RunOne}{Run~1\xspace}
+\newcommand*{\RunTwo}{Run~2\xspace}
+\newcommand*{\RunThr}{Run~3\xspace}
+
+% ATLAS jets standard terms
+\newcommand*{\kt}{\ensuremath{k_{t}}\xspace}
+\newcommand*{\antikt}{anti-\kt}
+\newcommand*{\Antikt}{Anti-\kt}
+% Different hyphenation for pile-up in UK and US English
+\iflanguage{USenglish}{%
+    \newcommand*{\pileup}{pileup\xspace}
+    \newcommand*{\Pileup}{Pileup\xspace}
+}{%
+    \newcommand*{\pileup}{pile-up\xspace}
+    \newcommand*{\Pileup}{Pile-up\xspace}
+}
+
+% b-tagging standard terms
+\newcommand*{\btag}{\ensuremath{b\text{-tagging}}\xspace}
+\newcommand*{\btagged}{\ensuremath{b\text{-tagged}}\xspace}
+\newcommand*{\bquark}{\ensuremath{b\text{-quark}}\xspace}
+\newcommand*{\bquarks}{\ensuremath{b\text{-quarks}}\xspace}
+\newcommand*{\bjet}{\ensuremath{b\text{-jet}}\xspace}
+\newcommand*{\bjets}{\ensuremath{b\text{-jets}}\xspace}
+
+
+% +--------------------------------------------------------------------+
+% | Masses                                                             |
+% +--------------------------------------------------------------------+
+\newcommand*{\mh}{\ensuremath{m_{h}}\xspace}
+\newcommand*{\mW}{\ensuremath{m_{W}}\xspace}
+\newcommand*{\mZ}{\ensuremath{m_{Z}}\xspace}
+\newcommand*{\mH}{\ensuremath{m_{H}}\xspace}
+% \newcommand*{\mA}{\ensuremath{m_{A}}\xspace}
+
+%\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
+\newcommand{\twomass}[2]{\ensuremath{m_{#1#2}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Monte Carlo generators                                            |
+% +--------------------------------------------------------------------+
+% Set up generic command for MC with optional version number
+%%% e.g. \PYTHIA[8] -> Pythia 8
+\NewDocumentCommand {\AtlasMC} { o m } {%
+  \IfNoValueTF {#1} {%
+    \textsc{#2}\xspace%
+  }{%
+    \textsc{#2}\,#1\xspace%
+  }%
+}
+\NewDocumentCommand {\ACERMC} { o } {\AtlasMC[#1]{AcerMC}}
+\NewDocumentCommand {\ALPGEN} { o } {\AtlasMC[#1]{Alpgen}}
+\NewDocumentCommand {\AMCatNLO} { o } {\AtlasMC[#1]{aMC@NLO}}
+\NewDocumentCommand {\BLACKHAT} { o } {\AtlasMC[#1]{BlackHat}}
+\NewDocumentCommand {\CALCHEP} { o } {\AtlasMC[#1]{CalcHEP}}
+\NewDocumentCommand {\COLLIER} { o } {\AtlasMC[#1]{Collier}}
+\NewDocumentCommand {\COMPHEP} { o } {\AtlasMC[#1]{CompHEP}}
+\NewDocumentCommand {\EVTGEN} { o } {\AtlasMC[#1]{EvtGen}}
+\NewDocumentCommand {\FEYNRULES} { o } {\AtlasMC[#1]{FeynRules}}
+\NewDocumentCommand {\GGTOVV} { o } {\AtlasMC[#1]{gg2VV}}
+\NewDocumentCommand {\GOSAM} { o } {\AtlasMC[#1]{GoSam}}
+\NewDocumentCommand {\HATHOR} { o } {\AtlasMC[#1]{Hathor}}
+\NewDocumentCommand {\Herwig} { o } {\AtlasMC[#1]{Herwig}}
+\NewDocumentCommand {\HERWIG} { o } {\AtlasMC[#1]{Herwig}}
+\NewDocumentCommand {\HERWIGpp} { o } {\AtlasMC[#1]{Herwig++}}
+\NewDocumentCommand {\HRES} { o } {\AtlasMC[#1]{Hres}}
+\NewDocumentCommand {\JIMMY} { o } {\AtlasMC[#1]{Jimmy}}
+\NewDocumentCommand {\MADSPIN} { o } {\AtlasMC[#1]{MadSpin}}
+\NewDocumentCommand {\MADGRAPH} { o } {\AtlasMC[#1]{MadGraph}}
+\NewDocumentCommand {\MGNLO} { o } {\AtlasMC[#1]{MadGraph5\_aMC@NLO}} %short-hand
+\NewDocumentCommand {\MCatNLO} { o } {\AtlasMC[#1]{MC@NLO}}
+\NewDocumentCommand {\MCFM} { o } {\AtlasMC[#1]{MCFM}}
+\NewDocumentCommand {\METOP} { o } {\AtlasMC[#1]{METOP}}
+\NewDocumentCommand {\OPENLOOPS} { o } {\AtlasMC[#1]{OpenLoops}}
+\NewDocumentCommand {\POWHEG} { o } {\AtlasMC[#1]{Powheg}}
+\NewDocumentCommand {\POWHEGBOX} { o } {\AtlasMC[#1]{Powheg\,Box}}
+\NewDocumentCommand {\POWHEGBOXRES} { o } {\AtlasMC[#1]{Powheg\,Box\,Res}}
+\NewDocumentCommand {\PHOTOS} { o } {\AtlasMC[#1]{Photos}}
+\NewDocumentCommand {\PHOTOSpp} { o } {\AtlasMC[#1]{Photos++}}
+\NewDocumentCommand {\PROPHECY} { o } {\AtlasMC[#1]{Prophecy4f}}
+\NewDocumentCommand {\PROTOS} { o } {\AtlasMC[#1]{Protos}}
+\NewDocumentCommand {\Pythia} { o } {\AtlasMC[#1]{Pythia}}
+\NewDocumentCommand {\PYTHIA} { o } {\AtlasMC[#1]{Pythia}}
+\NewDocumentCommand {\RECOLA} { o } {\AtlasMC[#1]{Recola}}
+\NewDocumentCommand {\Sherpa} { o } {\AtlasMC[#1]{Sherpa}}
+\NewDocumentCommand {\SHERPA} { o } {\AtlasMC[#1]{Sherpa}}
+\NewDocumentCommand {\TOPpp} { o } {\AtlasMC[#1]{Top++}}
+\NewDocumentCommand {\VBFNLO} { o } {\AtlasMC[#1]{VBFNLO}}
+
+% common ME+PS combinations
+\NewDocumentCommand {\MGNLOHER} { o } {\AtlasMC[#1]{MadGraph5\_aMC@NLO+Herwig}}
+\NewDocumentCommand {\MGNLOPY} { o } {\AtlasMC[#1]{MadGraph5\_aMC@NLO+Pythia}}
+\NewDocumentCommand {\MGHER} { o } {\AtlasMC[#1]{MadGraph5+Herwig}}
+\NewDocumentCommand {\MGPY} { o } {\AtlasMC[#1]{MadGraph5+Pythia}}
+\NewDocumentCommand {\POWHER} { o } {\AtlasMC[#1]{Powheg+Herwig}}
+\NewDocumentCommand {\POWPY} { o } {\AtlasMC[#1]{Powheg+Pythia}}
+\NewDocumentCommand {\SHERPABH} { o } {\AtlasMC[#1]{Sherpa+BlackHat}}
+\NewDocumentCommand {\SHERPAOL} { o } {\AtlasMC[#1]{Sherpa+OpenLoops}}
+
+
+%%% Set up generic command for common PDFs with optional 
+%%% version number/perturbative order (but no space)
+%%% e.g. \NNPDF[3.0nnlo] -> NNPDF3.0nnlo
+\NewDocumentCommand {\AtlasPDF} { o m } {%
+  \IfNoValueTF {#1} {%
+    \textsc{#2}\xspace%
+  }{%
+    \textsc{#2#1}\xspace%
+  }%
+}
+\NewDocumentCommand {\ABM} { o } {\AtlasPDF[#1]{ABM}}
+\NewDocumentCommand {\ABKM} { o } {\AtlasPDF[#1]{ABKM}}
+\NewDocumentCommand {\CT} { o } {\AtlasPDF[#1]{CT}}
+\NewDocumentCommand {\CTEQ} { o } {\AtlasPDF[#1]{CTEQ}}
+\NewDocumentCommand {\GJR} { o } {\AtlasPDF[#1]{GJR}}
+\NewDocumentCommand {\HERAPDF} { o } {\AtlasPDF[#1]{HERAPDF}}
+\NewDocumentCommand {\LUXQED} { o } {\AtlasPDF[#1]{LUXqed}}
+\NewDocumentCommand {\MSTW} { o } {\AtlasPDF[#1]{MSTW2008}}
+\NewDocumentCommand {\MMHT} { o } {\AtlasPDF[#1]{MMHT2014}}
+\NewDocumentCommand {\MSHT} { o } {\AtlasPDF[#1]{MSHT2020}}
+\NewDocumentCommand {\NNPDF} { o } {\AtlasPDF[#1]{NNPDF}}
+\NewDocumentCommand {\PDFforLHC} { o } {\AtlasPDF[#1]{PDF4LHC}}
+
+%%% Event generator extras
+\newcommand*{\AUET}{AUET2\xspace}
+\newcommand*{\AZNLO}{AZNLO\xspace}
+\newcommand*{\FXFX}{\textsc{FxFx}\xspace}
+\newcommand*{\GEANT}{\textsc{Geant4}\xspace}
+\newcommand*{\MENLOPS}{\textsc{MENLOPS}\xspace}
+\newcommand*{\MEPSatLO}{\textsc{MEPS@LO}\xspace}
+\newcommand*{\MEPSatNLO}{\textsc{MEPS@NLO}\xspace}
+\newcommand*{\MINLO}{\textsc{MiNLO}\xspace}
+\newcommand*{\Monash}{Monash\xspace}
+\newcommand*{\Perugia}{Perugia\xspace}
+\newcommand*{\Prospino}{Prospino\xspace}
+\newcommand*{\UEEE}{UE-EE-5\xspace}
+
+\newcommand*{\LO}{\ensuremath{\text{LO}}\xspace}
+\newcommand*{\NLO}{\ensuremath{\text{NLO}}\xspace}
+\newcommand*{\NLL}{\ensuremath{\text{NLL}}\xspace}
+\newcommand*{\NNLO}{\ensuremath{\text{N}}\NLO}
+\newcommand*{\muF}{\ensuremath{\mu_\mathrm{f}}\xspace}
+\newcommand*{\muQ}{\ensuremath{\mu_\mathrm{q}}\xspace}
+\newcommand*{\muR}{\ensuremath{\mu_\mathrm{r}}\xspace}
+\newcommand*{\hdamp}{\ensuremath{h_\mathrm{damp}}\xspace}
+\newcommand*{\NLOEWvirt}{NLO~\ensuremath{\text{EW}_\text{virt}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Useful symbols for use in or out of math mode                     |
+% +--------------------------------------------------------------------+
+\newcommand*{\ra}{\ensuremath{\rightarrow}\xspace}
+\newcommand*{\la}{\ensuremath{\leftarrow}\xspace}
+\newcommand*{\rarrow}{\ensuremath{\rightarrow}\xspace}
+\newcommand*{\larrow}{\ensuremath{\leftarrow}\xspace}
+%\let\rarrow=\ra
+%\let\larrow=\la
+\newcommand*{\lapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{\(<\)}}\xspace}%  Or use \lsim
+\newcommand*{\rapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{\(>\)}}\xspace}%  and \rsim.
+\newcommand*{\gam}{\ensuremath{\gamma}\xspace}
+\newcommand*{\stat}{\mbox{\(\;\)(stat.)}\xspace}
+\newcommand*{\syst}{\mbox{\(\;\)(syst.)}\xspace}
+\newcommand*{\radlength}{\ensuremath{X_0}}
+\newcommand*{\StoB}{\ensuremath{S/B}\xspace}
+
+% Different differential symbols in American and British English
+\iflanguage{USenglish}{%
+  \providecommand*{\dif}{\ensuremath{d}}
+}{%
+  \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
+}
+
+
+% +--------------------------------------------------------------------+
+% |  QCD                                                               |
+% +--------------------------------------------------------------------+
+\newcommand*{\alphas}{\ensuremath{\alpha_{\text{s}}}\xspace}
+\newcommand*{\NF}{\ensuremath{N_{\text{F}}}\xspace}
+\newcommand*{\NC}{\ensuremath{N_{\text{C}}}\xspace}
+\newcommand*{\CF}{\ensuremath{C_{\text{F}}}\xspace}
+\newcommand*{\CA}{\ensuremath{C_{\text{A}}}\xspace}
+\newcommand*{\TF}{\ensuremath{T_{\text{F}}}\xspace}
+\newcommand*{\Lms}{\ensuremath{\Lambda_{\overline{\text{MS}}}}\xspace}
+\newcommand*{\Lmsfive}{\ensuremath{\Lambda^{(5)}_{\overline{\text{MS}}}}\xspace}
+\newcommand*{\kperp}{\ensuremath{k_{\perp}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  CKM matrix                                                        |
+% +--------------------------------------------------------------------+
+\newcommand*{\Vcb}{\ensuremath{\vert V_{cb} \vert}\xspace}
+\newcommand*{\Vub}{\ensuremath{\vert V_{ub} \vert}\xspace}
+\newcommand*{\Vtd}{\ensuremath{\vert V_{td} \vert}\xspace}
+\newcommand*{\Vts}{\ensuremath{\vert V_{ts} \vert}\xspace}
+\newcommand*{\Vtb}{\ensuremath{\vert V_{tb} \vert}\xspace}
+\newcommand*{\Vcs}{\ensuremath{\vert V_{cs} \vert}\xspace}
+\newcommand*{\Vud}{\ensuremath{\vert V_{ud} \vert}\xspace}
+\newcommand*{\Vus}{\ensuremath{\vert V_{us} \vert}\xspace}
+\newcommand*{\Vcd}{\ensuremath{\vert V_{cd} \vert}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Figure width                                                      |
+% +--------------------------------------------------------------------+
+\newlength{\figwidth}
+\setlength{\figwidth}{\textwidth}
+\addtolength{\figwidth}{-2.0cm}
+
+% +--------------------------------------------------------------------+
+% |  The decay symbol, to be used in \eqalign.                         |
+% |  It works like: \[\eqalign{a\ra &b+c\cr &\dk &e+f\cr &&\dk g+h}\]  |
+% |                                                                    |
+% |                  a  -->  b + c                                     |
+% |                          |                                         |
+% |                          |                                         |
+% |                          +----> e + f                              |
+% |                                 |                                  |
+% |                                 |                                  |
+% |                                 +----> g + h                       |
+% +--------------------------------------------------------------------+
+\newdimen\dkwidth
+\def\dk{%
+   \dkwidth=\baselineskip
+   {\def\to{\rightarrow}%  allows "\rightarrowfill" to work.
+   \kern 3pt
+   \hbox{%
+      \raise 3pt
+      \hbox{%
+         \vrule height 0.8\dkwidth width 0.7pt depth0pt
+      }
+      \kern-0.4pt%
+      \hbox to 1.5\dkwidth{%
+         \rightarrowfill
+      }
+   \kern0.6em
+   }}
+}
+
+% +--------------------------------------------------------------------+
+% |  Redefine \eqalign to allow more than one column; very             |
+% |  useful for multiple decays as defined above.                      |
+% +--------------------------------------------------------------------+
+%\unlock
+\def\eqalign#1{%
+   \,
+   \vcenter{%
+      \openup\jot\m@th
+      \ialign{%
+         \strut\hfil\(\displaystyle{##}\)&&\(%
+         \displaystyle{{}##}\)\hfil\crcr#1\crcr%
+      }
+   }
+   \,
+}
+
+% +--------------------------------------------------------------------+
+% |  Hours:minutes macro                                               |
+% +--------------------------------------------------------------------+
+%\newcount\hrs\newcount\minu\newcount\temptime
+%\def\hm{\hrs=\time \divide\hrs by 60 \minu=\time\temptime=\hrs
+%\multiply\temptime by 60%
+%\advance\minu by -\temptime
+%\ifnum\minu<10 \let\zerofill=0\else \let\zerofill=\relax\fi
+% \the\hrs:\zerofill\the\minu}
+

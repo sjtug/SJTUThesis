@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              tZq                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[\tZq]{\tZq}
+\label{subsec:tZq}
+
+This section describes the MC samples used for the modelling of \tZq production.
+Section~\ref{subsubsec:tZq_aMCP8} describes the \MGNLOPY[8] samples,
+
+\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\label{subsubsec:tZq_aMCP8}
+
+\paragraph{Samples}
+%\label{par:tZq_aMCP8_samples}
+
+The descriptions below correspond to the samples in Tables~\ref{tab:tZq_aMCP8} and \ref{tab:tZq_aMCP8_addRad}.
+
+\begin{table}[htbp]
+  \caption{Nominal \tZq samples produced with \MGNLOPY[8].}%
+  \label{tab:tZq_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    412063 & \tZq \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \caption{\tZq samples produced with \MGNLOPY[8] used to estimate initial-state radiation systematic uncertainties.}%
+  \label{tab:tZq_aMCP8_addRad}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    412065 & \tZq, A14Var3c up \\
+    410064 & \tZq, A14Var3c down \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Short description:}
+
+The production of \tZq events was modelled using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
+The events were interfaced with \PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+
+The uncertainty due to initial-state radiation (ISR) was estimated by comparing the nominal \tZq sample with two additional samples,
+which had the same settings as the nominal one, but employed the Var3c up and down variations of the A14 tune. 
+
+
+\paragraph{Long description:}
+
+The \tZq sample was simulated using the \MGNLO[2.3.3]~\cite{Alwall:2014hca}
+generator at NLO with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF). The events were interfaced with
+\PYTHIA[8.230]~\cite{Sjostrand:2014zea} using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} 
+and the \NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. Off-resonance events away from the $Z$ mass peak were included. 
+The top quark was decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to preserve spin correlations.
+The four-flavour scheme was used, where all the quark masses are set to zero, except for the top and bottom quarks. 
+Following the discussion in Ref.~\cite{Frederix:2012dh}, the functional form of the renormalisation and factorisation scales 
+was set to 4$\sqrt{m_b^2+p_{\text{T},b}^2}$, where the $b$-quark was the one produced by a gluon splitting in the event. 
+The decays of bottom and charm hadrons were simulated using the \EVTGEN program~\cite{Lange:2001uf}.
+
+The \tZq total cross-section, calculated at next-to-leading order (NLO) using \MGNLO[2.3.3] with the \NNPDF[3.0nlo] PDF set, 
+is 800\,fb, with an uncertainty of $^{+6.1}_{-7.4}$\%. The uncertainty was computed by varying the renormalisation and 
+factorisation scales by a factor of two and by a factor of 0.5.
+
+The uncertainty due to initial-state radiation (ISR) was estimated by comparing the nominal \tZq sample with two additional samples,
+which have the same settings as the nominal one, but employed the Var3c up or down variation of the A14 tune, which
+corresponds to the variation of \alphas for ISR in the A14 tune.
+
+To evaluate the effect of renormalisation and factorisation scale uncertainties, the two scales were varied simultaneously by factors 2.0 and 0.5.
+To evaluate the PDF uncertainties for the nominal PDF, the 100 variations for \NNPDF[2.3lo] were taken into account. 

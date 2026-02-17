@@ -1,0 +1,36 @@
+\subsection{Overlap removal}
+
+The reconstruction of the same energy deposits as multiple objects is resolved using the standard overlap removal tools, \texttt{AssociationUtils}, documented \href{https://gitlab.cern.ch/atlas/athena/blob/21.2/PhysicsAnalysis/AnalysisCommon/AssociationUtils/README.rst}{here}
+
+The (Standard/Heavy-flavor/Boosted/Boosted+Heavy-flavor/lepton-favored) working point is used corresponding to:
+
+\begin{table}[ht]
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{lll}
+    \toprule
+    Reject & Against & Criteria \\
+    \midrule
+    Electron & Electron & shared track, \(p_{\text{T},1} < p_{\text{T},2}\) \\
+    Tau      & Electron & \(\Delta R <\) 0.2 \\
+    Tau      & Muon     & \(\Delta R <\) 0.2 \\
+    Muon     & Electron & is Calo-Muon and shared ID track \\
+    Electron & Muon     & shared ID track \\
+    Photon   & Electron & \(\Delta R < 0.4\) \\
+    Photon   & Muon     & \(\Delta R < 0.4\) \\
+    Jet      & Electron & [\(\Delta R < 0.2\) / Not a \bjet and \(\Delta R <\) 0.2] \\
+    Electron & Jet      & [\(\Delta R < 0.4\) / \(\Delta R < \min(0.4, 0.04 + \SI{10}{\GeV}/\pT(e))\)/None] \\
+    Jet      & Muon     & [\(\texttt{NumTrack} < 3\) and (ghost-associated or \(\Delta R < 0.2\)) / \\
+                       && not a \bjet and \(\texttt{NumTrack} < 3\) and (ghost-associated or \(\Delta R < 0.2\))] \\
+    Muon     & Jet      & [\(\Delta R < 0.4\) / \(\Delta R < \min(0.4, 0.04 + \SI{10}{\GeV}/\pT(\mu))\)/None] \\
+    Jet      & Tau      & \(\Delta R < 0.2\) \\
+    Photon   & Jet      & \(\Delta R < 0.4\) \\
+    Fat-jet  & Electron & \(\Delta R < 1.0\) \\
+    Jet      & Fat-jet  & \(\Delta R < 1.0\) \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+\(\Delta R\) is calculated using rapidity by default.
+
+

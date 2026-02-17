@@ -1,0 +1,26 @@
+% Charm differential cross sections d sigma / dY in bins of xda
+\sisetup{round-mode=figures, round-precision=2,
+  group-digits=integer, group-minimum-digits=4}
+\sisetup{scientific-notation=fixed, fixed-exponent=0}
+\begin{tabular}{%
+    S[table-format=1.5, table-number-alignment=right,
+    round-mode=figures, round-precision=1]@{$\,:\,$}
+    S[table-format=1.5, table-number-alignment=left,
+    round-mode=figures, round-precision=1]
+    S[table-format=5.1, table-alignment=right,
+    round-mode=figures, round-precision=4]@{$\,\pm\,$}
+    S[table-format=3.1, table-alignment=right,
+    round-mode=figures, round-precision=2]@{$\,$}r}
+  \toprule
+  \multicolumn{2}{c}{$x$} &
+  \multicolumn{3}{c}{$\dif\sigma / \dif x$}\\
+  \multicolumn{2}{c}{\mbox{}} & \multicolumn{3}{c}{[\si{\nano\barn}]}\\
+  \midrule
+0.00008 & 0.00020                 & {\numRF{1.08474e+04}{2}\phdo}  & {\numRF{867945e-3}{1}\phdo}  & \numpmerr{+761437 e-3}{-647690 e-3}{1} \\
+0.00020 & 0.00060                 & {\numRF{1.08385e+04}{3}\phdo}  & {\numRF{388976e-3}{1}\phdo}  & \numpmerr{+567443 e-3}{-441257 e-3}{1} \\
+0.00060 & {\numRF{0.0016}{2}\pho} & {\numRF{4.974e+03}{3}\phdo}    & 135404e-3                    & \numpmerr{+256385 e-3}{-233376 e-3}{2} \\
+{\numRF{0.0016}{2}\pho} & 0.00500 & {\numRF{1.21664e+03}{4}\phdo}  & 31162.1e-3                   & \numpmerr{+68948.1e-3}{-62459.6e-3}{2} \\
+0.00500 & 0.01000                 & {\numRF{256870e-03}{3}\phdo}   & 12232.7e-3                   & \numpmerr{+18363.7e-3}{-16463.7e-3}{2} \\
+0.01000 & 0.10000                 & {\numRF{10652.6e-03}{3}}       & {\numRF{791.21e-3}{1}}       & \numpmerr{+913.118e-3}{-815.675e-3}{1} \\
+  \bottomrule
+\end{tabular}

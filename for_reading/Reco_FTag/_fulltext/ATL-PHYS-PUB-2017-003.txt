@@ -1,0 +1,731 @@
+
+
+===== PAGE 1 =====
+ATL-PHYS-PUB-2017-003
+10 March 2017
+ATLAS NOTE
+ATL-PHYS-PUB-2017-003
+March 7, 2017
+Identiﬁcation of Jets Containingb-Hadrons with Recurrent Neural
+Networks at the ATLAS Experiment
+The ATLAS Collaboration
+Abstract
+A b-jet identiﬁcation algorithm is constructed with a Recurrent Neural Network (RNN) at
+the ATLAS experiment at the CERN Large Hadron Collider. The RNN basedb-tagging
+algorithm processes charged particle tracks associated to jets without reliance on secondary
+vertex ﬁnding, and can augment secondary-vertex based taggers. In contrast to traditional
+impact-parameter-based b-taggingalgorithmswhichassumethattracksassociatedtojetsare
+independent from each other, the RNN basedb-tagging algorithm can exploit the spatial
+and kinematic correlations between tracks which are initiated from the sameb-hadron. This
+new approach also accommodates an extended set of input variables. This note presents the
+expected performance of the RNN basedb-tagging algorithm in simulatedt¯t events created
+in proton–proton collisions at√s = 13 TeV.
+©2017 CERN for the beneﬁt of the ATLAS Collaboration.
+Reproduction of this article or parts of it is allowed as speciﬁed in the CC-BY-3.0 license.
+
+===== PAGE 2 =====
+1 Introduction
+The identiﬁcation of jets containing ab-hadron, typically referred to asb-tagging, plays a vital role for
+the ATLAS experiment [1] at the CERN Large Hadron Collider (LHC). It is important for both precise
+Standard Model measurements, including the Higgs sector, and for exploring new physics scenarios in
+the√s = 13 TeV proton-proton collisions now being delivered in Run 2 of the LHC. The identiﬁcation
+of b-quark jets in ATLAS is based on several low-levelb-tagging algorithms which can be grouped
+into impact-parameter based (IP) and secondary-vertex based algorithms [2]. Since the two classes of
+algorithmsoﬀercomplementaryinformation,theoutputsfromthesealgorithmsarecombinedinaboosted
+decision tree which is the default high-level algorithm used by ATLAS physics analyses [3].
+IP algorithms have the beneﬁt that discrimination is possible even if no secondary vertex is explicitly
+reconstructed. They typically assign per-track probabilities that the track originated from a jet of a
+given ﬂavor and combine these probabilities as a likelihood product. The probabilities are estimated by
+referencing binned likelihood distributions from simulation which ignore any interdependencies between
+track parameters of diﬀerent tracks in a given jet. This simpliﬁcation is driven by practical limitations
+in the likelihood algorithm: accounting for the impact parameters and track quality for every track in
+a jet would quickly drive the likelihood algorithm to a space of unmanagably large dimensionality. To
+overcomethesechallenges,anewalgorithmisintroducedbasedontrackpropertiesandarecurrentneural
+network (RNN).
+RNNsareasubclassofneuralnetworkarchitecturesthatallowextensionstosequence-basedandtemporal
+domains (see Ref. [4] and References therein). They are typically used in natural language processing [5,
+6], machine translation [7, 8], and time-series analysis [9, 10]. In the case ofb-tagging, the tracks in a
+b-jet can be treated as a variable-length sequence to recastb-tagging into a domain where RNNs have
+proven to be useful. This note introduces one such algorithm, and shows how it can improve upon and
+extend current impact-parameter based taggers.
+This note is organized as follows: The simulated event samples and the object and event selection are
+described in Section 2. The RNN basedb-tagging algorithm is described in Section 3. A comparison
+betweenkey b-taggingquantitiesinsimulatedeventsispresentedinSection4. Conclusionsarepresented
+in Section 5.
+2 Event Samples, Object Selection, Association and Flavor Labeling
+Thefollowingperformanceplotsareproducedfromsimulated t¯t productioncorrespondingto √s =13TeV
+proton-proton collisions. Events are generated with the next-to-leading order generatorPowheg-Box
+v2 [11] and theCT10 [12] PDF set, interfaced withPythia 6.428 [13] with the CTEQ6L1 PDF set [14]
+andthePerugia2012tuneforthepartonshower[15]. EvtGen[16]isusedtomodelthedecaysofthe band
+c-hadrons. Minimum bias interactions are generated withPythia8 [17] and are overlaid on thet¯t events.
+Particles are passed through the ATLAS detector simulation [18] which is based onGEANT4[19].
+Eventsareselectedbyrequiringareconstructedprimaryvertex. Iftheeventhasseveralcandidatevertices,
+the primary vertex is deﬁned as the vertex with the largest sum of squared transverse momenta of the
+associated tracks. Jets are reconstructed by clustering energy deposits in the calorimeter with the anti-kt
+algorithm [20, 21] and a radius parameter of 0.4, where clusters are calibrated at the electromagnetic
+energy scale. The resulting jet is calibrated at the hadronic scale through a transverse momentum,pT,
+2
+
+===== PAGE 3 =====
+and pseudorapidity1,η, dependent correction factor. A preliminary version of the Run-2 jet energy scale
+calibration is applied to the jets [22]. In this note, only jets withpT above 20 GeV and|η| < 2.5 are
+considered. A jet vertex tagger (JVT) is used to reject jets originating from pileup interactions [23].
+Thetracksusedinthe b-taggingalgorithmsareassociatedtojetsusingtheangularseparation ∆Rbetween
+the track and the jet axis. The∆R requirement varies as a function of jetpT, being wide for lowpT jets
+and narrower for highpT jets which tend to be more collimated. For instance, at 20 GeV, it is∆R < 0.45
+while for more energetic jets with apT of 150 GeV the threshold is∆R < 0.26 [2]. A similar geometric
+matching scheme is used to label jets asb-, c-, light-jets, or as hadronically decayingτ-leptons (τ-jets) in
+simulation [24]. Under this matching scheme the sample is composed of approximately 26%b-jets. The
+remaining jets are 89% light-ﬂavor jets, 4%τ-jets and 7%c-jets.
+ATLAS’s baseline high-levelb-tagging algorithm is MV2c10 [3], which employs a boosted decision tree
+based on jet kinematics and properties computed from an impact parameter tagging algorithm (IP3D),
+a secondary vertex ﬁtting algorithm (SV1), and a multivertex decay chain ﬁnding algorithm (JetFitter).
+MV2c10 is trained withb-jets as signal, and a mix of 7%c and 93% light jets as background. More
+detailed descriptions of these algorithms can be found in references [2, 3, 24].
+Forajettobeconsidered b-tagged,theoutputofthehigh-level b-taggingalgorithmisrequiredtobeabove
+a ﬁxed threshold value. Several such thresholds, or “working points” (WP), are deﬁned, in such a way
+as to correspond to a well-deﬁned average eﬃciency when applied tob-jets from a sample of inclusivet¯t
+events. Thisnotereferencestwotypesofworkingpoints: cutsthataretunedtoanaverage70% b-tagging
+eﬃciencyacrossthe pTspectrum,and“ﬂateﬃciency"workingpointsinwhichthethresholdforthetagger
+discriminant is varied with jetpT in order to achieve a uniform eﬃciency as a function ofpT.
+3 Recurrent Neural Network Basedb-Tagging
+3.1 Motivation for RNN tagging
+Withinthedecayofa b-hadron,severalchargedparticlescanemergefromthesecondary(ortertiary)decay
+vertexwithlargeimpactparameters,asmeasuredbythedistanceofclosestapproachtotheprimaryvertex.
+These impact parameters are intrinsically correlated: if one track is found with a large impact parameter
+then ﬁnding a second track with large impact parameter is more likely. If no displaced decay is present,
+as in light-ﬂavor jets, then such a correlation should not exist. The 2D distribution of transverse impact
+parameter signiﬁcance2 (Sd0) for the leading and subleading transverse impact parameter signiﬁcance
+tracks can be found in Figure 1 forb-jets, where a correlation can clearly be seen, and light ﬂavour-jets,
+where no such correlation is observed.
+ATLAS’s baseline IP basedb-tagging algorithm, IP3D, uses 3D likelihood templates inSd0, Sz0, and a
+trackcategorizationtocomputethreeper-ﬂavorconditionallikelihoods, pb, pc,and plight. Theselikelihood
+templates are derived from histograms with 35 bins inSd0, 20 bins inSz0, and 14 bins in track category,
+1 ATLASusesaright-handedcoordinatesystemwithitsoriginatthenominalinteractionpointinthecentreofthedetectorand
+the z-axis along the beam pipe. Thex-axis points from the interaction point to the centre of the LHC ring, and they-axis
+points upward. Cylindrical coordinates(r,φ ) are used in the transverse plane,φ being the azimuthal angle around thez-axis.
+The pseudorapidity is deﬁned in terms of the polar angleθ asη =−lntan (θ/2), and the∆Rbetween two objects is deﬁned in
+terms of angular separation inη andφ, ∆R = ((∆η)2 + (∆φ)2)1/2
+2 In all algorithms discussed here the impact parameter is characterized by the lifetime signed transverse impact parameter
+signiﬁcance (Sd0≡ d0/σd0) and the lifetime signed longitudinal impact parameter signiﬁcance (Sz0≡ z0sinθ/σ z0sinθ).
+3
+
+===== PAGE 4 =====
+d0
+Leading S
+-20 -10 0 10 20 30 40 50 60
+d0
+Subleading S
+-20
+-10
+0
+10
+20
+30
+40
+50
+60
+-410
+-310
+-210
+|<2.5η>20 GeV, |Tb-jets, p
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+d0
+Leading S
+-20 -10 0 10 20 30 40 50 60
+d0
+Subleading S
+-20
+-10
+0
+10
+20
+30
+40
+50
+60
+-310
+-210
+-110
+|<2.5η>20 GeV, |Tlight-jets, p
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+Figure1:Thedistributionofthe d0 signiﬁcancefortheleading d0 signiﬁcancetrackandsubleading d0 signiﬁcance
+track in b-jets (left) and light jets (right). The plots were produced with 700kb-jets and 1M light jets, and each
+distribution is normalized to unity.
+where each category corresponds to a diﬀerent track quality [24]. Multiplying by the three ﬂavors, this
+results in a ﬁnal bin count of 35×20×14×3 = 29,400. As the probability is computed per track, the
+likelihood of a jet being of a given ﬂavour is computed as the product of the per-track likelihoods. The
+IP3D discriminant is built from the conditional log-likelihood ratio, IP3D= ln ∏
+i∈tracks pi
+b/pi
+light.
+One of the main assumptions of the IP3D algorithm is that the per-track ﬂavor conditional likelihood can
+be computed independent of the other tracks in the jet. Such a likelihood model does not account for the
+eﬀectshowninFigure1,andthemethodofbuildingtemplatestodeﬁnelikelihoodsrequireslargesample
+sizes. Inaddition,extendingthetemplatetoaccountforadditionalkinematicvariablesiscomputationally
+expensive, since the number of template bins (and the number of simulated events required to ﬁll them)
+grows exponentially with the number of variables. Such algorithmic deﬁciencies can be rectiﬁed using
+machine learning classiﬁers.
+3.2 Recurrent Networks
+Recurrent neural networks are used to directly learn sequential dependencies for arbitrary-length se-
+quences [4, 25]. The fundamental unit of an RNN is a cell encapsulating an internal state vector. As the
+ﬁrststepofprocessinganygivensequence(inthiscasethetracksinajet),theinternalstateisinitializedto
+zero. Ateachstepinthesequence,thecellishandedaﬁxednumberofinputs(inthiscasetheparameters
+thatdescribeonetrack). Theseparametersarecombinedwiththe currentinternalstateinordertocompute
+anewinternalstatebasedonasetofruleswhicharetunedinthetrainingphase. Attheendofthesequence
+the cell’s internal state serves as a ﬁxed-dimensional representation of the entire sequence. In this way a
+recurrent cell is able to reduce a sequence of arbitrary length to a ﬁxed number of variables, which can
+then be processed by a traditional feed-forward network.3
+MuchoftherecentsuccessofRNNsinvariousnaturallanguageandlong-sequenceprocessingapplications
+can be attributed to the advent of Long Short-Term Memory (LSTM) [27] units and later variants such as
+GatedRecurrentUnits(GRUs)[28,29]. Thesearchitecturalmodiﬁcationsatthecelllevelmitigateissues
+3 For a review of terminology such as “fully-connected”, and related concepts, and a more pedagogical introduction to deep
+learning, see for instance References [25, 26].
+4
+
+===== PAGE 5 =====
+related to vanishing and exploding gradients [30–32], and improve the knowledge persistence of long-
+termdependencies. Thesespecialkindsofrecurrentunitsemploydiﬀerentinternalgatingmechanismsto
+modify the cell state in order to balance and regulate the relative importance of long-term and short-term
+information.
+3.3 Implementation
+In addition to the track selection described in Section 2, tracks fed to the RNN are required to pass
+additionalqualityrequirementsidenticaltothoserequiredbyIP3D.Speciﬁcally,tracksmusthave pT > 1
+GeV,|d0| < 1 mm and|z0sinθ| < 1.5 mm, seven or more silicon hits, at most two silicon holes, and at
+most one hole in the pixel detector. A hole is deﬁned as a hit expected to be associated with the track but
+not present. Both IP3D and the RNN are able to accommodate an arbitrary length track sequence, and
+thus no limit is placed on the number of tracks fed to the algorithms.
+Foreachselectedtrack,thevariablesprovidedtothenetworkcanbefoundinTable1,andthearchitecture
+is represented schematically in Figure 2. Initial tests have shown that a network using onlySd0, Sz0, and
+the track category outperformed IP3D, indicating that the RNN algorithm alone adds discrimination over
+a likelihood-based approach. Additional discrimination power is gained from variables which exploit
+the mass of heavy hadrons andpT diﬀerences between tracks from fragmentation and those from heavy
+hadrons. As shown in Figure 4, the fraction of jet energy carried by each track,pfrac
+T , and the angular
+separation between the track and jet axis,∆R(track, jet), improve the performance of the RNN tagger.
+The track category used by IP3D requires special attention: as the numerical values of the categories
+have no relative meaning, the category is embedded into a trainable, unit-normalized, 2D continuous
+representation.
+After the initial selection and category embedding, tracks are ordered by|Sd0| and passed to a LSTM cell
+which transforms the arbitrary-length track sequence to a 50 dimensional vector. This vector is then fed
+into a feed-forward fully-connected layer with four outputs corresponding to theb-jet, c-jet, light-jet, and
+τ-jetprobabilities( pb, pc, plight, andpτ). Toensurethattheseoutputssumto1, theyarethenfedthrough
+a ﬁnal softmax layer. The ﬁnal network includes 11,636 trainable free parameters—a 60% reduction
+compared to IP3D.
+The network was trained with 3.2 million jets4 and tested with an independent sample of 4 million jets.
+When evaluating the RNN, all tracks satisfying the quality criteria listed above are used, although for the
+sakeoftrainingthesequencewastruncatedat15tracks. Trainingwithlongersequencesshowednegligible
+diﬀerences,whichisunsurprisinggiventhatthechosentrackorderingputstracksfrom b-hadronsearlyin
+the sequence, and that only 0.5% of jets include more than 15 tracks. The entire network was trained for
+50epochsusing Keras[33]withthe Theano[34]backendandtheAdamoptimizer[35]. Alllayerswere
+initialized from a Glorot Uniform distribution [36]. Within the ATLAS event reconstruction software,
+the networkisevaluated using lwtnn[37]. Whentraining, the jettransverse momentumspectra ofb-jets
+and c-jets were separately reweighed to the light-jet spectrum so as to prevent the neural network from
+learning to discriminate directly from sample and ﬂavor speciﬁc momentum distributions.
+Inadditiontothenetworkdescribedabove,severalrelatedarchitectureswereconsidered. Orderingtracks
+by|S2
+d0
++ S2
+z0| or pT showed minor diﬀerences in performance but no substantial beneﬁt. In another
+conﬁguration, the 2D embedded track category was removed and replaced with the tracking variables
+4 Network trainings with fewer jets, such as 1 million, only showed minor degradation in performance.
+5
+
+===== PAGE 6 =====
+Track Variable Description
+Used in IP3D and RNN tager
+Sd0
+Lifetime signed transverse impact parameter signiﬁcance,d0/σd0, whered0 is the transverse
+displacement at the point of closest approach to the primary vertex,σd0 is the error ond0, and
+the sign is deﬁned to be positive (negative) if the point of closest approach to the primary
+vertex is in front (behind) the primary vertex with respect to the jet direction.
+Sz0
+Lifetime signed longitudinal impact parameter signiﬁcance,z0/σz0, wherez0 is the
+longitudinal displacement at the point of closest approach to the primary vertex,σz0 is the
+error onz0, and the sign is deﬁned to be positive (negative) if the point of closest approach of
+the track to the primary vertex is in front (behind) the primary vertex with respect to the jet
+direction.
+Category [24]
+A categorization of the tracks depending on the number of observed, expected, or missing hits
+in the diﬀerent layers of the silicon pixel and strip detectors. The category attempts to
+organize tracks based on impact parameter resolution.
+New to the RNN tagger
+pfrac
+T The fraction of transverse momentum carried by the track relative to the jet,ptrack
+T /pjet
+T .
+∆R(track, jet) The angular distance between the track and the jet axis,
+√
+(φtrack−φjet)2 + (ηtrack−ηjet)2.
+Table 1: Descriptions of track variables used in IP3D and the RNN tagger.
+which deﬁne track categories. While this variant yielded similar performance, the category embedding
+architecturewaschosenbecausethemodelingoftheIP3Dcategorizationschemehasbeenmorecarefully
+scrutinized. Many other versions of the RNN presented above were examined, including diﬀerent sets of
+track variables, alternative recurrent units, additional recurrent layers, additional fully-connected layers,
+and variations in the training parameters such as training epochs and learning rates. The above network
+was ultimately found to be an ideal compromise when accounting for classiﬁcation accuracy, training
+time, and simplicity.
+4 Performance Results
+To demonstrate the performance of the RNN tagging algorithm, theb-tagging eﬃciency and background
+rejection (1 / background eﬃciency) are examined both inclusively in jet-pT and as a function of the jet
+pT. AstheRNNtaggerhasafour-classoutputitprovidesamuchmoreﬂexibleclassofdiscriminantsthan
+traditional single-class algorithms like MV2c10.5 For the sake of visualization, however, these outputs
+are combined into the following discriminant function:
+DRNN = ln pb
+f c pc + fτ pτ + (1− f c− fτ )plight
+(1)
+where f c and fτ are parameters representing thec- andτ-jet fractions, respectively, which can be used
+changetherelativeimportanceof c-jet,τ-jetandlight-jetrejectionbythediscriminant. The f c parameter
+5 Note that a multi-class tagging discriminant can be useful to identify any of the classes, not justb-jets. For a non–b-tagging
+example see charm tagging [38].
+6
+
+===== PAGE 7 =====
+Figure 2: A schematic diagram of the RNN-based ﬂavor-tagger, showing input features, network structure, and the
+4-class output of{pb, pc, plight, pτ}. In trainng track sequences aretruncated after a maximum of 15 tracks, while in
+application all tracks are considered.
+is ﬁxed at f c = 0.07, which is chosen based on thet¯t training sample6. Given that τ discriminants
+typicallycombinecalorimeterandvertexinformation[39,40],anymeaningfulcomparisonswithexisting
+τ reconstruction algorithms are beyond the scope of this note. For consistency with existingb-tagging
+algorithms7 the fτ parameter is therefore set tofτ = 0, eﬀectively ignoringpτ.
+Background rejection versus signal eﬃciency curves are produced by scanning a minimum threshold on
+DRNN and computing background rejection and signal eﬃciency at each threshold. These curves can
+be found in Figure 3, for a background of light jets and a background ofc-jets separately. The RNN
+outperforms IP3D, which is promising given the similar input variables, and given that neither of these
+algorithms relies on reconstructing a secondary vertex. For ab-tagging eﬃciency of 70% the RNN has
+2.5timesthelight-jetrejectionand1.2timesthe c-jetrejectionofIP3D.Toillustratethecomplementarity
+between IP-based and vertex-based algorithms, the secondary vertex reconstruction algorithm SV1 and
+the high-level algorithm MV2c10 are also shown. The limitations of secondary vertex reconstruction are
+clearlyillustratedbythemaximumeﬃciencyofSV1: inroughly20%of b-jetsnosecondaryvertexcanbe
+6 Small changes to this fraction were observed to have little eﬀect on the discriminant performance
+7 Jets labeled asτ jets are removed from the SV1, IP3D, and MV2c10 training.
+7
+
+===== PAGE 8 =====
+reconstructed. Although not pictured, JetFitter suﬀers from a similar maximum eﬃciency. Despite their
+limited eﬃciency, however, the vertex-based algorithms clearly complement the IP-based algorithms as
+illustrated by the superior performance of MV2c10, which combines JetFitter, SV1, and IP3D in a BDT.
+bεb-jet efficiency, 
+0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+l ε light-jet rejection, 1/
+1
+10
+210
+310
+410
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+bεb-jet efficiency, 
+0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+cε c-jet rejection, 1/
+1
+10
+210
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+Figure 3: The light-jet (left) andc-jet (right) rejection versusb-tagging eﬃciency for jets withpT > 20 GeV and
+|η| < 2.5. The statistical error on the curve is less than 3%. MV2c10 is a high level BDT tagger which integrates
+IP3D outputs outputs with additional vertex information from JetFitter and SV1.
+Tofactorizethegainsfromtherecurrentnetworkfromthoseprovidedbytheadditionalvariables,Figure4
+compares the performance of an RNN trained ononly the IP3D inputs to one which uses the additional
+∆R(track, jet) and pfrac
+T inputs. A network using exactly the same inputs as IP3D improves light-jet
+rejection by a factor of 1.7 andc-jet rejection by a factor 1.05, even in the absence of any additional
+variables.
+bεb-jet efficiency, 
+0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+l ε light-jet rejection, 1/
+1
+10
+210
+310
+R)Δ Frac, 
+T
+, category, pz0, S
+d0
+RNNIP(S
+ Frac)
+T
+, category, pz0, S
+d0
+RNNIP(S
+, category)z0, S
+d0
+RNNIP(S
+IP3D
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |
+T
+p
+bεb-jet efficiency, 
+0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1
+c ε c-jet rejection, 1/
+1
+10
+R)Δ Frac, 
+T
+, category, pz0, S
+d0
+RNNIP(S
+ Frac)
+T
+, category, pz0, S
+d0
+RNNIP(S
+, category)z0, S
+d0
+RNNIP(S
+IP3D
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |
+T
+p
+Figure 4: The light-jet (left) andc-jet (right) rejection versus b-tagging eﬃciency for jets withpT > 20 GeV
+and|η| < 2.5, for RNNs trained using various sets of input variables, and for IP3D. The RNN withoutpfrac
+T and
+∆R(track, jet) uses only the inputs available to IP3D.
+In order to understand how the tagging performance depends on jet kinematics, theb-tagging eﬃciency
+versus jet pT is shown in Figure 5. To isolate the eﬀect of a changingb-tagging eﬃciency from that of
+the changing light-jet andc-jet rejection rejection, a ﬂat-eﬃciency 70% WP is examined. In this case, all
+taggers have a 70% eﬃciency acrosspT, and only the rejection is varying. The light- andc-jet rejection
+8
+
+===== PAGE 9 =====
+as a function of jetpT can be seen in Figure 6. The RNN outperforms IP3D in terms of light- andc-jet
+rejection across thepT range.
+ [GeV]Tb-jet p
+0 100 200 300 400 500
+bε b-jet efficiency, 
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+70% b-tagging WP
+ [GeV]Tb-jet p
+0 100 200 300 400 500
+bε b-jet efficiency, 
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+70% b-tagging WP
+ [GeV]Tb-jet p
+0 100 200 300 400 500
+bε b-jet efficiency, 
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+70% b-tagging WP
+ [GeV]Tb-jet p
+0 100 200 300 400 500
+bε b-jet efficiency, 
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+70% b-tagging WP
+Figure 5:b-tagging eﬃciency for a 70% WP cut versus jetpT.
+ [GeV]Tb-jet p
+0 100 200 300 400 500
+l ε light-jet Rejection, 1/
+100
+200
+300
+400
+500
+600
+700
+800
+900
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+Flat 70% b-tagging WP
+ [GeV]Tb-jet p
+0 100 200 300 400 500
+cε c-jet Rejection,  1/
+5
+10
+15
+20
+25
+30
+35
+40
+MV2c10
+RNNIP
+IP3D
+SV1
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+Flat 70% b-tagging WP
+Figure 6: Light jet rejection (left) andc-jet rejection (right) at ﬂatb-tagging eﬃciency of 70% versus jetpT. Like
+MV2c10 andSV1, the RNN taggerperforms beston jets withapT of roughly50–150 GeV.MV2c10 is ahigh level
+BDT tagger which integrates IP3D outputs outputs with additional vertex information from JetFitter and SV1.
+ThepoweroftheRNNapproach,whichcanbeinferredfromtheROCcurvesinFigures3and4,isdueto
+thenetwork’sabilitytobuildnon-linearhierarchicalrepresentationsinahigh-dimensionalspace. Tohelp
+illustratethenetwork’sbehavior,Figure7showsthecorrelationcoeﬃcient, ρ,betweentheinputvariables
+and DRNN for each track in the sequence. The strongest correlation is forSd0, especially for the ﬁrst∼ 8
+tracksinthesequence. Thismayberelatedtothetypicalchargedparticlemultiplicityexpectedina b-jet.
+Sz0 is the second most correlated variable. There is a small negative correlation with thepfrac
+T , especially
+for tracks later in the sequence, which may be related to the harder fragmentation ofb-quarks compared
+to lighter quarks, leading to an expectation of only a small number of highpfrac
+T tracks. Finally there is
+a small negative correlation with∆R, indicating that tracks far from the jet axis are less likely inside of
+b-jets where most tracks from a high momentumb-hadron are collimated.
+9
+
+===== PAGE 10 =====
+ track in sequencethi
+2 4 6 8 10 12 14
+) d0 , S RNN(Dρ Correlation, 
+-0.1
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+b-jets
+c-jets
+light-jets
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+ track in sequencethi
+2 4 6 8 10 12 14
+) z0 , S RNN(Dρ Correlation, 
+-0.1
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+b-jets
+c-jets
+light-jets
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+ track in sequencethi
+2 4 6 8 10 12 14
+ Fraction)T , p RNN(Dρ Correlation, 
+-0.2
+-0.1
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+b-jets
+c-jets
+light-jets
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+ track in sequencethi
+2 4 6 8 10 12 14
+ R)Δ, RNN(Dρ Correlation, 
+-0.2
+-0.1
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+b-jets
+c-jets
+light-jets
+ATLAS Simulation Preliminary
+t=13 TeV, ts
+|<2.5η>20 GeV, |Tp
+Figure7:Correlationsofpertrackinputvariables Sd0 (topleft), Sz0 (topright), pfrac
+T (bottomleft),and ∆R,withthe
+RNN scoreDRNN.
+5 Conclusions
+A new low-levelb-tagging algorithm has been presented which is built from a Recurrent Neural Network
+withasequenceoftrack-by-trackvariablesasinput. Thisalgorithmisseentooutperformimpactparameter
+taggers, as is expected due to the ability to learn and discriminate on the correlations between tracks in
+a given jet and the ability to extend the number of input variables well beyond what is feasible with
+likelihood based impact parameter taggers. Given this ﬂexibility, including more relatively low-level
+tracking variables as RNN inputs oﬀers a potential avenue for further improvements. While it is diﬃcult
+topinpointwhatdiscriminatinginformationtheRNNhaslearned,thisispartiallyilluminatedbyexamining
+the correlation between the RNN output and the various track inputs to the network.
+High-level ATLAS taggers such at MV2 integrate the outputs from an IP-based algorithm with two
+vertex-based algorithms, each of which relies on the full set of track parameters and covariance matrices.
+As a potential replacement for the IP-based component, the RNN discriminant should not be compared
+directly to MV2. Instead the usefulness of the RNN tagger relies on the additional information that it
+contributes to the high-level algorithm. This additional information may result in a performance boost
+to the high-level tagger, and indeed quantifying this improvement remains an active area of study within
+the ATLAS experiment. These studies include both quantifying the performance gains from adding the
+RNN outputs into a multi-algorithm composition of taggers like MV2 and studies of the correlations of
+10
+
+===== PAGE 11 =====
+the various low-level and high-level taggers to more fully elucidate howb-tagging sensitive information
+is used by diﬀerent algorithms.
+References
+[1] ATLAS Collaboration, The ATLAS experiment at the CERN Large Hadron Collider,
+JINST3 (2008) S08003.
+[2] ATLAS Collaboration, Performance ofb-jet identiﬁcation in the ATLAS experiment,
+JINST11.04 (2016) P04008.
+[3] ATLAS Collaboration, Optimisation of the ATLASb-tagging performance for the 2016 LHC Run,
+ATL-PHYS-PUB-2016-012 (2016),url: http://cds.cern.ch/record/2160731.
+[4] A. Graves, Supervised Sequence Labelling with Recurrent Neural Networks,
+Studies in Computational Intelligence 385, Springer, 2012.
+[5] T. Mikolov et al., “Recurrent neural network based language model,”
+INTERSPEECH 2010, 11th Annual Conference of the International Speech Communication
+Association, Makuhari, Chiba, Japan, September 26-30, 2010, 2010 1045,
+url: http://www.isca-speech.org/archive/interspeech_2010/i10_1045.html.
+[6] A. Graves, A. Mohamed, and G. E. Hinton,
+Speech Recognition with Deep Recurrent Neural Networks(2013), arXiv:1303.5778.
+[7] K. Cho et al.,Learning Phrase Representations using RNN Encoder-Decoder for Statistical
+Machine Translation(2014), arXiv:1406.1078.
+[8] M. Luong, H. Pham, and C. D. Manning,
+Eﬀective Approaches to Attention-based Neural Machine Translation(2015), arXiv:1508.04025.
+[9] Z. Che et al.,Recurrent Neural Networks for Multivariate Time Series with Missing Values(2016),
+arXiv: 1606.01865.
+[10] J. T. Connor, R. D. Martin, and L. E. Atlas,
+Recurrent Neural Networks and Robust Time Series Prediction,
+Trans. Neur. Netw.5.2 (Mar. 1994) 240,issn: 1045-9227.
+[11] P. Nason, A new method for combining NLO QCD with shower Monte Carlo algorithms,
+JHEP11(2004) 040, arXiv:0409146 [hep-ph].
+[12] H.-L. Lai et al.,New parton distributions for collider physics, Phys. Rev. D82(2010) 074024,
+arXiv: 1007.2241.
+[13] T. Sjostrand, S. Mrenna, and P. Z. Skands,PYTHIA 6.4 Physics and Manual, JHEP05(2006) 026,
+arXiv: 0603175 [hep-ph].
+[14] J. Pumplin et al.,
+New generation of parton distributions with uncertainties from global QCD analysis,
+JHEP0207(2002) 012, arXiv:0201195 [hep-ph].
+[15] P. Z. Skands,Tuning Monte Carlo Generators: The Perugia Tunes, Phys.Rev.D82(2010) 074018,
+arXiv: 1005.3457 [hep-ph].
+[16] D. Lange, The EvtGen particle decay simulation package, Nucl.Instrum.Meth.A462 (2001) 152,
+url: http://www.sciencedirect.com/science/article/pii/S0168900201004533.
+11
+
+===== PAGE 12 =====
+[17] T. Sjostrand, S. Mrenna, and P. Z. Skands,A Brief Introduction to PYTHIA 8.1,
+Comput. Phys. Commun.178 (2008) 852, arXiv:0710.3820.
+[18] ATLAS Collaboration, The ATLAS Simulation Infrastructure, Eur. Phys. JC70 (2010) 823,
+arXiv: 1005.4568 [physics.ins-det].
+[19] S. Agostinelli et al.,GEANT4: A simulation toolkit, Nucl. Instrum. Meth.A506(2003) 250,
+url: http://geant4.web.cern.ch/geant4/.
+[20] ATLAS Collaboration,
+Topological cell clustering in the ATLAS calorimeters and its performance in LHC Run 1(2016),
+arXiv: 1603.02934 [hep-ex].
+[21] M. Cacciari, G. P. Salam, and G. Soyez,The anti-kt jet clustering algorithm, JHEP04(2008) 063,
+arXiv: 0802.1189.
+[22] ATLAS Collaboration, Jet Calibration and Systematic Uncertainties for Jets Reconstructed in the
+ATLAS Detector at√s=13 TeV, ATL-PHYS-PUB-2015-015 (2015),
+url: http://cds.cern.ch/record/2037613.
+[23] ATLAS Collaboration, Tagging and suppression of pileup jets with the ATLAS detector,
+ATLAS-CONF-2014-018 (2014),url: https://cds.cern.ch/record/1700870.
+[24] ATLAS Collaboration, Expected performance of the ATLASb-tagging algorithms in Run-2,
+ATL-PHYS-PUB-2015-022 (2015),url: https://cds.cern.ch/record/2037697.
+[25] I. Goodfellow, Y. Bengio, and A. Courville,Deep Learning,
+http://www.deeplearningbook.org, MIT Press, 2016.
+[26] J. Schmidhuber, Deep Learning in Neural Networks: An Overview,
+Neural Networks61 (2015) 85 ,issn: 0893-6080, arXiv:1404.7828.
+[27] S. Hochreiter and J. Schmidhuber,Long Short-Term Memory, Neural Computation, 98 (1997).
+[28] J. Chung et al.,Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling
+(2014), arXiv:1412.3555.
+[29] K. Cho et al.,Learning Phrase Representations using RNN Encoder-Decoder for Statistical
+Machine Translation(2014), arXiv:1406.1078.
+[30] S. Hochreiter, “Untersuchungen zu dynamischen neuronalen Netzen. Diploma thesis, Institut für
+Informatik, Lehrstuhl Prof. Brauer, Technische Universität München,” 1991,url: http:
+//people.idsia.ch/~juergen/SeppHochreiter1991ThesisAdvisorSchmidhuber.pdf.
+[31] Y. Bengio, P. Simard, and P. Frasconi,
+Learning Long-term Dependencies with Gradient Descent is Diﬃcult,
+Trans. Neur. Netw.5.2 (Mar. 1994) 157,issn: 1045-9227.
+[32] R. Pascanu, T. Mikolov, and Y. Bengio,Understanding the exploding gradient problem(2012),
+arXiv: 1211.5063.
+[33] F. Chollet, Keras, GitHub (2015),url: https://github.com/fchollet/keras.
+[34] Theano Development Team,
+Theano: A Python framework for fast computation of mathematical expressions(May 2016),
+arXiv: 1605.02688.
+[35] D. P. Kingma and J. Ba,Adam: A Method for Stochastic Optimization(2014), arXiv:1412.6980.
+12
+
+===== PAGE 13 =====
+[36] X. Glorot and Y. Bengio,
+“Understanding the diﬃculty of training deep feedforward neural networks,”
+Proceedings of the Thirteenth International Conference on Artiﬁcial Intelligence and Statistics,
+AISTATS 2010, Chia Laguna Resort, Sardinia, Italy, May 13-15, 2010, 2010 249,
+url: http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf.
+[37] D. H. Guest et al., “lwtnn/lwtnn: Release for Athena v21,” 2017,
+url: https://doi.org/10.5281/zenodo.290682.
+[38] ATLAS Collaboration,
+Performance and Calibration of the JetFitterCharm Algorithm for c-Jet Identiﬁcation,
+ATL-PHYS-PUB-2015-001 (2015),url: https://cds.cern.ch/record/1980463.
+[39] ATLAS Collaboration, Identiﬁcation and energy calibration of hadronically decaying tau leptons
+with the ATLAS experiment inpp collisions at√s=8 TeV, Eur. Phys. J.C75.7 (2015) 303,
+arXiv: 1412.7086 [hep-ex].
+[40] ATLAS Collaboration,
+Reconstruction of hadronic decay products of tau leptons with the ATLAS experiment,
+Eur. Phys. J.C76.5 (2016) 295, arXiv:1512.05955 [hep-ex].
+13

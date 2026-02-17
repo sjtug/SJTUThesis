@@ -1,0 +1,90 @@
+\subsection{Electron selection}
+
+\begin{table}[ht]
+  \caption{Electron selection criteria.}%
+  \label{tab:object:electron}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & \multicolumn{1}{c}{Criterion} \\
+    \midrule
+    Pseudorapidity range & \(|\eta| <\) X\\
+    Energy calibration & \texttt{es2017\_R21\_PRE} (ESModel)\\
+    Energy & \(E > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse energy & \(\ET > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse momentum & \(\pT > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    \midrule
+    \multirow{2}{*}{Object quality} & Not from a bad calorimeter cluster (\texttt{BADCLUSELECTRON})\\ %\cline{2-2}
+      & Remove clusters from regions with EMEC bad HV (2016 data only) \\
+    \midrule
+    \multirow{2}{*}{Track to vertex association} & \(|d_{0}^{\text{BL}}(\sigma)| < X\) \\ %\cline{2-2}
+    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{X}{\mm}\) \\
+    \midrule
+    Identification & (\texttt{Loose/Medium/Tight}) \\
+    Isolation & \texttt{LooseTrackOnly / Loose / Tight / Gradient / \ldots} \\
+      \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+
+Notes:
+\begin{itemize}
+\item Pseudorapidity: when the calorimeter crack is not excluded, the range can be indicated simply as \enquote{\(|\eta| < 2.47\)}, when the crack is excluded: \enquote{\((|\eta| < 1.37) \quad || \quad (1.52 < |\eta| < 2.47)\)}.
+\item Usually only one among \enquote{Energy}, \enquote{Transverse energy} and \enquote{Transverse momentum} criteria is applied --- the \SI{30}{\GeV} value is just an example.
+  In special cases energy (i.e.\ calorimeter-based measurement) and momentum (i.e.\ tracking-based measurement) criteria can be required in order to constraint different aspects of the reconstruction.
+\item Electron ID\@: 3 working points (Loose/Medium/Tight) are evaluated using the Likelihood-based (LH) method, by the
+  \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/EGammaIdentificationRun2}{ElectronPhotonSelectorTools}.
+\item Energy calibration of electrons is implemented in the\\
+  \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/ElectronPhotonFourMomentumCorrection}{ElectronPhotonFourMomentumCorrection} tool.
+\item Scale Factors for efficiencies for electrons are implemented in the\\
+  \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XAODElectronEfficiencyCorrectionTool}{ElectronEfficiencyCorrection} tool.
+\item Updated configurations for the EGamma CP tools can be found on this \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/EGammaRecommendationsR21}{TWiki} page.
+\end{itemize}
+
+\newpage
+
+\subsection{Photon selection}
+
+\begin{table}[ht]
+  \caption{Photon selection criteria.}%
+  \label{tab:object:photon} 
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & \multicolumn{1}{c}{Criterion} \\
+    \midrule
+    Pseudorapidity range & \(|\eta| <\) X\\
+    Energy calibration & \texttt{es2017\_R21\_PRE} (ESModel)\\
+    Energy & \(E > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse energy & \(\ET > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    \midrule
+    \multirow{2}{*}{Object quality} & Not from a bad calorimeter cluster (\texttt{BADCLUSELECTRON})\\ %\cline{2-2}
+      & Remove clusters from regions with EMEC bad HV (2016 data only) \\
+    \midrule
+    Photon cleaning & \texttt{passOQquality} \\
+    Fudging & Applied for Full sim / not for AtlFastII \\
+    \midrule
+    Identification & (\texttt{Loose/Tight}) \\
+    Isolation &  \texttt{FixedCutTightCaloOnly / FixedCutTight / FixedCutLoose} \\
+    \bottomrule
+  \end{tabular}
+  %  }
+\end{table}
+
+Notes:
+\begin{itemize}
+\item Pseudorapidity: please note that the maximum value for \(|\eta|\) for photon candidates (2.37) is smaller than for electron candidates (2.47). 
+  If crack excluded: \enquote{\((|\eta| < 1.37) \quad || \quad (1.52 < |\eta| < 2.37)\)}.
+\item Usually only one between \enquote{Energy} and \enquote{Transverse energy} criteria is applied --- the \SI{30}{\GeV} value is just an example.
+\item Photon cleaning: a new Photon helper is available to apply the photon cleaning cut 
+  (from the \texttt{ElectronPhotonSelectorTools}, tag \(\ge\) 00-02-92-21, release \(\ge\) 2.4.30).
+\item Photon ID\@: 2 working points (Loose/Tight) are evaluated using a cut-based method, by the
+  \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/EGammaIdentificationRun2}{ElectronPhotonSelectorTools}.
+\item Energy calibration of photons is implemented in the\\
+  \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/ElectronPhotonFourMomentumCorrection}{ElectronPhotonFourMomentumCorrection} tool.
+\item Scale Factors for efficiencies for photons are implemented in the\\
+  \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XAODElectronEfficiencyCorrectionTool}{ElectronEfficiencyCorrection} tool.
+\item Updated configurations for the EGamma CP tools can be found on this \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/EGammaRecommendationsR21}{TWiki} page.
+\end{itemize}

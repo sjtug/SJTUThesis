@@ -1,0 +1,154 @@
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+\DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+
+% SSML vs 1LOS
+\def\isSSML{1} 
+
+% define some symbol used in MVA
+\newcommand{\cmark}{\ding{52}}%
+\newcommand{\xmark}{\ding{54}}%
+
+% Processes 
+\newcommand{\fourtops}{\ensuremath{t\bar{t}t\bar{t}}\xspace}
+\newcommand{\ttX}{\ensuremath{t\bar{t}X}\xspace}
+\newcommand{\ttt}{\ensuremath{t\bar{t}t}\xspace}
+\newcommand{\tth}{\ensuremath{t\bar{t}H}\xspace}
+
+\newcommand{\bsmfourtops}{\ensuremath{t\bar{t}H\rightarrow\fourtops}\xspace}
+\newcommand{\ttWjets}{\ensuremath{t\bar{t}W+7/8\text{jets}}\xspace}
+
+\newcommand{\ttWeqSeven}{\ensuremath{t\bar{t}W=\text{7j}}\xspace}
+\newcommand{\ttWgeSeven}{\ensuremath{t\bar{t}W\ge\text{7j}}\xspace}
+\newcommand{\ttWgeEight}{\ensuremath{t\bar{t}W\ge\text{8j}}\xspace}
+
+% ttbar split
+\newcommand\ttbb{\ensuremath{\ttbar+\bbbar}\xspace}
+\newcommand\ttcc{\ensuremath{\ttbar+\ccbar}\xspace}
+\newcommand\ttb{\ensuremath{\ttbar+b}\xspace}
+\newcommand\ttc{\ensuremath{\ttbar+c}\xspace}
+\newcommand\ttB{\ensuremath{\ttbar+B}\xspace}
+\newcommand\ttC{\ensuremath{\ttbar+C}\xspace}
+\newcommand\ttbin{\ensuremath{t\bar{t}}+\ensuremath{\geq}1\ensuremath{b}\xspace}
+\newcommand\ttbbb{\ensuremath{t\bar{t}}+\ensuremath{\geq}3\ensuremath{b}\xspace}
+\def\ttjets{\ensuremath{t\bar{t}}+jets\xspace}
+\newcommand\ttl{\ensuremath{\ttbar+light}\xspace}
+
+
+% new latex command for some macros
+\newcommand\ttcin{\ensuremath{t\bar{t}}+\ensuremath{\geq}1\ensuremath{c}}
+\def\Nj{\ensuremath{N_{\mathrm{jets}}}\xspace}
+\def\Vjets{\ensuremath{V+}jets\xspace}
+
+% Variable names
+\newcommand{\SumbLeadFour}{\ensuremath{\sum^{4}_{i=0}\text{w}_{\text{DL1r}}}\xspace}
+\newcommand{\SumbMVTwo}{\ensuremath{\sum\text{w}_{\text{MV2c10}}}\xspace}
+\newcommand{\SumbDL}{\ensuremath{\sum\text{w}_{\text{DL1r}}}\xspace}
+
+\newcommand{\dRllmin}{\ensuremath{\Delta R(\ell,\ell)_{\text{min}}}\xspace}
+\newcommand{\dRllmax}{\ensuremath{\Delta R(\ell,\ell)_{\text{max}}}\xspace}
+\newcommand{\dRllminSum}{\ensuremath{\sum \Delta R(\ell,\ell)_{\text{min}}}\xspace}
+\newcommand{\dRjbmin}{\ensuremath{\Delta R(j,b)_{\text{min}}}\xspace}
+\newcommand{\dRlbmax}{\ensuremath{\Delta R(\ell,b)_{\text{max}}}\xspace}
+\newcommand{\dRlbmin}{\ensuremath{\Delta R(\ell,b)_{\text{min}}}\xspace}
+
+\newcommand{\dRljmin}{\ensuremath{\Delta R(\ell,j)_{\text{min}}}\xspace}
+
+\newcommand{\pTleadjet}{\ensuremath{p^{\text{jet0}}_{\text{T}}}\xspace}
+\newcommand{\pTleadBjet}{\ensuremath{p^{\text{b-jet0}}_{\text{T}}}\xspace}
+\newcommand{\pTleadlep}{\ensuremath{p^{\text{lep0}}_{\text{T}}}\xspace}
+\newcommand{\pTsubleadlep}{\ensuremath{p^{\text{lep1}}_{\text{T}}}\xspace}
+\newcommand{\pTthirdleadlep}{\ensuremath{p^{\text{lep2}}_{\text{T}}}\xspace}
+
+\newcommand{\pTjetFifth}{\ensuremath{p^{\text{jet5}}_{\text{T}}}\xspace}
+\newcommand{\pTjetsubLead}{\ensuremath{p^{\text{jet1}}_{\text{T}}}\xspace}
+\newcommand{\pTjetThirdLead}{\ensuremath{p^{\text{jet2}}_{\text{T}}}\xspace}
+
+\newcommand{\ShapeVarJet}{\ensuremath{S^{\text{jets}}}\xspace}
+\newcommand{\ShapeVarJetXY}{\ensuremath{S^{\text{jets}}_{\text{T}}}\xspace}
+\newcommand{\ShapeVarLep}{\ensuremath{S^{\text{leps}}}\xspace}
+\newcommand{\ShapeVarLepXY}{\ensuremath{S^{\text{leps}}_{\text{T}}}\xspace}
+\newcommand{\ShapeVarAll}{\ensuremath{S^{\text{all}}}\xspace}
+\newcommand{\ShapeVarAllXY}{\ensuremath{S^{\text{all}}_{\text{T}}}\xspace}
+
+
+\newcommand{\HTall}{\ensuremath{H^{\text{all}}_{\text{T}}}\xspace}
+\newcommand{\HTnoLeadJet}{\ensuremath{H^{\text{no lead jet}}_{\text{T}}}\xspace}
+\newcommand{\mall}{\ensuremath{m^{\text{all}}_{\text{T}}}\xspace}
+
+
+\newcommand{\nbjets}{\ensuremath{N_{\text{b-jets}}\xspace}}
+\newcommand{\nbjetsDL}{\ensuremath{N^{\text{DL1r, 77\%}}_{\text{b-jets}}\xspace}}
+\newcommand{\nbjetsMVTwo}{\ensuremath{N^{\text{MV2c10, 77\%}}_{\text{b-jets}}\xspace}}
+
+\newcommand{\njets}{\ensuremath{N_{\text{jets}}\xspace}}
+\newcommand{\nj}{\ensuremath{N_{\text{j}}\xspace}}
+\newcommand{\nb}{\ensuremath{N_{\text{b}}\xspace}}
+\newcommand{\nleps}{\ensuremath{N_{\text{leptons}}\xspace}}
+
+\newcommand{\mJetOverPtJet}{\ensuremath{m_{\text{jet}}/p_{\text{T,jet}}\xspace}}
+\newcommand{\dphiLJ}{\ensuremath{\Delta\phi(\ell_0,j_0)}\xspace}
+
+
+% 
+\newcommand{\sumptlep}{\ensuremath{\sum p_T(lep)}\xspace}
+\newcommand{\MeeConvV}{\ensuremath{M_{ee}@ConvV}\xspace}
+\newcommand{\MeePV}{\ensuremath{M_{ee}@PV}\xspace}
+\newcommand{\Mee}{\ensuremath{M_{ee}}\xspace}
+\newcommand{\etae}{\ensuremath{|\eta(e)|}\xspace}
+\newcommand{\gammastar}{\ensuremath{\gamma^{*}}\xspace}
+
+
+\newcommand{\tttt}{\ensuremath{t\bar{t}t\bar t }}
+\newcommand{\ttV}{\ensuremath{t\bar{t}V }}
+\newcommand{\ttW}{\ensuremath{t\bar{t}W }}
+\newcommand{\ttZ}{\ensuremath{t\bar{t}Z }}
+\newcommand{\ttWW}{\ensuremath{t\bar{t}WW }}
+\newcommand{\ttVV}{\ensuremath{t\bar{t}VV}}
+\newcommand{\ttHH}{\ensuremath{t\bar{t}HH}}
+\newcommand{\ttWH}{\ensuremath{t\bar{t}WH}}
+\newcommand{\ttZZ}{\ensuremath{t\bar{t}ZZ}}
+\newcommand{\ttWZ}{\ensuremath{t\bar{t}WZ}}
+\def\ttWZ{\ensuremath{t\bar{t}WZ}\xspace}
+\def\tZ{\ensuremath{tZ}\xspace}
+\def\tWZ{\ensuremath{tWZ}\xspace}
+
+\def\mH{\ensuremath{m_{H}}\xspace}
+\def\ttH{$t\overline{t}H(\rightarrow t\overline{t})$}
+\def\ttA{$t\overline{t}A(\rightarrow t\overline{t})$}
+\def\ttHA{$t\overline{t}H/A(\rightarrow t\overline{t})$}
+
+\def\pythia{{\sc Pythia 6}\xspace}
+\def\pythiaeight{{\sc Pythia 8}\xspace}
+\def\sherpa{{\sc Sherpa}\xspace}
+\def\alpgen{{\sc Alpgen}\xspace}
+\def\powheg{{\sc Powheg-Box}\xspace}
+\def\herwig{{\sc Herwig}\xspace}
+\def\herwigseven{{\sc Herwig7}\xspace}
+\def\herwigpp{ {\sc Herwig\raise0.2ex\hbox{\scriptsize\kern-0.5pt+\kern-0.5pt+}}}
+\def\jimmy{{\sc Jimmy}\xspace}
+\def\acermc{{\sc AcerMC}\xspace}
+\def\mcatnlo{{\sc MC@NLO}\xspace}
+\def\amcatnlo{{\sc Madgraph5}\_a{\sc MC@NLO}\xspace}
+\def\madspin{{\sc MadSpin}\xspace}
+\def\madgraph{{\sc Madgraph5}\_a{\sc MC@NLO}\xspace}
+\def\EvtGen{{\sc EvtGen}\xspace}
+\def\mcfm{{\sc MCFM}\xspace}
+\def\MadG{{\sc Madgraph5}\_a{\sc MC@NLO}\xspace}
+\def\amcnlo{{\sc Madgraph5}\_a{\sc MC@NLO}\xspace}
+\def\ShOL{{\sc Sherpa+OpenLoops}\xspace}
+\def\nnpdfnnlo{\texttt{NNPDF3.0nnlo}\xspace}
+\def\openloops{\textsc{OpenLoops}\xspace}
+\def\powhegboxRes{\textsc{PowhegBoxRes}\xspace}
+
+\def\hdamp{\ensuremath{h_{\mathrm{damp}}}\xspace}
+\def\mtop{\ensuremath{m_{\mathrm{top}}}\xspace}
+
+\def\mgamc{\textsc{MadGraph5\_aMC@NLO}\xspace}
+
+\def\powhegs{\textsc{Powheg}\xspace}
+

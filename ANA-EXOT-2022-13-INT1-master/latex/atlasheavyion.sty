@@ -1,0 +1,114 @@
+%-------------------------------------------------------------------------------
+% Collection of heavy iondefinitions, typically not included in the other style files.
+% Include with hion option in atlasphysics.sty.
+% Not included by default.
+% Also needs atlasmisc.sty (option misc).
+% Compiled by Sasha Milov.
+% Adapted for atlaslatex by Ian Brock.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+% Package used for chemical elements
+\RequirePackage[version=3]{mhchem}
+
+% +------------------------------------+
+% |                                    |
+% |  System related notations          |
+% |                                    |
+% +------------------------------------+
+\newcommand*{\NucNuc}{\ce{A}+\ce{A}\xspace}
+
+\newcommand*{\nn}{\ensuremath{nn}\xspace}
+%\newcommand*{\pp}{\ensuremath{pp}\xspace}
+\newcommand*{\pn}{\ensuremath{pn}\xspace}
+\newcommand*{\np}{\ensuremath{np}\xspace}
+
+\newcommand*{\PbPb}{\ce{Pb}+\ce{Pb}\xspace}
+\newcommand*{\AuAu}{\ce{Au}+\ce{Au}\xspace}
+\newcommand*{\CuCu}{\ce{Cu}+\ce{Cu}\xspace}
+
+\providecommand*{\pA}{\ensuremath{p}+\ce{A}\xspace}
+\newcommand*{\pNuc}{\pA\xspace}
+\newcommand*{\pdA}{\ensuremath{p}/\ensuremath{d}+\ce{A}\xspace}
+\newcommand*{\dAu}{\ensuremath{d}+\ce{Au}\xspace}
+\newcommand*{\pPb}{\ensuremath{p}+\ce{Pb}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Centrality related notations        |
+% |                                      |
+% +--------------------------------------+
+\newcommand*{\Npart}{\ensuremath{N_{\text{part}}}\xspace}
+\newcommand*{\avgNpart}{\ensuremath{\langle\Npart\rangle}\xspace}
+
+\newcommand*{\Ncoll}{\ensuremath{N_{\text{coll}}}\xspace}
+\newcommand*{\avgNcoll}{\ensuremath{\langle\Ncoll\rangle}\xspace}
+
+\newcommand*{\TA}{\ensuremath{T_{\ce{A}}}\xspace}
+\newcommand*{\avgTA}{\ensuremath{\langle\TA\rangle}\xspace}
+
+\newcommand*{\TPb}{\ensuremath{T_{\ce{Pb}}}\xspace}
+\newcommand*{\avgTPb}{\ensuremath{\langle\TPb\rangle}\xspace}
+
+\newcommand*{\TAA}{\ensuremath{T_{\text{AA}}}\xspace}
+\newcommand*{\avgTAA}{\ensuremath{\langle\TAA\rangle}\xspace}
+
+\newcommand{\TAB}{\ensuremath{T_{\text{AB}}}\xspace}
+\newcommand{\avgTAB}{\ensuremath{\langle\TAB\rangle}\xspace}
+
+\newcommand*{\TpPb}{\ensuremath{T_{p\ce{Pb}}}\xspace}
+\newcommand*{\avgTpPb}{\ensuremath{\langle\TpPb\rangle}\xspace}
+
+\newcommand{\Gl}{Glauber\xspace}
+\newcommand{\GG}{Glauber--Gribov\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  C.M. energy related notations       |
+% |                                      |
+% +--------------------------------------+
+\newcommand*{\sqn}{\ensuremath{\sqrt{s_{_\text{NN}}}}\xspace}
+\newcommand{\lns}{\ensuremath{\ln(\kern -0.2em\sqrt{s})}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Some useful parameters              |
+% |                                      |
+% +--------------------------------------+
+\newcommand*{\sumETPb}{\ensuremath{\Sigma E_{\text{T}}^{\ce{Pb}}}\xspace}
+\newcommand*{\sumETp}{\ensuremath{\Sigma E_{\text{T}}^{p}}\xspace}
+\newcommand*{\sumETA}{\ensuremath{\Sigma E_{\text{T}}^{\ce{A}}}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Some useful constructions           |
+% |                                      |
+% +--------------------------------------+
+\newcommand*{\RAA}{\ensuremath{R_{\ce{AA}}}\xspace}
+\newcommand*{\RCP}{\ensuremath{R_{\text{CP}}}\xspace}
+\newcommand*{\RpA}{\ensuremath{R_{p\ce{A}}}\xspace}
+
+\newcommand*{\RpPb}{\ensuremath{R_{p\ce{Pb}}}\xspace}
+
+% Different differential symbols in American and British English
+\iflanguage{USenglish}{%
+  \providecommand*{\dif}{\ensuremath{d}}
+}{%
+  \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
+}
+\newcommand*{\dNchdeta}{\ensuremath{\dif N_{\text{ch}}/\dif \eta}\xspace}
+\newcommand*{\dNevtdET}{\ensuremath{\dif N_{\text{evt}}/\dif \ET}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Framework transforms                |
+% |                                      |
+% +--------------------------------------+
+\newcommand*{\ystar}{\ensuremath{y^{*}}\xspace}
+\newcommand*{\ycms}{\ensuremath{y_\text{CM}}\xspace}
+\newcommand*{\ygappb}{\ensuremath{\Delta \eta_{\text{gap}}^{\ce{Pb}}}\xspace}
+\newcommand*{\ygapp}{\ensuremath{\Delta \eta_{\text{gap}}^{p}}\xspace}
+\newcommand*{\fgap}{\ensuremath{f_{\text{gap}}}\xspace}

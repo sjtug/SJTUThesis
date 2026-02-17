@@ -1,0 +1,75 @@
+%-------------------------------------------------------------------------------
+\section{\File{atlasphysics.sty} style file}
+\label{sec:atlasphysics}
+%-------------------------------------------------------------------------------
+
+The \File{atlasphysics.sty} style file implements a series of useful
+shortcuts to typeset a physics paper, such as particle
+symbols.
+
+Options are parsed with the \Package{kvoptions} package, which is included by default.
+The style file can included in the preamble of your paper with the usual
+syntax:
+%
+\begin{tcblisting}{listing only}
+\usepackage{atlasphysics}
+\end{tcblisting}
+%
+The file is actually split into smaller files,
+which can be included or not using options.
+The following options are available, where the default setting is given in parentheses:
+\begin{description}
+\item[BSM](false) BSM and SUSY particles.
+\item[hion](false) Useful macros for heavy ion physics.
+\item[jetetmiss](false) Useful macros for Jet/Etmiss publications.
+\item[journal](true) Journal abbreviations and a few other definitions for references.
+\item[math](false) A few extra maths definitions.
+\item[misc](true) Miscellaneous definitions that are often used.
+\item[other](false) Definitions that used to be in \File{atlasphysics.sty},
+  but are probably too specialised to be needed by most people.
+\item[particle](true) Standard Model particles and some combinations.
+\item[hepparticle](false) Standard Model particles and some combinations using the \Package{hepparticle} package.
+  This option will supersede \Option{particle} at some time.
+\item[process](false) Some example processes.
+  These are not included by default as the current choice is rather arbitrary
+  and certainly not complete.
+\item[hepprocess](false) Some example processes using the \Package{hepparticle} package.
+  These are not included by default as the current choice is rather arbitrary
+  and certainly not complete.
+  This option will supersede \Option{process} at some time.
+\item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
+\item[xref](true) Useful abbreviations for cross-references.
+\item[texlive=YYYY](2016) Set if you use an older version of \TeX\ Live like 2013.
+\item[texmf](true) Use the syntax \Macro{usepackage\{package\}}
+  instead of \Macro{usepackage\{\textbackslash ATLASLATEXPATH package\}} to include packages.
+  This is needed if you install \Package{atlaslatex} centrally,
+  rather than in a \File{latex} subdirectory.
+\end{description}
+Note that \Option{BSM} and \Option{BSM=true} are equivalent.
+Use the syntax \Option{option=false} to turn off an option.
+\ADOCnew{10.0.0} \Macro{ATLASLATEXPATH} is no longer used,
+so the option \Option{texmf} has been set to \Option{true}.
+
+If the  option \Option{texmf} is included, the subfiles are included using the command:
+\verb|\RequirePackage{atlasparticle}| etc. instead of \verb|\RequirePackage{\ATLASLATEXPATH atlasparticle}|.
+\ADOCnew{10.0.0} This is now the default option.
+
+All definitions are done in a consistent way using \verb|\newcommand*|.
+All definitions use \verb|\ensuremath| where appropriate and are terminated with
+\verb|\xspace|, so you can simply write {\verb|\ttbar production| instead of
+\verb|\ttbar\ production| or \verb|\ttbar{} production| to get \enquote{\ttbar production}.
+
+The \Package{hepparticles}~\cite{hepparticles} package has uniform definitions for many Standard Model and BSM particles.
+In fact you should use the package \Package{heppennames} and/or \Package{hepnicenames},
+which contain many predefined particles.
+These packages load \Package{hepparticles}, which can then be used to define more particles if you need them.
+One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
+
+See \cref{sec:old}} for details on changes that were introduced when
+when going from version 00-04-05 of \Package{atlasnote}
+to version 01-00-00 of \Package{atlaslatex}.
+Let me know if you spot some other changes that are not documented here!
+
+Changes to the contents that might affect existing documents are given in \cref{sec:change}.
+
+The following sections list the macros defined in the various files.

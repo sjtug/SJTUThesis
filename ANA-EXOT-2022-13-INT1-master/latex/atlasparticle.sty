@@ -1,0 +1,147 @@
+%-------------------------------------------------------------------------------
+% Useful particle definitions - include with particle option in atlasphysics.sty.
+% Included by default.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+%\let\sst=\scriptscriptstyle
+
+% +--------------------------------------------------------------------+
+% |  Particle-antiparticle pair notations                              |
+% +--------------------------------------------------------------------+
+\newcommand*{\pp}{\ensuremath{pp}\xspace}
+\newcommand*{\antibar}[1]{\ensuremath{#1\bar{#1}}\xspace}
+\newcommand*{\pbar}{\ensuremath{\bar{p}}\xspace}
+\newcommand*{\ppbar}{\antibar{p}}
+\newcommand*{\tbar}{\ensuremath{\bar{t}}\xspace}
+\newcommand*{\ttbar}{\antibar{t}}
+% SIunits already defines \bbar - supersede the definition
+\@ifpackageloaded{SIunits}{%}
+  \renewcommand*{\bbar}{\ensuremath{\bar{b}}\xspace}
+}{%
+  \newcommand*{\bbar}{\ensuremath{\bar{b}}\xspace}
+}
+\newcommand*{\bbbar}{\antibar{b}}
+\newcommand*{\cbar}{\ensuremath{\bar{c}}\xspace}
+\newcommand*{\ccbar}{\antibar{c}}
+\newcommand*{\sbar}{\ensuremath{\bar{s}}\xspace}
+\newcommand*{\ssbar}{\antibar{s}}
+\newcommand*{\ubar}{\ensuremath{\bar{u}}\xspace}
+\newcommand*{\uubar}{\antibar{u}}
+\newcommand*{\dbar}{\ensuremath{\bar{d}}\xspace}
+\newcommand*{\ddbar}{\antibar{d}}
+\newcommand*{\fbar}{\ensuremath{\bar{f}}\xspace}
+\newcommand*{\ffbar}{\antibar{f}}
+\newcommand*{\qbar}{\ensuremath{\bar{q}}\xspace}
+\newcommand*{\qqbar}{\antibar{q}}
+\newcommand*{\nbar}{\ensuremath{\bar{\nu}}\xspace}
+\newcommand*{\nnbar}{\antibar{\nu}}
+
+% +--------------------------------------------------------------------+
+% |  e+e-, etc.                                                        |
+% +--------------------------------------------------------------------+
+\newcommand*{\ee}{\ensuremath{e^{+} e^{-}}\xspace}
+\newcommand*{\epm}{\ensuremath{e^{\pm}}\xspace}
+\newcommand*{\epem}{\ensuremath{e^{+} e^-}\xspace}
+\newcommand*{\mumu}{\ensuremath{\mu^{+} \mu^{-}}\xspace}
+\newcommand*{\tautau}{\ensuremath{\tau^{+} \tau^{-}}\xspace}
+\newcommand*{\leplep}{\ensuremath{\ell^{+} \ell^{-}}\xspace}
+\newcommand*{\ellell}{\ensuremath{\ell^{+} \ell^{-}}\xspace}
+\newcommand*{\enu}{\ensuremath{e \nu}\xspace}
+\newcommand*{\munu}{\ensuremath{\mu \nu}\xspace}
+\newcommand*{\lnu}{\ensuremath{\ell \nu}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Tau leptons                                                       |
+% +--------------------------------------------------------------------+
+\newcommand*{\taulep}{\ensuremath{\tau_{\text{lep}}}\xspace}
+\newcommand*{\tauhad}{\ensuremath{\tau_{\text{had}}}\xspace}
+\newcommand*{\tauhadvis}{\ensuremath{\tau_{\text{had-vis}}}\xspace}
+\newcommand*{\taup}[1]{\ensuremath{\tau_{\text{#1-prong}}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Vector bosons                                                     |
+% +--------------------------------------------------------------------+
+\newcommand*{\Zzero}{\ensuremath{Z}\xspace}
+\newcommand*{\Zboson}{\ensuremath{Z}\xspace}
+\newcommand*{\Wplus}{\ensuremath{W^{+}}\xspace}
+\newcommand*{\Wminus}{\ensuremath{W^{-}}\xspace}
+\newcommand*{\Wboson}{\ensuremath{W}\xspace}
+\newcommand*{\Wpm}{\ensuremath{W^{\pm}}\xspace}
+\newcommand*{\Wmp}{\ensuremath{W^{\mp}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  pi, pi0, pi+, pi-, pi+-, eta, eta1, etc.                          |
+% +--------------------------------------------------------------------+
+%\let\pii=\pi
+%\renewcommand*{\pi}{\ensuremath{\pii}\xspace}
+\newcommand*{\pizero}{\ensuremath{\pi^{0}}\xspace}
+\newcommand*{\piplus}{\ensuremath{\pi^{+}}\xspace}
+\newcommand*{\piminus}{\ensuremath{\pi^{-}}\xspace}
+\newcommand*{\pipm}{\ensuremath{\pi^{\pm}}\xspace}
+\newcommand*{\pimp}{\ensuremath{\pi^{\mp}}\xspace}
+%\let\etaa=\eta
+%\renewcommand*{\eta}{\ensuremath{\etaa}\xspace}
+\newcommand*{\etaprime}{\ensuremath{\eta^{\scriptscriptstyle\prime}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  K0, K+, K-, K0L, K0S                                              |
+% +--------------------------------------------------------------------+
+\newcommand*{\Kzero}{\ensuremath{K^{0}}\xspace}
+\newcommand*{\Kzerobar}{\ensuremath{\overline{K}\vphantom{K}^{0}}\xspace}
+\newcommand*{\kaon}{\ensuremath{K}\xspace}
+\newcommand*{\Kplus}{\ensuremath{K^{+}}\xspace}
+\newcommand*{\Kminus}{\ensuremath{K^{-}}\xspace}
+\newcommand*{\KzeroL}{\ensuremath{K^{0}_{\text{L}}}\xspace}
+\newcommand*{\Kzerol}{\ensuremath{K^{0}_{\text{L}}}\xspace}
+\newcommand*{\Klong}{\ensuremath{K^{0}_{\text{L}}}\xspace}
+\newcommand*{\KzeroS}{\ensuremath{K^{0}_{\text{S}}}\xspace}
+\newcommand*{\Kzeros}{\ensuremath{K^{0}_{\text{S}}}\xspace}
+\newcommand*{\Kshort}{\ensuremath{K^{0}_{\text{S}}}\xspace}
+\newcommand*{\Kstar}{\ensuremath{K^{*}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  J/psi, psi prime, etc.                                            |
+% +--------------------------------------------------------------------+
+%\let\psii=\psi  %  Save normal "\psi" definition, since I redefine it.
+%\renewcommand*{\psi}{\ensuremath{\psii}\xspace}
+\newcommand*{\jpsi}{\ensuremath{J/\psi}\xspace}
+\newcommand*{\Jpsi}{\ensuremath{J/\psi}\xspace}
+%\newcommand*{\psip}{\ensuremath{\psi^{\scriptscriptstyle\prime}}\xspace}
+\newcommand*{\psip}{\ensuremath{\psi(\text{2S})}\xspace}
+\newcommand*{\chic}{\ensuremath{\raise.4ex\hbox{\(\chi\)}_{{c}}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  Upsilons of various sorts                                         |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+% \newcommand*{\Ups}{\ensuremath{\mit\Upsilon}\xspace}
+%\newcommand*{\Upsp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime}}\xspace}
+%\newcommand*{\Upspp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime\prime}}\xspace}
+%\newcommand*{\Upsppp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime\prime\prime}}\xspace}
+%\newcommand*{\Upspppp}{\ensuremath{\mit\Upsilon^{\scriptscriptstyle\prime\prime\prime\prime}}\xspace}
+\newcommand*{\UoneS}{\ensuremath{\mit\Upsilon(\text{1S})}\xspace}
+\newcommand*{\Ups}[1]{\ensuremath{\mit{\Upsilon}(\text{#1S})}\xspace}
+\newcommand*{\chib}{\ensuremath{\raise.4ex\hbox{\(\chi\)}_{{b}}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  C physics                                                         |
+% +--------------------------------------------------------------------+
+\newcommand*{\Dstar}{\ensuremath{D^{*}}\xspace}
+%\newcommand*{\Dsstar}{\ensuremath{D^{**}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  B physics                                                         |
+% +--------------------------------------------------------------------+
+\newcommand*{\Bd}{\ensuremath{B_{d}^{0}}\xspace}
+\newcommand*{\Bs}{\ensuremath{B_{s}^{0}}\xspace}
+\newcommand*{\Bu}{\ensuremath{B_{u}}\xspace}
+\newcommand*{\Bc}{\ensuremath{B_{c}}\xspace}
+\newcommand*{\Lb}{\ensuremath{\Lambda_{b}}\xspace}
+\newcommand*{\Bstar}{\ensuremath{B^{*}}\xspace}
+\newcommand*{\BoBo}{\ensuremath{B^{0}\mbox{--}\bar{B}^{0}}\xspace}
+\newcommand*{\BodBod}{\ensuremath{B^{0}_{d}\mbox{--}\bar{B}^{0}_{d}}\xspace}
+\newcommand*{\BosBos}{\ensuremath{B^{0}_{s}\mbox{--}\bar{B}^{0}_{s}}\xspace}

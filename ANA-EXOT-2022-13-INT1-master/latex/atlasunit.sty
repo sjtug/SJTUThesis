@@ -1,0 +1,79 @@
+%-------------------------------------------------------------------------------
+% Useful units. The use of these is deprecated.
+% Use a units package, e.g. siunitx instead.
+% Include with particle unit in atlasphysics.sty.
+% Not included by default.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=AUNIT,
+  prefix=AUNIT@
+}
+% \DeclareStringOption[2016]{texlive}
+\DeclareBoolOption[false]{eVkern}
+\ProcessKeyvalOptions*
+
+% \typeout{atlasunit: AUNIT@texlive is [\AUNIT@texlive]}
+\ifthenelse{\boolean{AUNIT@eVkern}}{%
+  \typeout{atlasunit: AUNIT@eVkern is true}
+}{%
+  \typeout{atlasunit: AUNIT@eVkern is false}
+}
+
+% Adjust eV spacing if eVkern option set.
+\ifthenelse{\boolean{AUNIT@eVkern}}{%
+  \typeout{atlasunit: applying kern to eV}
+  \newcommand*{\electronvolt}{\text{e\kern-0.1em V}}
+}{%
+  \typeout{atlasunit: not applying kern to eV}
+  \newcommand*{\electronvolt}{eV}
+}
+
+% Turn off units if siunitx is included and TeX Live is between 2009 and 2010
+\newcommand*{\TeV}{\ensuremath{\text{T\electronvolt}}}
+\newcommand*{\GeV}{\ensuremath{\text{G\electronvolt}}}
+\newcommand*{\MeV}{\ensuremath{\text{M\electronvolt}}}
+\newcommand*{\keV}{\ensuremath{\text{k\electronvolt}}}
+\newcommand*{\eV}{\ensuremath{\text{\electronvolt}}}
+
+\newcommand*{\TeVc}{\ensuremath{\text{T\electronvolt/}c}}
+\newcommand*{\GeVc}{\ensuremath{\text{G\electronvolt/}c}}
+\newcommand*{\MeVc}{\ensuremath{\text{M\electronvolt/}c}}
+\newcommand*{\keVc}{\ensuremath{\text{k\electronvolt/}c}}
+\newcommand*{\eVc}{\ensuremath{\text{\electronvolt/}c}}
+
+\newcommand*{\TeVcc}{\ensuremath{\text{T\electronvolt/}c^{2}}}
+\newcommand*{\GeVcc}{\ensuremath{\text{G\electronvolt/}c^{2}}}
+\newcommand*{\MeVcc}{\ensuremath{\text{M\electronvolt/}c^{2}}}
+\newcommand*{\keVcc}{\ensuremath{\text{k\electronvolt/}c^{2}}}
+\newcommand*{\eVcc}{\ensuremath{\text{\electronvolt/}c^{2}}}
+
+\newcommand*{\ifb}{\mbox{fb\(^{-1}\)}}
+\newcommand*{\ipb}{\mbox{pb\(^{-1}\)}}
+\newcommand*{\inb}{\mbox{nb\(^{-1}\)}}
+
+\newcommand*{\degr}{\ensuremath{^\circ}}
+
+\let\tev=\TeV
+\let\gev=\GeV
+\let\mev=\MeV
+\let\kev=\keV
+\let\ev=\eV
+
+\let\tevc=\TeVc
+\let\gevc=\GeVc
+\let\mevc=\MeVc
+\let\kevc=\keVc
+\let\evc=\eVc
+
+\let\tevcc=\TeVcc
+\let\gevcc=\GeVcc
+\let\mevcc=\MeVcc
+\let\kevcc=\keVcc
+\let\evcc=\eVcc
