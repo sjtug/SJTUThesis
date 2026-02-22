@@ -207,6 +207,13 @@
 
 % 国际单位制宏包
 \usepackage{siunitx}
+% 化学式（\ch{...}）
+\usepackage[version=4]{mhchem}
+% 兼容：有些文档使用 \ch{...}（来自其它宏包/旧习惯），这里将其映射到 mhchem 的 \ce{...}
+\providecommand{\ch}{\ce}
+
+% 图文环绕浮动体（\begin{wrapfigure} ...）
+\usepackage{wrapfig}
 
 % 定理环境宏包
 \usepackage{amsthm}

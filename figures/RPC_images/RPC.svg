@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="1981.3333"
+   height="941.33331"
+   viewBox="0 0 1981.3333 941.33331"
+   sodipodi:docname="RPC.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6">
+    <rect
+       x="1616.0872"
+       y="169.13806"
+       width="260.83472"
+       height="46.503235"
+       id="rect40744" />
+    <rect
+       x="-248.61084"
+       y="178.95276"
+       width="2147.2739"
+       height="631.38818"
+       id="rect13753" />
+    <rect
+       x="1991.0842"
+       y="1085.7672"
+       width="2074.7756"
+       height="1073.5314"
+       id="rect13235" />
+    <rect
+       x="196.85651"
+       y="670.5885"
+       width="496.60052"
+       height="96.852295"
+       id="rect88879" />
+    <rect
+       x="87.442261"
+       y="755.69678"
+       width="540.82349"
+       height="57.526611"
+       id="rect85537" />
+    <rect
+       x="686.40491"
+       y="679.30762"
+       width="637.32447"
+       height="123.79789"
+       id="rect78565" />
+    <rect
+       x="1419.9048"
+       y="751.23438"
+       width="474.40063"
+       height="101.99585"
+       id="rect66653" />
+    <rect
+       x="1589.4897"
+       y="92.65387"
+       width="372.39747"
+       height="150.97302"
+       id="rect53373" />
+    <rect
+       x="179.99194"
+       y="256.96442"
+       width="545.33179"
+       height="81.815796"
+       id="rect44673" />
+    <rect
+       x="108.52405"
+       y="95.728394"
+       width="463.61667"
+       height="112.55621"
+       id="rect15534" />
+    <rect
+       x="97.632141"
+       y="105.18878"
+       width="384.87494"
+       height="47.295349"
+       id="rect12360" />
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6843" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6840" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-0-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6-6-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-0-2-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6-6-0-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-0-2-1-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6-6-0-5-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-0-2-1-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6-6-0-5-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-0-2-1-5-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6843-6-6-0-5-6-7" />
+    </marker>
+    <rect
+       x="1419.9048"
+       y="751.23438"
+       width="521.34927"
+       height="101.99585"
+       id="rect66653-5" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="572.5"
+     inkscape:cy="528.5"
+     inkscape:window-width="2560"
+     inkscape:window-height="1266"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g8"
+     inkscape:snap-global="false" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g8">
+    <rect
+       style="fill:#b3b3b3;fill-rule:evenodd;stroke-width:1.1184"
+       id="rect34"
+       width="1553.5785"
+       height="58.866714"
+       x="162.15303"
+       y="319.12357"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#b3b3b3;fill-rule:evenodd;stroke-width:1.11956"
+       id="rect34-5"
+       width="1556.8042"
+       height="58.866714"
+       x="157.4072"
+       y="516.50494"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff00ff;stroke-width:1.1184"
+       id="rect146"
+       width="1554.2515"
+       height="12.517782"
+       x="162.15303"
+       y="377.99026"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:1.95221"
+       id="rect236-7-3"
+       width="129.81696"
+       height="9.0313873"
+       x="1526.3064"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:1.98141"
+       id="rect236-7-2"
+       width="133.72905"
+       height="9.0313873"
+       x="1369.8563"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:1.99813"
+       id="rect236-7-27"
+       width="135.99565"
+       height="9.0313873"
+       x="1213.4062"
+       y="390.50809"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:2.01465"
+       id="rect236-7-0-3"
+       width="138.25337"
+       height="9.0313873"
+       x="1056.9563"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:2.37099"
+       id="rect236-7-0-61"
+       width="191.48448"
+       height="9.0313873"
+       x="848.35626"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:2.34592"
+       id="rect236-7-0-02"
+       width="187.45845"
+       height="9.0313873"
+       x="639.75623"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:2.0321"
+       id="rect236-7-0-73"
+       width="140.65889"
+       height="9.0313873"
+       x="326.85632"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:2.05493"
+       id="rect236-7-0-93"
+       width="143.83617"
+       height="9.0313873"
+       x="170.40639"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ff8080;stroke-width:2.0331"
+       id="rect236-7-0-93-9"
+       width="140.79604"
+       height="9.0313873"
+       x="483.30621"
+       y="390.50803"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#aa0000;stroke-width:1.1184"
+       id="rect1832"
+       width="1556.8044"
+       height="15.85035"
+       x="159.4731"
+       y="400.66263"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#aa0000;stroke-width:1.06908"
+       id="rect1832-7"
+       width="1556.8044"
+       height="14.483232"
+       x="158.2079"
+       y="501.64029"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#00ff00;stroke-width:1.1184"
+       id="rect2247"
+       width="1557.7784"
+       height="21.35614"
+       x="159.4731"
+       y="416.51297"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#00ff00;stroke-width:1.29472"
+       id="rect2247-4"
+       width="1557.7784"
+       height="28.620642"
+       x="157.23392"
+       y="473.01968"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#666666;stroke-width:0.594868"
+       id="rect2413"
+       width="51.749489"
+       height="34.852303"
+       x="158.75606"
+       y="438.94925"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#0000ff;stroke-width:0.628693"
+       id="rect2547"
+       width="60.628674"
+       height="34.917358"
+       x="515.08655"
+       y="439.15622"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#00ffff;stroke-width:0.809729"
+       id="rect4429"
+       width="24.324392"
+       height="35.369175"
+       x="532.86499"
+       y="438.86404"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#0000ff;stroke-width:0.628693"
+       id="rect2547-5"
+       width="60.628674"
+       height="34.917358"
+       x="1302.9039"
+       y="439.16095"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#00ffff;stroke-width:0.809729"
+       id="rect4429-0"
+       width="24.324392"
+       height="35.369175"
+       x="1321.4043"
+       y="439.08136"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 72.799785,189.26598 V 407.18764 H 158.25025"
+       id="path6838"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-0)"
+       d="m 118.18289,260.14747 v 97.99436 h 40.52628"
+       id="path6838-1-3"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-0-2)"
+       d="m 1771.3653,268.67648 v 125.99826 h -49.7569"
+       id="path6838-1-3-6"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-0-2-1)"
+       d="M 1771.248,734.11656 V 422.71349 h -50.4557"
+       id="path6838-1-3-6-5"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-0-2-1-4)"
+       d="M 1748.8893,629.17644 V 485.29317 h -30.1336"
+       id="path6838-1-3-6-5-6"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-0-2-1-5)"
+       d="M 76.295176,742.35417 V 456.62835 h 81.539444"
+       id="path6838-1-3-6-5-9"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-0-2-1-5-3)"
+       d="M 113.46287,669.69643 V 507.7041 h 41.35578"
+       id="path6838-1-3-6-5-9-4"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       id="path7565"
+       style="fill:#808000;stroke:#000000"
+       cx="-138.82562"
+       cy="-32.646362"
+       r="1.5102882"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       id="path7567"
+       style="fill:#808000;stroke:#000000"
+       cx="-138.82562"
+       cy="-32.646362"
+       r="1.5102882"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 840.77708,682.3317 581.06157,464.73265"
+       id="path8074"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       id="text12358"
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect12360)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       id="text15532"
+       style="font-style:normal;font-weight:normal;font-size:36.5469px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15534);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.2358359,0,0,1.2124213,-67.606493,21.283009)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="108.52344"
+         y="129.75368"
+         id="tspan3489"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3487">Mylar layer (200µm)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text44671"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44673);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,-78.999493,-101.78668)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="179.99219"
+         y="294.20484"
+         id="tspan3493"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3491">Honeycomb panel</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text53371"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect53373);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,-20.219729,37.985068)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="1589.4902"
+         y="129.8943"
+         id="tspan3497"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3495">Copper strips
+</tspan></tspan><tspan
+         x="1589.4902"
+         y="180.7393"
+         id="tspan3501"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3499">(1m x 2.5cm)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text66651"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect66653);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,44.791349,-181.34249)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="1419.9043"
+         y="788.47438"
+         id="tspan3505"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3503">Anode Glass (0.7mm)
+</tspan></tspan><tspan
+         x="1419.9043"
+         y="839.31935"
+         id="tspan3509"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3507">+ resistive coating</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text66651-2"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect66653-5);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,-146.36015,-295.33807)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="1419.9043"
+         y="788.47438"
+         id="tspan3513"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3511">Cathode Glass (1.1mm)
+</tspan></tspan><tspan
+         x="1419.9043"
+         y="839.31935"
+         id="tspan3517"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3515">+ resistive coating</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text78563"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect78565);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,-138.25316,-145.85137)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="686.4043"
+         y="716.54859"
+         id="tspan3525"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3519">Spacer (</tspan><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3521">⌀</tspan><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3523">8mm, height : 1.2mm)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text85535"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect85537);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,-24.3787,-173.06038)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="87.441406"
+         y="792.93727"
+         id="tspan3529"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3527">FR4 wall (1.2mm)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text88877"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect88879);fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0316709,0,0,1.2124213,-94.430879,-143.48659)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         x="196.85742"
+         y="707.82789"
+         id="tspan3533"><tspan
+           style="font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math'"
+           id="tspan3531">Mylar layer (200µm)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text13233"
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect13235)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       id="text13751"
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect13753)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       id="text40742"
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect40744)"
+       inkscape:export-filename="/home/rpclab/Desktop/SimulationPaper/source/images/RPC.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

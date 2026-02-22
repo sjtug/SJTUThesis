@@ -1,137 +1,140 @@
-%
-The MVA discriminant distributions from each of the regions considered are combined to test for the presence of a signal.
-%Ten bins are used in the 2bex and 3bex regions, while only a single bin in the $\geq$4b regions. 
-The statistical analysis is based on a binned likelihood function ${\cal L}(\mu,\theta)$ constructed as
-a product of Poisson probability terms over all bins considered in the analysis:
+The statistical interpretation of the search is formulated as a test between two competing hypotheses:
+
+\begin{itemize}
+    \item $H_0$: the background-only hypothesis, corresponding to $\mu = 0$;
+    \item $H_1$: the signal-plus-background hypothesis, corresponding to $\mu > 0$.
+\end{itemize}
+
+Here, $\mu$ denotes the signal strength parameter that scales the BSM four-top contribution. 
+The analysis is performed within the frequentist framework using a global profile likelihood fit. 
+Shape information from multiple signal and control regions is exploited simultaneously in order to maximise sensitivity while constraining background uncertainties in situ.
+
+%---------------------------------------------------------
+\subsection{Likelihood Construction and Statistical Inference}
+%---------------------------------------------------------
+
+To interpolate between the background-only hypothesis ($H_0$) and the signal-plus-background hypothesis ($H_1$), 
+a signal strength parameter $\mu$ is introduced. 
+This parameter continuously scales the expected BSM contribution, 
+with $\mu=0$ corresponding to $H_0$ and $\mu=1$ representing the nominal signal prediction.
+It is defined as
+
+\begin{equation}
+\mu = \frac{\sigma_{\mathrm{BSM}}}{\sigma_{\mathrm{ref}}},
+\end{equation}
+
+where $\sigma_{\mathrm{ref}} = 12~\mathrm{fb}$ corresponds to the reference cross section used to normalise the BSM signal templates. 
+The Monte Carlo signal samples are generated and normalised to this value, such that $\mu = 1$ represents the nominal BSM prediction.
+
+Events are categorised into multiple signal and control regions as described in Section~\ref{sec:regions}. 
+Signal regions enhance sensitivity to the heavy Higgs contribution, while control regions are enriched in dominant background processes and constrain background modelling uncertainties. 
+All regions are fitted simultaneously within a single likelihood function, allowing correlated systematic effects to be constrained across categories.
+
+The likelihood function is constructed as
 
 \begin{eqnarray}
-    L\left(\vec{n}|\mu, \vec{\theta}\right) = \prod_{r \in \text{region}}\prod_{i\in \text{bin}} \text{Pois}\left(n_{i,r}|\mu S_{i,r}(\vec{\theta}) + B_{i,r}(\vec{\theta})\right)\times\prod_{j\in \text{NP}}G\left(\theta_j\right),
-\label{eq:Likelihood}
+    L\left(\vec{n}|\mu, \vec{\theta}\right) 
+    &=& 
+    \prod_{r \in \text{region}}
+    \prod_{i\in \text{bin}} 
+    \text{Pois}\left(n_{i,r} \mid \mu S_{i,r}(\vec{\theta}) + B_{i,r}(\vec{\theta})\right)
+    \times
+    \prod_{j\in \text{NP}}
+    G\left(\theta_j\right),
+    \label{eq:Likelihood}
 \end{eqnarray}
 
-\noindent where $\vec{n}$ represents the data vector, with $n_{i,r}$ representing data yields in the bin $i$ and region $r$.
-$\vec{\theta}$ denotes the NPs, that affect the number of signal events $S_{i,r}$ as well as the number of background events $B_{i,r}$ in the bin $i$ and region $r$. Finally, $\mu$ is the signal strength, which is the parameter of interest in the likelihood and it represents the ratio of the measured over reference cross section $\sigma_{4t}^{BSM}=12$ fb$^{-1}$). The terms, Pois and $G$, represent the Poisson and Gaussian distributions, respectively. It is clear from Eq.~\ref{eq:Likelihood} that the NPs are constrained by the Gaussian term\footnote{For the \emph{gamma} terms, representing the MC statistical uncertainty, the constraint term is Poisson --- in Bayesian statistics this would result in Gamma function posterior distribution, hence the name.} while the normalisation parameters, $\vec{k}$ are unconstrained. The full form of the likelihood can be found in the \emph{HistFactory} reference~\cite{Cranmer:1456844}.
+where $n_{i,r}$ represents the observed number of events in bin $i$ of region $r$, 
+$S_{i,r}$ and $B_{i,r}$ denote the expected signal and background yields, 
+and $\vec{\theta}$ is the set of nuisance parameters (NPs). 
+The Poisson terms (\text{Pois}) describe statistical fluctuations of the observed yields, while the Gaussian constraint terms (\text{G}) encode prior knowledge of systematic uncertainties.
 
-The total number of expected events in a given bin depends on $\mu$ and
-$\theta$. The nuisance parameters $\theta$ adjust the expectations for signal and background
-according to the corresponding systematic uncertainties, and their fitted values correspond to the deviations from
-the nominal expectations that globally provide the best fit to the data.
-This procedure allows a reduction of the impact of systematic uncertainties on 
-the search sensitivity by taking advantage of the highly populated background-dominated channels included in the likelihood fit.
-It requires a good understanding of the systematic effects affecting the shapes of the discriminant distributions.
-Detailed validation studies of the fitting procedure have been performed using the simulation.
-To verify the improved background prediction, fits are performed under the background-only hypothesis.
-Differences between the data and the background prediction are also checked relative to the smaller post-fit uncertainties
-in kinematic variables other than the ones used in the fit.
-Statistical uncertainties in each bin of the discriminant distributions are also taken into account by dedicated parameters in the fit, referred to as ``$\gamma$ factors".
-In order to speed up the fit, systematic uncertainties that have very a small effect on normalisation or shape are pruned, per process and analysis channel. 
-The pruning algorithm removes systematic uncertainties that have a $\leq$0.5\% impact on normalisation or those that cause
-a negligibly small impact on the shape of the final discriminant (all bins are within 0.5\% of the nominal shape).
+Systematic uncertainties may affect either the normalisation or the shape of the discriminant distributions. 
+Shape variations are implemented through template interpolation between nominal and systematically varied histograms, preserving correlations across regions and processes. 
+Limited Monte Carlo statistics are treated through per-bin nuisance parameters following the Barlow--Beeston prescription, ensuring consistent propagation of simulation statistical uncertainties.
 
-The test statistic $q(\mu)$ is defined as the profile likelihood ratio: 
-$q(\mu) = -2\ln({\cal L}(\mu,\hat{\hat{\theta}}_\mu)/{\cal L}(\hat{\mu},\hat{\theta}))$,
-where $\hat{\mu}$ and $\hat{\theta}$ are the values of the parameters that
-maximise the likelihood function (with the constraint $0\leq \hat{\mu} \leq \mu$), and $\hat{\hat{\theta}}_\mu$ are the values of the
-nuisance parameters that maximise the likelihood function for a given value of $\mu$. 
-The test statistic $q(\mu)$ is implemented in the {\sc RooFit} package~\cite{Verkerke:2003ir,RooFitManual} and
-is used to measure the compatibility of the observed data with the background-only hypothesis (i.e. the discovery test)  
-setting $\mu=0$ in the profile likelihood ratio: $q(0) = -2\ln({\cal L}(0,\hat{\hat{\theta}}_0)/{\cal L}(\hat{\mu},\hat{\theta}))$.
-The actual statistical analysis package used is {\sc TRexFitter}~\cite{TRexFitterTwiki}, which makes use of the {\sc RooFit} and {\sc RooStats} packages.
-The $p$-value (referred to as $p_0$) representing the compatibility of the data with the background-only hypothesis is estimated by integrating
-the distribution of $q(0)$ from background-only pseudo-experiments, approximated using the asymptotic formulae given in Refs.~\cite{Cowan:2010js,ErratumCowan:2010js}, 
-above the observed value of $q(0)$. Some model dependence exists
-in the estimation of the $p_0$-value, as a given signal scenario needs to be assumed in the calculation of the denominator of $q(\mu)$, even 
-if the overall signal normalisation is left floating and fitted to data. The observed $p_0$-value is checked for each explored signal scenario.
-In the absence of any significant excess above the background expectation, upper limits on $\mu$ for each of the 
-signal scenarios considered are derived by using $q(\mu)$ in the CL$_{\rm{s}}$ method~\cite{Junk:1999kv,Read:2002hq}.
-For a given signal scenario, values of $\mu$ yielding CL$_{\rm{s}}$<0.05,  
-where CL$_{\rm{s}}$ is computed using the asymptotic  approximation~\cite{Cowan:2010js}, are excluded at $\geq$95\% CL.
+The best-fit parameters $(\hat{\mu},\hat{\vec{\theta}})$ are obtained by maximising the likelihood function. 
+The estimator $\hat{\mu}$ corresponds to the signal strength value that provides the best overall agreement with the observed data after all nuisance parameters have been adjusted.
 
-%a smoothing based on ROOT implementation\footnote{Implementation in ROOT {\tiny{$https://root.cern.ch/doc/v606/TH1\_8cxx\_source.html\#l06440$}}, \\
-%usage in TRexFitter {\tiny{$https://gitlab.cern.ch/TRExStats/TRExFitter/blob/master/Root/Common.C\#L444$}}} is applied before an histogram 
-%is translated into a likelihood function as needed in cases where the input histograms suffer from large statistical fluctuations; affected samples are V+jets. 
-
-The profile likelihood fit is performed in Signal Regions (SRs) and Control Regions (CRs). The single lepton(dilepton opposite sign) channel includes 6(4) SRs ang 6(5) CRs respectively.  The six signal regions for 1L are 9j4b, 9j$\ge5$b, $\ge10$j3bH, $\ge10$j3bL, $\ge10$j4b, $\ge10$j$\ge5$b while six control regions are 8j3bH, 8j3bL, 8j4b, 8j$\ge5$b, 9j3bH, 9j3bL. Similarly for dilepton opposite sign channel, four signal regions include 7j$\ge4$b, $\ge8$j3bL, $\ge8$j3bH, $\ge8$j$\ge4$b while five control regions include 6j3bH, 6j3bL, 6j$\ge4$b, 7j3bH, 7j3bL.
-
-
-
-
-%Once unblinded, fits are performed to data under the signal-plus-background hypothesis, where the
-%signal strength parameter, $\mu$, is the parameter of interest in the fit and is allowed to float freely, 
-%but is required to be the same in all fitted regions.  In order to study the expected behavior of the fit,
-%fits are also performed to the ``Asimov dataset'', defined as the sum of the total expected background,
-%although for some tests (e.g. the calibration of the signal strength parameter $\mu$), simulated 
-%signal assuming a given branching ratio can also be included on the Asimov dataset.
-%Normalisation of all backgrounds is determined from the fit simultaneously with the
-%$\mu$. Contributions from $t\bar{t}$, $W/Z$+jets production, single 
-%top, diboson, $t\bar{t}H$ and $t\bar{t}V$ backgrounds are constrained by the uncertainties 
-%of the respective theoretical calculations, the uncertainty in the 
-%luminosity, and the data themselves.  Statistical uncertainties in each bin of the discriminant 
-%distributions are taken into account by dedicated parameters in the fit. 
-
-\subsection{Binning}
-%
-The binning of the MVA discriminants is broadly optimised simultaneously for all signals.  
-The method is based on the implementation available in the software framework~\cite{TRexFitterTwiki}.  
-The main idea is to define the binning in an iterative manner based on the variable
+To test a specific signal strength hypothesis $\mu$, the nuisance parameters are profiled, i.e.\ they are maximised conditionally for fixed $\mu$. 
+This procedure accounts for systematic uncertainties by allowing them to adjust within their constraints for each tested signal hypothesis. 
+The resulting profile likelihood ratio is defined as
 
 \begin{equation}
-Z=Z_{b}\frac{n_{b}}{N_{b}}+Z_{s}\frac{n_{s}}{N_{s}}
+\lambda(\mu) =
+\frac{L(\vec{n}|\mu,\hat{\hat{\vec{\theta}}}_\mu)}
+     {L(\vec{n}|\hat{\mu},\hat{\vec{\theta}})},
 \end{equation}
-where ``s'' and ``b'' refers to ``signal'' and ``background''.
-The two input parameters of the algorithm are $Z_{b}$ and $Z_{s}$, their sum is taken to the total number of bins. In order to define each bin, 
-a boundary is obtained from the condition: $Z\geq 1$. The variable $n_{X}$ (X=s,b) is defined as signal or background yields in a single bin
+
+where $\hat{\hat{\vec{\theta}}}_\mu$ denotes the set of nuisance parameter values that maximise the likelihood for the specified $\mu$, and $(\hat{\mu},\hat{\vec{\theta}})$ represent the unconditional maximum likelihood estimators.
+
+The corresponding test statistic is
+
 \begin{equation}
-n_{X}^{i}==n_{X}=\sum_{i=s,b}n_{X}^{i}
+q(\mu) = -2 \ln \lambda(\mu).
 \end{equation}
-and $N_{X}$ (X=s,b) is signal and background yields in all bins
+
+The quantity $q(\mu)$ measures the relative deterioration of the fit quality when the signal strength is constrained to $\mu$ compared to the global best-fit value. 
+Large values of $q(\mu)$ indicate that the tested signal strength is disfavoured by the data.
+
+Under regularity conditions and for sufficiently large sample sizes, the asymptotic properties of the profile likelihood ratio allow the distribution of $q(\mu)$ to be approximated analytically. 
+In particular, Wilks' theorem implies that $q(\mu)$ follows a $\chi^2$-like distribution in the asymptotic limit, enabling the computation of confidence intervals without relying on pseudo-experiments. 
+The practical implementation follows the asymptotic formulae derived in Ref.~\cite{Cowan:2010js}.
+
+The compatibility of the observed data with the background-only hypothesis ($\mu=0$) is evaluated using the test statistic $q(0)$. 
+The corresponding local $p$-value, denoted $p_0$, is defined as the probability that a background-only experiment would yield a value of $q(0)$ at least as large as the one observed. 
+The statistical significance of a potential excess is expressed in terms of the equivalent one-sided Gaussian significance $Z$.
+
+In the absence of a statistically significant excess, upper limits on the signal strength parameter $\mu$ are derived using the CL$_\mathrm{s}$ method. 
+This method constructs the ratio
+
+\[
+\mathrm{CL}_{\mathrm{s}} = 
+\frac{\mathrm{CL}_{\mathrm{s+b}}}{\mathrm{CL}_{\mathrm{b}}},
+\]
+
+which reduces the risk of excluding signal hypotheses in cases where the background model itself is weakly constrained. 
+Values of $\mu$ for which $\mathrm{CL}_{\mathrm{s}} < 0.05$ are excluded at 95\% confidence level. 
+Expected limits are obtained using the Asimov dataset constructed under the background-only hypothesis, while observed limits are derived from data.
+
+The profile likelihood formalism described above naturally extends to the combination of statistically independent final states. 
+If two analyses are based on disjoint event selections, their likelihood functions can be combined by constructing a joint likelihood defined as
+
+\[
+L_{\mathrm{combined}} = L_{1} \times L_{2},
+\]
+
+where $L_{1}$ and $L_{2}$ denote the likelihood functions of the individual analyses. 
+Systematic uncertainties that are common to both final states are represented by shared nuisance parameters, while channel-specific uncertainties are treated independently.
+
+This approach enables a statistically consistent extraction of combined limits while preserving the full correlation structure of systematic effects. 
+The implementation of the combination with the 2LSS/3L final state is described in Section~\ref{sec:combination}.
+
+
+%---------------------------------------------------------
+\subsection{Model Optimisation and Numerical Stability}
+%---------------------------------------------------------
+
+The practical performance of the statistical model depends on the choice of binning and the treatment of statistical fluctuations in systematic variations.
+
+The binning of the MVA discriminants (or $H_T$ in selected regions) is optimised to balance statistical precision and signal discrimination power. 
+An iterative binning procedure based on the quantity
+
 \begin{equation}
-N_{X}=\sum_{i=1}^{N_{\mathrm{bins}}}n_{X}^{i}
+Z = Z_b \frac{n_b}{N_b} + Z_s \frac{n_s}{N_s},
 \end{equation}
 
-The algorithm starts from the lowest boundary, integrating signal and background yields to obtain $n_x$ until $Z\geq 1$ is found. 
-Then the value when $Z\geq 1$ is firstly found is defined as the upper boundary of the first bin. Then the algorithm iterates to find the next bin edges.
-As example, for $Z_{b}=N_{bins}$ and $Z_{s}=0$, the corresponding binning will have $n_{b}=N_{b}$ in each bin, that is the binning will be 
-constructed in a way that makes the background flat in the investigated MVA discriminant. 
-For this search we use multiple settings of the $Z_{b}$ and $Z_{s}$ parameters depending on the expected fraction of the signal in a give region, a summary 
-of the binning setting is given in Tab.~\ref{tab:binning}.  
+is employed, where $n_X$ ($X=s,b$) denotes the expected yield in a candidate bin and $N_X$ the total yield across all bins. 
+The parameters $Z_b$ and $Z_s$ control the relative emphasis on background stability and signal sensitivity.
 
+The algorithm integrates the distributions from the lowest boundary upward until the condition $Z \geq 1$ is satisfied, defining successive bin edges iteratively. 
+Regions with sizeable signal fractions use balanced configurations ($Z_b \approx Z_s$), enhancing sensitivity to shape differences. 
+Background-dominated regions use $Z_s=0$ configurations to stabilise the background modelling. 
+Low-statistics regions may be reduced to a single bin to avoid statistical fluctuations dominating the likelihood.
 
-%%%%%%%%%%
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|} 
-\hline
-1L  &  3bL & 3bH & 4b & $\geq$ 5b\\ 
-\hline
-8j        &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$    &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$  & $Z_{b}$=1, $Z_{s}$=0, Var=H$_{T}$ \\
-9j        &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$    &  $Z_{b}$=4,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=3,  $Z_{s}$=1, Var=MVA      &  $Z_{b}$=1,  $Z_{s}$=0, Var=MVA     \\
-$\geq$10j &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA        &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      &  $Z_{b}$=1,  $Z_{s}$=0, Var=MVA     \\
-\hline
-\end{tabular}
+To mitigate bin-to-bin statistical noise in systematic variations, a smoothing procedure is applied prior to constructing the likelihood model. 
+The baseline smoothing algorithm (``MaxVariation'') reduces local statistical fluctuations while preserving the overall variation envelope between nominal and shifted templates.
 
-\begin{tabular}{|c|c|c|c|} 
-\hline
-2LOS  &  3bL & 3bH & $\geq$ 4b \\ 
-\hline
-6j        &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$     &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$  \\
-7j        &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$     &  $Z_{b}$=3,  $Z_{s}$=0, Var=H$_{T}$   &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      \\
-$\geq$8j  &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA         &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      &  $Z_{b}$=2,  $Z_{s}$=2, Var=MVA      \\
-\hline
-\end{tabular}
+Systematic uncertainties with negligible impact on the final discriminant (below 0.5\% in normalisation or shape) are pruned from the model to reduce parameter dimensionality and improve numerical stability.
 
-\caption{Choice of the fitted variable (Var) along with the used binning setting ($Z_{b}$ and $Z_{s}$ parameters) in all fit regions for the 1L and 2LOS channels.}
-\label{tab:binning}
-\end{center}
-\end{table}
-%%%%%%%%%%
-
-In all regions with large statistics and sizeable expected signal yields MVA score is used with a binning setting $Z_{b}=N_{bins}/2$ and $Z_{s}=N_{bins}/2$ with $N_{bins}=4$.  
-Regions with large statistics and small expected signal yields use the H$_{T}$ distribution with a binning defined by $Z_{b}$=4 for 1L and $Z_{b}$=3 for 2LOS,  $Z_{s}$=0.
-Finally regions with low statistics use either H$_{T}$ or the MVA score (depending on the expected signal yields) and 1 bin only. 
-The binning choice depends on the assumed signal mass.
-
-The definition of the current binning configuration was cross checked against alternative choices using more bins or using different parameters configuration. The impact on the expected analysis sensitivity was found to be negligible. The current binning configuration ensures that enough SM background events pupulate each analysis bin and facilitate the estimation of their systematic uncertainties with reduced impact from statistical fluctuations.  
-
-\subsection{Smoothing}
-A smoothing is applied before a histogram is translated into the likelihood function to remove the effect of statistical fluctuations. The used smoothing method is called "MaxVariation" - it is the default method in TRExFitter \href{https://gitlab.cern.ch/atlas-phys/exot/CommonSystSmoothingTool/-/blob/master/doc/algorithm_description.md}{https://gitlab.cern.ch/atlas-phys/exot/CommonSystSmoothingTool/-/blob/master/doc/algorithm\_description.md}. It is applied to all 2-point systematics, and all systematics with events stored in a separate TTree (not applied to weight systematics). In Int Note version 0.6 and earlier, a different smoothing method was used for the $t\bar{t}$ systematics as baseline: TTbarResonance. It was found that the MaxVariation smoothing better captures the shape of the $t\bar{t}$ systematics, so it is used as baseline since Int Note version 0.7 for all the main results, such as the fits in Sections \ref{sec:asimov}, \ref{sec:blinded}, \ref{sec:unblinded_Bonly}, \ref{sec:unblinded_SplusB}. Also the Appendix \ref{app:TTB_modeling} shows the $t\bar{t}$ modelling systematics with the new baseline smoothing (MaxVariation). Older studies still use the previous baseline smoothing for $t\bar{t}$ systematics (TTbarResonance).
+The likelihood model is implemented using \textsc{HistFactory} and fitted with \textsc{TRExFitter}, which relies on the \textsc{RooFit} and \textsc{RooStats} toolkits.
