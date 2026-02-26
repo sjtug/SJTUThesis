@@ -1,8 +1,19 @@
 \chapter{Monte Carlo Simulation}
 
+Monte Carlo (MC) simulation plays a central role in collider data analyses, providing a quantitative link between theoretical predictions and experimentally reconstructed observables. 
+In $pp$ collisions, theoretical calculations are performed at the parton level, whereas measurements are made using reconstructed objects that are affected by detector resolution, inefficiencies and acceptance effects. 
+MC simulation bridges this gap by modelling both the underlying hard-scattering process and the detector response.
+Simulated samples are used to estimate the signal acceptance, model background processes, optimise event selections, train multivariate discriminants, and evaluate systematic uncertainties. 
+A complete simulation chain therefore requires both an accurate description of the physics of the hard interaction and a realistic modelling of the detector response.
+
+The generation of simulated events proceeds in two main stages. 
+First, the hard-scattering process is modelled using matrix-element calculations combined with parton showers and phenomenological models of hadronisation and additional soft interactions. 
+Second, the resulting stable particles are propagated through a detailed or parameterised simulation of the ATLAS detector, and processed with the same reconstruction software as used for data. 
+The following sections describe these components of the simulation framework in detail.
+
 \section{Monte Carlo Event Generation}
 
-Monte Carlo (MC) event generators provide a probabilistic description of proton--proton collisions, translating perturbative QCD calculations into fully simulated final states that can be processed through detector simulation. 
+Monte Carlo (MC) event generators provide a probabilistic description of $pp$ collisions, translating perturbative QCD calculations into fully simulated final states that can be processed through detector simulation. 
 Modern generators combine fixed-order matrix-element calculations with parton showers, non-perturbative hadronisation models and phenomenological descriptions of additional soft interactions. 
 The generation of an event proceeds through a sequence of well-defined stages, starting from the hard partonic interaction and ending with stable particles entering the detector simulation.
 
@@ -62,7 +73,7 @@ This non-perturbative transition is modelled phenomenologically.
 The Lund string model, used in \textsc{Pythia8}, describes colour fields as strings that fragment into hadrons when stretched. 
 The cluster model, used in \textsc{Herwig7}, groups colour-connected partons into colour-singlet clusters that subsequently decay into hadrons.
 
-Additional soft activity in the event arises from multiple parton interactions (MPI), where several parton--parton scatterings occur within the same proton--proton collision. 
+Additional soft activity in the event arises from multiple parton interactions (MPI), where several parton--parton scatterings occur within the same $pp$ collision. 
 MPI and underlying-event activity are described using dedicated phenomenological models and tuned parameters, such as the A14 tune in \textsc{Pythia8}.
 
 \subsection*{Heavy-Particle Decays and Event Finalisation}
@@ -72,3 +83,19 @@ Spin correlations in heavy-particle decays can be preserved using dedicated tool
 
 The final output of the event generator consists of stable particles, which serve as input to the detector simulation. 
 The modelling choices at each stage of the generation procedure introduce systematic uncertainties that are evaluated through variations of scales, PDF sets, shower models and tunes, as discussed in the following sections.
+
+\section{Detector Simulation}
+
+The particles produced by the event generator are propagated through a detailed simulation of the ATLAS detector in order to model the detector response. 
+Two complementary approaches are employed: a full simulation based on \textsc{Geant4} and a fast simulation framework commonly referred to as AtlFastII (AFII).
+
+In the full simulation, particle interactions with the detector material are modelled using the \textsc{Geant4} toolkit. 
+This includes electromagnetic and hadronic interactions, multiple scattering, ionisation energy loss, secondary particle production and shower development within a detailed detector geometry. 
+The resulting energy deposits are digitised to emulate the detector readout electronics, and the simulated data are processed with the same reconstruction software as used for collision data.
+
+To reduce computational cost, a fast simulation framework is used for selected samples. 
+In the AtlFastII(AFII) approach, the tracking detectors are simulated either using the standard \textsc{Geant4} simulation or with the dedicated fast track simulation engine FATRAS, which models the dominant material effects such as multiple scattering, bremsstrahlung, hadronic interactions and photon conversions within a simplified detector geometry. 
+The calorimeter response is described using a parameterised simulation tuned to reproduce the response of the full simulation. 
+This hybrid approach achieves a substantial reduction in CPU time—up to two orders of magnitude compared to the full simulation—while maintaining good agreement with detailed \textsc{Geant4}-based modelling.
+
+All simulated events are subsequently processed with the standard ATLAS reconstruction software to ensure consistency with the treatment of collision data.

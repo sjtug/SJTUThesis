@@ -1,23 +1,23 @@
 The statistical interpretation of the search is formulated as a test between two competing hypotheses:
 
 \begin{itemize}
-    \item $H_0$: the background-only hypothesis, corresponding to $\mu = 0$;
-    \item $H_1$: the signal-plus-background hypothesis, corresponding to $\mu > 0$.
+    \item $H_0$: the background-only hypothesis;
+    \item $H_1$: the signal-plus-background hypothesis.
 \end{itemize}
 
-Here, $\mu$ denotes the signal strength parameter that scales the BSM four-top contribution. 
+Rather than treating these as two discrete scenarios, the hypotheses are embedded in a continuous parameter space through a signal strength parameter $\mu$. 
+This parameter scales a potential BSM four-top contribution, such that $\mu = 0$ corresponds to the background-only hypothesis, while $\mu > 0$ represents the presence of a signal component.
+
 The analysis is performed within the frequentist framework using a global profile likelihood fit. 
-Shape information from multiple signal and control regions is exploited simultaneously in order to maximise sensitivity while constraining background uncertainties in situ.
+Shape information from multiple signal and control regions is exploited simultaneously, allowing background-dominated regions to constrain systematic uncertainties directly from data and thereby enhancing the sensitivity of the signal regions.
 
 %---------------------------------------------------------
 \subsection{Likelihood Construction and Statistical Inference}
+\label{sec:likelihood_construction}
 %---------------------------------------------------------
 
-To interpolate between the background-only hypothesis ($H_0$) and the signal-plus-background hypothesis ($H_1$), 
-a signal strength parameter $\mu$ is introduced. 
-This parameter continuously scales the expected BSM contribution, 
-with $\mu=0$ corresponding to $H_0$ and $\mu=1$ representing the nominal signal prediction.
-It is defined as
+To quantify the magnitude of a possible signal contribution, 
+the signal strength parameter $\mu$ is defined relative to a reference cross section as
 
 \begin{equation}
 \mu = \frac{\sigma_{\mathrm{BSM}}}{\sigma_{\mathrm{ref}}},
@@ -26,11 +26,10 @@ It is defined as
 where $\sigma_{\mathrm{ref}} = 12~\mathrm{fb}$ corresponds to the reference cross section used to normalise the BSM signal templates. 
 The Monte Carlo signal samples are generated and normalised to this value, such that $\mu = 1$ represents the nominal BSM prediction.
 
-Events are categorised into multiple signal and control regions as described in Section~\ref{sec:regions}. 
+Events are categorised into multiple signal and control regions as described in Section~\ref{sec:event_selection}. 
 Signal regions enhance sensitivity to the heavy Higgs contribution, while control regions are enriched in dominant background processes and constrain background modelling uncertainties. 
-All regions are fitted simultaneously within a single likelihood function, allowing correlated systematic effects to be constrained across categories.
-
-The likelihood function is constructed as
+All regions are fitted simultaneously within a single likelihood function, allowing correlated systematic effects to be constrained across categories, 
+with the likelihood constructed as
 
 \begin{eqnarray}
     L\left(\vec{n}|\mu, \vec{\theta}\right) 
@@ -51,14 +50,18 @@ The Poisson terms (\text{Pois}) describe statistical fluctuations of the observe
 
 Systematic uncertainties may affect either the normalisation or the shape of the discriminant distributions. 
 Shape variations are implemented through template interpolation between nominal and systematically varied histograms, preserving correlations across regions and processes. 
-Limited Monte Carlo statistics are treated through per-bin nuisance parameters following the Barlow--Beeston prescription, ensuring consistent propagation of simulation statistical uncertainties.
+Limited Monte Carlo statistics are treated through per-bin nuisance parameters following the Barlow--Beeston prescription~\cite{Dembinski2022BarlowBeeston}, ensuring consistent propagation of simulation statistical uncertainties.
 
 The best-fit parameters $(\hat{\mu},\hat{\vec{\theta}})$ are obtained by maximising the likelihood function. 
 The estimator $\hat{\mu}$ corresponds to the signal strength value that provides the best overall agreement with the observed data after all nuisance parameters have been adjusted.
 
-To test a specific signal strength hypothesis $\mu$, the nuisance parameters are profiled, i.e.\ they are maximised conditionally for fixed $\mu$. 
-This procedure accounts for systematic uncertainties by allowing them to adjust within their constraints for each tested signal hypothesis. 
-The resulting profile likelihood ratio is defined as
+To test a specific signal strength hypothesis $\mu$, the nuisance parameters are profiled, 
+i.e.\ they are maximised conditionally for fixed $\mu$. 
+This procedure incorporates systematic uncertainties by allowing nuisance parameters to adjust within their constraints for each tested value of $\mu$.
+
+A test statistic is then constructed to quantify how compatible the data are with the hypothesis $\mu$. 
+In the presence of nuisance parameters, the natural comparison is based on the profile likelihood ratio, which contrasts the best description of the data under the constraint $\mu$ with the global best-fit description. 
+The profile likelihood ratio is defined as
 
 \begin{equation}
 \lambda(\mu) =
@@ -66,36 +69,39 @@ The resulting profile likelihood ratio is defined as
      {L(\vec{n}|\hat{\mu},\hat{\vec{\theta}})},
 \end{equation}
 
-where $\hat{\hat{\vec{\theta}}}_\mu$ denotes the set of nuisance parameter values that maximise the likelihood for the specified $\mu$, and $(\hat{\mu},\hat{\vec{\theta}})$ represent the unconditional maximum likelihood estimators.
+where $\hat{\hat{\vec{\theta}}}_\mu$ denotes the nuisance parameter values that maximise the likelihood for the specified $\mu$, and $(\hat{\mu},\hat{\vec{\theta}})$ represent the unconditional maximum likelihood estimators.
 
-The corresponding test statistic is
+The test statistic used in this analysis is defined as a monotonic transformation of $\lambda(\mu)$,
 
 \begin{equation}
-q(\mu) = -2 \ln \lambda(\mu).
+q(\mu) = -2 \ln \lambda(\mu),
 \end{equation}
 
-The quantity $q(\mu)$ measures the relative deterioration of the fit quality when the signal strength is constrained to $\mu$ compared to the global best-fit value. 
-Large values of $q(\mu)$ indicate that the tested signal strength is disfavoured by the data.
+which has convenient asymptotic properties: under general regularity conditions and for sufficiently large sample sizes, its distribution approaches a $\chi^2$-like form (Wilks' theorem~\cite{Wilks1938}).
+The quantity $q(\mu)$ therefore provides a practical measure of the relative deterioration of the fit quality when the signal strength is constrained to $\mu$ compared to the global best-fit value; large values of $q(\mu)$ indicate that the tested signal strength is disfavoured by the data.
 
 Under regularity conditions and for sufficiently large sample sizes, the asymptotic properties of the profile likelihood ratio allow the distribution of $q(\mu)$ to be approximated analytically. 
-In particular, Wilks' theorem implies that $q(\mu)$ follows a $\chi^2$-like distribution in the asymptotic limit, enabling the computation of confidence intervals without relying on pseudo-experiments. 
-The practical implementation follows the asymptotic formulae derived in Ref.~\cite{Cowan:2010js}.
+In particular, Wilks' theorem implies that $q(\mu)$ follows a $\chi^2$-like distribution in the asymptotic limit, enabling the computation of confidence intervals without relying on pseudo-experiments~\cite{Wilks1938}. 
 
 The compatibility of the observed data with the background-only hypothesis ($\mu=0$) is evaluated using the test statistic $q(0)$. 
 The corresponding local $p$-value, denoted $p_0$, is defined as the probability that a background-only experiment would yield a value of $q(0)$ at least as large as the one observed. 
 The statistical significance of a potential excess is expressed in terms of the equivalent one-sided Gaussian significance $Z$.
 
 In the absence of a statistically significant excess, upper limits on the signal strength parameter $\mu$ are derived using the CL$_\mathrm{s}$ method. 
-This method constructs the ratio
+For a given value of $\mu$, the confidence level for the signal-plus-background hypothesis, $\mathrm{CL}_{\mathrm{s+b}}$, is defined as the probability that the test statistic would be at least as incompatible with the data as observed, assuming the presence of signal and background. 
+Similarly, $\mathrm{CL}_{\mathrm{b}}$ is the corresponding probability under the background-only hypothesis.
+And the CL$_\mathrm{s}$ quantity is constructed as
 
 \[
 \mathrm{CL}_{\mathrm{s}} = 
 \frac{\mathrm{CL}_{\mathrm{s+b}}}{\mathrm{CL}_{\mathrm{b}}},
 \]
 
-which reduces the risk of excluding signal hypotheses in cases where the background model itself is weakly constrained. 
-Values of $\mu$ for which $\mathrm{CL}_{\mathrm{s}} < 0.05$ are excluded at 95\% confidence level. 
+which reduces the risk of excluding signal hypotheses in situations where the background model is weakly constrained. 
+Values of $\mu$ for which $\mathrm{CL}_{\mathrm{s}} < 0.05$ are excluded at 95\% confidence level.
+
 Expected limits are obtained using the Asimov dataset constructed under the background-only hypothesis, while observed limits are derived from data.
+This construction ensures proper coverage properties in the presence of limited sensitivity.
 
 The profile likelihood formalism described above naturally extends to the combination of statistically independent final states. 
 If two analyses are based on disjoint event selections, their likelihood functions can be combined by constructing a joint likelihood defined as
@@ -108,7 +114,7 @@ where $L_{1}$ and $L_{2}$ denote the likelihood functions of the individual anal
 Systematic uncertainties that are common to both final states are represented by shared nuisance parameters, while channel-specific uncertainties are treated independently.
 
 This approach enables a statistically consistent extraction of combined limits while preserving the full correlation structure of systematic effects. 
-The implementation of the combination with the 2LSS/3L final state is described in Section~\ref{sec:combination}.
+The implementation of the combination with the 2LSS/3L final state is described in Section~\ref{sec:limits_combined}.
 
 
 %---------------------------------------------------------
@@ -137,4 +143,4 @@ The baseline smoothing algorithm (``MaxVariation'') reduces local statistical fl
 
 Systematic uncertainties with negligible impact on the final discriminant (below 0.5\% in normalisation or shape) are pruned from the model to reduce parameter dimensionality and improve numerical stability.
 
-The likelihood model is implemented using \textsc{HistFactory} and fitted with \textsc{TRExFitter}, which relies on the \textsc{RooFit} and \textsc{RooStats} toolkits.
+The likelihood model is implemented using \textsc{HistFactory}\cite{HistFactory2012} and fitted with \textsc{TRExFitter}~\cite{TRExFitterTwiki}, which relies on the \textsc{RooFit}\cite{RooFit2003,RooFitWeb} and \textsc{RooStats} toolkits~\cite{RooStats2010}.

@@ -1,3 +1,200 @@
 % !TEX root = ../main.tex
 
-\chapter{Different Approaches to \texorpdfstring{$t\bar{t}t\bar{t}$}{t tbar t tbar} Production}
+\chapter{Differential Four-Top Production in Partial Run 3}
+
+Following the inclusive observation of four-top-quark production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive rate measurements and explore the detailed kinematic structure of this rare process. 
+While inclusive cross sections establish consistency with the Standard Model (SM) prediction at the level of the total production rate, they do not fully exploit the rich dynamics of multi-top final states.
+
+Four-top production is characterised by high jet multiplicities, large hadronic activity, and complex decay topologies. Differential measurements of observables such as the four-top invariant mass, global event activity variables, and leading-object kinematics probe the underlying production dynamics in greater detail. 
+In particular, the high-energy tails of multi-top observables are especially sensitive to deviations from the SM prediction.
+
+From a theoretical perspective, studies within the Effective Field Theory (EFT) framework have shown that four-top production provides enhanced sensitivity to higher-dimensional operators, notably through distortions in differential distributions at large momentum transfer~\cite{FourTopEFTStudy}. 
+In such scenarios, modifications of the interaction structure can lead to characteristic enhancements in the high-mass region of the four-top invariant mass spectrum, while inclusive cross-section measurements alone may exhibit limited discriminating power. 
+Differential observables therefore offer complementary and potentially more sensitive probes of new interactions involving the top quark.
+
+With the improved statistical precision of Run~3 data, selected differential observables become experimentally accessible. However, the complexity of the four-top final state requires advanced reconstruction techniques and a robust unfolding procedure to correct for detector effects. 
+This motivates the development of a dedicated framework for differential four-top measurements in Run~3, which is the focus of this chapter.
+
+\section{Framework}
+
+Here need some introduction to the framework for differential four-top measurements, including the choice of observables, event selection, reconstruction techniques, and unfolding methodology.
+
+\section{Reconstruction of the Four-Top System}
+
+In the inclusive four-top analysis, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
+The requirement of two leptons with the same electric charge or more strongly suppresses the large $t\bar{t}$+jets background, leading to improved signal purity and a substantial contribution to the overall significance of the measurement. 
+Within this category, the dileptonic same-sign (2LSS) channel offers a favourable balance between statistical yield and reconstruction complexity. 
+Compared to multi-lepton final states, it features a larger branching fraction while involving only two neutrinos, thereby reducing the degree of kinematic under-constraint.
+
+These properties make the 2LSS channel particularly well suited for developing and validating a reconstruction-driven differential measurement strategy. 
+At the same time, the reconstruction and unfolding framework presented here is designed to be extendable to multi-lepton final states, where the inclusion of additional channels may further enhance the statistical precision in future studies.
+
+Four-top production in the 2LSS channel remains characterised by a highly complex final state, featuring a large number of jets, multiple $b$-quarks, and two neutrinos from leptonic top decays. 
+The combinatorial ambiguity in assigning reconstructed objects to their parent top quarks grows rapidly with jet multiplicity, and the presence of two neutrinos introduces additional kinematic under-constraints. 
+A stable differential measurement of observables such as the four-top invariant mass therefore requires a reconstruction strategy capable of performing global object assignment while consistently incorporating neutrino kinematics.
+The following sections describe the final-state assignment and neutrino reconstruction strategies adopted in this work.
+
+\subsection{Hypergraph-based Final-State Assignment}
+
+The assignment of reconstructed objects to the underlying decay products of the four top quarks is fundamentally a combinatorial problem. 
+Multiple jets and $b$-tagged objects must be grouped into four overlapping decay chains, and incorrect assignments can significantly degrade the resolution of reconstructed observables.
+
+Recent advances in machine learning have led to powerful reconstruction techniques based on attention mechanisms and graph neural networks, such as SPANet~\cite{Fenton2022Permutationless,Shmakov2022SPANet} and Topograph~\cite{Ehrke2023Topological}. 
+These methods model collider events as sets or graphs of final-state objects, exploiting relational information to infer the most probable decay structure. 
+While such approaches significantly outperform traditional $\chi^2$-based reconstruction~\cite{ATLAS2017TopMassAllHadronic}, their relational modelling is typically formulated in terms of pairwise interactions between objects. 
+Multi-body decay structures, such as $t \to Wb$, are therefore reconstructed indirectly through combinations of two-body correlations.
+
+In this work, a hypergraph-based reconstruction strategy (HyPER~\cite{HyPER}) is employed to directly encode multi-body decay topologies. 
+The key conceptual difference between conventional graph representations and the hypergraph formalism is illustrated in Fig.~\ref{fig:hyper_representation}. 
+In a standard graph, final-state objects are represented as nodes connected by pairwise edges. 
+In contrast, a hypergraph allows a single hyperedge to connect multiple nodes simultaneously, naturally representing multi-body decay structures such as a top quark candidate formed from three objects.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/graph_rep.pdf}
+        \caption{Graph representation}
+        \label{fig:hypergraph_representation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/hypergraph_rep.pdf}
+        \caption{Hypergraph representation}
+        \label{fig:hypergraph_representation}
+    \end{subfigure}
+    \caption{Schematic illustration of an event represented as (a) a graph and (b) a hypergraph. 
+            In the graph representation, final-state objects are connected through pairwise edges. 
+            In the hypergraph representation, candidate parent particles are represented by hyperedges connecting multiple objects simultaneously. 
+            Dashed gray connections indicate alternative candidate combinations, while colored connections illustrate the true decay structure. 
+            Taken from Ref.~\cite{HyPER}.}
+    \label{fig:hyper_representation}
+\end{figure}
+
+The reconstruction proceeds in two stages, as schematically shown in Fig.~\ref{fig:hypergraph_architecture}. 
+First, a message-passing phase is applied on the underlying graph representation, allowing information to propagate between pairwise-connected objects and enabling the network to learn both local and global event features. 
+Second, higher-order candidate structures are constructed as hyperedges corresponding to possible parent particles. 
+These hyperedges are classified by the network, and the highest-scoring, non-overlapping hyperedges are selected as reconstructed top-quark candidates.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.4\textwidth]{figures/HyPER_layout.pdf}
+\caption{Schematic architecture of the HyPER reconstruction framework. 
+        Taken from Ref.~\cite{HyPER}.}
+\label{fig:hypergraph_architecture}
+\end{figure}
+
+This two-step procedure allows higher-order decay structures to be inferred on top of a learned relational representation of the event. 
+Such higher-order relational modelling is particularly well suited to four-top production, where multiple heavy resonances decay simultaneously in a high-multiplicity environment. 
+The hypergraph formulation therefore provides a natural and flexible representation of complex decay topologies and serves as the basis for the reconstruction-driven differential measurement strategy developed in this work.
+
+The hypergraph-based reconstruction strategy is adapted to the specific topology of four-top production in the dileptonic same-sign channel. 
+In this final state, two top quarks decay hadronically, $t \to b q q'$, while the remaining two decay leptonically, $t \to b \ell \nu$. 
+The reconstruction formalism is therefore constructed to reflect this mixed decay structure.
+
+For hadronic decays, all final-state objects are directly observable. 
+Each hadronic top candidate is represented by a hyperedge connecting three nodes corresponding to one $b$-tagged jet and two light-flavour jets. 
+This explicit three-object representation naturally encodes the multi-body decay topology and allows the network to classify candidate hadronic top combinations within a unified relational framework.
+
+In contrast, leptonic top decays involve an undetected neutrino. 
+Since the full three-body system cannot be constructed from visible objects alone, leptonic top candidates are initially represented by pairwise edges connecting a $b$-tagged jet and a charged lepton. 
+The missing neutrino kinematics are reconstructed in a subsequent step using dedicated algorithms, after which the complete leptonic top four-momentum is determined.
+
+This mixed hyperedge–edge representation enables simultaneous treatment of fully visible hadronic decays and partially observed leptonic decays within a common graph–hypergraph structure. 
+It provides a flexible and topology-aware reconstruction strategy tailored to the complex final state of four-top production.
+
+\subsubsection{Performance of the Final-State Assignment}
+- efficiency vs matching
+- efficiency vs jet multiplicity
+
+The performance of the hypergraph-based assignment is evaluated by matching reconstructed top candidates to their corresponding truth-level particles. 
+A reconstructed top quark is considered correctly assigned if all associated visible decay products originate from the same truth-level top quark.
+
+The matching efficiencies for hadronic and leptonic top candidates are evaluated separately. 
+Hadronic tops are considered correctly reconstructed when the three selected jets correspond to the truth-level decay products. 
+For leptonic tops, correctness is defined based on the assignment of the $b$-jet and charged lepton, prior to neutrino reconstruction.
+
+To assess the robustness of the reconstruction in increasingly complex final states, the matching efficiency is studied as a function of the reconstructed jet multiplicity. 
+As expected, the efficiency decreases moderately with increasing jet multiplicity due to the growth of combinatorial possibilities.
+
+The achieved matching performance demonstrates that the hypergraph-based strategy effectively resolves the dominant combinatorial ambiguities, providing a reliable basis for the reconstruction of differential observables.
+The observed performance stability across jet multiplicities indicates that the relational representation scales well with event complexity.
+
+\subsection{Neutrino Reconstruction}
+
+While hadronic top candidates are fully reconstructed from visible decay products, leptonic top decays involve undetected neutrinos whose kinematics must be inferred from missing transverse momentum and mass constraints. 
+In the 2LSS final state, two neutrinos are present, leading to an under-constrained system when only the measured missing transverse momentum is used.
+To reconstruct the full leptonic top four-momenta, the neutrino kinematics must be inferred from the measured missing transverse momentum and reconstructed event information. 
+Two complementary approaches are considered in this analysis: the Neutrino Weighting method, which searches for solutions consistent with the $W$-boson and top-quark mass hypotheses, and a machine-learning-based generative approach ($\nu^2$-flow), which models the conditional distribution of neutrino momenta given the observed event features.
+Both methods aim to reconstruct the neutrino momenta in a way that is compatible with the measured event information, thereby allowing the full leptonic top four-momenta to be determined and enabling the construction of fully reconstructed four-top candidates.
+
+\subsubsection{Neutrino Weighting Method}
+
+In the dileptonic topology, each leptonic top decay chain can be written as
+%
+\[
+t_{1,2} \rightarrow b_{1,2}\,\ell_{1,2}\,\nu_{1,2},
+\]
+%
+and the neutrino momenta are constrained by the invariant mass hypotheses
+%
+\[
+m_{W,i}^2 = (p_{\ell_i}+p_{\nu_i})^2,\qquad
+m_{t,i}^2 = (p_{b_i}+p_{\ell_i}+p_{\nu_i})^2,\qquad i=1,2,
+\]
+%
+together with the transverse momentum relation
+%
+\[
+\vec{p}_T^{\,\nu_1}+\vec{p}_T^{\,\nu_2}=\vec{E}_T^{\mathrm{miss}}.
+\]
+%
+Since the longitudinal neutrino momenta are not directly measured, the Neutrino Weighting (NW) method~\cite{ATLAS2017TopMassAllHadronic} resolves the remaining degrees of freedom by scanning over the neutrino pseudorapidities $\eta_{\nu_i}$. 
+In this analysis, $\eta_{\nu_i}$ is scanned in the range $-5<\eta_{\nu_i}<5$ using a uniform grid of 100 points. 
+For each assumed $\eta_{\nu_i}$, the kinematic constraints reduce to a quadratic system, yielding up to two physical solutions for the transverse neutrino momentum components. 
+Candidate solutions for the two decay chains are then combined and evaluated at the event level.
+
+To incorporate the finite widths of the intermediate resonances, the $W$-boson and top-quark masses are not fixed to single values but are sampled from Gaussian distributions centred on their nominal masses.
+The Gaussian widths are taken from the Particle Data Group (PDG)~\cite{ParticleDataGroup:2024cfk} values for the physical decay widths of the $W$ boson and the top quark. 
+An optional jet energy smearing step can also be applied to propagate jet resolution effects into the reconstruction.
+
+Each candidate neutrino-pair solution is assigned a weight defined as a product of Gaussian terms,
+%
+\[
+w=\prod_k \exp\!\left(-\frac{\Delta_k^2}{2\sigma_k^2}\right),
+\]
+%
+where the index $k$ runs over the set of constraints included in the likelihood. 
+In practice, the weight includes contributions from the agreement between the predicted and measured $x$ and $y$ components of $\vec{E}_T^{\mathrm{miss}}$, and an additional term comparing the azimuthal direction of the inferred neutrino system to the measured $\phi(\vec{E}_T^{\mathrm{miss}})$. 
+Further terms evaluate the consistency of the reconstructed invariant masses of the two leptonic $W$ bosons and the two leptonic top quarks with the sampled mass hypotheses. 
+The resolution parameters $\sigma_k$ are motivated by the expected detector resolutions for missing transverse momentum and invariant mass observables, and are chosen to provide a physically meaningful likelihood discrimination among candidate solutions.
+The neutrino configuration with the maximum weight is selected as the reconstructed solution for the event, from which the full leptonic top four-momenta are determined.
+
+\subsubsection{Generative neutrino reconstruction with \texorpdfstring{$\nu^2$}{nu2}-Flows}
+
+As an alternative to the constraint-based Neutrino Weighting approach, a machine-learning-based generative method, $\nu^2$-Flows~\cite{Raine2023nu2flows}, has been proposed to reconstruct neutrino kinematics in under-constrained multi-neutrino final states.
+The method employs conditional normalizing flows to model the distribution of possible neutrino momentum solutions conditioned on reconstructed event information, allowing neutrino hypotheses to be sampled on an event-by-event basis.
+
+As illustrated schematically in Fig.~\ref{fig:nu2flows_arch}, the $\nu^2$-Flows model consists of two components: an event feature extraction network and a conditional normalizing flow.
+The feature extraction network embeds the collections of reconstructed objects (jets, leptons, and $\vec{E}_T^{\mathrm{miss}}$) into a single event representation vector, which is then used as the conditioning input to the flow to learn the corresponding conditional density of neutrino solutions.
+To accommodate variable jet and lepton multiplicities, the feature extraction stage is implemented with an attention-based architecture.
+Object-specific embedding networks map each physics object to a latent token representation, which is subsequently processed by transformer encoder blocks.
+A learnable class token is used together with cross-attention to obtain a single global event vector, ensuring permutation invariance with respect to the input object ordering.
+
+\begin{figure}[htbp]
+  \centering
+  % Option A: if you redraw it yourself (recommended), include your own PDF/SVG export:
+  \includegraphics[width=0.9\textwidth]{figures/nu2flow_layout.pdf}
+  \caption{Schematic illustration of the $\boldsymbol{\nu^2}$-Flows architecture. 
+  An event representation is constructed from reconstructed jets, leptons, and $\boldsymbol{\vec{E}_T^{\mathrm{miss}}}$ using an attention-based, permutation-invariant feature extractor with a learnable class token and cross-attention. 
+  The resulting global vector conditions an invertible normalizing flow that models the conditional density of multi-neutrino momentum solutions. Taken from Ref.~\cite{Raine2023nu2flows}}
+  \label{fig:nu2flows_arch}
+\end{figure}
+
+In the dilepton case, the conditional flow outputs a six-dimensional target corresponding to the three-momentum components of the neutrino and anti-neutrino, and can provide either the most probable solution or multiple sampled solutions per event.
+% In this analysis, $\nu^2$-Flows is used as a complementary benchmark for neutrino reconstruction performance studies, while the nominal reconstruction employs the Neutrino Weighting method.
+
+\subsubsection{Performance}
+
+residual comparison on pxpypz
