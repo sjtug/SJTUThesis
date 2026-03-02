@@ -151,7 +151,7 @@ together with the transverse momentum relation
 \]
 %
 Since the longitudinal neutrino momenta are not directly measured, the Neutrino Weighting (NW) method~\cite{ATLAS2017TopMassAllHadronic} resolves the remaining degrees of freedom by scanning over the neutrino pseudorapidities $\eta_{\nu_i}$. 
-In this analysis, $\eta_{\nu_i}$ is scanned in the range $-5<\eta_{\nu_i}<5$ using a uniform grid of 100 points. 
+In this analysis, $\eta_{\nu_i}$ is scanned in the range $-5\leq\eta_{\nu_i}\leq5$ using a uniform grid of 100 points. 
 For each assumed $\eta_{\nu_i}$, the kinematic constraints reduce to a quadratic system, yielding up to two physical solutions for the transverse neutrino momentum components. 
 Candidate solutions for the two decay chains are then combined and evaluated at the event level.
 
@@ -198,3 +198,46 @@ In the dilepton case, the conditional flow outputs a six-dimensional target corr
 \subsubsection{Performance}
 
 residual comparison on pxpypz
+
+\subsection{Reconstruction of the Four-Top System}
+
+The full reconstruction of the four-top system requires the determination of four top-quark four-momenta, comprising two hadronic and two leptonic decay chains. 
+Following the hypergraph-based assignment and the neutrino reconstruction strategies introduced above, the complete event reconstruction is performed by combining these two components within a coherent workflow.
+
+Two reconstruction workflows are considered, depending on the choice of neutrino reconstruction method, as illustrated in Fig.~\ref{fig:workflow_comparison}.
+
+\paragraph{HyPER + Neutrino Weighting.}
+
+In the nominal workflow adopted in this analysis, HyPER is first applied to determine the final-state assignment of visible objects. 
+Hadronic top candidates are reconstructed as hyperedges connecting three jets, while leptonic candidates are identified through $b$-jet–lepton pairings. 
+The Neutrino Weighting method is subsequently applied to each leptonic decay chain to infer the corresponding neutrino momenta, after which the full leptonic top four-momenta are constructed.
+
+\paragraph{HyPER + \texorpdfstring{$\nu^2$}{nu2}-Flows.}
+
+In the generative approach, neutrino kinematics are first inferred using the $\nu^2$-Flows model. 
+The predicted neutrino four-momenta are then incorporated into the event representation used by HyPER, allowing both hadronic and leptonic top candidates to be reconstructed within a unified relational framework. 
+In this workflow, the leptonic decay chains are reconstructed as complete multi-body structures once the neutrino hypotheses are provided.
+
+In both workflows, the four reconstructed top-quark four-vectors are combined to form the total four-top system, from which the invariant mass $m_{4t}$ and other kinematic observables are derived.
+% The Neutrino Weighting-based workflow is used as the nominal reconstruction strategy, while the $\nu^2$-Flows approach serves as a complementary performance benchmark.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Workflow_Hyper_plus_NW.pdf}
+        \caption{HyPER + Neutrino Weighting workflow.}
+        \label{fig:workflow_nw}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Workflow_Hyper_plus_Nu2.pdf}
+        \caption{HyPER + $\boldsymbol{\nu^2}$-Flows workflow.}
+        \label{fig:workflow_nu2}
+    \end{subfigure}
+    \caption{Schematic illustration of the two reconstruction workflows considered for four-top reconstruction in the 2LSS channel. 
+    The left panel illustrates the constraint-based workflow, where visible-object assignment is first performed by HyPER and the neutrino momenta are subsequently reconstructed using the Neutrino Weighting method.
+    The right panel shows the generative workflow in which neutrino kinematics are inferred using $\boldsymbol{\nu^2}$-Flows prior to the hypergraph-based assignment.}
+    \label{fig:workflow_comparison}
+\end{figure}
