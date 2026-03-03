@@ -2,8 +2,8 @@
 
 \chapter{Differential Four-Top Production in Partial Run 3}
 
-Following the inclusive observation of four-top-quark production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive rate measurements and explore the detailed kinematic structure of this rare process. 
-While inclusive cross sections establish consistency with the Standard Model (SM) prediction at the level of the total production rate, they do not fully exploit the rich dynamics of multi-top final states.
+Following the inclusive observation of four-top-quark production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive measurements and explore the detailed kinematic structure of this rare process. 
+% While inclusive cross sections establish consistency with the SM prediction at the level of the total production rate, they do not fully exploit the rich dynamics of multi-top final states.
 
 Four-top production is characterised by high jet multiplicities, large hadronic activity, and complex decay topologies. Differential measurements of observables such as the four-top invariant mass, global event activity variables, and leading-object kinematics probe the underlying production dynamics in greater detail. 
 In particular, the high-energy tails of multi-top observables are especially sensitive to deviations from the SM prediction.
@@ -42,9 +42,10 @@ Multiple jets and $b$-tagged objects must be grouped into four overlapping decay
 Recent advances in machine learning have led to powerful reconstruction techniques based on attention mechanisms and graph neural networks, such as SPANet~\cite{Fenton2022Permutationless,Shmakov2022SPANet} and Topograph~\cite{Ehrke2023Topological}. 
 These methods model collider events as sets or graphs of final-state objects, exploiting relational information to infer the most probable decay structure. 
 While such approaches significantly outperform traditional $\chi^2$-based reconstruction~\cite{ATLAS2017TopMassAllHadronic}, their relational modelling is typically formulated in terms of pairwise interactions between objects. 
-Multi-body decay structures, such as $t \to Wb$, are therefore reconstructed indirectly through combinations of two-body correlations.
+Although the top quark decays via the two-body process $t \to Wb$, the subsequent $W$ boson decay (either hadronic or leptonic) produces two additional particles, leading to a multi-body final state. 
+Such decay topologies are reconstructed indirectly through combinations of two-body correlations.
 
-In this work, a hypergraph-based reconstruction strategy (HyPER~\cite{HyPER}) is employed to directly encode multi-body decay topologies. 
+In this work, the hypergraph-based reconstruction framework HyPER (Hypergraph for Particle Event Reconstruction)~\cite{HyPER} is employed to directly encode multi-body decay topologies.
 The key conceptual difference between conventional graph representations and the hypergraph formalism is illustrated in Fig.~\ref{fig:hyper_representation}. 
 In a standard graph, final-state objects are represented as nodes connected by pairwise edges. 
 In contrast, a hypergraph allows a single hyperedge to connect multiple nodes simultaneously, naturally representing multi-body decay structures such as a top quark candidate formed from three objects.
@@ -89,17 +90,18 @@ This two-step procedure allows higher-order decay structures to be inferred on t
 Such higher-order relational modelling is particularly well suited to four-top production, where multiple heavy resonances decay simultaneously in a high-multiplicity environment. 
 The hypergraph formulation therefore provides a natural and flexible representation of complex decay topologies and serves as the basis for the reconstruction-driven differential measurement strategy developed in this work.
 
-The hypergraph-based reconstruction strategy is adapted to the specific topology of four-top production in the dileptonic same-sign channel. 
+The hypergraph-based reconstruction strategy is adapted to the specific topology of four-top production in the 2LSS channel. 
 In this final state, two top quarks decay hadronically, $t \to b q q'$, while the remaining two decay leptonically, $t \to b \ell \nu$. 
 The reconstruction formalism is therefore constructed to reflect this mixed decay structure.
 
 For hadronic decays, all final-state objects are directly observable. 
-Each hadronic top candidate is represented by a hyperedge connecting three nodes corresponding to one $b$-tagged jet and two light-flavour jets. 
-This explicit three-object representation naturally encodes the multi-body decay topology and allows the network to classify candidate hadronic top combinations within a unified relational framework.
+Each hadronic top candidate is constructed as a hyperedge connecting three jet nodes. 
+Within each triplet, pairwise relational scores are evaluated to identify the most probable jet pair corresponding to the intermediate $W$ boson, while the remaining jet completes the three-body top candidate. 
+This construction naturally encodes the multi-body decay topology while allowing the internal structure of the candidate to be determined by the learned relational features.
 
 In contrast, leptonic top decays involve an undetected neutrino. 
-Since the full three-body system cannot be constructed from visible objects alone, leptonic top candidates are initially represented by pairwise edges connecting a $b$-tagged jet and a charged lepton. 
-The missing neutrino kinematics are reconstructed in a subsequent step using dedicated algorithms, after which the complete leptonic top four-momentum is determined.
+Since the full three-body system cannot be constructed from visible objects alone, leptonic top candidates are initially represented by pairwise edges connecting a jet and a charged lepton. 
+The missing neutrino kinematics are reconstructed in an additional step using dedicated algorithms, after which the complete leptonic top four-momentum is determined.
 
 This mixed hyperedge–edge representation enables simultaneous treatment of fully visible hadronic decays and partially observed leptonic decays within a common graph–hypergraph structure. 
 It provides a flexible and topology-aware reconstruction strategy tailored to the complex final state of four-top production.
@@ -126,7 +128,7 @@ The observed performance stability across jet multiplicities indicates that the 
 While hadronic top candidates are fully reconstructed from visible decay products, leptonic top decays involve undetected neutrinos whose kinematics must be inferred from missing transverse momentum and mass constraints. 
 In the 2LSS final state, two neutrinos are present, leading to an under-constrained system when only the measured missing transverse momentum is used.
 To reconstruct the full leptonic top four-momenta, the neutrino kinematics must be inferred from the measured missing transverse momentum and reconstructed event information. 
-Two complementary approaches are considered in this analysis: the Neutrino Weighting method, which searches for solutions consistent with the $W$-boson and top-quark mass hypotheses, and a machine-learning-based generative approach ($\nu^2$-flow), which models the conditional distribution of neutrino momenta given the observed event features.
+Two complementary approaches are considered in this analysis: the Neutrino Weighting method, which searches for solutions consistent with the $W$-boson and top-quark mass hypotheses, and a machine-learning-based generative approach ($\nu^2$-Flows), which models the conditional distribution of neutrino momenta given the observed event features.
 Both methods aim to reconstruct the neutrino momenta in a way that is compatible with the measured event information, thereby allowing the full leptonic top four-momenta to be determined and enabling the construction of fully reconstructed four-top candidates.
 
 \subsubsection{Neutrino Weighting Method}
@@ -241,3 +243,20 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
     The right panel shows the generative workflow in which neutrino kinematics are inferred using $\boldsymbol{\nu^2}$-Flows prior to the hypergraph-based assignment.}
     \label{fig:workflow_comparison}
 \end{figure}
+
+\subsection{Definition of Differential Observables}
+
+The primary observable considered in this analysis is the invariant mass of the four-top system, $m_{4t}$, defined at parton level. 
+The parton-level top quarks are taken directly from the matrix-element record of the generator, prior to parton showering and decay. 
+The four-top invariant mass is constructed from the sum of the four outgoing top-quark four-momenta,
+\begin{equation}
+m_{4t}^{\text{parton}} = \left( \sum_{i=1}^{4} p_{t,i}^{\text{ME}} \right)^2.
+\end{equation}
+This definition corresponds to the hard-scattering kinematics and defines the full phase space of the process.
+
+At reconstruction level, a proxy observable $m_{4t}^{\text{reco}}$ is constructed from the fully reconstructed top-quark candidates obtained through the workflow described in Section~X. 
+Event selection criteria are applied at reconstruction level, resulting in a restricted fiducial phase space. 
+The unfolding procedure therefore extrapolates from the selected reconstruction-level phase space to the inclusive parton-level definition of $m_{4t}$.
+
+In addition to the parton-level invariant mass, exploratory studies have been performed for selected particle-level observables, including the scalar sum of transverse momenta $H_T$ and the leading-lepton transverse momentum. 
+These observables serve as complementary probes and provide input for future extensions of the measurement.
