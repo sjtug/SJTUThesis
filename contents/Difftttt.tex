@@ -235,7 +235,7 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/Workflow_Hyper_plus_Nu2.pdf}
-        \caption{HyPER + $\boldsymbol{\nu^2}$-Flows workflow.}
+        \caption{HyPER + $\nu^2$-Flows workflow.}
         \label{fig:workflow_nu2}
     \end{subfigure}
     \caption{Schematic illustration of the two reconstruction workflows considered for four-top reconstruction in the 2LSS channel. 
@@ -243,6 +243,8 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
     The right panel shows the generative workflow in which neutrino kinematics are inferred using $\boldsymbol{\nu^2}$-Flows prior to the hypergraph-based assignment.}
     \label{fig:workflow_comparison}
 \end{figure}
+
+\section{Profile Likelihood Unfolding Strategy}
 
 \subsection{Definition of Differential Observables}
 
@@ -259,4 +261,105 @@ Event selection criteria are applied at reconstruction level, resulting in a res
 The unfolding procedure therefore extrapolates from the selected reconstruction-level phase space to the inclusive parton-level definition of $m_{4t}$.
 
 In addition to the parton-level invariant mass, exploratory studies have been performed for selected particle-level observables, including the scalar sum of transverse momenta $H_T$ and the leading-lepton transverse momentum. 
-These observables serve as complementary probes and provide input for future extensions of the measurement.
+These studies illustrate the flexibility of the unfolding framework in alternative kinematic configurations. 
+However, as the emphasis of this thesis is on the development and validation of the differential reconstruction and unfolding methodology, detailed particle-level results are not presented here.
+
+\subsection{Profile Likelihood Unfolding Formalism}
+
+The differential cross section is extracted using the profile likelihood unfolding (PLU) approach. 
+This method formulates the unfolding problem within the same statistical framework introduced in Eq.~\ref{eq:Likelihood}. 
+While the inclusive measurement employs a single signal-strength parameter $\mu$ to scale the total signal yield, differential unfolding promotes this parameter to a set of independent signal-strength modifiers, one per truth bin.
+
+The likelihood therefore becomes
+
+\begin{eqnarray}
+    L\left(\vec{n}|\vec{\mu}, \vec{\theta}\right) 
+    &=& 
+    \prod_{r \in \text{region}}
+    \prod_{i\in \text{bin}} 
+    \text{Pois}\left(n_{i,r} \mid 
+    \sum_{j=1}^{N_\text{truth}}
+    \mu_j \, S_{i,r}^{(j)}(\vec{\theta})
+    + B_{i,r}(\vec{\theta})\right)
+    \times
+    \prod_{k\in \text{NP}}
+    G\left(\theta_k\right).
+\end{eqnarray}
+
+Here, $S_{i,r}^{(j)}$ denotes the reconstruction-level template corresponding to truth bin $j$, obtained by folding the parton-level distribution through the detector response matrix. 
+Each parameter $\mu_j$ scales the contribution of truth bin $j$, while $B_{i,r}$ represents the background prediction. 
+The nuisance parameters $\vec{\theta}$ encode systematic uncertainties affecting both signal and background expectations, and are treated in the same way as in the inclusive fit.
+
+In this formulation, unfolding reduces to a simultaneous maximum-likelihood determination of the normalization factors $\mu_j$, with systematic uncertainties profiled coherently across all bins and regions. 
+The unfolded differential cross section in truth bin $j$ is then given by
+
+\begin{equation}
+    \sigma_j = \mu_j \, \sigma_j^{\text{MC}},
+\end{equation}
+
+where $\sigma_j^{\text{MC}}$ denotes the nominal Monte Carlo prediction for that bin. 
+The fit therefore determines bin-by-bin scale factors that correct the predicted parton-level distribution to best describe the observed data.
+
+This approach naturally incorporates detector response effects, background normalisation, and correlated systematic uncertainties within a unified statistical framework. 
+Moreover, multiple regions or channels can be combined in a single fit, allowing the differential measurement to benefit from additional constraints and improved sensitivity.
+
+In the absence of additional constraints, this formulation is equivalent to an unregularized matrix-inversion unfolding. 
+Regularization can be introduced by adding additional penalty terms to the likelihood, as discussed in Section~3.4.
+
+In order to determine the bin-wise signal-strength parameters $\mu_j$, 
+the parton-level observable must be discretised and connected to the reconstruction-level measurement through the detector response. 
+This requires a well-defined binning strategy and the construction of a response matrix encoding efficiency and bin migration effects.
+
+\subsection{Binning Strategy and Response Matrix Construction}
+
+The binning of the parton-level observable is optimised according to two primary considerations. 
+First, each unfolded bin must contain sufficient statistical power to yield a meaningful uncertainty on the extracted cross section. 
+Second, the detector response should remain well-conditioned, requiring a sufficiently large diagonal fraction in the migration matrix.
+
+In the present partial Run~3 dataset, approximately twenty signal-region events remain after the full event selection. 
+Given this limited statistical sample, a high-resolution binning would lead to unstable fits and large statistical uncertainties. 
+To ensure a meaningful differential measurement while preserving sensitivity to shape variations, a minimal binning with three truth bins is adopted.
+
+The bin boundaries are chosen to approximately balance the expected event yield across bins, resulting in the binning
+\[
+[0.0,\; 1379.243,\; 1813.773,\; 5000.0]~\mathrm{GeV}.
+\]
+With this choice, the expected number of events per bin is approximately uniform, corresponding to six to seven events per bin at reconstruction level. 
+Although the resulting statistical uncertainties approach the nominal tolerance threshold, the diagonal elements of the migration matrix remain above 0.5, ensuring a sufficiently stable detector response. 
+The corresponding response matrix is discussed in detail below.
+
+This binning therefore represents a compromise between statistical precision and detector-level stability, and is adopted as the nominal configuration for the differential measurement.
+
+The mapping from the truth-level distribution $T_j$ to the expected reconstructed yields $N_i$ is described through a response matrix $R_{ij}$,
+\begin{equation}
+N_i = \sum_{j} R_{ij}\,T_j .
+\end{equation}
+In practice, the response information can be provided either as the full matrix $R_{ij}$ or in a factorised form in terms of three ingredients: a migration matrix, a per-bin reconstruction-level efficiency, and an (optional) acceptance correction used to treat non-fiducial contributions.
+
+The (unnormalised) migration matrix $M_{ij}$ encodes bin-to-bin migration from truth bin $j$ to reconstruction bin $i$. 
+It is convenient to define a column-normalised migration matrix,
+\begin{equation}
+\widetilde{M}_{ij} = \frac{M_{ij}}{\sum_{i} M_{ij}},
+\qquad \sum_i \widetilde{M}_{ij}=1,
+\end{equation}
+which represents the conditional probability of being reconstructed in bin $i$ given truth bin $j$ for events entering the reconstructed distribution.
+The reconstruction-level selection efficiency is defined per truth bin as
+\begin{equation}
+\varepsilon_j \equiv P(\mathrm{selected}_{\mathrm{reco}} \mid j_{\mathrm{truth}}),
+\end{equation}
+i.e.\ the fraction of events in truth bin $j$ that pass the reconstruction-level selection and contribute to the fitted reconstructed distribution. 
+With these definitions, the response matrix entering the likelihood model is constructed as
+\begin{equation}
+R_{ij} = \widetilde{M}_{ij}\,\varepsilon_j .
+\end{equation}
+
+If a fiducial truth-level phase space is defined, events outside the fiducial region may still pass the reconstruction-level selection and populate the reconstructed distribution. 
+This effect can be handled via a per-bin acceptance factor defined on the reconstruction axis,
+\begin{equation}
+\alpha_i \equiv P(\mathrm{fiducial}_{\mathrm{truth}} \mid i_{\mathrm{reco}}),
+\end{equation}
+which quantifies the fraction of reconstructed events in bin $i$ originating from the fiducial region. 
+This factor is applied as a correction to account for non-fiducial contamination. 
+In the present analysis, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed; consequently, this correction is not activated ($\alpha_i \equiv 1$), but the formalism is stated in this general form to allow future extensions.
+
+The response information must be provided consistently for each systematic variation, since detector- and modelling-related uncertainties affect both the efficiency and the migration pattern and therefore the folded templates entering the fit.
