@@ -6,11 +6,14 @@
 
 ## [Unreleased]
 
+### Changed
+
 - 注释英文大摘要（[#1137](https://github.com/sjtug/SJTUThesis/pull/1137)）。
 
 ### Added
 
-- 添加 `sjtuthesis-bachelor.sty` 来补充学士论文额外配置（[#1113](https://github.com/sjtug/SJTUThesis/pull/1113)）。
+- ~~添加 `sjtuthesis-bachelor.sty` 来补充学士论文额外配置（[#1113](https://github.com/sjtug/SJTUThesis/pull/1113)）。~~
+- 添加教务处版学位论文模板预设（[#1138](https://github.com/sjtug/SJTUThesis/pull/1138)）。
 
 ## [v2.2.1] - 2025-04-02
 
