@@ -21,7 +21,7 @@ Here need some introduction to the framework for differential four-top measureme
 
 \section{Reconstruction of the Four-Top System}
 
-In the inclusive four-top analysis, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
+In the inclusive four-top work, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
 The requirement of two leptons with the same electric charge or more strongly suppresses the large $t\bar{t}$+jets background, leading to improved signal purity and a substantial contribution to the overall significance of the measurement. 
 Within this category, the dileptonic same-sign (2LSS) channel offers a favourable balance between statistical yield and reconstruction complexity. 
 Compared to multi-lepton final states, it features a larger branching fraction while involving only two neutrinos, thereby reducing the degree of kinematic under-constraint.
@@ -128,7 +128,7 @@ The observed performance stability across jet multiplicities indicates that the 
 While hadronic top candidates are fully reconstructed from visible decay products, leptonic top decays involve undetected neutrinos whose kinematics must be inferred from missing transverse momentum and mass constraints. 
 In the 2LSS final state, two neutrinos are present, leading to an under-constrained system when only the measured missing transverse momentum is used.
 To reconstruct the full leptonic top four-momenta, the neutrino kinematics must be inferred from the measured missing transverse momentum and reconstructed event information. 
-Two complementary approaches are considered in this analysis: the Neutrino Weighting method, which searches for solutions consistent with the $W$-boson and top-quark mass hypotheses, and a machine-learning-based generative approach ($\nu^2$-Flows), which models the conditional distribution of neutrino momenta given the observed event features.
+Two complementary approaches are considered in this work: the Neutrino Weighting method, which searches for solutions consistent with the $W$-boson and top-quark mass hypotheses, and a machine-learning-based generative approach ($\nu^2$-Flows), which models the conditional distribution of neutrino momenta given the observed event features.
 Both methods aim to reconstruct the neutrino momenta in a way that is compatible with the measured event information, thereby allowing the full leptonic top four-momenta to be determined and enabling the construction of fully reconstructed four-top candidates.
 
 \subsubsection{Neutrino Weighting Method}
@@ -153,7 +153,7 @@ together with the transverse momentum relation
 \]
 %
 Since the longitudinal neutrino momenta are not directly measured, the Neutrino Weighting (NW) method~\cite{ATLAS2017TopMassAllHadronic} resolves the remaining degrees of freedom by scanning over the neutrino pseudorapidities $\eta_{\nu_i}$. 
-In this analysis, $\eta_{\nu_i}$ is scanned in the range $-5\leq\eta_{\nu_i}\leq5$ using a uniform grid of 100 points. 
+In this work, $\eta_{\nu_i}$ is scanned in the range $-5\leq\eta_{\nu_i}\leq5$ using a uniform grid of 100 points. 
 For each assumed $\eta_{\nu_i}$, the kinematic constraints reduce to a quadratic system, yielding up to two physical solutions for the transverse neutrino momentum components. 
 Candidate solutions for the two decay chains are then combined and evaluated at the event level.
 
@@ -195,7 +195,7 @@ A learnable class token is used together with cross-attention to obtain a single
 \end{figure}
 
 In the dilepton case, the conditional flow outputs a six-dimensional target corresponding to the three-momentum components of the neutrino and anti-neutrino, and can provide either the most probable solution or multiple sampled solutions per event.
-% In this analysis, $\nu^2$-Flows is used as a complementary benchmark for neutrino reconstruction performance studies, while the nominal reconstruction employs the Neutrino Weighting method.
+% In this work, $\nu^2$-Flows is used as a complementary benchmark for neutrino reconstruction performance studies, while the nominal reconstruction employs the Neutrino Weighting method.
 
 \subsubsection{Performance}
 
@@ -210,7 +210,7 @@ Two reconstruction workflows are considered, depending on the choice of neutrino
 
 \paragraph{HyPER + Neutrino Weighting.}
 
-In the nominal workflow adopted in this analysis, HyPER is first applied to determine the final-state assignment of visible objects. 
+In the nominal workflow adopted in this work, HyPER is first applied to determine the final-state assignment of visible objects. 
 Hadronic top candidates are reconstructed as hyperedges connecting three jets, while leptonic candidates are identified through $b$-jet–lepton pairings. 
 The Neutrino Weighting method is subsequently applied to each leptonic decay chain to infer the corresponding neutrino momenta, after which the full leptonic top four-momenta are constructed.
 
@@ -248,7 +248,7 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
 
 \subsection{Definition of Differential Observables}
 
-The primary observable considered in this analysis is the invariant mass of the four-top system, $m_{4t}$, defined at parton level. 
+The primary observable considered in this work is the invariant mass of the four-top system, $m_{4t}$, defined at parton level. 
 The parton-level top quarks are taken directly from the matrix-element record of the generator, prior to parton showering and decay. 
 The four-top invariant mass is constructed from the sum of the four outgoing top-quark four-momenta,
 \begin{equation}
@@ -303,8 +303,8 @@ The fit therefore determines bin-by-bin scale factors that correct the predicted
 This approach naturally incorporates detector response effects, background normalisation, and correlated systematic uncertainties within a unified statistical framework. 
 Moreover, multiple regions or channels can be combined in a single fit, allowing the differential measurement to benefit from additional constraints and improved sensitivity.
 
-In the absence of additional constraints, this formulation is equivalent to an unregularized matrix-inversion unfolding. 
-Regularization can be introduced by adding additional penalty terms to the likelihood, as discussed in Section~3.4.
+In the absence of additional constraints, this formulation is equivalent to an unregularised matrix-inversion unfolding. 
+regularisation can be introduced by adding additional penalty terms to the likelihood, as discussed in Section~3.4.
 
 In order to determine the bin-wise signal-strength parameters $\mu_j$, 
 the parton-level observable must be discretised and connected to the reconstruction-level measurement through the detector response. 
@@ -324,25 +324,29 @@ The bin boundaries are chosen to approximately balance the expected event yield 
 \[
 [0.0,\; 1379.243,\; 1813.773,\; 5000.0]~\mathrm{GeV}.
 \]
-With this choice, the expected number of events per bin is approximately uniform, corresponding to six to seven events per bin at reconstruction level. 
+With this choice, the expected event yield is approximately uniform across bins, corresponding to six to seven events per bin at reconstruction level.
 Although the resulting statistical uncertainties approach the nominal tolerance threshold, the diagonal elements of the migration matrix remain above 0.5, ensuring a sufficiently stable detector response. 
 The corresponding response matrix is discussed in detail below.
 
 This binning therefore represents a compromise between statistical precision and detector-level stability, and is adopted as the nominal configuration for the differential measurement.
 
-The mapping from the truth-level distribution $T_j$ to the expected reconstructed yields $N_i$ is described through a response matrix $R_{ij}$,
+The connection between the chosen truth-level binning and the reconstructed observables is described through the detector response matrix.
+More formally, the relation between the truth-level distribution $T_j$ and the expected reconstructed yields $S_i$ can be written as
 \begin{equation}
-N_i = \sum_{j} R_{ij}\,T_j .
+S_i = \sum_{j} R_{ij}\,T_j ,
 \end{equation}
-In practice, the response information can be provided either as the full matrix $R_{ij}$ or in a factorised form in terms of three ingredients: a migration matrix, a per-bin reconstruction-level efficiency, and an (optional) acceptance correction used to treat non-fiducial contributions.
+where $R_{ij}$ denotes the response matrix relating truth bin $j$ to reconstruction bin $i$.
+In practice, the response information can be provided either as the full matrix $R_{ij}$ or in a factorised form in terms of a migration matrix and a per-bin reconstruction-level efficiency. 
+An additional acceptance correction may be applied to account for non-fiducial contributions in the reconstructed distribution.
 
-The (unnormalised) migration matrix $M_{ij}$ encodes bin-to-bin migration from truth bin $j$ to reconstruction bin $i$. 
+The migration matrix $M_{ij}$ encodes bin-to-bin migration from truth bin $j$ to reconstruction bin $i$. 
 It is convenient to define a column-normalised migration matrix,
 \begin{equation}
 \widetilde{M}_{ij} = \frac{M_{ij}}{\sum_{i} M_{ij}},
 \qquad \sum_i \widetilde{M}_{ij}=1,
 \end{equation}
-which represents the conditional probability of being reconstructed in bin $i$ given truth bin $j$ for events entering the reconstructed distribution.
+which represents the conditional probability for an event generated in truth bin $j$ and entering the reconstructed distribution to be reconstructed in bin $i$.
+
 The reconstruction-level selection efficiency is defined per truth bin as
 \begin{equation}
 \varepsilon_j \equiv P(\mathrm{selected}_{\mathrm{reco}} \mid j_{\mathrm{truth}}),
@@ -353,13 +357,42 @@ With these definitions, the response matrix entering the likelihood model is con
 R_{ij} = \widetilde{M}_{ij}\,\varepsilon_j .
 \end{equation}
 
+The reconstruction-level selection efficiency and acceptance as functions of the parton-level four-top invariant mass are shown in Fig.~\ref{fig:efficiency_and_acceptance}. 
+The efficiency reflects the fraction of truth events entering the selected reconstructed sample. 
+The bin-to-bin migration pattern is illustrated in Fig.~\ref{fig:migration_matrix}, where the diagonal dominance indicates that the chosen binning preserves a reasonably stable correspondence between truth and reconstructed observables.
+
 If a fiducial truth-level phase space is defined, events outside the fiducial region may still pass the reconstruction-level selection and populate the reconstructed distribution. 
 This effect can be handled via a per-bin acceptance factor defined on the reconstruction axis,
 \begin{equation}
 \alpha_i \equiv P(\mathrm{fiducial}_{\mathrm{truth}} \mid i_{\mathrm{reco}}),
 \end{equation}
 which quantifies the fraction of reconstructed events in bin $i$ originating from the fiducial region. 
-This factor is applied as a correction to account for non-fiducial contamination. 
-In the present analysis, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed; consequently, this correction is not activated ($\alpha_i \equiv 1$), but the formalism is stated in this general form to allow future extensions.
+This factor accounts for the contamination of the reconstructed distribution by events originating outside the fiducial region. 
+In the present work, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed; consequently, this correction is not activated ($\alpha_i \equiv 1$). 
+The formalism is nevertheless presented in this general form to allow future extensions to fiducial measurements.
 
-The response information must be provided consistently for each systematic variation, since detector- and modelling-related uncertainties affect both the efficiency and the migration pattern and therefore the folded templates entering the fit.
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Unfolding_plots/selection_eff_parton_4tops_mass_SR_inclusive.pdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Unfolding_plots/acceptance_parton_4tops_mass_SR_inclusive.pdf}
+    \end{subfigure}
+    \caption{Reconstruction-level selection efficiency (left) and acceptance (right) as functions of the parton-level four-top invariant mass. 
+    The efficiency corresponds to the probability for events in a given truth bin to pass the reconstruction-level selection, while the acceptance represents the fraction of reconstructed events originating from the fiducial truth region.}
+    \label{fig:efficiency_and_acceptance}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/Unfolding_plots/migration_parton_4tops_mass_test_region_4tops_mass.pdf}
+    \caption{Column-normalised migration matrix between truth and reconstruction bins for the parton-level four-top invariant mass. 
+    Each column represents the conditional probability for an event generated in truth bin $j$ to be reconstructed in bin $i$.}
+    \label{fig:migration_matrix}
+\end{figure}
+
+The response information must be provided consistently for each systematic variation, since detector and modelling uncertainties affect both the reconstruction efficiency and the migration pattern and therefore the folded templates entering the fit.
