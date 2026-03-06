@@ -59,6 +59,25 @@
   { \SJTU@leaders \thecontentspage }
 \keys_set:nn { sjtu / style }
   { num-sep = { - } }
+\__sjtu_if_main_lang_zh:T
+  {
+    \def \SJTU@fullwidth@paren #1 { （ #1 ） }
+    \AddToHook { cmd / appendix / before }
+      {
+        \ctex_set:nn { chapter }
+          { tocline = #2 \CTEXifname{\SJTU@fullwidth@paren\CTEXthechapter}{} }
+        \ctex_patch_cmd:Nnn \@makechapterhead
+          { {\CTEXifname{\CTEX@chaptername\CTEX@chapter@aftername}{}} } { }
+        \ctex_patch_cmd:Nnn \@makechapterhead
+          { \CTEX@chapter@aftertitle }
+          {
+            {\CTEXifname{\SJTU@fullwidth@paren\CTEX@chaptername}{}}
+            \CTEX@chapter@aftertitle
+          }
+        \def \chaptermark #1
+          { \markboth{#1\CTEXifname{\SJTU@fullwidth@paren\CTEXthechapter}{}}{} }
+      }
+  }
 \endinput
 %%
 %% End of file `sjtu-thesis-preset-jwc.def'.
