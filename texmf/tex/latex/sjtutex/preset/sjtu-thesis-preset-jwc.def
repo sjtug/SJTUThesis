@@ -43,6 +43,8 @@
         number = \chinese { chapter }
       }
   }
+\AddToHook { cmd / frontmatter / after }
+  { \bool_set_true:N \l__sjtu_heading_in_toc_bool }
 \titlecontents { chapter }
   [ 0 pt ]
   { \addvspace { 6 bp } \zihao { 4 } \setbaselineskip { 24 bp } \bfseries }
