@@ -12,22 +12,121 @@ From a theoretical perspective, studies within the Effective Field Theory (EFT) 
 In such scenarios, modifications of the interaction structure can lead to characteristic enhancements in the high-mass region of the four-top invariant mass spectrum, while inclusive cross-section measurements alone may exhibit limited discriminating power. 
 Differential observables therefore offer complementary and potentially more sensitive probes of new interactions involving the top quark.
 
-With the improved statistical precision of Run~3 data, selected differential observables become experimentally accessible. However, the complexity of the four-top final state requires advanced reconstruction techniques and a robust unfolding procedure to correct for detector effects. 
-This motivates the development of a dedicated framework for differential four-top measurements in Run~3, which is the focus of this chapter.
+With the increased integrated luminosity delivered in Run~3, selected differential observables become experimentally accessible.
+This motivates the development of a dedicated reconstruction and unfolding framework for differential four-top measurements in Run~3.
 
-\section{Framework}
+\section{Study setup}
 
-Here need some introduction to the framework for differential four-top measurements, including the choice of observables, event selection, reconstruction techniques, and unfolding methodology.
+This section summarises the analysis configuration used for the differential four-top study presented in this chapter. 
+The study is based on simulated samples and a simplified event selection designed to capture the key experimental features of the four-top final state while maintaining sufficient statistical power for method validation. 
+The same configuration is used consistently throughout the reconstruction and unfolding studies described in the following sections.
+
+\subsection{Data and simulated samples}
+
+Signal and background processes are modelled using MC event generators interfaced with parton shower and hadronisation models. 
+The simulated samples correspond to the partial Run~3 data-taking period (2022--2024) and provide the basis for constructing the detector response, evaluating systematic uncertainties, and generating pseudo-data used in the unfolding validation studies.
+
+The nominal four-top signal process is generated at next-to-leading order (NLO) in QCD using \textsc{MadGraph5\_aMC@NLO} interfaced with \textsc{Pythia8} for parton showering and hadronisation. 
+Alternative generator configurations are used to evaluate modelling uncertainties associated with the signal simulation. 
+Background processes include $t\bar{t}t$, $t\bar{t}W$, $t\bar{t}Z$, single-top production, and diboson and vector-boson–associated processes. 
+The generator configurations used for the signal and background processes are summarised in Table~\ref{tab:diff_mc_samples}.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{tabular}{
+p{1.6cm}
+p{3.6cm}
+p{1.9cm}
+p{2.5cm}
+p{2.0cm}
+p{1.2cm}
+}
+
+\toprule
+Process & Generator & ME order & PDF & Parton shower & Tune \\
+\midrule
+
+\multirow{4}{*}{$t\bar t t\bar t$}
+& \textsc{MadGraph5\_aMC@NLO} & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+& (\textsc{MadGraph5\_aMC@NLO}) & (NLO) & (NNPDF3.0NLO) & (Herwig7) & (H7UE) \\
+& (Sherpa 2.2.14) & (NLO) & (NNPDF3.0NNLO) & (Sherpa) & (Sherpa) \\
+
+\midrule
+
+$t\bar t t$ & \textsc{MadGraph5} & LO & NNPDF2.3LO & Pythia8 & A14 \\
+
+\midrule
+
+$t\bar t W$ & Sherpa 2.2.14 & MEPS@NLO & NNPDF3.0NLO & Sherpa & Sherpa \\
+
+$t\bar t Z/\gamma^{*}$ & \textsc{MadGraph5\_aMC@NLO} & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$t\bar t H$ & PowhegBox & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$tW$ & PowhegBox & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$tH$ & \textsc{MadGraph5\_aMC@NLO} & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$tWZ$ & \textsc{MadGraph5\_aMC@NLO} & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$tZq$ & \textsc{MadGraph5\_aMC@NLO} & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+Single-top & PowhegBox & NLO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$t\bar t VV$ & \textsc{MadGraph5} & LO & NNPDF3.0NLO & Pythia8 & A14 \\
+
+$V+$jets & Sherpa 2.2.14 & MEPS@NLO & NNPDF3.0NNLO & Sherpa & Sherpa \\
+
+$VV,\,VVV$ & Sherpa 2.2.14 & MEPS@NLO & NNPDF3.0NNLO & Sherpa & Sherpa \\
+
+$VH$ & PowhegBox & LO & NNPDF2.3LO & Pythia8 & A14 \\
+
+\bottomrule
+\end{tabular}
+
+\caption{Monte Carlo generators and simulation configurations used for signal and background processes. 
+Alternative generator setups used for systematic studies are shown in parentheses.}
+\label{tab:diff_mc_samples}
+
+\end{table}
+
+\subsection{Event selection and analysis channel}
+
+In the inclusive four-top analysis, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
+Final states containing two same-sign leptons or multiple leptons efficiently suppress the large $t\bar{t}$+jets background, resulting in significantly improved signal purity.
+Within this category, the dileptonic same-sign (2LSS) channel offers a favourable balance between statistical yield and reconstruction complexity. 
+Compared with multi-lepton final states, it benefits from a larger branching fraction while involving only two neutrinos in the final state, thereby reducing the degree of kinematic under-constraint.
+
+These features make the 2LSS channel particularly well suited for developing and validating a reconstruction-driven differential measurement strategy. 
+At the same time, the reconstruction and unfolding framework presented in this work is designed to remain extendable to multi-lepton final states, where the inclusion of additional channels may further enhance the statistical precision in future measurements.
+
+Events are required to satisfy the following reconstruction-level selection:
+
+\begin{itemize}
+\item exactly two leptons with the same electric charge, with the leading lepton satisfying $p_T > 28~\mathrm{GeV}$,
+\item at least eight reconstructed jets,
+\item at least two $b$-tagged jets,
+\item scalar sum of transverse momenta of reconstructed jets and leptons $H_T > 500~\mathrm{GeV}$.
+\end{itemize}
+
+No additional selection is applied at parton level. 
+The unfolding procedure therefore extrapolates from the selected reconstruction-level phase space to the full parton-level phase space of the studied observable.
+
+\subsection{Systematic uncertainties considered in the study}
+
+In addition to statistical fluctuations, a representative set of dominant systematic uncertainties is included in the unfolding validation studies in order to approximate the conditions of the nominal likelihood fit.
+
+The considered sources correspond to the dominant systematic uncertainties identified in the inclusive four-top analysis. 
+For the signal process, these include the overall normalisation uncertainty of the $t\bar{t}t\bar{t}$ cross section (20\%) and modelling uncertainties associated with the event generator and parton shower. 
+In addition, instrumental uncertainties related to flavour-tagging efficiencies are applied to all simulated processes.
+Generator and parton-shower modelling uncertainties are evaluated using alternative signal samples generated with different Monte Carlo configurations, as listed in Table~\ref{tab:diff_mc_samples}. 
+These uncertainties are propagated through the pseudo-experiments used in the pull and stress tests described in Section~\ref{sec:unfolding_validation}, thereby providing a realistic estimate of the impact of systematic effects on the stability of the unfolding procedure.
 
 \section{Reconstruction of the Four-Top System}
-
-In the inclusive four-top work, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
-The requirement of two leptons with the same electric charge or more strongly suppresses the large $t\bar{t}$+jets background, leading to improved signal purity and a substantial contribution to the overall significance of the measurement. 
-Within this category, the dileptonic same-sign (2LSS) channel offers a favourable balance between statistical yield and reconstruction complexity. 
-Compared to multi-lepton final states, it features a larger branching fraction while involving only two neutrinos, thereby reducing the degree of kinematic under-constraint.
-
-These properties make the 2LSS channel particularly well suited for developing and validating a reconstruction-driven differential measurement strategy. 
-At the same time, the reconstruction and unfolding framework presented here is designed to be extendable to multi-lepton final states, where the inclusion of additional channels may further enhance the statistical precision in future studies.
 
 Four-top production in the 2LSS channel remains characterised by a highly complex final state, featuring a large number of jets, multiple $b$-quarks, and two neutrinos from leptonic top decays. 
 The combinatorial ambiguity in assigning reconstructed objects to their parent top quarks grows rapidly with jet multiplicity, and the presence of two neutrinos introduces additional kinematic under-constraints. 
@@ -202,6 +301,7 @@ In the dilepton case, the conditional flow outputs a six-dimensional target corr
 residual comparison on pxpypz
 
 \subsection{Reconstruction of the Four-Top System}
+\label{sec:top_reco}
 
 The full reconstruction of the four-top system requires the determination of four top-quark four-momenta, comprising two hadronic and two leptonic decay chains. 
 Following the hypergraph-based assignment and the neutrino reconstruction strategies introduced above, the complete event reconstruction is performed by combining these two components within a coherent workflow.
@@ -246,31 +346,47 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
 
 \section{Profile Likelihood Unfolding Strategy}
 
+Differential measurements require the correction of detector effects that distort the relationship between the kinematic properties of the underlying hard-scattering process and the reconstructed observables measured in the detector. 
+Finite detector resolution, reconstruction efficiencies, and event selection criteria introduce bin migrations and acceptance effects that must be accounted for in order to infer the underlying particle- or parton-level distributions.
+
+Several unfolding techniques have been developed for this purpose, including matrix-inversion approaches, iterative Bayesian unfolding, and likelihood-based methods. 
+In this study, the differential cross section is extracted using the profile likelihood unfolding (PLU) method, in which the unfolding problem is formulated directly within the statistical framework of the likelihood fit. 
+This approach offers several practical advantages. 
+First, systematic uncertainties and bin-to-bin correlations can be incorporated consistently through the profiling of nuisance parameters. 
+Second, the same statistical framework can be naturally extended to multiple observables without requiring the optimisation of algorithm-specific parameters, such as the number of iterations used in iterative unfolding techniques. 
+Finally, adopting a likelihood-based formulation ensures consistency with the inclusive four-top cross-section measurement performed in parallel, allowing both analyses to share a common statistical framework.
+
+The following sections describe the definition of the differential observable, the construction of the detector response matrix, and the implementation of the profile likelihood unfolding procedure. 
+Dedicated validation studies are then performed to verify the stability and potential bias of the unfolding configuration.
+
 \subsection{Definition of Differential Observables}
 
-The primary observable considered in this work is the invariant mass of the four-top system, $m_{4t}$, defined at parton level. 
-The parton-level top quarks are taken directly from the matrix-element record of the generator, prior to parton showering and decay. 
-The four-top invariant mass is constructed from the sum of the four outgoing top-quark four-momenta,
+The primary observable considered in this study is the invariant mass of the four-top system, $m_{4t}$, defined at parton level. 
+The parton-level top quarks are taken from the matrix-element record of the event generator prior to parton showering and decay. 
+The invariant mass of the four-top system is constructed from the sum of the four outgoing top-quark four-momenta,
+
 \begin{equation}
-m_{4t}^{\text{parton}} = \left( \sum_{i=1}^{4} p_{t,i}^{\text{ME}} \right)^2.
+m_{4t}^{\text{parton}} =
+\sqrt{\left(\sum_{i=1}^{4} p_{t,i}^{\text{ME}}\right)^2}.
 \end{equation}
-This definition corresponds to the hard-scattering kinematics and defines the full phase space of the process.
 
-At reconstruction level, a proxy observable $m_{4t}^{\text{reco}}$ is constructed from the fully reconstructed top-quark candidates obtained through the workflow described in Section~X. 
-Event selection criteria are applied at reconstruction level, resulting in a restricted fiducial phase space. 
-The unfolding procedure therefore extrapolates from the selected reconstruction-level phase space to the inclusive parton-level definition of $m_{4t}$.
+This definition corresponds to the kinematics of the hard-scattering interaction and defines the target distribution of the unfolding procedure.
 
-In addition to the parton-level invariant mass, exploratory studies have been performed for selected particle-level observables, including the scalar sum of transverse momenta $H_T$ and the leading-lepton transverse momentum. 
-These studies illustrate the flexibility of the unfolding framework in alternative kinematic configurations. 
-However, as the emphasis of this thesis is on the development and validation of the differential reconstruction and unfolding methodology, detailed particle-level results are not presented here.
+At reconstruction level, a proxy observable $m_{4t}^{\text{reco}}$ is constructed from the reconstructed top-quark candidates obtained through the workflow described in Section~\ref{sec:top_reco}. 
+Due to detector effects and the reconstruction-level event selection, the measured distribution differs from the underlying parton-level spectrum. 
+The unfolding procedure therefore corrects the reconstructed distribution for detector response effects and extracts the corresponding parton-level differential distribution.
+
+In addition to the parton-level invariant mass, exploratory studies have been performed for several particle-level observables, including the scalar sum of transverse momenta $H_T$ and the leading-lepton transverse momentum. 
+These studies illustrate the flexibility of the unfolding framework for different observables. 
+However, as the emphasis of this thesis is on the development and validation of the reconstruction and unfolding methodology, detailed particle-level results are not presented here.
 
 \subsection{Profile Likelihood Unfolding Formalism}
 
-The differential cross section is extracted using the profile likelihood unfolding (PLU) approach. 
-This method formulates the unfolding problem within the same statistical framework introduced in Eq.~\ref{eq:Likelihood}. 
-While the inclusive measurement employs a single signal-strength parameter $\mu$ to scale the total signal yield, differential unfolding promotes this parameter to a set of independent signal-strength modifiers, one per truth bin.
+The differential cross section is extracted using the profile likelihood unfolding approach. 
+The unfolding problem is formulated within the same statistical framework introduced in Eq.~\ref{eq:Likelihood}. 
+While the inclusive measurement employs a single signal-strength parameter $\mu$ to scale the total signal yield, differential unfolding replaces it with a set of independent signal-strength modifiers, one for each truth bin.
 
-The likelihood therefore becomes
+The likelihood becomes
 
 \begin{eqnarray}
     L\left(\vec{n}|\vec{\mu}, \vec{\theta}\right) 
@@ -284,13 +400,13 @@ The likelihood therefore becomes
     \times
     \prod_{k\in \text{NP}}
     G\left(\theta_k\right).
-\end{eqnarray}
+\end{eqnarray}\label{eq:PLU_Likelihood}
 
-Here, $S_{i,r}^{(j)}$ denotes the reconstruction-level template corresponding to truth bin $j$, obtained by folding the parton-level distribution through the detector response matrix. 
+Here, $S_{i,r}^{(j)}$ denotes the reconstruction-level template associated with truth bin $j$, obtained by folding the parton-level distribution through the detector response matrix. 
 Each parameter $\mu_j$ scales the contribution of truth bin $j$, while $B_{i,r}$ represents the background prediction. 
-The nuisance parameters $\vec{\theta}$ encode systematic uncertainties affecting both signal and background expectations, and are treated in the same way as in the inclusive fit.
+The nuisance parameters $\vec{\theta}$ encode systematic uncertainties affecting both signal and background expectations and are treated in the same way as in the inclusive fit.
 
-In this formulation, unfolding reduces to a simultaneous maximum-likelihood determination of the normalization factors $\mu_j$, with systematic uncertainties profiled coherently across all bins and regions. 
+In this formulation, unfolding reduces to a simultaneous maximum-likelihood determination of the bin-wise normalisation factors $\mu_j$, with systematic uncertainties profiled coherently across all bins and regions. 
 The unfolded differential cross section in truth bin $j$ is then given by
 
 \begin{equation}
@@ -304,39 +420,37 @@ This approach naturally incorporates detector response effects, background norma
 Moreover, multiple regions or channels can be combined in a single fit, allowing the differential measurement to benefit from additional constraints and improved sensitivity.
 
 In the absence of additional constraints, this formulation is equivalent to an unregularised matrix-inversion unfolding. 
-regularisation can be introduced by adding additional penalty terms to the likelihood, as discussed in Section~3.4.
+Regularisation can be introduced by adding penalty terms to the likelihood, as discussed in Section~3.4.
 
-In order to determine the bin-wise signal-strength parameters $\mu_j$, 
-the parton-level observable must be discretised and connected to the reconstruction-level measurement through the detector response. 
+In order to determine the bin-wise signal-strength parameters $\mu_j$, the parton-level observable must first be discretised and connected to the reconstruction-level measurement through the detector response. 
 This requires a well-defined binning strategy and the construction of a response matrix encoding efficiency and bin migration effects.
 
 \subsection{Binning Strategy and Response Matrix Construction}
 
-The binning of the parton-level observable is optimised according to two primary considerations. 
+The binning of the parton-level observable is optimised according to two main considerations. 
 First, each unfolded bin must contain sufficient statistical power to yield a meaningful uncertainty on the extracted cross section. 
-Second, the detector response should remain well-conditioned, requiring a sufficiently large diagonal fraction in the migration matrix.
+Second, the detector response should remain well conditioned, requiring a sufficiently large diagonal fraction in the migration matrix.
 
-In the present partial Run~3 dataset, approximately twenty signal-region events remain after the full event selection. 
-Given this limited statistical sample, a high-resolution binning would lead to unstable fits and large statistical uncertainties. 
-To ensure a meaningful differential measurement while preserving sensitivity to shape variations, a minimal binning with three truth bins is adopted.
+In the present partial Run~3 dataset, about twenty signal-region events remain after the full event selection. 
+Given this limited statistical sample, a finer binning would lead to unstable fits and large statistical uncertainties. 
+To retain sensitivity to shape variations while preserving fit stability, a minimal binning with three truth bins is adopted.
 
 The bin boundaries are chosen to approximately balance the expected event yield across bins, resulting in the binning
 \[
 [0.0,\; 1379.243,\; 1813.773,\; 5000.0]~\mathrm{GeV}.
 \]
-With this choice, the expected event yield is approximately uniform across bins, corresponding to six to seven events per bin at reconstruction level.
-Although the resulting statistical uncertainties approach the nominal tolerance threshold, the diagonal elements of the migration matrix remain above 0.5, ensuring a sufficiently stable detector response. 
-The corresponding response matrix is discussed in detail below.
+With this choice, the expected yield is approximately uniform across bins, corresponding to roughly six to seven events per bin at reconstruction level. 
+Although the resulting statistical uncertainties approach the nominal tolerance threshold, the diagonal elements of the migration matrix remain above 0.5, ensuring a sufficiently stable detector response.
 
-This binning therefore represents a compromise between statistical precision and detector-level stability, and is adopted as the nominal configuration for the differential measurement.
+This binning therefore represents a compromise between statistical precision and detector-level stability and is adopted as the nominal configuration for the differential measurement.
 
-The connection between the chosen truth-level binning and the reconstructed observables is described through the detector response matrix.
-More formally, the relation between the truth-level distribution $T_j$ and the expected reconstructed yields $S_i$ can be written as
+The connection between the chosen truth-level binning and the reconstructed observables is described by the detector response matrix. 
+More formally, the relation between the truth-level yields $T_j$ and the expected reconstructed yields $S_i$ can be written as
 \begin{equation}
 S_i = \sum_{j} R_{ij}\,T_j ,
 \end{equation}
-where $R_{ij}$ denotes the response matrix relating truth bin $j$ to reconstruction bin $i$.
-In practice, the response information can be provided either as the full matrix $R_{ij}$ or in a factorised form in terms of a migration matrix and a per-bin reconstruction-level efficiency. 
+where $R_{ij}$ denotes the response matrix relating truth bin $j$ to reconstruction bin $i$. 
+In practice, the response information can be provided either as the full matrix $R_{ij}$ or in factorised form in terms of a migration matrix and a per-bin reconstruction efficiency. 
 An additional acceptance correction may be applied to account for non-fiducial contributions in the reconstructed distribution.
 
 The migration matrix $M_{ij}$ encodes bin-to-bin migration from truth bin $j$ to reconstruction bin $i$. 
@@ -347,7 +461,7 @@ It is convenient to define a column-normalised migration matrix,
 \end{equation}
 which represents the conditional probability for an event generated in truth bin $j$ and entering the reconstructed distribution to be reconstructed in bin $i$.
 
-The reconstruction-level selection efficiency is defined per truth bin as
+The reconstruction-level selection efficiency is defined for each truth bin as
 \begin{equation}
 \varepsilon_j \equiv P(\mathrm{selected}_{\mathrm{reco}} \mid j_{\mathrm{truth}}),
 \end{equation}
@@ -368,7 +482,7 @@ This effect can be handled via a per-bin acceptance factor defined on the recons
 \end{equation}
 which quantifies the fraction of reconstructed events in bin $i$ originating from the fiducial region. 
 This factor accounts for the contamination of the reconstructed distribution by events originating outside the fiducial region. 
-In the present work, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed; consequently, this correction is not activated ($\alpha_i \equiv 1$). 
+In the present work, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed; consequently, this correction is not applied ($\alpha_i \equiv 1$). 
 The formalism is nevertheless presented in this general form to allow future extensions to fiducial measurements.
 
 \begin{figure}
@@ -389,10 +503,333 @@ The formalism is nevertheless presented in this general form to allow future ext
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/Unfolding_plots/migration_parton_4tops_mass_test_region_4tops_mass.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/Unfolding_plots/migration_parton_4tops_mass_test_region_4tops_mass_fixed.pdf}
     \caption{Column-normalised migration matrix between truth and reconstruction bins for the parton-level four-top invariant mass. 
     Each column represents the conditional probability for an event generated in truth bin $j$ to be reconstructed in bin $i$.}
     \label{fig:migration_matrix}
 \end{figure}
 
 The response information must be provided consistently for each systematic variation, since detector and modelling uncertainties affect both the reconstruction efficiency and the migration pattern and therefore the folded templates entering the fit.
+
+\subsection{Regularisation Strategy}
+
+As discussed in the previous section, the detector response matrix introduces migrations between neighbouring bins of the truth observable. 
+In the presence of limited statistics, these migrations can lead to strong bin-to-bin correlations in the unfolded parameters. 
+Events generated in one truth bin may be reconstructed in adjacent bins, giving rise to anti-correlations in the fit where neighbouring bins compensate each other while producing similar reconstructed predictions. 
+This behaviour amplifies statistical fluctuations and can significantly increase the uncertainties of the unfolded spectrum.
+
+To stabilise the unfolding solution, a regularisation term is introduced as an additional constraint on the likelihood defined in Eq.~\ref{eq:PLU_Likelihood}. 
+The extended likelihood becomes
+
+\begin{equation}
+L_{\mathrm{reg}}
+=
+L(\vec{n}|\vec{\mu},\vec{\theta})
+\times
+G(\vec f(\vec{\mu})\,|\,\vec 0,\Sigma_\tau),
+\end{equation}
+
+where the function $\vec f(\vec{\mu})$ represents finite-difference combinations of neighbouring bins and $\Sigma_\tau$ defines the covariance of the constraint. 
+In terms of the negative log-likelihood, this corresponds to an additional quadratic penalty,
+
+\begin{equation}
+-2\ln L_{\mathrm{reg}}
+=
+-2\ln L
++
+\sum_i \tau_i^2 f_i(\vec{\mu})^2 ,
+\end{equation}
+
+where $\tau_i$ controls the strength of the regularisation.
+
+The regularisation functions $f_i(\vec{\mu})$ are constructed from finite-difference operators acting on the unfolded spectrum. 
+Two commonly used choices correspond to discretised first- and second-derivative operators:
+
+\begin{itemize}
+
+\item \textbf{First-derivative constraint.}  
+First-derivative regularisation penalises large differences between adjacent bins,
+\begin{equation}
+f_i = \mu_{i+1}-\mu_i ,
+\end{equation}
+thereby discouraging large local slopes in the unfolded spectrum.
+
+\item \textbf{Second-derivative constraint.}  
+Second-derivative regularisation penalises curvature,
+\begin{equation}
+f_i = \mu_{i-1}-2\mu_i+\mu_{i+1},
+\end{equation}
+and therefore favours locally linear behaviour of the spectrum.  
+\end{itemize}
+
+A practical complication arises for the second-derivative operator at the boundaries of the distribution, since it requires three consecutive bins and cannot be defined directly for the edge bins. 
+Several strategies can therefore be used to extend the curvature constraint to the full spectrum:
+
+\begin{itemize}
+
+\item \textbf{One-sided second-derivative approximation.}  
+Additional constraints can be introduced at the edges using one-sided finite-difference approximations of the second derivative ($f_0 = 2\mu_0 -5\mu_1 +4\mu_2 -\mu_3$ at the lower boundary and the symmetric expression at the upper boundary). 
+For sufficiently fine binning, these provide additional boundary constraints beyond the standard interior curvature term. 
+In the present three-bin configuration, however, the one-sided second-derivative construction does not introduce additional independent constraints and effectively reduces to a single curvature combination across the full spectrum. 
+In this limit, the second-derivative regularisation is represented by the single term $f = \mu_0 - 2\mu_1 + \mu_2$, up to the bin-indexing convention used in the implementation.
+
+\item \textbf{Mixed boundary constraints.}  
+Second-derivative constraints are applied to interior bins while first-derivative constraints ($f_0=\mu_1-\mu_0$ and $f_{N-1}=\mu_{N-1}-\mu_{N-2}$) are used at the boundaries.
+
+\end{itemize}
+
+The strength of the regularisation constraint is controlled by the parameter $\tau$, which determines the relative weight of the smoothing term in the likelihood. 
+In principle, separate regularisation strengths can be defined for individual bins. 
+In this study, however, a single global parameter $\tau$ is used for all bins in order to simplify the optimisation procedure.
+
+To determine a suitable value of $\tau$, a scan of the regularisation strength is performed. 
+Two metrics are considered: the global correlation coefficient and the average statistical uncertainty of the unfolded bins.
+
+The global correlation coefficient quantifies the bin-to-bin correlations introduced by the unfolding procedure. 
+For each unfolded parameter $\mu_i$, it is defined as
+\begin{equation}
+\rho_i^{\mathrm{global}} =
+\sqrt{1 - \frac{1}{C_{ii}(C^{-1})_{ii}}},
+\end{equation}
+where $C$ denotes the covariance matrix of the unfolded parameters obtained from the fit. 
+Small values indicate that a bin is largely constrained by the data itself, while values approaching unity correspond to strong correlations with neighbouring bins. 
+As an overall measure of the stability of the unfolding result, the mean global correlation coefficient averaged over all truth bins is used.
+
+The evolution of the mean global correlation coefficient and the average statistical uncertainty as a function of $\tau$ is shown in Fig.~\ref{fig:tau_scan}. 
+A clear minimum of the global correlation is observed for $\tau$ values between approximately $0.3$ and $0.7$. 
+Within this range, the unfolding solution exhibits reduced bin-to-bin correlations while maintaining stable statistical uncertainties. 
+Among the studied configurations, regularisation schemes involving first-derivative terms provide the most effective reduction of the statistical uncertainty.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/tau_scan_rho_global.pdf}
+\caption{Mean global correlation coefficient as a function of $\tau$.}
+\label{fig:tau_scan_rho}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/tau_scan_sigma.pdf}
+\caption{Average statistical uncertainty of the unfolded bins as a function of $\tau$.}
+\label{fig:tau_scan_sigma}
+\end{subfigure}
+
+\caption{Optimisation of the regularisation strength $\tau$ for different regularisation configurations. 
+The left panel shows the mean global correlation coefficient, while the right panel shows the average statistical uncertainty of the unfolded bins.}
+\label{fig:tau_scan}
+\end{figure}
+
+\subsection{Validation of the Unfolding Procedure}
+\label{sec:unfolding_validation}
+
+The profile likelihood unfolding procedure can introduce biases in the extracted differential spectrum if the detector response, binning choices, or statistical limitations are not properly controlled. 
+In particular, the unfolding relies on simulated signal samples to construct the detector response matrix, and the stability of the method must therefore be verified against possible modelling mismatches and statistical fluctuations. 
+In addition, analysis choices such as the binning of the observable and the degree of bin-to-bin migration can affect the robustness of the unfolding solution.
+To verify that the unfolding configuration adopted in this analysis does not introduce significant biases, a set of validation tests is performed using simulated pseudo-data. 
+The validation programme includes closure, pull, and stress tests.
+
+\subsubsection*{\textbf{Closure Test}}
+
+The closure test verifies that the unfolding procedure is unbiased when applied to a statistically independent dataset. 
+The nominal signal Monte Carlo sample is split into two statistically independent subsets according to the parity of the event number, with one subset used to derive the unfolding response and the other treated as pseudo-data.
+
+The pseudo-data are then unfolded using the corrections derived from the independent sample. 
+Only statistical uncertainties are considered in this test, and background contributions are not included in order to isolate the behaviour of the unfolding procedure itself. 
+The closure test is considered successful if the unfolded spectrum reproduces the true distribution within the statistical uncertainties.
+
+To study the impact of regularisation on the closure performance, the test is performed both without regularisation and with the mixed first- and second-derivative regularisation term with strength $\tau = 0.4$. The corresponding results are shown in Fig.~\ref{fig:closure_test}. 
+Without regularisation, deviations between the unfolded and true distributions reach approximately 20\%, reflecting the large statistical fluctuations induced by bin-to-bin correlations. 
+When regularisation is applied, the agreement improves significantly, with differences remaining within about 5\% across the bins. 
+This demonstrates that the regularised unfolding provides a stable and unbiased reconstruction of the underlying distribution.
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Closure_test_noRe.pdf}
+\caption{Closure test without regularisation.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Closure_test_withRe.pdf}
+\caption{Closure test with mixed first- and second-derivative regularisation ($\tau=0.4$).}
+\end{subfigure}
+
+\caption{Closure test for the unfolding procedure using statistically independent signal samples. 
+The unfolded pseudo-data are compared with the corresponding truth-level distributions.}
+\label{fig:closure_test}
+\end{figure}
+
+\subsubsection*{\textbf{Pull Test}}
+
+The pull test evaluates whether the unfolding procedure provides unbiased parameter estimates in the presence of statistical fluctuations and whether the statistical uncertainties returned by the fit are reliable. 
+A set of 5000 pseudo-experiments is generated by fluctuating the nominal reconstructed distributions according to Poisson statistics. 
+The pseudo-experiments include the expected background contributions and the dominant systematic uncertainties considered in this study, thereby approximating the conditions of the nominal fit. 
+For each pseudo-experiment, the fluctuated distributions are treated as pseudo-data and the nominal unfolding fit is performed.
+
+For each truth bin $j$, the fitted signal-strength parameter $\mu_j$ is obtained for every pseudo-experiment. 
+The pull variable is defined as
+
+\begin{equation}
+\mathrm{pull}_j =
+\frac{\mu_j^{\mathrm{fit}} - \mu_j^{\mathrm{true}}}
+{\sigma_j^{\mathrm{fit}}},
+\end{equation}
+
+where $\mu_j^{\mathrm{true}}$ denotes the nominal value used in the pseudo-data construction (equal to unity), and $\sigma_j^{\mathrm{fit}}$ is the statistical uncertainty returned by the fit.
+
+In the absence of bias, the pull distribution is expected to be centred at zero with a width compatible with unity. 
+A non-zero mean would indicate a bias in the unfolding procedure, while a width significantly different from unity would imply that the statistical uncertainties are either under- or overestimated.
+
+Figure~\ref{fig:toy_mu_distributions} shows the distributions of the fitted signal-strength parameters obtained from pseudo-experiments for the three truth bins of the $m_{4t}$ observable. 
+Due to the limited number of events in the signal region, the distributions deviate from ideal Gaussian behaviour and exhibit features characteristic of Poisson-dominated fluctuations. 
+Nevertheless, the fitted means remain close to the nominal value and the observed deviations are small.
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/ToysPlot_parton_4tops_mass_Bin_001_mu_Seed1234.pdf}
+\caption{Truth bin 1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/ToysPlot_parton_4tops_mass_Bin_002_mu_Seed1234.pdf}
+\caption{Truth bin 2}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/ToysPlot_parton_4tops_mass_Bin_003_mu_Seed1234.pdf}
+\caption{Truth bin 3}
+\end{subfigure}
+
+\caption{Distribution of the fitted signal-strength parameters obtained from pseudo-experiments for the three truth bins of the $m_{4t}$ observable. 
+The mean and width of the distributions provide an estimate of the bias and statistical spread of the unfolding procedure.}
+\label{fig:toy_mu_distributions}
+\end{figure}
+
+A summary of the pull test results is shown in Fig.~\ref{fig:pull_test_summary}. 
+The mean deviation of the fitted parameters from the nominal value remains within approximately 10\% across all bins. 
+The pull widths are broadly compatible with unity within the statistical precision of the pseudo-experiments. 
+These results indicate that the unfolding procedure is robust against statistical fluctuations and that the statistical uncertainties returned by the fit provide a reasonable estimate of the true spread of the parameters.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/Unfolding_plots/PullPlot.pdf}
+
+\caption{Summary of the pull test results for the three truth bins of the $m_{4t}$ observable. 
+The blue markers show the mean deviation of the fitted signal-strength parameters from the nominal value, while the red markers represent the ratio between the RMS of the pseudo-experiments and the statistical uncertainty returned by the nominal fit.}
+\label{fig:pull_test_summary}
+\end{figure}
+
+\subsubsection*{\textbf{Stress Test}}
+
+The stress test evaluates the ability of the unfolding procedure to recover distortions in the underlying truth-level distribution that are not described by the nominal signal model. 
+Since the response matrix and templates are derived from simulated events, the unfolding procedure implicitly assumes the shape of the nominal signal prediction. 
+If the true distribution differs from this prediction, the unfolded result may be biased towards the Monte Carlo expectation.
+The stress test therefore verifies that the unfolding method can correctly reconstruct deviations in the spectrum shape. 
+Such distortions may arise, for example, from new-physics contributions that modify the shape of the observable with respect to the Standard Model prediction. 
+A reliable unfolding procedure should therefore be able to recover these shape variations without introducing significant bias.
+
+To probe this potential bias, pseudo-data are constructed by introducing controlled distortions in the truth-level $m_{4t}$ spectrum. 
+This is achieved by reweighting events according to a linear function of the truth-level $m_{4t}$ value. 
+The resulting weight is applied to the corresponding reconstructed event, producing distorted pseudo-data distributions at reconstruction level. 
+The pseudo-data include the expected background contributions and the dominant systematic uncertainties considered in this study, thereby approximating the conditions of the nominal fit.
+
+The truth-level reweighting function is defined as
+\begin{equation}
+w(m_{4t}) = 1 + s \left(\frac{m_{4t}-m_0}{m_0}\right),
+\end{equation}
+where the pivot point is fixed to $m_0 = 2~\mathrm{TeV}$ and $s$ controls the slope of the distortion. 
+To avoid unphysical or extreme event weights, the resulting weights are restricted to a finite interval. 
+Positive values of $s$ enhance the high-mass tail of the spectrum, while negative values suppress it. 
+In this analysis, stress scenarios with $s=\pm0.25$, $\pm0.50$, and $\pm0.75$ are considered.
+
+The reweighted pseudo-data are unfolded using the nominal response matrix and likelihood model. 
+The unfolded distributions are then compared with the corresponding reweighted truth-level spectra. 
+This test therefore quantifies the sensitivity of the unfolding procedure to shape distortions not captured by the nominal simulation.
+
+To study the impact of regularisation on the robustness of the method, the stress test is performed both without regularisation and with the nominal mixed regularisation configuration using $\tau=0.4$. 
+The results of the stress tests without regularisation are shown in Fig.~\ref{fig:stress_test_noReg}, while the corresponding results obtained with the regularised unfolding are presented in Fig.~\ref{fig:stress_test_withReg}. 
+In all tested stress scenarios, the unfolded distributions remain consistent with the distorted truth spectra within the statistical uncertainties. 
+No significant bias towards the nominal signal prediction is observed, both with and without regularisation. 
+This indicates that the unfolding procedure is able to recover moderate shape distortions in the $m_{4t}$ spectrum and does not artificially pull the result towards the nominal Monte Carlo distribution.
+
+In analyses involving multiple observables, stress tests can also be performed by deriving reweighting factors from one observable and propagating them to others to test the stability of the unfolding procedure against correlated shape distortions.
+
+\begin{figure}[t]
+\centering
+
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_p025.pdf}
+\caption{$s=+0.25$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_p050.pdf}
+\caption{$s=+0.50$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_p075.pdf}
+\caption{$s=+0.75$}
+\end{subfigure}
+
+\vspace{0.4em}
+
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_m025.pdf}
+\caption{$s=-0.25$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_m050.pdf}
+\caption{$s=-0.50$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_m075.pdf}
+\caption{$s=-0.75$}
+\end{subfigure}
+
+\caption{Stress-test results obtained without regularisation for linear distortions of the truth-level $m_{4t}$ spectrum. 
+The unfolded distributions are compared to the distorted truth spectra.}
+\label{fig:stress_test_noReg}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_p025_withRe.pdf}
+\caption{$s=+0.25$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_p050_withRe.pdf}
+\caption{$s=+0.50$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_p075_withRe.pdf}
+\caption{$s=+0.75$}
+\end{subfigure}
+
+\vspace{0.4em}
+
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_m025_withRe.pdf}
+\caption{$s=-0.25$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_m050_withRe.pdf}
+\caption{$s=-0.50$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{figures/Unfolding_plots/Stress_test_m075_withRe.pdf}
+\caption{$s=-0.75$}
+\end{subfigure}
+
+\caption{Stress-test results obtained with regularisation using the mixed boundary constraint with $\tau=0.4$. 
+The same distorted pseudo-data configurations as in Fig.~\ref{fig:stress_test_noReg} are unfolded using the regularised fit.}
+\label{fig:stress_test_withReg}
+\end{figure}
