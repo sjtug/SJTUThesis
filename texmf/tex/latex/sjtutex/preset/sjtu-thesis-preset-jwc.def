@@ -88,6 +88,12 @@
         \def \chaptermark #1
           { \markboth{#1\CTEXifname{\SJTU@fullwidth@paren\CTEXthechapter}{}}{} }
       }
+    \AddToHook { cmd / appendix / after }
+      {
+        \ctex_set:nn { chapter }
+          { number = \arabic { chapter } }
+        \def \thechapter { A \arabic { chapter } }
+      }
   }
 \endinput
 %%
