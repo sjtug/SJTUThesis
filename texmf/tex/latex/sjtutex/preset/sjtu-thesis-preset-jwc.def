@@ -43,8 +43,17 @@
         number = \chinese { chapter }
       }
   }
-\AddToHook { cmd / frontmatter / after }
-  { \bool_set_true:N \l__sjtu_heading_in_toc_bool }
+\RenewDocumentEnvironment { abstract } { O{ } }
+  {
+    \__sjtu_select_language:n {#1}
+    \tl_set:Ne \l__sjtu_heading_title_tl
+      {
+        \exp_not:N \protect \exp_not:N \MakeUppercase
+          { \exp_not:v { c__sjtu_name_abstract_ \l__sjtu_lang_tl _tl } }
+      }
+    \ctex_set:nn { chapter } { format+ = \sffamily }
+    \__sjtu_make_heading:n { intoc, #1 }
+  } { }
 \titlecontents { chapter }
   [ 0 pt ]
   { \addvspace { 6 bp } \zihao { 4 } \setbaselineskip { 24 bp } \bfseries }
