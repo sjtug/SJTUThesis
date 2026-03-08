@@ -1,0 +1,100 @@
+%%
+%% Copyright (C) SJTUG
+%%   2018--2026 Weijian Wu   <alexarawu@outlook.com>
+%%   2022--2026 Zilong Li    <logcreative@outlook.com>
+%%   2024--2026 Boshi Yuan   <nemoyuan2008@outlook.com>
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2008 or later.
+%%
+\ProvidesExplFile{sjtu-thesis-preset-jwc.def}
+  {2026-03-02}{v20251010}
+  {Thesis document preset for Shanghai Jiao Tong University (JWC)}
+\file_input:n { sjtu-thesis-preset-base.def }
+\__sjtu_conditional_const:nn { main_lang_zh }
+  { \str_if_eq_p:Vn \g__sjtu_lang_tl { zh } }
+\SetInfoEntry { zh }
+  {
+    department = { 学院     } ,
+    major      = { 专业名称 } ,
+    degree     = { \hfill \llap { 申请学位层次 } }
+  }
+\keys_set:nn { sjtu / info }
+  { zh / subject = { 上海交通大学学位论文 } }
+\tl_set:Nn \SJTU@CT@W@width { 4 em }
+\EditInstance { sjtu / element } { title a / info }
+  { format= \zihao { 4 } \setbaselineskip { 30 bp } \heiti \bfseries }
+\keys_set:nn { sjtu / private / copyright }
+  { variant = b }
+\bool_lazy_any:nT
+  {
+    { \__sjtu_if_main_lang_zh_p: }
+    { \__sjtu_if_main_lang_ja_p: }
+  }
+  {
+    \ctex_set:nn { chapter }
+      {
+        name   = { 第 , 章 } ,
+        number = \chinese { chapter }
+      }
+  }
+\RenewDocumentEnvironment { abstract } { O{ } }
+  {
+    \__sjtu_select_language:n {#1}
+    \tl_set:Ne \l__sjtu_heading_title_tl
+      {
+        \exp_not:N \protect \exp_not:N \MakeUppercase
+          { \exp_not:v { c__sjtu_name_abstract_ \l__sjtu_lang_tl _tl } }
+      }
+    \ctex_set:nn { chapter } { format+ = \sffamily }
+    \__sjtu_make_heading:n { intoc, #1 }
+  } { }
+\titlecontents { chapter }
+  [ 0 pt ]
+  { \addvspace { 6 bp } \zihao { 4 } \setbaselineskip { 24 bp } \bfseries }
+  { \contentspush { \thecontentslabel \enskip } } { }
+  { \SJTU@leaders \thecontentspage }
+  [ \addvspace { 6 bp } ]
+\titlecontents { section }
+  [ 1 em ] { \zihao { -4 } \setbaselineskip { 20 bp } }
+  { \contentspush { \thecontentslabel \enskip } } { }
+  { \SJTU@leaders \thecontentspage }
+\titlecontents { subsection }
+  [ 2 em ] { \zihao { 5 } \setbaselineskip { 16 bp } }
+  { \contentspush { \thecontentslabel \enskip } } { }
+  { \SJTU@leaders \thecontentspage }
+\keys_set:nn { sjtu / style }
+  { num-sep = { - } }
+\__sjtu_if_main_lang_zh:T
+  {
+    \def \SJTU@fullwidth@paren #1 { （ #1 ） }
+    \AddToHook { cmd / appendix / before }
+      {
+        \ctex_set:nn { chapter }
+          { tocline = #2 \CTEXifname{\SJTU@fullwidth@paren\CTEXthechapter}{} }
+        \ctex_patch_cmd:Nnn \@makechapterhead
+          { {\CTEXifname{\CTEX@chaptername\CTEX@chapter@aftername}{}} } { }
+        \ctex_patch_cmd:Nnn \@makechapterhead
+          { \CTEX@chapter@aftertitle }
+          {
+            {\CTEXifname{\SJTU@fullwidth@paren\CTEX@chaptername}{}}
+            \CTEX@chapter@aftertitle
+          }
+        \def \chaptermark #1
+          { \markboth{#1\CTEXifname{\SJTU@fullwidth@paren\CTEXthechapter}{}}{} }
+      }
+    \AddToHook { cmd / appendix / after }
+      {
+        \ctex_set:nn { chapter }
+          { number = \arabic { chapter } }
+        \def \thechapter { A \arabic { chapter } }
+      }
+  }
+\endinput
+%%
+%% End of file `sjtu-thesis-preset-jwc.def'.
