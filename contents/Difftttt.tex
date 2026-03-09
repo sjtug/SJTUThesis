@@ -2,18 +2,16 @@
 
 \chapter{Differential Four-Top Production in Partial Run 3}
 
-Following the inclusive observation of four-top-quark production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive measurements and explore the detailed kinematic structure of this rare process. 
-% While inclusive cross sections establish consistency with the SM prediction at the level of the total production rate, they do not fully exploit the rich dynamics of multi-top final states.
-
-Four-top production is characterised by high jet multiplicities, large hadronic activity, and complex decay topologies. Differential measurements of observables such as the four-top invariant mass, global event activity variables, and leading-object kinematics probe the underlying production dynamics in greater detail. 
-In particular, the high-energy tails of multi-top observables are especially sensitive to deviations from the SM prediction.
+Following the inclusive observation of four-top-quark production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive measurements and explore the detailed kinematic structure of this rare process.
+Four-top production is characterised by high jet multiplicities, large hadronic activity, and complex decay topologies. Differential measurements of observables such as the four-top invariant mass, global event activity variables, and leading-object kinematics probe the underlying production dynamics in greater detail. In particular, the high-energy tails of multi-top observables are especially sensitive to potential deviations from the Standard Model prediction.
 
 From a theoretical perspective, studies within the Effective Field Theory (EFT) framework have shown that four-top production provides enhanced sensitivity to higher-dimensional operators, notably through distortions in differential distributions at large momentum transfer~\cite{FourTopEFTStudy}. 
-In such scenarios, modifications of the interaction structure can lead to characteristic enhancements in the high-mass region of the four-top invariant mass spectrum, while inclusive cross-section measurements alone may exhibit limited discriminating power. 
+In particular, the invariant mass of the four-top system, $m_{4t}$, probes the overall energy scale of the event and is therefore especially sensitive to such effects. 
+In these scenarios, modifications of the interaction structure can lead to characteristic enhancements in the high-mass region of the $m_{4t}$ spectrum, while inclusive cross-section measurements alone may exhibit limited discriminating power. 
 Differential observables therefore offer complementary and potentially more sensitive probes of new interactions involving the top quark.
 
-With the increased integrated luminosity delivered in Run~3, selected differential observables become experimentally accessible.
-This motivates the development of a dedicated reconstruction and unfolding framework for differential four-top measurements in Run~3.
+With the increased integrated luminosity delivered in Run~3, selected differential observables become experimentally accessible. 
+This motivates the development of a dedicated reconstruction and unfolding framework for differential four-top measurements, which is the focus of this chapter.
 
 \section{Study setup}
 
@@ -140,9 +138,9 @@ Multiple jets and $b$-tagged objects must be grouped into four overlapping decay
 
 Recent advances in machine learning have led to powerful reconstruction techniques based on attention mechanisms and graph neural networks, such as SPANet~\cite{Fenton2022Permutationless,Shmakov2022SPANet} and Topograph~\cite{Ehrke2023Topological}. 
 These methods model collider events as sets or graphs of final-state objects, exploiting relational information to infer the most probable decay structure. 
-While such approaches significantly outperform traditional $\chi^2$-based reconstruction~\cite{ATLAS2017TopMassAllHadronic}, their relational modelling is typically formulated in terms of pairwise interactions between objects. 
-Although the top quark decays via the two-body process $t \to Wb$, the subsequent $W$ boson decay (either hadronic or leptonic) produces two additional particles, leading to a multi-body final state. 
-Such decay topologies are reconstructed indirectly through combinations of two-body correlations.
+While such approaches significantly outperform traditional $\chi^2$-based reconstruction~\cite{ATLAS2017TopMassAllHadronic},
+their relational modelling is typically formulated in terms of pairwise interactions between objects. 
+Multi-body decay topologies must therefore be reconstructed indirectly through combinations of two-body correlations.
 
 In this work, the hypergraph-based reconstruction framework HyPER (Hypergraph for Particle Event Reconstruction)~\cite{HyPER} is employed to directly encode multi-body decay topologies.
 The key conceptual difference between conventional graph representations and the hypergraph formalism is illustrated in Fig.~\ref{fig:hyper_representation}. 
@@ -155,7 +153,7 @@ In contrast, a hypergraph allows a single hyperedge to connect multiple nodes si
         \centering
         \includegraphics[width=\textwidth]{figures/graph_rep.pdf}
         \caption{Graph representation}
-        \label{fig:hypergraph_representation}
+        \label{fig:graph_representation}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\textwidth}
@@ -189,38 +187,106 @@ This two-step procedure allows higher-order decay structures to be inferred on t
 Such higher-order relational modelling is particularly well suited to four-top production, where multiple heavy resonances decay simultaneously in a high-multiplicity environment. 
 The hypergraph formulation therefore provides a natural and flexible representation of complex decay topologies and serves as the basis for the reconstruction-driven differential measurement strategy developed in this work.
 
-The hypergraph-based reconstruction strategy is adapted to the specific topology of four-top production in the 2LSS channel. 
-In this final state, two top quarks decay hadronically, $t \to b q q'$, while the remaining two decay leptonically, $t \to b \ell \nu$. 
-The reconstruction formalism is therefore constructed to reflect this mixed decay structure.
+The hypergraph-based reconstruction strategy is adapted to the specific decay topology of four-top production in the 2LSS final state.
+As illustrated in Fig.~\ref{fig:4tops_topology}, two top quarks decay hadronically, $t \to b q q'$, 
+while the remaining two decay leptonically, $t \to b \ell \nu$. The reconstruction formalism is therefore designed to reflect this mixed decay structure.
 
-For hadronic decays, all final-state objects are directly observable. 
-Each hadronic top candidate is constructed as a hyperedge connecting three jet nodes. 
-Within each triplet, pairwise relational scores are evaluated to identify the most probable jet pair corresponding to the intermediate $W$ boson, while the remaining jet completes the three-body top candidate. 
-This construction naturally encodes the multi-body decay topology while allowing the internal structure of the candidate to be determined by the learned relational features.
+For hadronic decays, all final-state objects are directly observable. Each hadronic top candidate is constructed as a hyperedge connecting three jet nodes. 
+Within each triplet, pairwise relational scores are evaluated to identify the jet pair most compatible with the intermediate $W$ boson decay, 
+while the remaining jet completes the three-body top candidate. 
+This representation explicitly encodes the multi-body decay topology while allowing the internal structure of the candidate to be determined by the learned relational features.
 
-In contrast, leptonic top decays involve an undetected neutrino. 
-Since the full three-body system cannot be constructed from visible objects alone, leptonic top candidates are initially represented by pairwise edges connecting a jet and a charged lepton. 
-The missing neutrino kinematics are reconstructed in an additional step using dedicated algorithms, after which the complete leptonic top four-momentum is determined.
+In contrast, leptonic top decays involve an undetected neutrino. Since the full three-body system cannot be constructed from visible objects alone, 
+leptonic top candidates are initially represented by pairwise edges connecting a jet and a charged lepton. 
+The neutrino kinematics are reconstructed in a subsequent step using dedicated algorithms, after which the full leptonic top four-momentum is obtained.
 
-This mixed hyperedge–edge representation enables simultaneous treatment of fully visible hadronic decays and partially observed leptonic decays within a common graph–hypergraph structure. 
-It provides a flexible and topology-aware reconstruction strategy tailored to the complex final state of four-top production.
+This mixed hyperedge--edge representation enables the simultaneous treatment of fully visible hadronic decays and partially observed leptonic decays within a unified graph--hypergraph framework.
+It therefore provides a flexible and topology-aware reconstruction strategy tailored to the complex final state of four-top production.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/fourtops_topology.pdf}
+    \caption{Illustration of the four-top decay topology in the 2LSS channel
+            used for the hypergraph-based reconstruction.
+            Hadronic top candidates are represented by three-jet hyperedges,
+            while leptonic candidates are formed from jet–lepton edges
+            with the neutrino reconstructed separately.}
+    \label{fig:4tops_topology}
+\end{figure}
 
 \subsubsection{Performance of the Final-State Assignment}
-- efficiency vs matching
-- efficiency vs jet multiplicity
 
-The performance of the hypergraph-based assignment is evaluated by matching reconstructed top candidates to their corresponding truth-level particles. 
-A reconstructed top quark is considered correctly assigned if all associated visible decay products originate from the same truth-level top quark.
+The performance of the hypergraph-based reconstruction is evaluated using a node-level truth matching procedure.
+Reconstructed objects (jets and leptons) are matched to their corresponding truth-level particles using a $\Delta R$ criterion.
+A reconstructed node is considered truth-matched if a corresponding truth-level particle is found within the $\Delta R$ matching cone.
+For each reconstructed top candidate, the matching multiplicity is defined as the number of constituent nodes that are successfully matched to truth-level particles.
 
-The matching efficiencies for hadronic and leptonic top candidates are evaluated separately. 
-Hadronic tops are considered correctly reconstructed when the three selected jets correspond to the truth-level decay products. 
-For leptonic tops, correctness is defined based on the assignment of the $b$-jet and charged lepton, prior to neutrino reconstruction.
+The reconstruction efficiency is evaluated as a function of the matching multiplicity.
+For a given number $N$ of truth-matched nodes, the efficiency is defined as the fraction of candidates for which the reconstruction algorithm selects the combination containing the same set of truth-matched objects:
 
-To assess the robustness of the reconstruction in increasingly complex final states, the matching efficiency is studied as a function of the reconstructed jet multiplicity. 
-As expected, the efficiency decreases moderately with increasing jet multiplicity due to the growth of combinatorial possibilities.
+\begin{equation}
+\epsilon_N =
+\frac{N_{\mathrm{correct\ assignment}\,|\,N\ \mathrm{truth\ matched}}}
+     {N_{\mathrm{candidates}\,|\,N\ \mathrm{truth\ matched}}}.
+\label{eq:efficiency_definition}
+\end{equation}
 
-The achieved matching performance demonstrates that the hypergraph-based strategy effectively resolves the dominant combinatorial ambiguities, providing a reliable basis for the reconstruction of differential observables.
-The observed performance stability across jet multiplicities indicates that the relational representation scales well with event complexity.
+The distributions of the matching multiplicity for hadronic and leptonic top candidates are shown in Fig.~\ref{fig:matching_multiplicity}.
+These results illustrate the fraction of candidates containing different numbers of truth-matched nodes and provide an overall characterisation of the reconstruction performance.
+
+\begin{figure}[htbp]
+\centering
+
+\begin{subfigure}{0.5\textwidth}
+\centering
+\includegraphics[height=7cm]{figures/Diff_results/hadronic_efficiency.pdf}
+\caption{Hadronic top candidates.}
+\end{subfigure}
+\hspace{0.02\textwidth}
+\begin{subfigure}{0.35\textwidth}
+\centering
+\includegraphics[height=7cm]{figures/Diff_results/leptonic_efficiency.pdf}
+\caption{Leptonic top candidates.}
+\end{subfigure}
+
+\caption{
+Distribution of the matching multiplicity for reconstructed top candidates.
+The categories correspond to the number of constituent nodes matched to
+truth-level particles.}
+\label{fig:matching_multiplicity}
+\end{figure}
+
+To assess the robustness of the assignment in increasingly complex events, the conditional reconstruction efficiency is further studied as a function of the reconstructed jet multiplicity.
+The dependence of the reconstruction efficiency on the jet multiplicity is shown in Fig.~\ref{fig:eff_vs_njets}.
+As the jet multiplicity increases, the number of possible object combinations grows rapidly, leading to larger combinatorial ambiguities in the assignment of decay products.
+Consequently, the reconstruction efficiency decreases moderately with increasing jet multiplicity in hadronic candidates, while the effect is less pronounced in leptonic candidates.
+
+\begin{figure}[htbp]
+\centering
+
+\begin{subfigure}{0.9\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/hadronic_efficiency_by_jet_bin.pdf}
+\caption{Hadronic top candidates.}
+\end{subfigure}
+
+\vspace{0.4cm}
+
+\begin{subfigure}{0.9\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/leptonic_efficiency_by_jet_bin.pdf}
+\caption{Leptonic top candidates.}
+\end{subfigure}
+
+\caption{
+Conditional reconstruction efficiency as a function of the reconstructed
+jet multiplicity. The efficiency is defined according to
+Eq.~(\ref{eq:efficiency_definition}) for different matching multiplicities.}
+\label{fig:eff_vs_njets}
+\end{figure}
+
+Overall, the results demonstrate that the hypergraph-based reconstruction strategy effectively resolves the dominant combinatorial ambiguities in the four-top final state.
+The observed stability across jet multiplicities indicates that the relational representation scales well with increasing event complexity.
 
 \subsection{Neutrino Reconstruction}
 
@@ -252,7 +318,7 @@ together with the transverse momentum relation
 \]
 %
 Since the longitudinal neutrino momenta are not directly measured, the Neutrino Weighting (NW) method~\cite{ATLAS2017TopMassAllHadronic} resolves the remaining degrees of freedom by scanning over the neutrino pseudorapidities $\eta_{\nu_i}$. 
-In this work, $\eta_{\nu_i}$ is scanned in the range $-5\leq\eta_{\nu_i}\leq5$ using a uniform grid of 100 points. 
+In this work, $\eta_{\nu_i}$ is scanned in the range $-5\leq\eta_{\nu_i}\leq5$ using a uniform grid of 300 points. 
 For each assumed $\eta_{\nu_i}$, the kinematic constraints reduce to a quadratic system, yielding up to two physical solutions for the transverse neutrino momentum components. 
 Candidate solutions for the two decay chains are then combined and evaluated at the event level.
 
@@ -287,9 +353,11 @@ A learnable class token is used together with cross-attention to obtain a single
   \centering
   % Option A: if you redraw it yourself (recommended), include your own PDF/SVG export:
   \includegraphics[width=0.9\textwidth]{figures/nu2flow_layout.pdf}
-  \caption{Schematic illustration of the $\boldsymbol{\nu^2}$-Flows architecture. 
-  An event representation is constructed from reconstructed jets, leptons, and $\boldsymbol{\vec{E}_T^{\mathrm{miss}}}$ using an attention-based, permutation-invariant feature extractor with a learnable class token and cross-attention. 
-  The resulting global vector conditions an invertible normalizing flow that models the conditional density of multi-neutrino momentum solutions. Taken from Ref.~\cite{Raine2023nu2flows}}
+  \caption{Schematic illustration of the $\boldsymbol{\nu^2}$-Flows architecture.
+  Reconstructed objects are embedded into an event representation
+  vector using an attention-based feature extractor, which
+  conditions a normalizing flow that models the distribution
+  of neutrino momentum solutions. Taken from Ref.~\cite{Raine2023nu2flows}.}
   \label{fig:nu2flows_arch}
 \end{figure}
 
@@ -298,7 +366,77 @@ In the dilepton case, the conditional flow outputs a six-dimensional target corr
 
 \subsubsection{Performance}
 
-residual comparison on pxpypz
+The performance of the neutrino reconstruction is evaluated by comparing the reconstructed neutrino kinematics to the corresponding truth-level neutrino momenta.
+For each reconstructed solution, residual distributions are constructed for the neutrino momentum components and angular variables, $\Delta x = x_{\mathrm{reco}} - x_{\mathrm{truth}}$, 
+where $x$ denotes $p_x$, $p_y$, $p_z$, $\eta$, or $\phi$.
+In addition, the angular separation between reconstructed and truth-level neutrinos is quantified using $\Delta R = \sqrt{(\Delta \eta)^2 + (\Delta \phi)^2}$.
+
+The residual distributions for the reconstructed neutrino momentum components are shown in Fig.~\ref{fig:nu_residuals_momentum}, 
+while the corresponding angular residuals and the $\Delta R$ distributions are presented in Fig.~\ref{fig:nu_residuals_angular}.
+
+For the momentum components, the Neutrino Weighting and $\nu^2$-Flows methods show broadly comparable performance, with similar residual shapes observed for $p_x$, $p_y$, and $p_z$.
+For the angular variables, the Neutrino Weighting method exhibits narrower residual distributions in $\eta$ and $\phi$, and also produces smaller values of $\Delta R$.
+
+\begin{figure}[htbp]
+\centering
+
+\begin{subfigure}{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/NWvsNu2_px.pdf}
+\caption{Residual in $p_x$.}
+\label{fig:nu_px}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/NWvsNu2_py.pdf}
+\caption{Residual in $p_y$.}
+\label{fig:nu_py}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/NWvsNu2_pz.pdf}
+\caption{Residual in $p_z$.}
+\label{fig:nu_pz}
+\end{subfigure}
+
+\caption{
+Residual distributions of the reconstructed neutrino momentum
+components relative to the truth-level neutrino momenta for the
+Neutrino Weighting and $\nu^2$-Flows methods.}
+\label{fig:nu_residuals_momentum}
+
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/NWvsNu2_eta.pdf}
+\caption{Residual in $\eta$.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/NWvsNu2_phi.pdf}
+\caption{Residual in $\phi$.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/NWvsNu2_deltaR.pdf}
+\caption{$\Delta R$ between reconstructed and truth neutrinos.}
+\end{subfigure}
+
+\caption{
+Angular residual distributions and $\Delta R$ separation between
+reconstructed and truth-level neutrinos for the Neutrino Weighting
+and $\nu^2$-Flows methods.}
+\label{fig:nu_residuals_angular}
+
+\end{figure}
 
 \subsection{Reconstruction of the Four-Top System}
 \label{sec:top_reco}
@@ -310,7 +448,7 @@ Two reconstruction workflows are considered, depending on the choice of neutrino
 
 \paragraph{HyPER + Neutrino Weighting.}
 
-In the nominal workflow adopted in this work, HyPER is first applied to determine the final-state assignment of visible objects. 
+In the first workflow adopted in this work, HyPER is first applied to determine the final-state assignment of visible objects. 
 Hadronic top candidates are reconstructed as hyperedges connecting three jets, while leptonic candidates are identified through $b$-jet–lepton pairings. 
 The Neutrino Weighting method is subsequently applied to each leptonic decay chain to infer the corresponding neutrino momenta, after which the full leptonic top four-momenta are constructed.
 
@@ -344,18 +482,74 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
     \label{fig:workflow_comparison}
 \end{figure}
 
+The performance of the full four-top reconstruction is evaluated by comparing the reconstructed invariant mass $m_{4t}^{\mathrm{reco}}$ to the corresponding truth-level quantity $m_{4t}^{\mathrm{truth}}$.
+
+Figure~\ref{fig:m4t_correlation} shows the two-dimensional correlation between the reconstructed and truth-level four-top invariant masses for the two reconstruction workflows.
+In both cases, a clear diagonal structure is observed, indicating that the reconstructed four-top system captures the overall kinematic scale of the underlying event.
+The two approaches exhibit broadly comparable performance in terms of the overall reconstruction quality.
+
+\begin{figure}[htbp]
+\centering
+
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/reco_vs_truth_4tops_NuW.pdf}
+\caption{HyPER + Neutrino Weighting.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/reco_vs_truth_4tops_Nu2.pdf}
+\caption{HyPER + $\nu^2$-Flows.}
+\end{subfigure}
+
+\caption{
+Correlation between reconstructed and truth-level four-top
+invariant masses for the two reconstruction workflows.}
+\label{fig:m4t_correlation}
+
+\end{figure}
+
+To further illustrate the migration pattern in the reconstructed $m_{4t}$ spectrum, migration matrices are constructed from the truth and reconstructed four-top invariant mass distributions.
+The resulting matrices are shown in Fig.~\ref{fig:m4t_migration}. 
+In both reconstruction strategies, the dominant contributions are located along the diagonal, indicating that most events are reconstructed close to their corresponding truth-level bin.
+At large invariant masses, a migration from high truth-level bins towards lower reconstructed bins can be observed.
+This effect is present in both reconstruction workflows, but is more pronounced for the $\nu^2$-Flows approach.
+
+\begin{figure}[htbp]
+\centering
+
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/migration_matrix_4tops_NuW.pdf}
+\caption{HyPER + Neutrino Weighting.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/Diff_results/migration_matrix_4tops_Nu2.pdf}
+\caption{HyPER + $\nu^2$-Flows.}
+\end{subfigure}
+
+\caption{
+Column-normalised migration matrices showing the bin-to-bin
+migration between truth and reconstructed four-top invariant
+mass bins for the two reconstruction workflows.}
+\label{fig:m4t_migration}
+
+\end{figure}
+
+Overall, the two reconstruction workflows provide comparable performance in the reconstruction of the four-top invariant mass.
+Given the improved reconstruction of neutrino angular variables and the reduced migration at large $m_{4t}$ observed for the Neutrino Weighting approach, 
+the HyPER + Neutrino Weighting workflow is adopted as the nominal reconstruction strategy for the unfolding procedure described in the next section.
+
 \section{Profile Likelihood Unfolding Strategy}
 
 Differential measurements require the correction of detector effects that distort the relationship between the kinematic properties of the underlying hard-scattering process and the reconstructed observables measured in the detector. 
 Finite detector resolution, reconstruction efficiencies, and event selection criteria introduce bin migrations and acceptance effects that must be accounted for in order to infer the underlying particle- or parton-level distributions.
 
-Several unfolding techniques have been developed for this purpose, including matrix-inversion approaches, iterative Bayesian unfolding, and likelihood-based methods. 
-In this study, the differential cross section is extracted using the profile likelihood unfolding (PLU) method, in which the unfolding problem is formulated directly within the statistical framework of the likelihood fit. 
-This approach offers several practical advantages. 
-First, systematic uncertainties and bin-to-bin correlations can be incorporated consistently through the profiling of nuisance parameters. 
-Second, the same statistical framework can be naturally extended to multiple observables without requiring the optimisation of algorithm-specific parameters, such as the number of iterations used in iterative unfolding techniques. 
-Finally, adopting a likelihood-based formulation ensures consistency with the inclusive four-top cross-section measurement performed in parallel, allowing both analyses to share a common statistical framework.
-
+Several unfolding techniques have been developed for this purpose, including matrix-inversion approaches~\cite{RooUnfoldInvert} and iterative Bayesian unfolding~\cite{DAgostini2010}. 
+In this study, the differential cross section is extracted using the profile likelihood unfolding (PLU) method, in which the unfolding problem is formulated directly within the statistical framework of the likelihood fit.
 The following sections describe the definition of the differential observable, the construction of the detector response matrix, and the implementation of the profile likelihood unfolding procedure. 
 Dedicated validation studies are then performed to verify the stability and potential bias of the unfolding configuration.
 
@@ -370,11 +564,11 @@ m_{4t}^{\text{parton}} =
 \sqrt{\left(\sum_{i=1}^{4} p_{t,i}^{\text{ME}}\right)^2}.
 \end{equation}
 
-This definition corresponds to the kinematics of the hard-scattering interaction and defines the target distribution of the unfolding procedure.
+This definition corresponds to the kinematics of the hard-scattering interaction and therefore provides a direct connection to theoretical predictions. 
+The parton-level definition also avoids ambiguities associated with particle-level top reconstruction.
 
 At reconstruction level, a proxy observable $m_{4t}^{\text{reco}}$ is constructed from the reconstructed top-quark candidates obtained through the workflow described in Section~\ref{sec:top_reco}. 
-Due to detector effects and the reconstruction-level event selection, the measured distribution differs from the underlying parton-level spectrum. 
-The unfolding procedure therefore corrects the reconstructed distribution for detector response effects and extracts the corresponding parton-level differential distribution.
+The reconstructed distribution serves as the measured observable entering the unfolding procedure.
 
 In addition to the parton-level invariant mass, exploratory studies have been performed for several particle-level observables, including the scalar sum of transverse momenta $H_T$ and the leading-lepton transverse momentum. 
 These studies illustrate the flexibility of the unfolding framework for different observables. 
@@ -407,23 +601,24 @@ Each parameter $\mu_j$ scales the contribution of truth bin $j$, while $B_{i,r}$
 The nuisance parameters $\vec{\theta}$ encode systematic uncertainties affecting both signal and background expectations and are treated in the same way as in the inclusive fit.
 
 In this formulation, unfolding reduces to a simultaneous maximum-likelihood determination of the bin-wise normalisation factors $\mu_j$, with systematic uncertainties profiled coherently across all bins and regions. 
-The unfolded differential cross section in truth bin $j$ is then given by
+The unfolded cross section in truth bin $j$ is therefore given by
 
 \begin{equation}
-    \sigma_j = \mu_j \, \sigma_j^{\text{MC}},
+\sigma_j = \mu_j \, \sigma_j^{\text{MC}},
 \end{equation}
 
-where $\sigma_j^{\text{MC}}$ denotes the nominal Monte Carlo prediction for that bin. 
-The fit therefore determines bin-by-bin scale factors that correct the predicted parton-level distribution to best describe the observed data.
+where $\sigma_j^{\text{MC}}$ denotes the Monte Carlo prediction for the cross section in truth bin $j$. 
+The fit therefore determines bin-by-bin scale factors that correct the predicted parton-level spectrum to best describe the observed data.
 
-This approach naturally incorporates detector response effects, background normalisation, and correlated systematic uncertainties within a unified statistical framework. 
-Moreover, multiple regions or channels can be combined in a single fit, allowing the differential measurement to benefit from additional constraints and improved sensitivity.
+This formulation naturally incorporates detector response effects, background normalisation, and correlated systematic uncertainties within a unified statistical framework through the profiling of nuisance parameters. 
+Moreover, multiple regions or channels can be combined in a single fit, allowing the differential measurement to benefit from additional constraints and improved sensitivity. 
+Using the same likelihood framework as the inclusive analysis also ensures a consistent statistical treatment between the inclusive and differential measurements.
 
 In the absence of additional constraints, this formulation is equivalent to an unregularised matrix-inversion unfolding. 
-Regularisation can be introduced by adding penalty terms to the likelihood, as discussed in Section~3.4.
+Regularisation can be introduced by adding penalty terms to the likelihood, as discussed in Section~\ref{sec:regularisation}.
 
-In order to determine the bin-wise signal-strength parameters $\mu_j$, the parton-level observable must first be discretised and connected to the reconstruction-level measurement through the detector response. 
-This requires a well-defined binning strategy and the construction of a response matrix encoding efficiency and bin migration effects.
+% In order to determine the bin-wise signal-strength parameters $\mu_j$, the parton-level observable must first be discretised and connected to the reconstruction-level measurement through the detector response. 
+% This requires a well-defined binning strategy and the construction of a response matrix encoding efficiency and bin migration effects.
 
 \subsection{Binning Strategy and Response Matrix Construction}
 
@@ -431,17 +626,16 @@ The binning of the parton-level observable is optimised according to two main co
 First, each unfolded bin must contain sufficient statistical power to yield a meaningful uncertainty on the extracted cross section. 
 Second, the detector response should remain well conditioned, requiring a sufficiently large diagonal fraction in the migration matrix.
 
-In the present partial Run~3 dataset, about twenty signal-region events remain after the full event selection. 
+In the present partial Run~3 dataset, about 20 signal events remain after the full event selection. 
 Given this limited statistical sample, a finer binning would lead to unstable fits and large statistical uncertainties. 
-To retain sensitivity to shape variations while preserving fit stability, a minimal binning with three truth bins is adopted.
+To retain sensitivity to shape variations while preserving fit stability, a minimal binning with 3 truth bins is adopted.
 
 The bin boundaries are chosen to approximately balance the expected event yield across bins, resulting in the binning
 \[
 [0.0,\; 1379.243,\; 1813.773,\; 5000.0]~\mathrm{GeV}.
 \]
-With this choice, the expected yield is approximately uniform across bins, corresponding to roughly six to seven events per bin at reconstruction level. 
+With this choice, the expected yield is approximately uniform across bins, corresponding to roughly 6 to 7 events per bin at reconstruction level. 
 Although the resulting statistical uncertainties approach the nominal tolerance threshold, the diagonal elements of the migration matrix remain above 0.5, ensuring a sufficiently stable detector response.
-
 This binning therefore represents a compromise between statistical precision and detector-level stability and is adopted as the nominal configuration for the differential measurement.
 
 The connection between the chosen truth-level binning and the reconstructed observables is described by the detector response matrix. 
@@ -482,7 +676,7 @@ This effect can be handled via a per-bin acceptance factor defined on the recons
 \end{equation}
 which quantifies the fraction of reconstructed events in bin $i$ originating from the fiducial region. 
 This factor accounts for the contamination of the reconstructed distribution by events originating outside the fiducial region. 
-In the present work, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed; consequently, this correction is not applied ($\alpha_i \equiv 1$). 
+In the present work, the unfolding is performed to the full parton-level phase space and no truth-level fiducial restriction is imposed as illustrated in Fig.~\ref{fig:efficiency_and_acceptance}; consequently, this correction is not applied ($\alpha_i \equiv 1$). 
 The formalism is nevertheless presented in this general form to allow future extensions to fiducial measurements.
 
 \begin{figure}
@@ -512,6 +706,7 @@ The formalism is nevertheless presented in this general form to allow future ext
 The response information must be provided consistently for each systematic variation, since detector and modelling uncertainties affect both the reconstruction efficiency and the migration pattern and therefore the folded templates entering the fit.
 
 \subsection{Regularisation Strategy}
+\label{sec:regularisation}
 
 As discussed in the previous section, the detector response matrix introduces migrations between neighbouring bins of the truth observable. 
 In the presence of limited statistics, these migrations can lead to strong bin-to-bin correlations in the unfolded parameters. 
@@ -632,8 +827,8 @@ The validation programme includes closure, pull, and stress tests.
 
 \subsubsection*{\textbf{Closure Test}}
 
-The closure test verifies that the unfolding procedure is unbiased when applied to a statistically independent dataset. 
-The nominal signal Monte Carlo sample is split into two statistically independent subsets according to the parity of the event number, with one subset used to derive the unfolding response and the other treated as pseudo-data.
+The closure test probes the internal consistency of the unfolding setup using statistically independent samples. 
+The nominal signal Monte Carlo sample is split into two subsets according to the parity of the event number, with one subset used to derive the detector response and the other treated as pseudo-data.
 
 The pseudo-data are then unfolded using the corrections derived from the independent sample. 
 Only statistical uncertainties are considered in this test, and background contributions are not included in order to isolate the behaviour of the unfolding procedure itself. 
@@ -665,21 +860,21 @@ The unfolded pseudo-data are compared with the corresponding truth-level distrib
 
 \subsubsection*{\textbf{Pull Test}}
 
-The pull test evaluates whether the unfolding procedure provides unbiased parameter estimates in the presence of statistical fluctuations and whether the statistical uncertainties returned by the fit are reliable. 
-A set of 5000 pseudo-experiments is generated by fluctuating the nominal reconstructed distributions according to Poisson statistics. 
+The pull test quantifies the statistical behaviour of the unfolded parameters under repeated pseudo-experiments. 
+A set of 5000 pseudo-experiments is generated by fluctuating the nominal reconstructed distributions according to Poisson statistics.
 The pseudo-experiments include the expected background contributions and the dominant systematic uncertainties considered in this study, thereby approximating the conditions of the nominal fit. 
 For each pseudo-experiment, the fluctuated distributions are treated as pseudo-data and the nominal unfolding fit is performed.
 
-For each truth bin $j$, the fitted signal-strength parameter $\mu_j$ is obtained for every pseudo-experiment. 
-The pull variable is defined as
+% For each truth bin $j$, the fitted signal-strength parameter $\mu_j$ is obtained for every pseudo-experiment. 
+% The pull variable is defined as
 
-\begin{equation}
-\mathrm{pull}_j =
-\frac{\mu_j^{\mathrm{fit}} - \mu_j^{\mathrm{true}}}
-{\sigma_j^{\mathrm{fit}}},
-\end{equation}
+% \begin{equation}
+% \mathrm{pull}_j =
+% \frac{\mu_j^{\mathrm{fit}} - \mu_j^{\mathrm{true}}}
+% {\sigma_j^{\mathrm{fit}}},
+% \end{equation}
 
-where $\mu_j^{\mathrm{true}}$ denotes the nominal value used in the pseudo-data construction (equal to unity), and $\sigma_j^{\mathrm{fit}}$ is the statistical uncertainty returned by the fit.
+% where $\mu_j^{\mathrm{true}}$ denotes the nominal value used in the pseudo-data construction (equal to unity), and $\sigma_j^{\mathrm{fit}}$ is the statistical uncertainty returned by the fit.
 
 In the absence of bias, the pull distribution is expected to be centred at zero with a width compatible with unity. 
 A non-zero mean would indicate a bias in the unfolding procedure, while a width significantly different from unity would imply that the statistical uncertainties are either under- or overestimated.
@@ -729,12 +924,10 @@ The blue markers show the mean deviation of the fitted signal-strength parameter
 
 \subsubsection*{\textbf{Stress Test}}
 
-The stress test evaluates the ability of the unfolding procedure to recover distortions in the underlying truth-level distribution that are not described by the nominal signal model. 
-Since the response matrix and templates are derived from simulated events, the unfolding procedure implicitly assumes the shape of the nominal signal prediction. 
-If the true distribution differs from this prediction, the unfolded result may be biased towards the Monte Carlo expectation.
-The stress test therefore verifies that the unfolding method can correctly reconstruct deviations in the spectrum shape. 
-Such distortions may arise, for example, from new-physics contributions that modify the shape of the observable with respect to the Standard Model prediction. 
-A reliable unfolding procedure should therefore be able to recover these shape variations without introducing significant bias.
+The stress test probes the sensitivity of the unfolding procedure to distortions of the underlying truth-level spectrum that are not described by the nominal signal model. 
+Since the detector response and templates are derived from simulated events, the unfolding procedure relies on the shape of the nominal signal prediction. 
+If the true spectrum deviates from this prediction, the unfolded result may be biased towards the Monte Carlo expectation. 
+The stress test therefore examines whether such shape distortions can be correctly recovered by the unfolding procedure.
 
 To probe this potential bias, pseudo-data are constructed by introducing controlled distortions in the truth-level $m_{4t}$ spectrum. 
 This is achieved by reweighting events according to a linear function of the truth-level $m_{4t}$ value. 
@@ -745,16 +938,12 @@ The truth-level reweighting function is defined as
 \begin{equation}
 w(m_{4t}) = 1 + s \left(\frac{m_{4t}-m_0}{m_0}\right),
 \end{equation}
-where the pivot point is fixed to $m_0 = 2~\mathrm{TeV}$ and $s$ controls the slope of the distortion. 
-To avoid unphysical or extreme event weights, the resulting weights are restricted to a finite interval. 
-Positive values of $s$ enhance the high-mass tail of the spectrum, while negative values suppress it. 
-In this analysis, stress scenarios with $s=\pm0.25$, $\pm0.50$, and $\pm0.75$ are considered.
-
+where the pivot point is chosen as $m_0 = 2~\mathrm{TeV}$ and $s$ controls the slope of the distortion and the stress scenarios with $s=\pm0.25$, $\pm0.50$, and $\pm0.75$ are considered.
 The reweighted pseudo-data are unfolded using the nominal response matrix and likelihood model. 
-The unfolded distributions are then compared with the corresponding reweighted truth-level spectra. 
-This test therefore quantifies the sensitivity of the unfolding procedure to shape distortions not captured by the nominal simulation.
+The unfolded distributions are then compared with the corresponding reweighted truth-level spectra to evaluate the ability of the unfolding procedure to recover the distorted spectrum. 
+% This test therefore quantifies the sensitivity of the unfolding procedure to shape distortions not captured by the nominal simulation.
 
-To study the impact of regularisation on the robustness of the method, the stress test is performed both without regularisation and with the nominal mixed regularisation configuration using $\tau=0.4$. 
+To study the impact of regularisation on the robustness of the method, the stress test is performed both without regularisation and with the mixed regularisation configuration using $\tau=0.4$. 
 The results of the stress tests without regularisation are shown in Fig.~\ref{fig:stress_test_noReg}, while the corresponding results obtained with the regularised unfolding are presented in Fig.~\ref{fig:stress_test_withReg}. 
 In all tested stress scenarios, the unfolded distributions remain consistent with the distorted truth spectra within the statistical uncertainties. 
 No significant bias towards the nominal signal prediction is observed, both with and without regularisation. 
@@ -829,7 +1018,7 @@ The unfolded distributions are compared to the distorted truth spectra.}
 \caption{$s=-0.75$}
 \end{subfigure}
 
-\caption{Stress-test results obtained with regularisation using the mixed boundary constraint with $\tau=0.4$. 
+\caption{Stress-test results obtained with regularisation using the mixed first- and second-derivative regularisation with $\tau=0.4$. 
 The same distorted pseudo-data configurations as in Fig.~\ref{fig:stress_test_noReg} are unfolded using the regularised fit.}
 \label{fig:stress_test_withReg}
 \end{figure}

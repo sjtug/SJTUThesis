@@ -9,7 +9,7 @@
    id="svg1"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    sodipodi:docname="fourtops_topology_final.svg"
-   inkscape:export-filename="fourtops_topologyl.pdf"
+   inkscape:export-filename="fourtops_topology.pdf"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,8 +28,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.1808793"
-     inkscape:cx="366.25249"
-     inkscape:cy="284.95714"
+     inkscape:cx="366.2525"
+     inkscape:cy="284.95715"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="4024"
@@ -428,11 +428,11 @@
        transform="translate(18.012785,-7.1096645)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan30"><tspan
+         id="tspan3"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan12">j</tspan><tspan
+           id="tspan1">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan14">1</tspan></tspan></text>
+           id="tspan2">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -442,11 +442,11 @@
        transform="translate(-14.546861,38.076125)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan33"><tspan
+         id="tspan7"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan31">j</tspan><tspan
+           id="tspan4">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan32">2</tspan></tspan></text>
+           id="tspan5">2</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -456,11 +456,11 @@
        transform="translate(48.96215,38.076125)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan36"><tspan
+         id="tspan10"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan34">j</tspan><tspan
+           id="tspan8">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan35">3</tspan></tspan></text>
+           id="tspan9">3</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -470,11 +470,11 @@
        transform="translate(114.49498,-7.1248765)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan39"><tspan
+         id="tspan13"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan37">j</tspan><tspan
+           id="tspan11">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan38">4</tspan></tspan></text>
+           id="tspan12">4</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -484,11 +484,11 @@
        transform="translate(82.86494,38.031761)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan42"><tspan
+         id="tspan16"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan40">j</tspan><tspan
+           id="tspan14">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan41">5</tspan></tspan></text>
+           id="tspan15">5</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -498,11 +498,11 @@
        transform="translate(146.07398,38.031442)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan45"><tspan
+         id="tspan19"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan43">j</tspan><tspan
+           id="tspan17">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan44">6</tspan></tspan></text>
+           id="tspan18">6</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458333)"
@@ -517,11 +517,11 @@
        transform="translate(18.174167,68.12355)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan48"><tspan
+         id="tspan22"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan46">j</tspan><tspan
+           id="tspan20">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan47">7</tspan></tspan></text>
+           id="tspan21">7</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -531,11 +531,11 @@
        transform="translate(-14.585033,113.50954)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan51"><tspan
+         id="tspan25"><tspan
            style="font-family:Mistral;-inkscape-font-specification:Mistral"
-           id="tspan49">l</tspan><tspan
+           id="tspan23">l</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan50">1</tspan></tspan></text>
+           id="tspan24">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -545,11 +545,11 @@
        transform="translate(115.11247,68.042988)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan54"><tspan
+         id="tspan31"><tspan
            style="font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT'"
-           id="tspan52">j</tspan><tspan
+           id="tspan26">j</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan53">8</tspan></tspan></text>
+           id="tspan30">8</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.76111px;line-height:2;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -559,11 +559,11 @@
        transform="translate(82.35326,113.42898)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan57"><tspan
+         id="tspan34"><tspan
            style="font-family:Mistral;-inkscape-font-specification:Mistral"
-           id="tspan55">l</tspan><tspan
+           id="tspan32">l</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan56">2</tspan></tspan></text>
+           id="tspan33">2</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;line-height:2;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -573,11 +573,11 @@
        transform="translate(145.33292,113.42866)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan60"><tspan
+         id="tspan37"><tspan
            style="baseline-shift:baseline"
-           id="tspan58">ν</tspan><tspan
+           id="tspan35">ν</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan59">2</tspan></tspan></text>
+           id="tspan36">2</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;line-height:2;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:16.7004;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
@@ -587,11 +587,11 @@
        transform="translate(48.46398,113.42895)"><tspan
          x="26.614613"
          y="23.249548"
-         id="tspan63"><tspan
+         id="tspan40"><tspan
            style="baseline-shift:baseline"
-           id="tspan61">ν</tspan><tspan
+           id="tspan38">ν</tspan><tspan
            style="font-size:65%;baseline-shift:sub"
-           id="tspan62">1</tspan></tspan></text>
+           id="tspan39">1</tspan></tspan></text>
     <path
        style="fill:#a6a3a4;fill-opacity:1;stroke:#e35d6a;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
        d="M 23.400061,60.274323 H 69.02126"
@@ -617,11 +617,11 @@
        transform="translate(-52.529914,-25.07599)"><tspan
          x="189.66736"
          y="80.455666"
-         id="tspan66"><tspan
+         id="tspan43"><tspan
            style="font-family:Sans;-inkscape-font-specification:'Sans, Normal'"
-           id="tspan64">W</tspan><tspan
+           id="tspan41">W</tspan><tspan
            style="font-size:65%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';baseline-shift:sub"
-           id="tspan65">2</tspan></tspan></text>
+           id="tspan42">2</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:2;font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:19.7795;display:inline;fill:#91cae8;fill-opacity:1;stroke:#91cae8;stroke-width:0.7;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -631,11 +631,11 @@
        transform="translate(-155.42124,38.753289)"><tspan
          x="189.66736"
          y="80.455666"
-         id="tspan69"><tspan
+         id="tspan46"><tspan
            style="font-family:Sans;-inkscape-font-specification:Sans"
-           id="tspan67">W</tspan><tspan
+           id="tspan44">W</tspan><tspan
            style="font-size:65%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';baseline-shift:sub"
-           id="tspan68">3</tspan></tspan></text>
+           id="tspan45">3</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:2;font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:19.7795;display:inline;fill:#5aaed6;fill-opacity:1;stroke:#5aaed6;stroke-width:0.7;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -645,11 +645,11 @@
        transform="translate(-58.174062,38.752907)"><tspan
          x="189.66736"
          y="80.455666"
-         id="tspan72"><tspan
+         id="tspan49"><tspan
            style="font-family:Sans;-inkscape-font-specification:'Sans, Normal'"
-           id="tspan70">W</tspan><tspan
+           id="tspan47">W</tspan><tspan
            style="font-size:65%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';baseline-shift:sub"
-           id="tspan71">4</tspan></tspan></text>
+           id="tspan48">4</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:2;font-family:'Bodoni MT';-inkscape-font-specification:'Bodoni MT';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:19.7795;display:inline;fill:#e35d6a;fill-opacity:1;stroke:#e35d6a;stroke-width:0.7;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -659,11 +659,11 @@
        transform="translate(-149.39388,-25.076093)"><tspan
          x="189.66736"
          y="80.455666"
-         id="tspan75"><tspan
+         id="tspan52"><tspan
            style="font-family:Sans;-inkscape-font-specification:'Sans, Normal'"
-           id="tspan73">W</tspan><tspan
+           id="tspan50">W</tspan><tspan
            style="font-size:65%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';baseline-shift:sub"
-           id="tspan74">1</tspan></tspan></text>
+           id="tspan51">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:2;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#91cae8;fill-opacity:1;stroke:#91cae8;stroke-width:0.6;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -678,7 +678,7 @@
            id="tspan29"
            style="font-size:22.5778px;stroke-width:0.6;stroke-dasharray:none">t</tspan><tspan
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI Italic';baseline-shift:sub;stroke-width:0.6;stroke-dasharray:none"
-           id="tspan28">3</tspan></tspan></text>
+           id="tspan28">lep1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:2;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#5aaed6;fill-opacity:1;stroke:#5aaed6;stroke-width:0.6;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -693,7 +693,7 @@
            id="tspan29-7"
            style="font-size:22.5778px;fill:#5aaed6;fill-opacity:1;stroke:#5aaed6;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1">t</tspan><tspan
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI Italic';baseline-shift:sub;fill:#5aaed6;fill-opacity:1;stroke:#5aaed6;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
-           id="tspan28-4">4</tspan></tspan></text>
+           id="tspan28-4">lep2</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:2;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#e35d6a;fill-opacity:1;stroke:#e35d6a;stroke-width:0.6;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -708,7 +708,7 @@
            id="tspan29-0"
            style="font-size:22.5778px;fill:#e35d6a;fill-opacity:1;stroke:#e35d6a;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1">t</tspan><tspan
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI Italic';baseline-shift:sub;fill:#e35d6a;fill-opacity:1;stroke:#e35d6a;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
-           id="tspan28-7">1</tspan></tspan></text>
+           id="tspan28-7">had1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:2;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#f48892;fill-opacity:1;stroke:#f48892;stroke-width:0.6;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -723,6 +723,6 @@
            id="tspan29-7-7"
            style="font-size:22.5778px;fill:#f48892;fill-opacity:1;stroke:#f48892;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1">t</tspan><tspan
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI Italic';baseline-shift:sub;fill:#f48892;fill-opacity:1;stroke:#f48892;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
-           id="tspan28-4-3">2</tspan></tspan></text>
+           id="tspan28-4-3">had2</tspan></tspan></text>
   </g>
 </svg>
