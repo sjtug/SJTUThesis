@@ -204,7 +204,14 @@ The correlation structure is consistent with expectations, and correlations with
 \subsubsection*{\textbf{Impact of systematic uncertainties}}
 
 The ranking of nuisance parameters according to their impact on the fitted signal strength is shown in Figures~\ref{fig:Ranking_data_SplusB_400} and~\ref{fig:Ranking_data_SplusB_1000} for $m_H=400$ and $m_H=1000$~GeV, respectively. 
-At low masses, the sensitivity is dominated by the modelling of the $t\bar{t}+\geq1b$ background and experimental effects such as jet energy scale and resolution, while at high masses the relative contribution of statistical uncertainties becomes more prominent.
+The dominant uncertainties arise primarily from the modelling of
+$t\bar{t}$ production in association with heavy-flavour jets,
+including the comparison between the 4FS and 5FS predictions and
+the parton shower modelling in the $t\bar{t}+b\bar{b}$ and $t\bar{t}+\geq3b$ components.
+Additional contributions originate from the generator modelling
+of SM $t\bar{t}t\bar{t}$ production, the normalisation of
+$t\bar{t}+\geq1c$ and $t\bar{t}+\geq1b$ backgrounds,
+and the NN-based kinematic corrections applied in the 2LOS channel.
 
 \begin{figure}[htbp!]
   \centering
@@ -221,6 +228,7 @@ At low masses, the sensitivity is dominated by the modelling of the $t\bar{t}+\g
 \end{figure}
 
 For a quantitative overview, the grouped impacts of nuisance parameters on the extracted cross section are summarised in Table~\ref{tab:grouped_impact_400GeV}. 
+As mentioned in Section~\ref{sec:syst_theory}, the group of uncertainties related to the modelling of the $t\bar{t}+$jets background is the dominant source of systematic uncertainty.
 
 \begin{table}[htbp!]
     \begin{center}
@@ -254,33 +262,50 @@ For a quantitative overview, the grouped impacts of nuisance parameters on the e
     \hline \hline
     \end{tabular}
     \caption{\label{tab:grouped_impact_400GeV}
-    Grouped impact of nuisance parameters on the extracted cross section for three representative mass points.}
+    Grouped impact of nuisance parameters on the extracted cross section for three representative mass points.
+    The value for each group is obtained by fixing the group of uncertainties to their post-fit values from the
+    nominal fit, and taking the quadratic difference between the resulting
+    uncertainty in the $\boldsymbol{t\bar{t}H/A \to t\bar{t}t\bar{t}}$ cross-section and the total uncertainty.}
     \end{center}
 \end{table}
 
 \subsubsection*{\textbf{Signal strength and significance}}
 
+The goodness-of-fit p-values for the signal-plus-background hypothesis, shown in Fig.~\ref{fig:gof_mass}, range between approximately 0.47 and 0.89 across the mass points. 
+This indicates that the fitted model provides an adequate description of the observed data over the full mass range considered.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/GoF_1LOS.pdf}
+\caption{
+Goodness-of-fit $\boldsymbol{p}$-values for the signal-plus-background hypothesis
+as a function of the heavy Higgs boson mass.
+}
+\label{fig:gof_mass}
+\end{figure}
+
+\subsubsection*{\textbf{Signal strength and significance}}
+
 The fitted signal strength $\mu$ as a function of $m_{H/A}$ is shown in Figure~\ref{fig:data_SplusB_signal_strength}. 
 The results are consistent with the background-only hypothesis within uncertainties across the full mass range. 
-The observed and expected significances are shown in Figure~\ref{fig:data_SplusB_significance}, and no statistically significant excess is observed.
+The observed significances are shown in Figure~\ref{fig:data_SplusB_significance}, and no statistically significant excess is observed.
 
 \begin{figure}[htbp!]
   \centering
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{figures/fits/signalStrengthVsMass.pdf}
     \subcaption{\label{fig:data_SplusB_signal_strength}
-    Fitted signal strength $\boldsymbol{\mu}$ as a function of the heavy Higgs boson mass.}
+    Fitted signal strength $\mu$ as a function of the heavy Higgs boson mass.}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{figures/fits/significanceVsMass.pdf}
     \subcaption{\label{fig:data_SplusB_significance}
-    Observed and expected significances as a function of the heavy Higgs boson mass.}
+    Observed significances as a function of the heavy Higgs boson mass.}
   \end{subfigure}
   \caption{\label{fig:data_SplusB_results}
-  Summary of the signal-plus-background fit results as a function of $\boldsymbol{m_{H/A}}$.
-  Left: fitted signal strength $\boldsymbol{\mu}$. 
-  Right: observed and expected significances.}
+  Summary of the signal-plus-background fit results as a function of $\boldsymbol{m_{H/A}}$. 
+  The fitted signal strength $\boldsymbol{\mu}$ is shown in the left panel, while the observed significances are shown in the right panel.}
 \end{figure}
 
 \subsection{Interpretation in the 2HDM framework}
@@ -306,17 +331,20 @@ The observed limits decrease from approximately 15~fb at $m_{H/A}=400$~GeV to ab
   \centering
   \includegraphics[width=0.6\textwidth]{figures/figures_paper/limit_1LOS_only.pdf}
   \caption{
-  Expected and observed 95\% CL upper limits on 
-  $\boldsymbol{\sigma(pp \to t\bar{t}H/A) \times \mathcal{B}(H/A \to t\bar{t})}$ 
-  as a function of $\boldsymbol{m_{H/A}}$ for the 1L/2LOS analysis.}
+  Observed (solid line) and expected (dashed line) 95\% CL upper limits on the production cross-section times branching ratio,
+  $\boldsymbol{\sigma(pp \to t\bar{t}H/A)\times\mathcal{B}(H/A \to t\bar{t})}$, as a function of $\boldsymbol{m_{H/A}}$.
+  The green (yellow) band represents the $\boldsymbol{\pm1\sigma}$ ($\boldsymbol{\pm2\sigma}$) interval around the expected limit.
+  Theoretical predictions for two values of $\boldsymbol{\tan\beta}$ are shown for an $\boldsymbol{H}$ boson.
+  The corresponding predictions for $\boldsymbol{A}$ differ by less than $\boldsymbol{3\,\text{\textperthousand}}$ for all mass points and $\boldsymbol{\tan\beta}$ values considered.}
   \label{fig:limits_1LOS}
 \end{figure}
 
-These limits are translated into exclusion regions in the $(m_{H/A}, \tan\beta)$ parameter plane of the 2HDM type-II. 
+These limits are translated into exclusion regions in the $(m_{H/A}, \tan\beta)$ parameter plane of the Type-II 2HDM.
 Figure~\ref{fig:2D_1LOS} shows the observed and expected exclusions for three benchmark scenarios:
 (i) $m_H = m_A$ with both states contributing,
 (ii) only the scalar $H$, and
 (iii) only the pseudoscalar $A$ contributing to the final state.
+The uncertainty in the theoretical cross-sections arises from variations of the PDFs and the renormalisation and factorisation scales.
 
 \begin{figure}[htbp!]
   \centering
@@ -324,23 +352,29 @@ Figure~\ref{fig:2D_1LOS} shows the observed and expected exclusions for three be
     \includegraphics[width=\linewidth]{figures/figures_paper/Data_12fb_All_1LOS.pdf}
     \caption{$m_H = m_A$, both contribute}
   \end{subfigure}
-  \hfill
+  
+  \vspace{0.4cm}
+
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{figures/figures_paper/Data_12fb_ttH_1LOS.pdf}
     \caption{Scalar $H$ only}
   \end{subfigure}
-
-  \vspace{0.4cm}
-
+  \hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{figures/figures_paper/Data_12fb_ttA_1LOS.pdf}
     \caption{Pseudoscalar $A$ only}
   \end{subfigure}
 
   \caption{
-  Observed and expected exclusion regions at 95\% CL in the 
-  $\boldsymbol{(m_{H/A}, \tan\beta)}$ plane in the 2HDM type-II framework 
-  for three benchmark scenarios.}
+  Observed (red solid) and expected (black dashed) 95\% CL lower limits on $\boldsymbol{\tan\beta}$
+  as a function of $\boldsymbol{m_{H/A}}$ obtained from the 1L and 2LOS final states,
+  assuming a Type-II 2HDM in the alignment limit.
+  Values of $\boldsymbol{\tan\beta}$ below the observed limit are excluded.
+  Panel (a) shows the scenario with $\boldsymbol{m_H=m_A}$, while panels (b) and (c)
+  correspond to the $\boldsymbol{H}$-only and $\boldsymbol{A}$-only scenarios.
+  The yellow band indicates the $\boldsymbol{\pm1\sigma}$ interval around the expected limit,
+  and the red dashed lines show the effect of varying the theoretical cross-sections by $\boldsymbol{\pm1\sigma}$.
+  Values of $\boldsymbol{\tan\beta<0.4}$ are not considered to maintain perturbativity of the top-quark Yukawa coupling~\cite{Branco:2012}.}
   \label{fig:2D_1LOS}
 \end{figure}
 
@@ -349,10 +383,10 @@ the strongest exclusions are obtained at low $\tan\beta$, where the top Yukawa c
 The exclusion weakens at larger masses due to the rapidly decreasing production cross section and reduced signal acceptance. 
 When only one of the two states is assumed to contribute, the excluded parameter space is correspondingly reduced, reflecting the smaller overall signal yield.
 
-\subsubsection{Combined interpretation with the 2LSS/3L channel}
+\subsubsection{Combined interpretation with the 2LSS/ML channel}
 \label{sec:limits_combined}
 
-The 1L/2LOS analysis is combined with the ATLAS search in the 2LSS/3L final state using a simultaneous profile likelihood fit across all signal and control regions of both analyses. 
+The 1L/2LOS analysis is combined with the ATLAS search in the 2LSS/ML final state using a simultaneous profile likelihood fit across all signal and control regions of both analyses. 
 The combination is performed within a single statistical model, preserving the full correlation structure of systematic uncertainties.
 
 Experimental uncertainties associated with reconstructed objects are treated as fully correlated between the two channels, while background-specific modelling uncertainties are treated as uncorrelated when appropriate to reflect differences in background composition and estimation strategies. 
@@ -387,28 +421,23 @@ No statistically significant excess is observed.
 The expected and observed 95\% CL upper limits on $\sigma(pp \to t\bar{t}H/A) \times \mathcal{B}(H/A \to t\bar{t})$
 from the combined fit are shown in Figure~\ref{fig:combination_limit_1}. 
 The observed (expected) upper limits range from 14 (9.4) fb at $m_{H/A}=400$~GeV to 5.0 (3.8) fb at $m_{H/A}=1000$~GeV.
-For comparison, the expected limits from the individual 1L/2LOS and 2LSS/3L channels are also displayed.
+For comparison, the expected limits from the individual 1L/2LOS and 2LSS/ML channels are also displayed.
 
 \begin{figure}[htbp!]
     \centering
-    \begin{subfigure}[t]{0.49\textwidth}
-      \includegraphics[width=\linewidth]{figures/combined_fit/lim_combined.pdf}
-      \caption{Expected and observed limits}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.49\textwidth}
-      \includegraphics[width=\linewidth]{figures/figures_paper/lim_combined_with_individual_exp.pdf}
-      \caption{Comparison with individual channels}
-    \end{subfigure}
+    \includegraphics[width=0.6\linewidth]{figures/figures_paper/lim_combined_with_individual_exp.pdf}
     \caption{\label{fig:combination_limit_1}
-    Observed and expected 95\% CL upper limits on 
-    $\boldsymbol{\sigma(pp \to t\bar{t}H/A) \times \mathcal{B}(H/A \to t\bar{t})}$ 
-    as a function of $\boldsymbol{m_{H/A}}$ from the combined fit.}
+    Observed (solid line) and expected (dashed line) 95\% CL upper limits on the production cross-section times branching ratio,
+    $\boldsymbol{\sigma(pp \to t\bar{t}H/A)\times\mathcal{B}(H/A \to t\bar{t})}$, as a function of $\boldsymbol{m_{H/A}}$.
+    The green (yellow) band represents the $\boldsymbol{\pm1\sigma}$ ($\boldsymbol{\pm2\sigma}$) interval around the expected limit.
+    Theoretical predictions for two values of $\boldsymbol{\tan\beta}$ are shown for an $\boldsymbol{H}$ boson.
+    The expected limits from the individual 1L/2LOS and 2LSS/ML channels are shown for comparison.}
 \end{figure}
 
 The combination improves the sensitivity across the full mass range considered. 
 The gain arises from the complementary signal acceptance and background composition of the two channels. 
 The 1L/2LOS channel provides strong sensitivity in high jet and $b$-tag multiplicity regions dominated by $t\bar{t}$+jets backgrounds, 
-while the 2LSS/3L channel benefits from a lower background environment and reduced contamination from mis-modelled $t\bar{t}$ processes. 
+while the 2LSS/ML channel benefits from a lower background environment and reduced contamination from mis-modelled $t\bar{t}$ processes. 
 As a result, the combined observed limits are improved by up to 19\% relative to the most sensitive individual channel at $m_{H/A} = 900$ GeV, with the expected limit improved by up to 18\%.
 
 The combined limits are translated into exclusion regions in the $(m_{H/A}, \tan\beta)$ parameter plane of the 2HDM type-II. 
@@ -423,24 +452,28 @@ Figure~\ref{fig:combination_2Dplots} shows the observed and expected exclusions 
     \includegraphics[width=\linewidth]{figures/figures_paper/Data_12fb_All_combined.pdf}
     \caption{$m_H = m_A$, both contribute}
   \end{subfigure}
-  \hfill
+
+  \vspace{0.4cm}
+
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{figures/figures_paper/Data_12fb_ttH_combined.pdf}
     \caption{Scalar $H$ only}
   \end{subfigure}
-
-  \vspace{0.4cm}
-
+  \hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{figures/figures_paper/Data_12fb_ttA_combined.pdf}
     \caption{Pseudoscalar $A$ only}
   \end{subfigure}
 
   \caption{
-  Observed and expected exclusion regions at 95\% CL in the 
-  $\boldsymbol{(m_{H/A}, \tan\beta)}$ plane from the combined fit of the 
-  1L/2LOS and 2LSS/3L channels in the 2HDM type-II framework 
-  for three benchmark scenarios.}
+  Observed (red solid) and expected (black dashed) 95\% CL lower limits on $\boldsymbol{\tan\beta}$
+  as a function of $\boldsymbol{m_{H/A}}$ obtained from the 1L/2LOS and 2LSS/ML final states,
+  assuming a Type-II 2HDM in the alignment limit.
+  Values of $\boldsymbol{\tan\beta}$ below the observed limit are excluded.
+  Panel (a) shows the scenario with $\boldsymbol{m_H=m_A}$, while panels (b) and (c)
+  correspond to the $\boldsymbol{H}$-only and $\boldsymbol{A}$-only scenarios.
+  The yellow band indicates the $\boldsymbol{\pm1\sigma}$ interval around the expected limit,
+  and the red dashed lines show the effect of varying the theoretical cross-sections by $\boldsymbol{\pm1\sigma}$.}
   \label{fig:combination_2Dplots}
 \end{figure}
 
@@ -476,9 +509,10 @@ The expected and observed 95\% CL upper limits on the $S_8 S_8 \rightarrow t\bar
   \caption{2LSS/ML}
  \end{subfigure}
  \caption{\label{fig:sgluon_individual}
- Observed and expected 95\% CL upper limits on the cross section for 
+ Observed (solid line) and expected (dashed line) 95\% CL upper limits on the cross section for 
  $\boldsymbol{S_8 S_8 \rightarrow t\bar{t}t\bar{t}}$ production 
- as a function of $\boldsymbol{m_{S_8}}$ in the 1L/2LOS (left) and 2LSS/ML (right) final states.}
+ as a function of $\boldsymbol{m_{S_8}}$ in the 1L/2LOS (left) and 2LSS/ML (right) final states.
+ The predicted production cross section from Ref.~\cite{Darm__2021} is shown for comparison.}
 \end{figure}
 
 The two final states are then combined using a simultaneous profile likelihood fit, treating systematic uncertainties consistently as described in Section~\ref{sec:limits_combined}. 
@@ -489,9 +523,10 @@ For comparison, the expected limits from the individual analyses are also displa
  \centering
  \includegraphics[width=0.6\textwidth]{figures/figures_paper/sgluon_lim_combined_with_individual_exp.pdf}
  \caption{\label{fig:sgluon_combination}
- Observed and expected 95\% CL upper limits on the 
+ Observed (solid line) and expected (dashed line) 95\% CL upper limits on the 
  $\boldsymbol{S_8 S_8 \rightarrow t\bar{t}t\bar{t}}$ production cross section 
  as a function of $\boldsymbol{m_{S_8}}$ from the combination of the 1L/2LOS and 2LSS/ML final states. 
+ The expected limits from the individual 1L/2LOS and 2LSS/ML channels are shown for comparison.
  The predicted production cross section from Ref.~\cite{Darm__2021} is shown for comparison.}
 \end{figure}
 

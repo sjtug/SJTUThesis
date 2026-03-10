@@ -6,7 +6,7 @@ The statistical interpretation of the search is formulated as a test between two
 \end{itemize}
 
 Rather than treating these as two discrete scenarios, the hypotheses are embedded in a continuous parameter space through a signal strength parameter $\mu$. 
-This parameter scales a potential BSM four-top contribution, such that $\mu = 0$ corresponds to the background-only hypothesis, while $\mu > 0$ represents the presence of a signal component.
+This parameter scales a potential BSM four-tops contribution, such that $\mu = 0$ corresponds to the background-only hypothesis, while $\mu > 0$ represents the presence of a signal component.
 
 The analysis is performed within the frequentist framework using a global profile likelihood fit. 
 Shape information from multiple signal and control regions is exploited simultaneously, allowing background-dominated regions to constrain systematic uncertainties directly from data and thereby enhancing the sensitivity of the signal regions.
@@ -114,11 +114,11 @@ where $L_{1}$ and $L_{2}$ denote the likelihood functions of the individual anal
 Systematic uncertainties that are common to both final states are represented by shared nuisance parameters, while channel-specific uncertainties are treated independently.
 
 This approach enables a statistically consistent extraction of combined limits while preserving the full correlation structure of systematic effects. 
-The implementation of the combination with the 2LSS/3L final state is described in Section~\ref{sec:limits_combined}.
+The implementation of the combination with the 2LSS/ML final state is described in Section~\ref{sec:limits_combined}.
 
 
 %---------------------------------------------------------
-\subsection{Model Optimisation and Numerical Stability}
+\subsection{Model Optimisation and Validation}
 %---------------------------------------------------------
 
 The practical performance of the statistical model depends on the choice of binning and the treatment of statistical fluctuations in systematic variations.
@@ -142,5 +142,17 @@ To mitigate bin-to-bin statistical noise in systematic variations, a smoothing p
 The baseline smoothing algorithm (``MaxVariation'') reduces local statistical fluctuations while preserving the overall variation envelope between nominal and shifted templates.
 
 Systematic uncertainties with negligible impact on the final discriminant (below 0.5\% in normalisation or shape) are pruned from the model to reduce parameter dimensionality and improve numerical stability.
+
+In addition, the compatibility between the statistical model and the observed data
+is evaluated using goodness-of-fit (GoF) tests.
+The GoF test used in this analysis is based on the saturated model approach,
+in which the likelihood obtained from the nominal model fit to data is compared
+to that of a saturated model.
+The saturated model corresponds to a hypothetical model with sufficient freedom
+to describe the observed data exactly, effectively assigning an independent
+parameter to each bin.
+The resulting likelihood-ratio test statistic asymptotically follows a $\chi^2$
+distribution according to Wilks' theorem, allowing the compatibility between
+the model and the data to be quantified through a $p$-value.
 
 The likelihood model is implemented using \textsc{HistFactory}\cite{HistFactory2012} and fitted with \textsc{TRExFitter}~\cite{TRExFitterTwiki}, which relies on the \textsc{RooFit}\cite{RooFit2003,RooFitWeb} and \textsc{RooStats} toolkits~\cite{RooStats2010}.

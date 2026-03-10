@@ -404,7 +404,7 @@ Muon     & Jet      & $\Delta R < \min\!\left(0.4,\; 0.04 + \frac{10~\mathrm{GeV
 \end{table}
 
 %=========================================================
-\section{Event Selection and Region Definition}
+\subsection{Event Selection and Region Definition}
 \label{sec:event_selection}
 %=========================================================
 
@@ -412,31 +412,28 @@ After object reconstruction and overlap removal,
 events are categorised according to the lepton multiplicity
 and the jet and $b$-jet multiplicities.
 The event selection is designed to exploit the high object
-multiplicity characteristic of four-top final states
+multiplicity characteristic of four-tops final states
 while maintaining sensitivity across a wide range of signal
 kinematics.
 
-%---------------------------------------------------------
-\subsection{Lepton channels}
-%---------------------------------------------------------
+\subsubsection{Lepton channels}
 
 Two complementary channels are defined:
 
 \begin{itemize}
-  \item \textbf{1L channel:} events containing exactly one isolated
-  charged lepton (electron or muon),
-  targeting semileptonic decays of the top quarks.
+\item \textbf{1L channel:} events containing exactly one isolated
+electron or muon, targeting semileptonic decays of the top quarks.
 
-  \item \textbf{2LOS channel:} events containing exactly two
-  isolated leptons with opposite electric charge,
-  targeting dileptonic top-quark decays.
+\item \textbf{2LOS channel:} events containing exactly two isolated
+leptons with opposite electric charge, targeting dileptonic top-quark
+decays.
 \end{itemize}
 
-The two channels are analysed separately due to their
-different background compositions and kinematic properties.
+The two channels are analysed separately due to their different
+background compositions and kinematic properties.
 
 %---------------------------------------------------------
-\subsection{Baseline jet and $b$-jet requirements}
+\subsubsection{Baseline jet and $b$-jet requirements}
 %---------------------------------------------------------
 
 To enhance sensitivity to multi-top final states,
@@ -450,7 +447,7 @@ with lower jet multiplicity and exploit the large
 heavy-flavour content expected in signal events.
 
 %---------------------------------------------------------
-\subsection{Region categorisation}
+\subsubsection{Region categorisation}
 %---------------------------------------------------------
 
 Events satisfying the baseline requirements are further
@@ -483,7 +480,47 @@ which selects events where the three jets tagged at the
 working point, while additional jets satisfy the looser
 85\% criterion.
 
-The complete set of $b$-tag multiplicity definitions used
+The analysis regions are designed to fulfil different roles in the
+statistical interpretation of the data. In particular, they are used
+to constrain the dominant backgrounds, validate the modelling of the
+simulation, and maximise the sensitivity to potential signal
+contributions.
+
+The dominant Standard Model background arises from $t\bar{t}$ production
+in association with additional jets. As described in
+Section~\ref{sec:nn_rew}, a dedicated reweighting procedure is applied
+to improve the modelling of the $t\bar{t}$+jets background.
+The reweighting is derived using regions with either low jet
+multiplicity and large $b$-jet multiplicity, or large jet multiplicity
+and low $b$-jet multiplicity, where the potential signal contamination
+is verified to be negligible.
+
+Events in regions with at least three $b$-tagged jets are used in the
+statistical analysis. Two multivariate discriminants are developed,
+as described in Section~\ref{sec:mva}, and are used throughout the
+analysis. The MVA output distributions, together with the
+$H_\mathrm{T}$ distribution in selected regions, are included in a
+simultaneous profile likelihood fit.
+
+A total of 21 regions are used in the fit, consisting of 12 regions in
+the 1L channel and 9 regions in the 2LOS channel. These regions are
+defined by requiring at least eight (six) jets in the 1L (2LOS)
+channel and satisfying the 3bL, 3bH, or $\ge4$b requirements.
+
+Among these regions, those with at least ten (eight) jets, or with nine
+(seven) jets and satisfying the $\ge4$b requirement in the
+1L (2LOS) channel, are defined as signal regions (SRs). The remaining
+fitted regions are defined as control regions (CRs), which primarily
+constrain the normalisation and modelling of the background
+contributions.
+
+In addition, six validation regions (VRs) are defined by requiring at
+least eight (six) jets in the 1L (2LOS) channel and satisfying the
+3bV requirement. These regions are not included in the likelihood fit
+and are used only to validate the modelling of the background
+prediction.
+
+The complete set of jet multiplicity and $b$-tagging multiplicity definitions used
 to construct the event categories is summarised in
 Table~\ref{tab:regions}.
 
@@ -491,7 +528,7 @@ Table~\ref{tab:regions}.
 \begin{table}[htbp]
   \centering
   \caption{
-    Definition of the $b$-jet multiplicity requirements
+    Definition of the jet multiplicity and $b$-jet multiplicity requirements
     used to define the event categories.
     Events must satisfy all listed conditions simultaneously.
     $N_b^{60\%}$, $N_b^{70\%}$ and $N_b^{85\%}$

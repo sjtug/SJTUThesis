@@ -1,19 +1,35 @@
-The Monte Carlo (MC) modelling of the inclusive $t\bar{t}$+jets background, generated with \textsc{Powheg}+\textsc{Pythia8} and inclusive in up to six additional jets, is known to exhibit residual mismodelling in regions with large jet multiplicity and enhanced heavy-flavour content.
-Since $t\bar{t}$+jets constitutes the dominant background in the signal-enriched regions of this analysis, data-driven corrections are derived and applied prior to the signal extraction fit.
-Two largely independent sources of mismodelling are addressed:
-(i) an underestimation of the $t\bar{t}$ production rate in association with heavy-flavour jets ($t\bar{t}$+HF), and
-(ii) imperfect modelling of the jet multiplicity spectrum and correlated kinematic features of additional jets.
-Accordingly, a two-step correction strategy is adopted: a flavour-dependent normalisation rescaling (Section~\ref{sec:hf_rew_thesis}) followed by a multivariate kinematic reweighting (Section~\ref{sec:nn_rew_thesis}).
+The MC modelling of the inclusive $t\bar{t}$+jets background,
+generated with \textsc{Powheg}+\textsc{Pythia8} and inclusive in up to six additional jets,
+is known to exhibit residual mismodelling in regions with large jet multiplicity
+and enhanced heavy-flavour content.
+Since $t\bar{t}$+jets constitutes the dominant background in the signal-enriched regions of this analysis,
+data-driven corrections are derived and applied prior to the signal extraction fit.
+
+Two largely independent sources of mismodelling are observed:
+an underestimation of the $t\bar{t}$ production rate in association
+with heavy-flavour jets ($t\bar{t}$+HF),
+and imperfect modelling of the jet multiplicity spectrum and
+correlated kinematic properties of additional jets.
+These effects are addressed through a two-step correction strategy,
+consisting of a flavour-dependent normalisation rescaling
+and a multivariate kinematic reweighting.
 
 \subsection{Flavour-dependent normalisation rescaling}
 \label{sec:hf_rew_thesis}
 
-Several ATLAS measurements and searches in high jet multiplicity final states have reported that the nominal MC prediction underestimates the rate of $t\bar{t}$ production in association with additional heavy-flavour jets.
+The first source of mismodelling arises from the flavour composition
+of the $t\bar{t}$+jets sample.
+Several ATLAS measurements in final states with high jet multiplicity
+have reported discrepancies between data and simulation
+in the relative contributions of $t\bar{t}$ events with different
+additional jet flavours, in particular in the heavy-flavour components.
 In this analysis, the $t\bar{t}$+jets sample is categorised according to the flavour of additional jets into
 $t\bar{t}+\mathrm{light}$ (TTL),
 $t\bar{t}+\ge1c$ (TTC), and
 $t\bar{t}+\ge1b$ (TTB),
-and dedicated scale factors are extracted from data to correct their relative normalisations.
+dedicated scale factors are extracted from data to correct
+their relative normalisations and therefore the overall flavour composition
+of the $t\bar{t}$+jets background.
 
 The scale factors are obtained from a background-dominated likelihood fit using the sum of the pseudo-continuous $b$-tagging discriminants of the third and fourth jets ranked by the DL1r score,
 $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$,
@@ -33,7 +49,7 @@ To minimise signal bias, the fit regions are chosen such that the signal contami
     $\ge4b$  & $0.2\%$  & $0.1\%$ \\
     \bottomrule
   \end{tabular}
-  \caption{Signal-to-background ratio in the regions used to derive the heavy-flavour rescaling factors (illustrated for the BSMtttt $m=700$~GeV hypothesis), prior to applying any data-driven corrections.}
+  \caption{Signal-to-background ratio in the regions used to derive the flavour rescaling factors (illustrated for the BSMtttt $m=700$~GeV hypothesis), prior to applying any data-driven corrections.}
   \label{tab:sigContam_HFCorrRegion}
 \end{table}
 
@@ -41,7 +57,13 @@ In the fit, the normalisations of TTL, TTC and TTB are free to float.
 The TTL normalisation is treated independently in the 1L and 2LOS channels to account for acceptance differences between channels, while TTC and TTB are constrained to be common.
 Nuisance parameters associated with $b$-tagging uncertainties (Section~\ref{b-tagging_uncertianties}) and the normalisation uncertainties of sub-dominant backgrounds are included, as they impact the flavour composition in the fit regions.
 
-The fit significantly improves the agreement between data and MC in the $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$ distributions (Figures~\ref{fig:1L_pcb34_PrePost_thesis} and \ref{fig:2LOS_pcb34_PrePost_thesis}), with fitted scale factors consistent with values reported in ATLAS measurements targeting similar phase space (e.g.\ Ref.~\cite{HIGG-2017-03}).
+The fit significantly improves the agreement between data and simulation
+in the $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$ distributions
+(Figures~\ref{fig:1L_pcb34_PrePost_thesis} and
+\ref{fig:2LOS_pcb34_PrePost_thesis}),
+with fitted scale factors consistent with values reported in
+ATLAS measurements targeting similar phase space
+(e.g.\ Ref.~\cite{HIGG-2017-03}).
 The fitted scale factors for the nominal and alternative $t\bar{t}$+jets samples are summarised in Table~\ref{tab:HF_results_thesis}.
 
 % --- keep your existing plots but rename labels cleanly ---
@@ -53,7 +75,7 @@ The fitted scale factors for the nominal and alternative $t\bar{t}$+jets samples
   \subfloat[1L, $=7j$, $=3b$]{\includegraphics[height=0.28\textheight]{figures/pcbSum34_ljets_7j3b_postFit.pdf}}\\
   \subfloat[1L, $=7j$, $\ge4b$]{\includegraphics[height=0.28\textheight]{figures/pcbSum34_ljets_7jge4b_preFit.pdf}}
   \subfloat[1L, $=7j$, $\ge4b$]{\includegraphics[height=0.28\textheight]{figures/pcbSum34_ljets_7jge4b_postFit.pdf}}
-  \caption{Distributions of $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$ in the 1L heavy-flavour fit regions before (left) and after (right) the fit.}
+  \caption{Distributions of $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$ in the 1L flavour fit regions before (left) and after (right) the fit.}
   \label{fig:1L_pcb34_PrePost_thesis}
 \end{figure}
 
@@ -65,7 +87,7 @@ The fitted scale factors for the nominal and alternative $t\bar{t}$+jets samples
   \subfloat[2LOS, $=5j$, $=3b$]{\includegraphics[height=0.28\textheight]{figures/pcbSum34_os2l_5j3b_postFit.pdf}}\\
   \subfloat[2LOS, $=5j$, $\ge4b$]{\includegraphics[height=0.28\textheight]{figures/pcbSum34_os2l_5jge4b_preFit.pdf}}
   \subfloat[2LOS, $=5j$, $\ge4b$]{\includegraphics[height=0.28\textheight]{figures/pcbSum34_os2l_5jge4b_postFit.pdf}}
-  \caption{Distributions of $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$ in the 2LOS heavy-flavour fit regions before (left) and after (right) the fit.}
+  \caption{Distributions of $\mathrm{pcb}(j_3)+\mathrm{pcb}(j_4)$ in the 2LOS flavour fit regions before (left) and after (right) the fit.}
   \label{fig:2LOS_pcb34_PrePost_thesis}
 \end{figure}
 
@@ -81,27 +103,44 @@ The fitted scale factors for the nominal and alternative $t\bar{t}$+jets samples
     Powheg+Herwig     & $0.66\pm0.03$ & $0.73\pm0.03$ & $2.21\pm0.14$ & $1.56\pm0.02$ \\
     \bottomrule
   \end{tabular}
-  \caption{Heavy-flavour scale factors for the nominal and alternative $t\bar{t}$+jets samples.
+  \caption{Flavour scale factors for the nominal and alternative $t\bar{t}$+jets samples.
   The nominal scale factors are taken from the fit results.
   For alternative samples, scale factors are derived such that the post-fit normalisation of the nominal sample is preserved, ensuring that the flavour correction includes the impact of fitted nuisance parameters.}
   \label{tab:HF_results_thesis}
 \end{table}
 
-Further validation material, including detailed yield tables and channel-by-channel cross-checks, is provided in Appendix~\ref{app:background_modeling_comp}.
+% Further validation material, including detailed yield tables and channel-by-channel cross-checks, is provided in Appendix~\ref{app:background_modeling_comp}.
 
 \subsection{Multivariate kinematic reweighting}
 \label{sec:nn_rew_thesis}
 
-After applying the flavour-dependent normalisation rescaling described in the previous section, residual discrepancies remain between data and simulation in regions of high jet multiplicity.
-These differences primarily affect the jet multiplicity spectrum and correlated kinematic observables characterising additional QCD radiation.
-Given the strong correlations among jet kinematics, global event variables, and heavy-flavour content, traditional one-dimensional reweighting techniques are insufficient to fully capture the multidimensional structure of the mismodelling.
+After applying the flavour-dependent normalisation rescaling described above,
+residual discrepancies remain between data and simulation in regions
+with high jet multiplicity.
+These differences primarily affect the jet multiplicity spectrum
+and correlated kinematic observables associated with additional QCD radiation.
+Given the strong correlations among jet kinematics,
+global event variables, and heavy-flavour content,
+traditional one-dimensional reweighting techniques are insufficient
+to capture the multidimensional structure of the mismodelling.
 
 To address this, a neural-network-based density ratio estimation technique is employed.
-Machine learning methods are widely used in high-energy physics for classification and regression tasks; however, in the present context the objective is not event classification but the estimation of the ratio between probability density functions describing data and simulation in a multidimensional feature space.
-A feed-forward neural network provides a flexible, non-parametric approach to approximate such density ratios without assuming an explicit functional form.
+Machine learning methods are widely used in high-energy physics
+for classification and regression tasks;
+however, in the present context the objective is not event classification,
+but the estimation of the ratio between probability density functions
+describing data and simulation in a multidimensional feature space.
+A feed-forward neural network provides a flexible, non-parametric approach
+to approximate such density ratios without assuming an explicit functional form.
 
-A binary classifier is trained to distinguish $t\bar{t}$+jets events in data from those in simulation using an input feature vector ${\bf x}$.
-Under standard assumptions, the classifier output can be interpreted in terms of the posterior probability
+The training is performed in background-dominated regions
+defined by fixed jet multiplicity and exactly two $b$-tagged jets
+(1L: $=7j$; 2LOS: $=5j$).
+These regions provide a high-purity $t\bar{t}$+jets sample
+while maintaining negligible signal contamination.
+Separate trainings are carried out for each generator configuration
+of the $t\bar{t}$+jets sample in order to preserve the modelling differences
+probed by generator systematic variations.
 
 \begin{equation}
   o({\bf x}) = P(\mathrm{data}\,|\,{\bf x}) =
@@ -151,12 +190,38 @@ The resulting shape difference is propagated as a nuisance parameter in the sign
 Second, statistical limitations in the training data and simulation introduce an uncertainty on the learned reweighting function.
 This effect is evaluated using the MC dropout technique~\cite{gal2016dropout}, where dropout layers are kept active at inference time and the network is evaluated repeatedly to obtain an ensemble of weights.
 The standard deviation of the resulting variations is used to define a shape uncertainty, propagated as a nuisance parameter in the likelihood fit.
-Validation studies on toy models and representative analysis regions are documented in Appendix~\ref{app:NNRewPlots}.
+% Validation studies on toy models and representative analysis regions are documented in Appendix~\ref{app:NNRewPlots}.
 
 \subsection{Summary}
 \label{sec:ttjets_modelling_summary}
 
 In summary, a two-step data-driven correction strategy is applied to the $t\bar{t}$+jets background prior to the signal extraction.
-A flavour-dependent normalisation rescaling corrects the heavy-flavour composition using $b$-tagging-sensitive control regions, while a multivariate neural-network-based reweighting corrects correlated mismodelling in jet multiplicity and kinematics.
+A flavour-dependent normalisation rescaling corrects the flavour composition
+of the $t\bar{t}$+jets background using $b$-tagging-sensitive control regions,
+while a multivariate neural-network-based reweighting corrects correlated mismodelling in jet multiplicity and kinematics.
 Both corrections are propagated to the final likelihood fit with dedicated nuisance parameters accounting for subtraction and statistical effects.
-These procedures substantially improve the data-to-simulation agreement in background-dominated regions and reduce the modelling bias in signal-enriched regions.
+
+Figure~\ref{fig:effect_data_driven_corr} illustrates the impact of the combined corrections in inclusive regions containing all control, validation and signal regions.
+Distributions of key observables relevant for the analysis sensitivity, such as $H_T$, jet multiplicity, and the multiplicity of re-clustered jets,
+are shown for the 1L and 2LOS channels.
+A significant improvement in the agreement between data and the background prediction is observed both in the overall normalisation and in the shape of the distributions.
+These corrections therefore provide a more reliable modelling of the dominant $t\bar{t}$+jets background across the phase space relevant for the signal extraction.
+
+\begin{figure}[]
+  \centering
+  \subfloat[]{\includegraphics[width=0.495\textwidth]{figures/figures_paper/val_ljets_ge8jge3b_HT_all.pdf}}
+  \subfloat[]{\includegraphics[width=0.495\textwidth]{figures/figures_paper/val_os2l_ge6jge3b_HT_all.pdf}}\\
+  \subfloat[]{\includegraphics[width=0.495\textwidth]{figures/figures_paper/val_ljets_ge8jge3b_nJets.pdf}}
+  \subfloat[]{\includegraphics[width=0.495\textwidth]{figures/figures_paper/val_os2l_ge6jge3b_nJets.pdf}}\\
+  \subfloat[]{\includegraphics[width=0.495\textwidth]{figures/figures_paper/val_ljets_ge8jge3b_nRCJetsM100.pdf}}
+  \subfloat[]{\includegraphics[width=0.495\textwidth]{figures/figures_paper/val_os2l_ge6jge3b_nRCJetsM100.pdf}}
+  \caption{
+    The comparison of (a, b) $H_{\mathrm{T}}$, (c, d) $N_{\mathrm{jets}}$ and (e, f) $N_{\mathrm{large}R\text{-jets}}$ distributions
+    between data and background predictions before and after applying the data-driven corrections,
+    shown separately for the 1L and 2LOS channels.
+    The corrected prediction is shown as coloured stacks,
+    while the prediction before applying the corrections is indicated by the red dashed line.
+    The hashed band represents the total uncertainty in the background prediction.
+    The last bin in each distribution contains the overflow.}
+  \label{fig:effect_data_driven_corr}
+\end{figure}

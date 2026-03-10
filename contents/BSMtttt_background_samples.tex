@@ -1,0 +1,346 @@
+Monte Carlo (MC) simulation is used to estimate the signal acceptance
+and to model the contributions from Standard Model background processes.
+All simulated samples correspond to the ATLAS Run~2 simulation campaign
+(MC16a, MC16d and MC16e), reproducing the detector and pileup conditions
+of the data-taking periods.
+
+After the event selection, the dominant background arises from
+$t\bar{t}$ production in association with additional jets.
+Subleading contributions originate from single-top production,
+$W$+jets and $Z$+jets processes, diboson production ($WW$, $WZ$, $ZZ$),
+and associated production of a top-quark pair with a vector or Higgs boson
+($t\bar{t}V$ and $t\bar{t}H$).
+Multijet production can contribute through the misidentification of jets
+as leptons or through non-prompt leptons originating from heavy-flavour
+hadron decays, but its contribution is found to be negligible after the
+event selection.
+
+Both signal and background samples include the simulation of pileup
+interactions and are processed through either the full \textsc{Geant4}
+detector simulation or the ATLAS fast simulation framework (AFII).
+All simulated events are reconstructed with the same software chain as
+used for the data.
+
+Further details about the modelling of each background process are
+summarised below.
+
+\begin{description}
+
+\item[$t\bar{t}$ + jets:] 
+
+The nominal $t\bar{t}$ sample is generated using the
+\textsc{Powheg-Box}~v2 generator at next-to-leading order (NLO)
+in QCD with the \textsc{NNPDF3.0} parton distribution function (PDF)
+set in the five-flavour scheme (5FS).
+The parameter $h_{\mathrm{damp}}$, which regulates the transverse
+momentum of the first emission beyond the Born configuration,
+is set to $1.5\,m_t$ with $m_t = 172.5$~GeV.
+Parton showering and hadronisation are simulated using
+\textsc{Pythia}~8 with the A14 tune.
+
+Additional filtered samples are used to enhance the statistical
+precision in regions with large jet multiplicity or high
+$b$-tag multiplicity.
+
+An additional $t\bar{t}+\geq 1b$ sample is generated using
+\textsc{Powheg-Box-Res} interfaced with \textsc{OpenLoops}
+in the four-flavour scheme (4FS).
+This sample is used to evaluate modelling uncertainties
+associated with heavy-flavour production in $t\bar{t}$ events.
+
+Alternative samples are used to evaluate modelling uncertainties
+related to the hard-scattering generator, parton shower and QCD
+radiation.
+These include samples generated with
+\textsc{MadGraph5\_aMC@NLO} interfaced with \textsc{Pythia8}
+to assess the impact of the matrix-element generator,
+and samples where the \textsc{Powheg} matrix element is interfaced
+to \textsc{Herwig7} to evaluate the dependence on the
+parton-shower and hadronisation model.
+Additional variations of the radiation parameters in the
+A14 tune are also used to probe uncertainties related to
+initial- and final-state radiation.
+
+The $t\bar{t}$ events are categorised according to the flavour
+content of additional jets not originating from the top-quark decays,
+separating heavy-flavour ($t\bar{t}+b\bar{b}$, $t\bar{t}+c\bar{c}$)
+and light-flavour components.
+
+The samples are normalised to the theoretical cross section
+computed with \textsc{Top++} at NNLO in QCD including NNLL
+soft-gluon resummation, corresponding to
+$\sigma_{t\bar{t}} = 832^{+46}_{-51}$~pb.
+
+\item[$t\bar{t}t\bar{t}$:]
+
+The production of four top quarks is simulated using
+\textsc{MadGraph5\_aMC@NLO} at NLO accuracy in QCD with the
+NNPDF3.1 NLO PDF set.
+The renormalisation and factorisation scales are chosen as
+$\mu_r=\mu_f=m_T/4$, where $m_T$ is defined as the scalar sum of
+the transverse masses of the particles produced in the
+matrix-element calculation.
+
+Top-quark decays are handled using \textsc{MadSpin}
+to preserve spin correlations.
+Parton showering and hadronisation are simulated with
+\textsc{Pythia}~8 using the A14 tune.
+Heavy-flavour hadron decays are modelled using
+\textsc{EvtGen}.
+
+An additional sample generated with \textsc{Herwig7}
+is used to evaluate uncertainties associated with the
+parton shower and hadronisation model.
+Variations of the renormalisation and factorisation scales
+in the matrix-element calculation are used to estimate
+uncertainties related to missing higher-order corrections.
+
+All $t\bar{t}t\bar{t}$ samples are normalised to the
+NLO(QCD+EW)+NLL$'$ theoretical prediction of
+$\sigma_{t\bar{t}t\bar{t}} = 13.37$~fb.
+
+\item[$t\bar{t}V$:]
+
+The associated production of a top-quark pair with a vector boson
+($t\bar{t}W$, $t\bar{t}Z$) is simulated using
+\textsc{MadGraph5\_aMC@NLO} with matrix elements including
+up to two additional partons at leading order.
+The events are interfaced with \textsc{Pythia}~8 for
+parton showering and hadronisation using the A14 tune.
+Alternative samples generated with \textsc{Sherpa}
+are used to evaluate modelling uncertainties associated
+with the matrix-element generator.
+
+\item[$t\bar{t}H$:]
+
+The production of $t\bar{t}H$ events is simulated using
+the \textsc{Powheg}~v2 generator at NLO accuracy in QCD
+with the NNPDF3.0 NLO PDF set.
+The $h_{\mathrm{damp}}$ parameter is set to
+$1.5\times (2m_t+m_H)/2$ with $m_H=125$~GeV.
+Parton showering and hadronisation are modelled with
+\textsc{Pythia}~8 using the A14 tune.
+The sample is normalised to the theoretical cross section
+computed at NLO in QCD including leading electroweak corrections.
+
+An alternative sample generated with
+\textsc{MadGraph5\_aMC@NLO} and interfaced with
+\textsc{Pythia8} is used to evaluate uncertainties
+associated with the choice of matrix-element generator.
+
+\item[Single-top:]
+
+Single-top production in the $tW$, $t$-channel and $s$-channel
+processes is simulated using the \textsc{Powheg}~v2 generator
+at NLO in QCD with the NNPDF3.0 NLO PDF set.
+The $tW$ process is generated using the diagram removal scheme
+to avoid overlap with $t\bar{t}$ production.
+Parton showering and hadronisation are simulated with
+\textsc{Pythia}~8 using the A14 tune.
+
+Alternative samples generated with
+\textsc{MadGraph5\_aMC@NLO} and samples interfaced
+with \textsc{Herwig7} are used to estimate modelling
+uncertainties associated with the generator and
+parton-shower description.
+
+\item[$V$+jets:]
+
+The production of $W$+jets and $Z$+jets events is simulated
+using the \textsc{Sherpa}~v2.2 generator.
+Matrix elements are calculated at NLO accuracy for up to two
+additional partons and at LO accuracy for up to four additional
+partons.
+They are matched and merged with the \textsc{Sherpa} parton
+shower using the MEPS@NLO prescription.
+The NNPDF3.0 NNLO PDF set is used.
+
+\item[$VV$:]
+
+Diboson production ($WW$, $WZ$, $ZZ$) is simulated using
+\textsc{Sherpa}~v2.2.
+Matrix elements are calculated at NLO accuracy in QCD
+for up to one additional parton and at LO accuracy for up to
+three additional partons.
+The samples are matched and merged with the
+\textsc{Sherpa} parton shower using the MEPS@NLO prescription
+and the NNPDF3.0 NNLO PDF set.
+
+\end{description}
+
+The Monte Carlo generators used to simulate the signal and background
+processes are summarised in Table~\ref{tab:MC_generators}.
+Alternative samples used to evaluate modelling uncertainties
+are also indicated.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{tabular}{
+p{2.0cm}
+p{4.6cm}
+p{1.9cm}
+p{2.4cm}
+p{1.9cm}
+p{1.2cm}
+}
+
+\toprule
+Process & Generator & ME order & PDF & Parton shower & Tune \\
+\midrule
+
+\multicolumn{6}{c}{\textbf{Signal processes}} \\
+\midrule
+
+$t\bar t H/A \rightarrow t\bar t t\bar t$
+& \textsc{MadGraph5\_aMC@NLO}
+& LO
+& NNPDF3.1LO
+& Pythia8
+& A14 \\
+
+& (\textsc{MadGraph5\_aMC@NLO})
+& (LO)
+& (NNPDF3.1LO)
+& (Herwig7)
+& (H7UE) \\
+
+$S_8S_8 \rightarrow t\bar t t\bar t$
+& \textsc{MadGraph5\_aMC@NLO} + MadSpin
+& LO
+& NNPDF3.1LO
+& Pythia8
+& A14 \\
+
+& (\textsc{MadGraph5\_aMC@NLO} + MadSpin)
+& (LO)
+& (NNPDF3.1LO)
+& (Herwig7)
+& (H7UE) \\
+
+\midrule
+\multicolumn{6}{c}{\textbf{Background processes}} \\
+\midrule
+
+\multirow{4}{*}{$t\bar t$ + jets}
+
+& PowhegBox
+& NLO
+& NNPDF3.0NLO
+& Pythia8
+& A14 \\
+
+& (\textsc{MadGraph5\_aMC@NLO})
+& (NLO)
+& (NNPDF3.0NLO)
+& (Pythia8)
+& (A14) \\
+
+& (PowhegBox)
+& (NLO)
+& (NNPDF3.0NLO)
+& (Herwig7)
+& (H7UE) \\
+
+& (PowhegBox, rad.\ variations)
+& (NLO)
+& (NNPDF3.0NLO)
+& (Pythia8)
+& (A14 Var3c) \\
+
+$t\bar t +\geq 1b$ (4FS)
+& PowhegBox-Res + OpenLoops
+& NLO
+& NNPDF3.0nlo nf4
+& Pythia8
+& A14 \\
+
+\multirow{2}{*}{$t\bar t t\bar t$}
+
+& \textsc{MadGraph5\_aMC@NLO}
+& NLO
+& NNPDF3.1NLO
+& Pythia8
+& A14 \\
+
+& (\textsc{MadGraph5\_aMC@NLO})
+& (NLO)
+& (NNPDF3.1NLO)
+& (Herwig7)
+& (H7UE) \\
+
+\multirow{2}{*}{$t\bar tV$}
+
+& \textsc{MadGraph5\_aMC@NLO}
+& LO
+& NNPDF2.3LO
+& Pythia8
+& A14 \\
+
+& (Sherpa 2.2.1)
+& (MEPS@NLO)
+& (NNPDF3.0NNLO)
+& (Sherpa)
+& (Sherpa) \\
+
+\multirow{2}{*}{$t\bar tH$}
+
+& PowhegBox
+& NLO
+& NNPDF3.0NLO
+& Pythia8
+& A14 \\
+
+& (\textsc{MadGraph5\_aMC@NLO})
+& (NLO)
+& (NNPDF3.0NLO)
+& (Pythia8)
+& (A14) \\
+
+\multirow{3}{*}{Single-top}
+
+& PowhegBox ($tW$)
+& NLO
+& NNPDF3.0NLO
+& Pythia8
+& A14 \\
+
+& (PowhegBox)
+& (NLO)
+& (NNPDF3.0NLO)
+& (Herwig7)
+& (H7UE) \\
+
+& (\textsc{MadGraph5\_aMC@NLO})
+& (NLO)
+& (NNPDF3.0NLO)
+& (Pythia8)
+& (A14) \\
+
+$V+$jets ($W/Z$)
+& Sherpa 2.2.1
+& MEPS@NLO
+& NNPDF3.0NNLO
+& Sherpa
+& Sherpa \\
+
+$VV$ ($WW$, $WZ$, $ZZ$)
+& Sherpa 2.2.1/2.2.2
+& MEPS@NLO
+& NNPDF3.0NNLO
+& Sherpa
+& Sherpa \\
+
+\bottomrule
+\end{tabular}
+
+\caption{Monte Carlo generators used to simulate the signal and
+background processes considered in this analysis.
+Alternative samples used to evaluate modelling uncertainties
+are shown in parentheses.}
+
+\label{tab:MC_generators}
+\end{table}

@@ -1,4 +1,4 @@
-Four-top-quark final states are characterised by a high multiplicity of reconstructed objects and a rich internal structure. 
+Four-tops final states are characterised by a high multiplicity of reconstructed objects and a rich internal structure. 
 Each top quark decays predominantly via $t \to Wb$, leading to final states containing multiple energetic jets, several $b$-tagged jets, isolated leptons, and significant missing transverse momentum. 
 Signal events therefore populate regions of phase space with large jet multiplicity and substantial hadronic activity.
 
@@ -54,7 +54,42 @@ The edge feature vector consists of:
 \end{itemize}
 
 In addition to node and edge information, a set of global features $\mathbf{u}$ is included to provide high-level event descriptors such as $H_T$, jet multiplicity, invariant mass combinations, and substructure-related observables. 
-These global features complement the relational information encoded in the graph while avoiding redundancy with explicit node inputs.
+The detailed list of these global features is provided in Table~\ref{tab:gnn_global_input}. These global features complement the relational information encoded in the graph while avoiding redundancy with explicit node inputs.
+
+\begin{table}[t!]
+  \centering
+  % \scriptsize
+  \begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+      \toprule \midrule
+      Variable                      &    Description \\
+      \midrule
+      $\sum_{i\in[1,6]}\mathrm{pcb}_i$    & Sum of the pcb scores of the six jets with the highest scores \\
+      $H_{\mathrm{T}}$              & $p_{\mathrm{T}}$ sum of all reconstructed leptons and jets \\
+      $N_{\mathrm{jets}}$           & Number of jets \\
+      $H_{\mathrm{T}}^\mathrm{ratio}$          & $p_{\mathrm{T}}$ sum of the four leading jets in $p_{\mathrm{T}}$ divided by the $p_{\mathrm{T}}$ sum of the remaining jets \\
+      $\Delta R_{jj}^\mathrm{avg.}$       & Average $\Delta R$ across all jet pairs \\
+      $m_\mathrm{T}^W$              & $W$ boson transverse mass calculated using the lepton four-momenta and $E_{\mathrm{T}}^{\mathrm{miss}}$ (1L only) \\
+      $\Delta R_{bb}^\mathrm{min.}$      & Minimum $\Delta R$ between any pair of jets $b$-tagged at the 70\% OP \\
+      $\Delta R_{\ell b}^\mathrm{min.}$  & Minimum $\Delta R$ between any pair of lepton and jet $b$-tagged at the 70\% OP \\
+      $m_{bbb}^\mathrm{avg.}$       & Average invariant mass of all triplets of jets $b$-tagged at the 70\% OP \\
+      $m_{jjj}^\mathrm{avg.}$       & Average invariant mass of all triplets of jets with an angular separation of $\Delta R<3$ \\
+      $\sum d_{12}$                 & Sum of the first $k_t$ splitting scale $d_{12}$ over all large-$R$ jets \\
+      $\sum d_{23}$                 & Sum of the second $k_t$ splitting scale $d_{23}$ over all large-$R$ jets \\
+      $N_{\mathrm{large}R\text{-jets}}$ & Number of large-$R$ jets with a mass greater than 100~GeV \\
+      Centrality                    & $\sum_i p_{\mathrm{T}}^i/\sum_i E_i$ where the sums are performed over all reconstructed jets and leptons \\
+      $m_{\ell\ell}$                & Invariant mass of the two leptons (2LOS only) \\
+      \midrule \bottomrule
+    \end{tabular}
+    \caption{
+      The list of global features used in the GNN training
+      in descending order of importance in the training of the 1L GNN\@.
+      The importance is evaluated according to the fractional change in loss when removing the feature from the training.
+    }
+    \label{tab:gnn_global_input}
+  \end{center}
+\end{table}
 
 The network follows the standard message-passing paradigm in which edge, node, and global representations are iteratively updated through trainable neural networks. 
 No architectural modifications beyond this generic framework are introduced. 
