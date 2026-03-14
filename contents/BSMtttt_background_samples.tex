@@ -1,9 +1,3 @@
-Monte Carlo (MC) simulation is used to estimate the signal acceptance
-and to model the contributions from Standard Model background processes.
-All simulated samples correspond to the ATLAS Run~2 simulation campaign
-(MC16a, MC16d and MC16e), reproducing the detector and pileup conditions
-of the data-taking periods.
-
 After the event selection, the dominant background arises from
 $t\bar{t}$ production in association with additional jets.
 Subleading contributions originate from single-top production,
@@ -15,18 +9,12 @@ as leptons or through non-prompt leptons originating from heavy-flavour
 hadron decays, but its contribution is found to be negligible after the
 event selection.
 
-Both signal and background samples include the simulation of pileup
-interactions and are processed through either the full \textsc{Geant4}
-detector simulation or the ATLAS fast simulation framework (AFII).
-All simulated events are reconstructed with the same software chain as
-used for the data.
-
 Further details about the modelling of each background process are
 summarised below.
 
 \begin{description}
 
-\item[$t\bar{t}$ + jets:] 
+\item[\boldmath$t\bar{t}$ + jets:] 
 
 The nominal $t\bar{t}$ sample is generated using the
 \textsc{Powheg-Box}~v2 generator at next-to-leading order (NLO)
@@ -71,7 +59,7 @@ computed with \textsc{Top++} at NNLO in QCD including NNLL
 soft-gluon resummation, corresponding to
 $\sigma_{t\bar{t}} = 832^{+46}_{-51}$~pb.
 
-\item[$t\bar{t}t\bar{t}$:]
+\item[\boldmath$t\bar{t}t\bar{t}$:]
 
 The production of four top quarks is simulated using
 \textsc{MadGraph5\_aMC@NLO} at NLO accuracy in QCD with the
@@ -99,7 +87,7 @@ All $t\bar{t}t\bar{t}$ samples are normalised to the
 NLO(QCD+EW)+NLL$'$ theoretical prediction of
 $\sigma_{t\bar{t}t\bar{t}} = 13.37$~fb.
 
-\item[$t\bar{t}V$:]
+\item[\boldmath$t\bar{t}V$:]
 
 The associated production of a top-quark pair with a vector boson
 ($t\bar{t}W$, $t\bar{t}Z$) is simulated using
@@ -111,7 +99,7 @@ Alternative samples generated with \textsc{Sherpa}
 are used to evaluate modelling uncertainties associated
 with the matrix-element generator.
 
-\item[$t\bar{t}H$:]
+\item[\boldmath$t\bar{t}H$:]
 
 The production of $t\bar{t}H$ events is simulated using
 the \textsc{Powheg}~v2 generator at NLO accuracy in QCD
@@ -144,7 +132,7 @@ with \textsc{Herwig7} are used to estimate modelling
 uncertainties associated with the generator and
 parton-shower description.
 
-\item[$V$+jets:]
+\item[\boldmath$V$+jets:]
 
 The production of $W$+jets and $Z$+jets events is simulated
 using the \textsc{Sherpa}~v2.2 generator.
@@ -155,7 +143,7 @@ They are matched and merged with the \textsc{Sherpa} parton
 shower using the MEPS@NLO prescription.
 The NNPDF3.0 NNLO PDF set is used.
 
-\item[$VV$:]
+\item[\boldmath$VV$:]
 
 Diboson production ($WW$, $WZ$, $ZZ$) is simulated using
 \textsc{Sherpa}~v2.2.

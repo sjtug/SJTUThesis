@@ -7,112 +7,148 @@
 % Suggested placement: analysis motivation / experimental status chapter
 % =========================
 
-\section{Experimental status of four-tops production}
-\label{sec:fourtop_experiment_status}
+\section{Motivation}
 
-Four-top production is a rare SM process at the LHC.
-Next-to-leading-order calculations predict a SM cross section of approximately
-$\sigma(pp \to t\bar{t}t\bar{t}) = 13.4^{+1.0}_{-1.8}~\mathrm{fb}$ at $\sqrt{s}=13~\mathrm{TeV}$,
-highlighting the experimental challenges associated with observing this process.
+The search for heavy neutral Higgs bosons with sizeable couplings to
+top quarks provides a powerful probe of extended scalar sectors
+such as the two-Higgs-doublet model (2HDM). As discussed in
+Section~\ref{subsec:2HDM}, measurements of the properties of the
+observed $125~\mathrm{GeV}$ Higgs boson constrain the model parameter
+space to lie close to the alignment limit, in which the light
+CP-even Higgs boson behaves SM-like. In this regime, the couplings of
+the heavier neutral Higgs bosons $H$ and $A$ to top quarks can remain
+sizeable and are enhanced at low values of $\tan\beta$.
 
-Each top quark decays almost exclusively via $t \to W b$, leading to final states containing four $W$ bosons and four $b$-quarks.
-The observable signatures are determined by the decay modes of the $W$ bosons.
-Depending on whether the $W$ bosons decay leptonically or hadronically, several distinct final states can be defined as shown in Fig.~\ref{fig:tttt_br}.
+For heavy Higgs boson masses above approximately $500~\mathrm{GeV}$ and
+moderate values of $\tan\beta$, the dominant decay mode is
+$H/A \rightarrow t\bar{t}$. Direct searches for heavy neutral Higgs
+bosons decaying into top-quark pairs have been performed by the ATLAS
+and CMS collaborations at centre-of-mass energies of 7, 8 and
+13~TeV~\cite{ATLAS:2017snw,CMS:2019pzc,ATLAS:2024vxm}. However, inclusive searches for $gg \to H/A \to t\bar{t}$ are
+experimentally challenging due to destructive interference with the
+SM $t\bar{t}$ background, which distorts the resonance shape in the
+$t\bar{t}$ invariant-mass spectrum~\cite{Gaemers:1984sj,Hajer:2015gka}.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.65\textwidth]{figures/4tops_BR.png}
-  \caption{Branching fractions of four-tops final states classified by the number of
-  leptonic $W$ boson decays.}
-  \label{fig:tttt_br}
-\end{figure}
+An alternative probe is the associated production of a heavy Higgs
+boson with a top-quark pair, followed by the decay $H/A \to t\bar{t}$,
+leading to a four-top final state. Compared to inclusive
+$t\bar{t}$ resonance searches, this topology is significantly less
+affected by interference effects with the Standard Model background
+and provides a distinctive multi-top signature.
 
-Final states with same-sign dileptons or multiple leptons feature significantly reduced backgrounds from SM processes, at the expense of smaller branching fractions.
-These channels therefore play a central role in experimental measurements of four-tops production.
-
-The decay of four top quarks results in final states with exceptionally high object multiplicity, including a large number of jets and multiple $b$-tagged jets.
-Figure~\ref{fig:tttt_jets} illustrates a representative jet multiplicity distribution in four-tops events, compared to dominant backgrounds such as $t\bar{t}W$ and $t\bar{t}Z$.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.7\textwidth]{figures/4tops_jet_multiplicity.pdf}
-  \caption{Representative jet multiplicity distribution in four-tops production,
-  illustrating the complexity of the final state compared to dominant backgrounds.}
-  \label{fig:tttt_jets}
-\end{figure}
-
-\subsection{Run~2 observations by ATLAS and CMS}
-\label{subsec:fourtop_run2_observation}
-
-The ATLAS Collaboration reported the first observation of four-tops production using the full Run~2 dataset at $\sqrt{s}=13$~TeV with an integrated luminosity of $140~\mathrm{fb}^{-1}$, selecting events with same-sign dileptons or at least three leptons and employing multivariate techniques~\cite{ATLAS:2303.15061}.
-The observed signal significance is $6.1\sigma$, with a measured cross section
-\begin{equation}
-  \sigma(pp \to t\bar{t}t\bar{t}) = 22.5^{+6.6}_{-5.5}~\text{fb}.
-\end{equation}
-
-The CMS Collaboration also observed four-tops production using $138~\mathrm{fb}^{-1}$ of Run~2 data in final states with same-sign dileptons and multiple leptons~\cite{CMS:2305.13439}.
-The observed significance is $5.6\sigma$, with a measured cross section
-\begin{equation}
-  \sigma(pp \to t\bar{t}t\bar{t}) = 17.7^{+3.7}_{-3.5}(\text{stat})^{+2.3}_{-1.9}(\text{syst})~\text{fb}.
-\end{equation}
-
-Both measurements are broadly consistent with the SM expectation within uncertainties.
-A summary of current measurements is shown in Fig.~\ref{fig:fourtop-summary}.
+The four-top final state has recently become experimentally
+accessible. Using final states with two same-sign leptons or at least
+three leptons, the ATLAS Collaboration measured the four-top
+production cross section to be
+$22.5^{+4.7}_{-4.3}(\mathrm{stat.})^{+4.6}_{-3.4}(\mathrm{syst.})$~fb~\cite{ATLAS:2023ajo},
+while the CMS Collaboration reported
+$17.7^{+3.7}_{-3.5}(\mathrm{stat.})^{+2.3}_{-1.9}(\mathrm{syst.})$~fb~\cite{CMS:2023ftu}.
+Both measurements are consistent with the Standard Model prediction of
+$\sigma_{t\bar{t}t\bar{t}} = 13.4^{+1.0}_{-1.8}$~fb computed at
+next-to-leading order with electroweak corrections and threshold
+resummation~\cite{vanBeekveld:2022hty}. A summary of the existing
+measurements is shown in Fig.~\ref{fig:fourtop-summary}.
+With the present experimental uncertainties, these measurements still
+leave room for additional contributions to four-top production from
+physics beyond the Standard Model.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/fourtop_summary_nov23.pdf}
-    \caption{Summary of four-tops production measurements (taken from Ref.~\cite{LHCTopWGFourTopSummary}).}
+    \caption{Summary of measurements of the four-top production cross
+    section at $\sqrt{s}=13$~TeV by the ATLAS and CMS collaborations,
+    compared with Standard Model predictions. Taken from
+    Ref.~\cite{LHCTopWGFourTopSummary}.}
     \label{fig:fourtop-summary}
 \end{figure}
 
+Beside extended Higgs sectors, the four-top final state also provides
+sensitivity to more general new physics scenarios featuring new
+particles that couple preferentially to the top quark. In particular,
+top-philic simplified models, introduced in
+Section~\ref{subsec:S1/S8}, predict new mediators such as colour-octet
+scalars (sgluons, $S_8$) and colour-singlet scalars ($S_1$) that can enhance multi-top production rates,
+making the four-top final state a particularly sensitive probe of
+such interactions.
+
 \section{Analysis Overview}
-\label{sec:analysis-overview}
+\label{sec:analysis_overview}
 
-The production of four top quarks represents one of the rarest processes predicted by the Standard Model at the Large Hadron Collider.
-Owing to its small production cross section and complex final-state topology,
-four-tops production poses significant experimental challenges, requiring advanced analysis techniques and large datasets.
-Using the full Run~2 dataset at $\sqrt{s}=13$~TeV, both the ATLAS and CMS collaborations have reported the first observations of this process in final states with same-sign dileptons and multiple leptons.
-While the measured cross sections are consistent with Standard Model predictions within uncertainties,
-the relatively large experimental and theoretical uncertainties leave room for potential contributions from physics beyond the Standard Model.
+To study four-top production experimentally, it is first necessary
+to understand the decay topology of the four-top system and the
+resulting observable signatures, which determine the possible
+analysis channels. Each top quark decays almost exclusively via $t \to W b$, leading to
+final states containing four $W$ bosons and four $b$-quarks.
+The observable signatures are therefore determined by the decay modes
+of the $W$ bosons.
+Depending on whether the $W$ bosons decay leptonically or hadronically,
+several distinct final states can be defined, as illustrated in
+Fig.~\ref{fig:tttt_br}.
 
-Motivated by the sensitivity of the four-tops final state to new heavy states coupling to the top quark,
-this analysis targets the production of a heavy neutral Higgs boson in association with a top-quark pair,
-with the Higgs boson subsequently decaying into a second top-quark pair.
-The resulting $t\bar{t}H/A \rightarrow t\bar{t}t\bar{t}$ topology provides a well-defined and experimentally accessible signature
-for probing extended Higgs sectors with enhanced top-quark Yukawa couplings.
-The study focuses on heavy Higgs boson masses in the range
-$m_{H/A} \in [400,1000]~\mathrm{GeV}$.
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\pie[
+    sum=auto,
+    text=legend,
+    hide number,
+    radius=3,
+    rotate=100,
+    color={c1,c2,c3,c4,c5},
+]{32/0 leptons, 42/1 lepton, 14/2 OS leptons, 7/2 SS leptons, 5/$\geq 3$ leptons}
 
-Given the large Standard Model backgrounds and the high multiplicity of final-state objects,
-the analysis is performed in final states containing either one isolated charged lepton
-or two opposite-sign charged leptons (denoted as the 1L and 2LOS channels, respectively),
-which offer a favourable balance between signal acceptance and background rejection.
-The dominant background arises from top-quark pair production in association with additional heavy-flavour jets,
-which exhibits similar final-state characteristics to the signal and constitutes the primary experimental challenge.
+\node[text=white, font=\normalsize] at (-1.5,0.6) {32\%};
+\node[font=\normalsize] at (0.5,-1.3) {42\%};
+\node[font=\normalsize] at (1.9,1.15) {14\%};
+\node[font=\normalsize] at (0.85,2.2) {7\%};
+\node[font=\normalsize] at (-0.04,2.4) {5\%};
 
-To enhance the sensitivity to the signal and to constrain background contributions directly from data,
-events are categorised according to jet and $b$-tag multiplicities,
-defining multiple signal and control regions.
-Dedicated control regions are used to normalise and validate the dominant background processes,
-while signal regions are optimised to maximise discrimination between signal and background.
+\end{tikzpicture}
+\caption{Branching fractions of four-top final states classified by the number of leptonic $W$ boson decays.}
+\label{fig:tttt_br}
+\end{figure}
 
-To further exploit the rich event topology of four-tops final states,
-a multivariate analysis strategy based on a graph neural network (GNN) is employed.
-The GNN is designed to incorporate information from all reconstructed objects and their correlations,
-and is trained in a mass-parameterised approach to maintain sensitivity across the full signal mass range.
-The output of the GNN serves as the final discriminant in the signal regions.
+Final states with two same-sign leptons or multiple leptons (2LSS/ML) provide
+excellent background suppression and have been used in searches for
+heavy Higgs bosons in four-top final states by the ATLAS~\cite{2023_SSML_4top} and CMS~\cite{CMS-TOP-18-003}
+collaborations. These channels correspond to relatively
+small branching fractions. Final states containing one isolated lepton
+or two opposite-sign leptons (1L/2LOS) have substantially larger branching
+fractions, although they are experimentally more challenging due to
+larger irreducible backgrounds. Nevertheless, the higher signal yields
+in these channels provide strong discovery potential, and their
+combination with the same-sign dilepton and multilepton channels can
+further enhance the overall sensitivity of the search.
 
-The signal extraction is performed through a simultaneous profile likelihood fit
-to the GNN output distributions in the signal regions and to kinematic observables in the control regions.
-Systematic uncertainties affecting both the normalisation and the shape of the signal and background predictions
-are incorporated in the fit as nuisance parameters.
-In the absence of a significant excess over the Standard Model expectation,
-upper limits on the signal production cross section are derived.
+The analysis presented in this thesis focuses on the 1L and 2LOS
+channels and builds upon the analysis framework previously developed
+for the ATLAS measurement of Standard Model four-top production in these channels~\cite{ATLAS:2021kqb}. 
+This strategy is further extended and refined to target heavy
+neutral Higgs bosons produced in association with a top-quark pair
+and decaying into a second top-quark pair.
+
+A characteristic feature of both the signal and the Standard Model
+four-top process is the large multiplicity of reconstructed jets and
+$b$-tagged jets in the final state. Events are therefore categorised
+according to the jet and $b$-tag multiplicities, defining multiple
+signal and control regions that allow the background contributions to
+be constrained from data.
+Particular attention is devoted to the modelling of the dominant
+background arising from $t\bar{t}$ production in association with
+additional jets. This background is modelled using a data-driven normalisation and
+multidimensional kinematic corrections based on neural networks.
+
+To further exploit the complex event topology of four-top final states,
+a multivariate analysis strategy based on a graph neural network (GNN)
+is employed to enhance the discrimination between signal and
+background. The signal extraction is performed through a profile
+likelihood fit to the discriminant distributions in the signal
+regions together with observables in the control regions, with
+systematic uncertainties incorporated as nuisance parameters.
 
 While the analysis is optimised for heavy Higgs boson production,
-the same analysis framework is also applicable to other new-physics scenarios leading to four-tops final states.
-The results are therefore additionally interpreted in terms of colour-octet scalar (sgluon) pair production,
+the results are additionally interpreted in terms of sgluon pair
+production with masses in the range $0.4$--$2~\mathrm{TeV}$,
 providing a complementary interpretation of the obtained limits.
 
 \section{Data and Simulated Samples}
@@ -161,10 +197,26 @@ The effect of multiple $pp$ interactions per bunch crossing (pile-up) is
 modelled in simulation, and the simulated pile-up distribution is reweighted to match
 that observed in data.
 
-\subsection{Signal Samples}
+\subsection{Monte Carlo Simulated Samples}
+
+Monte Carlo (MC) simulation is used to estimate the signal acceptance
+and to model the contributions from Standard Model background processes.
+All simulated samples correspond to the ATLAS Run~2 simulation campaign
+(MC16a, MC16d and MC16e), reproducing the detector and pileup conditions
+of the data-taking periods.
+
+Both signal and background samples include the simulation of pileup
+interactions and are processed through either the full \textsc{Geant4}
+detector simulation or the ATLAS fast simulation framework (AFII).
+All simulated events are reconstructed with the same software chain as
+used for the data.
+
+\subsubsection{Signal Samples}
 \label{subsec:signal_samples}
 
-\subsubsection{Heavy Higgs boson production (Type-II 2HDM)}
+\begin{description}
+
+\item[Heavy Higgs boson production (Type-II 2HDM):]
 
 The primary signal process considered in this analysis is the associated production
 of a heavy neutral Higgs boson with a top-quark pair, followed by the decay of the Higgs boson
@@ -186,16 +238,16 @@ Spin correlations in the decays of the top quarks and $W$ bosons
 are fully retained in the event generation.
 
 The modelling of the heavy Higgs boson follows benchmark scenarios based on
-a Type-II two-Higgs-doublet model, as introduced in Chapter~\ref{ch:theory}.
+a Type-II two-Higgs-doublet model in the alignment limit, as introduced in Chapter~\ref{subsec:2HDM}.
 In this framework, the couplings of the heavy neutral scalars to up-type quarks
 are enhanced at low values of $\tan\beta$,
 leading to sizeable production rates in association with a top-quark pair.
-Signal samples are generated assuming $\tan\beta = 10$
+Signal samples are generated assuming $\tan\beta \sim 1$
 and no mixing between the scalar and pseudoscalar states,
 such that the $H$ and $A$ bosons are simultaneously mass and CP eigenstates.
 
 Samples are produced for heavy Higgs boson masses between
-$200$ and $1000~\mathrm{GeV}$.
+$400$ and $1000~\mathrm{GeV}$.
 The corresponding widths are chosen according to the benchmark scenario
 used for the signal modelling.
 The mass points and widths used in the simulation are summarised in
@@ -205,16 +257,16 @@ leading to a progressively broader resonance structure at higher masses.
 
 \begin{table}[!ht]
   \begin{center}\small
-    \begin{tabular}{|cccccccccc|}
+    \begin{tabular}{|cccccccc|}
        \hline
-       \multicolumn{10}{|c|}{Mass points [GeV]}\\
+       \multicolumn{8}{|c|}{Mass points [GeV]}\\
         \hline
-       200 & 300& 400& 500& 600& 700& 750& 800& 900& 1000\\
+       400& 500& 600& 700& 750& 800& 900& 1000\\
        \hline   
        \hline
-       \multicolumn{10}{|c|}{Widths [GeV]}\\
+       \multicolumn{8}{|c|}{Widths [GeV]}\\
         \hline
-       1 & 2 & 5& 5& 10& 20& 20& 20& 20& 30\\
+       5& 5& 10& 20& 20& 20& 20& 30\\
        \hline   
     \end{tabular}
     \caption{Mass points and widths used for the heavy Higgs signal generation.}
@@ -231,47 +283,50 @@ They are therefore not explicitly included in the signal modelling,
 and the signal is treated as an incoherent contribution on top of the
 Standard Model background.
 
-The signal samples are normalised using the theoretical predictions
-for the production cross section.
+The signal samples are normalised to a cross section of 12~fb, corresponding to 
+the excess between the observed four-top production cross section and the Standard Model prediction.
 Theoretical uncertainties associated with the choice of renormalisation and
 factorisation scales and with the parton distribution functions are evaluated
 separately and are included as systematic uncertainties in the statistical analysis.
 
-\subsubsection{Sgluon pair production}
+\item[Sgluon pair production:]
 \label{subsubsec:sgluon_signal}
 
-In addition to the heavy Higgs boson interpretation,
-the analysis results are also interpreted in the context of a simplified model
-featuring the pair production of a colour-octet scalar particle,
-commonly referred to as a sgluon.
-Such particles appear in a variety of extensions of the Standard Model,
-including certain supersymmetric and composite scenarios.
-
-Owing to its colour-octet nature,
-the sgluon is predominantly produced in pairs through strong interactions at the LHC.
-If the sgluon couples preferentially to top quarks,
-its dominant decay mode is $S_8 \rightarrow t\bar{t}$,
-leading to a final state with four top quarks from the process
-$pp \rightarrow S_8S_8 \rightarrow t\bar{t}t\bar{t}$.
-This topology closely resembles the heavy Higgs signal considered in this analysis,
-characterised by a large jet multiplicity and multiple $b$-tagged jets.
+The analysis results are also interpreted in the context of the
+sgluon model described in
+Section~\ref{sec:sgluon_tttt},
+where four-top production arises from the pair production of
+colour-octet scalars followed by the decay
+\(S_8 \rightarrow t\bar{t}\).
 
 The sgluon signal samples are generated at leading order using
 \textsc{MadGraph5\_aMC@NLO}.
 The decay $S_8 \rightarrow t\bar{t}$ is handled by \textsc{MadSpin},
 while parton showering and hadronisation are simulated with
 \textsc{Pythia8}.
-The samples are generated for a range of sgluon mass hypotheses
-between $0.4$ and $2~\mathrm{TeV}$.
+The coupling of the sgluon to top quarks, $y_{S_8}$, is set to $0.1$.
+With this choice, pair production of $S_8S_8$ via strong interactions
+dominates over the associated production process $t\bar{t}S_8$.
+For $y_{S_8}<0.1$ and $m_{S_8}<2~\mathrm{TeV}$, the contributions from
+interference with the Standard Model background and from $t\bar{t}S_8$
+production are estimated to be below $10\%$ of the total cross-section
+for $t\bar{t}t\bar{t}$ production via $S_8$, and are therefore neglected
+in the simulation.
+The kinematics of the $S_8S_8 \rightarrow t\bar{t}t\bar{t}$ process do
+not depend on the value of $y_{S_8}$.
+Simulated samples are generated for sgluon mass hypotheses between
+$0.4$ and $2~\mathrm{TeV}$, with a spacing of $0.1~\mathrm{TeV}$ in the
+range $0.4$--$1.5~\mathrm{TeV}$ and $0.25~\mathrm{TeV}$ in the range
+$1.75$--$2.0~\mathrm{TeV}$.
 
-All signal samples are processed through the same detector simulation,
-event reconstruction, and analysis chain as used for the heavy Higgs signal.
 No dedicated optimisation of the event selection or of the multivariate
 discriminant is performed for the sgluon interpretation.
 Instead, the sensitivity to the sgluon model is evaluated by reusing the
-analysis strategy and the statistical model developed for the heavy Higgs search.
+analysis strategy and statistical model developed for the heavy Higgs
+search.
+\end{description}
 
-\subsection{Background Samples}
+\subsubsection{Background Samples}
 \label{subsec:background_samples}
 \input{contents/BSMtttt_background_samples.tex}
 
@@ -312,7 +367,7 @@ A mass-parameterised Graph Neural Network is employed to optimise the signal-to-
 
 Upper limits at 95\% CL are set on $\sigma(pp \to t\bar{t}H/A)\times \mathcal{B}(H/A \to t\bar{t})$ for resonance masses between 400 and 1000~GeV, and are combined with previous multilepton searches. 
 The combined limits range from 14~fb at 400~GeV to 5.0~fb at 1000~GeV, improving upon the multilepton-only analysis by up to 19\%. 
-The results are further interpreted in the context of a Type-II two-Higgs-doublet model and in sgluon pair production scenarios, excluding sgluon masses up to approximately 1.3~TeV.
+The results are further interpreted in the context of the sgluon pair production scenarios, excluding sgluon masses up to 1.3~TeV.
 
 While these results establish competitive constraints on top-philic new physics scenarios, the sensitivity in the high-mass region remains primarily limited by the available dataset. 
 The HL-LHC, expected to deliver up to 3~ab$^{-1}$ per experiment at $\sqrt{s}=14$~TeV, will substantially extend the reach of heavy-resonance searches in four-tops final states. 
