@@ -4,8 +4,8 @@
 \label{ch:theory}
 
 The Standard Model (SM) of particle physics is a comprehensive theoretical framework for describing the fundamental particles and their interactions.
-Through decades of theoretical development and experimental verification, it has been established as a remarkably successful theory, accurately accounting for a wide range of observed phenomena~\cite{Weinberg1967,Glashow1961,Salam1968,PDG2024}.
-However, in a way reminiscent of the situation at the beginning of the 20\textsuperscript{th} century, the SM is also known to be incomplete, leaving several profound questions about the fundamental structure of nature unanswered~\cite{SMProblemsReview}.
+Through decades of theoretical development and experimental verification, it has been established as a remarkably successful theory, accurately accounting for a wide range of observed phenomena.
+However, in a way reminiscent of the situation at the beginning of the 20\textsuperscript{th} century, the SM is also known to be incomplete, leaving several profound questions about the fundamental structure of nature unanswered.
 This chapter provides an overview of the SM and introduces the motivations for exploring physics beyond it.
 The underlying principles of modern particle physics are presented in Section~\ref{sec:symmetry}, followed by the construction of the SM in Section~\ref{sec:SM}.
 Finally, the limitations of the SM and the motivations for physics beyond the Standard Model (BSM) are discussed in Section~\ref{sec:BSM},
@@ -21,22 +21,23 @@ each successful unification has marked a major milestone in our understanding of
 
 The pursuit of a common description of fundamental phenomena remains an ongoing effort in modern physics.
 Quantum field theory (QFT), which combines the principles of quantum mechanics, special relativity, and classical field theory,
-provides a consistent framework for describing particles and their interactions.
+provides a consistent framework for describing particles and their interactions~\cite{PeskinSchroeder,WeinbergQFT,Schwartz2014QFTSM}.
 Within QFT, fields are regarded as the fundamental entities, while particles emerge as quantised excitations of these fields.
 The dynamics and interactions of the fields are determined by an underlying Lagrangian, whose form is strongly constrained by symmetry principles.
-Physical observables in high-energy experiments are typically inferred from scattering and decay processes.
-In this context, the scattering matrix (S-matrix) provides a direct link between quantum field theory and experimentally measurable quantities, encoding the transition amplitudes between asymptotic in- and out-states of interacting particles.
+Crucially, QFT provides a direct link between theoretical principles and experimental observables. 
+Scattering and decay processes, the primary probes of particle physics, are encoded in the scattering matrix (S-matrix), which connects the idealized asymptotic states of the theory to the probabilities measured in detectors.
 
 \section{Symmetry as a Guiding Principle}
 \label{sec:symmetry}
 
 The idea that symmetry reflects an underlying order of nature has accompanied the development of physics since ancient times.
-In the context of quantum field theory, this notion acquires a precise mathematical meaning: symmetries govern the transformation properties of fields and severely restrict the possible forms of their interactions.
-As a result, symmetry principles provide the foundation upon which the Standard Model of particle physics is constructed.
+In the context of QFT, this notion acquires a precise mathematical meaning: symmetries govern the transformation properties of fields and severely restrict the possible forms of their interactions.
+% As a result, symmetry principles provide the foundation upon which the Standard Model of particle physics is constructed.
+Symmetries in quantum field theory can be broadly classified into two types: those acting on spacetime coordinates, and those acting on internal indices of fields.
 
 \subsection{Spacetime Symmetry}\label{subsec:spacetime}
 
-As a consequence of combining quantum mechanics and special relativity, fields in quantum field theory must transform covariantly under Lorentz transformations~\cite{PeskinSchroeder,WeinbergQFT}.
+As a consequence of combining quantum mechanics and special relativity, fields in QFT must transform covariantly under Lorentz transformations~\cite{PeskinSchroeder,WeinbergQFT}.
 In general, a Lorentz transformation acts on spacetime coordinates through the matrix $\Lambda^{\mu}{}_{\nu}$, and on fields through the finite-dimensional representation $D(\Lambda)$, such that
 
 \begin{align}
@@ -45,7 +46,7 @@ In general, a Lorentz transformation acts on spacetime coordinates through the m
 \end{align}
 
 The set of all linear transformations that leave the Minkowski metric invariant form the Lorentz group, denoted by $\mathrm{O}(1,3)$ (its proper orthochronous component is $\mathrm{SO}^+(1,3)$).
-The generators of the Lorentz group include rotations $J_i$ and boosts $K_i$ (with $i=1,2,3$), which satisfy the commutation relations~\cite{GroupTheoryForPhysicists} 
+The generators of the Lorentz group include rotations $J_i$ and boosts $K_i$ (with $i=1,2,3$), which satisfy the commutation relations
 
 \begin{align}
     [J_i,J_j] &= i\epsilon_{ijk}J_k, & 
@@ -69,14 +70,15 @@ one finds
 Hence, the irreducible representations of the Lorentz group can be labelled by two half-integers $(j_L,j_R)$, corresponding to the representations of the two $\mathrm{SU}(2)$ algebras.
 Variant fields can be classified according to these representations. For instance, scalar fields transform as $(0,0)$, left-handed and right-handed Weyl spinors as $(\tfrac{1}{2},0)$ and $(0,\tfrac{1}{2})$ respectively, Dirac spinors as $(\tfrac{1}{2},0)\oplus(0,\tfrac{1}{2})$, and vector fields as $(\tfrac{1}{2},\tfrac{1}{2})$.
 
-To be more robust, fields should also be invariant under translations in space and time in addition to Lorentz transformations, which together form the Poincaré group $\mathcal{P}=\mathbb{R}^{1,3} \rtimes \mathrm{SO}^+(1,3)$ as the full spacetime symmetry group in the SM and reveal a deeper structure of nature.
-The translation invariance of the generator $P^{\mu}$ implies its conservation via Noether's theorem, which corresponds to the conservation of energy and momentum.
+To be more robust, fields should also be invariant under translations in space and time in addition to Lorentz transformations, which together form the Poincaré group $\mathcal{P}=\mathbb{R}^{1,3} \rtimes \mathrm{SO}^+(1,3)$ as the full spacetime symmetry group of relativistic QFT and reveal a deeper structure of nature.
+The translation invariance of the generator $P^{\mu}$ implies its conservation via Noether's theorem~\cite{Noether1971}, which corresponds to the conservation of energy and momentum.
 The irreducible unitary representations of the Poincaré group classify one-particle states, which are labeled by two invariants: the mass $m$ and the spin $s$ (or helicity $h$ for massless particles).
 For massive particles, the spin quantum number is associated with the representation of the rotation subgroup, and is related to the Lorentz representation content through $s = j_L + j_R$.
 Thus, scalar fields have spin 0, Weyl and Dirac spinors have spin $\tfrac{1}{2}$, and vector fields have spin 1.
 When combined with the spin-statistics theorem, this leads to the physical distinction between bosons (integer spin) and fermions (half-integer spin).
 
-Additionally, locality and unitarity requirements in QFT further imply invariance under CPT symmetry, which states that the combined operations of charge conjugation (C), parity transformation (P), and time reversal (T) leave the physical laws unchanged~\cite{Luders1954,Pauli1955}.
+Additionally, locality and unitarity requirements in QFT further imply invariance under CPT symmetry, which states that the combined operations of charge conjugation (C), parity transformation (P), and time reversal (T) leave the physical laws unchanged~\cite{Luders1954,Pauli1955,StreaterWightman1989PCT}.
+An important consequence is that particles and antiparticles have equal masses and lifetimes—a prediction borne out to high precision in experiment.
 
 \subsection{Internal Symmetries and Gauge Theory}\label{subsec:internal}
 
@@ -86,7 +88,7 @@ We now take a look at the fields themselves. Internal symmetries act only on the
     \psi_a(x) &\;\rightarrow\; \psi'_a(x) = U_{ab}\, \psi_b(x),
 \end{align}
 
-where $U$ is a linear transformation. These symmetries can be global or local (gauge) symmetries~\cite{Noether1918}.
+where $U$ is a linear transformation. These symmetries can be global or local (gauge) symmetries.
 For global symmetries, the transformation $U$ is independent of spacetime position $x$. For instance, $\mathrm{U}(1)$ represents the Abelian single phase rotation and $\mathrm{SU}(N)$ represents the non-Abelian unitary rotation in an $N$-dimensional internal space with determinant 1.
 While global internal symmetries lead to conserved Noether currents, they do not constrain how the theory behaves under space-dependent transformations when $U=U(x)$.
 
@@ -136,14 +138,15 @@ Then we can write the covariantly invariant field-strength tensor as
     + g f^{abc} A_\mu^b A_\nu^c,
 \end{align}
 
-and the Yang--Mills Lagrangian density as~\cite{YangMills1954}
+The presence of the $f^{abc} A_\mu^b A_\nu^c$ term in the field strength leads to cubic and quartic self-interactions among the gauge bosons—a hallmark of non-Abelian gauge theories. 
+The gauge-invariant Yang-Mills Lagrangian is then constructed from the field strength as~\cite{YangMills1954}
 
 \begin{align}
 \mathcal{L}_{\mathrm{YM}}
     = -\frac{1}{4} F_{\mu\nu}^a F^{a\,\mu\nu}.
 \end{align}\label{Yang-Mills}
 
-The Yang--Mills construction applies to both Abelian and non-Abelian groups. For the simplest Abelian case, $\mathrm{U}(1)$, the structure constants vanish, so the field-strength tensor reduces to
+The Yang-Mills construction applies to both Abelian and non-Abelian groups. For the simplest Abelian case, $\mathrm{U}(1)$, the structure constants vanish, so the field-strength tensor reduces to
 
 \begin{align}
     F_{\mu\nu}
@@ -168,6 +171,7 @@ Combining the gauge-field kinetic term with the Dirac Lagrangian yields the Lagr
 \end{align}
 
 which describes the interaction between a charged fermion and the electromagnetic field.
+QED serves as the prototype for all gauge theories: an Abelian theory whose predictions have been verified to extraordinary precision.
 
 Before closing this section, it is worth emphasizing two theoretical principles that strongly constrain the form of gauge theories: locality and renormalisability.
 
@@ -177,6 +181,7 @@ This ensures a causal relativistic evolution and excludes non-local interactions
 
 Within the framework of renormalisable quantum field theories, additional constraints arise on the allowed operators appearing in the Lagrangian.
 In particular, restricting to operators of mass dimension four or less leads to a predictive and ultraviolet-complete description of interactions at accessible energy scales~\cite{tHooft1971}.
+Operators of dimension higher than four are suppressed by powers of a cutoff scale $\Lambda$, rendering the theory non-renormalisable and indicative of its status as an effective field theory valid only below $\Lambda$.
 In non-Abelian Yang--Mills theories, gauge invariance then forbids explicit mass terms for the gauge fields, resulting in a uniquely determined renormalisable structure such as that given in Eq.~\eqref{Yang-Mills}.
 Matter fields couple through dimension-four operators, for example $\bar{\psi}\gamma^\mu D_\mu\psi$, which preserve both gauge symmetry and renormalisability.
 
@@ -184,7 +189,7 @@ Matter fields couple through dimension-four operators, for example $\bar{\psi}\g
 
 We now arrive at the point where we can offer an official introduction to the Standard Model (SM),
 which provides a unified and experimentally successful description of elementary particles and their interactions.
-Formulated as a gauge-invariant and renormalisable quantum field theory, the SM incorporates gauge bosons, fermions, and the Higgs sector~\cite{Glashow1961,Weinberg1967,Salam1968,GIM1970}.
+Formulated as a gauge-invariant and renormalisable quantum field theory, the SM incorporates gauge bosons, fermions, and the Higgs sector~\cite{Glashow1961,Weinberg1967,Salam1968,GIM1970,BuchmullerLudeling2006SM}.
 
 \subsection{Gauge Fields}\label{subsec:bosons}
 
@@ -204,7 +209,7 @@ For the electroweak sector, the $\mathrm{SU}(2)_L$ generators $T^i$ ($i=1,2,3$) 
 After electroweak symmetry breaking, the physical bosons emerge as the charged $W^\pm$, the neutral $Z$, and the photon $\gamma$, which will further be discussed in Section~\ref{subsec:Higgs}.
 The $\mathrm{SU}(3)_C$ generators $t^a$ ($a=1,\dots,8$) correspond to eight gluon fields $G_\mu^a$, which mediate the strong interaction between coloured fermions. 
 More generally, the non-Abelian nature of the SM gauge groups implies that gauge bosons carry the corresponding charges and self-interact: both $\mathrm{SU}(2)_L$ and $\mathrm{SU}(3)_C$ exhibit boson self-couplings.
-In the strong sector, the specific structure of $\mathrm{SU}(3)_C$ and the running of its coupling give rise to asymptotic freedom at high energies and colour confinement at low energies in quantum chromodynamics (QCD).
+In the strong sector, the specific structure of $\mathrm{SU}(3)_C$ and the running of its coupling give rise to asymptotic freedom at high energies and colour confinement at low energies in quantum chromodynamics (QCD)~\cite{GrossWilczek1973AsymptoticFreedom,Politzer1973ReliablePerturbativeResults}.
 
 For reference, the gauge bosons of the Standard Model are listed in Table~\ref{tab:gauge-bosons}.
 
@@ -297,7 +302,7 @@ Similarly, mass terms of the form $\tfrac12 m^2 A_\mu A^\mu$ for the electroweak
 This raises an immediate question: how do the particles we observe in nature acquire mass?
 This apparent contradiction with experimental observations is resolved by the mechanism of spontaneous symmetry breaking (SSB),
 in which the Lagrangian is symmetric while the ground state is not.
-In the Standard Model, the electroweak symmetry $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is spontaneously broken via the Brout--Englert--Higgs mechanism.
+In the Standard Model, the electroweak symmetry $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is spontaneously broken via the Brout--Englert--Higgs mechanism~\cite{EnglertBrout1964BrokenSymmetry,Higgs1964BrokenSymmetries,GuralnikHagenKibble1964GlobalConservation}.
 Electroweak symmetry breaking (EWSB) is realised by introducing a complex scalar field $\phi = (\phi^+,\phi^0)^T$, transforming as an $\mathrm{SU}(2)_L$ doublet, known as the Higgs field, whose dynamics are described by the Lagrangian
 
 \begin{equation}
@@ -336,6 +341,7 @@ which leads to a nonzero vacuum expectation value (VEV) for the neutral componen
 \caption{
 The illustration of Higgs potential $V(\phi)$. 
 Point B represents the non-zero vacuum expectation value (VEV) of the field.
+Adapted from Ref.~\cite{TikZNetHiggsPotential}.
 }
 \label{fig:higgs_potential}
 
@@ -405,9 +411,8 @@ When the Higgs field acquires its vacuum expectation value $\langle \phi \rangle
 m_f = \frac{y_f v}{\sqrt{2}}.
 \end{equation}
 
-In the quark sector, the Yukawa couplings are generally non-diagonal in flavor space, 
-leading to mixing between different generations. 
-The misalignment between the up-type and down-type Yukawa matrices gives rise to the Cabibbo-Kobayashi-Maskawa (CKM) matrix $V_{\mathrm{CKM}}$, 
+In the quark sector, the Yukawa couplings are generally non-diagonal in flavor space, leading to mixing between different generations. 
+After rotating the quark fields to mass eigenstates, the misalignment between the up-type and down-type Yukawa matrices gives rise to the Cabibbo-Kobayashi-Maskawa (CKM) matrix~\cite{Cabibbo1963,KobayashiMaskawa1973}, 
 which appears in the charged weak interactions:
 
 \begin{equation}
@@ -434,10 +439,11 @@ Together with the gauge symmetry $G_{\mathrm{SM}}$ and the pattern of electrowea
 this Lagrangian defines the complete particle content and interaction structure of the Standard Model,
 which is schematically summarised in Fig.~\ref{fig:SM-table}.
 
-Gauge symmetry, renormalisability, and anomaly cancellation together impose strong theoretical constraints on the structure of the Standard Model, leaving remarkably little freedom in its formulation.
+The SM particle content is carefully arranged to ensure the cancellation of all gauge anomalies. This nontrivial condition relates the quantum numbers of quarks and leptons and partially explains the observed charge quantization.
+This anomaly cancellation together with gauge symmetry and renormalisability impose strong theoretical constraints on the structure of the Standard Model, leaving remarkably little freedom in its formulation.
 Within this framework, the particle content, interaction vertices, and symmetry-breaking pattern are largely fixed.
-Over several decades, an extensive programme of experimental tests—from deep inelastic scattering and flavour physics to precision electroweak measurements and Higgs coupling studies—has confirmed the predictions of the Standard Model to a high degree of accuracy.
-Despite this success, the Standard Model is widely regarded as an effective description valid up to a finite energy scale, motivating ongoing experimental and theoretical efforts to search for deviations and to explore physics beyond the Standard Model.
+Over several decades, an extensive programme of experimental tests has confirmed the predictions of the Standard Model to a high degree of accuracy. Key milestones include the discovery of weak neutral currents at Gargamelle~\cite{Hasert1973}, the observation of $W$ and $Z$ bosons at the SPS~\cite{UA1_1983,UA2_1983}, precision electroweak measurements at LEP and SLC~\cite{LEP2006}, the observation of the top quark at Tevatron~\cite{CDF1995, D01995}, the discovery of the Higgs boson at the LHC and subsequent precision studies of its couplings~\cite{ATLAS_CMS_Higgs2022}.
+% Despite this success, the Standard Model is widely regarded as an effective description valid up to a finite energy scale, motivating ongoing experimental and theoretical efforts to search for deviations and to explore physics beyond the Standard Model.
 
 \begin{figure}[!t]
     \centering
@@ -450,46 +456,81 @@ Despite this success, the Standard Model is widely regarded as an effective desc
 
 \section{Beyond the Standard Model}\label{sec:BSM}
 
-Dispite its tremendous success to match the experimental reults during decades, the Standard Model is known to be incomplete.
+Despite its tremendous success in matching experimental results over decades, the Standard Model is known to be incomplete.
 Thus, various extensions have been proposed to address its limitations and open questions.
 
 \subsection{Limitations of the Standard Model}\label{subsec:limitations}
 
-One of the most glaring omissions in the Standard Model is that the rest one fundimantal force over four, gravity, is not included.
-As the SM is a completely QFT under the framework of local gauge invariance, while gravity is best described by general relativity~\cite{Einstein1916GR}, a classical theory of curved spacetime.
-Any attempt to quantise gravity in a straightforward manner leads to a non-renormalisable theory, indicating that a more profound framework is needed to unify gravity with the other forces.
-Another missing piece is dark matter and dark energy, which together constitute about 95\% of the total energy density of the universe and have been firmly established through astrophysical and cosmological observations~\cite{Begeman1991RotationCurves,PlanckXVI2014CosmologicalParameters}.
-However, the SM does not contain any viable dark matter candidates, nor does it provide an explanation for the observed accelerated expansion of the universe attributed to dark energy.
+One of the most evident omissions of the Standard Model is that it
+does not incorporate gravity. While the SM is formulated as a quantum
+field theory based on local gauge symmetries, gravity is described by
+general relativity~\cite{Einstein1916GR}, a classical theory of curved
+spacetime. A straightforward quantisation of gravity leads to a
+non-renormalisable theory, indicating that a more fundamental
+framework is required to unify gravity with the other interactions.
+Astrophysical and cosmological observations also reveal that ordinary
+baryonic matter constitutes only a small fraction of the total energy
+density of the Universe, while dark matter and dark energy together
+account for about 95\% of it~\cite{Begeman1991RotationCurves,PlanckXVI2014CosmologicalParameters}.
+However, the SM contains no viable dark matter candidate and provides
+no explanation for the accelerated expansion of the Universe.
 
-There exists some anomalies in our observations that hint at physics beyond the Standard Model.
-For instance, the neutrino oscillation experiments have demonstrated that neutrinos have small but non-zero masses~\cite{Fukuda1998NeutrinoOscillation}, which cannot be accommodated within the minimal SM framework.
-In the other hand, as the fact of our universe being matter-dominated, the SM fails to explain the observed baryon asymmetry.
-Explaining this asymmetry requires satisfying the Sakharov conditions~\cite{Sakharov:1967dj}: baryon number violation, C and CP violation, and departure from thermal equilibrium.
-While the Standard Model provides sources of CP violation via the CKM matrix, these effects are far too small to account for the observed baryon asymmetry.
-In addition, the electroweak phase transition is not strongly first-order, preventing the necessary out-of-equilibrium conditions. As a result, the SM falls short by many orders of magnitude,
-motivating extensions that can enhance CP violation or modify the electroweak dynamics.
+Several experimental observations further indicate physics beyond the
+Standard Model. Neutrino oscillation experiments have demonstrated
+that neutrinos possess small but non-zero masses~\cite{Fukuda1998NeutrinoOscillation},
+which cannot be accommodated within the minimal SM. In addition,
+the observed baryon asymmetry of the Universe requires mechanisms
+satisfying the Sakharov conditions~\cite{Sakharov:1967dj}: baryon
+number violation, C and CP violation, and departure from thermal
+equilibrium. Although the SM contains CP violation through the CKM
+matrix, it is insufficient to explain the observed asymmetry.
 
-The SM also remains puzzling in several theoretical aspects, one of which is the hierarchy problem.
-The hierarchy problem concerns the stability of the electroweak scale in the presence of much higher fundamental energy scales.
-While the Standard Model (SM) successfully describes particle interactions up to the TeV scale, it does not explain why the electroweak scale, $v \simeq 246~\mathrm{GeV}$, is so much smaller than the Planck scale, $M_{\mathrm{Pl}} \sim 10^{19}~\mathrm{GeV}$.
-The problem arises because the Higgs boson, unlike fermions or gauge bosons, is unprotected by any symmetry and thus receives large radiative corrections: 
+The Standard Model also faces theoretical challenges, notably the
+hierarchy problem~\cite{Veltman1981,PeskinHierarchy}. While the SM
+successfully describes particle interactions at currently accessible
+energies, it does not explain why the electroweak scale,
+$v \simeq 246~\mathrm{GeV}$, is vastly smaller than the Planck scale,
+$M_{\mathrm{Pl}} \sim 10^{19}~\mathrm{GeV}$. The Higgs boson receives
+large radiative corrections to its mass parameter. At one loop the
+quadratically divergent correction can be written schematically as
 
-\begin{equation} 
-    \delta m_H^2 \sim \frac{1}{16\pi^2} (6\lambda + \frac{9}{4}g^2 + \frac{3}{4}g'^2 - 6y_t^2)\Lambda^2, 
-\end{equation} 
+\begin{equation}
+\delta m_H^2 \sim
+\frac{\Lambda^2}{16\pi^2}
+\left(
+6\lambda + \frac{9}{4}g^2 + \frac{3}{4}g'^2 - 6y_t^2
+\right),
+\end{equation}
 
-where $\Lambda$ is the cutoff scale. The top-quark contribution dominates due to its large Yukawa coupling.
-Maintaining the physical Higgs mass at $125~\mathrm{GeV}$ requires a precise cancellation between the bare mass and quantum corrections if $\Lambda$ is very high, which is considered theoretically unnatural.
-This suggests that new physics should appear near the TeV scale to stabilise the Higgs mass.
+where $\Lambda$ denotes the cutoff scale of the theory. The
+top-quark contribution dominates due to its large Yukawa coupling.
+If the SM remains valid up to very high scales such as the Planck
+scale, maintaining the observed Higgs boson mass
+$m_H \simeq 125~\mathrm{GeV}$ requires a delicate cancellation between
+the bare mass parameter and the quantum corrections, leading to a
+fine-tuning problem. More broadly, this issue may be viewed as
+encompassing three related aspects: the large hierarchy between the
+electroweak and Planck scales, the special status of scalar fields
+whose masses are not protected by symmetries, and the so-called
+``little hierarchy problem'' associated with the absence of new
+physics at the TeV scale~\cite{PeskinHierarchy}. Taken together,
+these considerations have long motivated the expectation that new
+physics may appear near the TeV scale.
 
 \subsection{Two-Higgs-Doublet Model}\label{subsec:2HDM}
 
-The Two-Higgs-Doublet Model (2HDM) represents one of the simplest and best--motivated extensions of the Standard Model scalar sector. 
-Its most prominent theoretical motivation arises from supersymmetry, where the Higgs fields belong to chiral supermultiplets and holomorphy of the superpotential forbids a single Higgs doublet from simultaneously generating masses for up- and down-type fermions. 
-In addition, anomaly cancellation requires the presence of a second Higgs doublet, making an extended Higgs sector unavoidable in the Minimal Supersymmetric Standard Model. 
-Further motivation for 2HDMs comes from solutions to the strong CP problem, such as Peccei-Quinn axion models, in which the implementation of a global $U(1)$ symmetry necessitates two Higgs doublets in the low--energy effective theory. 
-Finally, the extended scalar sector of 2HDMs allows for additional sources of CP violation and a more flexible scalar mass spectrum, providing favorable conditions for electroweak baryogenesis. 
-Together, these considerations establish the 2HDM as a minimal yet well--motivated framework for exploring physics beyond the Standard Model.
+The Two-Higgs-Doublet Model (2HDM~\cite{Branco:2011iw}) represents one of the simplest and
+best-motivated extensions of the SM scalar sector.
+One of the strongest theoretical motivations for the Two-Higgs-Doublet
+Model arises from supersymmetry, where two Higgs doublets are required
+both to generate masses for up- and down-type fermions and to ensure
+anomaly cancellation in the Minimal Supersymmetric Standard Model
+Furthermore, the extended scalar sector can provide additional
+sources of CP violation that may enable electroweak baryogenesis~\cite{Branco:2011iw}.
+Additional motivation arises in Peccei--Quinn axion models addressing
+the strong CP problem~\cite{Peccei:1977hh,Peccei:1977ur}.
+Together, these considerations establish the 2HDM as a minimal yet
+well-motivated framework for exploring physics beyond the Standard Model.
 
 The 2HDM extends the Standard Model by introducing two complex
 $\mathrm{SU}(2)_L$ scalar doublets with hypercharge $Y=+1/2$,
@@ -501,14 +542,33 @@ $\mathrm{SU}(2)_L$ scalar doublets with hypercharge $Y=+1/2$,
 \end{pmatrix},
 \qquad i = 1,2,
 \]
-whose vacuum expectation values satisfy $v^2 \equiv v_1^2 + v_2^2 = (246~\mathrm{GeV})^2$.
+whose vacuum expectation values satisfy
+\[
+v^2 \equiv v_1^2 + v_2^2 = (246~\mathrm{GeV})^2 .
+\]
 It is customary to define the ratio of the two vacuum expectation values as
 $\tan\beta \equiv v_2 / v_1$.
 
-After electroweak symmetry breaking, the scalar degrees of freedom rearrange into physical mass eigenstates through mixing among the fields from the two doublets.
-The charged scalar fields $\phi_1^\pm$ and $\phi_2^\pm$ mix to form a pair of physical charged Higgs bosons $H^\pm$ and the charged Goldstone bosons $G^\pm$, 
-while the neutral CP-odd fields $\eta_1$ and $\eta_2$ mix into the pseudoscalar Higgs boson $A$ and the neutral Goldstone boson $G^0$.
-In the CP-even sector, the neutral fields $\rho_1$ and $\rho_2$ mix to form two physical scalar mass eigenstates, conventionally denoted by $h$ and $H$,
+The most general renormalisable scalar potential involving the two
+doublets contains several quadratic and quartic couplings as well as
+possible soft symmetry-breaking terms.
+In phenomenological studies it is common to trade these parameters for
+the physical Higgs masses, the mixing angles $\alpha$ and $\beta$,
+and the soft-breaking scale.
+
+After electroweak symmetry breaking, the eight scalar degrees of
+freedom contained in the two doublets reorganise into five physical
+Higgs bosons and three Goldstone bosons absorbed by the electroweak
+gauge bosons.
+The charged scalar fields $\phi_1^\pm$ and $\phi_2^\pm$ mix to form a
+pair of physical charged Higgs bosons $H^\pm$ and the charged
+Goldstone bosons $G^\pm$, while the neutral CP-odd fields $\eta_1$
+and $\eta_2$ mix into the pseudoscalar Higgs boson $A$ and the
+neutral Goldstone boson $G^0$.
+
+In the CP-even sector, the neutral fields $\rho_1$ and $\rho_2$
+mix to form two physical scalar mass eigenstates, conventionally
+denoted by $h$ and $H$,
 \[
 \begin{pmatrix}
 H \\
@@ -525,9 +585,15 @@ h
 \end{pmatrix},
 \]
 where $\alpha$ is the CP-even Higgs mixing angle.
-The particle $h$ is identified with the observed Higgs boson with a mass of approximately $125~\mathrm{GeV}$, while $H$, $A$, and $H^\pm$ correspond to additional scalar states predicted by the 2HDM.
+The lighter CP-even state $h$ is typically identified with the
+observed Higgs boson with a mass of approximately $125~\mathrm{GeV}$, while $H$, $A$, and
+$H^\pm$ correspond to additional scalar states predicted by the
+2HDM.
 
-The interactions between the Higgs doublets and fermions are described by the Yukawa sector. In the most general renormalisable form, both Higgs doublets can couple to a given fermion species, leading to
+The interactions between the Higgs doublets and fermions are
+described by the Yukawa sector.
+In the most general renormalisable form, both Higgs doublets can
+couple to a given fermion species, leading to
 \[
 \begin{aligned}
 \mathcal{L}_\text{Yukawa} =\;&
@@ -538,16 +604,23 @@ The interactions between the Higgs doublets and fermions are described by the Yu
 \end{aligned}
 \]
 where $\tilde{\Phi}_i = i \sigma_2 \Phi_i^\ast$.
-In this general case, tree-level flavour-changing neutral currents arise after electroweak symmetry breaking. 
-To avoid this, a discrete $\mathbb{Z}_2$ symmetry is commonly imposed, ensuring that each fermion type couples to only one Higgs doublet, a condition known as natural flavour conservation.
+In this general case, tree-level flavour-changing neutral currents
+(FCNCs) arise after electroweak symmetry breaking.
+To avoid this, a discrete $\mathbb{Z}_2$ symmetry is commonly
+imposed, ensuring that each fermion type couples to only one
+Higgs doublet, a condition known as natural flavour conservation.
 
-Imposing such a symmetry leads to several phenomenologically distinct realisations of the 2HDM, classified according to the Higgs doublet responsible for generating the masses of different fermion species. 
-The commonly considered Yukawa types are summarized in Table~\ref{tab:2hdm_yukawa_types}.
+Imposing such a symmetry leads to several phenomenologically
+distinct realisations of the 2HDM, classified according to the
+Higgs doublet responsible for generating the masses of different
+fermion species.
+The commonly considered Yukawa types are summarised in
+Table~\ref{tab:2hdm_yukawa_types}.
 
 \begin{table}[htbp]
 \centering
-\caption{Yukawa coupling structures in the 2HDM obtained by imposing a discrete
-$\mathbb{Z}_2$ symmetry to avoid tree-level flavour-changing neutral currents.}
+\caption{Yukawa coupling assignments in 2HDMs with natural flavour
+conservation obtained by imposing a discrete $\mathbb{Z}_2$ symmetry.}
 \begin{tabular}{c|ccc}
 \hline
 Type & Up-type quarks & Down-type quarks & Charged leptons \\
@@ -561,7 +634,9 @@ Type-Y (Flipped) & $\Phi_2$ & $\Phi_1$ & $\Phi_2$ \\
 \label{tab:2hdm_yukawa_types}
 \end{table}
 
-In this thesis we focus on the Type-II 2HDM, in which up-type quarks couple exclusively to $\Phi_2$, while down-type quarks and charged leptons couple to $\Phi_1$. 
+In this thesis we focus on the Type-II 2HDM, in which up-type quarks
+couple exclusively to $\Phi_2$, while down-type quarks and charged
+leptons couple to $\Phi_1$.
 The corresponding Yukawa Lagrangian is given by
 \[
 \mathcal{L}_\text{Yukawa}^{\text{Type-II}} =
@@ -570,6 +645,7 @@ The corresponding Yukawa Lagrangian is given by
 - \bar{L}_L Y_\ell \Phi_1 \ell_R
 + \text{h.c.}.
 \]
+
 After electroweak symmetry breaking, the fermion masses are generated as
 \[
 m_u = \frac{Y_u v_2}{\sqrt{2}}, \qquad
@@ -578,52 +654,100 @@ m_\ell = \frac{Y_\ell v_1}{\sqrt{2}},
 \]
 making the dependence on $\tan\beta$ explicit.
 
-Current Higgs measurements indicate that the observed $125~\mathrm{GeV}$ Higgs boson closely resembles the Standard Model Higgs, which corresponds in the 2HDM to the alignment limit $\cos(\beta-\alpha) \to 0$.
-
-In this regime, while the couplings of the light Higgs $h$ approach their SM values, the Yukawa couplings of the heavier neutral Higgs bosons $H$ and $A$ to up-type quarks can be significantly enhanced, 
-scaling approximately as $1/\tan\beta$ in the Type-II scenario\cite{Hajer:2015gka}. As a result, processes involving top quarks provide a particularly sensitive probe of the extended Higgs sector, motivating searches in multi-top final states.
+Current Higgs measurements indicate that the observed
+$125~\mathrm{GeV}$ Higgs boson closely resembles the Standard Model
+Higgs, which corresponds in the 2HDM to the alignment limit
+$\sin(\beta-\alpha) \to 1$.
+In this regime the couplings of the light Higgs boson $h$ approach
+their SM values.
+For the heavier neutral Higgs bosons $H$ and $A$, the Yukawa
+couplings depend strongly on $\tan\beta$.
+In the Type-II scenario the couplings to up-type quarks scale
+approximately as $1/\tan\beta$, while those to down-type fermions
+scale as $\tan\beta$.
+Consequently, at small values of $\tan\beta$ the interactions with
+top quarks can become significantly enhanced.
+Processes involving top quarks therefore provide a particularly
+sensitive probe of the extended Higgs sector, motivating searches
+in multi-top final states.
 
 \subsection{Top-Philic Simplified Models}\label{subsec:S1/S8}
 
-The top quark occupies a unique position within the Standard Model (SM) which will be detailed discussed in Section~\ref{sec:four-tops}.
-As a result, many theories extending the SM predict new degrees of freedom that couple preferentially to the top quark.
-From an experimental perspective, processes involving multiple top quarks probe the highest energy scales accessible at the LHC and therefore provide a sensitive window to such new physics effects.
+The top quark occupies a unique position within the SM, 
+as will be discussed in more detail in Section~\ref{sec:four-tops}. 
+With a mass close to the electroweak symmetry-breaking scale, the top quark 
+is expected to play a special role in many theories extending the SM. 
+Consequently, a wide range of new-physics scenarios predict additional 
+degrees of freedom that couple preferentially to the top quark. 
+From an experimental perspective, processes involving multiple top quarks 
+probe the highest energy scales accessible at the Large Hadron Collider (LHC) 
+and therefore provide a particularly sensitive window to such interactions.
 
-While a variety of ultraviolet (UV) complete models motivate new interactions in the top sector, their detailed structures are often too model-dependent to be directly confronted with collider data.
-On the other hand, the Standard Model Effective Field Theory (SMEFT) description relies on the assumption that the new physics scale is far above the energy probed at the LHC,
-an assumption that is not necessarily valid in multi-top final states where the typical partonic centre-of-mass energy can reach the TeV scale.
-In this regime, the EFT expansion may break down and fail to capture resonant or kinematic effects associated with new particles.
+While many ultraviolet (UV) complete models predict new interactions in the~\cite{BattagliaServant2010FourTop,LillieShuTait2008TopCompositeness,Gerbush2008ColorOctet,SalamStrathdee1975SUSYFermionNumber}
+top sector, their detailed particle content and coupling structures are often 
+too model-dependent to be directly tested at colliders. 
+An alternative description is provided by the Standard Model Effective Field 
+Theory (SMEFT), where the effects of heavy new physics are parametrised through 
+higher-dimensional operators~\cite{Agram2013TopAnomalous,DHondt2018PinpointOperators,Banelli2021FourTopOperators}. 
+However, the SMEFT expansion assumes that the characteristic new-physics scale 
+is significantly larger than the typical energy scale probed by the process. 
+In multi-top final states, the partonic centre-of-mass energy can reach the 
+TeV scale, and the validity of the EFT expansion may therefore become questionable. 
+In this regime, the EFT approach may fail to capture resonant or kinematic 
+effects associated with the direct production of new particles.
 
-To bridge this gap, top-philic simplified models are introduced as an intermediate theoretical framework. 
-These models aim to capture the leading phenomenological consequences of a broad class of UV theories by retaining only the minimal set of new degrees of freedom that are relevant for LHC observables. 
-In practice, this amounts to extending the SM particle content by a single heavy mediator that couples predominantly to the top quark, while maintaining the SM gauge symmetries and a controlled number of free parameters.
+To bridge the gap between UV-complete models and the EFT description, 
+top-philic simplified models provide a convenient intermediate framework~\cite{Darme:2021gtt}. 
+These models aim to capture the leading phenomenological consequences of a 
+broad class of theories by introducing only the minimal set of new degrees of 
+freedom relevant for collider observables. 
+In practice, the SM particle content is extended by a single heavy mediator 
+that couples predominantly to top quarks, while the number of free parameters 
+is kept small to maintain a transparent interpretation of experimental results.
 
-The construction of top-philic simplified models is guided by general symmetry considerations. 
-Requiring invariance under the Standard Model gauge group and renormalisable interactions with top-quark bilinears restricts the new mediator to be either a scalar or a vector particle, transforming as a colour singlet or colour octet. 
-This leads to four generic classes of top-philic mediators: scalar singlets ($S_1$), scalar octets ($S_8$), vector singlets ($V_1$), and vector octets ($V_8$).
+The construction of these models is guided by general symmetry considerations. 
+Requiring invariance under the residual gauge symmetry 
+$SU(3)_\mathrm{C} \times U(1)_\mathrm{em}$ and renormalisable interactions 
+with top-quark bilinears restricts the mediator to be either a scalar or a 
+vector particle transforming as a colour singlet or colour octet. 
+This leads to four generic classes of top-philic mediators: scalar singlets 
+($S_1$), scalar octets ($S_8$), vector singlets ($V_1$), and vector octets ($V_8$).
 
-At the Lagrangian level, the interactions between a scalar mediator and the top quark can be written in the general form
+At the Lagrangian level, the interaction between a scalar mediator and the 
+top quark can be written as
 \begin{equation}
-\mathcal{L}_{\text{scalar}} \supset 
-- \frac{1}{2} m_S^2 S^a S^a
-- y_t \, S^a \, \bar{t} \, T^a \, (\cos\phi + i \gamma_5 \sin\phi) \, t ,
+\mathcal{L}_{\text{scalar}} \supset
+-\frac{1}{2} m_S^2 S S
+- y_S\, S\, \bar{t}\left(\cos\phi + i\gamma_5\sin\phi\right)t ,
 \end{equation}
-where $T^a$ denotes the generator of $SU(3)_C$, with $T^0=\mathbf{1}$ for a colour singlet and $T^a$ ($a=1,\ldots,8$) for a colour octet. 
-The mixing angle $\phi$ parametrises the relative scalar and pseudoscalar components of the interaction.
-
-For a vector mediator, the corresponding interaction is given by
+for a colour-singlet mediator. 
+For a colour-octet scalar $S^a$, the interaction involves the generators 
+$T^a$ of $SU(3)_\mathrm{C}$,
 \begin{equation}
-\mathcal{L}_{\text{vector}} \supset 
-- \frac{1}{4} V^a_{\mu\nu} V^{a\,\mu\nu}
+\mathcal{L}_{\text{scalar}} \supset
+-\frac{1}{2} m_S^2 S^a S^a
+- y_S\, S^a\, \bar{t}T^a\left(\cos\phi + i\gamma_5\sin\phi\right)t .
+\end{equation}
+The mixing angle $\phi$ parametrises the relative scalar and pseudoscalar 
+components of the interaction.
+
+For a vector mediator, the interaction with the top quark can be written as
+\begin{equation}
+\mathcal{L}_{\text{vector}} \supset
+-\frac{1}{4} V^a_{\mu\nu} V^{a\,\mu\nu}
 + \frac{1}{2} m_V^2 V^a_\mu V^{a\,\mu}
-+ g_t \, V^a_\mu \, \bar{t} \gamma^\mu 
-( c_L P_L + c_R P_R ) \, T^a \, t ,
++ g_t\, V^a_\mu\, \bar{t}\gamma^\mu
+(c_L P_L + c_R P_R) T^a t ,
 \end{equation}
-where $P_{L,R}$ are the chirality projection operators, and the parameters $c_L$ and $c_R$ control the chiral structure of the coupling.
+where $P_{L,R}$ denote the chirality projection operators and the parameters 
+$c_L$ and $c_R$ determine the chiral structure of the interaction. 
+For colour-singlet mediators, the generator $T^a$ is replaced by the identity.
 
-The four classes of mediators considered in this work are summarised in Table~\ref{tab:mediators}. 
-Together, these simplified models provide a minimal and systematic parameterisation of possible new physics effects in the top sector, 
-while keeping the number of free parameters small and the interpretation of experimental results transparent.
+The four classes of mediators considered in this work are summarised in 
+Table~\ref{tab:mediators}. 
+Together, these simplified models provide a minimal and systematic 
+parameterisation of possible new physics effects in the top sector while 
+keeping the number of free parameters small.
 
 \begin{table}[htbp]
 \centering
@@ -631,19 +755,29 @@ while keeping the number of free parameters small and the interpretation of expe
 \hline
 Mediator & Spin & Colour & Coupling to top quark \\
 \hline
-$S_1$ & 0 & 1 & $y_t \, S\,\bar{t}(\cos\phi + i\gamma_5\sin\phi)t$ \\
-$S_8$ & 0 & 8 & $y_t \, S^a\,\bar{t}T^a(\cos\phi + i\gamma_5\sin\phi)t$ \\
-$V_1$ & 1 & 1 & $g_t \, V_\mu\,\bar{t}\gamma^\mu(c_LP_L+c_RP_R)t$ \\
-$V_8$ & 1 & 8 & $g_t \, V^a_\mu\,\bar{t}\gamma^\mu(c_LP_L+c_RP_R)T^a t$ \\
+$S_1$ & 0 & 1 & $y_S\,S\,\bar{t}(\cos\phi+i\gamma_5\sin\phi)t$ \\
+$S_8$ & 0 & 8 & $y_S\,S^a\,\bar{t}T^a(\cos\phi+i\gamma_5\sin\phi)t$ \\
+$V_1$ & 1 & 1 & $g_t\,V_\mu\,\bar{t}\gamma^\mu(c_LP_L+c_RP_R)t$ \\
+$V_8$ & 1 & 8 & $g_t\,V^a_\mu\,\bar{t}\gamma^\mu(c_LP_L+c_RP_R)T^a t$ \\
 \hline
 \end{tabular}
-\caption{Classification of top-philic simplified models considered in this work.}
+\caption{Classification of top-philic simplified mediators considered in this work.}
 \label{tab:mediators}
 \end{table}
 
-In the limit where the mediator mass is taken to be much larger than the characteristic energy scale of the process, 
-these simplified models can be matched onto higher-dimensional four-fermion operators in the EFT description. 
-However, for mediator masses in the TeV range, which are directly accessible at the LHC, it is essential to retain the explicit mediator degrees of freedom.
+A key phenomenological difference between colour-singlet and colour-octet 
+mediators arises from their production mechanisms at hadron colliders. 
+While colour-singlet states are produced primarily through their couplings 
+to top quarks, colour-octet mediators can additionally be pair-produced via 
+QCD interactions, leading to potentially larger production cross-sections.
+
+In the limit where the mediator mass is much larger than the characteristic 
+energy scale of the process, these simplified models can be matched onto 
+higher-dimensional four-fermion operators in the EFT description. 
+However, for mediator masses in the TeV range, which are directly accessible 
+at the LHC, it is essential to retain the explicit mediator degrees of freedom 
+in order to correctly describe resonant production and the associated 
+kinematic features.
 
 \section{Top Quarks and Four-Tops Production}
 \label{sec:four-tops}
@@ -666,7 +800,7 @@ the key properties of the top quark are briefly summarised.
 \subsection{Top-quark properties}
 \label{subsec:top_properties}
 
-The top quark was discovered in 1995 by the CDF and D0 collaborations at the Fermilab Tevatron,
+The top quark was discovered in 1995 by the CDF~\cite{CDF1995} and D0~\cite{D01995} collaborations at the Fermilab Tevatron,
 completing the third generation of quarks predicted by the Standard Model.
 Its discovery confirmed the quark-sector structure of the Standard Model
 and revealed a fermion with a mass unexpectedly close to the electroweak scale.
@@ -716,7 +850,7 @@ as discussed in the following sections.
 The production of four top quarks, $pp \to t\bar{t}t\bar{t}$, constitutes one of the rarest processes predicted by the Standard Model at the Large Hadron Collider.
 Its small production rate is a consequence of both the large energy threshold required to produce four heavy quarks and the high perturbative order involved.
 Despite its rarity, four-tops production occupies a unique position in collider phenomenology, 
-as it probes the top quark sector at the highest accessible energy scales and is simultaneously sensitive to strong, electroweak, and Yukawa interactions.
+as it probes the top quark sector at the highest accessible energy scales and is simultaneously sensitive to strong, electroweak, and Yukawa interactions~\cite{Blekman2022FourTopLHC}.
 
 At leading order, four-tops production proceeds predominantly through QCD-mediated processes. 
 Representative Feynman diagrams include gluon exchange, top-quark exchange, and box-type topologies. 
@@ -835,13 +969,13 @@ In Figure~\ref{fig:four-tops-schematic}, two representative diagrams are illustr
 Although the Higgs-mediated contribution represents only a small fraction of the total cross section, it introduces a direct dependence on the top Yukawa coupling.
 As a result, four-tops production provides a complementary probe of the top-Higgs interaction beyond processes such as inclusive $t\bar{t}$ or associated $t\bar{t}H$ production.
 
-Next-to-leading-order calculations predict a Standard Model cross section of approximately $\sigma(pp \to t\bar{t}t\bar{t}) = 13.4^{+1.0}_{-1.8}~\mathrm{fb}$ at a centre-of-mass energy of $\sqrt{s}=13~\mathrm{TeV}$.
+Next-to-leading-order calculations predict a Standard Model cross section of approximately $\sigma(pp \to t\bar{t}t\bar{t}) = 13.4^{+1.0}_{-1.8}~\mathrm{fb}$ at a centre-of-mass energy of $\sqrt{s}=13~\mathrm{TeV}$~\cite{vanBeekveld:2022hty}.
 This value is more than four orders of magnitude smaller than the inclusive $t\bar{t}$ production cross section, highlighting the experimental challenges associated with observing this process.
 
 \subsection{BSM Contributions to Four-Tops Production}
 
 The four-tops final state is particularly sensitive to new physics scenarios that feature enhanced couplings to the top quark. 
-In the following, two representative models introduced earlier in this thesis are discussed: the two-Higgs-doublet model (2HDM) with heavy neutral scalars, and models containing a colour-octet scalar (sgluon).
+In the following, two representative models introduced earlier in this thesis are discussed: the two-Higgs-doublet model (2HDM) with heavy neutral scalars, and models containing a colour-octet scalar ($S_{8}$).
 Their characteristic contributions to four-tops production are illustrated in Fig.~\ref{fig:bsm_4top_feynman}.
 
 \paragraph{Four-Tops production in 2HDM.}
@@ -853,35 +987,33 @@ This contribution is strongly enhanced by the large top Yukawa coupling. In part
 the couplings of \(H/A\) to top quarks can be significantly increased, especially at low values of \(\tan\beta\).
 When the heavy scalar mass satisfies \(m_{H/A} > 2m_t\), the decay \(H/A \to t\bar{t}\) becomes dominant, leading to a resonant enhancement of the four-tops production cross section.
 
-\paragraph{Four-top production via sgluons.}
+\paragraph{Four-top production via $S_{8}$.}
 \label{sec:sgluon_tttt}
 
-Models containing a colour-octet scalar \(S_8\), commonly referred to as a
-\textit{sgluon}, predict a particle transforming in the adjoint representation
-of \(\mathrm{SU}(3)_\mathrm{c}\) and therefore interacting strongly with gluons.
-
-As illustrated in Fig.~\ref{fig:sgluontotttt}, pairs of sgluons can be produced efficiently at the LHC through
+The $S_{8}$ transforms in the adjoint representation
+of \(\mathrm{SU}(3)_\mathrm{c}\) and therefore interacts strongly with gluons.
+As illustrated in Fig.~\ref{fig:sgluontotttt}, pairs of $S_{8}$s can be produced efficiently at the LHC through
 gluon--gluon fusion and quark--antiquark annihilation,
 \(pp \rightarrow S_8 S_8\).
 Owing to the strong production mechanism, the production cross section
 is largely determined by QCD interactions and depends mainly on the
-sgluon mass.
-If the sgluon couples preferentially to top quarks,
+$S_{8}$ mass.
+If the $S_{8}$ couples preferentially to top quarks,
 its dominant decay mode is \(S_8 \rightarrow t\bar{t}\).
 The pair production process therefore leads to a four-top final state
 \(pp \rightarrow S_8 S_8 \rightarrow t\bar{t}t\bar{t}\).
 
-In simplified models, the coupling of the sgluon to top quarks is
+In simplified models, the coupling of the $S_{8}$ to top quarks is
 parameterised by a Yukawa-like coupling \(y_{S_8}\).
 For moderate values of this coupling, the dominant contribution to the
-four-top final state arises from sgluon pair production followed by the
+four-top final state arises from $S_{8}$ pair production followed by the
 decay \(S_8\rightarrow t\bar{t}\).
 Additional processes such as associated production
 (\(pp \rightarrow t\bar{t}S_8\)) and interference with the Standard Model
 background are typically subleading for \(y_{S_8}\lesssim 0.1\).
 
 In contrast to the 2HDM case, where four-top production arises from the
-decay of a single heavy resonance, the sgluon scenario involves the
+decay of a single heavy resonance, the $S_{8}$ scenario involves the
 on-shell production of two heavy coloured particles.
 The resulting topology therefore features two resonant
 \(t\bar{t}\) systems and typically exhibits large hadronic activity and
@@ -982,10 +1114,10 @@ high jet multiplicity in the final state.
 
 \end{feynman}
 \end{tikzpicture}
-\caption{Sgluon pair production, each \(S_8 \to t\bar t\).}
+\caption{$S_{8}$ pair production, each \(S_8 \to t\bar t\).}
 \label{fig:sgluontotttt}
 \end{subfigure}
 
-\caption{BSM contributions to four-tops production: (left) 2HDM heavy scalar \(H/A\); (right) sgluon pair decay.}
+\caption{BSM contributions to four-tops production: (left) 2HDM heavy scalar \(H/A\); (right) $S_{8}$ pair decay.}
 \label{fig:bsm_4top_feynman}
 \end{figure}

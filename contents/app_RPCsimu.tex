@@ -1,0 +1,209 @@
+% !TEX root = ../main.tex
+\chapter{Supplementary Material for the RPC Optimisation Study}
+
+\label{chap:rpc_appendix}
+
+This appendix provides additional technical details for the RPC
+design optimisation study summarised in
+Section~\ref{sec:rpc_optimisation}. It includes a detailed
+description of the detector geometry, the multi-physics simulation
+framework, and the prototype construction and performance
+evaluation. The material presented here follows closely the results
+published in Ref.~\cite{Mao2021JINST_RPC}.
+
+\section{Detector Geometry and Spacer Configurations}
+
+The studied glass RPC consists of two electrodes of size
+$1\times1~\si{m^2}$, with thicknesses of
+\SI{0.7}{\milli\metre} (anode) and
+\SI{1.1}{\milli\metre} (cathode). The gas gap between the electrodes
+is \SI{1.2}{\milli\metre} wide and is maintained by cylindrical
+nylon spacers with a diameter of \SI{8}{\milli\metre}.
+
+The chamber is enclosed by FR4 walls and sealed using silicone-based
+glue. Gas is injected and extracted through pipes located at
+opposite corners, with two inlet pipes and four outlet pipes to
+avoid over-pressure effects. Gas distribution is further improved
+using perforated \textsf{PEEK} gas guides positioned near the inlet
+and outlet.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{RPC_images/RPC.png}
+    \caption{Schematic cross section of the glass RPC.}
+    \label{fig:rpc_appendix_geometry}
+\end{figure}
+
+Two spacer configurations are considered: a reference design with
+a regular $10\times10$ grid (100 spacers), and an optimised
+shifted-spacer configuration with 76 spacers arranged in a staggered
+pattern. The central region of the chamber is used for quantitative
+comparison in order to minimise boundary effects.
+
+\section{Multi-Physics Simulation Framework}
+
+The optimisation study is based on coupled multi-physics simulations
+performed using \textsc{COMSOL Multiphysics}. The model combines gas
+flow, electrostatics and structural mechanics in a self-consistent
+framework.
+
+\subsection{Gas Flow Modelling}
+
+The gas flow inside the chamber is described by the incompressible
+Navier--Stokes equations:
+\begin{equation}
+\rho(\boldsymbol{u}\cdot\nabla)\boldsymbol{u}
+= \nabla\cdot\left[-p\boldsymbol{I}
++ \mu(\nabla\boldsymbol{u}+(\nabla\boldsymbol{u})^{T})\right]
++ \boldsymbol{F},
+\end{equation}
+\begin{equation}
+\nabla\cdot\boldsymbol{u} = 0.
+\end{equation}
+
+No-slip boundary conditions are applied at the chamber walls, and a
+gas flow rate of \SI{1}{\liter\per\hour} is used, corresponding to
+approximately 80\% gas renewal per hour.
+
+\subsection{Electrostatic Modelling}
+
+The electric field in the gas gap is described by:
+\begin{equation}
+\nabla\cdot\boldsymbol{D} = \rho_e, \qquad
+\boldsymbol{E} = -\nabla V.
+\end{equation}
+
+\subsection{Structural Mechanics}
+
+Mechanical deformation of the electrodes is computed using standard
+elasticity equations. The forces originate from gas pressure and
+electrostatic attraction between electrodes.
+
+\subsection{Multi-Physics Coupling}
+
+The coupling between gas flow, deformation and electrostatics is
+implemented through pressure loading and electro-mechanical
+interactions, ensuring a consistent evaluation of detector
+behaviour under operating conditions.
+
+\section{Detailed Simulation Results}
+
+The performance of the two spacer configurations is evaluated by
+comparing the gas-flow properties, mechanical deformation and
+electric-field distributions obtained from the multi-physics
+simulation. In each case, the reference configuration (left) and
+the shifted-spacer configuration (right) are shown for direct
+comparison.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{RPC_images/Velocity1.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{RPC_images/Velocity2.png}
+    \caption{
+    Gas velocity distribution in the chamber for the reference
+    (left) and shifted-spacer (right) configurations.
+    }
+    \label{fig:rpc_velocity_comparison}
+\end{figure}
+
+The shifted-spacer configuration exhibits a more homogeneous gas
+flow, reflected in a reduction of the relative velocity dispersion
+from 20.3\% to 17.5\%.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{RPC_images/Vorticity1.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{RPC_images/Vorticity2.png}
+    \caption{
+    Vorticity distribution in the gas gap for the reference
+    (left) and shifted-spacer (right) configurations.
+    }
+    \label{fig:rpc_vorticity_comparison}
+\end{figure}
+
+A slight reduction in bulk vorticity is observed for the optimised
+layout, indicating smoother gas circulation.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{RPC_images/Deformation1.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{RPC_images/Deformation2.png}
+    \caption{
+    Gas-gap deformation for the reference (left) and shifted-spacer
+    (right) configurations.
+    }
+    \label{fig:rpc_deformation_comparison}
+\end{figure}
+
+The deformation remains at the sub-percent level for both
+configurations, with a small increase for the shifted layout that
+remains within acceptable limits.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{RPC_images/Electricfield1.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{RPC_images/Electricfield2.png}
+    \caption{
+    Electric-field distribution in the gas gap for the reference
+    (left) and shifted-spacer (right) configurations.
+    }
+    \label{fig:rpc_efield_comparison}
+\end{figure}
+
+The electric field is found to remain stable across the chamber in
+both configurations, demonstrating that the optimised spacer layout
+does not introduce significant field distortions.
+
+\section{Prototype Construction and Performance Evaluation}
+
+Two full-scale $1\times1~\si{m^2}$ glass RPC prototypes were
+constructed, corresponding to the reference and shifted-spacer
+configurations described in the main text. The assembly procedure
+included the precise placement of spacers to define the gas gap,
+graphite coating of the glass electrodes to ensure uniform surface
+resistivity, sealing of the chamber with gas-tight materials, and
+installation of high-voltage connections and gas inlets/outlets.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{RPC_images/step2-1.jpg}
+    \caption{Key stages of the RPC assembly.}
+    \label{fig:rpc_appendix_assembly}
+\end{figure}
+
+The detector performance was evaluated using a cosmic-ray test
+bench based on scintillator coincidence triggers. Two scintillator
+paddles placed above and below the RPC provide a trigger signal for
+through-going muons. The RPC signals are read out using front-end
+electronics and digitised with a waveform digitiser for offline
+analysis.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{RPC_images/Setup.jpg}
+    \caption{Cosmic-ray test setup.}
+    \label{fig:rpc_appendix_setup}
+\end{figure}
+
+The detection efficiency is measured as a function of the applied
+high voltage. Signal selection is performed by applying threshold
+requirements on the digitised waveforms, and the stability of the
+efficiency plateau is evaluated for different threshold settings.
+The results are shown in Figure~\ref{fig:rpc_appendix_efficiency}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{RPC_images/Sigmas.png}
+    \caption{Detection efficiency as a function of high voltage for
+    different signal thresholds.}
+    \label{fig:rpc_appendix_efficiency}
+\end{figure}
+
+Both configurations exhibit a clear efficiency plateau above
+95\%, demonstrating stable detector operation. Typical signal
+waveforms and noise distributions were also analysed to characterise
+the detector response and validate the choice of signal thresholds.
