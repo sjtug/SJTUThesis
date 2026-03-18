@@ -69,29 +69,29 @@ run-averaged quantities provides a direct probe of the stability of
 the detector operating conditions over time. These two approaches are
 illustrated in Figure~\ref{fig:rpc_monitoring_overview}.
 
-% \begin{figure}[htbp]
-%     \centering
-%     \begin{subfigure}{0.48\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{igap_slope.pdf}
-%         \caption{Slope of $I_{\mathrm{gap}}$ vs luminosity as a function of run number.}
-%         \label{fig:rpc_igap_slope}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}{0.48\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{gas_flow.pdf}
-%         \caption{Average gas flow per chamber as a function of run number.}
-%         \label{fig:rpc_gasflow_trend}
-%     \end{subfigure}
-%     \caption{
-%     Monitoring of RPC detector behaviour using DCS observables.
-%     Left: detector response characterised by the dependence of gap
-%     current on luminosity. Right: stability of detector conditions
-%     illustrated by the evolution of the gas flow.
-%     }
-%     \label{fig:rpc_monitoring_overview}
-% \end{figure}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/p1_br03_crate5_board17_gr1.png}
+        \caption{Slope of $I_{\mathrm{gap}}$ vs luminosity as a function of run number.}
+        \label{fig:rpc_igap_slope}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/gasflow_br09_crate5_board17_gr8.png}
+        \caption{Average gas flow per chamber as a function of run number.}
+        \label{fig:rpc_gasflow_trend}
+    \end{subfigure}
+    \caption{
+    Monitoring of RPC detector behaviour using DCS observables.
+    Detector response characterised by the dependence of gap
+    current on luminosity (left) and stability of detector conditions
+    illustrated by the evolution of the gas flow (right).
+    }
+    \label{fig:rpc_monitoring_overview}
+\end{figure}
 
 To identify anomalous detector behaviour, a statistical estimator is
 defined to quantify deviations of monitored observables with respect
@@ -103,36 +103,43 @@ S = \frac{x - \mu}{\sigma},
 where $\mu$ and $\sigma$ denote the mean value and standard deviation
 evaluated from a reference set of previous runs.
 
-This normalised deviation allows both local fluctuations and
-long-term drifts to be identified in a uniform way. Large values of
-$|S|$ indicate significant deviations from the expected detector
-behaviour and may point to potential issues in detector operation.
-Examples of this approach are shown in
-Figure~\ref{fig:rpc_anomaly_detection}, where both isolated spikes
-and gradual trends can be observed. The method is sensitive to
-different types of anomalies and provides a robust tool for
-monitoring RPC performance over time.
+This normalised deviation provides a unified framework to identify
+both local fluctuations and long-term drifts in detector behaviour.
+Large values of $|S|$ indicate significant deviations from the
+expected performance and may point to potential issues in detector
+operation. The time evolution of the estimator for representative observables,
+such as the P1 current and high voltage, is shown in
+Fig.~\ref{fig:rpc_anomaly_detection}. Distinct anomaly patterns are
+observed, including isolated spikes and gradual trends over multiple
+runs. The method is therefore sensitive to different classes of
+anomalies and provides a robust tool for monitoring RPC performance
+over time.
 
-% \begin{figure}[htbp]
-%     \centering
-%     \begin{subfigure}{0.48\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{anomaly_spike.pdf}
-%         \caption{Example of a localised spike in the estimator.}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}{0.48\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{anomaly_trend.pdf}
-%         \caption{Example of a gradual trend in the estimator.}
-%     \end{subfigure}
-%     \caption{
-%     Illustration of the anomaly detection strategy using the
-%     normalised deviation estimator. The method is sensitive to both
-%     isolated spikes and long-term trends in detector behaviour.
-%     }
-%     \label{fig:rpc_anomaly_detection}
-% \end{figure}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/trend_p1_br11_crate3_board11_ch006.png}
+        \caption{Time evolution of the estimator $S$ derived from the slope of $I_{\mathrm{gap}}$ vs luminosity.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/trend_p1_br11_crate3_board11_ch006.png}
+        \caption{Time evolution of the estimator $S$ derived from the applied high voltage.}
+    \end{subfigure}
+    \caption{
+    Time evolution of the normalised deviation estimator $S$ for
+    representative RPC observables as a function of run number.
+    The estimator is constructed for different input quantities,
+    including the slope of $I_{\mathrm{gap}}$ vs luminosity (left) and
+    the high voltage (right), and provides a unified measure of deviations
+    from the expected detector behaviour. Variations in $S$ reflect
+    changes in detector response or operating conditions and are
+    used to identify anomalous behaviour.
+    }
+    \label{fig:rpc_anomaly_detection}
+\end{figure}
 
 The full analysis chain has been automated, enabling new runs to be
 processed as soon as they become available. The results are
@@ -143,7 +150,123 @@ the identification of potential issues during data taking.
 The author is responsible for the development of this framework and its
 application to the analysis of Run~3 data as his qualification task.
 
-\section{RPC upgrade studies for HL-LHC}
+\section{RPC phase-II upgrade studies for HL-LHC}
+
+The HL-LHC will significantly increase the
+instantaneous luminosity delivered to the ATLAS detector, leading to
+higher particle rates and more demanding operating conditions for the
+muon trigger system.
+The current RPC system is subject to several limitations under these
+conditions. The rate capability of the existing chambers is of the
+order of $\mathcal{O}(100~\mathrm{Hz/cm^2})$, and long-term operation
+at high luminosity may lead to detector ageing and a reduction in
+efficiency. In addition, the presence of support structures introduces
+regions of reduced acceptance.
+
+To address these limitations, an upgrade of the RPC system is foreseen. 
+In the barrel inner (BI) region, a new detector layout is introduced,
+featuring three RPC triplets corresponding to a total of nine gas
+gaps, thereby significantly increasing the trigger redundancy. In
+addition, the gas-gap thickness is reduced from approximately
+$2~\si{\milli\metre}$ to $1~\si{\milli\metre}$, enabling improved rate
+capability and mitigating ageing effects under high-rate HL-LHC
+conditions. The detector layout is further optimised to reduce
+acceptance gaps and improve overall coverage.
+These improvements are expected to significantly enhance the trigger
+performance, with simulation studies indicating an increase in the
+trigger efficiency from approximately 70\% to 90\% in the affected
+regions.
+
+In view of the large-scale production required for the Phase-II
+upgrade, ensuring consistent detector quality and stability is of
+central importance. This involves both the control of fabrication
+precision and the validation of detector performance through
+conditioning procedures.
+In this context, studies related to the pre-production of readout
+panels and the conditioning of RPC gas gaps were carried out.
+
+The readout panel constitutes a fundamental component of the RPC
+detector unit, with each singlet consisting of one gas gap and two
+readout panels. Given the large number of panels required for the
+Phase-II upgrade, strict quality control and mechanical precision
+are essential to ensure uniform detector performance.
+Pre-production studies of readout panels focus on the validation of fabrication procedures and the
+assessment of panel quality. The panel construction involves the
+assembly of layered structures, for which uniform pressure and glue
+distribution are required to achieve stable mechanical properties as illustrated in Figure~\ref{fig:rpc_panel_fabrication}. 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/pcb_surface.png}
+        \caption{Preparation of the strip panel surface.}
+        \label{fig:rpc_panel_surface}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/pcb_pressing.jpg}
+        \caption{Assembly under vacuum pressure.}
+        \label{fig:rpc_panel_pressing}
+    \end{subfigure}
+
+    \caption{
+    Fabrication procedure of the RPC readout panel. The panel is
+    constructed by assembling PCB layers with a honeycomb core using
+    adhesive. A vacuum-assisted pressing system is employed to apply
+    uniform pressure during curing, ensuring homogeneous glue
+    distribution and reducing local deformations. This step is
+    essential for achieving stable mechanical properties and good
+    thickness uniformity of the panel.
+    }
+    \label{fig:rpc_panel_fabrication}
+\end{figure}
+
+A key quality parameter is the thickness uniformity (flatness) of the
+panels. The flatness is defined as the maximum variation in thickness
+measured across the panel surface and is required to be less than
+$\SI{100}{\micro\metre}$ within a local region of
+$\sim 7\times7~\si{\centi\metre^2}$. Dedicated measurements were
+performed to verify that the produced panels satisfy this requirement,
+as illustrated in Figure~\ref{fig:rpc_panel_flatness}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/pcb_testing.png}
+        \caption{Automated thickness scanning setup.}
+        \label{fig:rpc_panel_scan}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/RPC_main/pcb_result.png}
+        \caption{Measured thickness distribution.}
+        \label{fig:rpc_panel_result}
+    \end{subfigure}
+
+    \caption{
+    Thickness measurement and flatness evaluation of the readout panel.
+    The panel thickness is measured using a motorised scanning system
+    equipped with a laser distance sensor, which performs point-by-point
+    measurements over a predefined grid.
+    }
+    \label{fig:rpc_panel_flatness}
+\end{figure}
+
+In addition to the validation of detector components prior to mass
+production, conditioning tests of assembled RPC gas gaps are
+performed to ensure stable operation under high-voltage conditions.
+These tests are carried out at the GIF++ facility at CERN, which
+provides a controlled irradiation environment to emulate the
+high-rate conditions expected at the HL-LHC. The conditioning
+procedure involves gradually increasing the applied high voltage
+while monitoring the detector currents and stability over time.
+Initial and final high-voltage scans, together with continuous
+current monitoring, are used to evaluate the evolution of the
+detector response.
 
 \section{RPC chamber design optimisation}
 \label{sec:rpc_optimisation}
