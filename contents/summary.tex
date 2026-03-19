@@ -2,4 +2,59 @@
 
 \chapter{Summary and Outlook}
 
-To be added
+A search for heavy resonances decaying into top-quark pairs in the four-tops final state is performed 
+using the full Run~2 dataset collected by the ATLAS experiment at $\sqrt{s}=13~\mathrm{TeV}$, 
+corresponding to an integrated luminosity of 139~fb$^{-1}$. 
+Events with one lepton or two opposite-sign leptons and high jet multiplicities are analysed. 
+The dominant $t\bar{t}+\text{jets}$ background is controlled using a combination of 
+data-driven normalisation and multidimensional kinematic corrections based on neural networks. 
+Signal sensitivity is further enhanced through the use of a mass-parameterised Graph Neural Network.
+No significant deviation from the Standard Model prediction is observed. 
+Upper limits at 95\% confidence level are set on 
+$\sigma(pp \to t\bar{t}H/A)\times \mathcal{B}(H/A \to t\bar{t})$ 
+for resonance masses between 400 and 1000~GeV. 
+The limits are 14~fb (5.0~fb) at 400~GeV (1000~GeV), respectively, 
+and are obtained from a combination with same-sign and multilepton channels.
+The resulting limits improve upon previous results by up to 19\%. 
+The results are also interpreted in the context of colour-octet scalar ($S_8$) production, 
+excluding $S_8$ masses up to 1.3~TeV. 
+Projections to the HL-LHC demonstrate that the sensitivity to heavy resonances 
+will be significantly extended, with cross-section limits below 1~fb achievable 
+for masses above 1~TeV and discovery-level sensitivity reachable for benchmark scenarios.
+
+To further exploit the physics potential of four-tops production, 
+a dedicated reconstruction and unfolding framework is developed for differential measurements 
+in the same-sign dilepton channel. 
+A novel event reconstruction strategy is introduced using the blended hypergraph-graph framework HyPER, 
+which enables a consistent assignment of reconstructed objects to the four top-quark decay chains. 
+The reconstruction is complemented by neutrino inference techniques, 
+including both analytic solutions and generative $\nu^2$-Flows, 
+allowing the full kinematics of the four-tops system to be reconstructed.
+Based on this reconstruction, a profile likelihood unfolding approach is implemented 
+to extract differential cross sections at parton level. 
+The unfolding is formulated within a unified likelihood framework with independent signal-strength parameters per bin, 
+and is stabilised through regularisation. 
+Extensive validation studies demonstrate that the method provides stable and unbiased results, 
+establishing a robust foundation for future differential measurements in Run~3 data.
+
+In parallel, contributions to the ATLAS muon spectrometer have been made through work on Resistive Plate Chambers (RPCs). 
+This includes the development of automated monitoring tools based on Detector Control System data, 
+as well as participation in studies related to the Phase-II RPC upgrade. 
+In addition, an independent detector R\&D study has been carried out to investigate improvements 
+in large-area glass RPC chamber design.
+
+The sensitivity of the search presented in this thesis, particularly in the single-lepton and opposite-sign dilepton channels, is primarily limited by the large $t\bar{t}+\mathrm{jets}$ background. 
+Improvements in background modelling and signal--background discrimination are therefore expected to yield significant gains in sensitivity. 
+Advances in data-driven techniques and machine-learning-based approaches may provide a more accurate description of the heavy-flavour composition and kinematic properties of the background.
+
+Projection studies for the HL-LHC show that the increased integrated luminosity will substantially enhance the discovery potential for new physics in four-tops final states. 
+However, the sensitivity is expected to approach a regime where systematic uncertainties become dominant. 
+Continued progress will therefore rely on improved theoretical modelling and more precise detector calibration. 
+Reducing modelling uncertainties through higher-precision simulations, as well as improving jet reconstruction and calibration to constrain jet energy scale and resolution uncertainties, will play a crucial role.
+
+Developments in event reconstruction techniques are expected to further enhance both the physics reach and the interpretability of four-tops events. 
+More advanced machine-learning-based approaches, capable of performing object assignment and neutrino reconstruction in a unified framework, may provide a more complete description of the event topology. 
+Improvements in $b$-tagging performance, for instance through next-generation algorithms such as the GN2 tagger and upgrades to the tracking detectors, are also expected to significantly enhance the identification efficiency of heavy-flavour jets, which are central to four-tops signatures.
+
+Finally, the differential measurement framework developed in this thesis opens the possibility to probe the detailed kinematic structure of four-tops production. 
+Such measurements are expected to provide enhanced sensitivity to new physics effects, particularly in the high-energy tails of observables, and offer a complementary approach to inclusive searches in the HL-LHC era.
