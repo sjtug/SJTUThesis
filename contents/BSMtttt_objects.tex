@@ -1,4 +1,4 @@
-This section presents the definitions of the physics objects used in the analysis: electrons, muons, jets and \ensuremath{E_{\mathrm{T}}^{\mathrm{miss}}}.  
+﻿This section presents the definitions of the physics objects used in the analysis: electrons, muons, jets and \ensuremath{E_{\mathrm{T}}^{\mathrm{miss}}}.  
 The flavour tagging selection ($b$-tagging), together with the overlap removal procedure of the considered objects are also presented. 
 All these objects are selected/reconstructed as implemented  in \texttt{AnalysisTop 21.2.169}.
 
@@ -7,8 +7,7 @@ All these objects are selected/reconstructed as implemented  in \texttt{Analysis
 \label{subsec:obj-electrons}
 %=========================================================
 
-Electron candidates are reconstructed as described in
-Chapter~\ref{ch:reco}. In this analysis, prompt isolated electrons
+In this analysis, prompt isolated electrons
 are selected using the likelihood-based \texttt{TightLH}
 identification working point, together with kinematic, impact-parameter,
 and isolation requirements optimised for heavy-object decays.
@@ -113,8 +112,7 @@ in Tables~\ref{tab:object:electron} and~\ref{tab:object:loose_electron}.
 \label{subsec:obj-muons}
 %=========================================================
 
-Muon reconstruction in ATLAS is described in
-Chapter~\ref{ch:reco}. In this analysis, prompt isolated muons
+Prompt isolated muons
 are selected using the \texttt{Medium} identification working
 point, which provides a balance between efficiency and purity
 over the relevant transverse-momentum range.
@@ -215,7 +213,7 @@ summarised in Tables~\ref{tab:object:muon} and
 
 Jets are reconstructed using the anti-$k_t$ algorithm with a
 radius parameter $R=0.4$ and particle-flow inputs, as described
-in Chapter~\ref{ch:reco}. Selected jets are required to satisfy
+in Chapter~\ref{chap:reco}. Selected jets are required to satisfy
 transverse-momentum and pseudorapidity requirements within the
 central detector acceptance.
 
@@ -236,7 +234,7 @@ a trimming procedure is applied.
 RC-jets satisfying dedicated kinematic requirements are used as
 hadronic top-quark candidates.
 The detailed jet selection criteria are summarised in
-Table~\ref{tab:object:jet}.
+Table~\ref{tab:object:jet} and Table~\ref{tab:object:rcjet}.
 
 \begin{table}[ht]
   \caption{Small-$R$ jet selection used in the analysis.}
@@ -297,7 +295,7 @@ Table~\ref{tab:object:jet}.
 
 Jets containing $b$-hadrons are identified using the DL1r
 flavour-tagging algorithm described in
-Chapter~\ref{ch:reco}. The algorithm exploits lifetime-sensitive
+Chapter~\ref{chap:reco}. The algorithm exploits lifetime-sensitive
 information from tracks and reconstructed secondary vertices
 associated with the jet.
 
@@ -339,18 +337,10 @@ Table~\ref{tab:object:btag}.
 \label{subsec:obj-met}
 %=========================================================
 
-Missing transverse momentum ($\vec{E}^{\mathrm{miss}}_T$)
-is reconstructed using the standard object-based ATLAS
-definition described in Chapter~\ref{ch:reco}.
-The hard term is formed from calibrated electrons,
-muons, and jets passing the analysis selections,
-while the soft term is constructed using
-primary-vertex-associated tracks.
-
 No additional selection requirement on the magnitude of
 $E^{\mathrm{miss}}_T$ is imposed at the object-definition
 level. The reconstructed $E^{\mathrm{miss}}_T$ is used
-in the event reconstruction and kinematic observables.
+in the event reconstruction, kinematic observables and corresponding systematics estimation.
 
 %=========================================================
 \subsection{Overlap removal}
@@ -412,7 +402,7 @@ After object reconstruction and overlap removal,
 events are categorised according to the lepton multiplicity
 and the jet and $b$-jet multiplicities.
 The event selection is designed to exploit the high object
-multiplicity characteristic of four-tops final states
+multiplicity characteristic of $t\bar{t}t\bar{t}$ final states
 while maintaining sensitivity across a wide range of signal
 kinematics.
 

@@ -1,4 +1,4 @@
-\chapter{Detector Operation and Development}
+﻿\chapter{Detector Operation and Development}
 \label{chap:RPC}
 
 Resistive Plate Chambers (RPCs) are gaseous detectors operated in
@@ -126,7 +126,7 @@ over time.
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/RPC_main/trend_p1_br11_crate3_board11_ch006.png}
+        \includegraphics[width=\linewidth]{figures/RPC_main/trend_HV_br13_crate3_board06_ch004.png}
         \caption{Time evolution of the estimator $S$ derived from the applied high voltage.}
     \end{subfigure}
     \caption{
@@ -164,9 +164,9 @@ at high luminosity may lead to detector ageing and a reduction in
 efficiency. In addition, the presence of support structures introduces
 regions of reduced acceptance.
 
-To address these limitations, an upgrade of the RPC system is foreseen. 
-In the barrel inner (BI) region, a new detector layout is introduced,
-featuring three RPC triplets corresponding to a total of nine gas
+To address these limitations, an upgrade of the RPC system is foreseen~\cite{CDS2285580,CDS2692929}. 
+In the barrel inner (BI) region, a new detector layout is introduced as illustrated in Figure~\ref{fig:rpc_bi_layout}.
+The new layout features three RPC triplets corresponding to a total of nine gas
 gaps, thereby significantly increasing the trigger redundancy. In
 addition, the gas-gap thickness is reduced from approximately
 $2~\si{\milli\metre}$ to $1~\si{\milli\metre}$, enabling improved rate
@@ -177,6 +177,20 @@ These improvements are expected to significantly enhance the trigger
 performance, with simulation studies indicating an increase in the
 trigger efficiency from approximately 70\% to 90\% in the affected
 regions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.72\textwidth]{figures/RPC_main/phaseII_layout.pdf}
+    \caption{
+    Layout of the ATLAS muon spectrometer highlighting the RPC system.
+    x--y view showing the existing RPC chambers (dark grey) and
+    the additional RPC layers (red) foreseen for the upgrade (left).
+    R--z view of a quarter of the detector, indicating the
+    location of the new RPC0 layer in the inner barrel region (right).
+    Taken from Ref.~\cite{NIMA2024BI_RPC_ReadoutPanels}.
+    }
+    \label{fig:rpc_bi_layout}
+\end{figure}
 
 In view of the large-scale production required for the Phase-II
 upgrade, ensuring consistent detector quality and stability is of

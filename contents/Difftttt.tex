@@ -1,23 +1,23 @@
-% !TEX root = ../main.tex
+﻿% !TEX root = ../main.tex
 
-\chapter{Reconstruction and Unfolding Framework for Differential Four-Tops Production}
+\chapter{Reconstruction and Unfolding Framework for Differential $t\bar{t}t\bar{t}$ Production}
 \label{chap:Difftttt}
 
-Following the inclusive observation of four-tops production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive measurements and explore the detailed kinematic structure of this rare process.
-Differential measurements of observables such as the four-tops invariant mass, global event activity variables, and leading-object kinematics probe the underlying production dynamics in greater detail. In particular, the high-energy tails of multi-top observables are especially sensitive to potential deviations from the Standard Model prediction.
+Following the inclusive observation of $t\bar{t}t\bar{t}$ production in Run~2, the increased centre-of-mass energy and integrated luminosity delivered in Run~3 provide the opportunity to move beyond inclusive measurements and explore the detailed kinematic structure of this rare process.
+Differential measurements of observables such as the $t\bar{t}t\bar{t}$ invariant mass, global event activity variables, and leading-object kinematics probe the underlying production dynamics in greater detail. In particular, the high-energy tails of multi-top observables are especially sensitive to potential deviations from the Standard Model prediction.
 
-From a theoretical perspective, studies within the Effective Field Theory (EFT) framework have shown that four-tops production provides enhanced sensitivity to higher-dimensional operators, notably through distortions in differential distributions at large momentum transfer~\cite{FourTopEFTStudy}. 
-In particular, the invariant mass of the four-tops system, $m_{4t}$, probes the overall energy scale of the event and is therefore especially sensitive to such effects. 
+From a theoretical perspective, studies within the Effective Field Theory (EFT) framework have shown that $t\bar{t}t\bar{t}$ production provides enhanced sensitivity to higher-dimensional operators, notably through distortions in differential distributions at large momentum transfer~\cite{FourTopEFTStudy}. 
+In particular, the invariant mass of the $t\bar{t}t\bar{t}$ system, $m_{4t}$, probes the overall energy scale of the event and is therefore especially sensitive to such effects. 
 In these scenarios, modifications of the interaction structure can lead to characteristic enhancements in the high-mass region of the $m_{4t}$ spectrum, while inclusive cross-section measurements alone may exhibit limited discriminating power. 
 Differential observables therefore offer complementary and potentially more sensitive probes of new interactions involving the top quark.
 
-Motivated by these considerations, this chapter develops the reconstruction and unfolding framework required for differential measurements of four-tops production. 
-The following sections describe the event reconstruction strategy for the four-tops system and the profile likelihood unfolding approach used to extract parton-level differential observables.
+Motivated by these considerations, this chapter develops the reconstruction and unfolding framework required for differential measurements of $t\bar{t}t\bar{t}$ production. 
+The following sections describe the event reconstruction strategy for the $t\bar{t}t\bar{t}$ system and the profile likelihood unfolding approach used to extract parton-level differential observables.
 
 \section{Study setup}
 
-This section summarises the analysis configuration used for the differential four-tops study presented in this chapter. 
-The study is based on simulated samples and a simplified event selection designed to capture the key experimental features of the four-tops final state while maintaining sufficient statistical power for method validation. 
+This section summarises the analysis configuration used for the differential $t\bar{t}t\bar{t}$ study presented in this chapter. 
+The study is based on simulated samples and a simplified event selection designed to capture the key experimental features of the $t\bar{t}t\bar{t}$ final state while maintaining sufficient statistical power for method validation. 
 The same configuration is used consistently throughout the reconstruction and unfolding studies described in the following sections.
 
 \subsection{Data and simulated samples}
@@ -25,7 +25,7 @@ The same configuration is used consistently throughout the reconstruction and un
 Signal and background processes are modelled using MC event generators interfaced with parton shower and hadronisation models. 
 The simulated samples correspond to the partial Run~3 data-taking period (2022--2024) and provide the basis for constructing the detector response, evaluating systematic uncertainties, and generating pseudo-data used in the unfolding validation studies.
 
-The nominal four-tops signal process is generated at next-to-leading order (NLO) in QCD using \textsc{MadGraph5\_aMC@NLO} interfaced with \textsc{Pythia8} for parton showering and hadronisation. 
+The nominal $t\bar{t}t\bar{t}$ signal process is generated at next-to-leading order (NLO) in QCD using \textsc{MadGraph5\_aMC@NLO} interfaced with \textsc{Pythia8} for parton showering and hadronisation. 
 Alternative generator configurations are used to evaluate modelling uncertainties associated with the signal simulation. 
 Background processes include $t\bar{t}t$, $t\bar{t}W$, $t\bar{t}Z$, single-top production, and diboson and vector-boson–associated processes. 
 The generator configurations used for the signal and background processes are summarised in Table~\ref{tab:diff_mc_samples}.
@@ -95,7 +95,7 @@ Alternative generator setups used for systematic studies are shown in parenthese
 
 \subsection{Event selection and analysis channel}
 
-In the inclusive four-tops analysis, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
+In the inclusive $t\bar{t}t\bar{t}$ analysis, final states containing same-sign or multi-lepton (SS/ML) signatures provide the dominant sensitivity. 
 Final states containing two same-sign leptons or multiple leptons efficiently suppress the large $t\bar{t}$+jets background, resulting in significantly improved signal purity.
 Within this category, the dileptonic same-sign (2LSS) channel offers a favourable balance between statistical yield and reconstruction complexity. 
 Compared with multi-lepton final states, it benefits from a larger branching fraction while involving only two neutrinos in the final state, thereby reducing the degree of kinematic under-constraint.
@@ -119,17 +119,17 @@ The unfolding procedure therefore extrapolates from the selected reconstruction-
 
 In addition to statistical fluctuations, a representative set of dominant systematic uncertainties is included in the unfolding validation studies in order to approximate the conditions of the nominal likelihood fit.
 
-The considered sources correspond to the dominant systematic uncertainties identified in the inclusive four-tops analysis. 
+The considered sources correspond to the dominant systematic uncertainties identified in the inclusive $t\bar{t}t\bar{t}$ analysis. 
 For the signal process, these include the overall normalisation uncertainty of the $t\bar{t}t\bar{t}$ cross section (20\%) and modelling uncertainties associated with the event generator and parton shower. 
 In addition, instrumental uncertainties related to flavour-tagging efficiencies are applied to all simulated processes.
 Generator and parton-shower modelling uncertainties are evaluated using alternative signal samples generated with different Monte Carlo configurations, as listed in Table~\ref{tab:diff_mc_samples}. 
 These uncertainties are propagated through the pseudo-experiments used in the pull and stress tests described in Section~\ref{sec:unfolding_validation}, thereby providing a realistic estimate of the impact of systematic effects on the stability of the unfolding procedure.
 
-\section{Reconstruction of the Four-Tops System}
+\section{Reconstruction of the $t\bar{t}t\bar{t}$ System}
 
-Four-tops production in the 2LSS channel remains characterised by a highly complex final state, featuring a large number of jets, multiple $b$-quarks, and two neutrinos from leptonic top decays. 
+$t\bar{t}t\bar{t}$ production in the 2LSS channel remains characterised by a highly complex final state, featuring a large number of jets, multiple $b$-quarks, and two neutrinos from leptonic top decays. 
 The combinatorial ambiguity in assigning reconstructed objects to their parent top quarks grows rapidly with jet multiplicity, and the presence of two neutrinos introduces additional kinematic under-constraints. 
-A stable differential measurement of observables such as the four-tops invariant mass therefore requires a reconstruction strategy capable of performing global object assignment while consistently incorporating neutrino kinematics.
+A stable differential measurement of observables such as the $t\bar{t}t\bar{t}$ invariant mass therefore requires a reconstruction strategy capable of performing global object assignment while consistently incorporating neutrino kinematics.
 The following sections describe the final-state assignment and neutrino reconstruction strategies adopted in this work.
 
 \subsection{Hypergraph-based Final-State Assignment}
@@ -185,10 +185,10 @@ These hyperedges are classified by the network, and the highest-scoring, non-ove
 \end{figure}
 
 This two-step procedure allows higher-order decay structures to be inferred on top of a learned relational representation of the event. 
-Such higher-order relational modelling is particularly well suited to four-tops production, where multiple heavy resonances decay simultaneously in a high-multiplicity environment. 
+Such higher-order relational modelling is particularly well suited to $t\bar{t}t\bar{t}$ production, where multiple heavy resonances decay simultaneously in a high-multiplicity environment. 
 The hypergraph formulation therefore provides a natural and flexible representation of complex decay topologies and serves as the basis for the reconstruction-driven differential measurement strategy developed in this work.
 
-The hypergraph-based reconstruction strategy is adapted to the specific decay topology of four-tops production in the 2LSS final state.
+The hypergraph-based reconstruction strategy is adapted to the specific decay topology of $t\bar{t}t\bar{t}$ production in the 2LSS final state.
 As illustrated in Fig.~\ref{fig:4tops_topology}, two top quarks decay hadronically, $t \to b q q'$, 
 while the remaining two decay leptonically, $t \to b \ell \nu$. The reconstruction formalism is therefore designed to reflect this mixed decay structure.
 
@@ -202,12 +202,12 @@ leptonic top candidates are initially represented by pairwise edges connecting a
 The neutrino kinematics are reconstructed in a subsequent step using dedicated algorithms, after which the full leptonic top four-momentum is obtained.
 
 This mixed hyperedge--edge representation enables the simultaneous treatment of fully visible hadronic decays and partially observed leptonic decays within a unified graph--hypergraph framework.
-It therefore provides a flexible and topology-aware reconstruction strategy tailored to the complex final state of four-tops production.
+It therefore provides a flexible and topology-aware reconstruction strategy tailored to the complex final state of $t\bar{t}t\bar{t}$ production.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/fourtops_topology.pdf}
-    \caption{Illustration of the four-tops decay topology in the 2LSS channel
+    \caption{Illustration of the $t\bar{t}t\bar{t}$ decay topology in the 2LSS channel
             used for the hypergraph-based reconstruction.
             Hadronic top candidates are represented by three-jet hyperedges,
             while leptonic candidates are formed from jet–lepton edges
@@ -288,7 +288,7 @@ Eq.~(\ref{eq:efficiency_definition}) for different matching multiplicities.}
 \label{fig:eff_vs_njets}
 \end{figure}
 
-Overall, the results demonstrate that the hypergraph-based reconstruction strategy effectively resolves the dominant combinatorial ambiguities in the four-tops final state.
+Overall, the results demonstrate that the hypergraph-based reconstruction strategy effectively resolves the dominant combinatorial ambiguities in the $t\bar{t}t\bar{t}$ final state.
 The observed stability across jet multiplicities indicates that the relational representation scales well with increasing event complexity.
 
 \subsection{Neutrino Reconstruction}
@@ -297,7 +297,7 @@ While hadronic top candidates are fully reconstructed from visible decay product
 In the 2LSS final state, two neutrinos are present, leading to an under-constrained system when only the measured missing transverse momentum is used.
 To reconstruct the full leptonic top four-momenta, the neutrino kinematics must be inferred from the measured missing transverse momentum and reconstructed event information. 
 Two complementary approaches are considered in this work: the Neutrino Weighting method, an analytic technique that searches for solutions consistent with the $W$-boson and top-quark mass hypotheses, and a machine-learning-based generative approach ($\nu^2$-Flows), which models the conditional distribution of neutrino momenta given the observed event features.
-Both methods aim to reconstruct the neutrino momenta in a way that is compatible with the measured event information, thereby allowing the full leptonic top four-momenta to be determined and enabling the construction of fully reconstructed four-tops candidates.
+Both methods aim to reconstruct the neutrino momenta in a way that is compatible with the measured event information, thereby allowing the full leptonic top four-momenta to be determined and enabling the construction of fully reconstructed $t\bar{t}t\bar{t}$ candidates.
 
 \subsubsection{Neutrino Weighting Method}
 
@@ -442,10 +442,10 @@ and $\boldsymbol{\nu^2}$-Flows methods.}
 
 \end{figure}
 
-\subsection{Reconstruction of the Four-Tops System}
+\subsection{Reconstruction of the $t\bar{t}t\bar{t}$ System}
 \label{sec:top_reco}
 
-The full reconstruction of the four-tops system requires the determination of four top-quark four-momenta, comprising two hadronic and two leptonic decay chains. 
+The full reconstruction of the $t\bar{t}t\bar{t}$ system requires the determination of four top-quark four-momenta, comprising two hadronic and two leptonic decay chains. 
 Following the hypergraph-based assignment and the neutrino reconstruction strategies introduced above, the complete event reconstruction is performed by combining these two components within a coherent workflow.
 
 Two reconstruction workflows are considered, depending on the choice of neutrino reconstruction method, as illustrated in Fig.~\ref{fig:workflow_comparison}.
@@ -462,7 +462,7 @@ In the generative approach, neutrino kinematics are first inferred using the $\n
 The predicted neutrino four-momenta are then incorporated into the event representation used by HyPER, allowing both hadronic and leptonic top candidates to be reconstructed within a unified relational framework. 
 In this workflow, the leptonic decay chains are reconstructed as complete multi-body structures once the neutrino hypotheses are provided.
 
-In both workflows, the four reconstructed top-quark four-vectors are combined to form the total four-tops system, from which the invariant mass $m_{4t}$ and other kinematic observables are derived.
+In both workflows, the four reconstructed top-quark four-vectors are combined to form the total $t\bar{t}t\bar{t}$ system, from which the invariant mass $m_{4t}$ and other kinematic observables are derived.
 % The Neutrino Weighting-based workflow is used as the nominal reconstruction strategy, while the $\nu^2$-Flows approach serves as a complementary performance benchmark.
 
 \begin{figure}[t]
@@ -480,16 +480,16 @@ In both workflows, the four reconstructed top-quark four-vectors are combined to
         \caption{HyPER + $\nu^2$-Flows workflow.}
         \label{fig:workflow_nu2}
     \end{subfigure}
-    \caption{Schematic illustration of the two reconstruction workflows considered for four-tops reconstruction in the 2LSS channel. 
+    \caption{Schematic illustration of the two reconstruction workflows considered for $t\bar{t}t\bar{t}$ reconstruction in the 2LSS channel. 
     The left panel illustrates the analytic workflow, where visible-object assignment is first performed by HyPER and the neutrino momenta are subsequently reconstructed using the NW method.
     The right panel shows the generative workflow in which neutrino kinematics are inferred using $\boldsymbol{\nu^2}$-Flows prior to the hypergraph-based assignment.}
     \label{fig:workflow_comparison}
 \end{figure}
 
-The performance of the full four-tops reconstruction is evaluated by comparing the reconstructed invariant mass $m_{4t}^{\mathrm{reco}}$ to the corresponding truth-level quantity $m_{4t}^{\mathrm{truth}}$.
+The performance of the full $t\bar{t}t\bar{t}$ reconstruction is evaluated by comparing the reconstructed invariant mass $m_{4t}^{\mathrm{reco}}$ to the corresponding truth-level quantity $m_{4t}^{\mathrm{truth}}$.
 
-Figure~\ref{fig:m4t_correlation} shows the two-dimensional correlation between the reconstructed and truth-level four-tops invariant masses for the two reconstruction workflows.
-In both cases, a clear diagonal structure is observed, indicating that the reconstructed four-tops system captures the overall kinematic scale of the underlying event.
+Figure~\ref{fig:m4t_correlation} shows the two-dimensional correlation between the reconstructed and truth-level $t\bar{t}t\bar{t}$ invariant masses for the two reconstruction workflows.
+In both cases, a clear diagonal structure is observed, indicating that the reconstructed $t\bar{t}t\bar{t}$ system captures the overall kinematic scale of the underlying event.
 The two approaches exhibit broadly comparable performance in terms of the overall reconstruction quality.
 
 \begin{figure}[htbp]
@@ -508,13 +508,13 @@ The two approaches exhibit broadly comparable performance in terms of the overal
 \end{subfigure}
 
 \caption{
-Correlation between reconstructed and truth-level four-tops
+Correlation between reconstructed and truth-level $t\bar{t}t\bar{t}$
 invariant masses for the two reconstruction workflows.}
 \label{fig:m4t_correlation}
 
 \end{figure}
 
-To further illustrate the migration pattern in the reconstructed $m_{4t}$ spectrum, migration matrices are constructed from the truth and reconstructed four-tops invariant mass distributions.
+To further illustrate the migration pattern in the reconstructed $m_{4t}$ spectrum, migration matrices are constructed from the truth and reconstructed $t\bar{t}t\bar{t}$ invariant mass distributions.
 The resulting matrices are shown in Fig.~\ref{fig:m4t_migration}. 
 In both reconstruction strategies, the dominant contributions are located along the diagonal, indicating that most events are reconstructed close to their corresponding truth-level bin.
 At large invariant masses, a migration from high truth-level bins towards lower reconstructed bins can be observed.
@@ -537,13 +537,13 @@ This effect is present in both reconstruction workflows, but is more pronounced 
 
 \caption{
 Column-normalised migration matrices showing the bin-to-bin
-migration between truth and reconstructed four-tops invariant
+migration between truth and reconstructed $t\bar{t}t\bar{t}$ invariant
 mass bins for the two reconstruction workflows.}
 \label{fig:m4t_migration}
 
 \end{figure}
 
-Overall, the two reconstruction workflows provide comparable performance in the reconstruction of the four-tops invariant mass.
+Overall, the two reconstruction workflows provide comparable performance in the reconstruction of the $t\bar{t}t\bar{t}$ invariant mass.
 Given the improved reconstruction of neutrino angular variables and the reduced migration at large $m_{4t}$ observed for the NW approach, 
 the HyPER + NW workflow is adopted as the nominal reconstruction strategy for the unfolding procedure described in the next section.
 
@@ -559,9 +559,9 @@ Dedicated validation studies are then performed to verify the stability and pote
 
 \subsection{Definition of Differential Observables}
 
-The primary observable considered in this study is the invariant mass of the four-tops system, $m_{4t}$, defined at parton level. 
+The primary observable considered in this study is the invariant mass of the $t\bar{t}t\bar{t}$ system, $m_{4t}$, defined at parton level. 
 The parton-level top quarks are taken from the matrix-element record of the event generator prior to parton showering and decay. 
-The invariant mass of the four-tops system is constructed from the sum of the four outgoing top-quark four-momenta,
+The invariant mass of the $t\bar{t}t\bar{t}$ system is constructed from the sum of the four outgoing top-quark four-momenta,
 
 \begin{equation}
 m_{4t}^{\text{parton}} =
@@ -669,7 +669,7 @@ With these definitions, the response matrix entering the likelihood model is con
 R_{ij} = \widetilde{M}_{ij}\,\varepsilon_j .
 \end{equation}
 
-The reconstruction-level selection efficiency as function of the parton-level four-tops invariant mass is shown in Fig.~\ref{fig:unfolding_efficiency}. 
+The reconstruction-level selection efficiency as function of the parton-level $t\bar{t}t\bar{t}$ invariant mass is shown in Fig.~\ref{fig:unfolding_efficiency}. 
 The efficiency reflects the fraction of truth events entering the selected reconstructed sample. 
 The bin-to-bin migration pattern is illustrated in Fig.~\ref{fig:migration_matrix}, where the diagonal dominance indicates that the chosen binning preserves a reasonably stable correspondence between truth and reconstructed observables.
 
@@ -698,7 +698,7 @@ The formalism is nevertheless presented in this general form to allow future ext
         \caption{Acceptance}
         \label{fig:unfolding_acceptance}
     \end{subfigure}
-    \caption{Reconstruction-level selection efficiency (left) and acceptance (right) as functions of the parton-level four-tops invariant mass. 
+    \caption{Reconstruction-level selection efficiency (left) and acceptance (right) as functions of the parton-level $t\bar{t}t\bar{t}$ invariant mass. 
     The efficiency corresponds to the probability for events in a given truth bin to pass the reconstruction-level selection, while the acceptance represents the fraction of reconstructed events originating from the fiducial truth region.}
     \label{fig:efficiency_and_acceptance}
 \end{figure}
@@ -706,7 +706,7 @@ The formalism is nevertheless presented in this general form to allow future ext
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{figures/Unfolding_plots/migration_parton_4tops_mass_test_region_4tops_mass_fixed.pdf}
-    \caption{Column-normalised migration matrix between truth and reconstruction bins for the parton-level four-tops invariant mass. 
+    \caption{Column-normalised migration matrix between truth and reconstruction bins for the parton-level $t\bar{t}t\bar{t}$ invariant mass. 
     Each column represents the conditional probability for an event generated in truth bin $\boldsymbol{j}$ to be reconstructed in bin $\boldsymbol{i}$.}
     \label{fig:migration_matrix}
 \end{figure}
@@ -1033,8 +1033,8 @@ The same distorted pseudo-data configurations as in Fig.~\ref{fig:stress_test_no
 
 \section{Summary}
 
-This chapter presents the reconstruction and unfolding framework developed for differential measurements of four-tops production in the 2LSS channel. 
-The goal of this study is to enable measurements of observables such as the four-tops invariant mass at parton level, which provide enhanced sensitivity to the underlying production dynamics and potential deviations from the Standard Model.
+This chapter presents the reconstruction and unfolding framework developed for differential measurements of $t\bar{t}t\bar{t}$ production in the 2LSS channel. 
+The goal of this study is to enable measurements of observables such as the $t\bar{t}t\bar{t}$ invariant mass at parton level, which provide enhanced sensitivity to the underlying production dynamics and potential deviations from the Standard Model.
 
 To achieve this, a dedicated event reconstruction strategy has been developed. 
 The assignment of reconstructed objects to the four top-quark decay chains is performed using the hypergraph-based framework HyPER, which naturally represents the multi-body structure of hadronic top decays while allowing leptonic decay chains to be reconstructed through jet–lepton associations. 
@@ -1046,4 +1046,4 @@ The unfolding is formulated within the same likelihood framework as the inclusiv
 A dedicated binning strategy and detector response model are constructed, and regularisation is introduced to stabilise the unfolding in the presence of limited statistics. 
 Extensive validation studies, including closure, pull, and stress tests, demonstrate that the unfolding configuration provides stable and unbiased estimates of the underlying parton-level spectrum.
 
-The framework developed in this chapter therefore establishes the methodological basis for differential measurements of four-tops production in Run~3 data.
+The framework developed in this chapter therefore establishes the methodological basis for differential measurements of $t\bar{t}t\bar{t}$ production in Run~3 data.

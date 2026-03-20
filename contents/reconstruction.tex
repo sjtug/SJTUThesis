@@ -1,4 +1,4 @@
-% !TEX root = ../main.tex
+﻿% !TEX root = ../main.tex
 
 \chapter{Object Reconstruction}
 \label{chap:reco}
@@ -38,9 +38,9 @@ Track reconstruction proceeds through a sequence of well-defined steps:
 detector measurements are clustered into space points, which are used to seed
 track candidates that are subsequently extended, fitted, and disambiguated.
 The resulting tracks form the basis of primary-vertex reconstruction, while
-displaced tracks are further exploited to identify secondary vertices.
+displaced tracks are further exploited to identify secondary vertices~\cite{ATLASTrackingDense2017}.
 Muon reconstruction follows the same general principles and is discussed
-separately in Section~\ref{sec:reco-muons}~\cite{ATLASTrackingDense2017}.
+separately in Section~\ref{sec:reco-muons}.
 
 Track reconstruction in the ID starts from the formation of clusters in the pixel
 and SCT detectors.
@@ -57,10 +57,10 @@ initial estimate of the track parameters under the assumption of a helical
 trajectory in the magnetic field.
 Track finding follows an iterative combinatorial strategy, in which track
 candidates are extended layer by layer by incorporating compatible space points
-using a combinatorial Kalman filter.
+using a combinatorial Kalman filter~\cite{Fruhwirth1987KalmanTrackVertex}.
 If multiple compatible extensions exist on a given detector layer, several
 track candidates are propagated in parallel, increasing the reconstruction
-efficiency in dense environments~\cite{Fruhwirth1987KalmanTrackVertex}.
+efficiency in dense environments.
 
 The large number of track candidates produced by the combinatorial procedure
 necessitates an ambiguity-resolution stage.
@@ -150,14 +150,13 @@ clusters.
 
 For electron and photon reconstruction, only the electromagnetic energy of
 topo-clusters is considered, with a dedicated treatment of the barrel--endcap
-transition region.
+transition region~\cite{ATLASeGammaPerformance2019,ATLASegammaTopoSuperclusters2017}.
 A preselection on the electromagnetic energy fraction is applied to suppress
 pile-up-induced clusters, yielding a collection of EM topo-clusters that serve as
 inputs to subsequent track matching and supercluster construction.
 Topo-clusters thus provide noise-suppressed, three-dimensional calorimeter energy
 building blocks, while higher-level clustering is required to recover the full
-energy of individual electromagnetic objects~\cite{ATLASeGammaPerformance2019,
-ATLASegammaTopoSuperclusters2017}.
+energy of individual electromagnetic objects.
 
 \subsection{Tracks and Conversions}
 
@@ -211,9 +210,9 @@ Superclusters are constructed by first identifying a seed EM topo-cluster and
 then iteratively adding nearby satellite clusters consistent with bremsstrahlung
 photons, conversion-related topologies, or cluster splitting.
 This dynamic clustering approach improves energy containment and provides a more
-robust calorimeter reference for subsequent track and conversion-vertex matching.
+robust calorimeter reference for subsequent track and conversion-vertex matching~\cite{ATLASegammaTopoSuperclusters2017}.
 The superclustering concept is illustrated in
-Fig.~\ref{fig:reco-egamma-superclustering}~\cite{ATLASegammaTopoSuperclusters2017}.
+Fig.~\ref{fig:reco-egamma-superclustering}.
 
 \begin{figure}
 	\centering
@@ -265,10 +264,9 @@ reconstructed cluster energy, as well as conversion-related vetoes.
 
 The corresponding identification efficiencies are measured in data using
 tag-and-probe techniques in $Z\to ee$ events and are typically presented as
-functions of the electron transverse energy and pseudorapidity.
+functions of the electron transverse energy and pseudorapidity~\cite{ATLASElectronRecoID2019}.
 Representative results for the standard operating points are shown in
-Fig.~\ref{fig:reco-egamma-electron-id-eff}~\cite{ATLASeGammaPerformance2019,
-ATLASElectronRecoID2019}.
+Fig.~\ref{fig:reco-egamma-electron-id-eff}.
 
 \begin{figure}[tb]
   \centering
@@ -301,9 +299,9 @@ boosted topologies.
 
 Standard isolation working points are defined in Run~2 to balance background
 rejection against signal efficiency, and are calibrated using data-driven
-techniques.
+techniques~\cite{ATLASeGammaPerformance2019}.
 These working points are used in this thesis following the standard ATLAS
-recommendations~\cite{ATLASeGammaPerformance2019,ATLASElectronRecoID2019}.
+recommendations.
 
 \section{Muons}
 \label{sec:reco-muons}
@@ -416,12 +414,12 @@ The Medium WP is typically used as a baseline in physics analyses, while the Loo
 WP can recover efficiency in challenging reconstruction regimes, in particular at
 low $p_T$.
 The Tight WP increases background rejection and improves the robustness of the
-momentum measurement by applying stricter quality and compatibility requirements.
+momentum measurement by applying stricter quality and compatibility requirements~\cite{ATLASMuonReco2021}.
 In addition, dedicated WPs target extreme regions of phase space.
 The High-$p_T$ WP focuses on optimising the momentum resolution and rejecting
 muons with large measurement uncertainties or problematic MS configurations,
 while the Low-$p_T$ WP is designed to preserve efficiency for muons of only a few
-GeV; both cut-based and multivariate variants are provided~\cite{ATLASMuonReco2021}.
+GeV; both cut-based and multivariate variants are provided.
 
 Representative reconstruction and identification efficiencies for the standard
 working points are measured in data using tag-and-probe techniques in
@@ -454,10 +452,173 @@ using variable-size isolation cones that preserve efficiency for boosted
 topologies.
 For precision measurements, the efficiencies of vertex association and isolation
 selections are determined with data-driven techniques, most prominently
-tag-and-probe methods in $Z\to\mu\mu$ and $J/\psi\to\mu\mu$ decays.
+tag-and-probe methods in $Z\to\mu\mu$ and $J/\psi\to\mu\mu$ decays~\cite{ATLASMuonReco2021}.
 The resulting data-to-simulation ratios are provided as scale factors that are
 applied in analyses to correct simulated samples and propagate the associated
-systematic uncertainties~\cite{ATLASMuonReco2021}.
+systematic uncertainties.
+
+\section{Jets} 
+Jets provide an experimentally accessible proxy for the quarks and gluons produced in the hard-scattering process. 
+They are therefore central both for reconstructing hadronic final states and for controlling dominant backgrounds. 
+This section summarises the jet algorithms and inputs used in ATLAS, the mitigation of pile-up effects, and the calibration strategy that relates reconstructed jets to particle-level references. 
+
+\subsection{Algorithms and Definitions} 
+Jets are reconstructed as collimated clusters of hadrons that arise from the fragmentation and hadronisation of energetic quarks and gluons. 
+In $pp$ collisions, a jet definition must be sufficiently robust to soft radiation and collinear splittings to allow meaningful comparisons between detector-level objects, 
+particle-level ``truth'' jets, and perturbative QCD calculations. 
+Modern jet reconstruction at the LHC therefore relies on infrared- and collinear-safe (IRC-safe) jet algorithms, 
+most prominently the sequential recombination algorithms implemented in the \textsc{FastJet} package~\cite{Cacciari2012FastJet}. 
+
+In this thesis, the baseline small-radius jets are reconstructed using the particle-flow reconstruction technique and the anti-$k_t$ algorithm, 
+which together provide strong performance in high pile-up conditions and a well-established calibration and uncertainty model within ATLAS. 
+
+Sequential recombination algorithms define distances between pairs of inputs $i,j$ and between an input and the beam. 
+In the generalised $k_t$ family, these distances are 
+
+\begin{align} 
+  d_{ij} &= \min\left(p_{T,i}^{2p},\,p_{T,j}^{2p}\right)\,\frac{\Delta R_{ij}^2}{R^2}, 
+  & d_{iB} &= p_{T,i}^{2p}, 
+\end{align} 
+
+where $R$ is the jet radius parameter, $\Delta R_{ij}^2 = (\Delta y_{ij})^2+(\Delta\phi_{ij})^2$, 
+and the exponent $p$ selects the algorithm. The choices $p=1$, $p=0$, and $p=-1$ correspond to the $k_t$, 
+Cambridge/Aachen (C/A), and anti-$k_t$ algorithms, respectively~\cite{Cacciari2008AntiKt,Cacciari2012FastJet}. 
+Among these, anti-$k_t$ yields jets with approximately circular boundaries and is widely adopted as the default jet definition for LHC analyses~\cite{Cacciari2008AntiKt}. 
+
+Cone-type algorithms provide an alternative jet definition based on ``stable cones'' and additional split--merge rules to handle overlaps. 
+Historically, seed-based cone algorithms were widely used in hadron-collider measurements but suffer from infrared unsafety. 
+Seedless cone algorithms such as \textsc{SISCone} provide an IRC-safe implementation while retaining the cone-jet concept~\cite{SalamSoyez2007SISCone}. 
+The illustration in Fig.~\ref{fig:reco-jets-algorithms} highlights the different jet shapes and areas resulting from these algorithms.
+
+\begin{figure}
+  \centering
+  	\includegraphics[width=0.9\textwidth]{figures/kT_choices.pdf}
+  \caption{Illustration of the four jet algorithms.
+  Noted features are the high irregularity in the the $k_t$ algorithms area,
+  the conical shape of the anti-$k_t$'s jets illustrating this algorithm's preference for hard radiation
+  and the smaller effective radius of the \textsc{SISCone}, due to the split merge procedure, which can be
+  observed via smaller jet areas and two jets being resolved in the place of just the one grey jet.
+  The different colours are used to represent the different jets and their areas. Taken from Ref.~\cite{Cacciari2008AntiKt}.}
+  \label{fig:reco-jets-algorithms}
+\end{figure}
+
+\subsection{Reconstruction and Pile-up Mitigation} 
+In ATLAS, calorimeter jets are typically built from topological clusters (topo-clusters), 
+i.e. three-dimensional clusters of calorimeter cells formed with noise-suppression thresholds and neighbourhood growth criteria. 
+Topo-clusters can be calibrated with local hadronic calibration schemes to account, at the cluster level, 
+for non-compensation and dead-material effects. 
+An alternative jet input for Run~2 is particle flow (PFlow), which combines tracks associated with the hard-scatter vertex with calorimeter information: calorimeter energy deposits attributed to charged hadrons are subtracted and replaced by the track momentum measurements, 
+while neutral energy is retained from the calorimeter~\cite{ATLASParticleFlowJets2017}. 
+This approach improves the jet energy and angular resolution at low and moderate $p_T$, 
+and enhances stability with respect to pile-up. 
+
+Pile-up (additional $pp$ interactions in the same or neighbouring bunch crossings) degrades jet measurements in several ways: 
+it biases the reconstructed jet energy and mass, modifies jet-shape and substructure observables, 
+and can lead to the reconstruction of spurious ``pile-up jets''. 
+ATLAS employs a combination of complementary mitigation strategies. 
+At the level of jet four-momenta, an area-based correction subtracts an event-by-event estimate of the average pile-up transverse-momentum density $\rho$ times the jet area, 
+$\Delta p_T \simeq \rho\,A$~\cite{ATLASJetPileup2016,Cacciari2012FastJet}. 
+Residual corrections then account for remaining dependencies on pile-up observables such as the number of reconstructed primary vertices and the average number of interactions per bunch crossing~\cite{ATLASJESJER13TeV2021}. 
+
+To suppress pile-up jets, jet--vertex association techniques exploit tracking information to assess whether a jet is compatible with the hard-scatter vertex. 
+Variables such as the jet vertex fraction and multivariate taggers (e.g. JVT) provide strong rejection of pile-up jets with minimal inefficiency for hard-scatter jets in the tracker acceptance~\cite{ATLASJetPileup2016,ATLASJESJER13TeV2021}. 
+In the analysis presented later in this thesis, a tight JVT working point is applied in the low-$p_T$ regime, 
+and standard ATLAS jet-quality criteria are used to reject jets affected by detector noise and non-collision backgrounds. 
+For large-radius jets used in boosted-object reconstruction, pile-up mitigation is frequently complemented by grooming techniques. 
+In particular, trimming removes soft wide-angle radiation by reclustering the jet into subjets and discarding subjets with a small fraction of the original jet $p_T$, 
+improving the stability of jet mass and substructure observables~\cite{ATLASLargeRInSitu2019}. 
+
+\subsection{Jet calibration} 
+
+Jet calibration aims to correct reconstructed jets to a well-defined particle-level reference and to quantify the associated systematic uncertainties. 
+ATLAS jet calibration follows a multi-step procedure in which successive corrections address distinct detector and event-environment effects, including pile-up, 
+calorimeter response non-linearity and non-compensation, inactive material, and residual angular biases. 
+The baseline calibration is derived from simulation by matching reconstructed jets to particle-level truth jets, 
+and is complemented by global sequential corrections that exploit jet properties correlated with the calorimeter response to improve the energy resolution and reduce flavour-dependent response variations~\cite{ATLASJESJER8TeV2020,ATLASJESJER13TeV2021}. 
+The sequence of calibration steps is illustrated in Fig.~\ref{fig:reco-jets-calib-chain}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/Jet_cali_flow.pdf}
+  \caption{Stages of the ATLAS jet energy scale calibration chain, each applied in sequence
+  to the jet four-momentum. Successive corrections address pile-up contributions, the absolute
+  energy scale and $\eta$ biases, global sequential improvements exploiting tracking and
+  calorimeter-shower information, and residual in situ differences between data and simulation.
+  Taken from Ref.~\cite{ATLASJESJER13TeV2021}.}
+  \label{fig:reco-jets-calib-chain}
+\end{figure}
+
+Residual differences between data and simulation are then corrected with in situ techniques based on transverse-momentum balance. 
+The absolute response in the central detector region is constrained using $Z$+jet and $\gamma$+jet events, while relative calibration in $\eta$ is propagated using dijet balance, 
+and the high-$p_T$ regime is addressed using multijet balance methods~\cite{ATLASJESJER8TeV2020,ATLASJESJER13TeV2021}. 
+These measurements are statistically combined to provide the final jet energy scale (JES) and jet energy resolution (JER) calibrations and their uncertainties. 
+Recent developments extend this framework with higher-dimensional residual pile-up corrections, 
+more flexible parameterisations of the response, and machine-learning-based global calibrations designed to improve precision in high pile-up conditions~\cite{ATLASJetCalibrationNewTechniques2023}. 
+The resulting JES systematic uncertainty components are summarised in
+Fig.~\ref{fig:reco-jets-jes-uncertainty} as functions of jet $p_T$ and $\eta$.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/JES_eta.pdf}
+    \caption{Fractional JES uncertainty components as a function of jet $p_T$ at $\eta = 0$.}
+    \label{fig:reco-jets-jes-pt}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/JES_pt.pdf}
+    \caption{Fractional JES uncertainty components as a function of jet $\eta$ at $p_T = 60$~GeV.}
+    \label{fig:reco-jets-jes-eta}
+  \end{subfigure}
+  \caption{Fractional jet energy scale systematic uncertainty components for anti-$k_t$ $R=0.4$
+  particle-flow jets reconstructed with the ATLAS detector in Run~2.
+  The total uncertainty, shown as a filled region topped by a solid black line, is the quadrature
+  sum of all components. Flavour-dependent components assume a dijet flavour composition.
+  Taken from Ref.~\cite{ATLASJESJER13TeV2021}.}
+  \label{fig:reco-jets-jes-uncertainty}
+\end{figure}
+
+Large-radius jets require additional attention because boosted-object analyses are sensitive not only to the jet energy scale but also to the jet mass scale and resolution. 
+Dedicated calibrations and in situ measurements of the large-$R$ jet energy and mass responses therefore play an important role in controlling uncertainties on the reconstructed jet mass and substructure observables~\cite{ATLASLargeRInSitu2019}. 
+
+\subsection{Re-clustered Jets} 
+
+Large-radius jets ($R\gtrsim 1$) are widely used to capture the collimated hadronic decays of boosted massive particles, 
+for which the characteristic opening angle of the decay products scales approximately as $\Delta R\sim 2m/p_T$.
+In practice, however, only a limited number of large-$R$ configurations are typically employed, since each jet definition (algorithm, radius, and grooming parameters) requires dedicated calibration and uncertainty evaluation. 
+
+Jet re-clustering (``jets from jets'') offers a modular alternative~\cite{Nachman2014JetsFromJets}. 
+In this approach, jets of a smaller radius $r<R$ are reconstructed and calibrated, 
+and are then used as the inputs to a second clustering step that forms re-clustered large-$R$ jets. 
+Because the building-block small-$r$ jets are already calibrated objects, the re-clustered jet kinematics inherit a calibration and uncertainties through uncertainty propagation, 
+enabling the large-$R$ parameter choices to be optimised at the analysis level without requiring a fully independent calibration for each configuration. 
+The principle is illustrated in Fig.~\ref{fig:reco-jets-reclustering}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/LargeR_jet.pdf}
+  \caption{Comparison of jet clustering for an example $Z'\to t\bar{t}$ event.
+  Left: jets clustered directly with the anti-$k_t$ $R=1.0$ algorithm; right: large-radius jets
+  formed by re-clustering $r=0.3$ anti-$k_t$ small-radius jets with $R=1.0$.
+  Shaded regions indicate the jet area determined by ghost clustering.
+  The minimum $p_T$ threshold applied to the small-radius input jets acts as an effective
+  grooming, suppressing the soft wide-angle radiation visible in the direct clustering.
+  Taken from Ref.~\cite{Nachman2014JetsFromJets}.}
+  \label{fig:reco-jets-reclustering}
+\end{figure}
+
+An additional practical feature of re-clustered jets is an intrinsic grooming effect: small-$r$ jets are only reliably calibrated above a minimum transverse momentum, 
+which acts as a threshold that suppresses soft wide-angle contributions to the large-$R$ jet. Furthermore, 
+re-clustered trimming can be defined by discarding small-$r$ jet constituents whose transverse momentum falls below a fraction of the parent re-clustered jet, $p_T^j < f_{\mathrm{cut}}\,p_T^J$; 
+this provides a tunable grooming strategy analogous to conventional trimming while retaining the modularity of the re-clustering paradigm. 
+
+Re-clustered jets are used in this thesis to characterise boosted hadronic top-quark decays. 
+They are constructed by reclustering the selected calibrated small-$R$ jet collection into a large-$R$ jet collection, 
+and applying a trimming requirement defined as a fraction of the re-clustered jet transverse momentum. With this strategy, 
+calibration corrections and systematic uncertainties are inherited from the underlying small-$R$ jets through uncertainty propagation, 
+while the large-$R$ configuration can be tuned to the boosted topology of interest.
 
 \section{Flavour Tagging}
 
